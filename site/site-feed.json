@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-05-19T15:05:00+01:00",
+  "updated_at": "2026-05-19T15:40:00+01:00",
   "posts": [
     {
       "id": "post_5daa6a87b89f249a9b",
@@ -22,8 +22,8 @@
         "https://openai.com/index/malta-chatgpt-plus-partnership/",
         "https://www.investing.com/news/economy-news/openai-seals-deal-in-malta-to-give-all-maltese-access-to-chatgpt-plus-4694449"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_openai_malta_20260516_original.png",
+      "image_url": "assets/final/site_openai_malta_20260516_site_1600x900.jpg",
       "published_at": "2026-05-19T20:00:00+01:00",
       "section": "Mundo"
     },
