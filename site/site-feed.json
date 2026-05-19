@@ -1,0 +1,158 @@
+{
+  "brand": "PTIA.pt",
+  "updated_at": "2026-05-19T12:30:00+01:00",
+  "posts": [
+    {
+      "id": "post_5daa6a87b89f249a9b",
+      "title": "Chief AI Officer: a IA já pede liderança própria nas empresas",
+      "body": "A Inteligência Artificial consolida-se como um pilar estratégico nas organizações e começa a criar novas funções de liderança, como o Chief AI Officer. O cargo, noticiado pelo Observador, aponta para uma mudança clara: a IA deixou de ser apenas uma ferramenta técnica e passou a entrar na estrutura de decisão das empresas.\n\nA leitura PTIA é simples: o título do cargo interessa menos do que a responsabilidade que ele revela. A pergunta já não é se uma empresa portuguesa deve experimentar IA. É quem assume ownership, quem mede resultados, quem controla risco e quem transforma a tecnologia em vantagem real.\n\nPara Portugal, este é um sinal útil para gestores e equipas de produto. Sem liderança clara, a IA fica dispersa em testes, subscrições e entusiasmo. Com liderança séria, pode entrar em vendas, operações, apoio ao cliente, reporting e decisão.\n\nFonte: https://observador.pt/2026/05/16/quem-lidera-a-ia-nas-empresas-eis-o-chief-ai-officer/",
+      "source_urls": [
+        "https://observador.pt/2026/05/16/quem-lidera-a-ia-nas-empresas-eis-o-chief-ai-officer/"
+      ],
+      "image_path": "data\\final_assets\\post_256d7fa0ae652705dc_2cb31e1e_ChatGPT-Image-18_05_2026-22_35_42.png",
+      "image_url": "assets/final/post_256d7fa0ae652705dc_site_1600x900.jpg",
+      "published_at": "2026-05-19T21:00:00+01:00",
+      "section": "Histórias reais"
+    },
+    {
+      "id": "site_openai_malta_20260516",
+      "title": "OpenAI e Malta tratam o ChatGPT Plus como infraestrutura pública",
+      "body": "Malta fechou uma parceria com a OpenAI para dar acesso ao ChatGPT Plus aos cidadãos que completem um curso de literacia em IA. A notícia é relevante não por ser mais um anúncio de adoção, mas porque trata uma ferramenta privada como uma espécie de utilidade pública.\n\nPara Portugal, a pergunta não é se devemos copiar Malta. É se o Estado português tem capacidade para transformar acesso em competência real. Dar contas premium é simples; criar literacia, medir uso e ligar isto a produtividade, serviços públicos e pequenas empresas é outra conversa.\n\nLeitura editorial: isto é um bom teste para observar. Se Malta conseguir converter acesso em uso prático, outros países pequenos vão ter pressão para responder. Se ficar por marketing institucional, será apenas mais uma campanha com logótipo grande e impacto pequeno.\n\nFonte: https://openai.com/index/malta-chatgpt-plus-partnership/",
+      "source_urls": [
+        "https://openai.com/index/malta-chatgpt-plus-partnership/",
+        "https://www.investing.com/news/economy-news/openai-seals-deal-in-malta-to-give-all-maltese-access-to-chatgpt-plus-4694449"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T20:00:00+01:00",
+      "section": "Mundo"
+    },
+    {
+      "id": "site_google_android_gemini_20260512",
+      "title": "Google quer transformar Android num sistema operativo com IA proativa",
+      "body": "A Google apresentou o Gemini Intelligence para Android, uma camada de IA mais proativa que deverá chegar em ondas a telemóveis, relógios, carros, óculos e portáteis. A ambição é clara: deixar de pôr IA apenas numa app e começar a metê-la no sistema operativo.\n\nIsto importa porque muda a distribuição. Quando a IA vive dentro do sistema, deixa de depender da disciplina do utilizador para abrir uma ferramenta. Passa a aparecer no momento da tarefa, da decisão e da fricção.\n\nPara Portugal, o impacto será silencioso mas profundo: trabalhadores e PME podem começar a usar IA sem lhe chamar projeto de transformação digital. A vantagem vai para quem souber redesenhar processos à volta desta ubiquidade, não para quem apenas instalar mais uma app.\n\nFonte: https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/",
+      "source_urls": [
+        "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T19:00:00+01:00",
+      "section": "Mundo"
+    },
+    {
+      "id": "site_nscale_sines_ai_20260508",
+      "title": "Sines pode tornar-se uma peça séria da infraestrutura europeia de IA",
+      "body": "A Nscale deverá investir cerca de 695 milhões de euros na expansão de infraestrutura de IA em Sines, em colaboração com Microsoft e Start Campus. A escala anunciada inclui dezenas de milhares de processadores Nvidia para servir clientes europeus.\n\nEste é um tema maior do que centros de dados. Sem compute, a IA europeia fica dependente de capacidade externa. Com compute, Portugal pode ganhar relevância na cadeia de valor, mas também passa a ter de discutir energia, água, licenciamento, soberania e retorno económico real.\n\nLeitura PTIA: Sines é uma oportunidade, mas não chega ser terreno barato e energia disponível. Portugal precisa de capturar talento, contratos, investigação aplicada e empresas à volta desta infraestrutura. Caso contrário, ficamos com os edifícios e os outros ficam com a margem.\n\nFonte: https://www.investmentmonitor.ai/news/nscale-portugal-ai-data-centre-expansion/",
+      "source_urls": [
+        "https://www.investmentmonitor.ai/news/nscale-portugal-ai-data-centre-expansion/",
+        "https://www.theportugalnews.com/news/2026-05-08/portugal-becoming-a-strategic-european-hub-for-ai-ready-data-centres/1018693"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T18:00:00+01:00",
+      "section": "Portugal"
+    },
+    {
+      "id": "post_fb5b67913bcfae5e96",
+      "title": "51% dos portugueses receiam perder o emprego para a IA",
+      "body": "Um estudo da Gallup International Association, conduzido em Portugal pela Intercampus, indica que 51% dos inquiridos portugueses receiam que a Inteligência Artificial substitua o seu emprego. Na Europa Ocidental, a média referida é 27%.\n\nO dado é relevante porque mostra uma distância entre discurso de inovação e perceção social. Portugal não pode tratar a IA apenas como assunto de produtividade empresarial. Há ansiedade real, e essa ansiedade vai influenciar adoção, formação, negociação laboral e confiança nas organizações.\n\nA oportunidade está em transformar medo em literacia prática. Empresas e decisores públicos deviam explicar que tarefas mudam, que competências contam e que uso concreto da IA já cria valor sem destruir confiança.\n\nFonte: https://jornaleconomico.sapo.pt/noticias/metade-dos-portugueses-receia-que-a-inteligencia-artificial-substitua-o-seu-emprego-segundo-estudo-da-intercampus/",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/metade-dos-portugueses-receia-que-a-inteligencia-artificial-substitua-o-seu-emprego-segundo-estudo-da-intercampus/"
+      ],
+      "image_path": "data\\final_assets\\post_669e3e9e7b2a54f0a4_50f272c8_ChatGPT-Image-18_05_2026-22_32_21.png",
+      "image_url": "assets/final/post_669e3e9e7b2a54f0a4_site_1600x900.jpg",
+      "published_at": "2026-05-19T16:00:00+01:00",
+      "section": "Portugal"
+    },
+    {
+      "id": "post_19725f2d7c6e0777b9",
+      "title": "Portugal sobe na adoção de IA, mas perde terreno no ranking global",
+      "body": "Portugal terá aumentado a adoção de Inteligência Artificial para 26,4%, segundo dados do Microsoft AI Diffusion Report divulgados pela Grande Consumo. Ainda assim, o país terá perdido posição no ranking mundial, sinal de que outros mercados estão a acelerar mais depressa.\n\nEste é o tipo de dado que importa mais do que parece. Crescer não chega quando a referência é global. A questão é se a adoção portuguesa está a produzir workflows, produtos e vantagens competitivas, ou apenas experiências soltas com ferramentas novas.\n\nA leitura para empresas é direta: medir uso já não chega. É preciso medir impacto. Que processos ficaram mais rápidos? Que decisões ficaram melhores? Que equipas ganharam capacidade? Sem estas respostas, a taxa de adoção é só vaidade estatística.\n\nFonte: https://grandeconsumo.com/portugal-sobe-adocao-de-ia-para-264-mas-perde-posicao-no-ranking-mundial/",
+      "source_urls": [
+        "https://grandeconsumo.com/portugal-sobe-adocao-de-ia-para-264-mas-perde-posicao-no-ranking-mundial/"
+      ],
+      "image_path": "data\\final_assets\\post_bcfdb577af20f981d6_f50b8398_ChatGPT-Image-18_05_2026-11_50_32.png",
+      "image_url": "assets/final/post_bcfdb577af20f981d6_site_1600x900.jpg",
+      "published_at": "2026-05-19T13:00:00+01:00",
+      "section": "Portugal"
+    },
+    {
+      "id": "site_anthropic_stainless_20260518",
+      "title": "Anthropic compra a Stainless e mostra que agentes precisam de infraestrutura",
+      "body": "A Anthropic comprou a Stainless, uma empresa que gera SDKs, CLIs e tooling para APIs e MCP. A leitura superficial é uma aquisição de developer tools. A leitura relevante é outra: agentes de IA só são úteis quando conseguem ligar-se bem a sistemas reais.\n\nPara builders, isto é um sinal forte. A guerra já não é apenas sobre o modelo mais inteligente. É sobre conectividade, tooling, permissões, manutenção de SDKs e capacidade de transformar modelos em software operacional.\n\nEm Portugal, a oportunidade está nas equipas que perceberem isto cedo. Quem construir produto com IA vai precisar de menos demos e mais infraestrutura: APIs limpas, logs, avaliação, segurança, permissões e integração com workflows existentes.\n\nFonte: https://www.anthropic.com/news/anthropic-acquires-stainless",
+      "source_urls": [
+        "https://www.anthropic.com/news/anthropic-acquires-stainless",
+        "https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T12:00:00+01:00",
+      "section": "Builders"
+    },
+    {
+      "id": "site_arxiv_ai_papers_20260516",
+      "title": "arXiv endurece regras contra investigação gerada por IA sem verificação",
+      "body": "O arXiv vai punir autores que submetam investigação com erros evidentes gerados por IA e não verificados. A medida surge num contexto de aumento de artigos científicos com referências inventadas, texto automático e baixa contribuição real.\n\nIsto interessa a builders e equipas técnicas porque é uma lição transversal: usar IA não remove responsabilidade. Pelo contrário, aumenta a necessidade de rastreio, revisão e prova.\n\nPara Portugal, a mensagem é útil para universidades, laboratórios e empresas. A IA pode acelerar investigação e escrita, mas sem método transforma-se em ruído caro. A regra prática é simples: tudo o que a IA produz tem dono humano.\n\nFonte: https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/",
+      "source_urls": [
+        "https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/",
+        "https://www.semafor.com/article/05/15/2026/ai-generated-papers-flood-submissions-to-scientific-journals"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T11:00:00+01:00",
+      "section": "Builders"
+    },
+    {
+      "id": "site_ai_act_gpai_20260519",
+      "title": "O AI Act aproxima-se da fase em que deixa de ser teoria",
+      "body": "A Comissão Europeia mantém o Código de Prática para modelos de IA de propósito geral como peça central de preparação para o AI Act. O ponto relevante para empresas não é decorar a lei, mas perceber que transparência, direitos de autor, segurança e documentação vão entrar no ciclo normal de decisão.\n\nPara Portugal, isto deve sair do departamento jurídico e entrar no produto. Quem usa ou integra modelos de IA precisa de saber que dados entram, que fornecedores usa, que riscos assume e que documentação consegue mostrar.\n\nLeitura PTIA: a regulação europeia pode ser pesada, mas ignorá-la é pior. A vantagem vai estar em criar checklists simples antes de comprar, integrar ou lançar sistemas com IA.\n\nFonte: https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "source_urls": [
+        "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+        "https://digital-strategy.ec.europa.eu/en/faqs/questions-and-answers-code-practice-general-purpose-ai"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T10:00:00+01:00",
+      "section": "Regulação"
+    },
+    {
+      "id": "site_vatican_ai_20260518",
+      "title": "O Vaticano coloca a IA no centro do debate sobre dignidade humana",
+      "body": "O Papa Leão XIV vai publicar a sua primeira encíclica sobre a proteção da pessoa humana na era da Inteligência Artificial, com participação de Christopher Olah, cofundador da Anthropic e investigador em interpretabilidade.\n\nEste tema pode parecer distante de empresas portuguesas, mas não é. A IA está a entrar em decisões sobre trabalho, guerra, educação, saúde e linguagem pública. Quando instituições religiosas, tecnológicas e políticas começam a disputar o enquadramento moral da IA, o tema deixou de ser apenas técnico.\n\nLeitura PTIA: não precisamos de transformar isto em sermão. Precisamos de perceber que a legitimidade social da IA vai importar tanto como a sua performance.\n\nFonte: https://www.vaticannews.va/en/pope/news/2026-05/pope-leo-xiv-first-encyclical-magnifica-humanitas.html",
+      "source_urls": [
+        "https://www.vaticannews.va/en/pope/news/2026-05/pope-leo-xiv-first-encyclical-magnifica-humanitas.html",
+        "https://apnews.com/article/9cf3e07fd691f6af510c4a6f9c8ba353"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T09:30:00+01:00",
+      "section": "Regulação"
+    },
+    {
+      "id": "site_cgi_portugal_ai_20260428",
+      "title": "A CGI abre em Portugal um centro de excelência em IA",
+      "body": "A CGI anunciou um Centro de Excelência em Inteligência Artificial em Portugal, focado em IA generativa e agentes. Segundo a empresa, a estrutura fica integrada na operação portuguesa e pretende apoiar clientes na adoção de soluções de IA com impacto mensurável.\n\nEsta é uma história real de mercado: talento, consultoria, agentes e transformação empresarial a ganhar forma local. O risco é ser apenas mais um centro com nome bonito. A oportunidade é criar capacidade portuguesa para desenhar, implementar e manter sistemas reais.\n\nLeitura PTIA: centros de excelência só interessam se gerarem equipas melhores, projetos entregues e aprendizagem acumulada. O resto é branding.\n\nFonte: https://www.prnewswire.com/news-releases/cgi-announces-new-artificial-intelligence-center-of-excellence-in-portugal-302754890.html",
+      "source_urls": [
+        "https://www.prnewswire.com/news-releases/cgi-announces-new-artificial-intelligence-center-of-excellence-in-portugal-302754890.html",
+        "https://eco.sapo.pt/2026/04/28/cgi-vai-abrir-em-portugal-o-primeiro-centro-de-excelencia-em-ia-e-espera-contratar-100-pessoas-por-ano/"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T09:15:00+01:00",
+      "section": "Histórias reais"
+    },
+    {
+      "id": "site_thinking_machines_20260515",
+      "title": "Mira Murati aposta numa IA que colabora em vez de esperar por prompts",
+      "body": "A Thinking Machines, de Mira Murati, está a apresentar modelos de interação desenhados para colaboração em tempo real, não apenas para responder a prompts depois de o utilizador acabar de falar ou escrever.\n\nIsto é uma pista importante sobre o próximo interface da IA. O chatbot é uma fase, não o destino. Se a IA passar a ouvir, ver, interromper, sugerir e colaborar em fluxo contínuo, muda a forma como trabalhamos com software.\n\nPara Portugal, a implicação é prática: empresas que ainda estão a discutir se usam chatbots podem chegar tarde à verdadeira mudança. O próximo salto pode estar na colaboração contínua entre pessoa, ferramenta e contexto.\n\nFonte: https://www.wired.com/story/mira-murati-humans-in-the-loop-ai-models-thinking-machines/",
+      "source_urls": [
+        "https://www.wired.com/story/mira-murati-humans-in-the-loop-ai-models-thinking-machines/",
+        "https://www.semafor.com/article/05/13/2026/mira-muratis-thinking-machines-previews-interaction-models"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-05-19T09:00:00+01:00",
+      "section": "Previsões Futuras"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "organizations": [
+    {
+      "id": "6a06f865975a114e1d194d52",
+      "name": "My Organization"
+    }
+  ],
+  "channels": {
+    "instagram": "6a0702ce090476fb9921c9e5",
+    "linkedin": "6a07030a090476fb9921cacc"
+  },
+  "all_channels": [
+    {
+      "id": "6a0702ce090476fb9921c9e5",
+      "name": "ptia.pt",
+      "display_name": "ptia.pt",
+      "service": "instagram"
+    },
+    {
+      "id": "6a07030a090476fb9921cacc",
+      "name": "ptia-portugal",
+      "display_name": "PTIA Portugal",
+      "service": "linkedin"
+    }
+  ],
+  "updated_at": "2026-05-19T10:41:42+00:00"
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PTIA Admin</title>
+  <link rel="stylesheet" href="/site/styles.css">
+</head>
+<body class="admin-body">
+  <section id="gate" class="admin-gate">
+    <div>
+      <p class="eyebrow">PTIA Admin</p>
+      <h1>Backoffice editorial</h1>
+      <p class="lead">Este acesso e local para o MVP. Para producao, vamos trocar isto por auth real no deploy.</p>
+      <input id="admin_password" type="password" placeholder="Password">
+      <button class="button primary" onclick="enterAdmin()">Entrar</button>
+      <p id="error" class="admin-error"></p>
+    </div>
+  </section>
+  <section id="admin" class="admin-frame hidden">
+    <header class="site-header compact">
+      <a class="brand" href="/site/"><img src="/site/assets/ptia-logo-cutout.png" alt="PTIA"></a>
+      <nav><a href="/site/">Site</a><a href="#" onclick="logout()">Sair</a></nav>
+    </header>
+    <iframe src="/" title="PTIA Editorial Dashboard"></iframe>
+  </section>
+  <script>
+    const expected = localStorage.getItem('ptia_admin_password') || 'ptia-admin';
+    function enterAdmin() {
+      const value = document.getElementById('admin_password').value;
+      if (value !== expected) {
+        document.getElementById('error').textContent = 'Password errada.';
+        return;
+      }
+      sessionStorage.setItem('ptia_admin_ok', '1');
+      showAdmin();
+    }
+    function logout() {
+      sessionStorage.removeItem('ptia_admin_ok');
+      location.reload();
+    }
+    function showAdmin() {
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('admin').classList.remove('hidden');
+    }
+    if (sessionStorage.getItem('ptia_admin_ok') === '1') showAdmin();
+  </script>
+</body>
+</html>

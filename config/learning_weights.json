@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "min_samples": 3,
+  "baseline_score": 0.0,
+  "sample_count": 0,
+  "source_boosts": {},
+  "section_boosts": {},
+  "channel_notes": {},
+  "recommendations": [
+    "Amostra insuficiente para alterar a classificacao. Continuar a recolher metricas."
+  ]
+}

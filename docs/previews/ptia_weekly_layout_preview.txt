@@ -1,0 +1,40 @@
+PTIA Weekly - Os 5 sinais PTIA com mais engagement esta semana
+
+Exemplo de edição semanal. No produto real, estes cinco blocos vêm dos nossos posts com melhor tracking: saves, shares, comentários, clicks, likes e followers.
+
+1. Como uma PME portuguesa deve começar com IA sem comprar hype
+Fonte: linkedin - https://ptia.pt
+O que aconteceu: O post que melhor funcionou esta semana foi o mais prático: começar por workflows pequenos, medir tempo poupado e só depois escalar.
+Porque importa: Funcionou porque responde a uma dor concreta: muita gente quer usar IA, mas não sabe por onde começar sem cair em ferramentas soltas.
+Ângulo Portugal: Para PME portuguesas, a oportunidade está menos em trocar equipas por IA e mais em reduzir trabalho repetitivo em vendas, apoio ao cliente, operações e reporting.
+O que fazer: Aprofunda este tema na próxima semana: novo ângulo, exemplo português ou versão mais prática.
+
+2. AI agents: o que muda quando o software começa a executar tarefas
+Fonte: instagram - https://ptia.pt
+O que aconteceu: A audiência guardou e partilhou mais quando explicámos agents como uma mudança operacional, não como buzzword técnica.
+Porque importa: Agents tornam a IA mais útil porque ligam decisão, ferramentas e execução. Mas também aumentam risco, permissões e necessidade de validação.
+Ângulo Portugal: Empresas portuguesas devem começar por agents internos, com limites claros, logs e aprovação humana antes de tocar em clientes ou dados sensíveis.
+O que fazer: Aprofunda este tema na próxima semana: novo ângulo, exemplo português ou versão mais prática.
+
+3. AI Act: a pergunta que as empresas ainda não estão a fazer
+Fonte: linkedin - https://ptia.pt
+O que aconteceu: O tema regulatório teve bom engagement quando foi traduzido para decisões práticas: que sistemas usamos, com que dados e quem aprova.
+Porque importa: O AI Act não é só jurídico. Obriga equipas a mapear uso de IA, fornecedores, riscos e responsabilidades.
+Ângulo Portugal: PME e scaleups em Portugal devem criar um inventário simples de ferramentas de IA antes de pensarem em políticas longas.
+O que fazer: Aprofunda este tema na próxima semana: novo ângulo, exemplo português ou versão mais prática.
+
+4. A diferença entre automatizar trabalho e automatizar julgamento
+Fonte: site - https://ptia.pt
+O que aconteceu: Este foi o tema mais lido no site porque separa produtividade útil de decisões que exigem responsabilidade humana.
+Porque importa: Automatizar tarefas repetitivas é diferente de automatizar decisões sobre pessoas, crédito, saúde, emprego ou compliance.
+Ângulo Portugal: Em Portugal, este enquadramento ajuda equipas de gestão a decidir onde a IA pode entrar já e onde precisa de controlo adicional.
+O que fazer: Aprofunda este tema na próxima semana: novo ângulo, exemplo português ou versão mais prática.
+
+5. O stack mínimo de IA para uma equipa pequena
+Fonte: instagram - https://ptia.pt
+O que aconteceu: O formato checklist funcionou: poucos conceitos, ferramentas por função e uma recomendação de começar pequeno.
+Porque importa: Equipas pequenas não precisam de dez subscrições. Precisam de um modelo, um gestor de conhecimento, automações simples e regras de uso.
+Ângulo Portugal: Para empresas portuguesas com orçamento apertado, o ganho está em reduzir fragmentação antes de adicionar mais ferramentas.
+O que fazer: Aprofunda este tema na próxima semana: novo ângulo, exemplo português ou versão mais prática.
+
+Sinal vs. Ruído: se não muda uma decisão, fica fora do radar PTIA.

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PTIA.pt - Inteligência Artificial, lida em Portugal</title>
+  <meta name="description" content="Curadoria portuguesa de Inteligência Artificial. Lemos o ruído para entregar poucos sinais com fonte, contexto e leitura editorial.">
+  <meta property="og:title" content="PTIA.pt - IA com leitura portuguesa">
+  <meta property="og:description" content="Front-page diária de Inteligência Artificial para Portugal. Sem hype, sempre com fonte original.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F3EEE2">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("ptia-theme");
+        document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){
+      w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
+      l=d.createElement(e); l.async=1; l.src=u;
+      n=d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l,n);
+    })(window,document,"script","https://assets.mailerlite.com/js/universal.js","ml");
+    ml("account", "2352121");
+  </script>
+  <!-- End MailerLite Universal -->
+</head>
+<body>
+  <a class="skip-link" href="#hoje">Saltar para o conteúdo</a>
+
+  <div class="dateline">
+    <div class="wrap">
+      <div class="dateline-left">
+        <span id="date-long">segunda-feira, 18 de maio de 2026</span>
+        <span class="issue">Issue 027 · Maio 2026</span>
+      </div>
+      <div class="dateline-right">
+        <span class="live"><span class="live-dot"></span> Lisboa · <span id="clock">00:00</span></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema" aria-pressed="false" id="theme-toggle">Escuro</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header news">
+    <div class="wrap header-grid">
+      <a class="brand-logo-link" href="#top" aria-label="PTIA.pt - página inicial">
+        <img class="brand-logo" src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="#hoje">Hoje</a>
+        <a href="#mundo">Mundo</a>
+        <a href="#portugal">Portugal</a>
+        <a href="#builders">Builders</a>
+        <a href="#regulacao">Regulação</a>
+        <a href="#mapa">Secções</a>
+      </nav>
+      <a class="header-cta" href="#newsletter">Weekly <span aria-hidden="true">-></span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="breaking" aria-label="Atualizações">
+      <div class="breaking-label"><span class="live-dot"></span> Agora</div>
+      <div class="breaking-track"><div id="breaking-content"></div></div>
+    </section>
+
+    <section id="hoje" class="frontpage">
+      <div class="wrap">
+        <div class="crumbs">
+          <p><em>Hoje</em> · <span id="edition-date">edição diária</span> · última atualização <span id="last-updated">agora</span></p>
+          <strong><span id="signals-count">0</span> sinais retidos · 1.840 fontes lidas</strong>
+        </div>
+        <div class="front-grid">
+          <article class="lead-card" id="lead-card"></article>
+          <aside class="front-rail" aria-label="Mais destaques">
+            <section class="live-card">
+              <div class="live-card-top"><span>Índice PTIA · 24h</span><strong><span class="live-dot"></span> ao vivo</strong></div>
+              <div class="live-readings">
+                <div><strong>1.840</strong><span>Fontes lidas</span></div>
+                <div><strong id="rail-signals">8<sup>/1840</sup></strong><span>Sinais retidos</span></div>
+              </div>
+              <svg id="signal-viz" viewBox="0 0 480 180" preserveAspectRatio="none" aria-hidden="true"></svg>
+              <footer><span>Atualizado <span id="rail-clock">agora</span></span><em>4% retido</em></footer>
+            </section>
+            <div class="rail-divider"><span>Mais destaques de hoje</span></div>
+            <div id="rail-stories"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="today-section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="section-index">+ Mais sinais</p>
+          <h2>O resto da semana em <em>IA.</em></h2>
+          <p class="section-meta"><span id="more-count">0</span> entradas · ratio sinal/ruído 4%</p>
+        </header>
+        <div class="filterbar" id="filterbar" role="toolbar" aria-label="Filtrar notícias"></div>
+        <div class="article-list" id="posts"></div>
+      </div>
+    </section>
+
+    <section id="mapa" class="editorial-map compact">
+      <div class="wrap">
+        <header class="map-head reveal">
+          <div>
+            <p class="eyebrow">Mapa editorial</p>
+            <h2>IA para quem <em>decide</em>, <em>constrói</em> e <em>trabalha</em>.</h2>
+          </div>
+          <p>Seis frentes onde a PTIA escolhe estar. Não cobrimos tudo. Cobrimos o que altera decisões, prioridades e conversas em Portugal.</p>
+        </header>
+        <div class="map-grid" id="map-grid"></div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="newsletter inline">
+      <div class="wrap newsletter-grid">
+        <div class="newsletter-copy reveal">
+          <p class="eyebrow">PTIA Weekly</p>
+          <h2>Os cinco sinais que merecem ficar.</h2>
+          <p>Sexta-feira, 8h00. Os posts PTIA com melhor resposta da semana, contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
+          <dl class="weekly-stats">
+            <div><dt data-count="4218">0</dt><dd>Subscritores alvo</dd></div>
+            <div><dt data-count="27">0</dt><dd>Edições planeadas</dd></div>
+            <div><dt data-count="62" data-suffix="%">0</dt><dd>Meta abertura</dd></div>
+          </dl>
+        </div>
+        <div class="signup-card reveal delay-1">
+          <div class="signup-top">
+            <span>Pré-visualização</span>
+            <span>sexta · 8h00</span>
+          </div>
+          <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
+          <div class="newsletter-embed" aria-label="Subscrever PTIA Weekly">
+            <div class="ml-embedded" data-form="2PJcGz"></div>
+          </div>
+          <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo" class="about-block">
+      <div class="wrap about-grid">
+        <div>
+          <p class="eyebrow">Sobre PTIA</p>
+          <p>A PTIA é uma publicação portuguesa independente de curadoria de Inteligência Artificial. Lê fontes, separa sinal de ruído e transforma notícias em contexto útil para Portugal.</p>
+        </div>
+        <blockquote>
+          Não somos um agregador. Somos uma camada portuguesa de leitura sobre IA.
+          <div class="method-grid">
+            <article><span>01</span><h3>Fonte primária</h3><p>Origem oficial, regulador, universidade ou media credível.</p></article>
+            <article><span>02</span><h3>Contexto técnico</h3><p>Implicações, não traduções integrais.</p></article>
+            <article><span>03</span><h3>Portugal</h3><p>Impacto para empresas, Estado, equipas técnicas e decisores.</p></article>
+            <article><span>04</span><h3>Ação prática</h3><p>O que testar, preparar, ignorar ou acompanhar.</p></article>
+          </div>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer id="arquivo" class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
+          <p>Curadoria, contexto e interpretação própria. Sempre com fonte original.</p>
+          <p class="editor-line">Editor <em>João Ferreira</em></p>
+        </div>
+        <nav aria-label="Edição"><h3>Edição</h3><a href="#hoje">Hoje em IA</a><a href="#arquivo">Arquivo</a><a href="#newsletter">Weekly</a><a href="#metodo">Método</a></nav>
+        <nav aria-label="Secções"><h3>Secções</h3><a href="#mundo">Mundo</a><a href="#portugal">Portugal</a><a href="#builders">Builders</a><a href="#regulacao">Regulação</a><a href="#historias-reais">Histórias reais</a><a href="#previsoes-futuras">Previsões futuras</a></nav>
+        <nav aria-label="Casa"><h3>Casa</h3><a href="#metodo">Método editorial</a><a href="https://www.linkedin.com/company/116070074" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/ptia.pt/" rel="noopener">Instagram</a><a href="#newsletter">Newsletter</a></nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> PTIA · Curadoria independente · Lisboa</span>
+        <span>v3 · News front</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
