@@ -1141,6 +1141,66 @@ button, input { font: inherit; }
   pointer-events: none;
 }
 
+.guides-section {
+  padding: 72px 0 92px;
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 4%, transparent)),
+    var(--bg);
+  border-top: 1px solid var(--rule-2);
+}
+.guides-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 32px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.guide-card {
+  min-height: 300px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 24px 22px;
+  background: var(--paper);
+}
+.guide-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.guide-top span { color: var(--signal); }
+.guide-top em { font-style: normal; }
+.guide-card h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1.02;
+}
+.guide-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.guide-card footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-2);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .manifesto {
   padding: 120px 0;
   background:
@@ -1425,6 +1485,7 @@ button, input { font: inherit; }
   .hero-grid, .front-grid, .map-head, .manifesto-grid, .newsletter-grid, .about-grid, .github-grid { grid-template-columns: 1fr; }
   .hero-side { max-width: 680px; }
   .map-grid { grid-template-columns: repeat(2, 1fr); }
+  .guides-grid { grid-template-columns: repeat(2, 1fr); }
   .method-grid { grid-template-columns: repeat(2, 1fr); }
   .manifesto-label { position: static; }
   .github-head { position: static; }
@@ -1470,6 +1531,7 @@ button, input { font: inherit; }
   .pullquote .qmark { font-size: 72px; }
   .pullquote blockquote { grid-column: 2; }
   .map-grid, .method-grid, .footer-grid { grid-template-columns: 1fr; }
+  .guides-grid { grid-template-columns: 1fr; }
   .repo-card { grid-template-columns: 36px 1fr; gap: 12px; }
   .manifesto, .newsletter { padding: 76px 0; }
   .signup-card { padding: 24px; }

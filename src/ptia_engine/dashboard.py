@@ -69,6 +69,66 @@ def _engagement_score(perf: ContentPerformance) -> int:
     )
 
 
+def _boost_candidates(final_posts, performance):
+    posts_by_id = {post.post_id: post for post in final_posts}
+    rows = []
+    for perf in performance:
+        post = posts_by_id.get(perf.draft_id) or posts_by_id.get(perf.post_id)
+        score = _engagement_score(perf)
+        meaningful_actions = perf.comments + perf.shares + perf.saves + perf.clicks
+        engagement_rate = round((score / perf.impressions) * 100, 2) if perf.impressions else 0
+        boost_ready = (
+            perf.impressions >= 50
+            and score >= 8
+            and meaningful_actions >= 2
+            and perf.channel in {"linkedin", "instagram"}
+        )
+        if boost_ready:
+            action = "Boost 3-5 EUR"
+            reason = "Já tem sinal orgânico suficiente para testar audiência paga pequena."
+        elif score >= 5 or meaningful_actions >= 2:
+            action = "Reaproveitar"
+            reason = "Bom sinal editorial. Transformar em carousel, newsletter ou follow-up."
+        else:
+            action = "Não promover"
+            reason = "Ainda não há prova suficiente. Evitar gastar orçamento."
+        rows.append(
+            {
+                "post_id": post.post_id if post else perf.draft_id,
+                "title": post.title if post else perf.topic,
+                "channel": perf.channel,
+                "published_at": perf.published_at,
+                "score": score,
+                "engagement_rate": engagement_rate,
+                "impressions": perf.impressions,
+                "likes": perf.likes,
+                "comments": perf.comments,
+                "shares": perf.shares,
+                "saves": perf.saves,
+                "clicks": perf.clicks,
+                "followers_gained": perf.followers_gained,
+                "action": action,
+                "reason": reason,
+                "published_url": post.published_url if post else perf.post_id,
+            }
+        )
+    rows.sort(key=lambda row: (row["action"] == "Boost 3-5 EUR", row["score"]), reverse=True)
+    weekly_budget = 8
+    boost_rows = [row for row in rows if row["action"] == "Boost 3-5 EUR"][:2]
+    return {
+        "weekly_budget_eur": weekly_budget,
+        "recommended_spend_eur": min(weekly_budget, len(boost_rows) * 4),
+        "boost_candidates": boost_rows,
+        "all_ranked": rows[:20],
+        "rules": [
+            "Só promover posts com sinal orgânico real.",
+            "Prioridade a saves, shares, comentários e clicks; likes contam pouco.",
+            "Orçamento inicial: 3-5 EUR por post vencedor, máximo 8 EUR/semana.",
+            "Posts medianos viram aprendizagem, não anúncio.",
+        ],
+    }
+
+
 def _normalise_hashtags(raw, channel: str = "") -> str:
     """Return clean social hashtags as '#TagA #TagB', never Python/JSON list syntax."""
     if not raw:
@@ -440,6 +500,7 @@ class DashboardState:
             "buffer_channels": buffer_channels,
             "buffer_available": BufferClient().available,
             "learnings": _build_learnings(items, drafts, performance),
+            "growth": _boost_candidates(final_posts, performance),
         }
 
 
@@ -1891,6 +1952,7 @@ HTML = r"""<!doctype html>
       <button class="tab" data-tab="scheduled_tab" onclick="showTab('scheduled_tab')">6 Scheduled</button>
       <button class="tab" data-tab="published_tab" onclick="showTab('published_tab')">7 Published</button>
       <button class="tab" data-tab="newsletter_tab" onclick="showTab('newsletter_tab')">8 Newsletter</button>
+      <button class="tab" data-tab="growth_tab" onclick="showTab('growth_tab')">9 Growth</button>
     </nav>
     <section id="flow" class="tab-panel"></section>
     <section id="verifying_tab" class="tab-panel hidden"></section>
@@ -1906,6 +1968,7 @@ HTML = r"""<!doctype html>
     <section id="scheduled_tab" class="tab-panel hidden"></section>
     <section id="published_tab" class="tab-panel hidden"></section>
     <section id="newsletter_tab" class="tab-panel hidden"></section>
+    <section id="growth_tab" class="tab-panel hidden"></section>
     <section id="performance" class="tab-panel hidden"></section>
     <section id="learnings" class="tab-panel hidden"></section>
   </main>
@@ -1974,6 +2037,7 @@ HTML = r"""<!doctype html>
         ['Scheduled', c.final_scheduled, 'scheduled_tab'],
         ['Published', c.final_published, 'published_tab'],
         ['Newsletter', c.newsletter_drafts, 'newsletter_tab'],
+        ['Growth', state.growth?.boost_candidates?.length || 0, 'growth_tab'],
       ];
       const activeId = document.querySelector('.tab.active')?.dataset.tab || 'flow';
       document.getElementById('stats').innerHTML = stats.map(([label, value, tabId]) => `
@@ -2957,6 +3021,64 @@ HTML = r"""<!doctype html>
         notes: value(`notes_${postId}`)
       });
     }
+    function growthRow(row) {
+      const actionClass = row.action === 'Boost 3-5 EUR' ? 'good' : row.action === 'Reaproveitar' ? 'primary' : '';
+      return `<article class="card">
+        <h3>${esc(row.title || 'Post PTIA')}</h3>
+        <div class="meta">
+          ${pill(row.channel || 'canal')}
+          ${pill(`score ${row.score || 0}`)}
+          ${pill(`${row.engagement_rate || 0}% ER ponderado`)}
+          ${pill(row.impressions ? `${row.impressions} impressions` : 'sem impressions')}
+        </div>
+        <p class="text">${esc(row.reason || '')}</p>
+        <div class="metric-grid compact">
+          <div class="metric-card"><strong>${esc(row.saves || 0)}</strong><span>saves</span></div>
+          <div class="metric-card"><strong>${esc(row.shares || 0)}</strong><span>shares</span></div>
+          <div class="metric-card"><strong>${esc(row.comments || 0)}</strong><span>comments</span></div>
+          <div class="metric-card"><strong>${esc(row.clicks || 0)}</strong><span>clicks</span></div>
+        </div>
+        <div class="actions">
+          <button class="${actionClass}">${esc(row.action || 'Avaliar')}</button>
+          ${row.published_url ? `<a href="${esc(row.published_url)}" target="_blank">Abrir post</a>` : ''}
+        </div>
+      </article>`;
+    }
+    function renderGrowth() {
+      const growth = state.growth || {};
+      const candidates = growth.boost_candidates || [];
+      const ranked = growth.all_ranked || [];
+      const rules = growth.rules || [];
+      document.getElementById('growth_tab').innerHTML = `
+        <div class="panel">
+          <h2>Growth: boost só para vencedores</h2>
+          <p class="notice">Esta área transforma métricas reais em decisões de distribuição. Não gastamos dinheiro em posts medianos.</p>
+          <div class="metric-grid">
+            <div class="metric-card"><strong>${esc(candidates.length)}</strong><span>candidatos boost</span></div>
+            <div class="metric-card"><strong>${esc(growth.recommended_spend_eur || 0)}€</strong><span>gasto sugerido</span></div>
+            <div class="metric-card"><strong>${esc(growth.weekly_budget_eur || 8)}€</strong><span>limite semanal</span></div>
+          </div>
+        </div>
+        <section class="published-layout">
+          <div>
+            <div class="panel">
+              <h2>Promover esta semana</h2>
+              ${candidates.map(growthRow).join('') || '<p class="notice">Ainda sem candidatos. Regista métricas em Published primeiro.</p>'}
+            </div>
+            <div class="panel">
+              <h2>Ranking editorial</h2>
+              ${ranked.map(growthRow).join('') || '<p class="notice">Sem métricas suficientes.</p>'}
+            </div>
+          </div>
+          <aside class="panel">
+            <h2>Regras CMO</h2>
+            ${rules.map(rule => `<p class="text">• ${esc(rule)}</p>`).join('')}
+            <hr>
+            <p class="notice">Workflow: publicar → esperar 6-12h → registar métricas → Growth decide se vale boost ou reaproveitamento.</p>
+          </aside>
+        </section>
+      `;
+    }
     async function generateNewsletter() {
       showToast('A gerar PTIA Weekly...');
       await api('/api/newsletter-generate', {limit: 5});
@@ -3059,6 +3181,7 @@ HTML = r"""<!doctype html>
       renderPublished();
       renderNewsletter();
       renderPerformance();
+      renderGrowth();
       renderLearnings();
     }
     loadState();
