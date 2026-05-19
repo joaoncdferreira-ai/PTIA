@@ -13,6 +13,7 @@ from ptia_engine.source_verifier import (
     resolve_discovery_link,
     resolve_submitted_link,
     verify_search_candidate,
+    verify_url,
 )
 
 
@@ -97,6 +98,42 @@ class SourceVerifierTests(unittest.TestCase):
             credible_source_name("https://jornaleconomico.sapo.pt/noticias/ia/"),
             "Jornal Económico",
         )
+        self.assertEqual(
+            credible_source_name("https://www.apdc.pt/noticias/atualidade-nacional/exemplo"),
+            "APDC",
+        )
+
+    def test_reuters_date_in_slug_passes_when_metadata_blocks(self):
+        today = datetime.now(timezone.utc).date().isoformat()
+        url = f"https://www.reuters.com/world/europe/story-title-{today}/?utm_source=chatgpt.com"
+
+        with patch("ptia_engine.source_verifier.fetch_page_metadata", side_effect=RuntimeError("HTTP 401")):
+            result = verify_url(url)
+
+        self.assertEqual(result.status, "verified")
+        self.assertEqual(result.source_name, "Reuters")
+        self.assertEqual(result.published_at, today)
+        self.assertNotIn("utm_source", result.verified_url)
+
+    def test_apdc_visible_date_is_used_for_recency_rejection(self):
+        html = """
+        <html>
+          <head><title>Portugal e Espanha formalizam candidatura conjunta</title></head>
+          <body>
+            <span class="date">2026-03-11</span>
+            <p>Portugal e Espanha formalizam candidatura conjunta a gigafabrica de IA.</p>
+          </body>
+        </html>
+        """
+
+        with patch("ptia_engine.source_verifier.fetch_page_html", return_value=html):
+            result = verify_url(
+                "https://www.apdc.pt/noticias/atualidade-nacional/portugal-e-espanha-formalizam-candidatura-conjunta-a-gigafabrica-de-ia?utm_source=chatgpt.com"
+            )
+
+        self.assertEqual(result.status, "rejected")
+        self.assertEqual(result.source_name, "APDC")
+        self.assertEqual(result.published_at, "2026-03-11")
 
     def test_resolves_untrusted_link_with_grounded_candidate(self):
         today = datetime.now(timezone.utc).date().isoformat()

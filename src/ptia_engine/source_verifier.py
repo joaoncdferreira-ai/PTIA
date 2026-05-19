@@ -5,7 +5,7 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import unescape
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlunparse
 
 from ptia_engine.editorial_board import ensure_recent_signal
 from ptia_engine.http_client import urlopen_direct
@@ -31,6 +31,7 @@ CREDIBLE_DOMAINS = {
     "businesswire.com": "Business Wire",
     "reuters.com": "Reuters",
     "apnews.com": "AP",
+    "theguardian.com": "The Guardian",
     "bloomberg.com": "Bloomberg",
     "ft.com": "Financial Times",
     "theverge.com": "The Verge",
@@ -47,6 +48,7 @@ CREDIBLE_DOMAINS = {
     "ama.gov.pt": "AMA",
     "portugaldigital.gov.pt": "Portugal Digital",
     "ani.pt": "ANI",
+    "apdc.pt": "APDC",
     "startupportugal.com": "Startup Portugal",
     "inesctec.pt": "INESC TEC",
     "tecnico.ulisboa.pt": "Instituto Superior Técnico",
@@ -94,6 +96,11 @@ def domain_for_url(url: str) -> str:
     if host.startswith("www."):
         host = host[4:]
     return host
+
+
+def canonical_source_url(url: str) -> str:
+    parsed = urlparse(url.strip())
+    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", "", ""))
 
 
 def is_blocked_source_url(url: str) -> bool:
@@ -178,6 +185,37 @@ def _normalise_date(value: str) -> str:
     return parsed.astimezone(timezone.utc).date().isoformat()
 
 
+def _date_from_url(url: str) -> str:
+    path = urlparse(url).path
+    iso_match = re.search(r"(\d{4})-(\d{2})-(\d{2})(?:/|$)", path)
+    if iso_match:
+        return "-".join(iso_match.groups())
+
+    month_match = re.search(
+        r"/(\d{4})/(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/(\d{1,2})(?:/|$)",
+        path,
+        flags=re.IGNORECASE,
+    )
+    if month_match:
+        months = {
+            "jan": "01",
+            "feb": "02",
+            "mar": "03",
+            "apr": "04",
+            "may": "05",
+            "jun": "06",
+            "jul": "07",
+            "aug": "08",
+            "sep": "09",
+            "oct": "10",
+            "nov": "11",
+            "dec": "12",
+        }
+        year, month_name, day = month_match.groups()
+        return f"{year}-{months[month_name[:3].casefold()]}-{int(day):02d}"
+    return ""
+
+
 def fetch_page_metadata(url: str) -> tuple[str, str, str]:
     body = fetch_page_html(url)
     title = _extract(
@@ -202,14 +240,19 @@ def fetch_page_metadata(url: str) -> tuple[str, str, str]:
             r'"datePublished"\s*:\s*"([^"]+)"',
             r'"dateCreated"\s*:\s*"([^"]+)"',
             r'"publishedOn"\s*:\s*"([^"]+)"',
+            r'<time[^>]+datetime=["\']([^"\']+)["\']',
+            r'<meta[^>]+name=["\']publishdate["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<meta[^>]+name=["\']pubdate["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<span[^>]+class=["\'][^"\']*date[^"\']*["\'][^>]*>\s*(\d{4}-\d{2}-\d{2})\s*</span>',
             r'<div[^>]*class=["\'][^"\']*agate[^"\']*["\'][^>]*>\s*([A-Z][a-z]+ \d{1,2}, \d{4})\s*</div>',
         ],
         body,
     )
-    return title, description, _normalise_date(published_at)
+    return title, description, _normalise_date(published_at) or _date_from_url(url)
 
 
 def verify_url(url: str) -> VerificationResult:
+    url = canonical_source_url(url)
     source_name = credible_source_name(url)
     if not source_name:
         return VerificationResult(
@@ -225,6 +268,32 @@ def verify_url(url: str) -> VerificationResult:
     try:
         title, summary, published_at = fetch_page_metadata(url)
     except Exception as exc:  # noqa: BLE001 - keep submitted links visible in verifying.
+        url_date = _date_from_url(url)
+        if url_date:
+            try:
+                ensure_recent_signal(url_date)
+            except ValueError as recent_exc:
+                return VerificationResult(
+                    status="rejected",
+                    source_name=source_name,
+                    title=url,
+                    published_at=url_date,
+                    summary="",
+                    notes=str(recent_exc),
+                    verified_url=url,
+                )
+            return VerificationResult(
+                status="verified",
+                source_name=source_name,
+                title=url,
+                published_at=url_date,
+                summary="",
+                notes=(
+                    "Fonte credível e data dos últimos 5 dias verificadas pelo URL. "
+                    f"Metadata bloqueada ou indisponível: {exc}"
+                ),
+                verified_url=url,
+            )
         return VerificationResult(
             status="verifying",
             source_name=source_name,
