@@ -6,6 +6,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import unicodedata
 from collections import Counter, defaultdict
 from dataclasses import asdict
@@ -14,6 +15,7 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from mimetypes import guess_type
 from pathlib import Path
+import urllib.request
 from urllib.parse import quote, urlparse
 
 from PIL import Image, ImageFilter, ImageOps
@@ -22,6 +24,7 @@ from ptia_engine.assets import create_final_post_image
 from ptia_engine.buffer_api import BufferClient
 from ptia_engine.dedupe import stable_hash
 from ptia_engine.editorial import add_performance_record, update_draft_status, update_item_status
+from ptia_engine.http_client import urlopen_direct
 from ptia_engine.editorial_board import (
     add_editorial_topic,
     add_final_post,
@@ -741,6 +744,65 @@ def _copy_image_to_public_site_assets(state: DashboardState, post) -> str:
     return str(target)
 
 
+def _can_auto_deploy_site(state: DashboardState) -> bool:
+    return (state.site_dir / ".vercel" / "project.json").exists()
+
+
+def _public_url_available(url: str) -> bool:
+    if not url:
+        return False
+    try:
+        request = urllib.request.Request(url, method="HEAD")
+        with urlopen_direct(request, timeout=20) as response:
+            return response.status < 400
+    except Exception:  # noqa: BLE001 - a failed preflight means Buffer will fail too.
+        return False
+
+
+def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
+    if not _can_auto_deploy_site(state):
+        return
+    result = subprocess.run(
+        ["vercel", "deploy", "--prod", "--yes"],
+        cwd=state.site_dir,
+        capture_output=True,
+        text=True,
+        timeout=180,
+        check=False,
+    )
+    if result.returncode != 0:
+        output = "\n".join(part for part in [result.stdout, result.stderr] if part).strip()
+        raise ValueError(f"Falhou deploy das imagens para Vercel antes do Buffer: {output[-1000:]}")
+
+
+def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None:
+    social_posts = [
+        post
+        for post in posts
+        if post.channel in {"linkedin", "instagram"} and _image_path_for_channel(post)
+    ]
+    if not social_posts or not _can_auto_deploy_site(state):
+        return
+
+    for post in social_posts:
+        _copy_image_to_public_site_assets(state, post)
+
+    missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post))]
+    if missing:
+        _deploy_site_assets_to_vercel(state)
+
+    still_missing = [
+        _public_image_url_for_buffer(post)
+        for post in social_posts
+        if not _public_url_available(_public_image_url_for_buffer(post))
+    ]
+    if still_missing:
+        raise ValueError(
+            "As imagens ainda nao estao publicas em ptia.pt. "
+            f"Primeiro URL em falta: {still_missing[0]}"
+        )
+
+
 def _discover_buffer_channels(path: Path) -> dict:
     client = BufferClient()
     organizations, channels = client.discover_channels()
@@ -806,6 +868,7 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
                 ),
             )
     channel_config = _load_buffer_channels(state.buffer_channels_path)
+    _ensure_public_images_for_buffer(state, [post])
     channel_id = _buffer_channel_id_for(post.channel, channel_config)
     if not channel_id:
         channel_config = _discover_buffer_channels(state.buffer_channels_path)
@@ -1086,6 +1149,7 @@ def _schedule_final_package(state: DashboardState, topic_id: str, scheduled_time
     posts = _package_posts_for_topic(state, topic_id, "approved_for_schedule")
     if not posts:
         raise ValueError("Nao ha posts aprovados neste pacote para agendar.")
+    _ensure_public_images_for_buffer(state, posts)
     updated = []
     for post in posts:
         updated.append(_schedule_post_in_buffer(state, post.post_id, scheduled_time))

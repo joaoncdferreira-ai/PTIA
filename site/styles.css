@@ -1048,6 +1048,99 @@ button, input { font: inherit; }
 }
 .map-cell:hover a { color: var(--accent); transform: translateX(6px); }
 
+.github-repos {
+  padding: 72px 0 88px;
+  border-top: 1px solid var(--rule-2);
+}
+.github-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+.github-head {
+  position: sticky;
+  top: 82px;
+}
+.github-head h2 {
+  margin: 10px 0 18px;
+  max-width: 520px;
+  font-family: var(--serif);
+  font-size: clamp(42px, 6vw, 88px);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+.github-head p {
+  max-width: 460px;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 15px;
+}
+.source-note {
+  display: inline-flex;
+  margin-top: 18px;
+  padding: 8px 10px;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.repo-list {
+  display: grid;
+  gap: 10px;
+}
+.repo-card {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-2);
+}
+.repo-card:last-child { border-bottom: 1px solid var(--rule-2); }
+.repo-card:hover h3 { color: var(--accent); }
+.repo-rank {
+  color: var(--signal);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.repo-card h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(23px, 2.4vw, 36px);
+  line-height: 1.02;
+  transition: color 160ms ease;
+  word-break: break-word;
+}
+.repo-card p {
+  margin: 8px 0 12px;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.repo-meta span {
+  padding: 5px 7px;
+  background: var(--rule-3);
+  border-radius: 999px;
+}
+.repo-card.unavailable {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
 .manifesto {
   padding: 120px 0;
   background:
@@ -1329,11 +1422,12 @@ button, input { font: inherit; }
 .delay-3 { transition-delay: 240ms; }
 
 @media (max-width: 1024px) {
-  .hero-grid, .front-grid, .map-head, .manifesto-grid, .newsletter-grid, .about-grid { grid-template-columns: 1fr; }
+  .hero-grid, .front-grid, .map-head, .manifesto-grid, .newsletter-grid, .about-grid, .github-grid { grid-template-columns: 1fr; }
   .hero-side { max-width: 680px; }
   .map-grid { grid-template-columns: repeat(2, 1fr); }
   .method-grid { grid-template-columns: repeat(2, 1fr); }
   .manifesto-label { position: static; }
+  .github-head { position: static; }
 }
 
 @media (max-width: 720px) {
@@ -1376,6 +1470,7 @@ button, input { font: inherit; }
   .pullquote .qmark { font-size: 72px; }
   .pullquote blockquote { grid-column: 2; }
   .map-grid, .method-grid, .footer-grid { grid-template-columns: 1fr; }
+  .repo-card { grid-template-columns: 36px 1fr; gap: 12px; }
   .manifesto, .newsletter { padding: 76px 0; }
   .signup-card { padding: 24px; }
   .footer-bottom { display: grid; }

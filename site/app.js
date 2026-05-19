@@ -329,6 +329,64 @@ function renderMap() {
   `).join("");
 }
 
+function formatCompactNumber(value) {
+  return new Intl.NumberFormat("pt-PT", {
+    notation: "compact",
+    maximumFractionDigits: 1
+  }).format(Number(value || 0));
+}
+
+function formatRepoDate(value) {
+  if (!value) return "data indisponível";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "data indisponível";
+  return new Intl.DateTimeFormat("pt-PT", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  }).format(date);
+}
+
+async function renderGitHubRepos() {
+  const list = document.getElementById("github-repos-list");
+  const updated = document.getElementById("github-repos-updated");
+  if (!list) return;
+  try {
+    const response = await fetch("assets/github-ai-repos.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("GitHub radar indisponível");
+    const payload = await response.json();
+    const repos = Array.isArray(payload.repos) ? payload.repos : [];
+    if (!repos.length) throw new Error("Sem repos para mostrar");
+    if (updated) {
+      updated.textContent = `Atualizado ${formatRepoDate(payload.updated_at)} · GitHub Search API`;
+    }
+    list.innerHTML = repos.map((repo) => `
+      <a class="repo-card" href="${escapeHtml(repo.url)}" target="_blank" rel="noopener">
+        <span class="repo-rank">${String(repo.rank).padStart(2, "0")}</span>
+        <div>
+          <h3>${escapeHtml(repo.name)}</h3>
+          <p>${escapeHtml(repo.description || "Sem descrição disponível.")}</p>
+          <div class="repo-meta">
+            <span>${escapeHtml(repo.language || "multi")}</span>
+            <span>${formatCompactNumber(repo.stars)} stars</span>
+            <span>${formatCompactNumber(repo.forks)} forks</span>
+            <span>update ${formatRepoDate(repo.updated_at)}</span>
+          </div>
+        </div>
+      </a>
+    `).join("");
+  } catch (error) {
+    if (updated) updated.textContent = "GitHub radar ainda sem dados.";
+    list.innerHTML = `<article class="repo-card unavailable">
+      <span class="repo-rank">--</span>
+      <div>
+        <h3>Top 10 ainda indisponível</h3>
+        <p>A automação vai preencher esta rubrica assim que conseguir ler a API do GitHub.</p>
+      </div>
+    </article>`;
+  }
+}
+
 function setupReveal() {
   const items = document.querySelectorAll(".reveal");
   if (reducedMotion || !("IntersectionObserver" in window)) {
@@ -476,6 +534,7 @@ renderFrontPage();
 renderFilters();
 renderArticles();
 renderMap();
+renderGitHubRepos();
 setupReveal();
 setupCountUp();
 setupSignalViz();
