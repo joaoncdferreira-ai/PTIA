@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-05-19T12:30:00+01:00",
+  "updated_at": "2026-05-19T15:05:00+01:00",
   "posts": [
     {
       "id": "post_5daa6a87b89f249a9b",
@@ -34,8 +34,8 @@
       "source_urls": [
         "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_google_android_gemini_20260512_original.png",
+      "image_url": "assets/final/site_google_android_gemini_20260512_site_1600x900.jpg",
       "published_at": "2026-05-19T19:00:00+01:00",
       "section": "Mundo"
     },
@@ -47,8 +47,8 @@
         "https://www.investmentmonitor.ai/news/nscale-portugal-ai-data-centre-expansion/",
         "https://www.theportugalnews.com/news/2026-05-08/portugal-becoming-a-strategic-european-hub-for-ai-ready-data-centres/1018693"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_nscale_sines_ai_20260508_original.png",
+      "image_url": "assets/final/site_nscale_sines_ai_20260508_site_1600x900.jpg",
       "published_at": "2026-05-19T18:00:00+01:00",
       "section": "Portugal"
     },
@@ -84,8 +84,8 @@
         "https://www.anthropic.com/news/anthropic-acquires-stainless",
         "https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_anthropic_stainless_20260518_original.png",
+      "image_url": "assets/final/site_anthropic_stainless_20260518_site_1600x900.jpg",
       "published_at": "2026-05-19T12:00:00+01:00",
       "section": "Builders"
     },
@@ -97,8 +97,8 @@
         "https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/",
         "https://www.semafor.com/article/05/15/2026/ai-generated-papers-flood-submissions-to-scientific-journals"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_arxiv_ai_papers_20260516_original.png",
+      "image_url": "assets/final/site_arxiv_ai_papers_20260516_site_1600x900.jpg",
       "published_at": "2026-05-19T11:00:00+01:00",
       "section": "Builders"
     },
@@ -110,8 +110,8 @@
         "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
         "https://digital-strategy.ec.europa.eu/en/faqs/questions-and-answers-code-practice-general-purpose-ai"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_ai_act_gpai_20260519_original.png",
+      "image_url": "assets/final/site_ai_act_gpai_20260519_site_1600x900.jpg",
       "published_at": "2026-05-19T10:00:00+01:00",
       "section": "Regulação"
     },
@@ -123,8 +123,8 @@
         "https://www.vaticannews.va/en/pope/news/2026-05/pope-leo-xiv-first-encyclical-magnifica-humanitas.html",
         "https://apnews.com/article/9cf3e07fd691f6af510c4a6f9c8ba353"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_vatican_ai_20260518_original.png",
+      "image_url": "assets/final/site_vatican_ai_20260518_site_1600x900.jpg",
       "published_at": "2026-05-19T09:30:00+01:00",
       "section": "Regulação"
     },
@@ -136,8 +136,8 @@
         "https://www.prnewswire.com/news-releases/cgi-announces-new-artificial-intelligence-center-of-excellence-in-portugal-302754890.html",
         "https://eco.sapo.pt/2026/04/28/cgi-vai-abrir-em-portugal-o-primeiro-centro-de-excelencia-em-ia-e-espera-contratar-100-pessoas-por-ano/"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_cgi_portugal_ai_20260428_original.png",
+      "image_url": "assets/final/site_cgi_portugal_ai_20260428_site_1600x900.jpg",
       "published_at": "2026-05-19T09:15:00+01:00",
       "section": "Histórias reais"
     },
@@ -149,8 +149,8 @@
         "https://www.wired.com/story/mira-murati-humans-in-the-loop-ai-models-thinking-machines/",
         "https://www.semafor.com/article/05/13/2026/mira-muratis-thinking-machines-previews-interaction-models"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\site_thinking_machines_20260515_original.png",
+      "image_url": "assets/final/site_thinking_machines_20260515_site_1600x900.jpg",
       "published_at": "2026-05-19T09:00:00+01:00",
       "section": "Previsões Futuras"
     }
