@@ -23,6 +23,7 @@ from ptia_engine.dashboard import (
     _build_final_pack_from_signal,
     _generate_final_image,
     _normalise_hashtags,
+    _schedule_final_package,
     _schedule_post_in_buffer,
     _site_feed,
     _upload_final_image,
@@ -233,6 +234,35 @@ class EditorialBoardTests(unittest.TestCase):
             "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site/assets/final/image.png",
         )
         self.assertTrue((self.root.parent / "site" / "assets" / "final" / "image.png").exists())
+
+    def test_schedule_package_is_idempotent_when_already_scheduled(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="topic_1",
+            channel="linkedin",
+            title="Post ja agendado",
+            body="Texto final",
+            hashtags="#IA",
+            image_prompt="",
+            source_urls=["https://example.com"],
+        )
+        update_final_post_status(
+            self.root / "final_posts.jsonl",
+            post.post_id,
+            "scheduled",
+            scheduled_time="2026-05-21T09:00:00+01:00",
+            buffer_post_id="buffer_1",
+        )
+
+        updated = _schedule_final_package(
+            DashboardState(self.root),
+            "topic_1",
+            "2026-05-21T09:00:00+01:00",
+        )
+
+        self.assertEqual(len(updated), 1)
+        self.assertEqual(updated[0].status, "scheduled")
+        self.assertEqual(updated[0].buffer_post_id, "buffer_1")
 
     def test_site_feed_uses_scheduled_site_posts(self):
         post = add_final_post(

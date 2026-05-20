@@ -960,6 +960,8 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
     post = posts.get(post_id)
     if not post:
         raise ValueError(f"Final post not found: {post_id}")
+    if post.status == "scheduled":
+        return post
     if post.channel == "site":
         _copy_image_to_public_site_assets(state, post)
         return update_final_post_status(
@@ -1272,6 +1274,9 @@ def _package_posts_for_topic(state: DashboardState, topic_id: str, status: str) 
 def _schedule_final_package(state: DashboardState, topic_id: str, scheduled_time: str) -> list:
     posts = _package_posts_for_topic(state, topic_id, "approved_for_schedule")
     if not posts:
+        already_scheduled = _package_posts_for_topic(state, topic_id, "scheduled")
+        if already_scheduled:
+            return already_scheduled
         raise ValueError("Nao ha posts aprovados neste pacote para agendar.")
     _ensure_public_images_for_buffer(state, posts)
     updated = []
