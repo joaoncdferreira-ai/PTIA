@@ -774,17 +774,20 @@ def _image_path_for_channel(post) -> str:
     return str(variants.get(post.channel) or post.image_path or "")
 
 
-def _public_image_url_for_buffer(post) -> str:
+def _public_asset_base_url(state: DashboardState | None = None) -> str:
+    configured = (os.getenv("PTIA_PUBLIC_ASSET_BASE_URL") or os.getenv("PTIA_PUBLIC_SITE_URL") or "").strip()
+    if configured:
+        return configured.rstrip("/")
+    return "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
+
+
+def _public_image_url_for_buffer(post, state: DashboardState | None = None) -> str:
     image_path = _image_path_for_channel(post)
     if not image_path:
         return ""
     if image_path.startswith(("https://", "http://")):
         return image_path
-    base_url = (
-        os.getenv("PTIA_PUBLIC_ASSET_BASE_URL")
-        or os.getenv("PTIA_PUBLIC_SITE_URL")
-        or "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
-    ).strip().rstrip("/")
+    base_url = _public_asset_base_url(state)
     return f"{base_url}/assets/final/{quote(Path(image_path).name)}"
 
 
@@ -821,11 +824,14 @@ def _public_url_available(url: str) -> bool:
 def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     if not _can_auto_deploy_site(state):
         return
+    vercel_cmd = shutil.which("vercel.cmd") or shutil.which("vercel")
+    if not vercel_cmd:
+        raise ValueError("Vercel CLI nao encontrado. Instala/entra no Vercel CLI para publicar imagens antes do Buffer.")
     env = os.environ.copy()
     for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
         env[key] = ""
     result = subprocess.run(
-        ["vercel", "deploy", "--prod", "--yes", "--scope", "joaoncdferreira-ais-projects"],
+        [vercel_cmd, "deploy", "--prod", "--yes", "--scope", "joaoncdferreira-ais-projects"],
         cwd=state.site_dir,
         capture_output=True,
         text=True,
@@ -839,29 +845,28 @@ def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
 
 
 def _publish_site_assets_to_git(state: DashboardState) -> None:
-    base_url = (
-        os.getenv("PTIA_PUBLIC_ASSET_BASE_URL")
-        or os.getenv("PTIA_PUBLIC_SITE_URL")
-        or "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
-    )
+    base_url = _public_asset_base_url(state)
     if "raw.githubusercontent.com" not in base_url:
         return
 
     repo_root = state.data_dir.parent
+    git_cmd = shutil.which("git.exe") or shutil.which("git")
+    if not git_cmd:
+        raise ValueError("Git nao encontrado no PATH. Nao consigo publicar as imagens para URL publico antes do Buffer.")
     env = os.environ.copy()
     for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
         env[key] = ""
 
     commands = [
-        ["git", "add", "site/assets/final"],
-        ["git", "diff", "--cached", "--quiet"],
+        [git_cmd, "add", "site/assets/final"],
+        [git_cmd, "diff", "--cached", "--quiet"],
     ]
     subprocess.run(commands[0], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
     diff = subprocess.run(commands[1], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
     if diff.returncode == 0:
         return
     commit = subprocess.run(
-        ["git", "commit", "-m", "Publish scheduled media assets"],
+        [git_cmd, "commit", "-m", "Publish scheduled media assets"],
         cwd=repo_root,
         env=env,
         capture_output=True,
@@ -873,7 +878,7 @@ def _publish_site_assets_to_git(state: DashboardState) -> None:
         output = "\n".join(part for part in [commit.stdout, commit.stderr] if part).strip()
         raise ValueError(f"Falhou commit das imagens publicas antes do Buffer: {output[-1000:]}")
     push = subprocess.run(
-        ["git", "push"],
+        [git_cmd, "push"],
         cwd=repo_root,
         env=env,
         capture_output=True,
@@ -898,18 +903,21 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
     for post in social_posts:
         _copy_image_to_public_site_assets(state, post)
 
-    missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post))]
+    missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post, state))]
     if missing:
-        _publish_site_assets_to_git(state)
-        missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post))]
+        if "raw.githubusercontent.com" in _public_asset_base_url(state):
+            _publish_site_assets_to_git(state)
+        else:
+            _deploy_site_assets_to_vercel(state)
+        missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post, state))]
 
     if missing:
         _deploy_site_assets_to_vercel(state)
 
     still_missing = [
-        _public_image_url_for_buffer(post)
+        _public_image_url_for_buffer(post, state)
         for post in social_posts
-        if not _public_url_available(_public_image_url_for_buffer(post))
+        if not _public_url_available(_public_image_url_for_buffer(post, state))
     ]
     if still_missing:
         raise ValueError(
@@ -960,12 +968,12 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
             "scheduled",
             scheduled_time=scheduled_time,
         )
-    image_url = _public_image_url_for_buffer(post)
+    image_url = _public_image_url_for_buffer(post, state)
     if post.channel == "instagram":
         if not _image_path_for_channel(post):
             raise ValueError("Instagram precisa de imagem final antes de agendar.")
         _copy_image_to_public_site_assets(state, post)
-        image_url = _public_image_url_for_buffer(post)
+        image_url = _public_image_url_for_buffer(post, state)
         if not image_url:
             update_final_post_status(
                 state.final_posts_path,
@@ -984,6 +992,7 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
             )
     channel_config = _load_buffer_channels(state.buffer_channels_path)
     _ensure_public_images_for_buffer(state, [post])
+    image_url = _public_image_url_for_buffer(post, state)
     channel_id = _buffer_channel_id_for(post.channel, channel_config)
     if not channel_id:
         channel_config = _discover_buffer_channels(state.buffer_channels_path)
