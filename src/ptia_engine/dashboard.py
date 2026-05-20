@@ -185,16 +185,11 @@ def _parse_iso_datetime(value: str) -> datetime | None:
 
 def _refresh_final_posts_file(state: "DashboardState") -> None:
     posts = load_final_posts(state.final_posts_path)
-    now = datetime.now(timezone.utc)
     changed = False
     for post in posts:
         clean_hashtags = _normalise_hashtags(post.hashtags, post.channel)
         if post.hashtags != clean_hashtags:
             post.hashtags = clean_hashtags
-            changed = True
-        due_at = _parse_iso_datetime(post.scheduled_time)
-        if post.status == "scheduled" and due_at and due_at <= now:
-            post.status = "published"
             changed = True
     if changed:
         write_jsonl(state.final_posts_path, posts)
@@ -786,7 +781,11 @@ def _public_image_url_for_buffer(post) -> str:
         return ""
     if image_path.startswith(("https://", "http://")):
         return image_path
-    base_url = os.getenv("PTIA_PUBLIC_SITE_URL", "https://ptia.pt").strip().rstrip("/")
+    base_url = (
+        os.getenv("PTIA_PUBLIC_ASSET_BASE_URL")
+        or os.getenv("PTIA_PUBLIC_SITE_URL")
+        or "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
+    ).strip().rstrip("/")
     return f"{base_url}/assets/final/{quote(Path(image_path).name)}"
 
 
@@ -823,17 +822,69 @@ def _public_url_available(url: str) -> bool:
 def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     if not _can_auto_deploy_site(state):
         return
+    env = os.environ.copy()
+    for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
+        env[key] = ""
     result = subprocess.run(
-        ["vercel", "deploy", "--prod", "--yes"],
+        ["vercel", "deploy", "--prod", "--yes", "--scope", "joaoncdferreira-ais-projects"],
         cwd=state.site_dir,
         capture_output=True,
         text=True,
         timeout=180,
+        env=env,
         check=False,
     )
     if result.returncode != 0:
         output = "\n".join(part for part in [result.stdout, result.stderr] if part).strip()
         raise ValueError(f"Falhou deploy das imagens para Vercel antes do Buffer: {output[-1000:]}")
+
+
+def _publish_site_assets_to_git(state: DashboardState) -> None:
+    base_url = (
+        os.getenv("PTIA_PUBLIC_ASSET_BASE_URL")
+        or os.getenv("PTIA_PUBLIC_SITE_URL")
+        or "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
+    )
+    if "raw.githubusercontent.com" not in base_url:
+        return
+
+    repo_root = state.data_dir.parent
+    env = os.environ.copy()
+    for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
+        env[key] = ""
+
+    commands = [
+        ["git", "add", "site/assets/final"],
+        ["git", "diff", "--cached", "--quiet"],
+    ]
+    subprocess.run(commands[0], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
+    diff = subprocess.run(commands[1], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
+    if diff.returncode == 0:
+        return
+    commit = subprocess.run(
+        ["git", "commit", "-m", "Publish scheduled media assets"],
+        cwd=repo_root,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=120,
+        check=False,
+    )
+    if commit.returncode != 0:
+        output = "\n".join(part for part in [commit.stdout, commit.stderr] if part).strip()
+        raise ValueError(f"Falhou commit das imagens publicas antes do Buffer: {output[-1000:]}")
+    push = subprocess.run(
+        ["git", "push"],
+        cwd=repo_root,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=180,
+        check=False,
+    )
+    if push.returncode != 0:
+        output = "\n".join(part for part in [push.stdout, push.stderr] if part).strip()
+        raise ValueError(f"Falhou push das imagens publicas antes do Buffer: {output[-1000:]}")
 
 
 def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None:
@@ -850,6 +901,10 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
 
     missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post))]
     if missing:
+        _publish_site_assets_to_git(state)
+        missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post))]
+
+    if missing:
         _deploy_site_assets_to_vercel(state)
 
     still_missing = [
@@ -859,7 +914,7 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
     ]
     if still_missing:
         raise ValueError(
-            "As imagens ainda nao estao publicas em ptia.pt. "
+            "As imagens ainda nao estao publicas num URL acessivel pelo Buffer. "
             f"Primeiro URL em falta: {still_missing[0]}"
         )
 

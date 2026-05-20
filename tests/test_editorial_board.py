@@ -228,7 +228,10 @@ class EditorialBoardTests(unittest.TestCase):
         self.assertEqual(updated.status, "scheduled")
         self.assertEqual(updated.buffer_post_id, "buffer_1")
         call_kwargs = client_cls.return_value.create_scheduled_post.call_args.kwargs
-        self.assertEqual(call_kwargs["image_url"], "https://ptia.pt/assets/final/image.png")
+        self.assertEqual(
+            call_kwargs["image_url"],
+            "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site/assets/final/image.png",
+        )
         self.assertTrue((self.root.parent / "site" / "assets" / "final" / "image.png").exists())
 
     def test_site_feed_uses_scheduled_site_posts(self):
@@ -300,7 +303,7 @@ class EditorialBoardTests(unittest.TestCase):
 
         self.assertEqual(hashtags, "#InteligenciaArtificial #IA #Portugal #MercadoDeTrabalho")
 
-    def test_due_scheduled_posts_move_to_published_on_snapshot(self):
+    def test_due_scheduled_posts_stay_scheduled_until_confirmed_published(self):
         post = add_final_post(
             self.root / "final_posts.jsonl",
             topic_id="topic_1",
@@ -320,11 +323,11 @@ class EditorialBoardTests(unittest.TestCase):
 
         snapshot = DashboardState(self.root).snapshot()
 
-        self.assertEqual(snapshot["counts"]["final_scheduled"], 0)
-        self.assertEqual(snapshot["counts"]["final_published"], 1)
-        published = load_final_posts(self.root / "final_posts.jsonl")[0]
-        self.assertEqual(published.status, "published")
-        self.assertEqual(published.hashtags, "#IA #Portugal")
+        self.assertEqual(snapshot["counts"]["final_scheduled"], 1)
+        self.assertEqual(snapshot["counts"]["final_published"], 0)
+        scheduled = load_final_posts(self.root / "final_posts.jsonl")[0]
+        self.assertEqual(scheduled.status, "scheduled")
+        self.assertEqual(scheduled.hashtags, "#IA #Portugal")
 
 
 if __name__ == "__main__":
