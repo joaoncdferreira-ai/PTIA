@@ -20,6 +20,7 @@ from ptia_engine.editorial_board import (
 )
 from ptia_engine.dashboard import (
     DashboardState,
+    _apply_ptia_editorial_rules,
     _build_final_pack_from_signal,
     _generate_final_image,
     _normalise_hashtags,
@@ -119,9 +120,21 @@ class EditorialBoardTests(unittest.TestCase):
         self.assertNotIn("A notícia", linkedin["body"])
         self.assertNotIn("A leitura PTIA", linkedin["body"])
         self.assertNotIn("O que observar", linkedin["body"])
+        self.assertNotIn("lista de prioridades", linkedin["body"])
+        self.assertNotIn("O que significa para Portugal", linkedin["title"])
         self.assertIn("Fonte original:", linkedin["body"])
         self.assertNotIn("separar sinal de ruído", linkedin["body"].casefold())
         self.assertEqual(load_radar_signals(self.root / "radar_signals.jsonl")[0].status, "used")
+
+    def test_editorial_rules_remove_generic_ctas_and_labels(self):
+        title, body = _apply_ptia_editorial_rules(
+            "Nova ferramenta - O que significa para Portugal?",
+            "A leitura PTIA: Texto bom.\n\nIsto entraria na tua lista de prioridades para os próximos meses?",
+            "linkedin",
+        )
+
+        self.assertEqual(title, "Nova ferramenta")
+        self.assertEqual(body, "Texto bom.")
 
     def test_update_final_post_copy_records_feedback(self):
         post = add_final_post(

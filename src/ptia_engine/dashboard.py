@@ -171,6 +171,39 @@ def _normalise_hashtags(raw, channel: str = "") -> str:
     return " ".join(tags[:max_count])
 
 
+GENERIC_EDITORIAL_CTA_PATTERNS = [
+    r"\bIsto entraria na (?:tua|sua) lista de prioridades para os próximos meses\?\s*",
+    r"\bIsto entra na (?:tua|sua) lista de prioridades para os próximos meses\?\s*",
+    r"\bIsto entra na (?:tua|sua) lista de preocupações para os próximos meses\?\s*",
+    r"\bEsta temática faz parte das vossas prioridades para os próximos meses\?\s*",
+    r"\bQuem em Portugal deve prestar atenção\?\s*",
+    r"\bO que significa para Portugal\?\s*",
+]
+
+
+def _apply_ptia_editorial_rules(title: str, body: str, channel: str = "") -> tuple[str, str]:
+    """Apply non-negotiable PTIA editorial hygiene before review/publish."""
+    clean_title = re.sub(
+        r"\s*[—–\-:]\s*O que significa para Portugal\??\s*$",
+        "",
+        title,
+        flags=re.IGNORECASE,
+    ).strip()
+    clean_body = body
+    for pattern in GENERIC_EDITORIAL_CTA_PATTERNS:
+        clean_body = re.sub(pattern, "", clean_body, flags=re.IGNORECASE)
+    clean_body = re.sub(
+        r"^\s*(?:A leitura PTIA|O que observar(?: agora)?|Porque importa|A notícia)\s*:\s*",
+        "",
+        clean_body,
+        flags=re.IGNORECASE | re.MULTILINE,
+    )
+    if channel == "site":
+        clean_body = re.sub(r"\*\*Fonte:\*\*", "Fonte:", clean_body)
+    clean_body = re.sub(r"\n{3,}", "\n\n", clean_body).strip()
+    return clean_title or title, clean_body
+
+
 def _parse_iso_datetime(value: str) -> datetime | None:
     if not value:
         return None
@@ -188,8 +221,13 @@ def _refresh_final_posts_file(state: "DashboardState") -> None:
     changed = False
     for post in posts:
         clean_hashtags = _normalise_hashtags(post.hashtags, post.channel)
+        clean_title, clean_body = _apply_ptia_editorial_rules(post.title, post.body, post.channel)
         if post.hashtags != clean_hashtags:
             post.hashtags = clean_hashtags
+            changed = True
+        if post.title != clean_title or post.body != clean_body:
+            post.title = clean_title
+            post.body = clean_body
             changed = True
     if changed:
         write_jsonl(state.final_posts_path, posts)
@@ -584,9 +622,14 @@ def _polish_final_post_copy(
             "editor_notes": f"PT-PT polish nao aplicado: {exc}",
         }
 
+    final_title, final_body = _apply_ptia_editorial_rules(
+        polished.title or title,
+        polished.body or body,
+        channel,
+    )
     return {
-        "title": polished.title or title,
-        "body": polished.body or body,
+        "title": final_title,
+        "body": final_body,
         "hashtags": polished.hashtags if polished.hashtags != "" else hashtags,
         "editor_notes": (
             "PT-PT Editorial Polish aplicado com prompt Gemini. "
@@ -638,19 +681,17 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
         "Criado a partir de Verified Selection.",
     )
 
-    base_summary = signal.summary or "A fonte assinala uma novidade relevante em inteligência artificial."
+    base_summary = signal.summary or "A fonte publicou uma nova informação sobre inteligência artificial."
     why_it_matters = signal.why_it_matters or (
-        "O ponto a observar é se esta novidade muda decisões concretas de trabalho, produto ou investimento."
+        "O critério editorial é perceber se isto altera decisões de trabalho, produto, risco ou investimento."
     )
     ptia_lens = (
-        "A parte interessante não é o anúncio em si. É o que ele revela sobre a velocidade com que a IA "
-        "está a sair dos laboratórios e a entrar em decisões, processos e relações de poder. "
-        "Há entusiasmo legítimo aqui, mas também uma pergunta incómoda: quem está preparado para usar isto "
-        "com ambição, critério e responsabilidade?"
+        "A IA já não está apenas nos laboratórios. Está a entrar em orçamento, produto, contratação, risco "
+        "e poder de negociação. O entusiasmo é legítimo; a execução é o teste."
     )
     next_action = (
-        "O próximo passo é separar promessa de capacidade real: quem já pode usar isto, que barreiras existem, "
-        "e que organizações têm coragem para transformar a novidade em vantagem."
+        "Antes de comprar a narrativa, vale perceber quem consegue usar isto já, que barreiras existem "
+        "e que decisão concreta muda amanhã."
     )
     hashtags = "#InteligenciaArtificial #IA #Portugal #PTIA"
     image_prompt = _high_quality_image_prompt(
@@ -665,7 +706,6 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
             channel="linkedin",
             title=signal.title,
             body=(
-                f"{signal.title}\n\n"
                 f"{base_summary}\n\n"
                 f"{ptia_lens}\n\n"
                 f"{why_it_matters} {next_action}\n\n"
@@ -681,12 +721,12 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
             channel="instagram",
             title=signal.title,
             body=(
-                f"{signal.title}\n\n"
                 f"{base_summary}\n\n"
-                f"{ptia_lens}\n\n"
-                "- O anúncio é só o ponto de partida\n"
-                "- O valor está na execução\n"
-                "- O risco é confundir acesso com transformação\n\n"
+                "Três pontos para guardar:\n"
+                "- A notícia vale pelo que muda, não pelo anúncio.\n"
+                "- O valor aparece na execução, não no acesso.\n"
+                "- O risco é confundir novidade com vantagem real.\n\n"
+                f"{why_it_matters}\n\n"
                 f"{source_line}"
             ),
             hashtags=hashtags,
@@ -702,7 +742,6 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
                 f"{base_summary}\n\n"
                 f"{ptia_lens}\n\n"
                 f"{why_it_matters}\n\n"
-                f"{next_action}\n\n"
                 f"{source_line}"
             ),
             hashtags="",
@@ -1025,7 +1064,8 @@ def _final_post_text(post) -> str:
     sources = ""
     if post.source_urls:
         sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
-    return f"{post.body}{hashtags}{sources}".strip()
+    _, clean_body = _apply_ptia_editorial_rules(post.title, post.body, post.channel)
+    return f"{clean_body}{hashtags}{sources}".strip()
 
 
 def _generate_final_image(state: DashboardState, post_id: str, feedback: str = ""):
@@ -1222,16 +1262,24 @@ def _sync_topic_posts_from_reference(
                 f"Draft de referência ({reference.channel}):\n{reference_text}"
             ),
         )
+        clean_title, clean_body = _apply_ptia_editorial_rules(
+            rewrite.title or sibling.title,
+            rewrite.body or sibling.body,
+            sibling.channel,
+        )
         updated.append(
             update_final_post_copy(
                 state.final_posts_path,
                 sibling.post_id,
-                title=rewrite.title or sibling.title,
-                body=rewrite.body or sibling.body,
-                hashtags=rewrite.hashtags if rewrite.hashtags != "" else sibling.hashtags,
+                title=clean_title,
+                body=clean_body,
+                hashtags=_normalise_hashtags(
+                    rewrite.hashtags if rewrite.hashtags != "" else sibling.hashtags,
+                    sibling.channel,
+                ),
                 image_prompt=_high_quality_image_prompt(
-                    rewrite.title or sibling.title,
-                    rewrite.body or sibling.body,
+                    clean_title,
+                    clean_body,
                 ),
                 notes=f"Sync pacote a partir de {reference.channel}. Pedido: {feedback}\nRewrite: {rewrite.rationale}",
             )
@@ -2494,9 +2542,9 @@ HTML = r"""<!doctype html>
       }
       const posts = preferredFinalPosts(activeFinalTopicId);
       const channels = [
-        ['linkedin', 'LinkedIn', 'Post de autoridade e discussão'],
-        ['instagram', 'Instagram', 'Legenda guardável e visual'],
-        ['site', 'Site', 'Entrada curta com arquivo e fontes']
+        ['linkedin', 'LinkedIn', 'Tese clara, consequência e fonte'],
+        ['instagram', 'Instagram', 'Legenda guardável, 3 impactos e fonte'],
+        ['site', 'Site', 'Arquivo curto, factual e datado']
       ];
       if (posts.linkedin && !posts[activeFinalChannel]) {
         activeFinalChannel = 'linkedin';
@@ -3510,11 +3558,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
                     source_urls=post.source_urls,
                     feedback=feedback,
                 )
+                clean_title, clean_body = _apply_ptia_editorial_rules(
+                    rewrite.title or post.title,
+                    rewrite.body or post.body,
+                    post.channel,
+                )
                 updated = update_final_post_copy(
                     self.state.final_posts_path,
                     post_id,
-                    title=rewrite.title or post.title,
-                    body=rewrite.body or post.body,
+                    title=clean_title,
+                    body=clean_body,
                     hashtags=_normalise_hashtags(rewrite.hashtags or post.hashtags, post.channel),
                     notes=f"Feedback: {feedback}\nRewrite: {rewrite.rationale}",
                 )
@@ -3553,12 +3606,20 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 return
             if path == "/api/update-final-post-copy":
                 post_id = str(payload["post_id"])
+                current_posts = {post.post_id: post for post in load_final_posts(self.state.final_posts_path)}
+                current = current_posts.get(post_id)
+                channel = current.channel if current else ""
+                clean_title, clean_body = _apply_ptia_editorial_rules(
+                    str(payload.get("title", "")),
+                    str(payload.get("body", "")),
+                    channel,
+                )
                 updated = update_final_post_copy(
                     self.state.final_posts_path,
                     post_id,
-                    title=str(payload.get("title", "")),
-                    body=str(payload.get("body", "")),
-                    hashtags=_normalise_hashtags(str(payload.get("hashtags", ""))),
+                    title=clean_title,
+                    body=clean_body,
+                    hashtags=_normalise_hashtags(str(payload.get("hashtags", "")), channel),
                     image_prompt=str(payload.get("image_prompt", "")),
                     notes="Editor manual update.",
                 )

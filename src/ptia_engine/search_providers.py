@@ -262,12 +262,15 @@ Regras:
 - Voz PTIA: clara, sóbria, inteligente, útil, sem hype.
 - Não inventar factos, números ou claims.
 - Manter referência à fonte original.
+- Promessa editorial PTIA: "os sinais de IA que importam para quem decide, constrói e trabalha em Portugal".
 - Usa esta sequência internamente: facto primeiro, leitura editorial depois, implicação ou acção no fim.
 - Não imprimas rótulos como "A notícia", "A leitura PTIA", "O que observar agora" ou "Porque importa".
-- LinkedIn deve ter mais ponto de vista, melhor abertura e uma pergunta final útil.
-- Instagram deve ser guardável e directo.
-- Site deve ser curto, arquivável e factual.
+- LinkedIn: tese clara, consequência concreta e fonte. Só acaba com pergunta se for específica e difícil de ignorar.
+- Instagram: legenda curta, guardável, com 3 impactos concretos e fonte. Não usar tom de artigo longo.
+- Site: artigo curto, arquivável, com fonte/data/categoria quando disponíveis. Sem CTA social.
 - Não uses markdown pesado.
+- Não acabar com perguntas genéricas sobre prioridades, opinião ou "o que achas".
+- Evita títulos com "o que significa para Portugal?" quando o ângulo forçado não é material.
 - Evita linguagem de IA e frases gastas: "sinal relevante", "separar sinal de ruído",
   "impacto prático", "merece atenção", "no contexto português", "workflows reais",
   "pode mudar tudo", "next-gen", "revolucionário".
@@ -326,10 +329,12 @@ Regras:
 - Não tornar o texto mais longo sem necessidade.
 - Corrigir frases duras, traduções literais, inglês residual e tom genérico.
 - Manter a fonte original visível.
-- LinkedIn pode ter ponto de vista e pergunta final.
-- Instagram deve ser directo e guardável.
-- Site deve ser factual, curto e arquivável.
+- LinkedIn: tese clara, consequência concreta e fonte. Pergunta final só se for específica e não genérica.
+- Instagram: legenda curta, guardável, com 3 impactos concretos e fonte.
+- Site: factual, curto, arquivável, com fonte/data/categoria quando disponíveis. Sem CTA social.
 - Não uses markdown pesado.
+- Não terminar com perguntas genéricas sobre prioridades ou "o que achas".
+- Evita títulos com "o que significa para Portugal?" quando o ângulo forçado não é material.
 - Corta ou substitui estas expressões quando aparecerem: "sinal relevante",
   "separar sinal de ruído", "impacto prático", "merece atenção", "workflows reais",
   "no contexto português", "acompanhar de perto", "a próxima geração".
