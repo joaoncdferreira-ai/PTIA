@@ -669,8 +669,7 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
                 f"{base_summary}\n\n"
                 f"{ptia_lens}\n\n"
                 f"{why_it_matters} {next_action}\n\n"
-                f"{source_line}\n\n"
-                "Isto entraria na tua lista de prioridades para os próximos meses?"
+                f"{source_line}"
             ),
             hashtags=hashtags,
             image_prompt=image_prompt,
