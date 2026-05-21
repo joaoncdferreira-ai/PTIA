@@ -2888,13 +2888,29 @@ HTML = r"""<!doctype html>
         ['site', 'Site']
       ];
       const packages = packageRows(posts);
+      const selectedDate = scheduleDate();
+      const occupiedSlots = new Set(
+        packageRows((state.final_scheduled_posts || []).filter(post => (post.scheduled_time || '').slice(0, 10) === selectedDate))
+          .map(packageRow => packageSlotTime(packageRow))
+          .filter(Boolean)
+      );
+      const openPackages = [...packages];
       const rows = slots.map((time, index) => `
         <div class="slot-row">
           <div class="slot-time">${time}</div>
-          ${channels.map(([key, label]) => scheduleSlotCard(packages[index]?.posts?.[key], label, time, 'final_ok', key, packages[index]?.topic_id)).join('')}
+          ${occupiedSlots.has(time)
+            ? channels.map(([key, label]) => occupiedScheduleSlotCard(label, key)).join('')
+            : (() => {
+                const packageRow = openPackages.shift();
+                return channels.map(([key, label]) => scheduleSlotCard(packageRow?.posts?.[key], label, time, 'final_ok', key, packageRow?.topic_id)).join('');
+              })()}
         </div>
       `).join('');
       return `<div class="schedule-board">${rows}</div>`;
+    }
+    function packageSlotTime(packageRow) {
+      const post = packageRow?.posts?.linkedin || packageRow?.posts?.instagram || packageRow?.posts?.site;
+      return (post?.scheduled_time || '').slice(11, 16);
     }
     function renderScheduledBoard(posts, slots) {
       const channels = [
@@ -2905,13 +2921,26 @@ HTML = r"""<!doctype html>
       const selectedDate = scheduleDate();
       const dayPosts = posts.filter(post => (post.scheduled_time || '').slice(0, 10) === selectedDate);
       const packages = packageRows(dayPosts);
-      const rows = slots.map((time, index) => `
-        <div class="slot-row">
-          <div class="slot-time">${time}</div>
-          ${channels.map(([key, label]) => scheduleSlotCard(packages[index]?.posts?.[key], label, time, 'scheduled', key, packages[index]?.topic_id)).join('')}
-        </div>
-      `).join('');
+      const rows = slots.map(time => {
+        const packagesAtTime = packages.filter(packageRow => packageSlotTime(packageRow) === time);
+        const rowsAtTime = packagesAtTime.length ? packagesAtTime : [null];
+        return rowsAtTime.map((packageRow, packageIndex) => `
+          <div class="slot-row">
+            <div class="slot-time">${time}${packagesAtTime.length > 1 ? `<small>${packageIndex + 1}/${packagesAtTime.length}</small>` : ''}</div>
+            ${channels.map(([key, label]) => scheduleSlotCard(packageRow?.posts?.[key], label, time, 'scheduled', key, packageRow?.topic_id)).join('')}
+          </div>
+        `).join('');
+      }).join('');
       return `<div class="schedule-board">${rows}</div>`;
+    }
+    function occupiedScheduleSlotCard(label, channelKey) {
+      return `<article class="card slot-card empty">
+        <div>
+          <span class="channel-pill ${esc(channelKey)}">${esc(label)}</span>
+          <div class="slot-headline">Slot ja ocupado</div>
+          <p class="notice">Este horario ja tem um pacote em Scheduled.</p>
+        </div>
+      </article>`;
     }
     function scheduleSlotCard(post, label, time, mode = 'final_ok', channelKey = 'generic', topicId = '') {
       const scheduledTime = scheduleIso(time);
