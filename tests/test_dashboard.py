@@ -2,8 +2,10 @@ import shutil
 import unittest
 import uuid
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
-from ptia_engine.dashboard import DashboardState
+from ptia_engine.dashboard import DashboardState, _ensure_public_images_for_buffer
 from ptia_engine.models import ContentDraft, ContentPerformance, ProcessedItem, RadarSignal, RawArticle
 from ptia_engine.storage import append_jsonl
 
@@ -153,6 +155,28 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(snapshot["counts"]["verifying"], 1)
         self.assertEqual(snapshot["counts"]["verified_selection"], 3)
         self.assertEqual([signal["signal_id"] for signal in snapshot["radar_inbox_signals"]], ["sig_new"])
+
+    def test_raw_github_media_path_does_not_fall_back_to_vercel(self):
+        post = SimpleNamespace(
+            channel="linkedin",
+            image_path="final.jpg",
+            image_variants={},
+        )
+
+        with (
+            patch("ptia_engine.dashboard._can_auto_deploy_site", return_value=True),
+            patch("ptia_engine.dashboard._copy_image_to_public_site_assets"),
+            patch("ptia_engine.dashboard._public_asset_base_url", return_value="https://raw.githubusercontent.com/org/repo/main/site"),
+            patch("ptia_engine.dashboard._public_image_url_for_buffer", return_value="https://raw.githubusercontent.com/org/repo/main/site/assets/final/final.jpg"),
+            patch("ptia_engine.dashboard._wait_for_public_images", side_effect=[[post], [post]]),
+            patch("ptia_engine.dashboard._publish_site_assets_to_git") as publish_assets,
+            patch("ptia_engine.dashboard._deploy_site_assets_to_vercel") as deploy_assets,
+        ):
+            with self.assertRaisesRegex(ValueError, "imagens ainda nao estao publicas"):
+                _ensure_public_images_for_buffer(DashboardState(self.root), [post])
+
+        publish_assets.assert_called_once()
+        deploy_assets.assert_not_called()
 
 
 if __name__ == "__main__":

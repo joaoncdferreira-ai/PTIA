@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import subprocess
+import time
 import unicodedata
 from collections import Counter, defaultdict
 from dataclasses import asdict
@@ -860,6 +861,22 @@ def _public_url_available(url: str) -> bool:
         return False
 
 
+def _wait_for_public_images(state: DashboardState, posts: list, attempts: int = 4) -> list:
+    """Return posts whose public image URLs are still unavailable after short retries."""
+    missing = list(posts)
+    for attempt in range(attempts):
+        missing = [
+            post
+            for post in missing
+            if not _public_url_available(_public_image_url_for_buffer(post, state))
+        ]
+        if not missing:
+            return []
+        if attempt < attempts - 1:
+            time.sleep(2)
+    return missing
+
+
 def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     if not _can_auto_deploy_site(state):
         return
@@ -942,21 +959,22 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
     for post in social_posts:
         _copy_image_to_public_site_assets(state, post)
 
-    missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post, state))]
+    missing = _wait_for_public_images(state, social_posts, attempts=1)
     if missing:
-        if "raw.githubusercontent.com" in _public_asset_base_url(state):
+        uses_git_assets = "raw.githubusercontent.com" in _public_asset_base_url(state)
+        if uses_git_assets:
             _publish_site_assets_to_git(state)
         else:
             _deploy_site_assets_to_vercel(state)
-        missing = [post for post in social_posts if not _public_url_available(_public_image_url_for_buffer(post, state))]
+        missing = _wait_for_public_images(state, social_posts)
 
-    if missing:
+    if missing and "raw.githubusercontent.com" not in _public_asset_base_url(state):
         _deploy_site_assets_to_vercel(state)
+        missing = _wait_for_public_images(state, social_posts)
 
     still_missing = [
         _public_image_url_for_buffer(post, state)
-        for post in social_posts
-        if not _public_url_available(_public_image_url_for_buffer(post, state))
+        for post in missing
     ]
     if still_missing:
         raise ValueError(
