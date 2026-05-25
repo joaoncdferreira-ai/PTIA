@@ -304,53 +304,6 @@ button, input { font: inherit; }
 }
 
 .frontpage { padding: 30px 0 56px; }
-.identity-strip {
-  display: grid;
-  grid-template-columns: minmax(140px, 0.45fr) minmax(360px, 1.05fr) minmax(340px, 1fr) auto;
-  gap: 24px;
-  align-items: end;
-  padding: 22px 0 28px;
-  border-bottom: 1px solid var(--rule);
-}
-.identity-kicker {
-  margin: 0;
-  color: var(--signal);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.identity-strip h1 {
-  margin: 0;
-  max-width: 13ch;
-  font-family: var(--serif);
-  font-size: clamp(42px, 5.2vw, 72px);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.024em;
-}
-.identity-strip > p:not(.identity-kicker) {
-  margin: 0;
-  color: var(--ink-2);
-  font-size: 18px;
-  line-height: 1.48;
-}
-.identity-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
-.identity-points span {
-  padding: 6px 9px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 .crumbs {
   display: flex;
   justify-content: space-between;
@@ -465,7 +418,7 @@ button, input { font: inherit; }
 }
 .lead-meta strong { color: var(--ink); }
 .lead-meta em { color: var(--signal); font-style: normal; }
-.lead-card h2 {
+.lead-card h1 {
   margin: 18px 0 0;
   max-width: 12ch;
   font-family: var(--serif);
@@ -474,14 +427,14 @@ button, input { font: inherit; }
   letter-spacing: -0.024em;
   line-height: 1.04;
 }
-.lead-card h2 a {
+.lead-card h1 a {
   background-image: linear-gradient(var(--signal), var(--signal));
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0 1px;
   transition: background-size 320ms ease;
 }
-.lead-card h2 a:hover { background-size: 100% 1px; }
+.lead-card h1 a:hover { background-size: 100% 1px; }
 .lead-dek {
   max-width: 56ch;
   margin: 18px 0 0;
@@ -1869,13 +1822,6 @@ button, input { font: inherit; }
   .brand-logo { width: 138px; }
   .breaking { grid-template-columns: 92px 1fr; height: 34px; }
   .ticker-line { height: 34px; animation-duration: 40s; }
-  .identity-strip {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 18px 0 24px;
-  }
-  .identity-strip h1 { max-width: 100%; }
-  .identity-points { justify-content: flex-start; }
   .frontpage { padding: 22px 0 44px; }
   .crumbs { display: grid; gap: 8px; }
   .lead-card .cover { height: 240px; }
