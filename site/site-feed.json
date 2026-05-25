@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-05-25T19:40:01+00:00",
+  "updated_at": "2026-05-25T21:19:50+00:00",
   "posts": [
     {
       "id": "post_8845b9e0705caaddbf",
@@ -12,7 +12,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4ee7c05ad2977bbf4d_026589a0_ChatGPT-Image-25_05_2026-16_16_56.png",
       "image_url": "assets/final/post_dcc1d8534a49bc3233_site_1600x900.jpg",
       "published_at": "2026-05-26T21:00:00+01:00",
-      "section": "Histórias reais"
+      "section": "Histórias reais",
+      "article_url": "artigos/teesside-ia-devolve-5-mil-horas-de-transito-em-aplicacao-concreta-8845b9e0705caaddbf"
     },
     {
       "id": "post_cd6e28f37cad7bbbed",
@@ -24,7 +25,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b49ac327cd8d1b9843_1c3abe8f_ChatGPT-Image-25_05_2026-16_15_46.png",
       "image_url": "assets/final/post_18fbea83933572b6eb_site_1600x900.jpg",
       "published_at": "2026-05-26T16:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/lisboa-desinformacao-e-literacia-digital-na-era-da-ia-do-debate-a-acao-cd6e28f37cad7bbbed"
     },
     {
       "id": "post_f0a6e9e29b6c214fd2",
@@ -36,7 +38,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_310f7004049043e4e4_9b3ea4e1_ChatGPT-Image-25_05_2026-16_13_47.png",
       "image_url": "assets/final/post_4adee8a9694b416307_site_1600x900.jpg",
       "published_at": "2026-05-26T13:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/google-testa-oculos-xr-com-ia-a-disputa-pela-camada-de-base-f0a6e9e29b6c214fd2"
     },
     {
       "id": "post_0db72eff8c6c36e593",
@@ -48,7 +51,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0027ca7eb8240b36c0_c5787f2e_ChatGPT-Image-25_05_2026-16_11_09.png",
       "image_url": "assets/final/post_e784ee9d944efc8761_site_1600x900.jpg",
       "published_at": "2026-05-26T09:00:00+01:00",
-      "section": "Mundo"
+      "section": "Mundo",
+      "article_url": "artigos/ia-na-descoberta-de-farmacos-o-desafio-da-acessibilidade-alem-da-eficacia-0db72eff8c6c36e593"
     },
     {
       "id": "post_4dab6f70f9469fce97",
@@ -60,7 +64,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0a3981334485030c2c_f8a8a14e_ChatGPT-Image-24_05_2026-21_18_10.png",
       "image_url": "assets/final/post_342380d0013415ccfe_site_1600x900.jpg",
       "published_at": "2026-05-25T21:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/cne-propoe-literacia-em-ia-nos-curriculos-desde-o-1-o-ciclo-4dab6f70f9469fce97"
     },
     {
       "id": "post_a394c5f5aa94e2e77a",
@@ -72,7 +77,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_398263b1ec97eabae0_0adb67e8_ChatGPT-Image-24_05_2026-21_14_32.png",
       "image_url": "assets/final/post_4a8cfddd2cd51343e0_site_1600x900.jpg",
       "published_at": "2026-05-25T16:00:00+01:00",
-      "section": "Mundo"
+      "section": "Mundo",
+      "article_url": "artigos/ia-no-combate-a-fraude-na-saude-o-teste-esta-na-execucao-publica-a394c5f5aa94e2e77a"
     },
     {
       "id": "post_1b80a72b6857552933",
@@ -84,7 +90,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fd953b2c4f49f46da9_8f4ce17c_ChatGPT-Image-24_05_2026-20_52_51.png",
       "image_url": "assets/final/post_b07718d2cc81fd62d7_site_1600x900.jpg",
       "published_at": "2026-05-25T13:00:00+01:00",
-      "section": "Histórias reais"
+      "section": "Histórias reais",
+      "article_url": "artigos/anthropic-leva-claude-para-a-seguranca-de-software-1b80a72b6857552933"
     },
     {
       "id": "post_01d69850d15830739a",
@@ -96,7 +103,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_131f3e7bfbeb658acb_18dd938c_ChatGPT-Image-24_05_2026-20_41_50.png",
       "image_url": "assets/final/post_7b0767d39005262edc_site_1600x900.jpg",
       "published_at": "2026-05-25T09:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/definedcrowd-da-uptec-entre-as-100-startups-de-ia-mais-promissoras-globalmente-01d69850d15830739a"
     },
     {
       "id": "post_312585e56e4a9467d0",
@@ -108,7 +116,8 @@
       "image_path": "data\\final_assets\\post_2260e4f136e57042db_7964e24e_ChatGPT-Image-23_05_2026-00_58_36.png",
       "image_url": "assets/final/post_db04b628e3fc679a83_site_1600x900.jpg",
       "published_at": "2026-05-23T07:46:00+01:00",
-      "section": "Regulação"
+      "section": "Regulação",
+      "article_url": "artigos/eua-adiam-ordem-executiva-sobre-ia-trump-ve-risco-de-bloqueio-312585e56e4a9467d0"
     },
     {
       "id": "post_ab19e7f57e6af944b0",
@@ -120,7 +129,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9b7c20df827ca6d3ec_06ac74b3_ChatGPT-Image-23_05_2026-05_14_59.png",
       "image_url": "assets/final/post_15939d630abac80024_site_1600x900.jpg",
       "published_at": "2026-05-23T07:16:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/meta-avanca-com-reestruturacoes-e-demissoes-focadas-em-ia-ab19e7f57e6af944b0"
     },
     {
       "id": "post_9eb579fe9b3560f2aa",
@@ -132,7 +142,8 @@
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_18e0f3616de2612049_f4ff4f70_ChatGPT-Image-23_05_2026-05_06_39.png",
       "image_url": "assets/final/post_435a9acc7aca31a26c_site_1600x900.jpg",
       "published_at": "2026-05-23T06:46:00+01:00",
-      "section": "Mundo"
+      "section": "Mundo",
+      "article_url": "artigos/filme-em-cannes-com-80-do-orcamento-em-ia-custos-e-viabilidade-9eb579fe9b3560f2aa"
     },
     {
       "id": "post_39469df31ba22eaf06",
@@ -144,7 +155,8 @@
       "image_path": "data\\final_assets\\post_bb0c9289364b33b925_50af4c76_ChatGPT-Image-23_05_2026-01_35_49.png",
       "image_url": "assets/final/post_8e77c8add0a212dd53_site_1600x900.jpg",
       "published_at": "2026-05-23T06:16:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/54-das-empresas-portuguesas-com-estrategia-de-ia-falham-na-aplicacao-para-receita-direta-39469df31ba22eaf06"
     },
     {
       "id": "post_49390543e8259ad3e2",
@@ -156,7 +168,8 @@
       "image_path": "data\\final_assets\\post_8419560465fed4da0f_0e34301b_ChatGPT-Image-21_05_2026-11_41_31.png",
       "image_url": "assets/final/post_56227b5df2f354e22e_site_1600x900.jpg",
       "published_at": "2026-05-22T21:00:00+01:00",
-      "section": "Previsões Futuras"
+      "section": "Previsões Futuras",
+      "article_url": "artigos/ia-da-openai-refuta-conjetura-matematica-de-80-anos-49390543e8259ad3e2"
     },
     {
       "id": "post_a33d2fc9c6b0eb804b",
@@ -168,7 +181,8 @@
       "image_path": "data\\final_assets\\post_17088cb97181ab3591_5b9aba0f_ChatGPT-Image-21_05_2026-11_11_12.png",
       "image_url": "assets/final/post_a3e2ffcff25a2fd645_site_1600x900.jpg",
       "published_at": "2026-05-22T16:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/google-i-o-agentes-pesquisa-e-a-aposta-na-automacao-a33d2fc9c6b0eb804b"
     },
     {
       "id": "post_4922967f91d9e58aa0",
@@ -180,7 +194,8 @@
       "image_path": "data\\final_assets\\post_bea4106a2c98799e0c_af244cab_ChatGPT-Image-21_05_2026-11_06_47.png",
       "image_url": "assets/final/post_651593cccfc2c69552_site_1600x900.jpg",
       "published_at": "2026-05-22T13:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/ia-na-educacao-o-desafio-estrutural-em-portugal-4922967f91d9e58aa0"
     },
     {
       "id": "post_d35ddc25b91b8d9e0f",
@@ -192,7 +207,8 @@
       "image_path": "data\\final_assets\\post_f4c9ca8fe5ffd71760_4cc3056d_ChatGPT-Image-21_05_2026-11_03_20.png",
       "image_url": "assets/final/post_c45c7a24b04d441a9d_site_1600x900.jpg",
       "published_at": "2026-05-22T09:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/elon-musk-perde-acao-contra-a-openai-e-sam-altman-a-tensao-entre-missao-e-lucro-na-ia-d35ddc25b91b8d9e0f"
     },
     {
       "id": "post_2a5f20727fb9868d39",
@@ -204,7 +220,8 @@
       "image_path": "data\\final_assets\\post_354500e8d839c6bbe2_2cd3147e_ChatGPT-Image-20_05_2026-21_35_32.png",
       "image_url": "assets/final/post_3c91dc86e7537a3f01_site_1600x900.jpg",
       "published_at": "2026-05-21T21:00:00+01:00",
-      "section": "Histórias reais"
+      "section": "Histórias reais",
+      "article_url": "artigos/google-e-blackstone-unem-se-para-criar-nova-empresa-de-cloud-ia-com-5-mil-milhoes-de-dolares-2a5f20727fb9868d39"
     },
     {
       "id": "post_5f1ccfc6623ad0fdf0",
@@ -216,7 +233,8 @@
       "image_path": "data\\final_assets\\post_7b74e7a11e031550fc_4a123b12_ChatGPT-Image-19_05_2026-17_35_14.png",
       "image_url": "assets/final/post_57e63d530441f4a45e_site_1600x900.jpg",
       "published_at": "2026-05-21T16:00:00+01:00",
-      "section": "Mundo"
+      "section": "Mundo",
+      "article_url": "artigos/openai-leva-codex-para-a-app-chatgpt-gestao-de-ia-em-mobilidade-5f1ccfc6623ad0fdf0"
     },
     {
       "id": "post_2e33bf4399239fbd8c",
@@ -228,7 +246,8 @@
       "image_path": "data\\final_assets\\post_fe3f9e776325bc2dac_9994ee0c_ChatGPT-Image-19_05_2026-17_16_45.png",
       "image_url": "assets/final/post_78483a72d50c99245e_site_1600x900.jpg",
       "published_at": "2026-05-21T09:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/governo-centraliza-gestao-tecnologica-e-aposta-na-ia-na-saude-prevendo-poupanca-de-300-milhoes-2e33bf4399239fbd8c"
     },
     {
       "id": "post_5daa6a87b89f249a9b",
@@ -240,7 +259,8 @@
       "image_path": "data\\final_assets\\post_256d7fa0ae652705dc_2cb31e1e_ChatGPT-Image-18_05_2026-22_35_42.png",
       "image_url": "assets/final/post_401dfe4bb8637632d8_site_1600x900.jpg",
       "published_at": "2026-05-19T21:00:00+01:00",
-      "section": "Histórias reais"
+      "section": "Histórias reais",
+      "article_url": "artigos/chief-ai-officer-a-nova-lideranca-estrategica-para-a-ia-nas-empresas-5daa6a87b89f249a9b"
     },
     {
       "id": "post_fb5b67913bcfae5e96",
@@ -252,7 +272,8 @@
       "image_path": "data\\final_assets\\post_669e3e9e7b2a54f0a4_50f272c8_ChatGPT-Image-18_05_2026-22_32_21.png",
       "image_url": "assets/final/post_b4eff02030bf06b490_site_1600x900.jpg",
       "published_at": "2026-05-19T16:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/51-dos-portugueses-receiam-perder-o-emprego-para-a-ia-o-dobro-da-media-europeia-fb5b67913bcfae5e96"
     },
     {
       "id": "post_19725f2d7c6e0777b9",
@@ -264,7 +285,8 @@
       "image_path": "data\\final_assets\\post_bcfdb577af20f981d6_f50b8398_ChatGPT-Image-18_05_2026-11_50_32.png",
       "image_url": "assets/final/post_e76c897e478d43aee3_site_1600x900.jpg",
       "published_at": "2026-05-19T13:00:00+01:00",
-      "section": "Portugal"
+      "section": "Portugal",
+      "article_url": "artigos/adocao-de-ia-em-portugal-aumenta-mas-pais-perde-posicao-global-19725f2d7c6e0777b9"
     }
   ]
 }

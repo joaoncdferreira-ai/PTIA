@@ -138,6 +138,27 @@ function escapeHtml(value) {
   }[char]));
 }
 
+function articleUrl(post) {
+  if (post?.articleUrl) return `/${String(post.articleUrl).replace(/^\/+/, "")}`;
+  if (post?.article_url) return `/${String(post.article_url).replace(/^\/+/, "")}`;
+  return post?.id ? `article.html?id=${encodeURIComponent(post.id)}` : (post?.url || "#");
+}
+
+function linkAttrs(href) {
+  return /^https?:\/\//i.test(href || "") ? 'target="_blank" rel="noopener"' : "";
+}
+
+function isPublishedNow(value) {
+  if (!value) return true;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return true;
+  return date.getTime() <= Date.now();
+}
+
+function visibleFeedPosts(feed) {
+  return (feed?.posts || []).filter((post) => isPublishedNow(post.published_at));
+}
+
 function formatLongDate(date) {
   return new Intl.DateTimeFormat("pt-PT", {
     weekday: "long",
@@ -198,7 +219,7 @@ function renderBreakingTicker() {
   const target = document.getElementById("breaking-content");
   if (!target) return;
   const items = PTIA_DATA.today.slice(0, 8).map((item, index) => `
-    <a href="${escapeHtml(item.url || "#")}" ${item.url && item.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>
+    <a href="${escapeHtml(articleUrl(item))}" ${linkAttrs(articleUrl(item))}>
       <span>${escapeHtml(item.time || `#${index + 1}`)}</span>
       ${escapeHtml(item.title)}
     </a>
@@ -226,9 +247,9 @@ function renderFrontPage() {
   if (railClock) railClock.textContent = nowLabel;
 
   if (leadCard && lead) {
-    const href = lead.url && lead.url !== "#" ? lead.url : "#";
+    const href = articleUrl(lead);
     leadCard.innerHTML = `
-      <a class="cover" href="${escapeHtml(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>
+      <a class="cover" href="${escapeHtml(href)}" ${linkAttrs(href)}>
         ${storyVisual(lead, true)}
         <span class="cover-badge"><span class="live-dot"></span> Story principal</span>
         <span class="numstamp">№${escapeHtml(lead.n || "01")}<small>Lead story</small></span>
@@ -239,9 +260,9 @@ function renderFrontPage() {
         <strong>${escapeHtml(lead.source || "PTIA")}</strong>
         <span>${escapeHtml(lead.readtime || "4 min")}</span>
         <span>${escapeHtml(lead.time || "hoje")}</span>
-        <em>Em análise</em>
+        <em>Leitura PTIA</em>
       </div>
-      <h1><a href="${escapeHtml(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>${escapeHtml(lead.title)}</a></h1>
+      <h2><a href="${escapeHtml(href)}" ${linkAttrs(href)}>${escapeHtml(lead.title)}</a></h2>
       <p class="lead-dek">${escapeHtml(lead.pt)}</p>
       <footer class="lead-foot">
         <span class="byline-avatar">J</span>
@@ -249,11 +270,13 @@ function renderFrontPage() {
         <a href="${escapeHtml(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>Ler ângulo completo -></a>
       </footer>
     `;
+    leadCard.querySelector(".lead-foot a")?.removeAttribute("target");
+    leadCard.querySelector(".lead-foot a")?.removeAttribute("rel");
   }
 
   if (rail) {
     rail.innerHTML = PTIA_DATA.today.filter((item) => item !== lead).slice(0, 3).map((item) => `
-      <a class="rail-story" href="${escapeHtml(item.url || "#")}" ${item.url && item.url !== "#" ? 'target="_blank" rel="noopener"' : ""}>
+      <a class="rail-story" href="${escapeHtml(articleUrl(item))}" ${linkAttrs(articleUrl(item))}>
         <span class="rail-meta">№${escapeHtml(item.n)} · ${escapeHtml(item.tag)} · ${escapeHtml(item.source)} · ${escapeHtml(item.time)}</span>
         <h3>${escapeHtml(item.title)}</h3>
         <p>${escapeHtml(item.pt)}</p>
@@ -306,11 +329,11 @@ function storyVisual(item, isLead) {
 }
 
 function articleRow(item, isLead) {
-  const href = item.url && item.url !== "#" ? item.url : "#";
+  const href = articleUrl(item);
   return `<article class="article-row ${isLead ? "lead" : ""}">
     <div class="article-num">№${escapeHtml(item.n)}</div>
     <div>
-      <h3 class="article-title"><a href="${escapeHtml(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>${escapeHtml(item.title)}</a></h3>
+      <h3 class="article-title"><a href="${escapeHtml(href)}" ${linkAttrs(href)}>${escapeHtml(item.title)}</a></h3>
       <p class="pt-angle">${escapeHtml(item.pt)}</p>
     </div>
     ${storyVisual(item, isLead)}
@@ -480,6 +503,19 @@ function setupCountUp() {
   nodes.forEach((node) => observer.observe(node));
 }
 
+function setupNewsletterForm() {
+  const form = document.getElementById("ptia-newsletter-form");
+  const status = document.getElementById("newsletter-status");
+  if (!form || !status) return;
+  form.addEventListener("submit", () => {
+    status.textContent = "A enviar. Se o email existir, vais receber a confirmação de subscrição.";
+    window.setTimeout(() => {
+      status.textContent = "Quase lá: confirma o email para receberes a PTIA Weekly.";
+      form.reset();
+    }, 1800);
+  });
+}
+
 function setupSignalViz() {
   const svg = document.getElementById("signal-viz");
   if (!svg) return;
@@ -551,8 +587,10 @@ async function hydrateFromFeedIfAvailable() {
       }
     }
     if (!feed) return;
-    if (!feed.posts?.length) return;
-    PTIA_DATA.today = feed.posts.map((post, index) => ({
+    const visiblePosts = visibleFeedPosts(feed);
+    if (!visiblePosts.length) return;
+    PTIA_DATA.today = visiblePosts.map((post, index) => ({
+      id: post.id || "",
       n: String(index + 1).padStart(2, "0"),
       title: post.title || "Entrada PTIA",
       pt: (post.body || "").split("\n").find((line) => line.length > 40) || "Leitura PTIA com fonte original e contexto para Portugal.",
@@ -562,6 +600,10 @@ async function hydrateFromFeedIfAvailable() {
       readtime: "4 min",
       lead: index === 0,
       url: post.source_urls?.[0] || "#",
+      body: post.body || "",
+      sourceUrls: post.source_urls || [],
+      publishedAt: post.published_at || "",
+      articleUrl: post.article_url || "",
       imageUrl: post.image_url || ""
     }));
     renderBreakingTicker();
@@ -584,5 +626,7 @@ renderGitHubRepos();
 renderGuides();
 setupReveal();
 setupCountUp();
+setupNewsletterForm();
 setupSignalViz();
 hydrateFromFeedIfAvailable();
+setInterval(hydrateFromFeedIfAvailable, 60000);

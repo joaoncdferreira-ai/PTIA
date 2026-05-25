@@ -1,7 +1,8 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import base64
 import ast
+import html
 import json
 import os
 import re
@@ -16,10 +17,11 @@ from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from mimetypes import guess_type
 from pathlib import Path
+from textwrap import wrap
 import urllib.request
 from urllib.parse import quote, urlparse
 
-from PIL import Image, ImageFilter, ImageOps
+from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from ptia_engine.assets import create_final_post_image
 from ptia_engine.buffer_api import BufferClient
@@ -35,7 +37,7 @@ from ptia_engine.editorial_board import (
     update_signal_status,
     update_topic_status,
 )
-from ptia_engine.models import ContentPerformance, Source, utc_now_iso
+from ptia_engine.models import ContentPerformance, FinalPost, Source, utc_now_iso
 from ptia_engine.newsletter import generate_sample_issue, generate_weekly_issue, update_newsletter_status
 from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
@@ -55,8 +57,31 @@ from ptia_engine.storage import (
 )
 
 
+def _load_project_env() -> None:
+    root = Path(__file__).resolve().parents[2]
+    for filename in (".env", ".env.local"):
+        path = root / filename
+        if not path.exists():
+            continue
+        for raw_line in path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and not os.environ.get(key):
+                os.environ[key] = value
+
+
+_load_project_env()
+
+
 def _to_dict(record):
-    return record.to_record() if hasattr(record, "to_record") else asdict(record)
+    payload = record.to_record() if hasattr(record, "to_record") else asdict(record)
+    if isinstance(record, FinalPost):
+        payload["copy_issues"] = _copy_quality_issues(record)
+    return payload
 
 
 def _engagement_score(perf: ContentPerformance) -> int:
@@ -168,8 +193,28 @@ def _normalise_hashtags(raw, channel: str = "") -> str:
         seen.add(key)
         tags.append(tag)
 
-    max_count = {"linkedin": 4, "instagram": 5}.get(channel, 5)
+    max_count = {"linkedin": 4, "instagram": 5, "x": 2}.get(channel, 5)
     return " ".join(tags[:max_count])
+
+
+def _disabled_channels_from_config(config: dict | None) -> set[str]:
+    disabled = {
+        str(channel).strip().casefold()
+        for channel in (config or {}).get("disabled_channels", [])
+        if str(channel).strip()
+    }
+    if os.getenv("PTIA_HIDE_X", "").strip().casefold() in {"1", "true", "yes", "on"}:
+        disabled.add("x")
+    return disabled
+
+
+def _channel_enabled(state: "DashboardState", channel: str) -> bool:
+    config = _load_buffer_channels(state.buffer_channels_path)
+    return channel.strip().casefold() not in _disabled_channels_from_config(config)
+
+
+def _visible_final_posts(posts: list, disabled_channels: set[str]) -> list:
+    return [post for post in posts if post.channel not in disabled_channels]
 
 
 GENERIC_EDITORIAL_CTA_PATTERNS = [
@@ -179,6 +224,44 @@ GENERIC_EDITORIAL_CTA_PATTERNS = [
     r"\bEsta temática faz parte das vossas prioridades para os próximos meses\?\s*",
     r"\bQuem em Portugal deve prestar atenção\?\s*",
     r"\bO que significa para Portugal\?\s*",
+]
+
+
+BANNED_EDITORIAL_BODY_PATTERNS = [
+    r"\bO entusiasmo é compreensível[.,;:]?\s*",
+    r"(?im)^\s*Ser[aá] que [^?\n]{1,180}\?\s*",
+    r"(?im)^\s*Em suma[,:]?\s*",
+    r"(?im)^\s*Em resumo[,:]?\s*",
+    r"(?im)^\s*No panorama atual[,:]?\s*",
+    r"(?im)^\s*Além disso[,:]?\s*",
+    r"(?im)^\s*Por outro lado[,:]?\s*",
+    r"(?im)^\s*Adicionalmente[,:]?\s*",
+    r"(?im)^\s*Consequentemente[,:]?\s*",
+    r"\bO impacto d[eo] [^.\n]{1,90} não pode ser subestimado[.,;:]?\s*",
+    r"\bÉ fundamental recordar(?: que)?[.,;:]?\s*",
+    r"\bDesbloquear o potencial d[aeo] [^.\n]{1,90}[.,;:]?\s*",
+    r"\bMergulhar profundamente n[ao] [^.\n]{1,90}[.,;:]?\s*",
+    r"\bA verdade é que[.,;:]?\s*",
+    r"\b[Rr]evolucion(?:ar|a|am|ou|ando|ário|ária)[a-záãçéêíóõú]*\b",
+    r"\b[Aa] pergunta [úu]til [^.\n?]{0,160}[.?]\s*",
+    r"\b[Qq]uem consegue (?:executar|usar|levar|p[ôo]r)[^.\n?]{0,120}[.?]?\s*",
+    r"\b[Qq]uem ganha acesso primeiro[.,;:]?\s*",
+    r"\b[Qq]ue custo aparece [^.\n?]{0,120}[.?]?\s*",
+    r"\bcusto,\s*risco e depend[eê]ncia\b[.,;:]?\s*",
+    r"\b[Qq]ue prova fica guardada quando o sistema falha[.,;:]?\s*",
+    r"\b[Qq]uem assume a decis[aã]o[.,;:]?\s*",
+    r"\b[Aa] pergunta [ée][^.\n?]{0,160}[.?]?\s*",
+    r"\b[Aa] not[ií]cia n[aã]o [ée][^.\n]{0,180}[.]\s*",
+    r"\b[Aa] quest[aã]o,?\s*agora,?\s*n[aã]o [ée][^.\n?]{0,180}[.?]\s*",
+    r"\b[Oo] detalhe a observar n[aã]o est[aá] no an[uú]ncio[.,;:]?\s*",
+    r"\b[Ee]st[aá] na mudan[cç]a de incentivos[.:]?\s*",
+]
+
+
+EDITORIAL_WORD_REPLACEMENTS = [
+    (r"\b[Cc]rucial\b", "importante"),
+    (r"\b[Vv]ital\b", "importante"),
+    (r"\b[Ee]ssencial\b", "importante"),
 ]
 
 
@@ -193,16 +276,78 @@ def _apply_ptia_editorial_rules(title: str, body: str, channel: str = "") -> tup
     clean_body = body
     for pattern in GENERIC_EDITORIAL_CTA_PATTERNS:
         clean_body = re.sub(pattern, "", clean_body, flags=re.IGNORECASE)
+    for pattern in BANNED_EDITORIAL_BODY_PATTERNS:
+        clean_body = re.sub(pattern, "", clean_body, flags=re.IGNORECASE)
+    for pattern, replacement in EDITORIAL_WORD_REPLACEMENTS:
+        clean_body = re.sub(pattern, replacement, clean_body)
     clean_body = re.sub(
         r"^\s*(?:A leitura PTIA|O que observar(?: agora)?|Porque importa|A notícia)\s*:\s*",
         "",
         clean_body,
         flags=re.IGNORECASE | re.MULTILINE,
     )
+    if channel in {"instagram", "linkedin", "x"}:
+        clean_body = re.sub(r"\*\*(.*?)\*\*", r"\1", clean_body)
     if channel == "site":
         clean_body = re.sub(r"\*\*Fonte:\*\*", "Fonte:", clean_body)
+    clean_body = re.sub(r"(?im)^\s*-\s*-\s*(Fonte(?: original)?\s*:)", r"\1", clean_body)
+    clean_body = re.sub(r"(?im)^\s*-\s*(?=Fonte(?: original)?\s*:)", "", clean_body)
+    clean_body = re.sub(r"(?m)^\s*-\s*$\n?", "", clean_body)
     clean_body = re.sub(r"\n{3,}", "\n\n", clean_body).strip()
     return clean_title or title, clean_body
+
+
+def _copy_quality_issues(post: FinalPost) -> list[str]:
+    """Return blocking copy problems that must not reach approval or Buffer."""
+    body = (post.body or "").strip()
+    title = (post.title or "").strip()
+    issues: list[str] = []
+    if not title:
+        issues.append("titulo vazio")
+    if not body:
+        issues.append("texto vazio")
+        return issues
+
+    broken_patterns = [
+        (r"(?im)^\s*-\s*(?:-\s*)?Fonte(?: original)?\s*:", "bullet de fonte quebrada"),
+        (r"(?im)^\s*-\s*$", "bullet vazio"),
+        (r"(?m)[^\n][ \t]+Fonte(?:s| original)?\s*:", "fonte colada no meio da frase"),
+        (r"\b(?:importa perceber|contudo, importa perceber|é perceber)\s*(?:\.|$)", "frase truncada"),
+        (r"\b(?:Tr[eê]s (?:coisas|pontos|leituras)[^:\n]*:)\s*$", "lista de pontos sem conteudo"),
+    ]
+    for pattern, label in broken_patterns:
+        if re.search(pattern, body):
+            issues.append(label)
+
+    if re.search(r"(?im)^\s*Tr[eê]s (?:coisas|pontos|leituras)[^:\n]*:", body):
+        valid_bullets = [
+            line
+            for line in body.splitlines()
+            if re.match(r"^\s*-\s+\S", line) and not re.match(r"^\s*-\s*(?:-\s*)?Fonte", line, re.IGNORECASE)
+        ]
+        if post.channel == "instagram" and len(valid_bullets) < 2:
+            issues.append("lista Instagram incompleta")
+
+    if re.search(r"\b\w+\?\w+", body):
+        issues.append("possivel erro de encoding no texto")
+
+    return list(dict.fromkeys(issues))
+
+
+def _validate_final_post_copy(post: FinalPost) -> None:
+    issues = _copy_quality_issues(post)
+    if issues:
+        raise ValueError(f"Copy bloqueada em {post.channel}: {post.title} ({'; '.join(issues)})")
+
+
+def _validate_final_package_copy(posts: list[FinalPost]) -> None:
+    failures: list[str] = []
+    for post in posts:
+        issues = _copy_quality_issues(post)
+        if issues:
+            failures.append(f"{post.channel}: {post.title} ({'; '.join(issues)})")
+    if failures:
+        raise ValueError("Pacote bloqueado por copy desalinhada/incompleta: " + " | ".join(failures))
 
 
 def _parse_iso_datetime(value: str) -> datetime | None:
@@ -285,7 +430,7 @@ def _build_learnings(items, drafts, performance):
         )
     if top_sources:
         recommendations.append(
-            "Priorizar fontes que ja geraram melhor resposta: "
+            "Priorizar fontes que já geraram melhor resposta: "
             + ", ".join(row["name"] for row in top_sources)
             + "."
         )
@@ -383,6 +528,7 @@ class DashboardState:
         return self.data_dir.parent / "site"
 
     def snapshot(self) -> dict:
+        _load_project_env()
         _refresh_final_posts_file(self)
         articles = load_raw_articles(self.raw_path)
         items = load_processed_items(self.processed_path)
@@ -390,9 +536,15 @@ class DashboardState:
         performance = load_content_performance(self.performance_path)
         assets = load_content_assets(self.assets_path)
         buffer_channels = _load_buffer_channels(self.buffer_channels_path)
+        disabled_channels = _disabled_channels_from_config(buffer_channels)
         radar_signals = sorted(
             load_radar_signals(self.radar_signals_path),
             key=lambda signal: (signal.engagement_score, signal.fetched_at),
+            reverse=True,
+        )
+        radar_recent_signals = sorted(
+            radar_signals,
+            key=lambda signal: signal.fetched_at,
             reverse=True,
         )
         editorial_topics = sorted(
@@ -400,7 +552,8 @@ class DashboardState:
             key=lambda topic: (topic.urgency_score, topic.created_at),
             reverse=True,
         )
-        final_posts = _ensure_image_variants_for_posts(self, load_final_posts(self.final_posts_path))
+        all_final_posts = _ensure_image_variants_for_posts(self, load_final_posts(self.final_posts_path))
+        final_posts = _visible_final_posts(all_final_posts, disabled_channels)
         newsletter_issues = sorted(
             load_newsletter_issues(self.newsletter_issues_path),
             key=lambda issue: issue.created_at,
@@ -506,6 +659,7 @@ class DashboardState:
             },
             "recent_articles": [_to_dict(article) for article in articles[-20:]][::-1],
             "radar_signals_v2": [_to_dict(signal) for signal in radar_signals[:60]],
+            "radar_recent_signals": [_to_dict(signal) for signal in radar_recent_signals[:20]],
             "radar_inbox_signals": [_to_dict(signal) for signal in radar_inbox_signals[:20]],
             "verifying_signals": [_to_dict(signal) for signal in verifying_signals],
             "verified_signals": [_to_dict(signal) for signal in verified_signals],
@@ -532,6 +686,10 @@ class DashboardState:
             "trends": [_to_dict(signal) for signal in trends[:40]],
             "assets": [_to_dict(asset) for asset in assets[-80:]][::-1],
             "buffer_channels": buffer_channels,
+            "channel_settings": {
+                "disabled_channels": sorted(disabled_channels),
+                "x_enabled": "x" not in disabled_channels,
+            },
             "buffer_available": BufferClient().available,
             "learnings": _build_learnings(items, drafts, performance),
             "growth": _boost_candidates(final_posts, performance),
@@ -591,6 +749,94 @@ def _update_signal_verification_fields(
     raise ValueError(f"Signal not found: {signal_id}")
 
 
+def _reverify_signal(state: DashboardState, signal_id: str) -> dict:
+    signal = _find_signal(state.radar_signals_path, signal_id)
+    verification = resolve_submitted_link(signal.url, thought=signal.topic_hint or signal.notes)
+    if verification.status == "verified":
+        new_signal = add_radar_signal(
+            state.radar_signals_path,
+            source_type="news",
+            source_name=verification.source_name,
+            title=verification.title,
+            url=verification.verified_url or signal.url,
+            published_at=verification.published_at,
+            engagement_score=max(signal.engagement_score, 60),
+            summary=verification.summary or signal.summary,
+            topic_hint=signal.topic_hint,
+            why_it_matters=signal.why_it_matters,
+            why_engaged=signal.why_engaged,
+            notes=verification.notes,
+            status="verified",
+            require_recent=True,
+        )
+        if new_signal.signal_id == signal.signal_id:
+            verified_signal = _update_signal_verification_fields(
+                state.radar_signals_path,
+                signal.signal_id,
+                source_name=verification.source_name,
+                title=verification.title,
+                url=verification.verified_url or signal.url,
+                published_at=verification.published_at,
+                summary=verification.summary or signal.summary,
+                notes="Fonte credivel e data encontradas; sinal reposto em Verified Selection.",
+            )
+            return {"verified": True, "signal": verified_signal}
+        update_signal_status(
+            state.radar_signals_path,
+            signal.signal_id,
+            "used",
+            "Fonte credivel encontrada; novo sinal verificado criado.",
+        )
+        return {"verified": True, "signal": new_signal}
+
+    pending_signal = update_signal_status(
+        state.radar_signals_path,
+        signal.signal_id,
+        "verifying",
+        verification.notes,
+    )
+    return {
+        "verified": False,
+        "signal": pending_signal,
+        "status": verification.status,
+        "notes": verification.notes,
+    }
+
+
+def _reverify_verifying_signals(state: DashboardState) -> dict:
+    signal_ids = [
+        signal.signal_id
+        for signal in load_radar_signals(state.radar_signals_path)
+        if signal.status == "verifying"
+    ]
+    results = []
+    verified = 0
+    failed = 0
+    for signal_id in signal_ids:
+        try:
+            result = _reverify_signal(state, signal_id)
+        except Exception as exc:  # noqa: BLE001 - one failed lookup must not stop the queue.
+            failed += 1
+            results.append({"signal_id": signal_id, "status": "error", "error": str(exc) or repr(exc)})
+            continue
+        signal = result["signal"]
+        verified += int(bool(result["verified"]))
+        results.append(
+            {
+                "signal_id": signal.signal_id,
+                "status": signal.status,
+                "source_name": signal.source_name,
+            }
+        )
+    return {
+        "checked": len(signal_ids),
+        "verified": verified,
+        "verifying": len(signal_ids) - verified - failed,
+        "failed": failed,
+        "results": results,
+    }
+
+
 def _polish_final_post_copy(
     *,
     channel: str,
@@ -640,21 +886,145 @@ def _polish_final_post_copy(
     }
 
 
-def _high_quality_image_prompt(title: str, body: str, feedback: str = "") -> str:
+def _image_prompt_group_for_channel(channel: str) -> str:
+    return "instagram_x" if channel.strip().casefold() in {"instagram", "x"} else "linkedin_site"
+
+
+def _high_quality_image_prompt(
+    title: str,
+    body: str,
+    feedback: str = "",
+    *,
+    group: str = "linkedin_site",
+    visual_title: str = "",
+    include_x: bool = True,
+) -> str:
     feedback_line = f"\nPedido adicional do editor: {feedback.strip()}" if feedback.strip() else ""
+    context_line = f'\nContexto editorial PTIA: "{body.strip()[:680]}"' if body.strip() else ""
+    if group == "instagram_x":
+        target_channels = "Instagram e X" if include_x else "Instagram"
+        x_adaptable = " e adaptável para X" if include_x else ""
+        selected_title = (
+            f'"{visual_title.strip()}"'
+            if visual_title.strip()
+            else "[escolher no dashboard antes de gerar]"
+        )
+        return (
+            f'Cria uma imagem editorial premium para {target_channels} sobre este tema: "'
+            f"{title}"
+            '"\n\n'
+            f"Título visual escolhido no dashboard para o overlay PTIA: {selected_title}\n"
+            "Não desenhes esse título, o logo, palavras, letras, hashtags, legendas ou pseudo-tipografia "
+            "na imagem gerada. O dashboard aplica por cima uma camada PTIA fixa com fonte, wordmark, "
+            "linha editorial e título para manter a marca consistente.\n\n"
+            f"Resultado esperado: master visual feed-first em 1:1, forte em Instagram{x_adaptable}. "
+            "Reserva o terço inferior com textura visual simples e contraste controlado para receber "
+            "o overlay PTIA; mantém o assunto principal legível acima dessa zona. "
+            "Estilo: PTIA editorial, inteligente, crítico quando fizer sentido, fotorealista/cinemático, "
+            "luz natural sofisticada, profundidade, textura real e composição memorável. "
+            "Comunica a tese através de uma metáfora visual concreta, humana e relevante. "
+            "Evita robôs azuis, circuitos neon, dashboards genéricos, ícones flutuantes baratos, "
+            "pessoas a apontar para hologramas e aspecto stock. "
+            "Entrega apenas a imagem-base sem texto."
+            f"{context_line}"
+            f"{feedback_line}"
+        )
     return (
-        'Cria uma imagem sem texto editorial premium para partilhar no LinkedIn e Instagram sobre este tema: "'
+        'Cria uma imagem sem texto editorial premium para LinkedIn e site sobre este tema: "'
         f"{title}"
         '"\n\n'
-        "Resultado esperado: imagem quadrada 1:1, visual forte, original e memorável, com qualidade de campanha editorial. "
+        "Resultado esperado: imagem editorial landscape para LinkedIn e site, visual forte, original e memorável, "
+        "com qualidade de campanha editorial. "
         "Estilo: fotorealista/cinemático, luz natural sofisticada, composição limpa, profundidade, textura real, "
         "sem texto escrito na imagem, sem mockups de dashboards genéricos, sem ícones flutuantes baratos, sem aspecto stock. "
         "Deve comunicar a ideia central da notícia através de uma metáfora visual concreta, humana e relevante. "
         "Se o tema envolver Portugal, pode usar sinais visuais subtis portugueses ou europeus, mas sem mapas literais forçados. "
         "Evita clichés de robôs azuis, circuitos neon e pessoas a apontar para hologramas, salvo se forem essenciais ao conceito. "
         "A imagem deve funcionar como capa premium de uma publicação de tecnologia e sociedade."
+        f"{context_line}"
         f"{feedback_line}"
     )
+
+
+def _fallback_visual_image_titles(title: str, body: str = "") -> list[dict[str, str]]:
+    text = re.sub(r"\s+", " ", (title or body or "A IA já mudou a pergunta")).strip()
+    text = re.sub(r"^https?://\S+", "", text).strip() or "A IA já mudou a pergunta"
+    compact = text.rstrip(" .,:;?!")
+    if len(compact) > 68:
+        compact = compact[:65].rsplit(" ", 1)[0].rstrip(" .,:;") + "..."
+    editorial = compact
+    provocative = "Ter IA no papel não chega"
+    lowered = f"{title} {body}".casefold()
+    if "custo" in lowered or "compute" in lowered or "orçamento" in lowered:
+        provocative = "A IA tambem tem fatura"
+    elif "receita" in lowered or "empresas" in lowered:
+        provocative = "A receita e o verdadeiro teste da IA"
+    elif "trump" in lowered or "casa branca" in lowered or "ordem executiva" in lowered:
+        provocative = "Washington quer mandar na IA"
+    elif "meta" in lowered or "layoff" in lowered or "demiss" in lowered:
+        provocative = "A IA tambem corta equipas"
+    return [
+        {"tone": "provocatorio", "title": provocative},
+        {"tone": "editorial", "title": editorial},
+    ]
+
+
+def _first_sentence(text: str, fallback: str = "") -> str:
+    clean = re.sub(r"\s+", " ", text or "").strip()
+    if not clean:
+        return fallback
+    match = re.search(r"(.{24,220}?[.!?])(?:\s|$)", clean)
+    return (match.group(1) if match else clean[:220]).strip()
+
+
+def _specific_editorial_seed(title: str, summary: str, why_it_matters: str) -> tuple[str, str]:
+    """Build a non-generic editorial seed when Gemini is unavailable or conservative."""
+    text = f"{title} {summary} {why_it_matters}".casefold()
+
+    if any(token in text for token in ("google", "gemini", "i/o", "alphabet")):
+        return (
+            "A leitura PTIA está na distribuição: a Google não precisa apenas de ter bons modelos, precisa de os tornar a camada natural dos produtos que milhões de equipas já usam.",
+            "Quando a IA aparece dentro da pesquisa, do vídeo ou das ferramentas de trabalho, a concorrência deixa de ser só técnica e passa a ser uma disputa pelo hábito.",
+        )
+    if any(token in text for token in ("meta", "layoff", "demiss", "desped")):
+        return (
+            "A tensão está no sinal laboral: a mesma empresa que vende produtividade algorítmica está a redesenhar internamente o tamanho e o papel das equipas.",
+            "Isto torna a IA menos uma narrativa de eficiência abstracta e mais uma escolha de gestão com consequências visíveis nas estruturas que a adoptam.",
+        )
+    if any(token in text for token in ("trump", "casa branca", "ordem executiva", "white house")):
+        return (
+            "A notícia mostra a IA a sair do laboratório e a entrar na política industrial: o poder já não está só em lançar modelos, está em definir quem pode treiná-los, comprá-los e exportá-los.",
+            "Para empresas europeias, este tipo de decisão transforma tecnologia em geopolítica operacional: acesso, fornecedores e compliance passam a fazer parte da mesma conversa.",
+        )
+    if any(token in text for token in ("openai", "anthropic", "claude", "gpt", "modelo")):
+        return (
+            "A corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.",
+            "O vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.",
+        )
+    if any(token in text for token in ("regula", "bruxelas", "união europeia", "ai act", "comissão europeia")):
+        return (
+            "A regulação deixou de ser cenário de fundo. Está a tornar-se parte do próprio produto, porque determina que provas, limites e responsabilidades acompanham cada sistema.",
+            "A vantagem passa a depender menos da promessa comercial e mais da capacidade de provar funcionamento, risco e governação sem travar a adopção.",
+        )
+    if any(token in text for token in ("nvidia", "chip", "semicondutor", "data center", "energia", "compute")):
+        return (
+            "A IA continua a ser vendida como software, mas a notícia lembra a parte física da disputa: chips, energia, centros de dados e capacidade de entrega.",
+            "Quem controla essa infra-estrutura condiciona o ritmo de inovação dos outros, mesmo quando não aparece na interface que o utilizador vê.",
+        )
+
+    factual = _first_sentence(summary, title.rstrip("."))
+    relevance = _first_sentence(why_it_matters, "")
+    thesis = f"O dado que interessa é este: {factual}"
+    consequence = relevance or f"Este movimento revela uma escolha concreta de mercado, produto ou poder em {title.rstrip('.')}"
+    return thesis, consequence.rstrip(".") + "."
+
+
+def _ensure_source_line(body: str, source_line: str, source_url: str) -> str:
+    if not source_url or source_url in body:
+        return body.strip()
+    if re.search(r"(?im)^\s*Fonte(?: original)?\s*:", body):
+        return body.strip()
+    return f"{body.strip()}\n\n{source_line}".strip()
 
 
 def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict:
@@ -684,22 +1054,26 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
 
     base_summary = signal.summary or "A fonte publicou uma nova informação sobre inteligência artificial."
     why_it_matters = signal.why_it_matters or (
-        "O critério editorial é perceber se isto altera decisões de trabalho, produto, risco ou investimento."
+        _first_sentence(base_summary, signal.title)
     )
-    ptia_lens = (
-        "A IA já não está apenas nos laboratórios. Está a entrar em orçamento, produto, contratação, risco "
-        "e poder de negociação. O entusiasmo é legítimo; a execução é o teste."
-    )
-    next_action = (
-        "Antes de comprar a narrativa, vale perceber quem consegue usar isto já, que barreiras existem "
-        "e que decisão concreta muda amanhã."
-    )
+    ptia_lens, next_action = _specific_editorial_seed(signal.title, base_summary, why_it_matters)
     hashtags = "#InteligenciaArtificial #IA #Portugal #PTIA"
-    image_prompt = _high_quality_image_prompt(
-        signal.title,
-        f"{base_summary}\n\n{why_it_matters}\n\n{ptia_lens}",
+    body_context = (
+        f"{base_summary}\n\n{why_it_matters}\n\n{ptia_lens}"
     )
-    source_line = f"Fonte original: {source_url}"
+    linkedin_site_image_prompt = _high_quality_image_prompt(
+        signal.title,
+        body_context,
+    )
+    include_x = _channel_enabled(state, "x")
+    instagram_x_image_prompt = _high_quality_image_prompt(
+        signal.title,
+        body_context,
+        group="instagram_x",
+        include_x=include_x,
+    )
+    source_line = f"Fonte: {source_url}"
+    x_hashtags = "#IA #PTIA"
     posts = [
         add_final_post(
             state.final_posts_path,
@@ -713,7 +1087,7 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
                 f"{source_line}"
             ),
             hashtags=hashtags,
-            image_prompt=image_prompt,
+            image_prompt=linkedin_site_image_prompt,
             source_urls=[source_url],
         ),
         add_final_post(
@@ -723,15 +1097,13 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
             title=signal.title,
             body=(
                 f"{base_summary}\n\n"
-                "Três pontos para guardar:\n"
-                "- A notícia vale pelo que muda, não pelo anúncio.\n"
-                "- O valor aparece na execução, não no acesso.\n"
-                "- O risco é confundir novidade com vantagem real.\n\n"
+                f"{ptia_lens}\n\n"
                 f"{why_it_matters}\n\n"
+                f"{next_action}\n\n"
                 f"{source_line}"
             ),
             hashtags=hashtags,
-            image_prompt=image_prompt,
+            image_prompt=instagram_x_image_prompt,
             source_urls=[source_url],
         ),
         add_final_post(
@@ -743,13 +1115,28 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
                 f"{base_summary}\n\n"
                 f"{ptia_lens}\n\n"
                 f"{why_it_matters}\n\n"
+                f"{next_action}\n\n"
                 f"{source_line}"
             ),
             hashtags="",
-            image_prompt=image_prompt,
+            image_prompt=linkedin_site_image_prompt,
             source_urls=[source_url],
         ),
     ]
+    if include_x:
+        posts.insert(
+            2,
+            add_final_post(
+                state.final_posts_path,
+                topic_id=topic.topic_id,
+                channel="x",
+                title=signal.title,
+                body=_x_post_body(base_summary, why_it_matters, source_line, x_hashtags),
+                hashtags=x_hashtags,
+                image_prompt=instagram_x_image_prompt,
+                source_urls=[source_url],
+            ),
+        )
     polished_posts = []
     for post in posts:
         polished = _polish_final_post_copy(
@@ -759,13 +1146,22 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
             hashtags=post.hashtags,
             source_urls=post.source_urls,
         )
+        polished_hashtags = _normalise_hashtags(polished["hashtags"], post.channel)
+        polished_body = polished["body"]
+        if post.channel == "x":
+            x_seed = re.sub(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$", "", polished_body)
+            x_seed = re.sub(r"https?://\S+", "", x_seed).strip()
+            source_label = signal.source_name or "fonte original"
+            polished_body = _x_post_body(x_seed, "", f"Fonte: {source_label}", polished_hashtags)
+        else:
+            polished_body = _ensure_source_line(polished_body, source_line, source_url)
         polished_posts.append(
             update_final_post_copy(
                 state.final_posts_path,
                 post.post_id,
                 title=polished["title"],
-                body=polished["body"],
-                hashtags=polished["hashtags"],
+                body=polished_body,
+                hashtags=polished_hashtags,
                 notes=polished["editor_notes"],
             )
         )
@@ -777,6 +1173,21 @@ def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict
         "Pacote final criado para revisão.",
     )
     return {"topic": _to_dict(topic), "posts": [_to_dict(post) for post in posts]}
+
+
+def _x_post_body(summary: str, why_it_matters: str, source_line: str, hashtags: str) -> str:
+    copy = re.sub(
+        r"\s+",
+        " ",
+        " ".join(part.strip() for part in (summary, why_it_matters) if part.strip()),
+    ).strip()
+    suffix = f"\n\n{source_line}"
+    final_suffix = f"{suffix}\n\n{hashtags}" if hashtags else suffix
+    max_copy = max(72, 280 - len(final_suffix))
+    if len(copy) > max_copy:
+        trimmed = copy[: max_copy - 3].rsplit(" ", 1)[0].rstrip(" .,:;")
+        copy = f"{trimmed or copy[: max_copy - 3].rstrip()}..."
+    return f"{copy}{suffix}".strip()
 
 
 def _load_sources(path: Path) -> list[Source]:
@@ -806,6 +1217,8 @@ def _buffer_channel_id_for(post_channel: str, config: dict) -> str:
         return str(channels.get("linkedin") or channels.get("linkedin_page") or "")
     if post_channel == "instagram":
         return str(channels.get("instagram") or "")
+    if post_channel == "x":
+        return str(channels.get("x") or channels.get("twitter") or "")
     return ""
 
 
@@ -887,7 +1300,7 @@ def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
         env[key] = ""
     result = subprocess.run(
-        [vercel_cmd, "deploy", "--prod", "--yes", "--scope", "joaoncdferreira-ais-projects"],
+        [vercel_cmd, "deploy", "--prod", "--yes"],
         cwd=state.site_dir,
         capture_output=True,
         text=True,
@@ -897,10 +1310,12 @@ def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     )
     if result.returncode != 0:
         output = "\n".join(part for part in [result.stdout, result.stderr] if part).strip()
+        if "ptia.pt" in output and "spawn EPERM" in output:
+            return
         raise ValueError(f"Falhou deploy das imagens para Vercel antes do Buffer: {output[-1000:]}")
 
 
-def _publish_site_assets_to_git(state: DashboardState) -> None:
+def _publish_site_assets_to_git(state: DashboardState, asset_paths: list[str] | None = None) -> None:
     base_url = _public_asset_base_url(state)
     if "raw.githubusercontent.com" not in base_url:
         return
@@ -913,8 +1328,9 @@ def _publish_site_assets_to_git(state: DashboardState) -> None:
     for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
         env[key] = ""
 
+    add_targets = asset_paths or [str(state.site_dir / "assets" / "final")]
     commands = [
-        [git_cmd, "add", "site/assets/final"],
+        [git_cmd, "add", *add_targets],
         [git_cmd, "diff", "--cached", "--quiet"],
     ]
     subprocess.run(commands[0], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
@@ -951,19 +1367,22 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
     social_posts = [
         post
         for post in posts
-        if post.channel in {"linkedin", "instagram"} and _image_path_for_channel(post)
+        if post.channel in {"linkedin", "instagram", "x"} and _image_path_for_channel(post)
     ]
     if not social_posts or not _can_auto_deploy_site(state):
         return
 
+    public_asset_paths = []
     for post in social_posts:
-        _copy_image_to_public_site_assets(state, post)
+        public_path = _copy_image_to_public_site_assets(state, post)
+        if public_path:
+            public_asset_paths.append(public_path)
 
     missing = _wait_for_public_images(state, social_posts, attempts=1)
     if missing:
         uses_git_assets = "raw.githubusercontent.com" in _public_asset_base_url(state)
         if uses_git_assets:
-            _publish_site_assets_to_git(state)
+            _publish_site_assets_to_git(state, public_asset_paths)
         else:
             _deploy_site_assets_to_vercel(state)
         missing = _wait_for_public_images(state, social_posts)
@@ -984,6 +1403,8 @@ def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None
 
 
 def _discover_buffer_channels(path: Path) -> dict:
+    existing = _load_buffer_channels(path)
+    disabled_channels = _disabled_channels_from_config(existing)
     client = BufferClient()
     organizations, channels = client.discover_channels()
     service_map: dict[str, str] = {}
@@ -1002,9 +1423,13 @@ def _discover_buffer_channels(path: Path) -> dict:
             service_map["instagram"] = channel.id
         if "linkedin" in service and not service_map.get("linkedin"):
             service_map["linkedin"] = channel.id
+        if service in {"twitter", "x"} and "x" not in disabled_channels and not service_map.get("x"):
+            service_map["x"] = channel.id
     payload = {
         "organizations": [{"id": org.id, "name": org.name} for org in organizations],
         "channels": service_map,
+        "disabled_channels": sorted(disabled_channels),
+        "disabled_reasons": existing.get("disabled_reasons", {}),
         "all_channels": channel_records,
         "updated_at": utc_now_iso(),
     }
@@ -1017,16 +1442,22 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
     post = posts.get(post_id)
     if not post:
         raise ValueError(f"Final post not found: {post_id}")
+    if not _channel_enabled(state, post.channel):
+        raise ValueError(f"Canal {post.channel} esta desativado no dashboard.")
     if post.status == "scheduled":
         return post
     if post.channel == "site":
+        _validate_final_post_copy(post)
         _copy_image_to_public_site_assets(state, post)
-        return update_final_post_status(
+        updated = update_final_post_status(
             state.final_posts_path,
             post_id,
             "scheduled",
             scheduled_time=scheduled_time,
         )
+        _sync_static_site_feed(state)
+        return updated
+    _validate_final_post_copy(post)
     image_url = _public_image_url_for_buffer(post, state)
     if post.channel == "instagram":
         if not _image_path_for_channel(post):
@@ -1079,11 +1510,31 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
 def _final_post_text(post) -> str:
     hashtags_value = _normalise_hashtags(post.hashtags, post.channel)
     hashtags = f"\n\n{hashtags_value}" if hashtags_value else ""
-    sources = ""
-    if post.source_urls:
-        sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
     _, clean_body = _apply_ptia_editorial_rules(post.title, post.body, post.channel)
+    if post.channel == "x":
+        return _fit_x_post_text(clean_body, hashtags_value, post.source_urls)
+    sources = ""
+    if post.source_urls and not _body_has_source_block(clean_body):
+        sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
     return f"{clean_body}{hashtags}{sources}".strip()
+
+
+def _fit_x_post_text(body: str, hashtags: str = "", source_urls: list[str] | None = None) -> str:
+    urls = re.findall(r"https?://\S+", body)
+    source_url = (urls[-1].rstrip(".,;)") if urls else (source_urls or [""])[0]).strip()
+    clean = re.sub(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$", "", body).strip()
+    clean = re.sub(r"https?://\S+", "", clean)
+    clean = re.sub(r"\s+", " ", clean).strip()
+    suffix_parts = [part for part in (source_url, hashtags) if part]
+    suffix = ("\n\n" + "\n\n".join(suffix_parts)) if suffix_parts else ""
+    limit = 280 - len(suffix)
+    if len(clean) > limit:
+        clean = clean[: max(0, limit - 3)].rsplit(" ", 1)[0].rstrip(" .,:;") + "..."
+    return f"{clean}{suffix}".strip()
+
+
+def _body_has_source_block(body: str) -> bool:
+    return bool(re.search(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:", body))
 
 
 def _generate_final_image(state: DashboardState, post_id: str, feedback: str = ""):
@@ -1114,9 +1565,11 @@ def _safe_asset_ext(filename: str, data_url: str) -> str:
 
 IMAGE_VARIANT_SPECS = {
     "instagram": (1080, 1080, "cover"),
+    "x": (1080, 1080, "cover"),
     "linkedin": (1200, 627, "contain_blur"),
     "site": (1600, 900, "contain_blur"),
 }
+PTIA_INSTAGRAM_OVERLAY_VERSION = "ptia_v7"
 
 
 def _flatten_for_jpeg(image: Image.Image) -> Image.Image:
@@ -1147,10 +1600,198 @@ def _contain_on_blur(image: Image.Image, size: tuple[int, int]) -> Image.Image:
     return background
 
 
-def _format_image_variants(source_path: Path, out_dir: Path, post_id: str) -> dict[str, str]:
+def _ptia_font(size: int, *, serif: bool = False, bold: bool = True):
+    windows_fonts = Path(os.environ.get("WINDIR", "C:/Windows")) / "Fonts"
+    candidates = (
+        ["georgiab.ttf", "Georgia Bold.ttf", "DejaVuSerif-Bold.ttf"]
+        if serif and bold
+        else ["georgia.ttf", "Georgia.ttf", "DejaVuSerif.ttf"]
+        if serif
+        else ["arialbd.ttf", "Arial Bold.ttf", "DejaVuSans-Bold.ttf"]
+        if bold
+        else ["arial.ttf", "Arial.ttf", "DejaVuSans.ttf"]
+    )
+    for filename in candidates:
+        try:
+            local_path = windows_fonts / filename
+            return ImageFont.truetype(str(local_path if local_path.exists() else filename), size=size)
+        except OSError:
+            continue
+    return ImageFont.load_default(size=size)
+
+
+def _visual_title_for_post(post) -> str:
+    prompt = str(getattr(post, "image_prompt", "") or "")
+    return _visual_title_from_prompt(prompt) or str(getattr(post, "title", "") or "Sinal PTIA").strip()
+
+
+def _visual_title_from_prompt(prompt: str) -> str:
+    match = re.search(
+        r'T[íi]tulo visual escolhido[^:\n]*:\s*"([^"\n]+)"',
+        prompt,
+        flags=re.IGNORECASE,
+    )
+    return (match.group(1) if match else "").strip()
+
+
+def _ptia_title_lines(title: str, max_lines: int = 5) -> list[str]:
+    lines = wrap(re.sub(r"\s+", " ", title).strip(), width=32, break_long_words=False)
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+        lines[-1] = lines[-1].rstrip(" .,:;-") + "..."
+    return lines or ["Sinal PTIA"]
+
+
+def _text_width(draw: ImageDraw.ImageDraw, text: str, font) -> int:
+    try:
+        return int(draw.textlength(text, font=font))
+    except AttributeError:
+        return int(draw.textbbox((0, 0), text, font=font)[2])
+
+
+def _wrap_to_pixel_width(draw: ImageDraw.ImageDraw, text: str, font, max_width: int) -> list[str]:
+    words = re.sub(r"\s+", " ", text).strip().split()
+    if not words:
+        return ["Sinal PTIA"]
+    lines: list[str] = []
+    current = words[0]
+    for word in words[1:]:
+        candidate = f"{current} {word}"
+        if _text_width(draw, candidate, font) <= max_width:
+            current = candidate
+        else:
+            lines.append(current)
+            current = word
+    lines.append(current)
+    return lines
+
+
+def _fit_overlay_title(
+    draw: ImageDraw.ImageDraw,
+    title: str,
+    *,
+    max_width: int,
+    max_lines: int = 5,
+    max_size: int = 46,
+    min_size: int = 31,
+) -> tuple[list[str], object, int]:
+    clean_title = re.sub(r"\s+", " ", title).strip() or "Sinal PTIA"
+    for size in range(max_size, min_size - 1, -2):
+        font = _ptia_font(size, serif=True, bold=True)
+        lines = _wrap_to_pixel_width(draw, clean_title, font, max_width)
+        if len(lines) <= max_lines:
+            return lines, font, size + 9
+
+    font = _ptia_font(min_size, serif=True, bold=True)
+    lines = _wrap_to_pixel_width(draw, clean_title, font, max_width)
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+        while lines[-1] and _text_width(draw, lines[-1] + "...", font) > max_width:
+            lines[-1] = lines[-1].rsplit(" ", 1)[0] if " " in lines[-1] else lines[-1][:-1]
+        lines[-1] = lines[-1].rstrip(" .,:;-") + "..."
+    return lines, font, min_size + 8
+
+
+def _overlay_text_block_bbox(
+    draw: ImageDraw.ImageDraw,
+    lines: list[str],
+    font,
+    line_height: int,
+) -> tuple[int, int, int, int]:
+    max_right = 0
+    min_top = 0
+    max_bottom = 0
+    for index, line in enumerate(lines):
+        bbox = draw.textbbox((0, index * line_height), line, font=font)
+        min_top = min(min_top, bbox[1])
+        max_right = max(max_right, bbox[2])
+        max_bottom = max(max_bottom, bbox[3])
+    return (0, min_top, max_right, max_bottom)
+
+
+def _paste_ptia_wordmark(canvas: Image.Image, out_dir: Path, xy: tuple[int, int]) -> None:
+    logo_path = out_dir.parent / "ptia-wordmark-cream-transparent.png"
+    if logo_path.exists():
+        with Image.open(logo_path) as opened:
+            logo = ImageOps.exif_transpose(opened).convert("RGBA")
+        logo.thumbnail((106, 32), Image.Resampling.LANCZOS)
+        canvas.alpha_composite(logo, xy)
+        return
+
+    draw = ImageDraw.Draw(canvas)
+    x, y = xy
+    draw.text((x, y), "PTIA", font=_ptia_font(32, serif=True, bold=True), fill=(249, 247, 241, 255))
+
+
+def _apply_ptia_instagram_overlay(image: Image.Image, *, title: str, out_dir: Path) -> Image.Image:
+    canvas = image.convert("RGBA")
+    width, height = canvas.size
+    margin = 72
+
+    # 1. Premium Scrim vertical gradient Midnight Navy (exponential curve)
+    scrim_top = int(height * 0.42)
+    scrim = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    draw_scrim = ImageDraw.Draw(scrim)
+    for y in range(scrim_top, height):
+        progress = (y - scrim_top) / (height - scrim_top)
+        alpha = int(230 * (progress ** 1.6))
+        draw_scrim.line((0, y, width, y), fill=(5, 16, 24, alpha))
+    canvas = Image.alpha_composite(canvas, scrim)
+
+    draw = ImageDraw.Draw(canvas)
+
+    title_lines, title_font, line_height = _fit_overlay_title(
+        draw,
+        title,
+        max_width=width - (margin * 2),
+    )
+    _, title_top_offset, _, title_bottom = _overlay_text_block_bbox(
+        draw,
+        title_lines,
+        title_font,
+        line_height,
+    )
+    # Anchor the visible title glyphs: left margin == bottom margin.
+    y_text = height - margin - title_bottom
+    logo_y = max(scrim_top + 28, y_text - 62)
+
+    # 2. Paste logo creme at margins.
+    _paste_ptia_wordmark(canvas, out_dir, (margin, logo_y))
+
+    # 3. Draw ptia.pt on the far right (72px padding)
+    domain_text = "ptia.pt"
+    try:
+        font_domain = _ptia_font(18, bold=False)
+        domain_w = int(draw.textlength(domain_text, font=font_domain))
+    except AttributeError:
+        domain_w = 70
+
+    draw.text(
+        (width - margin - domain_w, logo_y + 4),
+        domain_text,
+        font=_ptia_font(18, bold=False),
+        fill=(249, 247, 241, 180),
+    )
+
+    # 4. Draw Title with dynamic Georgia Bold, no stroke. The visible glyph
+    # bottom margin matches the left margin so Instagram/X crops feel anchored.
+    y_text -= title_top_offset
+    for line in title_lines:
+        draw.text(
+            (margin, y_text),
+            line,
+            font=title_font,
+            fill=(249, 247, 241, 255),
+        )
+        y_text += line_height
+
+    return canvas.convert("RGB")
+
+
+def _format_image_variants(source_path: Path, out_dir: Path, post) -> dict[str, str]:
     """Create channel-safe images from one master image.
 
-    Instagram needs a square asset. LinkedIn and site cards are landscape; using a
+    Instagram and X need square assets. LinkedIn and site cards are landscape; using a
     blurred contain canvas keeps the whole generated image visible instead of
     cropping faces, logos or maps at the top/bottom.
     """
@@ -1165,22 +1806,50 @@ def _format_image_variants(source_path: Path, out_dir: Path, post_id: str) -> di
             variant = _cover_crop(image, (width, height))
         else:
             variant = _contain_on_blur(image, (width, height))
-        path = out_dir / f"{post_id}_{channel}_{width}x{height}.jpg"
+        if channel in {"instagram", "x"}:
+            variant = _apply_ptia_instagram_overlay(
+                variant,
+                title=_visual_title_for_post(post),
+                out_dir=out_dir,
+            )
+        variant_tag = f"_{PTIA_INSTAGRAM_OVERLAY_VERSION}" if channel in {"instagram", "x"} else ""
+        path = out_dir / f"{post.post_id}_{channel}{variant_tag}_{width}x{height}.jpg"
         variant.save(path, "JPEG", quality=92, optimize=True)
         variants[channel] = str(path)
     return variants
 
 
+def _instagram_variant_post(posts: list, reference_post):
+    return next(
+        (
+            post
+            for post in posts
+            if post.topic_id == reference_post.topic_id and post.channel == "instagram"
+        ),
+        reference_post,
+    )
+
+
 def _ensure_image_variants_for_posts(state: DashboardState, posts: list) -> list:
     changed = False
     for post in posts:
-        if post.image_variants or not post.image_path:
+        variants = post.image_variants or {}
+        expected_variants = set(IMAGE_VARIANT_SPECS)
+        current_social_overlay = all(
+            PTIA_INSTAGRAM_OVERLAY_VERSION in str(variants.get(channel, ""))
+            for channel in ("instagram", "x")
+        )
+        if (expected_variants.issubset(variants) and current_social_overlay) or not post.image_path:
             continue
         source_path = Path(post.image_path)
         if not source_path.exists() or source_path.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
             continue
         try:
-            post.image_variants = _format_image_variants(source_path, state.final_assets_dir, post.post_id)
+            post.image_variants = _format_image_variants(
+                source_path,
+                state.final_assets_dir,
+                _instagram_variant_post(posts, post),
+            )
             changed = True
         except Exception:
             continue
@@ -1215,8 +1884,51 @@ def _apply_image_to_topic_package(
     return next(post for post in updated if post.post_id == reference_post_id)
 
 
+def _apply_visual_title_to_topic_package(state: DashboardState, post_id: str, visual_title: str) -> list:
+    visual_title = visual_title.strip()
+    if not visual_title:
+        raise ValueError("Escolhe ou escreve primeiro o título visual.")
+    posts = load_final_posts(state.final_posts_path)
+    reference = next((post for post in posts if post.post_id == post_id), None)
+    if not reference:
+        raise ValueError(f"Final post not found: {post_id}")
+    include_x = _channel_enabled(state, "x")
+    package_posts = [
+        post
+        for post in posts
+        if post.topic_id == reference.topic_id
+        and post.status in {"needs_final_review", "approved_for_schedule", "scheduled"}
+    ]
+    updated = []
+    for post in package_posts:
+        if post.channel in {"instagram", "x"}:
+            post.image_prompt = _high_quality_image_prompt(
+                post.title,
+                post.body,
+                group="instagram_x",
+                visual_title=visual_title,
+                include_x=include_x,
+            )
+            updated.append(post)
+
+    source_post = next((post for post in package_posts if post.image_path), None)
+    instagram_post = next((post for post in package_posts if post.channel == "instagram"), reference)
+    if source_post and Path(source_post.image_path).exists():
+        variants = _format_image_variants(Path(source_post.image_path), state.final_assets_dir, instagram_post)
+        for post in package_posts:
+            post.image_variants = variants
+            if not post.image_path:
+                post.image_path = source_post.image_path
+            if post not in updated:
+                updated.append(post)
+
+    write_jsonl(state.final_posts_path, posts)
+    return updated
+
+
 def _upload_final_image(state: DashboardState, post_id: str, filename: str, data_url: str):
-    posts = {post.post_id: post for post in load_final_posts(state.final_posts_path)}
+    package_posts = load_final_posts(state.final_posts_path)
+    posts = {post.post_id: post for post in package_posts}
     post = posts.get(post_id)
     if not post:
         raise ValueError(f"Final post not found: {post_id}")
@@ -1231,7 +1943,11 @@ def _upload_final_image(state: DashboardState, post_id: str, filename: str, data
     safe_name = re.sub(r"[^a-zA-Z0-9_.-]+", "-", Path(filename or "imagem").stem).strip("-")[:50] or "imagem"
     file_path = state.final_assets_dir / f"{post.post_id}_{stable_hash(filename + encoded[:128], 8)}_{safe_name}{ext}"
     file_path.write_bytes(raw)
-    variants = _format_image_variants(file_path, state.final_assets_dir, post.post_id)
+    variants = _format_image_variants(
+        file_path,
+        state.final_assets_dir,
+        _instagram_variant_post(package_posts, post),
+    )
     return _apply_image_to_topic_package(
         state,
         reference_post_id=post_id,
@@ -1285,19 +2001,40 @@ def _sync_topic_posts_from_reference(
             rewrite.body or sibling.body,
             sibling.channel,
         )
+        candidate = FinalPost(
+            post_id=sibling.post_id,
+            topic_id=sibling.topic_id,
+            channel=sibling.channel,
+            title=clean_title,
+            body=clean_body,
+            hashtags=_normalise_hashtags(
+                rewrite.hashtags if rewrite.hashtags != "" else sibling.hashtags,
+                sibling.channel,
+            ),
+            image_prompt=sibling.image_prompt,
+            source_urls=sibling.source_urls,
+            image_path=sibling.image_path,
+            image_variants=sibling.image_variants,
+            image_status=sibling.image_status,
+            editor_notes=sibling.editor_notes,
+            status=sibling.status,
+            scheduled_time=sibling.scheduled_time,
+            buffer_post_id=sibling.buffer_post_id,
+            published_url=sibling.published_url,
+            created_at=sibling.created_at,
+        )
+        _validate_final_post_copy(candidate)
         updated.append(
             update_final_post_copy(
                 state.final_posts_path,
                 sibling.post_id,
                 title=clean_title,
                 body=clean_body,
-                hashtags=_normalise_hashtags(
-                    rewrite.hashtags if rewrite.hashtags != "" else sibling.hashtags,
-                    sibling.channel,
-                ),
+                hashtags=candidate.hashtags,
                 image_prompt=_high_quality_image_prompt(
                     clean_title,
                     clean_body,
+                    group=_image_prompt_group_for_channel(sibling.channel),
                 ),
                 notes=f"Sync pacote a partir de {reference.channel}. Pedido: {feedback}\nRewrite: {rewrite.rationale}",
             )
@@ -1316,7 +2053,8 @@ def _approve_final_package(state: DashboardState, reference_post_id: str) -> lis
         if post.topic_id == reference.topic_id and post.status == "needs_final_review"
     ]
     if not package_posts:
-        raise ValueError("Este pacote ja nao esta em A Rever.")
+        raise ValueError("Este pacote já nao esta em A Rever.")
+    _validate_final_package_copy(package_posts)
     updated = []
     for post in package_posts:
         updated.append(
@@ -1338,12 +2076,17 @@ def _package_posts_for_topic(state: DashboardState, topic_id: str, status: str) 
 
 
 def _schedule_final_package(state: DashboardState, topic_id: str, scheduled_time: str) -> list:
-    posts = _package_posts_for_topic(state, topic_id, "approved_for_schedule")
+    posts = [
+        post
+        for post in _package_posts_for_topic(state, topic_id, "approved_for_schedule")
+        if _channel_enabled(state, post.channel)
+    ]
     if not posts:
         already_scheduled = _package_posts_for_topic(state, topic_id, "scheduled")
         if already_scheduled:
             return already_scheduled
         raise ValueError("Nao ha posts aprovados neste pacote para agendar.")
+    _validate_final_package_copy(posts)
     _ensure_public_images_for_buffer(state, posts)
     updated = []
     for post in posts:
@@ -1428,6 +2171,329 @@ def _site_section_for_post(post: FinalPost) -> str:
     return "Mundo"
 
 
+def _static_site_image_url(state: DashboardState, post: FinalPost) -> str:
+    image_path = _image_path_for_channel(post)
+    if not image_path:
+        return ""
+    if image_path.startswith(("https://", "http://")):
+        return image_path
+    copied = _copy_image_to_public_site_assets(state, post)
+    if not copied:
+        return ""
+    return f"assets/final/{Path(copied).name}"
+
+
+def _site_public_base_url() -> str:
+    return (os.getenv("PTIA_PUBLIC_SITE_URL") or "https://ptia.pt").rstrip("/")
+
+
+def _slugify_site_value(value: str, *, fallback: str = "artigo") -> str:
+    normalized = unicodedata.normalize("NFKD", value or "")
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii").lower()
+    slug = re.sub(r"[^a-z0-9]+", "-", ascii_value).strip("-")
+    return slug or fallback
+
+
+def _article_url_for_site_post(post: FinalPost) -> str:
+    slug = _slugify_site_value(post.title)
+    suffix = post.post_id.replace("post_", "")
+    return f"artigos/{slug}-{suffix}"
+
+
+def _clean_article_body(body: str) -> str:
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in re.split(r"\n\s*\n", body or "")
+        if paragraph.strip()
+    ]
+    return "\n\n".join(
+        paragraph
+        for paragraph in paragraphs
+        if not re.match(r"^fonte(?:\s+original)?\s*:", paragraph, flags=re.IGNORECASE)
+    ).strip()
+
+
+def _excerpt(text: str, *, length: int = 165) -> str:
+    clean = re.sub(r"\s+", " ", _clean_article_body(text)).strip()
+    if len(clean) <= length:
+        return clean
+    return clean[: length - 1].rsplit(" ", 1)[0].rstrip(" .,:;") + "..."
+
+
+def _is_public_site_post(post: dict) -> bool:
+    published_at = str(post.get("published_at") or "")
+    if not published_at:
+        return True
+    try:
+        return datetime.fromisoformat(published_at.replace("Z", "+00:00")) <= datetime.now(timezone.utc)
+    except ValueError:
+        return True
+
+
+def _static_site_feed_payload(state: DashboardState) -> dict:
+    posts = _ensure_image_variants_for_posts(state, load_final_posts(state.final_posts_path))
+    site_posts = [
+        post for post in posts if post.channel == "site" and post.status in {"scheduled", "published"}
+    ]
+    site_posts.sort(key=lambda post: post.scheduled_time or post.created_at, reverse=True)
+    deduped_posts = []
+    seen_keys = set()
+    for post in site_posts:
+        key = post.source_urls[0] if post.source_urls else post.title.strip().lower()
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        deduped_posts.append(post)
+    return {
+        "brand": "PTIA.pt",
+        "updated_at": utc_now_iso(),
+        "posts": [
+            {
+                "id": post.post_id,
+                "title": post.title,
+                "body": post.body,
+                "source_urls": post.source_urls,
+                "image_path": post.image_path,
+                "image_url": _static_site_image_url(state, post),
+                "published_at": post.published_url or post.scheduled_time or post.created_at,
+                "section": _site_section_for_post(post),
+                "article_url": _article_url_for_site_post(post),
+            }
+            for post in deduped_posts
+        ],
+    }
+
+
+def _site_page_shell(title: str, description: str, body: str, *, canonical_url: str, image_url: str = "") -> str:
+    escaped_title = html.escape(title)
+    escaped_description = html.escape(description)
+    escaped_canonical = html.escape(canonical_url)
+    escaped_image = html.escape(image_url)
+    image_meta = (
+        f'\n  <meta property="og:image" content="{escaped_image}">'
+        f'\n  <meta name="twitter:image" content="{escaped_image}">'
+        if image_url
+        else ""
+    )
+    return f"""<!doctype html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escaped_title}</title>
+  <meta name="description" content="{escaped_description}">
+  <link rel="canonical" href="{escaped_canonical}">
+  <meta property="og:title" content="{escaped_title}">
+  <meta property="og:description" content="{escaped_description}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{escaped_canonical}">{image_meta}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{escaped_title}">
+  <meta name="twitter:description" content="{escaped_description}">
+  <meta name="theme-color" content="#F3EEE2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="article-page">
+{body}
+</body>
+</html>
+"""
+
+
+def _write_static_article_pages(state: DashboardState, payload: dict) -> list[str]:
+    base_url = _site_public_base_url()
+    written_urls = []
+    posts = [post for post in payload.get("posts", []) if _is_public_site_post(post)]
+    for post in posts:
+        article_path = str(post.get("article_url") or "").strip("/")
+        if not article_path:
+            continue
+        public_url = f"{base_url}/{article_path}"
+        article_dir = state.site_dir / article_path
+        article_dir.mkdir(parents=True, exist_ok=True)
+        title = str(post.get("title") or "Leitura PTIA")
+        description = _excerpt(str(post.get("body") or ""))
+        section = str(post.get("section") or "IA")
+        body_text = _clean_article_body(str(post.get("body") or ""))
+        paragraphs = "".join(
+            f"<p>{html.escape(paragraph)}</p>\n"
+            for paragraph in body_text.split("\n\n")
+            if paragraph.strip()
+        )
+        source_urls = [str(url) for url in post.get("source_urls", []) if url]
+        source_links = "".join(
+            f'<a href="{html.escape(url)}" target="_blank" rel="noopener">'
+            f'{html.escape(urlparse(url).hostname.replace("www.", "") if urlparse(url).hostname else "Fonte original")}'
+            f"<span>{html.escape(url)}</span></a>"
+            for url in source_urls
+        )
+        image_url = str(post.get("image_url") or "")
+        absolute_image = f"{base_url}/{image_url}" if image_url and not image_url.startswith(("http://", "https://")) else image_url
+        article_schema = {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": title,
+            "description": description,
+            "datePublished": post.get("published_at"),
+            "dateModified": payload.get("updated_at"),
+            "author": {"@type": "Person", "name": "João Ferreira"},
+            "publisher": {
+                "@type": "Organization",
+                "name": "PTIA.pt",
+                "url": base_url,
+                "logo": f"{base_url}/assets/ptia-wordmark-navy-transparent.png",
+            },
+            "mainEntityOfPage": public_url,
+            "image": [absolute_image] if absolute_image else [],
+            "articleSection": section,
+            "isAccessibleForFree": True,
+        }
+        schema_json = json.dumps(article_schema, ensure_ascii=False).replace("</", "<\\/")
+        image_markup = ""
+        if image_url:
+            src = image_url if image_url.startswith(("http://", "https://")) else f"/{image_url}"
+            image_markup = f'<figure class="article-hero-image"><img src="{html.escape(src)}" alt="" loading="eager"></figure>'
+        first_source_host = urlparse(source_urls[0]).hostname.replace("www.", "") if source_urls and urlparse(source_urls[0]).hostname else "PTIA"
+        read_minutes = f"{max(2, len(body_text.split()) // 210 + 1)} min"
+        shell_body = f"""
+  <a class="skip-link" href="#article">Saltar para o artigo</a>
+  <div class="dateline">
+    <div class="wrap">
+      <div class="dateline-left"><span>PTIA.pt</span><span class="issue">Leitura editorial</span></div>
+      <div class="dateline-right"><span class="live"><span class="live-dot"></span> Lisboa</span></div>
+    </div>
+  </div>
+  <header class="site-header news">
+    <div class="wrap header-grid">
+      <a class="brand-logo-link" href="/" aria-label="PTIA.pt - página inicial"><img class="brand-logo" src="/assets/ptia-wordmark-navy-transparent.png" alt="PTIA"></a>
+      <nav class="site-nav" aria-label="Navegação principal"><a href="/#hoje">Hoje</a><a href="/#mundo">Mundo</a><a href="/#portugal">Portugal</a><a href="/#builders">Builders</a><a href="/#newsletter">Weekly</a></nav>
+      <a class="header-cta" href="/">Voltar <span aria-hidden="true">-&gt;</span></a>
+    </div>
+  </header>
+  <main id="article" class="article-main">
+    <article class="article-detail">
+      <div class="wrap article-shell">
+        <aside class="article-side">
+          <a class="article-back" href="/">Voltar ao radar</a>
+          <dl>
+            <div><dt>Secção</dt><dd>{html.escape(section)}</dd></div>
+            <div><dt>Leitura</dt><dd>{html.escape(read_minutes)}</dd></div>
+            <div><dt>Publicado</dt><dd>{html.escape(str(post.get("published_at") or ""))}</dd></div>
+            <div><dt>Fonte</dt><dd>{html.escape(first_source_host)}</dd></div>
+          </dl>
+        </aside>
+        <div class="article-story">
+          <header class="article-hero">
+            <p class="article-kicker">{html.escape(section)} · Ângulo PTIA</p>
+            <h1>{html.escape(title)}</h1>
+            {image_markup}
+          </header>
+          <section class="article-body">{paragraphs}</section>
+          <footer class="article-source-block"><p>Fonte original</p>{source_links or '<span>Sem link público associado.</span>'}</footer>
+        </div>
+      </div>
+    </article>
+  </main>
+  <script type="application/ld+json">{schema_json}</script>
+"""
+        (article_dir / "index.html").write_text(
+            _site_page_shell(
+                f"{title} - PTIA.pt",
+                description,
+                shell_body,
+                canonical_url=public_url,
+                image_url=absolute_image,
+            ),
+            encoding="utf-8",
+        )
+        written_urls.append(public_url)
+    return written_urls
+
+
+def _write_static_discovery_files(state: DashboardState, payload: dict, article_urls: list[str]) -> None:
+    base_url = _site_public_base_url()
+    now = utc_now_iso()
+    sitemap_urls = [base_url, f"{base_url}/#newsletter", *article_urls]
+    sitemap = "\n".join(
+        f"  <url><loc>{html.escape(url)}</loc><lastmod>{now[:10]}</lastmod></url>"
+        for url in sitemap_urls
+    )
+    (state.site_dir / "sitemap.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap}\n</urlset>\n',
+        encoding="utf-8",
+    )
+    (state.site_dir / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        "User-agent: GPTBot\nAllow: /\n"
+        "User-agent: ChatGPT-User\nAllow: /\n"
+        "User-agent: PerplexityBot\nAllow: /\n"
+        "User-agent: ClaudeBot\nAllow: /\n"
+        "User-agent: anthropic-ai\nAllow: /\n"
+        "User-agent: Bingbot\nAllow: /\n\n"
+        f"Sitemap: {base_url}/sitemap.xml\n",
+        encoding="utf-8",
+    )
+    rss_items = []
+    for post in [post for post in payload.get("posts", []) if _is_public_site_post(post)][:20]:
+        article_url = f"{base_url}/{str(post.get('article_url') or '').strip('/')}"
+        rss_items.append(
+            "<item>"
+            f"<title>{html.escape(str(post.get('title') or 'PTIA'))}</title>"
+            f"<link>{html.escape(article_url)}</link>"
+            f"<guid>{html.escape(article_url)}</guid>"
+            f"<description>{html.escape(_excerpt(str(post.get('body') or ''), length=240))}</description>"
+            f"<pubDate>{html.escape(str(post.get('published_at') or ''))}</pubDate>"
+            "</item>"
+        )
+    (state.site_dir / "rss.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<rss version="2.0"><channel>'
+        "<title>PTIA.pt</title>"
+        f"<link>{html.escape(base_url)}</link>"
+        "<description>Curadoria portuguesa de Inteligência Artificial, com fonte original e ângulo editorial.</description>"
+        + "".join(rss_items)
+        + "</channel></rss>\n",
+        encoding="utf-8",
+    )
+    (state.site_dir / "llms.txt").write_text(
+        "# PTIA.pt\n\n"
+        "PTIA.pt é uma publicação portuguesa independente sobre Inteligência Artificial. "
+        "Lê fontes originais, filtra ruído e publica contexto editorial para decisores, builders, empresas e profissionais em Portugal.\n\n"
+        "## Conteúdo principal\n"
+        "- Notícias curadas de IA com fonte original.\n"
+        "- Ângulo PTIA: análise própria sobre impacto, execução, risco, adoção e relevância para Portugal.\n"
+        "- Guias evergreen sobre IA para PME, AI Act, agentes de IA, ferramentas e uso seguro no trabalho.\n\n"
+        "## URLs úteis\n"
+        f"- Homepage: {base_url}\n"
+        f"- RSS: {base_url}/rss.xml\n"
+        f"- Sitemap: {base_url}/sitemap.xml\n"
+        f"- Newsletter: {base_url}/#newsletter\n",
+        encoding="utf-8",
+    )
+
+
+def _write_static_site_feed(state: DashboardState) -> dict:
+    payload = _static_site_feed_payload(state)
+    state.site_dir.mkdir(parents=True, exist_ok=True)
+    (state.site_dir / "site-feed.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    article_urls = _write_static_article_pages(state, payload)
+    _write_static_discovery_files(state, payload, article_urls)
+    return payload
+
+
+def _sync_static_site_feed(state: DashboardState, *, deploy: bool = True) -> None:
+    _write_static_site_feed(state)
+    if deploy:
+        _deploy_site_assets_to_vercel(state)
+
+
 def _write_verified_candidate(
     state: DashboardState,
     *,
@@ -1490,7 +2556,7 @@ def _run_rss_scout(state: DashboardState, *, limit: int = 12) -> dict:
                     topic_hint=source.category,
                     why_it_matters="Sinal recolhido directamente de uma fonte PTIA configurada.",
                     why_engaged="",
-                    notes="RSS Scout; fonte configurada e data dos ultimos 5 dias verificada.",
+                    notes="RSS Scout; fonte configurada e data dos últimos 5 dias verificada.",
                     status="verified",
                     require_recent=True,
                 )
@@ -1554,29 +2620,39 @@ HTML = r"""<!doctype html>
     
     :root {
       /* Background & Panels */
-      --bg-blue-1: #0A192F;
-      --bg-blue-2: #020C1B;
-      --bg-blue-3: #112240;
-      --card-cream: #F9F7F1;
+      --page-bg: #EEE8DC;
+      --page-bg-2: #E6DDCE;
+      --surface: #FFFFFF;
+      --surface-warm: #FFFCF6;
+      --card-cream: #FFFFFF;
       --card-cream-hover: #FFFFFF;
-      --card-rail: #EFECE1;
+      --card-rail: #F4EFE6;
       
       /* Colors */
       --ptia-navy: #051A3B; 
-      --ink: #1C1914;
-      --ink-light: #4A463F;
+      --ink: #181611;
+      --ink-light: #5C564C;
       --accent-gold: #C0A062;
+      --accent-rust: #A65F3F;
+      --accent-sage: #66785F;
+      --accent-blue: #2F5D7C;
+      --ok: #1B4D3E;
+      --danger: #B42318;
+      --warning-bg: #FFF4E5;
+      --warning-line: #D98A1F;
       
       /* Semantic */
       --text-main: var(--ink);
       --text-muted: var(--ink-light);
-      --line: rgba(5, 26, 59, 0.1);
-      --line-dark: rgba(255, 255, 255, 0.1);
+      --line: rgba(39, 31, 19, 0.12);
+      --line-strong: rgba(39, 31, 19, 0.18);
+      --line-dark: rgba(5, 26, 59, 0.12);
       
-      --radius: 12px;
+      --radius: 8px;
       --radius-sm: 6px;
-      --shadow-soft: 0 4px 20px rgba(0,0,0,0.06);
-      --shadow-dark: 0 10px 40px rgba(0,0,0,0.5);
+      --shadow-soft: 0 14px 42px rgba(55, 45, 28, 0.08);
+      --shadow-card: 0 1px 0 rgba(255,255,255,0.88) inset, 0 18px 50px rgba(55,45,28,0.1);
+      --shadow-dark: 0 10px 40px rgba(0,0,0,0.36);
     }
     
     * { box-sizing: border-box; }
@@ -1584,10 +2660,10 @@ HTML = r"""<!doctype html>
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
-      background: linear-gradient(135deg, var(--bg-blue-2), var(--bg-blue-1), var(--bg-blue-3));
-      background-size: 200% 200%;
-      animation: gradientBG 15s ease infinite;
-      color: #E0E0E0; 
+      background:
+        radial-gradient(circle at 18% -8%, rgba(192,160,98,0.18), transparent 34%),
+        linear-gradient(135deg, var(--page-bg), var(--page-bg-2));
+      color: var(--ink);
       min-height: 100vh;
       position: relative;
       -webkit-font-smoothing: antialiased;
@@ -1599,17 +2675,10 @@ HTML = r"""<!doctype html>
       z-index: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-        linear-gradient(120deg, rgba(192,160,98,0.08), transparent 38%, rgba(255,255,255,0.04) 62%, transparent);
-      background-size: 32px 32px, 260% 260%;
-      opacity: 0.55;
-      animation: backgroundDrift 34s linear infinite;
-    }
-    
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+        radial-gradient(rgba(95, 75, 43, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.34), transparent 22%, rgba(255,255,255,0.24));
+      background-size: 18px 18px, 100% 100%;
+      opacity: 0.68;
     }
     @keyframes movePattern {
       0% { background-position: 0 0; }
@@ -1629,14 +2698,15 @@ HTML = r"""<!doctype html>
     header {
       display: flex; justify-content: space-between; gap: 24px; align-items: center;
       padding: 18px 40px;
-      background: rgba(2, 12, 27, 0.7);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line-dark);
+      background: rgba(255, 252, 246, 0.92);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.82) inset, 0 12px 40px rgba(55,45,28,0.06);
       position: sticky; top: 0; z-index: 10;
     }
     header, .wrap { position: relative; z-index: 1; }
     
-    h1 { margin: 0; font-size: 28px; color: var(--card-cream); font-weight: 700; letter-spacing: 0.02em; }
+    h1 { margin: 0; font-size: 28px; color: var(--ptia-navy); font-weight: 700; letter-spacing: 0.02em; }
     h2 { margin: 0 0 16px; font-size: 22px; color: var(--ptia-navy); }
     h3 { margin: 0 0 12px; font-size: 18px; color: var(--ink); line-height: 1.3; }
     p { margin: 0; }
@@ -1649,103 +2719,158 @@ HTML = r"""<!doctype html>
       background: #FFFFFF; 
       color: var(--ink);
       transition: all 0.2s ease;
+      max-width: 100%;
     }
     input, textarea { width: 100%; padding: 12px 14px; font-size: 14px; }
     textarea { min-height: 90px; resize: vertical; line-height: 1.6; }
     input:focus, textarea:focus { outline: none; border-color: var(--ptia-navy); box-shadow: 0 0 0 3px rgba(5, 26, 59, 0.1); }
     
-    button { cursor: pointer; padding: 10px 20px; font-weight: 500; font-size: 13px; letter-spacing: 0.02em; display: inline-flex; align-items: center; justify-content: center; }
+    button { cursor: pointer; padding: 10px 20px; font-weight: 500; font-size: 13px; letter-spacing: 0.02em; display: inline-flex; align-items: center; justify-content: center; text-align: center; white-space: normal; }
     button:hover { transform: translateY(-1px); box-shadow: var(--shadow-soft); }
     button:active { transform: translateY(0); }
     button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid rgba(192,160,98,0.45);
+      outline-offset: 2px;
+    }
     
     button.primary { background: var(--ptia-navy); border-color: var(--ptia-navy); color: var(--card-cream); }
     button.primary:hover { background: #0A2B60; }
-    button.good { background: #1B4D3E; border-color: #1B4D3E; color: var(--card-cream); }
+    button.good { background: var(--ok); border-color: var(--ok); color: var(--card-cream); }
     button.bad { background: #8B2E2E; border-color: #8B2E2E; color: var(--card-cream); }
     
     .wrap { padding: 40px; max-width: 1500px; margin: 0 auto; }
+    .tab-panel {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+    .tab-panel.hidden { display: none !important; }
     
-    /* Stats Row (Dark) */
-    .stats { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; margin-bottom: 32px; }
+    /* Stats Row */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 14px; margin-bottom: 28px; }
     .stat {
-      padding: 24px 20px; 
-      background-color: var(--card-cream);
-      background-image: radial-gradient(rgba(192, 160, 98, 0.08) 1px, transparent 1px);
-      background-size: 10px 10px;
-      animation: movePattern 30s linear infinite;
-      border: 1px solid rgba(0,0,0,0.05);
-      border-radius: var(--radius); 
+      position: relative;
+      overflow: hidden;
+      padding: 20px 18px; 
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
+      border: 1px solid var(--line);
+      border-left: 4px solid rgba(192,160,98,0.82);
+      border-radius: var(--radius-sm); 
       display: flex; flex-direction: column; gap: 8px;
       cursor: pointer; transition: all 0.3s;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-card);
     }
-    .stat:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .stat::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      top: -34px;
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(192,160,98,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .stat:nth-child(2n) { border-left-color: rgba(47,93,124,0.8); }
+    .stat:nth-child(3n) { border-left-color: rgba(102,120,95,0.84); }
+    .stat:hover { transform: translateY(-2px); box-shadow: 0 18px 46px rgba(55,45,28,0.14); }
     .stat.active { 
-      border: 4px solid var(--accent-gold); 
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(192, 160, 98, 0.3), inset 0 0 20px rgba(192, 160, 98, 0.15);
+      background: linear-gradient(135deg, #051A3B 0%, #12345D 78%);
+      border-color: rgba(192,160,98,0.68);
+      border-left-color: var(--accent-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px rgba(5,26,59,0.2);
     }
     .stat strong { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; line-height: 1; color: var(--text-main); }
     .stat span { color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-    .stat.active strong { color: var(--ptia-navy); }
-    .stat.active span { color: var(--accent-gold); font-weight: 800; }
+    .stat.active strong { color: #FFFFFF; }
+    .stat.active span { color: #E9D8AE; font-weight: 800; }
     
     /* Tabs */
     .tabs { 
-      display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 32px; padding: 6px; 
-      background: rgba(255, 255, 255, 0.08); 
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.2); 
-      border-radius: 999px; width: fit-content;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 20px; padding: 6px; 
+      background: rgba(255, 255, 255, 0.76); 
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--line); 
+      border-radius: 18px;
+      width: 100%;
+      max-width: 1380px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      top: auto;
+      z-index: 2;
     }
-    .tab { border: 0; background: transparent; color: rgba(255,255,255,0.7); padding: 10px 20px; border-radius: 999px; font-size: 13px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-    .tab:hover { color: #ffffff; background: rgba(255,255,255,0.1); }
-    .tab.active { background: #ffffff; color: var(--ptia-navy); font-weight: 700; text-shadow: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .tab {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink-light);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      text-shadow: none;
+      min-height: 40px;
+    }
+    .tab:hover { color: var(--ptia-navy); background: #FFFFFF; border-color: var(--line); box-shadow: 0 8px 22px rgba(55,45,28,0.08); }
+    .tab.active { background: var(--ptia-navy); color: #FFFFFF; border-color: var(--ptia-navy); font-weight: 800; text-shadow: none; box-shadow: 0 10px 24px rgba(5,26,59,0.18); }
     
     /* Layout Grids */
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .radar-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 32px; align-items: start; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .grid > .panel, .grid > .card { height: 100%; margin: 0; }
+    .radar-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.95fr); gap: 32px; align-items: start; }
     .quick-stack { display: grid; gap: 24px; }
     
-    /* Panels (Cream Reading Areas) */
+    /* Panels */
     .panel, .card, .final-layout {
-      background-color: var(--card-cream);
-      background-image: radial-gradient(rgba(192, 160, 98, 0.08) 1px, transparent 1px);
-      background-size: 10px 10px;
-      animation: movePattern 30s linear infinite;
-      border: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: visible;
+      background: var(--surface);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-card);
       color: var(--text-main);
     }
+    .panel::before, .card::before, .final-layout::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), rgba(47,93,124,0.7), rgba(102,120,95,0.18), transparent);
+      pointer-events: none;
+    }
     .panel { padding: 32px; }
+    .panel > .signal-card, .panel > .card { margin-top: 16px; }
     
     /* Individual Cards */
-    .card { padding: 24px; margin: 0 0 16px; transition: all 0.2s ease; }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .card { padding: 24px; margin: 0; transition: all 0.2s ease; min-width: 0; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(55,45,28,0.13); }
     
-    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; min-width: 0; }
     .pill {
       display: inline-flex; align-items: center; padding: 4px 10px;
-      border-radius: 4px; background: var(--card-rail); color: var(--ink-light);
-      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+      border-radius: 999px; background: #F6F1E8; color: var(--ptia-navy);
+      border: 1px solid rgba(192,160,98,0.22);
+      font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em;
     }
     
+    .text, .notice, .post-copy, .slot-headline, .signal-title, h2, h3, a, .pill {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
     .text { font-size: 15px; line-height: 1.7; white-space: pre-wrap; color: var(--text-main); }
     
     /* Post Box */
     .final-box { display: grid; grid-template-columns: 1fr 280px; gap: 24px; margin-top: 20px; }
     .post-copy {
       border: 1px solid var(--line);
-      background: #FFFFFF;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF7 100%);
       border-radius: var(--radius-sm);
       padding: 24px;
       color: var(--ink);
       font-size: 15px;
       line-height: 1.8;
       white-space: pre-wrap;
+      box-shadow: 0 8px 26px rgba(55,45,28,0.07);
     }
     .edit-copy { min-height: 360px; font-family: inherit; line-height: 1.65; }
     .compact-input { min-height: 44px; }
@@ -1799,20 +2924,58 @@ HTML = r"""<!doctype html>
     
     .label { display: block; margin: 0 0 6px; color: var(--ink-light); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
     .hint { margin-top: 8px; color: var(--ink-light); font-size: 12px; line-height: 1.4; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; align-items: center; }
+    .actions > * { min-width: 0; }
     .schedule-date-inline { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font-size: 13px; font-weight: 700; }
     .schedule-date-inline input { border: 0; background: transparent; color: var(--ink); font: inherit; min-height: 26px; }
     .schedule-day-pills { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .day-pill { border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink); padding: 9px 13px; font-size: 12px; font-weight: 800; cursor: pointer; }
     .day-pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
     .hidden { display: none; }
+    .ops-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0 0 24px;
+    }
+    .ops-tile {
+      min-height: 82px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
+      border: 1px solid var(--line);
+      border-left: 4px solid rgba(192,160,98,0.76);
+      border-radius: var(--radius-sm);
+      color: var(--ink);
+      box-shadow: var(--shadow-card);
+      display: grid;
+      align-content: center;
+      gap: 6px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .ops-tile:hover { transform: translateY(-1px); box-shadow: 0 16px 38px rgba(55,45,28,0.13); }
+    .ops-tile strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--ptia-navy);
+    }
+    .ops-tile span {
+      color: var(--ink-light);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .ops-tile.alert { border-left-color: var(--danger); background: #fff8f6; }
+    .ops-tile.ok { border-left-color: var(--ok); }
     
     .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .learning-list { display: grid; gap: 16px; }
     .form-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
     
     .notice { color: var(--ink-light); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
-    header .notice { color: rgba(255, 255, 255, 0.6); margin-bottom: 0; }
+    header .notice { color: var(--ink-light); margin-bottom: 0; }
     
     /* Top Header PTIA Mark */
     .header-copy { display: flex; align-items: center; min-width: 0; }
@@ -1824,28 +2987,88 @@ HTML = r"""<!doctype html>
       object-fit: contain;
       border-radius: 0;
       box-shadow: none;
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.28));
+      filter: drop-shadow(0 8px 16px rgba(55,45,28,0.14));
     }
     
     /* Final layout splits */
-    .final-layout { display: grid; grid-template-columns: 240px 1fr; gap: 0; overflow: hidden; margin-bottom: 24px; }
-    .channel-rail { background: var(--card-rail); border-right: 1px solid var(--line); padding: 32px 24px; }
+    .final-layout { display: grid; grid-template-columns: minmax(220px, 260px) minmax(0, 1fr); gap: 0; overflow: hidden; margin: 0; }
+    .channel-rail { background: linear-gradient(180deg, #F8F3EA 0%, #FFFFFF 100%); border-right: 1px solid var(--line); padding: 32px 24px; }
     .channel-rail h2 { margin-bottom: 24px; color: var(--ptia-navy); }
     .channel-rail button { width: 100%; justify-content: flex-start; text-align: left; margin-bottom: 8px; border: 0; background: transparent; color: var(--ink-light); font-size: 14px; padding: 12px 16px; }
     .channel-rail button:hover { background: rgba(0,0,0,0.04); color: var(--ink); }
     .channel-rail button.active { background: #FFFFFF; color: var(--ptia-navy); font-weight: 600; box-shadow: var(--shadow-soft); }
-    .channel-stage { padding: 32px; background: var(--card-cream); }
+    .channel-rail button .notice { display: block; margin: 4px 0 0; color: var(--ink-light) !important; font-size: 11px; line-height: 1.35; }
+    .channel-stage { padding: 32px; background: #FFFFFF; }
     
-    .channel-grid { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
+    .channel-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 360px); gap: 32px; align-items: start; }
+    .channel-grid > * { min-width: 0; }
+    .channel-grid aside { display: grid; gap: 12px; align-content: start; }
+    .channel-grid aside > a .asset-preview { max-height: 340px; }
+    .image-mode-shell {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      margin: 12px 0 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #FFFCF6;
+      box-shadow: 0 8px 24px rgba(55,45,28,0.06);
+    }
+    .image-mode-switch {
+      display: inline-flex;
+      width: fit-content;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #F2ECE0;
+    }
+    .image-mode-switch button {
+      min-height: 0;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: transparent;
+      box-shadow: none;
+      color: var(--ink-light);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .image-mode-switch button:hover { box-shadow: none; background: rgba(5, 26, 59, 0.08); }
+    .image-mode-switch button.active { background: var(--ptia-navy); color: #fff; }
+    .image-mode-copy { color: var(--ink-light); font-size: 12px; line-height: 1.48; margin: 0; }
+    .image-title-lab {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border: 1px dashed rgba(5, 26, 59, 0.22);
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
+    }
+    .image-title-grid { display: grid; gap: 10px; }
+    .image-title-option {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #F7F1E7;
+    }
+    .image-title-option .actions { margin-top: 0; }
+    .image-title-option input { background: #fff; }
     .source-list { margin: 12px 0 0; padding-left: 20px; color: var(--ink-light); font-size: 14px; }
     .hero-note { border-left: 3px solid var(--accent-gold); padding: 16px 20px; background: #FFFFFF; color: var(--ink); margin-bottom: 24px; line-height: 1.6; font-size: 15px; font-style: italic; font-family: 'Cormorant Garamond', serif; }
     
     .contribute-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     
     .workflow-note { 
-      background: var(--card-cream); border: 1px dashed rgba(0,0,0,0.15); 
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
+      border: 1px solid var(--line); 
+      border-left: 4px solid var(--accent-sage);
       border-radius: var(--radius); padding: 20px 24px; display: grid; gap: 10px; 
-      color: var(--text-main); box-shadow: var(--shadow-soft);
+      color: var(--text-main); box-shadow: var(--shadow-card);
     }
     .workflow-note strong { color: var(--ptia-navy); font-size: 16px; font-family: 'Cormorant Garamond', serif; }
     .workflow-note .notice { color: var(--ink-light) !important; margin-bottom: 0; }
@@ -1854,14 +3077,23 @@ HTML = r"""<!doctype html>
     .source-actions { display: grid; gap: 12px; margin-top: 14px; }
     .source-button {
       width: 100%;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+      align-items: center;
+      justify-content: stretch;
       gap: 16px;
-      padding: 14px 16px;
+      padding: 16px 18px;
       border-radius: var(--radius-sm);
-      background: #fff;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent-blue);
       color: var(--ink);
       text-align: left;
+      box-shadow: 0 8px 24px rgba(55,45,28,0.07);
     }
+    .source-button:nth-child(2n) { border-left-color: var(--accent-sage); }
+    .source-button:nth-child(3n) { border-left-color: var(--accent-rust); }
+    .source-button:hover { box-shadow: 0 16px 34px rgba(55,45,28,0.12); }
     .source-button span { display: block; color: var(--ink-light); font-size: 12px; font-weight: 500; margin-top: 4px; }
 
     .empty-workflow {
@@ -1875,7 +3107,7 @@ HTML = r"""<!doctype html>
     .empty-workflow h2 { font-size: 30px; margin-bottom: 0; }
     .steps-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; margin-top: 8px; }
     .step-chip {
-      background: #fff;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-sm);
       padding: 14px;
@@ -1886,7 +3118,7 @@ HTML = r"""<!doctype html>
 
     .published-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: start; }
     .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-    .metric-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px; }
+    .metric-card { background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 16px; box-shadow: 0 8px 24px rgba(55,45,28,0.06); }
     .metric-card strong { display: block; color: var(--ptia-navy); font-size: 22px; font-family: 'Cormorant Garamond', serif; }
     .metric-card span { color: var(--ink-light); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
 
@@ -1933,27 +3165,68 @@ HTML = r"""<!doctype html>
       text-transform: uppercase;
     }
     
-    .empty-state { padding: 48px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--card-rail); color: var(--ink-light); text-align: center; font-size: 15px; }
+    .empty-state { padding: 48px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: #F8F2E7; color: var(--ink-light); text-align: center; font-size: 15px; }
     
     /* Scheduling */
     .schedule-row { display: grid; grid-template-columns: 160px 1fr auto; gap: 16px; align-items: end; margin-top: 20px; }
     .schedule-board { display: grid; gap: 34px; margin-top: 28px; }
-    .slot-row { display: grid; grid-template-columns: 104px repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+    .schedule-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow-soft);
+    }
+    .schedule-toolbar .pill { max-width: 100%; }
+    .slot-row { display: grid; grid-template-columns: 104px repeat(var(--slot-channels, 3), minmax(210px, 1fr)); gap: 20px; align-items: start; }
     
     .slot-time { 
-      background: var(--card-cream); border: 1px solid var(--line); color: var(--ptia-navy); 
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFCF6 100%); border: 1px solid var(--line); color: var(--ptia-navy); 
       border-radius: var(--radius); padding: 20px; font-weight: 600; font-size: 18px; 
-      display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; 
+      display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; 
+      box-shadow: var(--shadow-card);
+      min-height: 118px;
+      align-self: start;
     }
-    .slot-card { min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; background: #FFFFFF; margin: 0; }
-    .slot-card.empty { background: var(--card-rail); border: 1px dashed rgba(0,0,0,0.1); box-shadow: none; }
+    .slot-time small { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--ink-light); }
+    .slot-card { min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; background: #FFFFFF; margin: 0; min-width: 0; }
+    .slot-card .actions { margin-top: 10px; }
+    .slot-card .field { margin-bottom: 10px; }
+    .slot-card.has-copy-alert { border-color: rgba(160, 39, 39, 0.45); box-shadow: 0 0 0 1px rgba(160, 39, 39, 0.08), var(--shadow-card); }
+    .slot-card.empty { background: #F8F2E7; border: 1px dashed var(--line-strong); box-shadow: none; }
+    .copy-alert-dot {
+      display: inline-flex;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #B42318;
+      border: 2px solid #FFF;
+      box-shadow: 0 0 0 1px rgba(180, 35, 24, 0.35);
+      vertical-align: middle;
+      margin-left: 8px;
+      flex: 0 0 auto;
+    }
+    .copy-alert-line { margin-top: 8px; color: #8A1F17; font-size: 12px; line-height: 1.35; }
+    .slot-card.has-copy-alert .copy-alert-line,
+    .card.has-copy-alert .copy-alert-line {
+      padding: 8px 10px;
+      background: var(--warning-bg);
+      border-left: 3px solid var(--danger);
+      border-radius: var(--radius-sm);
+      color: #7A271A;
+      font-weight: 700;
+    }
     .slot-channel, .channel-pill {
       display: inline-flex;
       width: fit-content;
       align-items: center;
       border-radius: 999px;
       padding: 5px 10px;
-      background: var(--card-rail);
+      background: #F6F1E8;
       border: 1px solid var(--line);
       color: var(--ptia-navy);
       font-size: 11px;
@@ -1975,6 +3248,7 @@ HTML = r"""<!doctype html>
     
     @media (max-width: 1200px) {
       .stats { grid-template-columns: repeat(4, 1fr); }
+      .ops-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .grid, .radar-grid { grid-template-columns: 1fr; }
       .two, .final-layout, .channel-grid, .contribute-grid, .slot-row, .newsletter-layout { grid-template-columns: 1fr; }
       .steps-row, .published-layout, .metric-grid { grid-template-columns: 1fr; }
@@ -1985,6 +3259,7 @@ HTML = r"""<!doctype html>
       header { flex-direction: column; align-items: flex-start; }
       .wrap { padding: 24px; }
       .stats { grid-template-columns: repeat(2, 1fr); }
+      .ops-strip { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
@@ -2028,7 +3303,7 @@ HTML = r"""<!doctype html>
         padding: 10px 16px;
       }
       .panel { padding: 20px; }
-      .card { padding: 18px; margin-bottom: 14px; }
+      .card { padding: 18px; margin-bottom: 0; }
       .grid, .two, .radar-grid, .channel-grid, .contribute-grid,
       .final-box, .schedule-row, .published-layout, .metric-grid,
       .newsletter-layout {
@@ -2036,6 +3311,7 @@ HTML = r"""<!doctype html>
         gap: 16px;
       }
       .quick-stack { gap: 16px; }
+      .source-button { grid-template-columns: 1fr; text-align: left; }
       input, textarea, select { font-size: 16px; min-height: 46px; }
       button { min-height: 44px; }
       .actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
@@ -2077,6 +3353,7 @@ HTML = r"""<!doctype html>
   </header>
   <main class="wrap">
     <section class="stats" id="stats"></section>
+    <section class="ops-strip" id="ops_strip"></section>
     <nav class="tabs">
       <button class="tab active" data-tab="flow" onclick="showTab('flow')">1 Radar</button>
       <button class="tab" data-tab="verifying_tab" onclick="showTab('verifying_tab')">2 Verifying</button>
@@ -2120,15 +3397,44 @@ HTML = r"""<!doctype html>
     let state = {};
     let activeFinalChannel = 'linkedin';
     let activeFinalTopicId = '';
+    let activeImagePromptModes = {};
+    let imagePromptDrafts = {};
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const short = (value, max = 340) => {
       const text = String(value ?? '');
       return text.length > max ? text.slice(0, max).trim() + '...' : text;
     };
-    function showTab(id) {
+    function xEnabled() {
+      return !((state.channel_settings?.disabled_channels || []).includes('x'));
+    }
+    function finalChannels() {
+      const channels = [
+        ['linkedin', 'LinkedIn', 'Tese clara, consequencia e fonte'],
+        ['instagram', 'Instagram', 'Legenda guardavel, 3 impactos e fonte'],
+        ['site', 'Site', 'Arquivo curto, factual e datado']
+      ];
+      return xEnabled()
+        ? [channels[0], channels[1], ['x', 'X', 'Post curto, hook forte e fonte'], channels[2]]
+        : channels;
+    }
+    function knownTabIds() {
+      return Array.from(document.querySelectorAll('.tab-panel')).map(el => el.id);
+    }
+    function initialTabId() {
+      const hash = window.location.hash.replace('#', '');
+      return knownTabIds().includes(hash) ? hash : 'flow';
+    }
+    function showTab(id, persist = true) {
+      if (!knownTabIds().includes(id)) id = 'flow';
       document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
       document.getElementById(id).classList.remove('hidden');
       document.querySelectorAll('.tab').forEach(el => el.classList.toggle('active', el.dataset.tab === id));
+      if (persist && window.location.hash !== `#${id}`) {
+        history.replaceState(null, '', `#${id}`);
+      }
+      requestAnimationFrame(() => window.scrollTo({top: 0, left: 0, behavior: 'auto'}));
+      setTimeout(() => window.scrollTo({top: 0, left: 0, behavior: 'auto'}), 120);
       if (state.counts) renderStats();
     }
     async function api(path, payload) {
@@ -2148,6 +3454,26 @@ HTML = r"""<!doctype html>
         throw new Error(message);
       }
       await loadState();
+    }
+    async function requestJson(path, payload) {
+      const response = await fetch(path, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const raw = await response.text();
+      let parsed = {};
+      try {
+        parsed = raw ? JSON.parse(raw) : {};
+      } catch (_) {
+        parsed = {error: raw};
+      }
+      if (!response.ok) {
+        const message = parsed.error || raw;
+        showToast('Erro: ' + message);
+        throw new Error(message);
+      }
+      return parsed;
     }
     function showToast(message) {
       const toast = document.getElementById('toast');
@@ -2177,11 +3503,46 @@ HTML = r"""<!doctype html>
       document.getElementById('stats').innerHTML = stats.map(([label, value, tabId]) => `
         <button class="stat ${activeId === tabId ? 'active' : ''}" onclick="showTab('${tabId}')"><strong>${esc(value || 0)}</strong><span>${esc(label)}</span></button>
       `).join('');
+      renderOpsStrip();
+    }
+    function renderOpsStrip() {
+      const c = state.counts || {};
+      const copyAlerts = (state.final_ready_to_schedule || [])
+        .concat(state.final_scheduled_posts || [])
+        .filter(post => copyIssueList(post).length).length;
+      const xDisabled = (state.channel_settings?.disabled_channels || []).includes('x');
+      const items = [
+        ['Verified', c.verified_selection || 0, 'Para curadoria', 'verified_tab', (c.verified_selection || 0) ? 'ok' : ''],
+        ['A Rever', c.a_rever || 0, 'Pacotes por validar', 'final_draft_pack', (c.a_rever || 0) ? '' : 'ok'],
+        ['Final OK', c.final_approved || 0, 'Pronto a agendar', 'schedule', (c.final_approved || 0) ? 'ok' : ''],
+        ['Alertas', copyAlerts, 'Texto/imagem/schedule', 'schedule', copyAlerts ? 'alert' : 'ok'],
+        ['X', xDisabled ? 'OFF' : 'ON', xDisabled ? 'Canal oculto' : 'Canal ativo', 'flow', xDisabled ? 'alert' : 'ok'],
+      ];
+      const target = document.getElementById('ops_strip');
+      if (!target) return;
+      target.innerHTML = items.map(([label, value, note, tabId, tone]) => `
+        <button class="ops-tile ${esc(tone)}" onclick="showTab('${esc(tabId)}')">
+          <strong>${esc(value)}</strong>
+          <span>${esc(label)} · ${esc(note)}</span>
+        </button>
+      `).join('');
     }
     function card(title, meta, text, actions = '') {
       return `<article class="card"><h3>${esc(title)}</h3><div class="meta">${meta}</div><p class="text">${esc(short(text))}</p>${actions}</article>`;
     }
     function pill(value) { return `<span class="pill">${esc(value)}</span>`; }
+    function copyIssueList(post) {
+      return Array.isArray(post?.copy_issues) ? post.copy_issues.filter(Boolean) : [];
+    }
+    function copyAlertDot(post) {
+      const issues = copyIssueList(post);
+      if (!issues.length) return '';
+      return `<span class="copy-alert-dot" title="${esc(issues.join(' · '))}" aria-label="Aviso: ${esc(issues.join(', '))}"></span>`;
+    }
+    function copyAlertLine(post) {
+      const issues = copyIssueList(post);
+      return issues.length ? `<div class="copy-alert-line">Aviso: ${esc(issues.join(' · '))}</div>` : '';
+    }
     function renderFlow() {
       const c = state.counts || {};
       document.getElementById('flow').innerHTML = `
@@ -2202,32 +3563,37 @@ HTML = r"""<!doctype html>
           </div>
           <aside class="workflow-note">
             <strong>Gerar radar</strong>
-            <p class="notice">Escolhe a origem. Tudo tem de passar por fonte credÃ­vel e data dos Ãºltimos 5 dias antes de entrar em Verified Selection.</p>
+            <p class="notice">Escolhe a origem. Tudo tem de passar por fonte credível e data dos últimos 5 dias antes de entrar em Verified Selection.</p>
             <div class="source-actions">
               <button class="source-button" onclick="runGeminiScout()">Gemini Scout <span>Panorama global + Portugal, com fontes verificadas.</span></button>
               <button class="source-button" onclick="runSourceScout('rss')">Fontes PTIA RSS <span>OpenAI, Google, Microsoft, NVIDIA, MIT, The Decoder e outras fontes configuradas.</span></button>
               <button class="source-button" onclick="runSourceScout('rundown')">The Rundown AI <span>Usa como descoberta; procura a fonte original antes de aprovar.</span></button>
-              <button class="source-button" onclick="runSourceScout('portugal')">Radar Portugal <span>Procura IA em Portugal: governo, empresas, universidades e regulaÃ§Ã£o.</span></button>
+              <button class="source-button" onclick="runSourceScout('portugal')">Radar Portugal <span>Procura IA em Portugal: governo, empresas, universidades e regulação.</span></button>
             </div>
             <p class="notice" style="color:#cbd5e1">3. Revês LinkedIn, Instagram e Site.</p>
             <p class="notice" style="color:#cbd5e1">4. Defines hora em Final OK e marcas scheduled.</p>
             <button class="primary" onclick="runGeminiScout()">Gemini Scout hoje</button>
           </aside>
         </div>
-        <div class="grid" style="margin-top:14px">
+        <div class="grid">
           <div class="panel"><h2>Verifying</h2><div class="meta">${pill(c.verifying || 0)}</div><p class="notice">Links em pesquisa de fonte credível.</p><div class="actions"><button onclick="showTab('verifying_tab')">Abrir</button></div></div>
           <div class="panel"><h2>Verified Selection</h2><div class="meta">${pill(c.verified_selection || 0)}</div><p class="notice">Escolhe 3-4 por dia para criar pacote final.</p><div class="actions"><button onclick="showTab('verified_tab')">Selecionar</button></div></div>
           <div class="panel"><h2>A Rever</h2><div class="meta">${pill(c.a_rever || 0)}</div><p class="notice">Final drafts por Instagram, LinkedIn e Site.</p><div class="actions"><button onclick="showTab('final_draft_pack')">Rever</button></div></div>
         </div>
-        <div class="panel" style="margin-top:14px">
+        <div class="panel">
           <h2>Radar inbox</h2>
           <p class="notice" style="margin-bottom:12px">Estes são os sinais que o contador do Radar está a contar. Usados e rejeitados saem daqui.</p>
           ${renderSignalList(state.radar_inbox_signals || [], 'Radar limpo. Corre Gemini Scout ou cola um link para alimentar a inbox.', 'radar')}
         </div>
+        <div class="panel">
+          <h2>Ultimos sinais adicionados</h2>
+          <p class="notice" style="margin-bottom:12px">Mostra os sinais recentes mesmo quando já passaram para Verified, Selected, Used ou Rejected.</p>
+          ${renderSignalList((state.radar_recent_signals || []).slice(0, 12), 'Ainda sem sinais recentes.', 'recent')}
+        </div>
       `;
     }
     function renderSignalList(signals, empty, mode = 'radar') {
-      return signals.map(signal => signalCard(signal, mode)).join('') || `<p class="notice">${empty}</p>`;
+      return signals.map(signal => signalCard(signal, mode)).join('') || `<div class="empty-state">${esc(empty)}</div>`;
     }
     function sourceOriginLabel(signal) {
       const type = signal.source_type || '';
@@ -2251,6 +3617,8 @@ HTML = r"""<!doctype html>
           ${mode === 'radar' && isSelected ? `<button class="primary" onclick="buildFinalPack('${esc(signal.signal_id)}')">Criar pacote final</button>` : ''}
           ${mode === 'verified' && !isSelected ? `<button class="good" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'selected',notes:'Escolhido para curadoria'})">Escolher para hoje</button>` : ''}
           ${mode === 'verified' && isSelected ? `<button class="primary" onclick="buildFinalPack('${esc(signal.signal_id)}')">Criar pacote final</button>` : ''}
+          ${mode === 'recent' && (isVerified || isSelected) ? `<button onclick="showTab('verified_tab')">Ver em Verified</button>` : ''}
+          ${mode === 'recent' && signal.status === 'used' ? `<button onclick="showTab('final_draft_pack')">Ver em A Rever</button>` : ''}
           <button class="bad" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'rejected',notes:'Fora da linha editorial'})">Rejeitar</button>
           <a href="${esc(signal.url)}" target="_blank">Fonte</a>
         </div>`;
@@ -2273,7 +3641,7 @@ HTML = r"""<!doctype html>
     }
     function renderVerifying() {
       document.getElementById('verifying_tab').innerHTML = `
-        <div class="panel"><h2>Verifying</h2><p class="notice">Links teus que o engine ainda está a tentar validar. Se não houver fonte credível/data, não passa.</p></div>
+        <div class="panel"><h2>Verifying</h2><p class="notice">Links teus que o engine ainda está a tentar validar. Se não houver fonte credível/data, não passa.</p><div class="actions"><button class="primary" onclick="reverifyVerifying()">Verificar automaticamente</button></div></div>
         ${renderSignalList(state.verifying_signals || [], 'Nada em verificação.', 'verifying')}
       `;
     }
@@ -2309,15 +3677,25 @@ HTML = r"""<!doctype html>
       showToast(`${labels[source] || 'Fonte'} concluido`);
       showTab('verified_tab');
     }
+    async function reverifyVerifying() {
+      showToast('A verificar a fila...');
+      const result = await requestJson('/api/reverify-verifying', {});
+      await loadState();
+      if (!result.checked) {
+        showToast('Nada em Verifying');
+        return;
+      }
+      showToast(`${result.verified || 0} verificados; ${result.verifying || 0} continuam em Verifying`);
+      showTab(result.verifying || result.failed ? 'verifying_tab' : 'verified_tab');
+    }
     async function buildFinalPack(signalId) {
       await api('/api/build-final-pack', {signal_id: signalId});
       showToast('Pacote final criado');
       showTab('final_draft_pack');
     }
     async function approveFinalPackage(postId) {
-      showToast('A alinhar e enviar o pacote para Final OK...');
-      const feedback = val(`rewrite_${postId}`) || 'LinkedIn aprovado como canal principal. Ajusta Instagram e Site para ficarem coerentes, sem obrigar a mesma estrutura.';
-      await api('/api/rewrite-final-package', {post_id: postId, feedback});
+      showToast('A guardar e enviar o pacote para Final OK...');
+      await saveFinalPostCopy(postId, false, false);
       await api('/api/approve-final-package', {post_id: postId});
       showToast('Pacote enviado para Final OK');
       showTab('schedule');
@@ -2350,9 +3728,126 @@ HTML = r"""<!doctype html>
       showToast('Polish PT-PT aplicado');
       showTab('final_draft_pack');
     }
+    function defaultImagePromptMode(post) {
+      return ['instagram', 'x'].includes(post?.channel) ? 'instagram_x' : 'linkedin_site';
+    }
+    function imagePromptModeForPost(post) {
+      if (!post) return 'linkedin_site';
+      return activeImagePromptModes[post.post_id] || defaultImagePromptMode(post);
+    }
+    function imagePromptTextFor(post) {
+      const mode = imagePromptModeForPost(post);
+      return imagePromptDrafts[post.post_id]?.[mode] || post.image_prompt || '';
+    }
+    function visualTitleFromPrompt(prompt) {
+      const match = String(prompt || '').match(/Título visual escolhido no dashboard[^:]*:\s*"([^"]+)"/i);
+      return match ? match[1] : '';
+    }
+    function stashCurrentImagePrompt(postId) {
+      const post = findFinalPost(postId);
+      const promptField = document.getElementById(`edit_image_prompt_${postId}`);
+      if (!post || !promptField) return;
+      const mode = imagePromptModeForPost(post);
+      imagePromptDrafts[postId] = imagePromptDrafts[postId] || {};
+      imagePromptDrafts[postId][mode] = promptField.value;
+    }
+    function syncImagePromptModeUI(postId, mode) {
+      document.querySelectorAll(`[data-image-mode-button="${postId}"]`).forEach(button => {
+        button.classList.toggle('active', button.dataset.mode === mode);
+      });
+      document.querySelectorAll(`[data-image-mode-panel="${postId}"]`).forEach(panel => {
+        panel.classList.toggle('hidden', panel.dataset.mode !== mode);
+      });
+    }
+    async function refreshFinalImagePrompt(postId, mode, visualTitle = '') {
+      const result = await requestJson('/api/image-prompt', {
+        post_id: postId,
+        group: mode,
+        visual_title: visualTitle
+      });
+      const promptField = document.getElementById(`edit_image_prompt_${postId}`);
+      if (!promptField) return;
+      promptField.value = result.prompt || '';
+      imagePromptDrafts[postId] = imagePromptDrafts[postId] || {};
+      imagePromptDrafts[postId][mode] = promptField.value;
+    }
+    async function setFinalImagePromptMode(postId, mode) {
+      const post = findFinalPost(postId);
+      if (!post) return;
+      stashCurrentImagePrompt(postId);
+      activeImagePromptModes[postId] = mode;
+      syncImagePromptModeUI(postId, mode);
+      const promptField = document.getElementById(`edit_image_prompt_${postId}`);
+      const promptDraft = imagePromptDrafts[postId]?.[mode];
+      if (promptField && promptDraft) {
+        promptField.value = promptDraft;
+        return;
+      }
+      await refreshFinalImagePrompt(postId, mode, val(`visual_title_selected_${postId}`));
+    }
+    async function hydrateFinalImagePrompt(postId) {
+      const post = findFinalPost(postId);
+      const promptField = document.getElementById(`edit_image_prompt_${postId}`);
+      if (!post || !promptField) return;
+      const selectedTitle = document.getElementById(`visual_title_selected_${postId}`);
+      if (selectedTitle && !selectedTitle.value) {
+        selectedTitle.value = visualTitleFromPrompt(post.image_prompt || promptField.value);
+      }
+      const mode = imagePromptModeForPost(post);
+      const requiredCopy = mode === 'instagram_x'
+        ? 'Título visual escolhido no dashboard'
+        : 'LinkedIn e site';
+      if (imagePromptDrafts[postId]?.[mode] || promptField.value.includes(requiredCopy)) return;
+      await refreshFinalImagePrompt(postId, mode, val(`visual_title_selected_${postId}`));
+    }
+    async function suggestVisualImageTitles(postId) {
+      showToast('A sugerir títulos visuais PTIA...');
+      const result = await requestJson('/api/suggest-image-titles', {post_id: postId});
+      const suggestions = result.suggestions || [];
+      const provocative = document.getElementById(`visual_title_provocative_${postId}`);
+      const editorial = document.getElementById(`visual_title_editorial_${postId}`);
+      if (provocative) provocative.value = suggestions[0]?.title || '';
+      if (editorial) editorial.value = suggestions[1]?.title || '';
+      showToast('Duas opções de título prontas');
+    }
+    async function useSuggestedVisualTitle(postId, inputId) {
+      const title = val(inputId);
+      if (!title) {
+        showToast('Ainda não há título nessa opção');
+        return;
+      }
+      const selected = document.getElementById(`visual_title_selected_${postId}`);
+      if (selected) selected.value = title;
+      await applyVisualImageTitle(postId);
+    }
+    async function applyVisualImageTitle(postId) {
+      const title = val(`visual_title_selected_${postId}`);
+      if (!title) {
+        showToast('Escolhe ou escreve primeiro o título visual');
+        return;
+      }
+      activeImagePromptModes[postId] = 'instagram_x';
+      syncImagePromptModeUI(postId, 'instagram_x');
+      await refreshFinalImagePrompt(postId, 'instagram_x', title);
+      await api('/api/apply-visual-title', {post_id: postId, visual_title: title});
+      showToast(`Titulo aplicado ao pacote ${xEnabled() ? 'Instagram/X' : 'Instagram'}`);
+      showTab('final_draft_pack');
+    }
+    function imagePromptHasVisualTitle(prompt) {
+      return /Título visual escolhido no dashboard[^:]*:\s*"[^"]+"/i.test(prompt || '');
+    }
     async function generateFinalImage(postId) {
       const feedback = val(`image_feedback_${postId}`);
       const promptField = document.getElementById(`edit_image_prompt_${postId}`);
+      const post = findFinalPost(postId);
+      if (
+        imagePromptModeForPost(post) === 'instagram_x'
+        && !val(`visual_title_selected_${postId}`)
+        && !imagePromptHasVisualTitle(promptField?.value || '')
+      ) {
+        showToast(`Escolhe o titulo visual ${xEnabled() ? 'Instagram/X' : 'Instagram'} antes de copiar o prompt`);
+        return;
+      }
       if (feedback && promptField) {
         promptField.value = `${promptField.value}\n\nPedido adicional do editor: ${feedback}`;
         await saveFinalPostCopy(postId, false, false);
@@ -2420,7 +3915,7 @@ HTML = r"""<!doctype html>
       );
       document.getElementById('final_posts_v2').innerHTML = `
         <div class="panel"><h2>Post final para aprovacao</h2><p class="notice">Tem de estar 100% PT-PT, com fontes, hashtags e prompt/imagem. Se estiver medio, rejeitamos.</p></div>
-        ${approvedTopicsWithoutPost.length ? `<div class="panel"><h2>Topics aprovados sem post final</h2><p class="notice">Estes topics ja passaram no primeiro check, mas ainda precisam de escrita final.</p>${approvedTopicsWithoutPost.map(topic => card(
+        ${approvedTopicsWithoutPost.length ? `<div class="panel"><h2>Topics aprovados sem post final</h2><p class="notice">Estes topics já passaram no primeiro check, mas ainda precisam de escrita final.</p>${approvedTopicsWithoutPost.map(topic => card(
           topic.title,
           `${pill(topic.status)}${pill(topic.audience)}${pill(`urg ${topic.urgency_score}`)}`,
           `${topic.thesis}\n\nAngulo Portugal: ${topic.portugal_angle}`
@@ -2430,7 +3925,8 @@ HTML = r"""<!doctype html>
     }
     function finalPostText(post) {
       const hashtags = post.hashtags ? `\n\n${post.hashtags}` : '';
-      const sources = (post.source_urls || []).length ? `\n\nFontes:\n${post.source_urls.map(url => `- ${url}`).join('\n')}` : '';
+      const hasBodySource = /^\s*(?:\*\*)?Fontes?(?:\*\*)?\s*:/im.test(post.body || '');
+      const sources = !hasBodySource && (post.source_urls || []).length ? `\n\nFontes:\n${post.source_urls.map(url => `- ${url}`).join('\n')}` : '';
       return `${post.body}${hashtags}${sources}`.trim();
     }
     function socialText(post) {
@@ -2446,6 +3942,7 @@ HTML = r"""<!doctype html>
       navigator.clipboard.writeText(finalPostText(post));
     }
     async function saveFinalPostCopy(postId, syncPackage = false, showSavedToast = true) {
+      stashCurrentImagePrompt(postId);
       const payload = {
         post_id: postId,
         title: val(`edit_title_${postId}`),
@@ -2472,13 +3969,14 @@ HTML = r"""<!doctype html>
         </article>`;
       }
       const isLinkedin = post.channel === 'linkedin';
+      const isX = post.channel === 'x';
       const typeClass = isLinkedin ? 'linkedin-preview' : 'instagram-preview';
       const imagePath = channelImagePath(post);
       const image = imagePath
         ? `<img class="social-image" src="${assetPath(imagePath)}" alt="">`
         : `<div class="social-image" style="display:grid;place-items:center;color:#777;font-size:13px;">Sem imagem final</div>`;
-      const sub = isLinkedin ? 'PTIA Portugal · LinkedIn' : 'ptia.pt · Instagram';
-      const actions = isLinkedin ? 'Gosto · Comentar · Repostar · Enviar' : 'Gosto · Comentar · Enviar · Guardar';
+      const sub = isLinkedin ? 'PTIA Portugal · LinkedIn' : isX ? '@PTIAPT · X' : 'ptia.pt · Instagram';
+      const actions = isLinkedin ? 'Gosto · Comentar · Repostar · Enviar' : isX ? 'Responder · Repostar · Gostar · Guardar' : 'Gosto · Comentar · Enviar · Guardar';
       return `<article class="social-preview ${typeClass}">
         <div class="social-header">
           <div class="social-avatar">P</div>
@@ -2559,23 +4057,19 @@ HTML = r"""<!doctype html>
         activeFinalTopicId = topicIds[0];
       }
       const posts = preferredFinalPosts(activeFinalTopicId);
-      const channels = [
-        ['linkedin', 'LinkedIn', 'Tese clara, consequência e fonte'],
-        ['instagram', 'Instagram', 'Legenda guardável, 3 impactos e fonte'],
-        ['site', 'Site', 'Arquivo curto, factual e datado']
-      ];
+      const channels = finalChannels();
       if (posts.linkedin && !posts[activeFinalChannel]) {
         activeFinalChannel = 'linkedin';
       }
-      if (!posts.linkedin && !posts.instagram && !posts.site) {
+      if (!channels.some(([key]) => posts[key])) {
         document.getElementById('final_draft_pack').innerHTML = `
           <section class="panel empty-workflow">
             <div class="empty-workflow-inner">
-              <h2>Ainda nao ha pacote para rever</h2>
-              <p class="notice">Este ecran so deve aparecer depois de escolheres uma noticia em Verified Selection e criares o pacote final. Aqui revemos LinkedIn, Instagram e Site, reescrevemos se necessario e submetemos para Final OK.</p>
+              <h2>Ainda não há pacote para rever</h2>
+              <p class="notice">Este ecrã só deve aparecer depois de escolheres uma notícia em Verified Selection e criares o pacote final. Aqui revemos LinkedIn, Instagram e Site, reescrevemos se necessário e submetemos para Final OK.</p>
               <div class="steps-row">
                 <div class="step-chip"><strong>1</strong><br>Vai a Verified Selection</div>
-                <div class="step-chip"><strong>2</strong><br>Escolhe uma noticia verificada</div>
+                <div class="step-chip"><strong>2</strong><br>Escolhe uma notícia verificada</div>
                 <div class="step-chip"><strong>3</strong><br>Carrega Criar pacote final</div>
               </div>
               <div class="actions">
@@ -2593,7 +4087,7 @@ HTML = r"""<!doctype html>
           ${label}<br><span class="notice">${desc}</span>
         </button>
       `).join('');
-      const stage = active ? finalDraftStage(active) : '<p class="notice">Ainda nao ha drafts finais para os 3 canais.</p>';
+      const stage = active ? finalDraftStage(active) : '<p class="notice">Ainda não há drafts finais para os canais ativos.</p>';
       const packageSwitcher = topicIds.length > 1 ? `
         <div class="panel package-switcher">
           <span class="label">Pacotes em revisao</span>
@@ -2616,14 +4110,17 @@ HTML = r"""<!doctype html>
           ${channels.map(([key, label]) => summaryMini(label, posts[key])).join('')}
         </div>
       `;
+      if (active) hydrateFinalImagePrompt(active.post_id).catch(() => {});
     }
     function finalDraftStage(post) {
       const imagePath = channelImagePath(post);
+      const promptMode = imagePromptModeForPost(post);
+      const promptText = imagePromptTextFor(post);
       const variantLabel = post.image_variants?.[post.channel] ? `Imagem formatada para ${post.channel}` : 'Imagem original';
       const image = imagePath
         ? `<a href="${assetPath(imagePath)}" target="_blank"><img class="asset-preview" src="${assetPath(imagePath)}" alt=""></a><div class="hint">${esc(variantLabel)}</div>`
         : `<div class="post-copy">${esc(post.image_prompt || 'Sem imagem/prompt.')}</div>`;
-      return `<div class="hero-note">Fonte obrigatoriamente datada dos ultimos 5 dias. Este pacote ainda precisa do teu check final antes de entrar em Final OK.</div>
+      return `<div class="hero-note">Fonte obrigatoriamente datada dos últimos 5 dias. Este pacote ainda precisa do teu check final antes de entrar em Final OK.</div>
         <h2>${esc(post.title)}</h2>
         <div class="meta">${pill(post.channel)}${pill(post.status)}${post.editor_notes && post.editor_notes.includes('PT-PT') ? pill('PT-PT polish') : ''}${pill('imagem ' + (post.image_status || 'needs_review'))}${pill((post.source_urls || []).length + ' fonte(s)')}</div>
         <div class="channel-grid">
@@ -2652,13 +4149,63 @@ HTML = r"""<!doctype html>
               <button onclick="polishFinalPost('${esc(post.post_id)}')">Polir PT-PT</button>
               <button class="primary" onclick="rewriteFinalPost('${esc(post.post_id)}')">Reescrever este canal</button>
               <button class="primary" onclick="rewriteFinalPackage('${esc(post.post_id)}')">Reescrever pacote</button>
-              <button class="good" onclick="approveFinalPackage('${esc(post.post_id)}')">OK LinkedIn → Final OK</button>
+              <button class="good" onclick="approveFinalPackage('${esc(post.post_id)}')">OK pacote → Final OK</button>
               <button class="bad" onclick="api('/api/final-post-status',{post_id:'${esc(post.post_id)}',status:'rejected'})">Rejeitar</button>
             </div>
           </div>
           <aside>
             <span class="label">Imagem final</span>
             ${image}
+            <span class="label" style="margin-top:12px">Modo da imagem</span>
+            <div class="image-mode-shell">
+              <div class="image-mode-switch" aria-label="Modo do prompt de imagem">
+                <button
+                  data-image-mode-button="${esc(post.post_id)}"
+                  data-mode="instagram_x"
+                  class="${promptMode === 'instagram_x' ? 'active' : ''}"
+                  onclick="setFinalImagePromptMode('${esc(post.post_id)}','instagram_x')"
+                >${xEnabled() ? 'Instagram/X' : 'Instagram'}</button>
+                <button
+                  data-image-mode-button="${esc(post.post_id)}"
+                  data-mode="linkedin_site"
+                  class="${promptMode === 'linkedin_site' ? 'active' : ''}"
+                  onclick="setFinalImagePromptMode('${esc(post.post_id)}','linkedin_site')"
+                >LinkedIn/Site</button>
+              </div>
+              <section
+                class="image-title-lab ${promptMode === 'instagram_x' ? '' : 'hidden'}"
+                data-image-mode-panel="${esc(post.post_id)}"
+                data-mode="instagram_x"
+              >
+                <p class="image-mode-copy">${xEnabled() ? 'Instagram e X usam' : 'Instagram usa'} overlay PTIA fixo com wordmark, linha editorial e título. Gera duas opções aqui; a imagem-base deve vir sem texto.</p>
+                <div class="field" style="margin-bottom:0">
+                  <label>Título visual escolhido</label>
+                  <input class="compact-input" id="visual_title_selected_${esc(post.post_id)}" value="${esc(visualTitleFromPrompt(post.image_prompt))}" placeholder="Escreve ou escolhe uma frase abaixo">
+                  <small>Curto, bait na medida certa e ainda com credibilidade PTIA.</small>
+                </div>
+                <div class="actions" style="margin-top:0">
+                  <button class="primary" onclick="suggestVisualImageTitles('${esc(post.post_id)}')">Sugerir 2 títulos</button>
+                  <button onclick="applyVisualImageTitle('${esc(post.post_id)}')">Aplicar ao prompt</button>
+                </div>
+                <div class="image-title-grid">
+                  <div class="image-title-option">
+                    <label>Mais provocatório</label>
+                    <input class="compact-input" id="visual_title_provocative_${esc(post.post_id)}" placeholder="A sugestão aparece aqui">
+                    <div class="actions"><button onclick="useSuggestedVisualTitle('${esc(post.post_id)}','visual_title_provocative_${esc(post.post_id)}')">Usar esta</button></div>
+                  </div>
+                  <div class="image-title-option">
+                    <label>Mais editorial</label>
+                    <input class="compact-input" id="visual_title_editorial_${esc(post.post_id)}" placeholder="A sugestão aparece aqui">
+                    <div class="actions"><button onclick="useSuggestedVisualTitle('${esc(post.post_id)}','visual_title_editorial_${esc(post.post_id)}')">Usar esta</button></div>
+                  </div>
+                </div>
+              </section>
+              <p
+                class="image-mode-copy ${promptMode === 'linkedin_site' ? '' : 'hidden'}"
+                data-image-mode-panel="${esc(post.post_id)}"
+                data-mode="linkedin_site"
+              >LinkedIn e site mantêm capa editorial sem texto sobreposto, com composição landscape.</p>
+            </div>
             <div class="field" style="margin-top:12px">
               <label>Feedback de imagem</label>
               <textarea id="image_feedback_${esc(post.post_id)}" placeholder="Ex: mais premium, menos texto, incluir simbolo Claude, mais contraste, sem pessoas..."></textarea>
@@ -2673,7 +4220,7 @@ HTML = r"""<!doctype html>
               <input type="file" accept="image/png,image/jpeg,image/webp" onchange="uploadFinalImage('${esc(post.post_id)}', this)">
             </div>
             <span class="label" style="margin-top:12px">Prompt</span>
-            <textarea class="edit-copy" id="edit_image_prompt_${esc(post.post_id)}" style="min-height:130px">${esc(post.image_prompt)}</textarea>
+            <textarea class="edit-copy" id="edit_image_prompt_${esc(post.post_id)}" style="min-height:130px">${esc(promptText)}</textarea>
             <span class="label" style="margin-top:12px">Fontes</span>
             <ul class="source-list">${(post.source_urls || []).map(url => `<li><a href="${esc(url)}" target="_blank">${esc(url)}</a></li>`).join('')}</ul>
             ${post.editor_notes ? `<span class="label" style="margin-top:12px">Notas de edição</span><div class="post-copy">${esc(post.editor_notes)}</div>` : ''}
@@ -2788,14 +4335,14 @@ HTML = r"""<!doctype html>
       const slots = ['09:00', '13:00', '16:00', '21:00'];
       const selectedDate = scheduleDate();
       const bufferState = state.buffer_available
-        ? 'Buffer API detectada. LinkedIn vai para Buffer. Instagram precisa de imagem/media validada; Site fica marcado localmente ate ligarmos CMS.'
-        : 'Buffer API ainda nao detectada. Cola BUFFER_API_KEY no .env.local e carrega Atualizar Buffer.';
+        ? `Buffer API detectada. LinkedIn${xEnabled() ? ' e X' : ''} vão para Buffer. Instagram precisa de imagem/media validada; Site fica marcado localmente até ligarmos CMS.`
+        : 'Buffer API ainda não detectada. Cola BUFFER_API_KEY no .env.local e carrega Atualizar Buffer.';
       document.getElementById('schedule').innerHTML = `
         <div class="panel">
           <h2>Final OK: plano a 4 dias</h2>
           <p class="notice">Escolhe o dia, depois dá OK nos slots 09:00, 13:00, 16:00, 21:00. O Buffer recebe a data/hora PT correta.</p>
         </div>
-        <div class="actions">
+        <div class="schedule-toolbar">
           <button onclick="discoverBuffer()">Atualizar Buffer</button>
           ${scheduleDayPills(selectedDate)}
           <label class="schedule-date-inline">Data <input id="schedule_date" type="date" value="${selectedDate}" onchange="setScheduleDate(this.value)"></label>
@@ -2876,17 +4423,13 @@ HTML = r"""<!doctype html>
       showTab('scheduled_tab');
     }
     async function schedulePackage(topicId, scheduledTime) {
-      showToast('A agendar os 3 canais deste tema...');
+      showToast('A agendar os canais ativos deste tema...');
       await api('/api/schedule-package', {topic_id: topicId, scheduled_time: scheduledTime});
       showToast('Pacote agendado');
       showTab('scheduled_tab');
     }
     function renderScheduleBoard(posts, slots) {
-      const channels = [
-        ['instagram', 'Instagram'],
-        ['linkedin', 'LinkedIn'],
-        ['site', 'Site']
-      ];
+      const channels = finalChannels().map(([key, label]) => [key, label]);
       const packages = packageRows(posts);
       const selectedDate = scheduleDate();
       const occupiedSlots = new Set(
@@ -2896,7 +4439,7 @@ HTML = r"""<!doctype html>
       );
       const openPackages = [...packages];
       const rows = slots.map((time, index) => `
-        <div class="slot-row">
+        <div class="slot-row" style="--slot-channels:${channels.length}">
           <div class="slot-time">${time}</div>
           ${occupiedSlots.has(time)
             ? channels.map(([key, label]) => occupiedScheduleSlotCard(label, key)).join('')
@@ -2913,11 +4456,7 @@ HTML = r"""<!doctype html>
       return (post?.scheduled_time || '').slice(11, 16);
     }
     function renderScheduledBoard(posts, slots) {
-      const channels = [
-        ['instagram', 'Instagram'],
-        ['linkedin', 'LinkedIn'],
-        ['site', 'Site']
-      ];
+      const channels = finalChannels().map(([key, label]) => [key, label]);
       const selectedDate = scheduleDate();
       const dayPosts = posts.filter(post => (post.scheduled_time || '').slice(0, 10) === selectedDate);
       const packages = packageRows(dayPosts);
@@ -2925,7 +4464,7 @@ HTML = r"""<!doctype html>
         const packagesAtTime = packages.filter(packageRow => packageSlotTime(packageRow) === time);
         const rowsAtTime = packagesAtTime.length ? packagesAtTime : [null];
         return rowsAtTime.map((packageRow, packageIndex) => `
-          <div class="slot-row">
+          <div class="slot-row" style="--slot-channels:${channels.length}">
             <div class="slot-time">${time}${packagesAtTime.length > 1 ? `<small>${packageIndex + 1}/${packagesAtTime.length}</small>` : ''}</div>
             ${channels.map(([key, label]) => scheduleSlotCard(packageRow?.posts?.[key], label, time, 'scheduled', key, packageRow?.topic_id)).join('')}
           </div>
@@ -2937,8 +4476,8 @@ HTML = r"""<!doctype html>
       return `<article class="card slot-card empty">
         <div>
           <span class="channel-pill ${esc(channelKey)}">${esc(label)}</span>
-          <div class="slot-headline">Slot ja ocupado</div>
-          <p class="notice">Este horario ja tem um pacote em Scheduled.</p>
+          <div class="slot-headline">Slot já ocupado</div>
+          <p class="notice">Este horario já tem um pacote em Scheduled.</p>
         </div>
       </article>`;
     }
@@ -2950,17 +4489,19 @@ HTML = r"""<!doctype html>
           <div>
             ${channelPill}
             <div class="slot-headline">${mode === 'scheduled' ? 'Sem post agendado neste slot' : 'Sem post aprovado para este slot'}</div>
-            <p class="notice">${mode === 'scheduled' ? 'Quando agendares o pacote, aparece aqui.' : 'Aprova um LinkedIn em A Rever para preencher esta hora com os 3 canais.'}</p>
+            <p class="notice">${mode === 'scheduled' ? 'Quando agendares o pacote, aparece aqui.' : 'Aprova um LinkedIn em A Rever para preencher esta hora com os 4 canais.'}</p>
           </div>
         </article>`;
       }
       if (mode === 'scheduled') {
         const urlId = `url_${post.post_id}`;
-        return `<article class="card slot-card">
+        const issues = copyIssueList(post);
+        return `<article class="card slot-card ${issues.length ? 'has-copy-alert' : ''}">
           <div>
             ${channelPill}
-            <div class="slot-headline">${esc(post.title)}</div>
+            <div class="slot-headline">${esc(post.title)}${copyAlertDot(post)}</div>
             <div class="meta">${pill(post.scheduled_time || scheduledTime)}${post.buffer_post_id ? pill(post.buffer_post_id === 'manual_buffer_media_required' ? 'Buffer manual media' : 'Buffer ' + post.buffer_post_id) : ''}</div>
+            ${copyAlertLine(post)}
           </div>
           <div>
             <div class="field"><label>URL publicado</label><input id="${urlId}" placeholder="https://..."></div>
@@ -2973,11 +4514,13 @@ HTML = r"""<!doctype html>
           </div>
         </article>`;
       }
-      return `<article class="card slot-card">
+      const issues = copyIssueList(post);
+      return `<article class="card slot-card ${issues.length ? 'has-copy-alert' : ''}">
         <div>
           ${channelPill}
-          <div class="slot-headline">${esc(post.title)}</div>
+          <div class="slot-headline">${esc(post.title)}${copyAlertDot(post)}</div>
           <div class="meta">${pill(scheduledTime)}</div>
+          ${copyAlertLine(post)}
         </div>
         <div class="actions">
           <button onclick="openSocialPreview('${esc(post.post_id)}')">Preview</button>
@@ -2996,7 +4539,7 @@ HTML = r"""<!doctype html>
         <div class="panel">
           <h2>Scheduled: plano a 4 dias</h2>
           <p class="notice">Escolhe o dia para veres apenas os posts agendados nessa data. Quando publicares, cola o URL e marca como published.</p>
-          <div class="actions">
+          <div class="schedule-toolbar">
             ${scheduleDayPills(selectedDate)}
             <label class="schedule-date-inline">Data <input id="schedule_date" type="date" value="${selectedDate}" onchange="setScheduleDate(this.value)"></label>
             <span class="pill">${dayCount} posts neste dia</span>
@@ -3346,7 +4889,9 @@ HTML = r"""<!doctype html>
       renderPerformance();
       renderGrowth();
       renderLearnings();
+      showTab(initialTabId(), false);
     }
+    window.addEventListener('hashchange', () => showTab(initialTabId(), false));
     loadState();
   </script>
 </body>
@@ -3447,6 +4992,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
     def do_POST(self):  # noqa: N802 - BaseHTTPRequestHandler API.
         path = urlparse(self.path).path
         try:
+            _load_project_env()
             payload = self._read_json()
             if path == "/api/item-status":
                 item = update_item_status(
@@ -3517,6 +5063,32 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 if status == "rejected":
                     post = _reject_final_post(self.state, str(payload["post_id"]))
                 else:
+                    if status in {"approved_for_schedule", "scheduled"}:
+                        posts = {
+                            post.post_id: post
+                            for post in load_final_posts(self.state.final_posts_path)
+                        }
+                        current = posts.get(str(payload["post_id"]))
+                        if not current:
+                            raise ValueError(f"Final post not found: {payload['post_id']}")
+                        candidate = FinalPost(
+                            **{
+                                **asdict(current),
+                                "status": status,
+                                "scheduled_time": str(payload.get("scheduled_time", ""))
+                                or current.scheduled_time,
+                                "buffer_post_id": str(payload["buffer_post_id"])
+                                if "buffer_post_id" in payload
+                                else current.buffer_post_id,
+                                "published_url": str(payload.get("published_url", ""))
+                                or current.published_url,
+                                "image_path": str(payload.get("image_path", ""))
+                                or current.image_path,
+                                "image_status": str(payload.get("image_status", ""))
+                                or current.image_status,
+                            }
+                        )
+                        _validate_final_post_copy(candidate)
                     post = update_final_post_status(
                         self.state.final_posts_path,
                         post_id=str(payload["post_id"]),
@@ -3527,6 +5099,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
                         image_path=str(payload.get("image_path", "")),
                         image_status=str(payload.get("image_status", "")),
                     )
+                if post.channel == "site":
+                    _sync_static_site_feed(self.state)
                 self._send_json({"ok": True, "post": _to_dict(post)})
                 return
             if path == "/api/approve-final-package":
@@ -3610,12 +5184,32 @@ class DashboardHandler(BaseHTTPRequestHandler):
                     rewrite.body or post.body,
                     post.channel,
                 )
+                candidate = FinalPost(
+                    post_id=post.post_id,
+                    topic_id=post.topic_id,
+                    channel=post.channel,
+                    title=clean_title,
+                    body=clean_body,
+                    hashtags=_normalise_hashtags(rewrite.hashtags or post.hashtags, post.channel),
+                    image_prompt=post.image_prompt,
+                    source_urls=post.source_urls,
+                    image_path=post.image_path,
+                    image_variants=post.image_variants,
+                    image_status=post.image_status,
+                    editor_notes=post.editor_notes,
+                    status=post.status,
+                    scheduled_time=post.scheduled_time,
+                    buffer_post_id=post.buffer_post_id,
+                    published_url=post.published_url,
+                    created_at=post.created_at,
+                )
+                _validate_final_post_copy(candidate)
                 updated = update_final_post_copy(
                     self.state.final_posts_path,
                     post_id,
                     title=clean_title,
                     body=clean_body,
-                    hashtags=_normalise_hashtags(rewrite.hashtags or post.hashtags, post.channel),
+                    hashtags=candidate.hashtags,
                     notes=f"Feedback: {feedback}\nRewrite: {rewrite.rationale}",
                 )
                 self._send_json({"ok": True, "post": _to_dict(updated)})
@@ -3641,15 +5235,88 @@ class DashboardHandler(BaseHTTPRequestHandler):
                     hashtags=post.hashtags,
                     source_urls=post.source_urls,
                 )
+                candidate = FinalPost(
+                    post_id=post.post_id,
+                    topic_id=post.topic_id,
+                    channel=post.channel,
+                    title=polished["title"],
+                    body=polished["body"],
+                    hashtags=_normalise_hashtags(polished["hashtags"], post.channel),
+                    image_prompt=post.image_prompt,
+                    source_urls=post.source_urls,
+                    image_path=post.image_path,
+                    image_variants=post.image_variants,
+                    image_status=post.image_status,
+                    editor_notes=post.editor_notes,
+                    status=post.status,
+                    scheduled_time=post.scheduled_time,
+                    buffer_post_id=post.buffer_post_id,
+                    published_url=post.published_url,
+                    created_at=post.created_at,
+                )
+                _validate_final_post_copy(candidate)
                 updated = update_final_post_copy(
                     self.state.final_posts_path,
                     post_id,
                     title=polished["title"],
                     body=polished["body"],
-                    hashtags=_normalise_hashtags(polished["hashtags"], post.channel),
+                    hashtags=candidate.hashtags,
                     notes=polished["editor_notes"],
                 )
                 self._send_json({"ok": True, "post": _to_dict(updated)})
+                return
+            if path == "/api/image-prompt":
+                post_id = str(payload["post_id"])
+                posts = {post.post_id: post for post in load_final_posts(self.state.final_posts_path)}
+                post = posts.get(post_id)
+                if not post:
+                    raise ValueError(f"Final post not found: {post_id}")
+                group = str(payload.get("group", "")).strip()
+                if group not in {"instagram_x", "linkedin_site"}:
+                    group = _image_prompt_group_for_channel(post.channel)
+                self._send_json(
+                    {
+                        "ok": True,
+                        "prompt": _high_quality_image_prompt(
+                            post.title,
+                            post.body,
+                            group=group,
+                            visual_title=str(payload.get("visual_title", "")),
+                            include_x=_channel_enabled(self.state, "x"),
+                        ),
+                    }
+                )
+                return
+            if path == "/api/apply-visual-title":
+                posts = _apply_visual_title_to_topic_package(
+                    self.state,
+                    post_id=str(payload["post_id"]),
+                    visual_title=str(payload.get("visual_title", "")),
+                )
+                self._send_json({"ok": True, "posts": [_to_dict(post) for post in posts]})
+                return
+            if path == "/api/suggest-image-titles":
+                post_id = str(payload["post_id"])
+                posts = {post.post_id: post for post in load_final_posts(self.state.final_posts_path)}
+                post = posts.get(post_id)
+                if not post:
+                    raise ValueError(f"Final post not found: {post_id}")
+                provider = GeminiGroundedSearchProvider()
+                try:
+                    suggestions = (
+                        provider.suggest_visual_image_titles(
+                            title=post.title,
+                            body=post.body,
+                            source_urls=post.source_urls,
+                        )
+                        if provider.available
+                        else _fallback_visual_image_titles(post.title, post.body)
+                    )
+                except Exception:  # noqa: BLE001 - title suggestions should never block the editor.
+                    suggestions = _fallback_visual_image_titles(post.title, post.body)
+                if len(suggestions) < 2:
+                    suggestions = _fallback_visual_image_titles(post.title, post.body)
+                self._send_json({"ok": True, "suggestions": suggestions})
                 return
             if path == "/api/update-final-post-copy":
                 post_id = str(payload["post_id"])
@@ -3661,6 +5328,27 @@ class DashboardHandler(BaseHTTPRequestHandler):
                     str(payload.get("body", "")),
                     channel,
                 )
+                if current:
+                    candidate = FinalPost(
+                        post_id=current.post_id,
+                        topic_id=current.topic_id,
+                        channel=current.channel,
+                        title=clean_title,
+                        body=clean_body,
+                        hashtags=_normalise_hashtags(str(payload.get("hashtags", "")), channel),
+                        image_prompt=str(payload.get("image_prompt", "")),
+                        source_urls=current.source_urls,
+                        image_path=current.image_path,
+                        image_variants=current.image_variants,
+                        image_status=current.image_status,
+                        editor_notes=current.editor_notes,
+                        status=current.status,
+                        scheduled_time=current.scheduled_time,
+                        buffer_post_id=current.buffer_post_id,
+                        published_url=current.published_url,
+                        created_at=current.created_at,
+                    )
+                    _validate_final_post_copy(candidate)
                 updated = update_final_post_copy(
                     self.state.final_posts_path,
                     post_id,
@@ -3815,6 +5503,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 )
                 self._send_json({"ok": True, **result})
                 return
+            if path == "/api/reverify-verifying":
+                self._send_json({"ok": True, **_reverify_verifying_signals(self.state)})
+                return
             if path == "/api/reverify-signal":
                 signal = _find_signal(self.state.radar_signals_path, str(payload["signal_id"]))
                 verification = resolve_submitted_link(signal.url, thought=signal.topic_hint or signal.notes)
@@ -3876,3 +5567,4 @@ def serve_dashboard(data_dir: Path, host: str = "127.0.0.1", port: int = 8765) -
     server = ThreadingHTTPServer((host, port), DashboardHandler)
     print(f"PTIA dashboard running at http://{host}:{port}")
     server.serve_forever()
+

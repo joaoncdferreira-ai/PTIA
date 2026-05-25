@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/artigos/:slug",
+      "destination": "/article.html"
+    }
+  ]
+}

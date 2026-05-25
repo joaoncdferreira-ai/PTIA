@@ -1,0 +1,14 @@
+# PTIA.pt
+
+PTIA.pt é uma publicação portuguesa independente sobre Inteligência Artificial. Lê fontes originais, filtra ruído e publica contexto editorial para decisores, builders, empresas e profissionais em Portugal.
+
+## Conteúdo principal
+- Notícias curadas de IA com fonte original.
+- Ângulo PTIA: análise própria sobre impacto, execução, risco, adoção e relevância para Portugal.
+- Guias evergreen sobre IA para PME, AI Act, agentes de IA, ferramentas e uso seguro no trabalho.
+
+## URLs úteis
+- Homepage: https://ptia.pt
+- RSS: https://ptia.pt/rss.xml
+- Sitemap: https://ptia.pt/sitemap.xml
+- Newsletter: https://ptia.pt/#newsletter

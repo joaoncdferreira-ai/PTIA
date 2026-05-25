@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PTIA.pt - Leitura editorial</title>
+  <meta name="description" content="Leitura editorial PTIA com contexto, angulo portugues e fonte original.">
+  <link rel="canonical" href="https://ptia.pt/article.html">
+  <meta property="og:title" content="PTIA.pt - Leitura editorial">
+  <meta property="og:description" content="Leitura editorial PTIA com contexto, ângulo português e fonte original.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ptia.pt/article.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F3EEE2">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("ptia-theme");
+        document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#article">Saltar para o artigo</a>
+
+  <div class="dateline">
+    <div class="wrap">
+      <div class="dateline-left">
+        <span id="date-long">PTIA.pt</span>
+        <span class="issue">Leitura editorial</span>
+      </div>
+      <div class="dateline-right">
+        <span class="live"><span class="live-dot"></span> Lisboa · <span id="clock">00:00</span></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema" aria-pressed="false" id="theme-toggle">Escuro</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header news">
+    <div class="wrap header-grid">
+      <a class="brand-logo-link" href="./" aria-label="PTIA.pt - pagina inicial">
+        <img class="brand-logo" src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
+      </a>
+      <nav class="site-nav" aria-label="Navegacao principal">
+        <a href="./#hoje">Hoje</a>
+        <a href="./#mundo">Mundo</a>
+        <a href="./#portugal">Portugal</a>
+        <a href="./#builders">Builders</a>
+        <a href="./#newsletter">Weekly</a>
+      </nav>
+      <a class="header-cta" href="./#hoje">Voltar <span aria-hidden="true">-></span></a>
+    </div>
+  </header>
+
+  <main id="article" class="article-main">
+    <section class="article-loading wrap" id="article-loading">
+      <p class="eyebrow">PTIA</p>
+      <h1>A carregar leitura...</h1>
+    </section>
+    <article class="article-detail hidden" id="article-detail"></article>
+  </main>
+
+  <footer id="arquivo" class="footer">
+    <div class="wrap">
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> PTIA · Curadoria independente · Lisboa</span>
+        <span>Fonte original sempre no fim do artigo</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="article.js?v=20260524-2201"></script>
+</body>
+</html>
