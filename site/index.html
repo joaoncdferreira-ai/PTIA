@@ -62,7 +62,24 @@
         <a href="#regulacao">Regulação</a>
         <a href="#mapa">Secções</a>
       </nav>
-      <a class="header-cta" href="#newsletter">Weekly <span aria-hidden="true">-></span></a>
+      <div class="header-actions">
+        <a class="social-icon" href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+        </a>
+        <a class="social-icon" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6.5 9.5v9"></path>
+            <path d="M6.5 6.2v.1"></path>
+            <path d="M11 18.5v-9"></path>
+            <path d="M11 13.2c0-2.2 1.3-3.9 3.6-3.9 2 0 3 1.3 3 3.6v5.6"></path>
+          </svg>
+        </a>
+        <a class="header-cta" href="#newsletter">Weekly <span aria-hidden="true">-></span></a>
+      </div>
     </div>
   </header>
 
@@ -138,8 +155,8 @@
       <div class="wrap">
         <header class="section-head">
           <p class="section-index">Guias evergreen</p>
-          <h2>ConteÃºdo que continua a trabalhar depois do post.</h2>
-          <p class="section-meta">SEO Â· partilha Â· newsletter</p>
+          <h2>Conteúdo que continua a trabalhar depois do post.</h2>
+          <p class="section-meta">SEO · partilha · newsletter</p>
         </header>
         <div id="guides-grid" class="guides-grid"></div>
       </div>
@@ -163,9 +180,27 @@
             <span>sexta · 8h00</span>
           </div>
           <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
-          <div class="newsletter-embed" aria-label="Subscrever PTIA Weekly">
-            <div class="ml-embedded" data-form="2PJcGz"></div>
-          </div>
+          <form
+            id="ptia-newsletter-form"
+            class="newsletter-form"
+            action="https://assets.mailerlite.com/jsonp/2352121/forms/187572192871974329/subscribe"
+            method="post"
+            target="ptia-newsletter-frame"
+          >
+            <label>
+              <span>Email</span>
+              <input type="email" name="fields[email]" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
+            </label>
+            <label>
+              <span>Nome</span>
+              <input type="text" name="fields[name]" placeholder="Nome" autocomplete="given-name">
+            </label>
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit">Subscrever</button>
+            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+          </form>
+          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
           <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
         </div>
       </div>
@@ -196,6 +231,23 @@
         <div class="footer-brand">
           <img src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
           <p>Curadoria, contexto e interpretação própria. Sempre com fonte original.</p>
+          <div class="footer-social" aria-label="Redes sociais PTIA">
+            <a class="social-icon" href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1"></circle>
+              </svg>
+            </a>
+            <a class="social-icon" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6.5 9.5v9"></path>
+                <path d="M6.5 6.2v.1"></path>
+                <path d="M11 18.5v-9"></path>
+                <path d="M11 13.2c0-2.2 1.3-3.9 3.6-3.9 2 0 3 1.3 3 3.6v5.6"></path>
+              </svg>
+            </a>
+          </div>
           <p class="editor-line">Editor <em>João Ferreira</em></p>
         </div>
         <nav aria-label="Edição"><h3>Edição</h3><a href="#hoje">Hoje em IA</a><a href="#arquivo">Arquivo</a><a href="#newsletter">Weekly</a><a href="#metodo">Método</a></nav>
@@ -209,6 +261,6 @@
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=20260524-2230"></script>
 </body>
 </html>
