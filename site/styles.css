@@ -808,6 +808,21 @@ button, input { font: inherit; }
   font-weight: 400;
 }
 .section-meta { text-align: right; }
+.section-head-inline {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: center;
+}
+.section-head-inline h2 {
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(42px, 4.6vw, 58px);
+  line-height: 1;
+}
+.section-head-inline .section-index,
+.section-head-inline .section-meta {
+  white-space: nowrap;
+}
 .filterbar {
   display: flex;
   flex-wrap: wrap;
@@ -1820,7 +1835,11 @@ button, input { font: inherit; }
     overflow-wrap: anywhere;
   }
   .signal-strip, .weekly-stats { grid-template-columns: repeat(2, 1fr); }
-  .section-head { grid-template-columns: 1fr; gap: 14px; }
+  .section-head,
+  .section-head-inline { grid-template-columns: 1fr; gap: 14px; }
+  .section-head-inline h2 { white-space: normal; }
+  .section-head-inline .section-index,
+  .section-head-inline .section-meta { white-space: normal; }
   .section-meta { text-align: left; }
   .filterbar { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 18px; }
   .filterbar button { min-width: max-content; }
