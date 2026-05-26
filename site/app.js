@@ -97,31 +97,36 @@ PTIA_DATA.guides = [
     title: "IA para PME: por onde começar sem desperdiçar dinheiro",
     intent: "Empresas",
     blurb: "Um guia prático para escolher casos de uso pequenos, medir impacto e evitar pilotos que nunca chegam a operação.",
-    search: "ia para pme portugal"
+    search: "ia para pme portugal",
+    url: "guias/ia-para-pme-portugal/"
   },
   {
     title: "O que é um agente de IA e quando é que faz sentido usar",
     intent: "Builders",
     blurb: "A diferença entre chatbot, automação e agente. Onde há valor real, onde há risco e que perguntas fazer antes de construir.",
-    search: "agentes de ia o que são"
+    search: "agentes de ia o que são",
+    url: "guias/agentes-de-ia-empresas/"
   },
   {
     title: "AI Act para empresas portuguesas: o mínimo que importa saber",
     intent: "Regulação",
     blurb: "Como mapear casos de uso, risco, fornecedores e responsabilidades antes de comprar ou lançar sistemas de IA.",
-    search: "ai act portugal empresas"
+    search: "ai act portugal empresas",
+    url: "guias/ai-act-empresas-portuguesas/"
   },
   {
     title: "Como usar ChatGPT no trabalho sem expor dados sensíveis",
     intent: "Trabalho",
     blurb: "Boas práticas para equipas, gestores e profissionais que querem produtividade sem criar risco desnecessário.",
-    search: "usar chatgpt no trabalho dados sensiveis"
+    search: "usar chatgpt no trabalho dados sensiveis",
+    url: "guias/chatgpt-no-trabalho-dados-sensiveis/"
   },
   {
     title: "Ferramentas de IA para empresas: como escolher sem seguir hype",
     intent: "Decisão",
     blurb: "Critérios de escolha: integração, dados, custo total, segurança, ownership e impacto mensurável.",
-    search: "ferramentas de ia para empresas"
+    search: "ferramentas de ia para empresas",
+    url: "guias/ferramentas-de-ia-para-empresas/"
   }
 ];
 
@@ -447,12 +452,12 @@ function renderGuides() {
   const grid = document.getElementById("guides-grid");
   if (!grid) return;
   grid.innerHTML = PTIA_DATA.guides.map((guide, index) => `
-    <article class="guide-card">
+    <a class="guide-card" href="${escapeHtml(guide.url || "#")}">
       <div class="guide-top"><span>${String(index + 1).padStart(2, "0")}</span><em>${escapeHtml(guide.intent)}</em></div>
       <h3>${escapeHtml(guide.title)}</h3>
       <p>${escapeHtml(guide.blurb)}</p>
       <footer>Pesquisa alvo: ${escapeHtml(guide.search)}</footer>
-    </article>
+    </a>
   `).join("");
 }
 

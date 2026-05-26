@@ -12,3 +12,8 @@ PTIA.pt é uma publicação portuguesa independente sobre Inteligência Artifici
 - RSS: https://ptia.pt/rss.xml
 - Sitemap: https://ptia.pt/sitemap.xml
 - Newsletter: https://ptia.pt/#newsletter
+- Guia IA para PME em Portugal: https://ptia.pt/guias/ia-para-pme-portugal/
+- Guia AI Act para empresas portuguesas: https://ptia.pt/guias/ai-act-empresas-portuguesas/
+- Guia agentes de IA para empresas: https://ptia.pt/guias/agentes-de-ia-empresas/
+- Guia ChatGPT no trabalho e dados sensíveis: https://ptia.pt/guias/chatgpt-no-trabalho-dados-sensiveis/
+- Guia ferramentas de IA para empresas: https://ptia.pt/guias/ferramentas-de-ia-para-empresas/
