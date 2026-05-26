@@ -262,7 +262,7 @@ function renderFrontPage() {
         <span>${escapeHtml(lead.time || "hoje")}</span>
         <em>Leitura PTIA</em>
       </div>
-      <h1><a href="${escapeHtml(href)}" ${linkAttrs(href)}>${escapeHtml(lead.title)}</a></h1>
+      <h2><a href="${escapeHtml(href)}" ${linkAttrs(href)}>${escapeHtml(lead.title)}</a></h2>
       <p class="lead-dek">${escapeHtml(lead.pt)}</p>
       <footer class="lead-foot">
         <span class="byline-avatar">J</span>
