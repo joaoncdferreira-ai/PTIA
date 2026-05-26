@@ -7,7 +7,13 @@
   ],
   "channels": {
     "instagram": "6a0702ce090476fb9921c9e5",
-    "linkedin": "6a07030a090476fb9921cacc"
+    "linkedin": "6a07030a090476fb9921cacc",
+    "x": "6a1562efc687a22dd428f8ba"
+  },
+  "disabled_channels": [],
+  "disabled_reasons": {},
+  "compliance_notes": {
+    "x": "Canal reativado para preparacao/publicacao moderada. Evitar duplicacao, automacao agressiva, hashtags em excesso e qualquer comportamento que pareca evasao de suspensao."
   },
   "all_channels": [
     {
@@ -21,7 +27,13 @@
       "name": "ptia-portugal",
       "display_name": "PTIA Portugal",
       "service": "linkedin"
+    },
+    {
+      "id": "6a1562efc687a22dd428f8ba",
+      "name": "PTIAPTPT",
+      "display_name": "PTIAPTPT",
+      "service": "twitter"
     }
   ],
-  "updated_at": "2026-05-19T10:41:42+00:00"
+  "updated_at": "2026-05-26T09:43:49+00:00"
 }
