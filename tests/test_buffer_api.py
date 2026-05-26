@@ -79,6 +79,45 @@ class BufferClientTests(unittest.TestCase):
         )
         self.assertEqual(variables["input"]["metadata"]["instagram"]["type"], "post")
         self.assertIs(variables["input"]["metadata"]["instagram"]["shouldShareToFeed"], True)
+        self.assertEqual(variables["input"]["dueAt"], "2026-05-15T08:00:00.000Z")
+
+    def test_create_post_supports_multiple_image_assets(self):
+        client = BufferClient(api_key="test")
+        with patch.object(
+            client,
+            "_graphql",
+            return_value={
+                "data": {
+                    "createPost": {
+                        "post": {
+                            "id": "post_1",
+                            "text": "Carousel",
+                            "dueAt": "2026-05-15T09:00:00+01:00",
+                        }
+                    }
+                }
+            },
+        ) as graphql:
+            post = client.create_scheduled_post(
+                channel_id="chan_1",
+                text="Carousel",
+                due_at="2026-05-15T09:00:00+01:00",
+                image_urls=[
+                    "https://ptia.pt/assets/one.jpg",
+                    "https://ptia.pt/assets/two.jpg",
+                ],
+                post_type="post",
+            )
+
+        self.assertEqual(post.id, "post_1")
+        variables = graphql.call_args.args[1]
+        self.assertEqual(
+            [asset["image"]["url"] for asset in variables["input"]["assets"]],
+            [
+                "https://ptia.pt/assets/one.jpg",
+                "https://ptia.pt/assets/two.jpg",
+            ],
+        )
 
     def test_parses_edited_post_with_asset(self):
         client = BufferClient(api_key="test")
@@ -111,6 +150,42 @@ class BufferClientTests(unittest.TestCase):
             variables["input"]["assets"][0]["image"]["url"],
             "https://ptia.pt/assets/image.jpg",
         )
+        self.assertEqual(variables["input"]["dueAt"], "2026-05-15T08:00:00.000Z")
+
+    def test_get_post_reads_real_buffer_state(self):
+        client = BufferClient(api_key="test")
+        with patch.object(
+            client,
+            "_graphql",
+            return_value={
+                "data": {
+                    "post": {
+                        "id": "post_1",
+                        "status": "scheduled",
+                        "dueAt": "2026-05-15T08:00:00.000Z",
+                        "text": "Real Buffer text",
+                        "channelId": "chan_1",
+                        "channelService": "linkedin",
+                        "externalLink": "",
+                        "assets": [
+                            {
+                                "source": "https://ptia.pt/assets/image.jpg",
+                                "thumbnail": "",
+                            }
+                        ],
+                    }
+                }
+            },
+        ) as graphql:
+            post = client.get_post("post_1")
+
+        self.assertEqual(post.id, "post_1")
+        self.assertEqual(post.status, "scheduled")
+        self.assertEqual(post.text, "Real Buffer text")
+        self.assertEqual(post.channel_service, "linkedin")
+        self.assertEqual(post.asset_sources, ["https://ptia.pt/assets/image.jpg"])
+        variables = graphql.call_args.args[1]
+        self.assertEqual(variables["input"]["id"], "post_1")
 
 
 if __name__ == "__main__":

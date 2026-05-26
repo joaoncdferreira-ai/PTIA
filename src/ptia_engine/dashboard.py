@@ -2393,7 +2393,7 @@ def _site_page_shell(title: str, description: str, body: str, *, canonical_url: 
 def _write_static_article_pages(state: DashboardState, payload: dict) -> list[str]:
     base_url = _site_public_base_url()
     written_urls = []
-    posts = [post for post in payload.get("posts", []) if _is_public_site_post(post)]
+    posts = payload.get("posts", [])
     for post in posts:
         article_path = str(post.get("article_url") or "").strip("/")
         if not article_path:
@@ -2496,7 +2496,8 @@ def _write_static_article_pages(state: DashboardState, payload: dict) -> list[st
             ),
             encoding="utf-8",
         )
-        written_urls.append(public_url)
+        if _is_public_site_post(post):
+            written_urls.append(public_url)
     return written_urls
 
 
@@ -2558,7 +2559,12 @@ def _write_static_discovery_files(state: DashboardState, payload: dict, article_
         f"- Homepage: {base_url}\n"
         f"- RSS: {base_url}/rss.xml\n"
         f"- Sitemap: {base_url}/sitemap.xml\n"
-        f"- Newsletter: {base_url}/#newsletter\n",
+        f"- Newsletter: {base_url}/#newsletter\n"
+        f"- Guia IA para PME em Portugal: {base_url}/guias/ia-para-pme-portugal/\n"
+        f"- Guia AI Act para empresas portuguesas: {base_url}/guias/ai-act-empresas-portuguesas/\n"
+        f"- Guia agentes de IA para empresas: {base_url}/guias/agentes-de-ia-empresas/\n"
+        f"- Guia ChatGPT no trabalho e dados sensíveis: {base_url}/guias/chatgpt-no-trabalho-dados-sensiveis/\n"
+        f"- Guia ferramentas de IA para empresas: {base_url}/guias/ferramentas-de-ia-para-empresas/\n",
         encoding="utf-8",
     )
 

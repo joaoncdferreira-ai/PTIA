@@ -4,8 +4,10 @@ import json
 import os
 import urllib.request
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from typing import Any
 from urllib.error import HTTPError
+from zoneinfo import ZoneInfo
 
 from ptia_engine.http_client import urlopen_direct
 
@@ -34,8 +36,34 @@ class BufferPostResult:
     due_at: str = ""
 
 
+@dataclass(slots=True)
+class BufferPostDetails:
+    id: str
+    text: str = ""
+    status: str = ""
+    due_at: str = ""
+    channel_id: str = ""
+    channel_service: str = ""
+    external_link: str = ""
+    asset_sources: list[str] | None = None
+
+
 class BufferAPIError(RuntimeError):
     pass
+
+
+def _buffer_due_at(due_at: str) -> str:
+    raw = due_at.strip()
+    if not raw:
+        return raw
+    try:
+        parsed = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return raw
+    if parsed.tzinfo is None:
+        local_tz = ZoneInfo(os.getenv("BUFFER_LOCAL_TIMEZONE", "Europe/Lisbon"))
+        parsed = parsed.replace(tzinfo=local_tz)
+    return parsed.astimezone(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
 
 
 class BufferClient:
@@ -100,6 +128,49 @@ class BufferClient:
             channels.extend(self.channels(organization.id))
         return organizations, channels
 
+    def get_post(self, post_id: str) -> BufferPostDetails:
+        payload = self._graphql(
+            """
+            query BufferPost($input: PostInput!) {
+              post(input: $input) {
+                id
+                status
+                dueAt
+                text
+                channelId
+                channelService
+                externalLink
+                assets {
+                  id
+                  type
+                  source
+                  thumbnail
+                  mimeType
+                }
+              }
+            }
+            """,
+            {"input": {"id": post_id}},
+        )
+        post = payload.get("data", {}).get("post") or {}
+        if not post.get("id"):
+            raise BufferAPIError(f"Buffer did not return a post: {payload}")
+        assets = post.get("assets") or []
+        return BufferPostDetails(
+            id=str(post.get("id", "")),
+            text=str(post.get("text", "")),
+            status=str(post.get("status", "")),
+            due_at=str(post.get("dueAt", "")),
+            channel_id=str(post.get("channelId", "")),
+            channel_service=str(post.get("channelService", "")),
+            external_link=str(post.get("externalLink", "")),
+            asset_sources=[
+                str(asset.get("source") or asset.get("thumbnail") or "")
+                for asset in assets
+                if asset.get("source") or asset.get("thumbnail")
+            ],
+        )
+
     def create_scheduled_post(
         self,
         *,
@@ -107,6 +178,7 @@ class BufferClient:
         text: str,
         due_at: str,
         image_url: str = "",
+        image_urls: list[str] | None = None,
         post_type: str = "",
         scheduling_type: str = "automatic",
     ) -> BufferPostResult:
@@ -115,7 +187,7 @@ class BufferClient:
             "channelId": channel_id,
             "schedulingType": scheduling_type,
             "mode": "customScheduled",
-            "dueAt": due_at,
+            "dueAt": _buffer_due_at(due_at),
         }
         if post_type:
             input_payload["metadata"] = {
@@ -124,8 +196,11 @@ class BufferClient:
                     "shouldShareToFeed": True,
                 }
             }
-        if image_url:
-            input_payload["assets"] = [{"image": {"url": image_url}}]
+        asset_urls = [url for url in (image_urls or []) if url]
+        if image_url and not asset_urls:
+            asset_urls = [image_url]
+        if asset_urls:
+            input_payload["assets"] = [{"image": {"url": url}} for url in asset_urls]
         payload = self._graphql(
             """
             mutation CreateScheduledPost($input: CreatePostInput!) {
@@ -172,7 +247,7 @@ class BufferClient:
             "text": text,
             "schedulingType": scheduling_type,
             "mode": "customScheduled",
-            "dueAt": due_at,
+            "dueAt": _buffer_due_at(due_at),
         }
         if post_type:
             input_payload["metadata"] = {
