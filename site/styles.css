@@ -310,7 +310,7 @@ button, input { font: inherit; }
   grid-template-rows: auto auto;
   gap: 0 40px;
   align-items: center;
-  padding: 44px 0 0;
+  padding: 28px 0 0;
   border-bottom: 1px solid var(--rule-2);
 }
 .editorial-identity h1 {
@@ -363,8 +363,8 @@ button, input { font: inherit; }
 }
 .editorial-identity .crumbs {
   grid-column: 1 / -1;
-  padding: 24px 0 22px;
-  margin-top: 30px;
+  padding: 18px 0 18px;
+  margin-top: 28px;
   border-top: 1px solid var(--rule-2);
   border-bottom: 0;
 }
