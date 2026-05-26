@@ -1581,6 +1581,18 @@ button, input { font: inherit; }
   padding: 72px 0 40px;
   background: var(--bg);
 }
+[data-theme="dark"] .footer,
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer a,
+[data-theme="dark"] .footer h3,
+[data-theme="dark"] .footer-bottom,
+[data-theme="dark"] .editor-line,
+[data-theme="dark"] .editor-line em {
+  color: var(--paper-on-dark) !important;
+}
+[data-theme="dark"] .footer a:hover {
+  color: var(--signal) !important;
+}
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
