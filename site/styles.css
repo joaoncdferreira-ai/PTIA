@@ -306,22 +306,22 @@ button, input { font: inherit; }
 .frontpage { padding: 30px 0 56px; }
 .editorial-identity {
   display: grid;
-  grid-template-columns: minmax(320px, 0.75fr) minmax(420px, 1fr);
-  gap: 40px;
+  grid-template-columns: minmax(320px, 0.72fr) minmax(520px, 1fr);
+  gap: 28px 40px;
   align-items: center;
-  padding: 18px 0 30px;
+  padding: 18px 0 0;
   border-bottom: 1px solid var(--rule-2);
 }
 .editorial-identity h1 {
   margin: 0;
-  max-width: 15ch;
+  max-width: 14ch;
   font-family: var(--serif);
-  font-size: clamp(38px, 4.8vw, 58px);
+  font-size: clamp(32px, 3.7vw, 46px);
   font-weight: 400;
   line-height: 1.02;
 }
 .editorial-identity h1 em {
-  display: inline;
+  display: block;
   color: var(--signal);
   font-style: italic;
 }
@@ -351,6 +351,12 @@ button, input { font: inherit; }
   height: 6px;
   border-radius: 50%;
   background: var(--signal);
+}
+.editorial-identity .crumbs {
+  grid-column: 1 / -1;
+  padding: 18px 0 20px;
+  border-top: 1px solid var(--rule-2);
+  border-bottom: 0;
 }
 .crumbs {
   display: flex;
@@ -1878,7 +1884,7 @@ button, input { font: inherit; }
   .ticker-line { height: 34px; animation-duration: 40s; }
   .frontpage { padding: 22px 0 44px; }
   .editorial-identity {
-    padding: 10px 0 22px;
+    padding: 10px 0 0;
     gap: 18px;
   }
   .editorial-identity h1 {
@@ -1892,6 +1898,9 @@ button, input { font: inherit; }
   .editorial-identity li {
     font-size: 9px;
     white-space: normal;
+  }
+  .editorial-identity .crumbs {
+    padding: 16px 0 18px;
   }
   .crumbs { display: grid; gap: 8px; }
   .lead-card .cover { height: 240px; }
