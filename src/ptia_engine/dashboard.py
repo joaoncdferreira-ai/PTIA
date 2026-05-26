@@ -1190,6 +1190,78 @@ def _x_post_body(summary: str, why_it_matters: str, source_line: str, hashtags: 
     return f"{copy}{suffix}".strip()
 
 
+def _ensure_x_post_for_topic(
+    state: DashboardState,
+    topic_id: str,
+    *,
+    target_status: str = "needs_final_review",
+) -> FinalPost | None:
+    """Backfill X for packages created while the channel was disabled."""
+    if not _channel_enabled(state, "x"):
+        return None
+    posts = load_final_posts(state.final_posts_path)
+    existing = next(
+        (
+            post
+            for post in posts
+            if post.topic_id == topic_id
+            and post.channel == "x"
+        ),
+        None,
+    )
+    if existing:
+        return existing
+    source = next(
+        (
+            post
+            for channel in ("instagram", "linkedin", "site")
+            for post in posts
+            if post.topic_id == topic_id
+            and post.channel == channel
+            and post.status in {"needs_final_review", "approved_for_schedule"}
+        ),
+        None,
+    )
+    if not source:
+        return None
+    source_url = source.source_urls[0] if source.source_urls else ""
+    source_line = f"Fonte: {source_url or 'fonte original'}"
+    body_without_source = re.sub(
+        r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$",
+        "",
+        source.body or "",
+    ).strip()
+    body_without_source = re.sub(r"https?://\S+", "", body_without_source).strip()
+    summary = _first_sentence(body_without_source, source.title)
+    x_hashtags = _normalise_hashtags(source.hashtags or "#IA #PTIA", "x")
+    created = add_final_post(
+        state.final_posts_path,
+        topic_id=topic_id,
+        channel="x",
+        title=source.title,
+        body=_x_post_body(summary, "", source_line, x_hashtags),
+        hashtags=x_hashtags,
+        image_prompt=_high_quality_image_prompt(
+            source.title,
+            body_without_source or source.body,
+            group="instagram_x",
+            include_x=True,
+        ),
+        source_urls=source.source_urls,
+        image_path=source.image_path,
+        image_variants=source.image_variants,
+        editor_notes="X criado automaticamente porque o canal voltou a estar ativo.",
+    )
+    if target_status == "approved_for_schedule":
+        _validate_final_post_copy(created)
+        return update_final_post_status(
+            state.final_posts_path,
+            created.post_id,
+            "approved_for_schedule",
+        )
+    return created
+
+
 def _load_sources(path: Path) -> list[Source]:
     if not path.exists():
         return []
@@ -1966,6 +2038,14 @@ def _sync_topic_posts_from_reference(
     reference = next((post for post in posts if post.post_id == reference_post_id), None)
     if not reference:
         raise ValueError(f"Final post not found: {reference_post_id}")
+    if reference.status in {"needs_final_review", "approved_for_schedule"}:
+        _ensure_x_post_for_topic(
+            state,
+            reference.topic_id,
+            target_status=reference.status,
+        )
+        posts = load_final_posts(state.final_posts_path)
+        reference = next((post for post in posts if post.post_id == reference_post_id), reference)
     siblings = [
         post
         for post in posts
@@ -2047,6 +2127,8 @@ def _approve_final_package(state: DashboardState, reference_post_id: str) -> lis
     reference = next((post for post in posts if post.post_id == reference_post_id), None)
     if not reference:
         raise ValueError(f"Final post not found: {reference_post_id}")
+    _ensure_x_post_for_topic(state, reference.topic_id)
+    posts = load_final_posts(state.final_posts_path)
     package_posts = [
         post
         for post in posts
@@ -2076,6 +2158,11 @@ def _package_posts_for_topic(state: DashboardState, topic_id: str, status: str) 
 
 
 def _schedule_final_package(state: DashboardState, topic_id: str, scheduled_time: str) -> list:
+    _ensure_x_post_for_topic(
+        state,
+        topic_id,
+        target_status="approved_for_schedule",
+    )
     posts = [
         post
         for post in _package_posts_for_topic(state, topic_id, "approved_for_schedule")
@@ -3570,7 +3657,7 @@ HTML = r"""<!doctype html>
               <button class="source-button" onclick="runSourceScout('rundown')">The Rundown AI <span>Usa como descoberta; procura a fonte original antes de aprovar.</span></button>
               <button class="source-button" onclick="runSourceScout('portugal')">Radar Portugal <span>Procura IA em Portugal: governo, empresas, universidades e regulação.</span></button>
             </div>
-            <p class="notice" style="color:#cbd5e1">3. Revês LinkedIn, Instagram e Site.</p>
+            <p class="notice" style="color:#cbd5e1">3. Revês LinkedIn, Instagram, X e Site.</p>
             <p class="notice" style="color:#cbd5e1">4. Defines hora em Final OK e marcas scheduled.</p>
             <button class="primary" onclick="runGeminiScout()">Gemini Scout hoje</button>
           </aside>
@@ -3578,7 +3665,7 @@ HTML = r"""<!doctype html>
         <div class="grid">
           <div class="panel"><h2>Verifying</h2><div class="meta">${pill(c.verifying || 0)}</div><p class="notice">Links em pesquisa de fonte credível.</p><div class="actions"><button onclick="showTab('verifying_tab')">Abrir</button></div></div>
           <div class="panel"><h2>Verified Selection</h2><div class="meta">${pill(c.verified_selection || 0)}</div><p class="notice">Escolhe 3-4 por dia para criar pacote final.</p><div class="actions"><button onclick="showTab('verified_tab')">Selecionar</button></div></div>
-          <div class="panel"><h2>A Rever</h2><div class="meta">${pill(c.a_rever || 0)}</div><p class="notice">Final drafts por Instagram, LinkedIn e Site.</p><div class="actions"><button onclick="showTab('final_draft_pack')">Rever</button></div></div>
+          <div class="panel"><h2>A Rever</h2><div class="meta">${pill(c.a_rever || 0)}</div><p class="notice">Final drafts por Instagram, LinkedIn, X e Site.</p><div class="actions"><button onclick="showTab('final_draft_pack')">Rever</button></div></div>
         </div>
         <div class="panel">
           <h2>Radar inbox</h2>
@@ -3975,7 +4062,7 @@ HTML = r"""<!doctype html>
       const image = imagePath
         ? `<img class="social-image" src="${assetPath(imagePath)}" alt="">`
         : `<div class="social-image" style="display:grid;place-items:center;color:#777;font-size:13px;">Sem imagem final</div>`;
-      const sub = isLinkedin ? 'PTIA Portugal · LinkedIn' : isX ? '@PTIAPT · X' : 'ptia.pt · Instagram';
+      const sub = isLinkedin ? 'PTIA Portugal · LinkedIn' : isX ? '@PTIAPTPT · X' : 'ptia.pt · Instagram';
       const actions = isLinkedin ? 'Gosto · Comentar · Repostar · Enviar' : isX ? 'Responder · Repostar · Gostar · Guardar' : 'Gosto · Comentar · Enviar · Guardar';
       return `<article class="social-preview ${typeClass}">
         <div class="social-header">
@@ -4355,6 +4442,7 @@ HTML = r"""<!doctype html>
       return {
         instagram: posts.filter(post => post.channel === 'instagram'),
         linkedin: posts.filter(post => post.channel === 'linkedin'),
+        x: posts.filter(post => post.channel === 'x'),
         site: posts.filter(post => post.channel === 'site')
       };
     }
@@ -4452,7 +4540,7 @@ HTML = r"""<!doctype html>
       return `<div class="schedule-board">${rows}</div>`;
     }
     function packageSlotTime(packageRow) {
-      const post = packageRow?.posts?.linkedin || packageRow?.posts?.instagram || packageRow?.posts?.site;
+      const post = packageRow?.posts?.linkedin || packageRow?.posts?.x || packageRow?.posts?.instagram || packageRow?.posts?.site;
       return (post?.scheduled_time || '').slice(11, 16);
     }
     function renderScheduledBoard(posts, slots) {
