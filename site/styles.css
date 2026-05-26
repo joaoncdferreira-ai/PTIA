@@ -306,22 +306,24 @@ button, input { font: inherit; }
 .frontpage { padding: 30px 0 56px; }
 .editorial-identity {
   display: grid;
-  grid-template-columns: minmax(320px, 0.72fr) minmax(520px, 1fr);
-  gap: 28px 40px;
+  grid-template-columns: minmax(560px, 1fr) auto;
+  grid-template-rows: auto auto;
+  gap: 0 40px;
   align-items: center;
-  padding: 18px 0 0;
+  padding: 44px 0 0;
   border-bottom: 1px solid var(--rule-2);
 }
 .editorial-identity h1 {
   margin: 0;
-  max-width: 14ch;
+  max-width: none;
   font-family: var(--serif);
-  font-size: clamp(32px, 3.7vw, 46px);
+  font-size: clamp(32px, 3.4vw, 48px);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1;
+  white-space: nowrap;
 }
 .editorial-identity h1 em {
-  display: block;
+  display: inline;
   color: var(--signal);
   font-style: italic;
 }
@@ -354,7 +356,8 @@ button, input { font: inherit; }
 }
 .editorial-identity .crumbs {
   grid-column: 1 / -1;
-  padding: 18px 0 20px;
+  padding: 24px 0 22px;
+  margin-top: 30px;
   border-top: 1px solid var(--rule-2);
   border-bottom: 0;
 }
@@ -1855,9 +1858,13 @@ button, input { font: inherit; }
   .hero-grid, .front-grid, .map-head, .manifesto-grid, .newsletter-grid, .about-grid, .github-grid { grid-template-columns: 1fr; }
   .editorial-identity {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
-  .editorial-identity h1 { max-width: 18ch; }
+  .editorial-identity h1 {
+    max-width: 18ch;
+    white-space: normal;
+  }
+  .editorial-identity h1 em { display: block; }
   .editorial-identity ul { justify-content: flex-start; }
   .article-shell { grid-template-columns: 1fr; }
   .article-side { position: static; }
@@ -1890,6 +1897,7 @@ button, input { font: inherit; }
   .editorial-identity h1 {
     max-width: 12ch;
     font-size: clamp(34px, 12vw, 48px);
+    white-space: normal;
   }
   .editorial-identity ul {
     display: grid;
