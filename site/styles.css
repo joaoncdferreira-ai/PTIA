@@ -255,6 +255,10 @@ button, input { font: inherit; }
   background: var(--ink);
   color: var(--paper-on-dark);
 }
+[data-theme="dark"] .breaking {
+  background: #0B0906;
+  color: var(--paper-on-dark);
+}
 .breaking-label {
   display: inline-flex;
   align-items: center;
@@ -291,12 +295,18 @@ button, input { font: inherit; }
   font-size: 14px;
   white-space: nowrap;
 }
+[data-theme="dark"] .ticker-line a {
+  color: var(--paper-on-dark);
+}
 .ticker-line span {
   color: color-mix(in srgb, var(--signal) 80%, #fff);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+[data-theme="dark"] .ticker-line span {
+  color: var(--signal);
 }
 @keyframes ticker {
   from { transform: translate3d(0, 0, 0); }
