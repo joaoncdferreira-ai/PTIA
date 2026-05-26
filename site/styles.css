@@ -320,10 +320,14 @@ button, input { font: inherit; }
   font-size: clamp(32px, 3.4vw, 48px);
   font-weight: 400;
   line-height: 1;
+  white-space: normal;
+}
+.editorial-identity h1 span,
+.editorial-identity h1 em {
+  display: block;
   white-space: nowrap;
 }
 .editorial-identity h1 em {
-  display: inline;
   color: var(--signal);
   font-style: italic;
 }
@@ -1864,7 +1868,6 @@ button, input { font: inherit; }
     max-width: 18ch;
     white-space: normal;
   }
-  .editorial-identity h1 em { display: block; }
   .editorial-identity ul { justify-content: flex-start; }
   .article-shell { grid-template-columns: 1fr; }
   .article-side { position: static; }
