@@ -385,7 +385,7 @@ function renderMap() {
       <div class="map-top"><em>${String(index + 1).padStart(2, "0")}</em><span><strong>${counts[section.name] || 0}</strong> entradas</span></div>
       <h3>${escapeHtml(section.name)}</h3>
       <p>${escapeHtml(section.blurb)}</p>
-      <a href="#hoje">Abrir secção →</a>
+      <a href="#hoje" onclick="selectCategory('${escapeHtml(section.name)}')">Abrir secção →</a>
     </article>
   `).join("");
 }
@@ -635,3 +635,42 @@ setupNewsletterForm();
 setupSignalViz();
 hydrateFromFeedIfAvailable();
 setInterval(hydrateFromFeedIfAvailable, 60000);
+
+// Navegação Dinâmica de Categorias (SPA Routing)
+window.selectCategory = function(name) {
+  activeFilter = name;
+  renderFilters();
+  renderArticles();
+  document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+};
+
+function handleHashChange() {
+  const hash = window.location.hash.substring(1).toLowerCase();
+  const sectionMap = {
+    "mundo": "Mundo",
+    "portugal": "Portugal",
+    "builders": "Builders",
+    "regulacao": "Regulação",
+    "historias-reais": "Histórias reais",
+    "previsoes-futuras": "Previsões Futuras"
+  };
+  const categoryName = sectionMap[hash];
+  if (categoryName) {
+    activeFilter = categoryName;
+    renderFilters();
+    renderArticles();
+    // Pequeno delay no carregamento inicial para o DOM estabilizar
+    setTimeout(() => {
+      document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }
+}
+
+window.addEventListener("hashchange", handleHashChange);
+// Executar no arranque
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", handleHashChange);
+} else {
+  handleHashChange();
+}
+

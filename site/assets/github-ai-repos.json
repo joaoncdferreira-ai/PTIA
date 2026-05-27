@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-19T20:00:22.816586+00:00",
+  "updated_at": "2026-05-27T22:55:46.516947+00:00",
   "method": "GitHub Search API: AI/LLM topics, stars, forks and activity in the last 45 days.",
   "repos": [
     {
@@ -7,10 +7,10 @@
       "name": "microsoft/generative-ai-for-beginners",
       "description": "21 Lessons, Get Started Building with Generative AI ",
       "url": "https://github.com/microsoft/generative-ai-for-beginners",
-      "stars": 111087,
-      "forks": 59583,
+      "stars": 111445,
+      "forks": 59816,
       "language": "Jupyter Notebook",
-      "updated_at": "2026-05-19T19:33:09Z",
+      "updated_at": "2026-05-27T22:26:41Z",
       "topics": [
         "ai",
         "azure",
@@ -21,18 +21,18 @@
         "gpt",
         "language-model"
       ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-04-04",
-      "score": 31559.91
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-04-12",
+      "score": 31621.65
     },
     {
       "rank": 2,
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
       "url": "https://github.com/Significant-Gravitas/AutoGPT",
-      "stars": 184427,
-      "forks": 46231,
+      "stars": 184593,
+      "forks": 46207,
       "language": "Python",
-      "updated_at": "2026-05-19T19:58:55Z",
+      "updated_at": "2026-05-27T22:11:35Z",
       "topics": [
         "agentic-ai",
         "agents",
@@ -43,18 +43,18 @@
         "gpt",
         "llama-api"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-04",
-      "score": 29222.31
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-12",
+      "score": 29217.29
     },
     {
       "rank": 3,
       "name": "huggingface/transformers",
       "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. ",
       "url": "https://github.com/huggingface/transformers",
-      "stars": 160784,
-      "forks": 33271,
+      "stars": 160994,
+      "forks": 33335,
       "language": "Python",
-      "updated_at": "2026-05-19T19:37:36Z",
+      "updated_at": "2026-05-27T22:15:17Z",
       "topics": [
         "audio",
         "deep-learning",
@@ -65,18 +65,18 @@
         "llm",
         "machine-learning"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-04-04",
-      "score": 25383.36
+      "source_query": "topic:llm stars:>500 pushed:>=2026-04-12",
+      "score": 25400.77
     },
     {
       "rank": 4,
       "name": "affaan-m/ECC",
       "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "url": "https://github.com/affaan-m/ECC",
-      "stars": 187125,
-      "forks": 28975,
+      "stars": 195963,
+      "forks": 30145,
       "language": "JavaScript",
-      "updated_at": "2026-05-19T19:58:06Z",
+      "updated_at": "2026-05-27T22:55:11Z",
       "topics": [
         "ai-agents",
         "anthropic",
@@ -87,40 +87,18 @@
         "mcp",
         "productivity"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-04-04",
-      "score": 24924.08
+      "source_query": "topic:llm stars:>500 pushed:>=2026-04-12",
+      "score": 25266.69
     },
     {
       "rank": 5,
-      "name": "langchain-ai/langchain",
-      "description": "The agent engineering platform.",
-      "url": "https://github.com/langchain-ai/langchain",
-      "stars": 137135,
-      "forks": 22683,
-      "language": "Python",
-      "updated_at": "2026-05-19T19:57:06Z",
-      "topics": [
-        "agents",
-        "ai",
-        "ai-agents",
-        "anthropic",
-        "chatgpt",
-        "deepagents",
-        "enterprise",
-        "framework"
-      ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-04-04",
-      "score": 23913.62
-    },
-    {
-      "rank": 6,
       "name": "NousResearch/hermes-agent",
       "description": "The agent that grows with you",
       "url": "https://github.com/NousResearch/hermes-agent",
-      "stars": 157845,
-      "forks": 25505,
+      "stars": 170185,
+      "forks": 28454,
       "language": "Python",
-      "updated_at": "2026-05-19T19:59:45Z",
+      "updated_at": "2026-05-27T22:55:06Z",
       "topics": [
         "ai",
         "ai-agent",
@@ -131,18 +109,40 @@
         "claude-code",
         "clawdbot"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-04-04",
-      "score": 23871.83
+      "source_query": "topic:llm stars:>500 pushed:>=2026-04-12",
+      "score": 24690.8
+    },
+    {
+      "rank": 6,
+      "name": "langchain-ai/langchain",
+      "description": "The agent engineering platform.",
+      "url": "https://github.com/langchain-ai/langchain",
+      "stars": 137806,
+      "forks": 22804,
+      "language": "Python",
+      "updated_at": "2026-05-27T22:54:34Z",
+      "topics": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "anthropic",
+        "chatgpt",
+        "deepagents",
+        "enterprise",
+        "framework"
+      ],
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-04-12",
+      "score": 23949.17
     },
     {
       "rank": 7,
       "name": "langgenius/dify",
       "description": "Production-ready platform for agentic workflow development.",
       "url": "https://github.com/langgenius/dify",
-      "stars": 141910,
-      "forks": 22304,
+      "stars": 142899,
+      "forks": 22462,
       "language": "TypeScript",
-      "updated_at": "2026-05-19T19:46:29Z",
+      "updated_at": "2026-05-27T22:27:26Z",
       "topics": [
         "agent",
         "agentic-ai",
@@ -153,18 +153,18 @@
         "gemini",
         "genai"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-04-04",
-      "score": 22956.03
+      "source_query": "topic:llm stars:>500 pushed:>=2026-04-12",
+      "score": 23003.07
     },
     {
       "rank": 8,
       "name": "FlowiseAI/Flowise",
       "description": "Build AI Agents, Visually",
       "url": "https://github.com/FlowiseAI/Flowise",
-      "stars": 52934,
-      "forks": 24360,
+      "stars": 53123,
+      "forks": 24418,
       "language": "TypeScript",
-      "updated_at": "2026-05-19T19:46:23Z",
+      "updated_at": "2026-05-27T22:18:22Z",
       "topics": [
         "agentic-ai",
         "agentic-workflow",
@@ -175,18 +175,18 @@
         "javascript",
         "langchain"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-04",
-      "score": 22849.34
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-12",
+      "score": 22867.71
     },
     {
       "rank": 9,
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
       "url": "https://github.com/f/prompts.chat",
-      "stars": 162535,
-      "forks": 21154,
+      "stars": 162923,
+      "forks": 21184,
       "language": "HTML",
-      "updated_at": "2026-05-19T19:45:40Z",
+      "updated_at": "2026-05-27T20:53:32Z",
       "topics": [
         "ai",
         "artificial-intelligence",
@@ -197,18 +197,18 @@
         "gemini",
         "gpt"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-04",
-      "score": 22815.87
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-12",
+      "score": 22825.96
     },
     {
       "rank": 10,
       "name": "open-webui/open-webui",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 137798,
-      "forks": 19698,
+      "stars": 138911,
+      "forks": 19886,
       "language": "Python",
-      "updated_at": "2026-05-19T19:58:40Z",
+      "updated_at": "2026-05-27T22:54:45Z",
       "topics": [
         "ai",
         "llm",
@@ -219,8 +219,8 @@
         "ollama",
         "ollama-webui"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-04-04",
-      "score": 22272.61
+      "source_query": "topic:llm stars:>500 pushed:>=2026-04-12",
+      "score": 22328.34
     }
   ],
   "errors": []
