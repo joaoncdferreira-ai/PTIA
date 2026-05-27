@@ -292,11 +292,23 @@ function renderFrontPage() {
 }
 
 function categories() {
-  const counts = PTIA_DATA.today.reduce((acc, item) => {
-    acc[item.tag] = (acc[item.tag] || 0) + 1;
-    return acc;
-  }, {});
-  return [["Todos", Math.min(10, PTIA_DATA.today.length)], ...Object.entries(counts)];
+  const counts = {};
+  PTIA_DATA.today.forEach((item) => {
+    const tags = Array.isArray(item.tag) ? item.tag : (item.tag ? [item.tag] : []);
+    tags.forEach((t) => {
+      counts[t] = (counts[t] || 0) + 1;
+    });
+  });
+  const order = ["Todos", "Mundo", "Portugal", "Builders", "Regulação", "Histórias reais", "Previsões Futuras"];
+  const sortedEntries = Object.entries(counts).sort((a, b) => {
+    const idxA = order.indexOf(a[0]);
+    const idxB = order.indexOf(b[0]);
+    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+    if (idxA !== -1) return -1;
+    if (idxB !== -1) return 1;
+    return a[0].localeCompare(b[0]);
+  });
+  return [["Todos", Math.min(10, PTIA_DATA.today.length)], ...sortedEntries];
 }
 
 function renderFilters() {
@@ -335,6 +347,7 @@ function storyVisual(item, isLead) {
 
 function articleRow(item, isLead) {
   const href = articleUrl(item);
+  const tagsStr = Array.isArray(item.tag) ? item.tag.join(", ") : (item.tag || "");
   return `<article class="article-row ${isLead ? "lead" : ""}">
     <div class="article-num">№${escapeHtml(item.n)}</div>
     <div>
@@ -342,7 +355,7 @@ function articleRow(item, isLead) {
       <p class="pt-angle">${escapeHtml(item.pt)}</p>
     </div>
     ${storyVisual(item, isLead)}
-    ${!isLead ? `<div class="article-meta"><span class="tag">${escapeHtml(item.tag)}</span><strong>${escapeHtml(item.source)}</strong><span>${escapeHtml(item.time)} · ${escapeHtml(item.readtime)}</span></div>` : ""}
+    ${!isLead ? `<div class="article-meta"><span class="tag">${escapeHtml(tagsStr)}</span><strong>${escapeHtml(item.source)}</strong><span>${escapeHtml(item.time)} · ${escapeHtml(item.readtime)}</span></div>` : ""}
   </article>`;
 }
 
@@ -351,7 +364,10 @@ function renderArticles() {
   if (!container) return;
   const items = activeFilter === "Todos"
     ? PTIA_DATA.today.slice(0, 10)
-    : PTIA_DATA.today.filter((item) => item.tag === activeFilter);
+    : PTIA_DATA.today.filter((item) => {
+        const tags = Array.isArray(item.tag) ? item.tag : (item.tag ? [item.tag] : []);
+        return tags.includes(activeFilter);
+      });
   if (!items.length) {
     container.innerHTML = `<article class="article-row"><div></div><div><h3 class="article-title">Sem sinais nesta secção.</h3><p class="pt-angle">O radar ainda não encontrou uma fonte suficientemente forte.</p></div></article>`;
     return;
@@ -376,10 +392,13 @@ function renderArticles() {
 function renderMap() {
   const grid = document.getElementById("map-grid");
   if (!grid) return;
-  const counts = PTIA_DATA.today.reduce((acc, item) => {
-    acc[item.tag] = (acc[item.tag] || 0) + 1;
-    return acc;
-  }, {});
+  const counts = {};
+  PTIA_DATA.today.forEach((item) => {
+    const tags = Array.isArray(item.tag) ? item.tag : (item.tag ? [item.tag] : []);
+    tags.forEach((t) => {
+      counts[t] = (counts[t] || 0) + 1;
+    });
+  });
   grid.innerHTML = PTIA_DATA.sections.map((section, index) => `
     <article class="map-cell" id="${escapeHtml(section.id)}">
       <div class="map-top"><em>${String(index + 1).padStart(2, "0")}</em><span><strong>${counts[section.name] || 0}</strong> entradas</span></div>
