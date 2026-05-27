@@ -245,7 +245,7 @@ function renderFrontPage() {
 
   if (signalsCount) signalsCount.textContent = String(PTIA_DATA.today.length);
   if (railSignals) railSignals.innerHTML = `${PTIA_DATA.today.length}<sup>/1840</sup>`;
-  if (moreCount) moreCount.textContent = String(Math.max(PTIA_DATA.today.length - 1, 0));
+  if (moreCount) moreCount.textContent = String(Math.max(Math.min(10, PTIA_DATA.today.length) - 1, 0));
   if (editionDate) editionDate.textContent = formatLongDate(new Date());
   const nowLabel = new Intl.DateTimeFormat("pt-PT", { hour: "2-digit", minute: "2-digit" }).format(new Date());
   if (lastUpdated) lastUpdated.textContent = nowLabel;
@@ -296,7 +296,7 @@ function categories() {
     acc[item.tag] = (acc[item.tag] || 0) + 1;
     return acc;
   }, {});
-  return [["Todos", PTIA_DATA.today.length], ...Object.entries(counts)];
+  return [["Todos", Math.min(10, PTIA_DATA.today.length)], ...Object.entries(counts)];
 }
 
 function renderFilters() {
@@ -350,7 +350,7 @@ function renderArticles() {
   const container = document.getElementById("posts");
   if (!container) return;
   const items = activeFilter === "Todos"
-    ? PTIA_DATA.today
+    ? PTIA_DATA.today.slice(0, 10)
     : PTIA_DATA.today.filter((item) => item.tag === activeFilter);
   if (!items.length) {
     container.innerHTML = `<article class="article-row"><div></div><div><h3 class="article-title">Sem sinais nesta secção.</h3><p class="pt-angle">O radar ainda não encontrou uma fonte suficientemente forte.</p></div></article>`;
