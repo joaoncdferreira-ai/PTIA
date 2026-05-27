@@ -385,7 +385,7 @@ function renderMap() {
       <div class="map-top"><em>${String(index + 1).padStart(2, "0")}</em><span><strong>${counts[section.name] || 0}</strong> entradas</span></div>
       <h3>${escapeHtml(section.name)}</h3>
       <p>${escapeHtml(section.blurb)}</p>
-      <a href="#filterbar" onclick="selectCategory('${escapeHtml(section.name)}')">Abrir secção →</a>
+      <a href="#${escapeHtml(section.id)}">Abrir secção →</a>
     </article>
   `).join("");
 }
@@ -641,7 +641,7 @@ window.selectCategory = function(name) {
   activeFilter = name;
   renderFilters();
   renderArticles();
-  document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth", block: "center" });
 };
 
 function handleHashChange() {
@@ -661,8 +661,17 @@ function handleHashChange() {
     renderArticles();
     // Pequeno delay no carregamento inicial para o DOM estabilizar
     setTimeout(() => {
-      document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 100);
+  } else if (hash === "hoje" || !hash) {
+    activeFilter = "Todos";
+    renderFilters();
+    renderArticles();
+    if (hash === "hoje") {
+      setTimeout(() => {
+        document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
   }
 }
 
@@ -673,4 +682,51 @@ if (document.readyState === "loading") {
 } else {
   handleHashChange();
 }
+
+// Intercept clicks on links globally to handle SPA routing smoothly and avoid jumps
+document.addEventListener("click", function(e) {
+  const link = e.target.closest("a");
+  if (!link) return;
+  
+  const href = link.getAttribute("href");
+  if (!href || !href.startsWith("#")) return;
+  
+  const hash = href.substring(1).toLowerCase();
+  
+  const sectionMap = {
+    "mundo": "Mundo",
+    "portugal": "Portugal",
+    "builders": "Builders",
+    "regulacao": "Regulação",
+    "historias-reais": "Histórias reais",
+    "previsoes-futuras": "Previsões Futuras"
+  };
+  
+  const categoryName = sectionMap[hash];
+  if (categoryName) {
+    e.preventDefault();
+    window.selectCategory(categoryName);
+    history.pushState(null, null, `#${hash}`);
+    return;
+  }
+  
+  if (hash === "hoje") {
+    e.preventDefault();
+    activeFilter = "Todos";
+    renderFilters();
+    renderArticles();
+    document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+    history.pushState(null, null, "#hoje");
+    return;
+  }
+  
+  // For other internal anchors, perform smooth scroll and update URL hash without jump
+  const targetId = hash === "top" ? "top" : href.substring(1);
+  const targetEl = document.getElementById(targetId) || document.getElementsByName(targetId)[0];
+  if (targetEl) {
+    e.preventDefault();
+    targetEl.scrollIntoView({ behavior: "smooth" });
+    history.pushState(null, null, href);
+  }
+});
 
