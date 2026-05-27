@@ -385,7 +385,7 @@ function renderMap() {
       <div class="map-top"><em>${String(index + 1).padStart(2, "0")}</em><span><strong>${counts[section.name] || 0}</strong> entradas</span></div>
       <h3>${escapeHtml(section.name)}</h3>
       <p>${escapeHtml(section.blurb)}</p>
-      <a href="#hoje" onclick="selectCategory('${escapeHtml(section.name)}')">Abrir secção →</a>
+      <a href="#filterbar" onclick="selectCategory('${escapeHtml(section.name)}')">Abrir secção →</a>
     </article>
   `).join("");
 }
@@ -641,7 +641,7 @@ window.selectCategory = function(name) {
   activeFilter = name;
   renderFilters();
   renderArticles();
-  document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+  document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth" });
 };
 
 function handleHashChange() {
@@ -661,7 +661,7 @@ function handleHashChange() {
     renderArticles();
     // Pequeno delay no carregamento inicial para o DOM estabilizar
     setTimeout(() => {
-      document.getElementById("hoje")?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById("filterbar")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   }
 }
