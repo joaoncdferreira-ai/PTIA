@@ -47,9 +47,20 @@ def append_jsonl(path: Path, records: list[JSONRecord]) -> None:
 
 def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
-        for record in records:
-            handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
+    tmp_path = path.with_suffix(".tmp")
+    try:
+        with tmp_path.open("w", encoding="utf-8") as handle:
+            for record in records:
+                handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
+        import os
+        os.replace(str(tmp_path), str(path))
+    except Exception as e:
+        if tmp_path.exists():
+            try:
+                tmp_path.unlink()
+            except Exception:
+                pass
+        raise e
 
 
 def load_raw_articles(path: Path) -> list[RawArticle]:
