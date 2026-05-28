@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-05-27T23:11:52+00:00",
+  "updated_at": "2026-05-28T09:54:36+00:00",
   "posts": [
     {
       "id": "post_d7de747955fae6de88",
@@ -53,7 +53,7 @@
     },
     {
       "id": "post_e908774d0555e83828",
-      "title": "Agentes autónomos da OpenAI e a corrida à captura do hábito fiscal",
+      "title": "OpenAI automatiza impostos com Codex",
       "body": "A OpenAI, em colaboração com a Thrive e a Crete, demonstrou a capacidade de um agente fiscal autónomo, desenvolvido com o modelo Codex, para automatizar o preenchimento de declarações. O objetivo é claro: aumentar a precisão e acelerar processos, reduzindo a carga operacional associada à conformidade fiscal.\n\nEsta iniciativa não é apenas mais um avanço técnico na capacidade dos modelos de IA. É, acima de tudo, uma aposta estratégica na arquitetura de um ecossistema. A verdadeira corrida no mercado da inteligência artificial já não se joga apenas sobre quem tem o modelo mais capaz em abstrato, mas sim sobre quem consegue integrar essa capacidade de forma indissociável nas rotinas de trabalho diárias.\n\nPara decisores, fundadores e profissionais em Portugal, este cenário levanta uma questão prática: a eficiência de um agente fiscal não se mede apenas pela sua inteligência intrínseca. O que realmente importa é a facilidade com que se encaixa nos sistemas e hábitos existentes. A vantagem competitiva não virá do modelo mais brilhante, mas daquele que conseguir transformar o potencial em produtividade sem exigir uma revolução nos fluxos de trabalho já estabelecidos.\n\nIgnorar esta dinâmica é ceder terreno numa área de produtividade crítica. A dependência de um fornecedor específico, que consegue prender o utilizador a uma forma de trabalhar e a um ecossistema, pode rapidamente tornar-se um custo invisível, mas significativo. A questão central não é se a IA vai automatizar processos, mas sim qual a plataforma que vai capturar o hábito.\n\nFonte: https://openai.com/index/building-self-improving-tax-agents-with-codex",
       "source_urls": [
         "https://openai.com/index/building-self-improving-tax-agents-with-codex"
@@ -65,7 +65,7 @@
         "Mundo",
         "Builders"
       ],
-      "article_url": "artigos/agentes-autonomos-da-openai-e-a-corrida-a-captura-do-habito-fiscal-e908774d0555e83828"
+      "article_url": "artigos/openai-automatiza-impostos-com-codex-e908774d0555e83828"
     },
     {
       "id": "post_cea03e4ac1aa968b97",
