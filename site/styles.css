@@ -494,7 +494,7 @@ button, input { font: inherit; }
 .lead-meta em { color: var(--signal); font-style: normal; }
 .lead-card h2 {
   margin: 18px 0 0;
-  max-width: 12ch;
+  max-width: 24ch;
   font-family: var(--serif);
   font-size: clamp(40px, 5.2vw, 68px);
   font-weight: 400;
