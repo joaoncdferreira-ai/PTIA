@@ -20,3 +20,7 @@ data/*.md
 data/*.csv
 data/reset_backups/
 !data/.gitkeep
+node_modules/
+data/*.bak_*
+data/final_assets/
+data/*corrupted*

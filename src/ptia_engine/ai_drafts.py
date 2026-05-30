@@ -77,11 +77,18 @@ Regras:
 - Inclui sempre a fonte original.
 - Escreve para profissionais, empresas e builders em Portugal.
 
+Disciplina de angulo:
+- Antes de escrever, identifica a tese editorial especifica desta noticia.
+- A tese tem de depender do facto, actor, incentivo ou conflito descrito na fonte.
+- Se a mesma frase servir para qualquer noticia de IA, reescreve.
+- Nao forces Portugal, execucao, custo/risco/dependencia ou perguntas genericas quando a fonte nao justificar.
+- Prefere opiniao declarativa e sustentada a perguntas abertas.
+
 Estrutura editorial interna:
 1. Facto principal.
-2. Leitura editorial PTIA.
-3. Relevancia para Portugal.
-4. Proxima accao ou pergunta util.
+2. Tese editorial especifica.
+3. Consequencia concreta para o mercado, produto, trabalho, regulacao ou sociedade.
+4. Angulo Portugal apenas se for material.
 5. Fonte original.
 
 Nao imprimas rotulos como "O que aconteceu", "Porque importa" ou "A leitura PTIA".
@@ -117,13 +124,13 @@ def estimate_ai_draft_cost(
 def generate_template_draft_payload(item: ProcessedItem, article: RawArticle) -> dict[str, Any]:
     source_line = f"Fonte original: {article.url}"
     portugal_angle = (
-        "Vale acompanhar em Portugal se isto afectar produtividade, adopcao empresarial, regulacao ou equipas tecnicas."
+        "Sem angulo Portugal forte na fonte; nao forcar leitura local."
     )
     if item.portugal_relevance_score >= 6:
-        portugal_angle = "Ha um angulo claro para Portugal: empresas, decisores e builders devem avaliar impacto e aplicacao local."
+        portugal_angle = "Ha um angulo Portugal material na fonte; ligar a leitura ao sector, regulacao ou adopcao local descritos."
     takeaways = [
         "Confirmar a fonte original antes de publicar.",
-        "Explicar impacto pratico, nao apenas a novidade.",
+        "Extrair uma tese especifica da noticia, nao uma moral geral sobre IA.",
         "Separar facto de interpretacao editorial PTIA.",
     ]
     return {
@@ -136,10 +143,9 @@ def generate_template_draft_payload(item: ProcessedItem, article: RawArticle) ->
             [
                 item.title_original,
                 article.raw_excerpt or item.reason,
-                "Pode trazer sinais uteis para quem acompanha IA em Portugal.",
+                "A leitura deve nascer do mecanismo concreto descrito pela fonte, nao de uma pergunta generica.",
                 portugal_angle,
                 source_line,
-                "Que aplicacao pratica ves para isto no contexto portugues?",
             ]
         ),
         "instagram_caption": "\n".join(
@@ -149,26 +155,25 @@ def generate_template_draft_payload(item: ProcessedItem, article: RawArticle) ->
                 article.raw_excerpt or item.reason,
                 "",
                 "- Rever a fonte original.",
-                "- Procurar impacto pratico.",
-                "- Avaliar relevancia local antes de publicar.",
+                "- Encontrar a tese especifica desta noticia.",
+                "- Nao forcar angulo Portugal sem material na fonte.",
                 "",
-                "Guarda para rever com calma.",
                 source_line,
             ]
         ),
         "carousel_slides": [
             {"headline": "O sinal", "text": item.title_original[:120], "visual": "Titulo forte sobre fundo PTIA."},
             {"headline": "O que aconteceu", "text": (article.raw_excerpt or item.reason)[:140], "visual": "Bloco de noticia curto."},
-            {"headline": "Porque importa", "text": "Separar novidade de impacto pratico para profissionais.", "visual": "Escala impacto vs ruido."},
-            {"headline": "Quem deve olhar", "text": "Empresas, builders e decisores que usam IA no trabalho.", "visual": "Tres grupos em colunas."},
-            {"headline": "Angulo Portugal", "text": portugal_angle[:140], "visual": "Mapa simples de Portugal com marcador."},
-            {"headline": "Takeaway", "text": "Ler a fonte, validar claims e procurar uso real.", "visual": "Checklist editorial."},
+            {"headline": "A tese", "text": "Extrair a posicao editorial a partir do detalhe concreto da fonte.", "visual": "Detalhe ampliado sobre fundo editorial."},
+            {"headline": "A friccao", "text": "Mostrar que incentivo, actor ou limite a noticia revela.", "visual": "Duas forcas em tensao."},
+            {"headline": "Angulo material", "text": portugal_angle[:140], "visual": "Contexto sobrio sem mapa literal."},
+            {"headline": "Fecho", "text": "Terminar com consequencia concreta, nao com pergunta generica.", "visual": "Linha editorial curta."},
         ],
         "site_entry": "\n\n".join(
             [
                 f"## {item.title_original}",
                 f"{article.raw_excerpt or item.reason}",
-                "O PTIA destaca este tema pela sua possivel utilidade pratica.",
+                "O PTIA deve destacar o mecanismo especifico que esta noticia revela.",
                 portugal_angle,
                 source_line,
             ]

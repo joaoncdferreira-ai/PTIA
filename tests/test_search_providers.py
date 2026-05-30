@@ -102,7 +102,90 @@ class SearchProvidersTests(unittest.TestCase):
         self.assertEqual(calls["temperature"], 0.7)
         self.assertIn("editor final PT-PT", calls["prompt"])
         self.assertIn("Não imprimas headings", calls["prompt"])
+        self.assertIn("Exemplos PTIA de tom", calls["prompt"])
+        self.assertIn("Passagem anti-assistente", calls["prompt"])
+        self.assertIn("Senior Tech Journalist", calls["prompt"])
+        self.assertIn("Absolute Humanization", calls["prompt"])
+        self.assertIn("Disciplina de angulo especifico", calls["prompt"])
+        self.assertIn("Se a tese pudesse servir para dez outras noticias de IA", calls["prompt"])
+        self.assertIn("Regra reforcada para o canal site", calls["prompt"])
+        self.assertIn("artigo editorial curado", calls["prompt"])
         self.assertEqual(result.title, "Titulo PT")
+
+    def test_rewrite_uses_human_editorial_article_prompt(self):
+        provider = GeminiGroundedSearchProvider(api_key="test")
+        calls = {}
+
+        def fake_rewrite(prompt, *, temperature=0.55):
+            calls["prompt"] = prompt
+            calls["temperature"] = temperature
+            return provider._generate_rewrite_from_response(
+                {
+                    "candidates": [
+                        {
+                            "content": {
+                                "parts": [
+                                    {
+                                        "text": '{"title":"Titulo humano","body":"Texto editorial","hashtags":"","rationale":"Menos AI"}'
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            )
+
+        provider._generate_rewrite = fake_rewrite
+        result = provider.rewrite_final_post(
+            channel="site",
+            title="Titulo",
+            body="Texto",
+            hashtags="",
+            source_urls=["https://example.com"],
+            feedback="menos AI",
+        )
+
+        self.assertEqual(calls["temperature"], 0.72)
+        self.assertIn("Senior Tech Journalist", calls["prompt"])
+        self.assertIn("Strict AI Cliche Filter", calls["prompt"])
+        self.assertIn("Disciplina de angulo especifico", calls["prompt"])
+        self.assertIn("Lead: start in media res", calls["prompt"])
+        self.assertIn("artigo editorial curado", calls["prompt"])
+        self.assertEqual(result.title, "Titulo humano")
+
+    def test_visual_image_title_suggestions_keep_both_tones(self):
+        provider = GeminiGroundedSearchProvider(api_key="test")
+
+        def fake_json_response(prompt, *, temperature):
+            self.assertIn("Instagram e X", prompt)
+            self.assertEqual(temperature, 0.78)
+            return {
+                "candidates": [
+                    {
+                        "content": {
+                            "parts": [
+                                {
+                                    "text": (
+                                        '{"suggestions":[{"tone":"provocatorio",'
+                                        '"title":"A automacao ja escolhe por ti?"},'
+                                        '{"tone":"editorial","title":"Quando a IA entra na decisao"}]}'
+                                    )
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+
+        provider._generate_json_response = fake_json_response
+        suggestions = provider.suggest_visual_image_titles(
+            title="AI decisions",
+            body="Texto PTIA",
+            source_urls=["https://example.com"],
+        )
+
+        self.assertEqual([item["tone"] for item in suggestions], ["provocatorio", "editorial"])
+        self.assertEqual(suggestions[0]["title"], "A automacao ja escolhe por ti?")
 
 
 if __name__ == "__main__":

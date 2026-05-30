@@ -9,10 +9,14 @@ from urllib.parse import urljoin, urlparse, urlunparse
 
 from ptia_engine.editorial_board import ensure_recent_signal
 from ptia_engine.http_client import urlopen_direct
+from ptia_engine.news_media_domains import (
+    GLOBAL_NEWS_MEDIA_DOMAINS,
+    PORTUGUESE_NEWS_MEDIA_DOMAINS,
+)
 from ptia_engine.search_providers import GeminiGroundedSearchProvider, SearchCandidate
 
 
-CREDIBLE_DOMAINS = {
+EDITORIAL_CREDIBLE_DOMAINS = {
     "anthropic.com": "Anthropic",
     "openai.com": "OpenAI",
     "blog.google": "Google",
@@ -40,6 +44,7 @@ CREDIBLE_DOMAINS = {
     "techcrunch.com": "TechCrunch",
     "venturebeat.com": "VentureBeat",
     "the-decoder.com": "The Decoder",
+    "gartner.com": "Gartner",
     "arxiv.org": "arXiv",
     "europa.eu": "European Commission",
     "edpb.europa.eu": "EDPB",
@@ -61,6 +66,13 @@ CREDIBLE_DOMAINS = {
     "observador.pt": "Observador",
     "expresso.pt": "Expresso",
     "dn.pt": "Diário de Notícias",
+}
+
+
+CREDIBLE_DOMAINS = {
+    **GLOBAL_NEWS_MEDIA_DOMAINS,
+    **PORTUGUESE_NEWS_MEDIA_DOMAINS,
+    **EDITORIAL_CREDIBLE_DOMAINS,
 }
 
 
@@ -187,9 +199,14 @@ def _normalise_date(value: str) -> str:
 
 def _date_from_url(url: str) -> str:
     path = urlparse(url).path
-    iso_match = re.search(r"(\d{4})-(\d{2})-(\d{2})(?:/|$)", path)
+    iso_match = re.search(r"(\d{4})-(\d{2})-(\d{2})(?:[-/]|$)", path)
     if iso_match:
         return "-".join(iso_match.groups())
+
+    numeric_path_match = re.search(r"/(\d{4})/(\d{1,2})/(\d{1,2})(?:/|$)", path)
+    if numeric_path_match:
+        year, month, day = numeric_path_match.groups()
+        return f"{year}-{int(month):02d}-{int(day):02d}"
 
     month_match = re.search(
         r"/(\d{4})/(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/(\d{1,2})(?:/|$)",

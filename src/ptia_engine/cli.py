@@ -53,7 +53,9 @@ from ptia_engine.learning import (
     write_learning_weights,
 )
 from ptia_engine.llm_providers import default_model_for_provider, normalize_provider
+from ptia_engine.meta_insights import MetaGraphClient, MetaInsightsError
 from ptia_engine.models import RawArticle, Source
+from ptia_engine.performance_import import import_instagram_insights
 from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
 from ptia_engine.source_verifier import verify_search_candidate
@@ -814,6 +816,36 @@ def cmd_learn(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_instagram_insights(args: argparse.Namespace) -> int:
+    client = MetaGraphClient(
+        access_token=os.getenv("META_ACCESS_TOKEN", ""),
+        instagram_business_id=os.getenv("META_INSTAGRAM_BUSINESS_ID", ""),
+        graph_version=os.getenv("META_GRAPH_VERSION", ""),
+    )
+    try:
+        records = import_instagram_insights(
+            final_posts_path=Path(args.final_posts),
+            performance_path=Path(args.performance),
+            limit=args.limit,
+            client=client,
+        )
+    except MetaInsightsError as exc:
+        print("error " + json.dumps({"message": str(exc)}, ensure_ascii=False))
+        return 1
+    print(
+        "summary "
+        + json.dumps(
+            {
+                "records": len(records),
+                "performance": args.performance,
+                "instagram_business_id_configured": bool(client.instagram_business_id),
+            },
+            ensure_ascii=False,
+        )
+    )
+    return 0
+
+
 def cmd_trend_radar(args: argparse.Namespace) -> int:
     out_path = Path(args.out)
     new_signals = fetch_hacker_news_trends(
@@ -1121,6 +1153,15 @@ def build_parser() -> argparse.ArgumentParser:
     learn.add_argument("--min-samples", type=int, default=3)
     learn.set_defaults(func=cmd_learn)
 
+    instagram_insights = subparsers.add_parser(
+        "instagram-insights",
+        help="Import Instagram post metrics from Meta Graph API into content_performance.jsonl.",
+    )
+    instagram_insights.add_argument("--final-posts", default="data/final_posts.jsonl")
+    instagram_insights.add_argument("--performance", default="data/content_performance.jsonl")
+    instagram_insights.add_argument("--limit", type=int, default=25)
+    instagram_insights.set_defaults(func=cmd_instagram_insights)
+
     trend_radar = subparsers.add_parser("trend-radar", help="Fetch external AI engagement signals.")
     trend_radar.add_argument("--out", default="data/trend_signals.jsonl")
     trend_radar.add_argument("--markdown-out", default="data/trend_radar.md")
@@ -1181,7 +1222,7 @@ def build_parser() -> argparse.ArgumentParser:
     add_final_post = subparsers.add_parser("add-final-post", help="Create a final post package.")
     add_final_post.add_argument("--out", default="data/final_posts.jsonl")
     add_final_post.add_argument("--topic-id", required=True)
-    add_final_post.add_argument("--channel", required=True, choices=["linkedin", "instagram", "site", "newsletter"])
+    add_final_post.add_argument("--channel", required=True, choices=["linkedin", "instagram", "x", "site", "newsletter"])
     add_final_post.add_argument("--title", required=True)
     add_final_post.add_argument("--body", required=True)
     add_final_post.add_argument("--hashtags", default="")

@@ -1,6 +1,6 @@
 import unittest
 
-from ptia_engine.ai_drafts import generate_ai_draft_payload, payload_to_drafts
+from ptia_engine.ai_drafts import build_ai_draft_prompt, generate_ai_draft_payload, payload_to_drafts
 from ptia_engine.models import ProcessedItem, RawArticle
 
 
@@ -80,6 +80,41 @@ class AIDraftTests(unittest.TestCase):
         self.assertIn("linkedin_post", payload)
         self.assertGreaterEqual(len(payload["carousel_slides"]), 5)
         self.assertIn(article.url, payload["site_entry"])
+        joined = "\n".join(str(value) for value in payload.values())
+        self.assertNotIn("Que aplicacao pratica", joined)
+        self.assertNotIn("pergunta util", joined)
+
+    def test_ai_draft_prompt_demands_specific_editorial_angle(self):
+        item = ProcessedItem(
+            item_id="item_1",
+            article_id="art_1",
+            source_id="source",
+            source_name="Source",
+            title_original="AI agents in business",
+            source_url="https://example.com",
+            section="business",
+            relevance_score=8,
+            hype_score=1,
+            portugal_relevance_score=4,
+            builder_relevance_score=4,
+            business_relevance_score=8,
+            should_cover=True,
+            reason="Useful.",
+        )
+        article = RawArticle(
+            article_id="art_1",
+            source_id="source",
+            source_name="Source",
+            title_original="AI agents in business",
+            url="https://example.com",
+            raw_excerpt="A company launched a new AI agent workflow.",
+        )
+
+        prompt = build_ai_draft_prompt(item, article)
+
+        self.assertIn("Disciplina de angulo", prompt)
+        self.assertIn("tese editorial especifica", prompt)
+        self.assertIn("Se a mesma frase servir para qualquer noticia de IA", prompt)
 
 
 if __name__ == "__main__":

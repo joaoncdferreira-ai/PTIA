@@ -4,6 +4,8 @@ from unittest.mock import patch
 
 from ptia_engine.search_providers import SearchCandidate
 from ptia_engine.source_verifier import (
+    GLOBAL_NEWS_MEDIA_DOMAINS,
+    PORTUGUESE_NEWS_MEDIA_DOMAINS,
     VerificationResult,
     credible_source_name,
     discovery_source_name,
@@ -22,6 +24,10 @@ class SourceVerifierTests(unittest.TestCase):
         self.assertEqual(
             credible_source_name("https://www.anthropic.com/news/claude-for-small-business"),
             "Anthropic",
+        )
+        self.assertEqual(
+            credible_source_name("https://www.gartner.com/en/newsroom/press-releases/example"),
+            "Gartner",
         )
 
     def test_normalises_www_domain(self):
@@ -103,6 +109,32 @@ class SourceVerifierTests(unittest.TestCase):
             "APDC",
         )
 
+    def test_detects_researched_news_media_domains(self):
+        self.assertGreaterEqual(len(GLOBAL_NEWS_MEDIA_DOMAINS), 995)
+        self.assertGreaterEqual(len(PORTUGUESE_NEWS_MEDIA_DOMAINS), 20)
+        self.assertEqual(
+            credible_source_name(
+                "https://www.wsj.com/cio-journal/this-cannes-film-cost-500-000-to-make"
+            ),
+            "WSJ",
+        )
+        self.assertEqual(
+            credible_source_name("https://www.rtp.pt/noticias/economia/noticia"),
+            "RTP Noticias",
+        )
+        self.assertEqual(
+            credible_source_name("https://sicnoticias.pt/economia/2026-05-22/noticia"),
+            "SIC Noticias",
+        )
+        self.assertEqual(
+            credible_source_name("https://www.nytimes.com/2026/05/19/technology/meta-layoffs-ai.html"),
+            "New York Times",
+        )
+        self.assertEqual(
+            credible_source_name("https://edition.cnn.com/2026/05/20/tech/ai-executive-order"),
+            "CNN",
+        )
+
     def test_reuters_date_in_slug_passes_when_metadata_blocks(self):
         today = datetime.now(timezone.utc).date().isoformat()
         url = f"https://www.reuters.com/world/europe/story-title-{today}/?utm_source=chatgpt.com"
@@ -114,6 +146,42 @@ class SourceVerifierTests(unittest.TestCase):
         self.assertEqual(result.source_name, "Reuters")
         self.assertEqual(result.published_at, today)
         self.assertNotIn("utm_source", result.verified_url)
+
+    def test_news_date_path_passes_when_metadata_blocks(self):
+        today = datetime.now(timezone.utc).date()
+        urls = [
+            (
+                f"https://www.nytimes.com/{today:%Y/%m/%d}/technology/meta-layoffs-ai.html",
+                "New York Times",
+            ),
+            (
+                f"https://edition.cnn.com/{today:%Y/%m/%d}/tech/ai-executive-order",
+                "CNN",
+            ),
+        ]
+
+        with patch("ptia_engine.source_verifier.fetch_page_metadata", side_effect=RuntimeError("HTTP 401")):
+            for url, source_name in urls:
+                with self.subTest(url=url):
+                    result = verify_url(url)
+
+                    self.assertEqual(result.status, "verified")
+                    self.assertEqual(result.source_name, source_name)
+                    self.assertEqual(result.published_at, today.isoformat())
+
+    def test_gartner_press_release_slug_date_passes_when_metadata_blocks(self):
+        today = datetime.now(timezone.utc).date()
+        url = (
+            f"https://www.gartner.com/en/newsroom/press-releases/{today:%Y-%m-%d}-"
+            "gartner-says-applying-uniform-governance-across-ai-agents-will-lead-to-enterprise-ai-agent-failure"
+        )
+
+        with patch("ptia_engine.source_verifier.fetch_page_metadata", side_effect=RuntimeError("HTTP 403")):
+            result = verify_url(url)
+
+        self.assertEqual(result.status, "verified")
+        self.assertEqual(result.source_name, "Gartner")
+        self.assertEqual(result.published_at, today.isoformat())
 
     def test_apdc_visible_date_is_used_for_recency_rejection(self):
         html = """

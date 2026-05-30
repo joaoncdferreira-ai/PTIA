@@ -1928,13 +1928,13 @@ def _format_image_variants(source_path: Path, out_dir: Path, post) -> dict[str, 
             variant = _cover_crop(image, (width, height))
         else:
             variant = _contain_on_blur(image, (width, height))
-        if channel in {"instagram", "x"}:
+        if channel in {"instagram", "x", "linkedin"}:
             variant = _apply_ptia_instagram_overlay(
                 variant,
                 title=_visual_title_for_post(post),
                 out_dir=out_dir,
             )
-        variant_tag = f"_{PTIA_INSTAGRAM_OVERLAY_VERSION}" if channel in {"instagram", "x"} else ""
+        variant_tag = f"_{PTIA_INSTAGRAM_OVERLAY_VERSION}" if channel in {"instagram", "x", "linkedin"} else ""
         path = out_dir / f"{post.post_id}_{channel}{variant_tag}_{width}x{height}.jpg"
         variant.save(path, "JPEG", quality=92, optimize=True)
         variants[channel] = str(path)
@@ -1959,7 +1959,7 @@ def _ensure_image_variants_for_posts(state: DashboardState, posts: list) -> list
         expected_variants = set(IMAGE_VARIANT_SPECS)
         current_social_overlay = all(
             PTIA_INSTAGRAM_OVERLAY_VERSION in str(variants.get(channel, ""))
-            for channel in ("instagram", "x")
+            for channel in ("instagram", "x", "linkedin")
         )
         if (expected_variants.issubset(variants) and current_social_overlay) or not post.image_path:
             continue
@@ -4386,7 +4386,7 @@ HTML = r"""<!doctype html>
                 data-image-mode-panel="${esc(post.post_id)}"
                 data-mode="instagram_x"
               >
-                <p class="image-mode-copy">${xEnabled() ? 'Instagram e X usam' : 'Instagram usa'} overlay PTIA fixo com wordmark, linha editorial e título. Gera duas opções aqui; a imagem-base deve vir sem texto.</p>
+                <p class="image-mode-copy">Instagram, X e LinkedIn usam overlay PTIA fixo com wordmark, linha editorial e título. Gera duas opções aqui; a imagem-base deve vir sem texto.</p>
                 <div class="field" style="margin-bottom:0">
                   <label>Título visual escolhido</label>
                   <input class="compact-input" id="visual_title_selected_${esc(post.post_id)}" value="${esc(visualTitleFromPrompt(post.image_prompt))}" placeholder="Escreve ou escolhe uma frase abaixo">

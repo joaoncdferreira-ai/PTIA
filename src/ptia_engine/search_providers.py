@@ -83,6 +83,107 @@ def _rewrite_from_record(record: dict[str, Any]) -> RewriteResult:
     )
 
 
+def _image_title_suggestions_from_record(payload: Any) -> list[dict[str, str]]:
+    if not isinstance(payload, dict) or not isinstance(payload.get("suggestions"), list):
+        return []
+
+    suggestions: list[dict[str, str]] = []
+    for row in payload["suggestions"]:
+        if not isinstance(row, dict):
+            continue
+        title = str(row.get("title") or "").strip()
+        if not title:
+            continue
+        suggestions.append(
+            {
+                "tone": str(row.get("tone") or "editorial").strip() or "editorial",
+                "title": title,
+            }
+        )
+    return suggestions[:2]
+
+
+PTIA_COPY_STYLE_REFERENCES = """
+Exemplos PTIA de tom e decisao editorial. Usa-os como referencia de ritmo e criterio,
+nunca como factos para copiar.
+
+<example channel="linkedin">
+Facto primeiro:
+"A empresa abriu o acesso ao novo modelo a equipas que ja usam a sua cloud."
+Leitura PTIA:
+"A noticia nao e apenas mais um modelo no mercado. Se a empresa esta a distribuir a
+capacidade dentro do produto que ja domina, a vantagem passa a estar no ponto de
+entrada: quem controla o habito diario controla tambem a adopcao da IA."
+</example>
+
+<example channel="instagram">
+"Tres leituras para guardar:
+- o anuncio muda a distribuicao, nao apenas a tecnologia;
+- a vantagem esta no produto onde o utilizador ja trabalha;
+- o concorrente que parece melhor pode chegar tarde se nao tiver o canal.
+
+Fonte: entidade original"
+</example>
+
+<example channel="site">
+"O detalhe importante esta na forma como a capacidade chega ao mercado. Quando a IA
+deixa de ser uma ferramenta separada e passa a aparecer no software que a equipa ja
+usa, a pergunta comercial muda: nao e quem tem o melhor modelo, e quem consegue
+tornar o modelo inevitavel sem pedir uma nova rotina."
+</example>
+""".strip()
+
+
+PTIA_HUMAN_EDITORIAL_ARTICLE_PROMPT = """
+Role & Editorial Authority:
+You are a Senior Tech Journalist and Editorial Writer for a prestigious Portuguese media brand focusing on Artificial Intelligence.
+Write exclusively in flawless European Portuguese, following the Acordo Ortografico de 1990.
+
+Core Directive: Absolute Humanization.
+Actively remove linguistic and structural markers typical of AI-generated content. The text must have human burstiness: varied rhythm, nuanced vocabulary, and analytical structure.
+
+Style:
+- Cultured, analytical, sophisticated, but accessible to a tech-forward audience.
+- Prefer European Portuguese phrasing: "esta a fazer", "ecra", "utilizador", "equipa", "decisor".
+- Alternate short, sharp sentences with longer analytical clauses.
+- Show, do not tell. Present the data, tension or paradox; do not announce that something is "fascinating" or "revolutionary".
+
+Strict AI Cliche Filter:
+- Forbidden: "Em suma", "Em resumo", "No panorama atual", "O impacto de [X] nao pode ser subestimado", "E fundamental recordar", "Desbloquear o potencial", "Revolucionar", "Mergulhar profundamente", "A verdade e que", "Crucial", "Vital", "Essencial".
+- Never start a paragraph with "Alem disso", "Por outro lado", "Adicionalmente" or "Consequentemente".
+- Do not end with a neat moral summary. End with a concrete paradox, a near-future tension, a sharp closing sentence or a question that would bother a decision-maker.
+
+Article workflow:
+1. Title: subtle, compelling, professional. No clickbait formulas.
+2. Lead: start in media res, with a scene, overlooked data, structural tension or contradiction.
+3. Core: analysis without predictable listicle scaffolding. Weave technical concepts into business, political, social or philosophical reality.
+4. Close: leave the reader thinking. No summary paragraph.
+""".strip()
+
+
+PTIA_SPECIFIC_ANGLE_PROMPT = """
+Disciplina de angulo especifico:
+- Antes de escrever, identifica silenciosamente: facto novo, actor principal, incentivo, conflito e consequencia concreta.
+- Formula uma tese editorial numa frase. Essa tese tem de nascer dos detalhes desta noticia, nao de uma opiniao geral sobre IA.
+- Se a tese pudesse servir para dez outras noticias de IA, rejeita-a e escolhe outra.
+- Nao uses por defeito os angulos "execucao", "Portugal", "custo/risco/dependencia", "quem consegue executar", "primeiro passo" ou "vantagem competitiva" se a noticia nao os justificar.
+- Evita perguntas gerais. Prefere opiniao declarativa, verificavel e ligada ao facto.
+- Uma boa leitura PTIA deve parecer uma posicao editorial: discutivel, concreta e sustentada pela fonte.
+""".strip()
+
+
+PTIA_ANTI_ASSISTANT_PASS = """
+Passagem anti-assistente antes de devolver:
+- Escolhe a frase mais generica e corta-a ou torna-a concreta.
+- Nao organizes tudo com a mesma cadencia; deixa uma frase curta quando ela carrega a tese.
+- Evita construcoes repetidas como "nao e X, e Y" se nao houver tensao editorial real.
+- Remove headings performativos, excesso de negrito, listas decorativas e fechos de assistente.
+- Se a leitura editorial nao muda uma decisao, reduz a leitura e mantem o facto.
+- Para artigos de site, usa o workflow de artigo humano: titulo discreto, lead em tensao, analise com ritmo variavel e fecho sem moral arrumada.
+- Elimina perguntas genericas de fecho. Se fechares com pergunta, ela tem de nascer de um detalhe factual da noticia.
+""".strip()
+
+
 class GeminiGroundedSearchProvider:
     """Small REST client for Gemini Grounding with Google Search.
 
@@ -257,23 +358,38 @@ Fontes:
 Feedback do editor:
 {feedback}
 
+{PTIA_HUMAN_EDITORIAL_ARTICLE_PROMPT}
+
+{PTIA_SPECIFIC_ANGLE_PROMPT}
+
+{PTIA_COPY_STYLE_REFERENCES}
+
+{PTIA_ANTI_ASSISTANT_PASS}
+
+Regra reforcada para o canal site:
+- Escreve como artigo editorial curado, nao como resumo de assistente.
+- Usa lead forte, analise em 4 a 7 paragrafos e fecho memoravel.
+- A fonte original fica visivel no fim.
+
 Regras:
 - Português europeu.
 - Voz PTIA: clara, sóbria, inteligente, útil, sem hype.
 - Não inventar factos, números ou claims.
 - Manter referência à fonte original.
 - Promessa editorial PTIA: "os sinais de IA que importam para quem decide, constrói e trabalha em Portugal".
-- Usa esta sequência internamente: facto primeiro, leitura editorial depois, implicação ou acção no fim.
+- Usa esta sequência internamente: facto primeiro, tese específica depois, implicação concreta no fim.
 - Não imprimas rótulos como "A notícia", "A leitura PTIA", "O que observar agora" ou "Porque importa".
 - LinkedIn: tese clara, consequência concreta e fonte. Só acaba com pergunta se for específica e difícil de ignorar.
 - Instagram: legenda curta, guardável, com 3 impactos concretos e fonte. Não usar tom de artigo longo.
-- Site: artigo curto, arquivável, com fonte/data/categoria quando disponíveis. Sem CTA social.
+- X: post curto, factual e com fonte; hook forte e leitura PTIA curta. Respeita o limite de 280 caracteres incluindo hashtags e link.
+- Site: artigo editorial curado, arquivável, com fonte/data/categoria quando disponíveis. Lead forte, 4 a 7 parágrafos se houver material e sem CTA social.
 - Não uses markdown pesado.
 - Não acabar com perguntas genéricas sobre prioridades, opinião ou "o que achas".
 - Evita títulos com "o que significa para Portugal?" quando o ângulo forçado não é material.
 - Evita linguagem de IA e frases gastas: "sinal relevante", "separar sinal de ruído",
   "impacto prático", "merece atenção", "no contexto português", "workflows reais",
-  "pode mudar tudo", "next-gen", "revolucionário".
+  "pode mudar tudo", "next-gen", "revolucionário", "O entusiasmo é compreensível",
+  "quem consegue executar", "primeiro passo", "custo, risco e dependência".
 - Prefere frases específicas, humanas e com tensão editorial.
 
 Responde apenas em JSON válido:
@@ -300,7 +416,7 @@ Actua como editor final PT-PT do PTIA, não como corrector gramatical.
 
 Objectivo:
 Transformar o texto num draft que soe escrito por uma pessoa: primeiro notícia factual,
-depois leitura editorial PTIA com ponto de vista, depois acção ou pergunta útil.
+depois uma tese editorial específica sobre aquela notícia, depois uma consequência concreta.
 
 Persona editorial fixa:
 - Jornalista/editor português de tecnologia e negócios.
@@ -320,10 +436,23 @@ Hashtags atuais:
 Fontes:
 {chr(10).join(source_urls)}
 
+{PTIA_HUMAN_EDITORIAL_ARTICLE_PROMPT}
+
+{PTIA_SPECIFIC_ANGLE_PROMPT}
+
+{PTIA_COPY_STYLE_REFERENCES}
+
+{PTIA_ANTI_ASSISTANT_PASS}
+
+Regra reforcada para o canal site:
+- Escreve como artigo editorial curado, nao como resumo de assistente.
+- Usa lead forte, analise em 4 a 7 paragrafos e fecho memoravel.
+- A fonte original fica visivel no fim.
+
 Regras:
 - Português europeu, sem brasileirismos.
 - Mantém a notícia factual no início, sem opinião nem adornos.
-- Depois acrescenta uma tese editorial concreta, sem a rotular explicitamente.
+- Depois acrescenta uma tese editorial concreta, sem a rotular explicitamente. A tese tem de depender dos factos desta notícia.
 - Não imprimas headings ou rótulos como "A notícia", "A leitura PTIA", "O que observar agora" ou "Porque importa".
 - Não inventar factos, números, datas, empresas ou conclusões.
 - Não tornar o texto mais longo sem necessidade.
@@ -331,13 +460,16 @@ Regras:
 - Manter a fonte original visível.
 - LinkedIn: tese clara, consequência concreta e fonte. Pergunta final só se for específica e não genérica.
 - Instagram: legenda curta, guardável, com 3 impactos concretos e fonte.
-- Site: factual, curto, arquivável, com fonte/data/categoria quando disponíveis. Sem CTA social.
+- X: post curto, factual e com fonte; hook forte e leitura PTIA curta. Respeita o limite de 280 caracteres incluindo hashtags e link.
+- Site: artigo editorial curado, arquivável, com fonte/data/categoria quando disponíveis. Lead forte, 4 a 7 parágrafos se houver material e sem CTA social.
 - Não uses markdown pesado.
 - Não terminar com perguntas genéricas sobre prioridades ou "o que achas".
 - Evita títulos com "o que significa para Portugal?" quando o ângulo forçado não é material.
 - Corta ou substitui estas expressões quando aparecerem: "sinal relevante",
   "separar sinal de ruído", "impacto prático", "merece atenção", "workflows reais",
-  "no contexto português", "acompanhar de perto", "a próxima geração".
+  "no contexto português", "acompanhar de perto", "a próxima geração",
+  "O entusiasmo é compreensível", "quem consegue executar", "primeiro passo",
+  "custo, risco e dependência".
 - O texto deve parecer editado por alguém com critério, não gerado por um assistente.
 
 Responde apenas em JSON válido:
@@ -349,6 +481,54 @@ Responde apenas em JSON válido:
 }}
 """.strip()
         return self._generate_rewrite(prompt, temperature=0.7)
+
+    def suggest_visual_image_titles(
+        self,
+        *,
+        title: str,
+        body: str,
+        source_urls: list[str],
+    ) -> list[dict[str, str]]:
+        prompt = f"""
+És editor sénior do PTIA. Sugere dois títulos visuais curtos para aparecerem
+dentro de uma imagem de Instagram e X.
+
+Tema:
+{title}
+
+Texto editorial:
+{body}
+
+Fontes:
+{chr(10).join(source_urls)}
+
+Objectivo:
+- Criar uma frase que pare o scroll e deixe curiosidade para ler a legenda.
+- Manter o tom PTIA: inteligente, editorial, português, crítico quando fizer sentido.
+- Ser provocatório sem clickbait vazio, sensacionalismo ou tom de tabloide.
+
+Regras:
+- Sugere exactamente 2 títulos.
+- O primeiro deve ser mais bait/provocatório.
+- O segundo deve ser mais sóbrio/editorial.
+- Cada título deve ter preferencialmente 6 a 10 palavras.
+- Não inventes factos, números, promessas ou conclusões ausentes do texto.
+- Não uses emojis, hashtags, aspas decorativas nem pontuação gritante.
+- Escreve em português europeu.
+
+Responde apenas em JSON válido:
+{{
+  "suggestions": [
+    {{"tone": "provocatorio", "title": "titulo visual"}},
+    {{"tone": "editorial", "title": "titulo visual"}}
+  ]
+}}
+""".strip()
+        response = self._generate_json_response(prompt, temperature=0.78)
+        candidate = (response.get("candidates") or [{}])[0]
+        parts = ((candidate.get("content") or {}).get("parts") or [])
+        text = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict))
+        return _image_title_suggestions_from_record(_extract_json(text))
 
     def _generate_candidates(self, prompt: str, *, query: str, limit: int) -> list[SearchCandidate]:
         if not self.available:
@@ -388,6 +568,11 @@ Responde apenas em JSON válido:
         return candidates[:limit]
 
     def _generate_rewrite(self, prompt: str, *, temperature: float = 0.55) -> RewriteResult:
+        return self._generate_rewrite_from_response(
+            self._generate_json_response(prompt, temperature=temperature)
+        )
+
+    def _generate_json_response(self, prompt: str, *, temperature: float) -> dict[str, Any]:
         if not self.available:
             raise RuntimeError("GEMINI_API_KEY não está configurada.")
 
@@ -420,7 +605,7 @@ Responde apenas em JSON válido:
         except URLError as exc:
             raise RuntimeError(f"Gemini API indisponível: {exc.reason}") from exc
 
-        return self._generate_rewrite_from_response(response_data)
+        return response_data
 
     def _generate_rewrite_from_response(self, response_data: dict[str, Any]) -> RewriteResult:
         candidate = (response_data.get("candidates") or [{}])[0]

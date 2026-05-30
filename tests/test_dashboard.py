@@ -1,13 +1,23 @@
 import shutil
 import unittest
 import uuid
+from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from ptia_engine.dashboard import DashboardState, _ensure_public_images_for_buffer
+from ptia_engine.dashboard import (
+    DashboardState,
+    _ensure_public_images_for_buffer,
+    _x_post_validation_issues,
+    _fit_x_post_text,
+    _reverify_verifying_signals,
+    _x_weighted_len,
+)
+from ptia_engine.editorial_board import add_final_post, add_radar_signal, update_final_post_status
 from ptia_engine.models import ContentDraft, ContentPerformance, ProcessedItem, RadarSignal, RawArticle
-from ptia_engine.storage import append_jsonl
+from ptia_engine.source_verifier import VerificationResult
+from ptia_engine.storage import append_jsonl, load_radar_signals
 
 
 class DashboardTests(unittest.TestCase):
@@ -177,6 +187,115 @@ class DashboardTests(unittest.TestCase):
 
         publish_assets.assert_called_once()
         deploy_assets.assert_not_called()
+
+    def test_reverify_verifying_signals_processes_the_queue(self):
+        published_at = datetime.now(timezone.utc).date().isoformat()
+        verified = add_radar_signal(
+            self.root / "radar_signals.jsonl",
+            source_type="news",
+            source_name="Unverified",
+            title="Fresh story",
+            url="https://www.reuters.com/world/fresh-story",
+            status="verifying",
+            require_recent=False,
+        )
+        pending = add_radar_signal(
+            self.root / "radar_signals.jsonl",
+            source_type="news",
+            source_name="Unverified",
+            title="Missing source",
+            url="https://example.com/pending",
+            status="verifying",
+            require_recent=False,
+        )
+
+        with patch(
+            "ptia_engine.dashboard.resolve_submitted_link",
+            side_effect=[
+                VerificationResult(
+                    status="verified",
+                    source_name="Reuters",
+                    title=verified.title,
+                    published_at=published_at,
+                    summary="Fresh summary.",
+                    notes="Verified.",
+                    verified_url=verified.url,
+                ),
+                VerificationResult(
+                    status="verifying",
+                    source_name="Unverified",
+                    title=pending.title,
+                    published_at="",
+                    summary="",
+                    notes="Still missing date.",
+                    verified_url=pending.url,
+                ),
+            ],
+        ):
+            result = _reverify_verifying_signals(DashboardState(self.root))
+
+        signals = {
+            signal.signal_id: signal
+            for signal in load_radar_signals(self.root / "radar_signals.jsonl")
+        }
+        self.assertEqual(result["checked"], 2)
+        self.assertEqual(result["verified"], 1)
+        self.assertEqual(result["verifying"], 1)
+        self.assertEqual(signals[verified.signal_id].status, "verified")
+        self.assertEqual(signals[pending.signal_id].status, "verifying")
+
+    def test_snapshot_exposes_copy_issues_for_final_ok_warning_dot(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="topic_1",
+            channel="instagram",
+            title="Post com erro",
+            body=(
+                "Texto factual curto.\n\n"
+                "Três leituras:\n"
+                "- Uma leitura válida.\n"
+                "- - Fonte: https://example.com/source"
+            ),
+            hashtags="#IA",
+            image_prompt="",
+            source_urls=["https://example.com/source"],
+        )
+        update_final_post_status(self.root / "final_posts.jsonl", post.post_id, "approved_for_schedule")
+
+        snapshot = DashboardState(self.root).snapshot()
+
+        post = snapshot["final_ready_to_schedule"][0]
+        self.assertTrue(post["copy_issues"])
+
+    def test_x_post_fitting_counts_urls_as_shortened_links(self):
+        source = "https://g1.globo.com/mundo/noticia/2026/05/26/papa-leao-xiv-ia-guerra.ghtml"
+        body = (
+            "O Vaticano traçou uma linha vermelha para a IA na guerra: decisões letais ou "
+            "irreversíveis não devem ser entregues a sistemas artificiais. A questão já não "
+            "é só precisão técnica. É responsabilidade humana quando a decisão não tem retorno."
+        )
+
+        text = _fit_x_post_text(body, "#IA #EticaIA", [source])
+
+        self.assertIn("É responsabilidade humana", text)
+        self.assertIn(source, text)
+        self.assertIn("#IA #EticaIA", text)
+        self.assertLessEqual(_x_weighted_len(text), 280)
+
+    def test_x_post_validation_blocks_truncated_and_corrupt_text(self):
+        issues = _x_post_validation_issues(
+            "O Vaticano tra?ou uma linha vermelha para a IA...\n\nhttps://example.com\n\n#IA",
+            "https://example.com/image.jpg",
+        )
+
+        self.assertIn("texto truncado com reticencias", issues)
+        self.assertIn("acentos possivelmente corrompidos", issues)
+
+    def test_x_post_validation_requires_image_and_source(self):
+        issues = _x_post_validation_issues("Texto curto sem fonte\n\n#IA", "")
+
+        self.assertIn("sem link de fonte", issues)
+        self.assertIn("sem imagem publica", issues)
 
 
 if __name__ == "__main__":
