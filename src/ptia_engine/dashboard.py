@@ -1586,10 +1586,37 @@ def _final_post_text(post) -> str:
     hashtags_value = _normalise_hashtags(post.hashtags, post.channel)
     hashtags = f"\n\n{hashtags_value}" if hashtags_value else ""
     _, clean_body = _apply_ptia_editorial_rules(post.title, post.body, post.channel)
+    
+    # Try to find corresponding site post to build dynamic backlink
+    article_url = ""
+    try:
+        from pathlib import Path
+        from ptia_engine.storage import load_final_posts
+        # We look for a site post with the same topic_id
+        data_path = Path("data/final_posts.jsonl")
+        topic_id = getattr(post, "topic_id", None)
+        if not topic_id and isinstance(post, dict):
+            topic_id = post.get("topic_id")
+        channel = getattr(post, "channel", None) or (post.get("channel") if isinstance(post, dict) else "")
+        
+        if topic_id and channel in {"linkedin", "x"} and data_path.exists():
+            posts = load_final_posts(data_path)
+            for p in posts:
+                if p.channel == "site" and p.topic_id == topic_id:
+                    base = _site_public_base_url()
+                    rel = _article_url_for_site_post(p)
+                    article_url = f"{base}/{rel}"
+                    break
+    except Exception:
+        pass
+
     if post.channel == "x":
-        return _fit_x_post_text(clean_body, hashtags_value, post.source_urls)
+        x_sources = [article_url] if article_url else (post.source_urls or [])
+        return _fit_x_post_text(clean_body, hashtags_value, x_sources)
     sources = ""
-    if post.source_urls and not _body_has_source_block(clean_body):
+    if post.channel == "linkedin" and article_url:
+        sources = f"\n\nAnálise completa: {article_url}"
+    elif post.source_urls and not _body_has_source_block(clean_body):
         sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
     return f"{clean_body}{hashtags}{sources}".strip()
 
