@@ -181,6 +181,8 @@ class BufferClient:
         image_urls: list[str] | None = None,
         post_type: str = "",
         scheduling_type: str = "automatic",
+        channel_service: str = "",
+        first_comment: str = "",
     ) -> BufferPostResult:
         input_payload: dict[str, Any] = {
             "text": text,
@@ -189,13 +191,24 @@ class BufferClient:
             "mode": "customScheduled",
             "dueAt": _buffer_due_at(due_at),
         }
-        if post_type:
-            input_payload["metadata"] = {
-                "instagram": {
-                    "type": post_type,
-                    "shouldShareToFeed": True,
-                }
+        metadata = {}
+        if post_type or (channel_service == "instagram" and first_comment):
+            metadata["instagram"] = {
+                "type": post_type or "post",
+                "shouldShareToFeed": True,
             }
+            if first_comment:
+                metadata["instagram"]["firstComment"] = first_comment
+        elif channel_service == "linkedin" and first_comment:
+            metadata["linkedin"] = {
+                "firstComment": first_comment
+            }
+        elif channel_service == "facebook" and first_comment:
+            metadata["facebook"] = {
+                "firstComment": first_comment
+            }
+        if metadata:
+            input_payload["metadata"] = metadata
         asset_urls = [url for url in (image_urls or []) if url]
         if image_url and not asset_urls:
             asset_urls = [image_url]

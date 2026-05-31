@@ -1564,6 +1564,29 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
     if image_url:
         _copy_image_to_public_site_assets(state, post)
     final_text = _final_post_text(post)
+    
+    first_comment = ""
+    if post.channel == "linkedin":
+        article_url = ""
+        try:
+            topic_id = getattr(post, "topic_id", None)
+            if not topic_id and isinstance(post, dict):
+                topic_id = post.get("topic_id")
+            posts = load_final_posts(state.final_posts_path)
+            site_post = next((p for p in posts if p.topic_id == topic_id and p.channel == "site"), None)
+            if site_post:
+                base = _site_public_base_url()
+                rel = _article_url_for_site_post(site_post)
+                article_url = f"{base}/{rel}"
+        except Exception:
+            pass
+        if article_url:
+            target_str = f"Análise completa: {article_url}"
+            if target_str in final_text:
+                final_text = final_text.replace(f"\n\n{target_str}", "").replace(target_str, "").strip()
+                final_text += "\n\n👉 Link para a análise completa no primeiro comentário."
+                first_comment = f"👉 Análise completa: {article_url}"
+
     if post.channel == "x":
         _assert_x_post_ready(final_text, image_url)
     buffer_post = BufferClient().create_scheduled_post(
@@ -1572,6 +1595,8 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
         due_at=scheduled_time,
         image_url=image_url,
         post_type="post" if post.channel == "instagram" else "",
+        channel_service=post.channel,
+        first_comment=first_comment,
     )
     return update_final_post_status(
         state.final_posts_path,
@@ -3849,13 +3874,14 @@ HTML = r"""<!doctype html>
       const actions = `
         <div class="actions">
           ${mode === 'verifying' || signal.status === 'verifying' || canVerify ? `<button class="primary" onclick="api('/api/reverify-signal',{signal_id:'${esc(signal.signal_id)}'})">${verifyLabel}</button>` : ''}
+          ${mode === 'verifying' || signal.status === 'verifying' || signal.status === 'rejected' ? `<button class="good" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'verified',notes:'Aprovado manualmente pelo editor'})">Aprovar Manual</button>` : ''}
           ${mode === 'radar' && isVerified ? `<button class="good" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'selected',notes:'Escolhido para curadoria'})">Escolher para hoje</button>` : ''}
           ${mode === 'radar' && isSelected ? `<button class="primary" onclick="buildFinalPack('${esc(signal.signal_id)}')">Criar pacote final</button>` : ''}
           ${mode === 'verified' && !isSelected ? `<button class="good" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'selected',notes:'Escolhido para curadoria'})">Escolher para hoje</button>` : ''}
           ${mode === 'verified' && isSelected ? `<button class="primary" onclick="buildFinalPack('${esc(signal.signal_id)}')">Criar pacote final</button>` : ''}
           ${mode === 'recent' && (isVerified || isSelected) ? `<button onclick="showTab('verified_tab')">Ver em Verified</button>` : ''}
           ${mode === 'recent' && signal.status === 'used' ? `<button onclick="showTab('final_draft_pack')">Ver em A Rever</button>` : ''}
-          <button class="bad" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'rejected',notes:'Fora da linha editorial'})">Rejeitar</button>
+          ${signal.status !== 'rejected' ? `<button class="bad" onclick="api('/api/signal-status',{signal_id:'${esc(signal.signal_id)}',status:'rejected',notes:'Fora da linha editorial'})">Rejeitar</button>` : ''}
           <a href="${esc(signal.url)}" target="_blank">Fonte</a>
         </div>`;
       return `<article class="card signal-card">
@@ -3891,13 +3917,24 @@ HTML = r"""<!doctype html>
     function val(id) { return document.getElementById(id)?.value.trim() || ''; }
     async function submitQuickCapture(event) {
       event.preventDefault();
-      await api('/api/quick-capture', {
+      const res = await requestJson('/api/quick-capture', {
         link: val('quick_link'),
         thought: val('quick_thought')
       });
-      showToast('Guardado no Radar');
+      let msg = 'Guardado no Radar';
+      if (res.signal) {
+        if (res.signal.status === 'verified') {
+          msg = 'Link verificado e guardado!';
+        } else if (res.signal.status === 'verifying') {
+          msg = 'Link em verificação (Verifying)';
+        } else if (res.signal.status === 'rejected') {
+          msg = 'Link rejeitado: ' + (res.signal.notes || '').split('\n').pop();
+        }
+      }
+      showToast(msg);
       document.getElementById('quick_link').value = '';
       document.getElementById('quick_thought').value = '';
+      await loadState();
       showTab('flow');
     }
     async function runGeminiScout() {
@@ -5643,6 +5680,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
                 results = {}
                 if link:
                     verification = resolve_submitted_link(link, thought=thought)
+                    target_status = "verified" if verification.status == "verified" else "verifying"
                     signal = add_radar_signal(
                         self.state.radar_signals_path,
                         source_type="news",
@@ -5656,9 +5694,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
                         why_it_matters=thought,
                         why_engaged="",
                         notes=verification.notes,
-                        status=verification.status,
+                        status=target_status,
                         require_recent=verification.status == "verified",
                     )
+                    if signal.status != target_status:
+                        signal = update_signal_status(
+                            self.state.radar_signals_path,
+                            signal.signal_id,
+                            target_status,
+                            "Re-submetido pelo editor: " + verification.notes,
+                        )
                     results["signal"] = _to_dict(signal)
                 if thought and not link:
                     topic = add_editorial_topic(
