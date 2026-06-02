@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quem é Quem na IA em Portugal · PTIA.pt</title>
+  <meta name="description" content="O diretório e mapa de referência das 20 empresas e 20 personalidades líderes em Inteligência Artificial em Portugal. Organizado pela curadoria independente da PTIA.">
+  
+  <meta property="og:title" content="Quem é Quem na IA em Portugal · PTIA.pt">
+  <meta property="og:description" content="O mapa de referência das marcas e personalidades que lideram e constroem a Inteligência Artificial nacional.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ptia.pt/quem-e-quem">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F3EEE2">
+  
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("ptia-theme");
+        document.documentElement.dataset.theme = saved === "dark" ? "dark" : "light";
+      } catch (_) {}
+    })();
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260601-1130">
+  
+  <style>
+    /* Premium custom layout styles for Quem é Quem page */
+    .qeq-hero {
+      padding: 80px 0 50px;
+      text-align: center;
+      border-bottom: 1px solid var(--rule-2);
+      margin-bottom: 40px;
+    }
+    
+    .qeq-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin: 0 auto 20px;
+      max-width: 24ch;
+    }
+    
+    .qeq-hero p {
+      font-family: var(--serif-text);
+      font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      line-height: 1.45;
+      color: var(--ink-2);
+      max-width: 58ch;
+      margin: 0 auto;
+    }
+
+    /* Filter & Search Bar */
+    .qeq-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule-3);
+    }
+    
+    .qeq-filters {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .qeq-btn {
+      background: var(--paper);
+      color: var(--ink-2);
+      border: 1px solid var(--rule-2);
+      padding: 10px 24px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .qeq-btn:hover {
+      border-color: var(--ink-2);
+      transform: translateY(-1px);
+    }
+    
+    .qeq-btn.active {
+      background: var(--accent);
+      color: var(--paper);
+      border-color: var(--accent);
+    }
+    
+    .qeq-search-wrapper {
+      position: relative;
+      flex-grow: 1;
+      max-width: 420px;
+    }
+    
+    .qeq-search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 20px 12px 45px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--rule-2);
+      border-radius: 99px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    
+    .qeq-search:focus {
+      border-color: var(--accent);
+    }
+    
+    .qeq-search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Grid Layout */
+    .qeq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+    
+    .qeq-card {
+      background: var(--paper);
+      border: 1px solid var(--rule-2);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .qeq-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px var(--rule-3);
+      border-color: var(--muted);
+    }
+    
+    .qeq-card-top {
+      margin-bottom: 24px;
+    }
+    
+    .qeq-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    
+    .qeq-card-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.1;
+    }
+    
+    .qeq-card-category {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--signal);
+      background: color-mix(in oklab, var(--signal) 8%, transparent);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    
+    .qeq-card-tagline {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink-2);
+      margin: 0 0 14px;
+      line-height: 1.35;
+    }
+    
+    .qeq-card-description {
+      font-family: var(--serif-text);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    
+    .qeq-card-bottom {
+      margin-top: auto;
+    }
+    
+    .qeq-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    
+    .qeq-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--rule-3);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    
+    .qeq-card-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--rule-3);
+      padding-top: 16px;
+    }
+    
+    .qeq-linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    .qeq-linkedin-link:hover {
+      color: var(--signal);
+    }
+    
+    .qeq-linkedin-link svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .qeq-type-badge {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    
+    .qeq-empty {
+      text-align: center;
+      padding: 80px 20px;
+      font-family: var(--serif-text);
+      font-size: 1.5rem;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    
+    /* Responsive margins */
+    @media (max-width: 768px) {
+      .qeq-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .qeq-filters {
+        order: 2;
+        overflow-x: auto;
+        padding-bottom: 5px;
+      }
+      .qeq-search-wrapper {
+        order: 1;
+        max-width: 100%;
+      }
+      .qeq-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#hoje">Saltar para o conteúdo</a>
+
+  <div class="dateline">
+    <div class="wrap">
+      <div class="dateline-left">
+        <span id="date-long">segunda-feira, 1 de junho de 2026</span>
+        <span class="issue">Especial · Diretório IA</span>
+      </div>
+      <div class="dateline-right">
+        <span class="live"><span class="live-dot"></span> Lisboa · <span id="clock">00:00</span></span>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema" aria-pressed="false" id="theme-toggle">Escuro</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header news">
+    <div class="wrap header-grid">
+      <a class="brand-logo-link" href="/" aria-label="PTIA.pt - página inicial">
+        <img class="brand-logo" src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
+      </a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="/">Hoje</a>
+        <a href="/#mundo">Mundo</a>
+        <a href="/#portugal">Portugal</a>
+        <a href="/#builders">Builders</a>
+        <a href="/#regulacao">Regulação</a>
+        <a href="/quem-e-quem" class="active" aria-current="page">Quem é Quem</a>
+      </nav>
+      <div class="header-actions">
+        <a class="social-icon social-icon-instagram" href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z"></path>
+          </svg>
+        </a>
+        <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-.02ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
+          </svg>
+        </a>
+        <a class="social-icon social-icon-x" href="https://x.com/PTIAPTPT" target="_blank" rel="noopener noreferrer" aria-label="PTIA no X (Twitter)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+          </svg>
+        </a>
+        <a class="header-cta" href="/#newsletter">Weekly <span aria-hidden="true">-></span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="hoje">
+    <section class="qeq-hero">
+      <h1>Quem é Quem na IA em Portugal</h1>
+      <p>O mapa de referência das 20 empresas e 20 personalidades que lideram, constroem e regulam o ecossistema nacional de inteligência artificial.</p>
+    </section>
+
+    <section class="qeq-controls">
+      <div class="qeq-filters" role="group" aria-label="Filtros de diretório">
+        <button class="qeq-btn active" data-filter="all">Todos</button>
+        <button class="qeq-btn" data-filter="company">Empresas</button>
+        <button class="qeq-btn" data-filter="people">Pessoas</button>
+      </div>
+      
+      <div class="qeq-search-wrapper">
+        <svg class="qeq-search-icon" viewBox="0 0 24 24">
+          <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path>
+        </svg>
+        <input type="search" class="qeq-search" id="qeq-search-input" placeholder="Procurar por nome, tag ou categoria..." aria-label="Procurar no diretório">
+      </div>
+    </section>
+
+    <div class="qeq-grid" id="qeq-grid-container">
+      <!-- Cards dynamically injected here -->
+      <div class="qeq-empty">A carregar diretório de IA...</div>
+    </div>
+  </main>
+
+  <footer id="arquivo" class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
+          <p>Curadoria, contexto e interpretação própria. Sempre com fonte original.</p>
+          <div class="footer-social" aria-label="Redes sociais PTIA">
+            <a class="social-icon social-icon-instagram" href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z"></path>
+              </svg>
+            </a>
+            <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-.02ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
+              </svg>
+            </a>
+            <a class="social-icon social-icon-x" href="https://x.com/PTIAPTPT" target="_blank" rel="noopener noreferrer" aria-label="PTIA no X (Twitter)">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+            </a>
+          </div>
+          <p class="editor-line">Editor <em>João Ferreira</em></p>
+        </div>
+        <nav aria-label="Edição"><h3>Edição</h3><a href="/#hoje">Hoje em IA</a><a href="/#arquivo">Arquivo</a><a href="/#newsletter">Weekly</a><a href="/#metodo">Método</a></nav>
+        <nav aria-label="Secções"><h3>Secções</h3><a href="/#mundo">Mundo</a><a href="/#portugal">Portugal</a><a href="/#builders">Builders</a><a href="/#regulacao">Regulação</a></nav>
+        <nav aria-label="Casa"><h3>Casa</h3><a href="/#metodo">Método editorial</a><a href="mailto:info@ptia.pt">Contactos e informações</a><a href="/quem-e-quem">Quem é Quem</a></nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 PTIA · Curadoria independente · Lisboa</span>
+        <span>v3 · Quem é Quem</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Pure Vanilla JS for loading and rendering directory entries
+    let directoryData = { companies: [], people: [] };
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    // Clock updates
+    function updateClock() {
+      const clock = document.getElementById("clock");
+      if (!clock) return;
+      const now = new Date();
+      clock.textContent = now.toLocaleTimeString("pt-PT", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Theme toggling
+    const themeBtn = document.getElementById("theme-toggle");
+    if (themeBtn) {
+      themeBtn.addEventListener("click", () => {
+        const current = document.documentElement.dataset.theme;
+        const target = current === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = target;
+        localStorage.setItem("ptia-theme", target);
+        themeBtn.textContent = target === "dark" ? "Claro" : "Escuro";
+      });
+      // Initial button text
+      const current = document.documentElement.dataset.theme || "light";
+      themeBtn.textContent = current === "dark" ? "Claro" : "Escuro";
+    }
+
+    // Load Data
+    async function loadDirectory() {
+      const grid = document.getElementById("qeq-grid-container");
+      try {
+        const response = await fetch("assets/quem-e-quem.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("Falha ao carregar banco de dados");
+        directoryData = await response.json();
+        renderGrid();
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = `<div class="qeq-empty">Não foi possível carregar o diretório. Por favor, tenta novamente mais tarde.</div>`;
+      }
+    }
+
+    // Render Grid
+    function renderGrid() {
+      const grid = document.getElementById("qeq-grid-container");
+      grid.innerHTML = "";
+
+      let items = [];
+      
+      if (activeFilter === 'all' || activeFilter === 'company') {
+        items = items.concat(directoryData.companies.map(c => ({ ...c, type: 'company' })));
+      }
+      if (activeFilter === 'all' || activeFilter === 'people') {
+        items = items.concat(directoryData.people.map(p => ({ ...p, type: 'people' })));
+      }
+
+      // Apply Search Filter
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase().trim();
+        items = items.filter(item => {
+          const name = item.name.toLowerCase();
+          const tagline = (item.tagline || item.role || '').toLowerCase();
+          const description = (item.description || item.bio || '').toLowerCase();
+          const category = (item.category || '').toLowerCase();
+          const tagsMatch = (item.tags || []).some(t => t.toLowerCase().includes(query));
+          
+          return name.includes(query) || 
+                 tagline.includes(query) || 
+                 description.includes(query) || 
+                 category.includes(query) || 
+                 tagsMatch;
+        });
+      }
+
+      // Sort items alphabetically by name
+      items.sort((a, b) => a.name.localeCompare(b.name));
+
+      if (items.length === 0) {
+        grid.innerHTML = `<div class="qeq-empty">Nenhum resultado encontrado para "${searchQuery}".</div>`;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "qeq-card";
+        
+        const isCompany = item.type === 'company';
+        const displaySub = isCompany ? item.tagline : item.role;
+        const displayDesc = isCompany ? item.description : item.bio;
+        const typeLabel = isCompany ? "Empresa" : "Personalidade";
+        
+        const tagsHtml = (item.tags || []).map(t => `<span class="qeq-tag">${t}</span>`).join("");
+
+        card.innerHTML = `
+          <div class="qeq-card-top">
+            <div class="qeq-card-header">
+              <h2 class="qeq-card-title">${item.name}</h2>
+              <span class="qeq-card-category">${item.category}</span>
+            </div>
+            <p class="qeq-card-tagline">${displaySub}</p>
+            <p class="qeq-card-description">${displayDesc}</p>
+          </div>
+          <div class="qeq-card-bottom">
+            <div class="qeq-card-tags">
+              ${tagsHtml}
+            </div>
+            <div class="qeq-card-action">
+              <a class="qeq-linkedin-link" href="${item.linkedin}" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                Perfil LinkedIn
+              </a>
+              <span class="qeq-type-badge">${typeLabel}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Set up search and filters
+    document.addEventListener("DOMContentLoaded", () => {
+      loadDirectory();
+
+      const searchInput = document.getElementById("qeq-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = e.target.value;
+          renderGrid();
+        });
+      }
+
+      const filterBtns = document.querySelectorAll(".qeq-btn");
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          filterBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.getAttribute("data-filter");
+          renderGrid();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

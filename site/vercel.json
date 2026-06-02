@@ -3,6 +3,10 @@
     {
       "source": "/artigos/:slug",
       "destination": "/article.html"
+    },
+    {
+      "source": "/quem-e-quem",
+      "destination": "/quem-e-quem.html"
     }
   ]
 }

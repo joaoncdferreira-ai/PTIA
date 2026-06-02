@@ -1,0 +1,384 @@
+{
+  "companies": [
+    {
+      "id": "unbabel",
+      "name": "Unbabel",
+      "tagline": "Tradução autónoma e IA linguística empresarial",
+      "description": "Líder em tradução baseada em IA que combina grandes modelos de linguagem (incluindo o EuroLLM) com curadoria humana para fornecer canais de atendimento multilingues em tempo real.",
+      "linkedin": "https://www.linkedin.com/company/unbabel",
+      "category": "Scaleup / Tecnologia",
+      "tags": ["Tradução", "LLMs", "Apoio ao Cliente"]
+    },
+    {
+      "id": "definedai",
+      "name": "Defined.ai",
+      "tagline": "Dados de treino éticos e serviços para IA",
+      "description": "O maior marketplace mundial de dados de voz, texto e imagem estruturados e licenciados de forma ética para treinar grandes modelos de inteligência artificial de fronteira.",
+      "linkedin": "https://www.linkedin.com/company/definedai",
+      "category": "Data Provider",
+      "tags": ["Dados de Treino", "Ethical AI", "Modelos"]
+    },
+    {
+      "id": "feedzai",
+      "name": "Feedzai",
+      "tagline": "Prevenção de crime financeiro e fraudes com IA",
+      "description": "Líder de mercado na proteção de transações financeiras mundiais através de motores de machine learning em tempo real que gerem e analisam riscos em frações de segundo.",
+      "linkedin": "https://www.linkedin.com/company/feedzai",
+      "category": "Enterprise / Fintech",
+      "tags": ["Fintech", "Prevenção de Fraude", "Real-Time AI"]
+    },
+    {
+      "id": "ydataai",
+      "name": "YData",
+      "tagline": "Geração de Synthetic Data para desenvolvimento",
+      "description": "Pioneira na geração de dados sintéticos de alta qualidade e ferramentas de preparação de dados orientadas para a segurança de privacidade e eficiência no desenvolvimento de modelos.",
+      "linkedin": "https://www.linkedin.com/company/ydataai",
+      "category": "Data / Privacy",
+      "tags": ["Dados Sintéticos", "Data Prep", "Privacidade"]
+    },
+    {
+      "id": "codacy",
+      "name": "Codacy",
+      "tagline": "Análise automática e governança de código por IA",
+      "description": "Ferramenta global de revisão e linting automático de código utilizada por milhares de programadores que integra agentes inteligentes e analisadores avançados para robustecer o software.",
+      "linkedin": "https://www.linkedin.com/company/codacy",
+      "category": "DevTools",
+      "tags": ["Coding Agents", "Segurança de Código", "Automação"]
+    },
+    {
+      "id": "haloneuro",
+      "name": "Halo NeuroAI",
+      "tagline": "Interfaces neurais e reabilitação de voz por IA",
+      "description": "Startup focada na fronteira da neurotecnologia e IA que desenvolve soluções para devolver a voz a pessoas com dificuldades neuromotoras através de síntese e modelação avançada.",
+      "linkedin": "https://www.linkedin.com/company/haloneuro",
+      "category": "MedTech / NeuroAI",
+      "tags": ["Deep Tech", "NeuroAI", "Responsible AI"]
+    },
+    {
+      "id": "microsoft-portugal",
+      "name": "Microsoft Portugal",
+      "tagline": "Aceleração digital e ecossistemas de Copilot",
+      "description": "Divisão portuguesa do líder mundial de software, principal dinamizadora da adoção de Copilots nas empresas, PMEs e no sector público em Portugal.",
+      "linkedin": "https://www.linkedin.com/company/microsoft-portugal",
+      "category": "Big Tech / Partner",
+      "tags": ["Copilot", "Azure Cloud", "Produtividade"]
+    },
+    {
+      "id": "google-portugal",
+      "name": "Google Portugal",
+      "tagline": "Inovação tecnológica e aceleração de competências",
+      "description": "Focada na literacia digital nacional e na implementação prática de IA, apoia startups portuguesas e promove competências técnicas através de programas globais.",
+      "linkedin": "https://www.linkedin.com/company/google-portugal",
+      "category": "Big Tech / Partner",
+      "tags": ["Procura", "Programas Estatais", "Aceleração"]
+    },
+    {
+      "id": "aon-portugal",
+      "name": "Aon Portugal",
+      "tagline": "Consultoria de risco tecnológico e de governação",
+      "description": "Líder global em gestão de risco que apoia a transição digital portuguesa ajudando empresas a mapear conformidades, passivos digitais e riscos de adoção de IA.",
+      "linkedin": "https://www.linkedin.com/company/aon-portugal",
+      "category": "Consultoria",
+      "tags": ["Risco", "Compliance", "Advisory"]
+    },
+    {
+      "id": "apdc",
+      "name": "APDC",
+      "tagline": "Associação de comunicações e inovação digital",
+      "description": "A principal associação nacional que promove o ecossistema tecnológico e serve de fórum decisor de políticas digitais, ética e regulamentos de IA em Portugal.",
+      "linkedin": "https://www.linkedin.com/company/apdc-associacao-portuguesa-para-o-desenvolvimento-das-comunicacoes",
+      "category": "Associação",
+      "tags": ["Políticas", "Ecosystem", "Comunicações"]
+    },
+    {
+      "id": "indico-capital",
+      "name": "Indico Capital Partners",
+      "tagline": "Venture Capital focado em deep tech e IA",
+      "description": "Sociedade de capital de risco líder em Portugal que financia a fundação e a expansão internacional das startups nacionais mais inovadoras em IA e tecnologia limpa.",
+      "linkedin": "https://www.linkedin.com/company/indico-capital-partners",
+      "category": "Venture Capital",
+      "tags": ["Investimento", "Startup Funding", "Deep Tech"]
+    },
+    {
+      "id": "faber-ventures",
+      "name": "Faber Ventures",
+      "tagline": "Investimento seed em dados e IA em Portugal",
+      "description": "Fundo de capital de risco pioneiro especializado em investimento seed em startups focadas em dados, infraestrutura de software e algoritmos profundos na Europa do Sul.",
+      "linkedin": "https://www.linkedin.com/company/faberventures",
+      "category": "Venture Capital",
+      "tags": ["Data Science", "Seed Investment", "Early Stage"]
+    },
+    {
+      "id": "bright-pixel",
+      "name": "Bright Pixel (Sonae IM)",
+      "tagline": "Venture capital focado em cibersegurança e IA",
+      "description": "Braço de investimento em tecnologia da Sonae focado em cibersegurança, infraestrutura de dados e aplicações empresariais de IA a nível global.",
+      "linkedin": "https://www.linkedin.com/company/brightpixelvcs",
+      "category": "Venture Capital",
+      "tags": ["Cibersegurança", "Data Infra", "Enterprise"]
+    },
+    {
+      "id": "shilling-capital",
+      "name": "Shilling",
+      "tagline": "Fundo de capital de risco focado no fundador",
+      "description": "Fundo focado em startups em fase pré-seed e seed com um modelo ágil que tem apoiado múltiplos fundadores a escalar soluções assentes em inteligência artificial.",
+      "linkedin": "https://www.linkedin.com/company/shillingvc",
+      "category": "Venture Capital",
+      "tags": ["Pre-Seed", "Acompanhamento", "Scaleup"]
+    },
+    {
+      "id": "observador-pt",
+      "name": "Observador",
+      "tagline": "Cobertura jornalística da transformação digital",
+      "description": "Jornal de referência em Portugal que tem assegurado uma cobertura atenta sobre as dinâmicas sociais, legais e de negócios decorrentes do avanço da IA.",
+      "linkedin": "https://www.linkedin.com/company/observador",
+      "category": "Media",
+      "tags": ["Jornalismo", "Análise Social", "Inovação"]
+    },
+    {
+      "id": "jornal-de-negocios",
+      "name": "Jornal de Negócios",
+      "tagline": "Jornalismo financeiro focado em tecnologia e economia",
+      "description": "O principal título de economia em Portugal que acompanha com rigor as movimentações financeiras, investimentos e regulamentações do AI Act para empresas.",
+      "linkedin": "https://www.linkedin.com/company/jornaldenegocios",
+      "category": "Media",
+      "tags": ["Economia", "Regulação", "Investimentos"]
+    },
+    {
+      "id": "eco-economia-online",
+      "name": "ECO - Economia Online",
+      "tagline": "Jornal digital especializado em economia e tech",
+      "description": "Referência de informação económica digital que promove debates ativos sobre o impacto da inteligência artificial no mercado laboral e produtividade nacional.",
+      "linkedin": "https://www.linkedin.com/company/eco-economia-online",
+      "category": "Media",
+      "tags": ["Digital First", "Produtividade", "Emprego"]
+    },
+    {
+      "id": "swordhealth",
+      "name": "Sword Health",
+      "tagline": "Fisioterapia clínica e cuidados de saúde com IA",
+      "description": "Unicórnio português que desenvolveu o primeiro terapeuta clínico digital de IA, prestando cuidados clínicos musculoesqueléticos a milhões de pessoas no mundo.",
+      "linkedin": "https://www.linkedin.com/company/sword-health",
+      "category": "Unicórnio / MedTech",
+      "tags": ["Cuidados Clínicos", "Healthcare", "Unicórnio"]
+    },
+    {
+      "id": "talkdesk",
+      "name": "Talkdesk",
+      "tagline": "Contact centers na nuvem impulsionados por IA",
+      "description": "Unicórnio tecnológico fundado em Portugal que utiliza inteligência artificial generativa profunda para automatizar e otimizar a experiência do cliente empresarial.",
+      "linkedin": "https://www.linkedin.com/company/talkdesk",
+      "category": "Unicórnio / SaaS",
+      "tags": ["Customer Experience", "Generative AI", "Cloud SaaS"]
+    },
+    {
+      "id": "sensei-tech",
+      "name": "Sensei",
+      "tagline": "Sistemas de retalho autónomo e visão computacional",
+      "description": "Líder em retalho autónomo que utiliza câmaras e visão por computador avançada para criar lojas sem caixas registadoras em Portugal e na Europa.",
+      "linkedin": "https://www.linkedin.com/company/senseitech",
+      "category": "Scaleup / Retail",
+      "tags": ["Visão Computacional", "Retalho Autónomo", "IoT"]
+    },
+    {
+      "id": "stratio-automotive",
+      "name": "Stratio",
+      "tagline": "Manutenção preditiva de transportes públicos com IA",
+      "description": "Scaleup de IA que processa milhões de métricas em tempo real para prever falhas de autocarros e frotas, otimizando o transporte público global.",
+      "linkedin": "https://www.linkedin.com/company/stratio-automotive",
+      "category": "Scaleup / Fleet",
+      "tags": ["Preditivo", "IoT", "Transportes"]
+    }
+  ],
+  "people": [
+    {
+      "id": "danielabraga-in",
+      "name": "Daniela Braga",
+      "role": "Founder & CEO, Defined.ai",
+      "bio": "Uma das maiores vozes mundiais na governança de dados éticos para IA. Pertence ao conselho de assessoria de IA da Casa Branca e é a principal defensora da liderança tecnológica lusa.",
+      "linkedin": "https://www.linkedin.com/in/danielabraga",
+      "category": "Founder / Decisor",
+      "tags": ["Dados de IA", "Governança", "Startup"]
+    },
+    {
+      "id": "vascopedro-in",
+      "name": "Vasco Pedro",
+      "role": "Co-founder & CEO, Unbabel",
+      "bio": "Doutorado pela CMU e pioneiro em tradução automática de IA. Lidera o EuroLLM e tem sido a voz chave no ecossistema de inteligência artificial soberana para a Europa.",
+      "linkedin": "https://www.linkedin.com/in/vascopedro",
+      "category": "Founder / Cientista",
+      "tags": ["LLMs", "Tradução", "Soberania"]
+    },
+    {
+      "id": "nunosebastiao-in",
+      "name": "Nuno Sebastião",
+      "role": "Co-founder & CEO, Feedzai",
+      "bio": "Engenheiro aeroespacial pela ESA que fundou a maior scaleup de prevenção de fraude financeira com IA. Investidor ativo e mentor de startups tecnológicas nacionais.",
+      "linkedin": "https://www.linkedin.com/in/nunosebastiao",
+      "category": "Founder / Investidor",
+      "tags": ["Fintech", "Business Angel", "Estratégia"]
+    },
+    {
+      "id": "arlindooliveira-in",
+      "name": "Arlindo Oliveira",
+      "role": "Professor Catedrático, IST & INESC",
+      "bio": "Um dos principais académicos nacionais em IA. Autor dos livros 'Digital Minds' e 'Mentes Digitais', promove ativamente a discussão ética e o avanço científico nacional.",
+      "linkedin": "https://www.linkedin.com/in/arlindooliveira",
+      "category": "Académico / Autor",
+      "tags": ["Educação", "Ética", "Ciência Computacional"]
+    },
+    {
+      "id": "fabianaclemente-in",
+      "name": "Fabiana Clemente",
+      "role": "Co-founder & CDO, YData",
+      "bio": "Especialista em preparação de dados e geração de Synthetic Data. Lidera o desenvolvimento tecnológico da YData e é amplamente reconhecida como líder feminina na engenharia de dados.",
+      "linkedin": "https://www.linkedin.com/in/fabianaclemente",
+      "category": "Founder / CDO",
+      "tags": ["Dados Sintéticos", "Data Science", "Diversidade"]
+    },
+    {
+      "id": "stephanmorais-in",
+      "name": "Stephan Morais",
+      "role": "Managing General Partner, Indico Capital",
+      "bio": "Ex-Presidente da Investors Portugal e proeminente investidor luso. Apoia a internacionalização das maiores startups nacionais com teses assentes em IA e deep tech.",
+      "linkedin": "https://www.linkedin.com/in/stephanmorais",
+      "category": "Investidor / VC",
+      "tags": ["Startup Funding", "Tech VC", "Ecosystem"]
+    },
+    {
+      "id": "sofiatenreiro-in",
+      "name": "Sofia Tenreiro",
+      "role": "CEO, Siemens Portugal",
+      "bio": "Forte defensora da transformação tecnológica industrial nacional, integrando inteligência artificial prática e eletrificação sustentável em frotas e indústrias nacionais.",
+      "linkedin": "https://www.linkedin.com/in/sofiatenreiro",
+      "category": "Gestora / Decisora",
+      "tags": ["IA Industrial", "Liderança", "ESG"]
+    },
+    {
+      "id": "jaimejorge-in",
+      "name": "Jaime Jorge",
+      "role": "Co-founder & CEO, Codacy",
+      "bio": "Lidera o avanço das ferramentas de qualidade automática de código de software. Desenvolveu e implementou ferramentas inovadoras de linter de agentes de IA.",
+      "linkedin": "https://www.linkedin.com/in/jaimejorge",
+      "category": "Founder / Builder",
+      "tags": ["Coding Tools", "DevOps", "Software Quality"]
+    },
+    {
+      "id": "paulodimas-in",
+      "name": "Paulo Dimas",
+      "role": "Co-founder & CEO, Halo NeuroAI",
+      "bio": "VP de Inovação da APDC e líder do consórcio Center for Responsible AI. Pioneiro nacional na defesa e criação de soluções de inteligência artificial de impacto social ético.",
+      "linkedin": "https://www.linkedin.com/in/paulodimas",
+      "category": "Founder / Decisor",
+      "tags": ["Responsible AI", "MedTech", "Inovação"]
+    },
+    {
+      "id": "celsomartinho-in",
+      "name": "Celso Martinho",
+      "role": "Director of Engineering, GitHub",
+      "bio": "Criador do portal SAPO e mentor da comunidade tecnológica nacional. Lidera equipas de engenharia global no GitHub e acompanha de perto a evolução dos assistentes Copilot.",
+      "linkedin": "https://www.linkedin.com/in/celsomartinho",
+      "category": "Líder Técnico",
+      "tags": ["Developer Tools", "Engineering", "Comunidade"]
+    },
+    {
+      "id": "ineslynce-in",
+      "name": "Inês Lynce",
+      "role": "Co-diretora, CMU Portugal & Prof. IST",
+      "bio": "Presidente do INESC-ID e investigadora de topo na área de raciocínio automático e satisfação de restrições. Lidera a ligação de topo entre a CMU e universidades nacionais.",
+      "linkedin": "https://www.linkedin.com/in/ineslynce",
+      "category": "Académica / Cientista",
+      "tags": ["Investigação", "SAT Solving", "CMU Portugal"]
+    },
+    {
+      "id": "anapaiva-in",
+      "name": "Ana Paiva",
+      "role": "Professora Catedrática, IST",
+      "bio": "Líder mundial na área de agentes robóticos sociais e inteligência artificial cooperativa. Focada no desenho de IA que interage e aprende a colaborar com humanos.",
+      "linkedin": "https://www.linkedin.com/in/anapaiva",
+      "category": "Académica / Cientista",
+      "tags": ["Social Robotics", "AI Agents", "Ética"]
+    },
+    {
+      "id": "mariofigueiredo-in",
+      "name": "Mário Figueiredo",
+      "role": "Professor Catedrático, IST & IT",
+      "bio": "Investigador de elite internacional em processamento de sinal, machine learning e reconstrução de imagem. Altamente citado no mundo científico pela modelação matemática.",
+      "linkedin": "https://www.linkedin.com/in/mariofigueiredo",
+      "category": "Cientista",
+      "tags": ["Machine Learning", "Matemática", "Sinal"]
+    },
+    {
+      "id": "manueldias-in",
+      "name": "Manuel Dias",
+      "role": "National Technology Officer, Microsoft PT",
+      "bio": "Keynote speaker proeminente no mercado nacional de TI. Lidera a estratégia técnica da Microsoft para a difusão e evangelização dos sistemas avançados de IA.",
+      "linkedin": "https://www.linkedin.com/in/manueldias",
+      "category": "Líder Técnico",
+      "tags": ["Evangelismo Tech", "Copilots", "Empresa"]
+    },
+    {
+      "id": "ricardoconde-in",
+      "name": "Ricardo Conde",
+      "role": "Presidente, Portugal Space",
+      "bio": "Impulsionador das tecnologias geoespaciais em Portugal. Integra a análise de grandes volumes de dados de satélite com IA para combater incêndios e gerir territórios.",
+      "linkedin": "https://www.linkedin.com/in/ricardoconde",
+      "category": "Decisor / Estrategista",
+      "tags": ["Earth Observation", "Space Tech", "Território"]
+    },
+    {
+      "id": "pedrobizarro-in",
+      "name": "Pedro Bizarro",
+      "role": "Co-founder & Chief Science Officer, Feedzai",
+      "bio": "Ex-académico e investigador com múltiplos papers publicados em machine learning adaptativo. Arquiteto científico principal da proteção contra fraudes financeiras na Feedzai.",
+      "linkedin": "https://www.linkedin.com/in/pedrobizarro",
+      "category": "Founder / Cientista",
+      "tags": ["Data Science", "Adaptabilidade", "Fintech"]
+    },
+    {
+      "id": "alipiojorge-in",
+      "name": "Alípio Jorge",
+      "role": "Professor Catedrático, FCUP & INESC TEC",
+      "bio": "Líder do LIAAD (Laboratório de Inteligência Artificial e Apoio à Decisão) no Porto, uma das mentes mais brilhantes nacionais no processamento de linguagem natural.",
+      "linkedin": "https://www.linkedin.com/in/alipiojorge",
+      "category": "Académico / Cientista",
+      "tags": ["NLP", "Apoio à Decisão", "Universidade"]
+    },
+    {
+      "id": "virgiliobento-in",
+      "name": "Virgílio Bento",
+      "role": "Founder & CEO, Sword Health",
+      "bio": "Doutorado em Engenharia Eletrotécnica que fundou o unicórnio Sword Health. Lidera a disrupção digital nos tratamentos clínicos terapêuticos através de agentes de IA.",
+      "linkedin": "https://www.linkedin.com/in/virgiliobento",
+      "category": "Founder / Decisor",
+      "tags": ["Digital Health", "Unicórnio", "Disrupção"]
+    },
+    {
+      "id": "marcocosta-in",
+      "name": "Marco Costa",
+      "role": "CEO EMEA, Talkdesk",
+      "bio": "Responsável por liderar a escalabilidade do unicórnio Talkdesk nos mercados internacionais, promovendo a integração de IA na automatização e satisfação do cliente.",
+      "linkedin": "https://www.linkedin.com/in/marcocosta",
+      "category": "Gestor / Decisor",
+      "tags": ["Customer Support", "SaaS Scaleup", "Unicórnio"]
+    },
+    {
+      "id": "vascoportugal-in",
+      "name": "Vasco Portugal",
+      "role": "Co-founder & CEO, Sensei",
+      "bio": "Doutorado pelo MIT em cidades inteligentes. Lidera o desenvolvimento da visão computacional para retalho autónomo europeu, criando as lojas inteligentes sem caixas.",
+      "linkedin": "https://www.linkedin.com/in/vascoportugal",
+      "category": "Founder / Cientista",
+      "tags": ["Retail Tech", "Visão por Computador", "MIT"]
+    },
+    {
+      "id": "ruiribeiro-in",
+      "name": "Rui Ribeiro",
+      "role": "Diretor Geral, IP Telecom",
+      "bio": "Líder na área de telecomunicações estatais, ativo na defesa de infraestruturas soberanas de alojamento seguro para dados empresariais e adoção de IA segura.",
+      "linkedin": "https://www.linkedin.com/in/ruiribeiro",
+      "category": "Decisor / Estrategista",
+      "tags": ["IP Telecom", "Soberania de Dados", "Security"]
+    }
+  ]
+}

@@ -1,7 +1,41 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-05-31T22:16:51+00:00",
+  "updated_at": "2026-06-02T12:45:58+00:00",
   "posts": [
+    {
+      "id": "post_660394bd6831b094d6",
+      "title": "Foxconn e Bull unem forças para infraestruturas de IA na Europa",
+      "body": "A Foxconn, gigante tecnológica taiwanesa, anunciou hoje uma parceria estratégica com a francesa Bull para desenvolver infraestruturas de inteligência artificial (IA) e computação na nuvem. O objetivo é servir o mercado global a partir de uma base europeia.\n\nEste movimento, que junta uma das maiores fabricantes por contrato do mundo com uma empresa europeia de supercomputação, não é apenas um anúncio de colaboração. É um sinal claro de que a corrida à infraestrutura de IA está a ganhar uma dimensão geopolítica e regional, com a Europa a tentar assegurar uma fatia do bolo. Enquanto muitos se focam nos modelos e nas aplicações, a base física – os servidores, as redes de dados e a capacidade de processamento – continua a ser o gargalo e, porventura, o maior ponto de alavancagem.\n\nA questão não é tanto quem desenvolve o melhor algoritmo, mas sim quem controla os meios de produção e de distribuição dessa capacidade. A Foxconn, com a sua escala industrial, e a Bull, com o seu conhecimento técnico em computação de alto desempenho, posicionam-se para criar um polo de infraestrutura que pode diminuir a dependência europeia de centros de dados e provedores de cloud baseados noutras geografias. Isto implica não só segurança na cadeia de abastecimento, mas também a possibilidade de reter dados e processamento dentro de fronteiras mais controladas.\n\nAinda assim, a concretização desta ambição passará pela capacidade de escalar rapidamente e de competir com os gigantes já estabelecidos. A pergunta que fica é se esta aliança conseguirá traduzir a intenção em capacidade real e, mais importante, se os decisores europeus estão dispostos a priorizar a soberania tecnológica sobre o custo ou a conveniência de soluções já existentes.\n\nFonte: https://www.rtp.pt/noticias/economia/foxconn-alia-se-a-francesa-bull-para-desenvolver-infraestruturas-de-ia-na-europa_n1744894",
+      "source_urls": [
+        "https://www.rtp.pt/noticias/economia/foxconn-alia-se-a-francesa-bull-para-desenvolver-infraestruturas-de-ia-na-europa_n1744894"
+      ],
+      "image_path": "data\\final_assets\\post_e7c43644dbae65cbfd_62f36e2a_ChatGPT-Image-2_06_2026-10_21_29.png",
+      "image_url": "assets/final/post_e06e79995518dbf18e_site_1600x900.jpg",
+      "published_at": "2026-06-02T12:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/foxconn-e-bull-unem-forcas-para-infraestruturas-de-ia-na-europa-660394bd6831b094d6"
+    },
+    {
+      "id": "post_aa69ede93efc08a1b0",
+      "title": "OpenAI lança programa de biodefesa Rosalind",
+      "body": "A OpenAI anunciou o lançamento do programa de biodefesa Rosalind Biodefense. Este programa demonstra a aplicação da inteligência artificial em áreas críticas como a biodefesa, o que pode abrir caminho para novas investigações e desenvolvimento. A notícia, aparentemente técnica, surge num momento em que a corrida pelos modelos de IA se joga também na capacidade de fixar o utilizador a uma forma específica de trabalhar.\n\nCada melhoria técnica é, acima de tudo, uma tentativa de dominar o ecossistema. Não se trata apenas de construir o modelo mais brilhante em abstrato, mas de o transformar em rotina antes que o mercado tenha tempo de comparar alternativas. A biodefesa, com as suas implicações na segurança e saúde pública, oferece um campo fértil para esta estratégia.\n\nEm Portugal, a potencial abertura de novas áreas de investigação e desenvolvimento nesta vertente da IA poderá ser importante. O desafio será não apenas acompanhar a inovação, mas integrá-la de forma a criar valor e competitividade, sem cair na dependência de soluções que prendem o utilizador a arquiteturas fechadas. A questão não é se a IA é útil para a biodefesa, mas sim quem controla essa utilidade e a que custo.\n\nFonte: https://exame.com/inteligencia-artificial/",
+      "source_urls": [
+        "https://exame.com/inteligencia-artificial/"
+      ],
+      "image_path": "data\\final_assets\\post_37ad5447ff82979341_68518341_ChatGPT-Image-2_06_2026-08_29_33.png",
+      "image_url": "assets/final/post_48b38a8114c6598469_site_1600x900.jpg",
+      "published_at": "2026-06-02T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-lanca-programa-de-biodefesa-rosalind-aa69ede93efc08a1b0"
+    },
     {
       "id": "post_28520837b456eedd2b",
       "title": "A febre dos mega-IPO de IA: Wall Street antecipa lucros ou inflaciona o futuro?",
@@ -73,25 +107,6 @@
         "Histórias reais"
       ],
       "article_url": "artigos/eua-consideram-ligar-chips-de-ia-a-compromissos-de-investimento-estrangeiro-3be41472b84fd44333"
-    },
-    {
-      "id": "post_db25dfacbedeaae1e1",
-      "title": "Anthropic e Vaticano: a moral da IA no tabuleiro do mercado",
-      "body": "A Anthropic, uma das empresas de topo na corrida da inteligência artificial, formalizou uma aliança com o Vaticano para abordar os riscos da IA, poucas semanas depois de o Papa ter emitido um aviso sobre a tecnologia. O acordo surge num contexto em que a discussão global sobre os danos da IA, da ética à desinformação, ganha cada vez mais tração.\n\nEsta jogada não é apenas um exercício de relações públicas ou uma preocupação genuína com a moralidade. É, antes de mais, um movimento estratégico num mercado cada vez mais apertado. Enquanto os modelos de IA se tornam commodities, a diferenciação migra para a confiança. O selo de aprovação, ou pelo menos o diálogo, com uma instituição milenar como o Vaticano confere uma camada de legitimidade e seriedade que poucas empresas de tecnologia conseguem replicar.\n\nNão se trata apenas de ter o modelo mais rápido ou mais eficiente. A verdadeira corrida passa a ser por quem consegue definir as regras do jogo, mesmo que de forma indireta. A capacidade de influenciar a narrativa ética e moral em torno da IA pode ser tão decisiva quanto a capacidade técnica, especialmente quando o escrutínio regulatório aumenta, tanto na Europa como em Portugal.\n\nNo fundo, a Anthropic está a vender não só um produto, mas também uma promessa de responsabilidade – uma aposta que pode ser mais valiosa a longo prazo do que qualquer benchmark técnico. A questão, para os decisores e builders em Portugal, é como se posicionar num cenário onde a validação ética pode ditar o sucesso comercial e a adoção no terreno, por mais cínica que essa estratégia possa parecer.\n\nFonte: https://www.theguardian.com/technology/2026/may/30/anthropic-alliance-pope-ai-harms-vatican-washing",
-      "source_urls": [
-        "https://www.theguardian.com/technology/2026/may/30/anthropic-alliance-pope-ai-harms-vatican-washing"
-      ],
-      "image_path": "data\\final_assets\\post_e946953fedc80ab4fa_e2d1c15e_ChatGPT-Image-30_05_2026-23_45_43.png",
-      "image_url": "assets/final/post_5b95f62807a2a4f07b_site_1600x900.jpg",
-      "published_at": "2026-05-31T21:00:00+01:00",
-      "section": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ],
-      "article_url": "artigos/anthropic-e-vaticano-a-moral-da-ia-no-tabuleiro-do-mercado-db25dfacbedeaae1e1"
     },
     {
       "id": "post_681d231f0c62e392ca",
