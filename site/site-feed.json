@@ -1,7 +1,80 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-02T14:16:21+00:00",
+  "updated_at": "2026-06-02T22:27:00+00:00",
   "posts": [
+    {
+      "id": "post_cd2cec864f4a766953",
+      "title": "OIT: Os ganhos da IA devem ser partilhados para evitar fraturas sociais",
+      "body": "Os ganhos de produtividade gerados pela Inteligência Artificial devem estender-se a todos os trabalhadores a nível global. O alerta foi lançado pelo diretor-geral da Organização Internacional do Trabalho (OIT) esta segunda-feira, em Genebra, na abertura da reunião anual da organização.\n\nA posição da OIT aponta para uma tensão central na atual corrida tecnológica. Enquanto o foco da indústria e dos decisores se tem centrado na capacidade de automação e na otimização de processos, a questão da distribuição do valor gerado pela IA emerge como um ponto crítico. Não se trata apenas de criar mais riqueza, mas de definir quem a detém e como essa riqueza se propaga pela economia real. Ignorar esta dimensão social é criar um terreno fértil para a resistência e para políticas reativas, em vez de proativas, que podem atrasar a adoção da tecnologia.\n\nA resposta não está em travar a inovação, mas em desenhar mecanismos que garantam que os trabalhadores são parte ativa desta transformação. Isso pode passar por programas de requalificação financiados, participação nos lucros ou um novo contrato social que redefina o valor do trabalho humano na era da automação. Trata-se de desenhar *frameworks* de adoção da IA que integrem desde o início a componente de valor humano.\n\nIsto significa investir em formação contínua, em programas de *upskilling* e *reskilling* que preparem os profissionais para as novas dinâmicas do mercado de trabalho. Significa também construir políticas que incentivem a colaboração entre humanos e IA, e não a competição. A verdadeira medida de sucesso da IA estará na capacidade de elevar o nível de vida e as oportunidades para um espectro mais alargado da força de trabalho.\n\nSe a IA é uma ferramenta para amplificar a produtividade, a sua adoção deve ser acompanhada por um planeamento que vá além da métrica de eficiência imediata. Pensar na valorização das competências humanas, na requalificação e na criação de novos papéis, em vez de uma mera substituição, é a única forma de garantir um crescimento sustentável e socialmente coeso. A OIT coloca o dedo na ferida: a próxima fase da IA não é sobre o que ela consegue fazer, mas sobre como garantimos que os seus frutos chegam a todos.\n\nFonte: https://www.rtp.pt/noticias/mundo/ganhos-da-inteligencia-artificial-devem-beneficiar-tambem-os-trabalhadores-alerta-oit_n1744771",
+      "source_urls": [
+        "https://www.rtp.pt/noticias/mundo/ganhos-da-inteligencia-artificial-devem-beneficiar-tambem-os-trabalhadores-alerta-oit_n1744771"
+      ],
+      "image_path": "data\\final_assets\\post_4d9e816d132579b8fe_2cf28208_ChatGPT-Image-2_06_2026-22_54_06.png",
+      "image_url": "assets/final/post_db16a2b55a581478ed_site_1600x900.jpg",
+      "published_at": "2026-06-03T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/oit-os-ganhos-da-ia-devem-ser-partilhados-para-evitar-fraturas-sociais-cd2cec864f4a766953"
+    },
+    {
+      "id": "post_834f11da13f9b53b06",
+      "title": "OpenAI propõe instituto global para segurança e oportunidade da juventude na IA",
+      "body": "A OpenAI está a pedir uma ação global concertada para garantir a segurança dos jovens no uso da inteligência artificial, propondo a criação de um instituto internacional. O objetivo passa por fortalecer salvaguardas, definir standards e expandir oportunidades para as novas gerações no contexto da IA.\n\nEsta iniciativa da OpenAI não é apenas um apelo à responsabilidade; é um movimento estratégico que acentua uma tensão crescente no mercado. A corrida pelo domínio dos modelos de IA revela-se cada vez menos sobre a superioridade técnica pura e mais sobre a capacidade de moldar o comportamento e as rotinas dos utilizadores. Ao focar-se na segurança e na oportunidade para os jovens, a OpenAI posiciona-se não só como um líder tecnológico, mas também como um player que tenta influenciar a infraestrutura regulatória e ética do futuro.\n\nO verdadeiro vencedor neste cenário pode não ser o modelo mais brilhante em abstrato, mas sim aquele que conseguir transformar a sua capacidade em rotina diária antes que o mercado tenha tempo de comparar alternativas. Isto cria uma base de utilizadores leal e integrada nos seus próprios frameworks.\n\nEstar à frente na discussão sobre standards e segurança para a juventude é, portanto, uma forma de construir barreiras de entrada e de garantir que o futuro da IA se desenha, em parte, à sua imagem. Para decisores e builders, a questão é clara: como é que as empresas e os reguladores respondem a esta proposta de um instituto internacional, e que impacto terá na adoção de IA em diferentes mercados?\n\nFonte: https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership",
+      "source_urls": [
+        "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership"
+      ],
+      "image_path": "data\\final_assets\\post_b49782ee3afa4b0335_340b0590_ChatGPT-Image-2_06_2026-22_52_00.png",
+      "image_url": "assets/final/post_aad9183a95eff3e7a2_site_1600x900.jpg",
+      "published_at": "2026-06-03T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/openai-propoe-instituto-global-para-seguranca-e-oportunidade-da-juventude-na-ia-834f11da13f9b53b06"
+    },
+    {
+      "id": "post_cfdafc852f8596b9b6",
+      "title": "Bain: Empresas portuguesas que escalam IA ganham até 25% em produtividade, mas modernização é entrave",
+      "body": "Um estudo recente da Bain & Company revela que as empresas portuguesas que conseguem escalar a Inteligência Artificial podem alcançar ganhos significativos: até 25% em produtividade e 30% em EBITDA. Contudo, a análise aponta que a falta de modernização tecnológica e de dados impede que este impacto seja totalmente concretizado no tecido empresarial nacional.\n\nEstes números sublinham uma tensão estrutural. Por um lado, há um potencial de valorização claro para quem adota a IA de forma estratégica e integrada. Por outro, a resistência ou incapacidade de modernizar as infraestruturas de IT e os modelos de gestão de dados funciona como um travão, impedindo que as organizações captem a totalidade desses ganhos.\n\nA questão central não é, portanto, a eficácia da IA em gerar valor, mas a capacidade das empresas portuguesas em criar as condições de base para a sua implementação em larga escala. A modernização tecnológica e a qualidade dos dados são o alicerce invisível que sustenta a inovação. Sem uma base robusta, qualquer investimento em IA torna-se um esforço isolado, incapaz de se integrar nos *workflows* existentes e de gerar o efeito de rede necessário para um impacto transformador.\n\nA tese é clara: a discussão em Portugal precisa de passar da promessa da IA para a pragmática exigência da modernização. Não basta investir em novos algoritmos ou plataformas; é preciso sanear o *legacy*, reestruturar as arquiteturas de dados e capacitar as equipas para uma cultura de decisão baseada em informação limpa e acessível. Só assim se fecha o ciclo entre o investimento em tecnologia e o retorno efetivo em produtividade e rentabilidade.\n\nPara os decisores, *founders* e profissionais, a mensagem é um apelo à ação: a IA não é uma solução mágica, mas um acelerador de valor para quem já fez o trabalho de casa na digitalização e modernização. A oportunidade é real, mas exige um compromisso prévio com a renovação da fundação tecnológica das empresas, um passo incontornável para quem ambiciona competir e crescer com a próxima vaga de inovação.\n\nFonte: https://jornaleconomico.sapo.pt/noticias/empresas-portuguesas-que-escalam-ia-ganham-ate-25-em-produtividade-e-30-em-ebitda-mas-falta-de-modernizacao-trava-impacto-diz-bain-1123456",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/empresas-portuguesas-que-escalam-ia-ganham-ate-25-em-produtividade-e-30-em-ebitda-mas-falta-de-modernizacao-trava-impacto-diz-bain-1123456"
+      ],
+      "image_path": "data\\final_assets\\post_32a5ded3b2938adac2_b330f6df_ChatGPT-Image-2_06_2026-22_47_09.png",
+      "image_url": "assets/final/post_ca2c25481fa626bbab_site_1600x900.jpg",
+      "published_at": "2026-06-03T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/bain-empresas-portuguesas-que-escalam-ia-ganham-ate-25-em-produtividade-mas-modernizacao-e-entrave-cfdafc852f8596b9b6"
+    },
+    {
+      "id": "post_550acd0bf32e23374b",
+      "title": "NVIDIA e Microsoft Redefinem o PC Windows para a Era da IA Pessoal",
+      "body": "A NVIDIA anunciou o superchip RTX Spark™, numa colaboração com a Microsoft, que visa redefinir o PC Windows. A proposta é transformar o computador de uma ferramenta passiva num agente de IA pessoal, operando como um companheiro de equipa.\n\nEsta iniciativa sublinha uma tensão central na corrida pela inteligência artificial: enquanto a IA é predominantemente vendida como software, a sua capacidade e difusão dependem intrinsecamente da infraestrutura física. Chips, energia e centros de dados continuam a ser os pilares que condicionam o ritmo da inovação, mesmo que permaneçam invisíveis na interface que o utilizador final vê.\n\nO RTX Spark™ da NVIDIA não é apenas um novo chip; é uma aposta clara na deslocalização do processamento de IA da cloud para o dispositivo pessoal. Esta mudança não só promete latência reduzida e maior privacidade, como redefine o hardware do PC como um nó de processamento autónomo e inteligente. O computador deixa de ser meramente um terminal para aceder a serviços, e torna-se um co-piloto ativo nas tarefas diárias.\n\nPara os decisores e builders em Portugal, esta evolução aponta para uma reavaliação da infraestrutura de IT. A capacidade de processamento local da IA pode otimizar fluxos de trabalho, permitir novas aplicações de dados sensíveis e reduzir a dependência contínua de serviços de cloud para certas operações. É um convite para pensar como a autonomia computacional no endpoint pode ser integrada em estratégias de produtividade e segurança, explorando o potencial de agentes de IA a operar mais perto do utilizador e dos seus dados. ', mas 'onde a fazemos acontecer?' e 'como capitalizamos essa capacidade para além do software?', impulsionando novos modelos de negócio e eficiências operacionais.\n\nFonte: https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark",
+      "source_urls": [
+        "https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark"
+      ],
+      "image_path": "data\\final_assets\\post_ecd2c7db03a1bea68a_f261a856_ChatGPT-Image-2_06_2026-22_44_48.png",
+      "image_url": "assets/final/post_519ad245b30cdac5d2_site_1600x900.jpg",
+      "published_at": "2026-06-03T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/nvidia-e-microsoft-redefinem-o-pc-windows-para-a-era-da-ia-pessoal-550acd0bf32e23374b"
+    },
     {
       "id": "post_43df84b363288a3a39",
       "title": "A IA na Saúde e a Infraestrutura Física: O Exemplo de Taiwan",
@@ -27,8 +100,8 @@
       "source_urls": [
         "https://www.apcc.pt/noticias/formacao-apcc-google-cloud-/-ntt-data-retail-spaces-ai-academy/473"
       ],
-      "image_path": "",
-      "image_url": "",
+      "image_path": "data\\final_assets\\post_85ef07c5efea6372b4_2d6c481b_ChatGPT-Image-2_06_2026-15_01_34.png",
+      "image_url": "assets/final/post_15331982b1d6e29fa5_site_1600x900.jpg",
       "published_at": "2026-06-02T16:00:00+01:00",
       "section": [
         "Mundo",

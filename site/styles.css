@@ -2054,6 +2054,173 @@ button, input { font: inherit; }
   .footer-bottom { display: grid; }
 }
 
+.qeq-inline-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  font-weight: 600;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.qeq-inline-link:hover {
+  color: var(--signal);
+  border-bottom-color: var(--signal);
+  background: color-mix(in oklab, var(--signal) 5%, transparent);
+  border-radius: 3px;
+}
+
+/* Quem é Quem Homepage Intro Block */
+.qeq-intro-block {
+  padding: 100px 0;
+  background: var(--paper);
+  border-top: 1px solid var(--rule-2);
+  border-bottom: 1px solid var(--rule-2);
+  overflow: hidden;
+}
+
+.qeq-intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.qeq-intro-text .eyebrow {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 14px 0;
+}
+
+.qeq-intro-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1.05;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+
+.qeq-intro-text p.lead-text {
+  font-family: var(--serif-text);
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 20px;
+}
+
+.qeq-intro-text p:not(.lead-text):not(.eyebrow) {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 32px;
+  max-width: 48ch;
+}
+
+.qeq-intro-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: var(--paper) !important;
+  border-radius: 99px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qeq-intro-cta:hover {
+  background: var(--signal);
+  transform: translateY(-2px);
+}
+
+.qeq-intro-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.qeq-preview-cards {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 380px;
+  transform: rotate(-3deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qeq-preview-cards:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.qeq-mini-card {
+  background: var(--bg);
+  border: 1px solid var(--rule-2);
+  border-radius: 8px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  display: grid;
+  gap: 6px;
+}
+
+.qeq-mini-card:nth-child(2) {
+  transform: translateX(20px);
+}
+
+.qeq-mini-card:nth-child(3) {
+  transform: translateX(-10px);
+}
+
+.qeq-mini-card .mini-cat {
+  font-size: 9px;
+  color: var(--signal);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.qeq-mini-card h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 450;
+  color: var(--ink);
+}
+
+.qeq-mini-card p {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+@media (max-width: 1024px) {
+  .qeq-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .qeq-intro-visual {
+    order: -1;
+  }
+  .qeq-preview-cards {
+    transform: none;
+    max-width: 100%;
+  }
+  .qeq-preview-cards:hover {
+    transform: none;
+  }
+  .qeq-mini-card:nth-child(n) {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

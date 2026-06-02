@@ -201,7 +201,50 @@ function renderNotFound() {
   `;
 }
 
-function renderArticle(post) {
+function linkDirectoryEntities(text, qeqData) {
+  if (!qeqData || (!qeqData.companies && !qeqData.people)) return escapeHtml(text);
+  
+  const entities = [];
+  (qeqData.companies || []).forEach(c => {
+    if (c.name) entities.push({ name: c.name, type: 'company' });
+  });
+  (qeqData.people || []).forEach(p => {
+    if (p.name) entities.push({ name: p.name, type: 'people' });
+  });
+  
+  if (entities.length === 0) return escapeHtml(text);
+  
+  // Sort entities by length descending to match longer phrases first
+  entities.sort((a, b) => b.name.length - a.name.length);
+  
+  let html = escapeHtml(text);
+  
+  // Tag instances with placeholders to prevent overlapping replacements
+  entities.forEach((entity, index) => {
+    const nameEscaped = entity.name.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    // Accents boundary lookbehinds
+    const regex = new RegExp(`(?<=^|[^a-zA-Z0-9À-ÿ])${nameEscaped}(?=$|[^a-zA-Z0-9À-ÿ])`, 'g');
+    
+    if (regex.test(html)) {
+      const placeholder = `___QEQ_PLACEHOLDER_${index}___`;
+      html = html.replace(regex, placeholder);
+      entity.placeholder = placeholder;
+    }
+  });
+  
+  // Replace placeholders with links
+  entities.forEach((entity) => {
+    if (entity.placeholder && html.includes(entity.placeholder)) {
+      const searchUrl = `/quem-e-quem?search=${encodeURIComponent(entity.name)}`;
+      const linkHtml = `<a href="${searchUrl}" class="qeq-inline-link" title="Ver ${escapeHtml(entity.name)} no diretório Quem é Quem">${escapeHtml(entity.name)}</a>`;
+      html = html.replace(new RegExp(entity.placeholder, 'g'), linkHtml);
+    }
+  });
+  
+  return html;
+}
+
+function renderArticle(post, qeqData) {
   const detail = document.getElementById("article-detail");
   const loading = document.getElementById("article-loading");
   if (!detail) return;
@@ -230,7 +273,7 @@ function renderArticle(post) {
           ${articleVisual(post)}
         </header>
         <section class="article-body">
-          ${paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+          ${paragraphs.map((paragraph) => `<p>${linkDirectoryEntities(paragraph, qeqData)}</p>`).join("")}
         </section>
         <footer class="article-source-block">
           <p>Fonte original</p>
@@ -252,16 +295,25 @@ async function initArticle() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id") || "";
     const cleanPath = window.location.pathname.replace(/^\/+/, "").replace(/\/+$/, "");
-    const feed = await loadFeed();
+    
+    // Load feed and directory in parallel to avoid blocking
+    const [feed, qeqData] = await Promise.all([
+      loadFeed(),
+      fetch("/assets/quem-e-quem.json")
+        .then((res) => (res.ok ? res.json() : { companies: [], people: [] }))
+        .catch(() => ({ companies: [], people: [] }))
+    ]);
+
     const post = (feed.posts || []).find((item) => (
       item.id === id
       || String(item.article_url || "").replace(/^\/+/, "").replace(/\/+$/, "") === cleanPath
     ) && isPublishedNow(item.published_at));
+    
     if (!post) {
       renderNotFound();
       return;
     }
-    renderArticle(post);
+    renderArticle(post, qeqData);
   } catch (_) {
     renderNotFound();
   }
