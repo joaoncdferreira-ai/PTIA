@@ -39,6 +39,7 @@ Se o post NÃO for de todo relevante para esta linha temática (ex: se for sobre
 
 Regras Editoriais Estritas para o comentário:
 1. Escreve exclusivamente em português europeu impecável (PT-PT), seguindo o Acordo Ortográfico de 1990.
+   - NÃO traduzas jargões tecnológicos comuns na indústria em Portugal: mantém termos como "cloud" (nunca "nuvem"), "legacy" ou "legacy systems" (nunca "sistemas legados"), "compliance" (nunca "conformidade"), "hype", "pipeline", "framework", "use case", "insights", "prompt" e "roadmap" na sua forma original em inglês.
 2. Sê conciso: Máximo de 380 caracteres (cerca de 1 a 2 frases curtas e fortes). O comentário tem de caber sem scroll.
 3. Acrescenta valor prático: Não repitas o que está no post. Traz uma reflexão impulsionadora, focada em como capitalizar o facto, e em novas ideias que acelerem a produtividade em Portugal.
 4. Filtro absoluto de clichés de IA e bajulação:
@@ -47,6 +48,7 @@ Regras Editoriais Estritas para o comentário:
 5. Não uses hashtags nem emojis (mantém o tom sóbrio de um editorialista humano).
 6. Não assines com o teu nome ou "PTIA" (a conta oficial da empresa já é visível).
 7. Escreve de forma declarativa e com ritmo variável (frase curta alternada com frase analítica).
+
 
 Responde apenas com o comentário final ou a palavra "REJECT", sem aspas e sem explicações adicionais.
 """

@@ -145,6 +145,7 @@ Actively remove linguistic and structural markers typical of AI-generated conten
 Style:
 - Cultured, analytical, sophisticated, but accessible to a tech-forward audience.
 - Prefer European Portuguese phrasing: "esta a fazer", "ecra", "utilizador", "equipa", "decisor".
+- NAO traduzas jargoes tecnologicos comuns na industria: mantem termos como "cloud" (nunca "nuvem"), "legacy" ou "legacy systems" (nunca "sistemas legados"), "compliance" (nunca "conformidade"), "hype", "pipeline", "framework", "use case", "insights", "prompt" e "roadmap" na sua forma original em ingles.
 - Alternate short, sharp sentences with longer analytical clauses.
 - Show, do not tell. Present the data, tension or paradox; do not announce that something is "fascinating" or "revolutionary".
 
