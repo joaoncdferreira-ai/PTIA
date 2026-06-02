@@ -24,3 +24,6 @@ node_modules/
 data/*.bak_*
 data/final_assets/
 data/*corrupted*
+
+.vercel
+config/alert_config.json
