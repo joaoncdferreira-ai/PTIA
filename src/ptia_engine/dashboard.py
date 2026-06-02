@@ -1589,15 +1589,33 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
 
     if post.channel == "x":
         _assert_x_post_ready(final_text, image_url)
-    buffer_post = BufferClient().create_scheduled_post(
-        channel_id=channel_id,
-        text=final_text,
-        due_at=scheduled_time,
-        image_url=image_url,
-        post_type="post" if post.channel == "instagram" else "",
-        channel_service=post.channel,
-        first_comment=first_comment,
-    )
+    try:
+        buffer_post = BufferClient().create_scheduled_post(
+            channel_id=channel_id,
+            text=final_text,
+            due_at=scheduled_time,
+            image_url=image_url,
+            post_type="post" if post.channel == "instagram" else "",
+            channel_service=post.channel,
+            first_comment=first_comment,
+        )
+    except Exception as e:
+        if "first comment" in str(e).lower() and first_comment:
+            # Fallback gracefully if LinkedIn First Comment is not supported by user's Buffer plan
+            final_text = final_text.replace("\n\n👉 Link para a análise completa no primeiro comentário.", "").strip()
+            final_text += f"\n\nAnálise completa: {article_url}"
+            buffer_post = BufferClient().create_scheduled_post(
+                channel_id=channel_id,
+                text=final_text,
+                due_at=scheduled_time,
+                image_url=image_url,
+                post_type="post" if post.channel == "instagram" else "",
+                channel_service=post.channel,
+                first_comment="",
+            )
+        else:
+            raise e
+
     return update_final_post_status(
         state.final_posts_path,
         post_id,
@@ -1639,11 +1657,76 @@ def _final_post_text(post) -> str:
         x_sources = [article_url] if article_url else (post.source_urls or [])
         return _fit_x_post_text(clean_body, hashtags_value, x_sources)
     sources = ""
-    if post.channel == "linkedin" and article_url:
-        sources = f"\n\nAnálise completa: {article_url}"
-    elif post.source_urls and not _body_has_source_block(clean_body):
-        sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
-    return f"{clean_body}{hashtags}{sources}".strip()
+    if post.channel == "linkedin":
+        import re
+        clean_body = re.sub(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$", "", clean_body).strip()
+        clean_body = re.sub(r"https?://\S+", "", clean_body).strip()
+        if article_url:
+            sources = f"\n\nAnálise completa: {article_url}"
+        elif post.source_urls and not _body_has_source_block(clean_body):
+            sources = "\n\nFontes:\n" + "\n".join(f"- {url}" for url in post.source_urls)
+    
+    text = f"{clean_body}{hashtags}{sources}".strip()
+    if post.channel == "linkedin":
+        import re
+        import json
+        import subprocess
+        from pathlib import Path
+        
+        # 1. Carregar mapeamento de URNs se existir
+        urn_map_path = Path("config/linkedin_urn_map.json")
+        urn_map = {}
+        if urn_map_path.exists():
+            try:
+                data = json.loads(urn_map_path.read_text(encoding="utf-8"))
+                urn_map = data.get("companies", {})
+            except Exception:
+                pass
+        
+        # 1.5. Detetar novas menções e disparar o resolver assíncrono em segundo plano
+        try:
+            # O padrão procura por @ seguido por palavras capitalizadas (com espaços/conectores) ou uma palavra única sem espaços
+            raw_mentions = re.findall(r"@([A-Z\u00C0-\u00DC][a-zA-Z0-9áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ.\-_]*(?:\s+(?:de|da|do|e|\-)\s+[A-Z\u00C0-\u00DC][a-zA-Z0-9áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ.\-_]*|\s+[A-Z\u00C0-\u00DC][a-zA-Z0-9áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ.\-_]*)+|[a-zA-Z0-9áéíóúàèìòùâêîôûãõçÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ.\-_]+)", text)
+            for mention in raw_mentions:
+                mention_clean = mention.strip().rstrip(".,!?")
+                mention_lower = mention_clean.lower()
+                
+                # Se não está mapeado e tem tamanho plausível de empresa
+                if mention_lower not in urn_map and len(mention_clean) >= 3:
+                    # Passamos o nome da entidade com acentos via variável de ambiente (100% imune a erros de encoding de consola no Windows)
+                    import os
+                    env = os.environ.copy()
+                    env["RESOLVE_ENTITY"] = mention_clean
+                    
+                    # Dispara o worker Playwright em background assíncrono
+                    log_file = open("data/resolve_worker.log", "a", encoding="utf-8")
+                    subprocess.Popen(
+                        ["node", "scripts/resolve_linkedin_company.js"],
+                        stdout=log_file,
+                        stderr=log_file,
+                        cwd=str(Path(".").resolve()),
+                        env=env,
+                        shell=False
+                    )
+        except Exception:
+            pass
+        
+        # 2. Substituir menções a empresas mapeadas (ordenadas por tamanho decrescente)
+        if urn_map:
+            # Ordenamos chaves por tamanho decrescente para evitar conflitos (ex: "Microsoft Portugal" antes de "Microsoft")
+            sorted_keys = sorted(urn_map.keys(), key=len, reverse=True)
+            for company_key in sorted_keys:
+                info = urn_map[company_key]
+                display_name = info.get("display_name", company_key)
+                # Match case-insensitive de @nome_empresa e substitui pelo display name limpo
+                pattern = re.compile(rf"@{re.escape(company_key)}", re.IGNORECASE)
+                text = pattern.sub(display_name, text)
+        
+        # 3. Limpar qualquer outra menção restante (perfis pessoais ou não mapeados)
+        # Remove o "@" se for seguido diretamente por uma letra/número, sem afetar a sintaxe @[...]
+        text = re.sub(r"@(?=\w)", "", text)
+        
+    return text
 
 
 def _fit_x_post_text(body: str, hashtags: str = "", source_urls: list[str] | None = None) -> str:
@@ -5236,6 +5319,9 @@ class DashboardHandler(BaseHTTPRequestHandler):
         if path == "/admin":
             self._send_site_file("admin.html")
             return
+        if path in {"/quem-e-quem", "/site/quem-e-quem", "/quem-e-quem.html", "/site/quem-e-quem.html"}:
+            self._send_site_file("quem-e-quem.html")
+            return
         if path.startswith("/site/"):
             self._send_site_file(path.removeprefix("/site/"))
             return
@@ -5261,6 +5347,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(data)
             return
+        
+        # Try serving files directly from the site directory as fallback (enables root assets local serving)
+        site_root = self.state.site_dir.resolve()
+        rel_path = path.lstrip("/")
+        if rel_path:
+            target = (site_root / rel_path).resolve()
+            if site_root in target.parents or target == site_root:
+                if target.exists() and target.is_file():
+                    self._send_site_file(rel_path)
+                    return
         self._send_json({"error": "not found"}, HTTPStatus.NOT_FOUND)
 
     def do_POST(self):  # noqa: N802 - BaseHTTPRequestHandler API.
