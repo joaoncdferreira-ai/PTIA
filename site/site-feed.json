@@ -1,7 +1,42 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-02T12:45:58+00:00",
+  "updated_at": "2026-06-02T14:16:21+00:00",
   "posts": [
+    {
+      "id": "post_43df84b363288a3a39",
+      "title": "A IA na Saúde e a Infraestrutura Física: O Exemplo de Taiwan",
+      "body": "A NVIDIA anunciou que a Foxconn e os principais centros médicos de Taiwan vão implementar forças de trabalho de “agentes especiais” movidas a tecnologia NVIDIA. O objetivo declarado é acelerar a transição da região para sistemas de saúde impulsionados por inteligência artificial, um movimento que sublinha a crescente intersecção entre a saúde e a capacidade tecnológica.\n\nEsta notícia, que à primeira vista se foca em software e aplicações, serve para recordar que a inteligência artificial tem uma dimensão física inegável. Não se trata apenas de algoritmos, mas de chips, de consumo energético, de centros de dados e, crucialmente, da capacidade de entrega e implementação no terreno. A Foxconn, tradicionalmente um gigante na manufatura de hardware, não se limita aqui a montar componentes, mas a construir a infraestrutura que permite a concretização da IA na prática.\n\nO controlo desta infraestrutura e da sua cadeia de valor é o que realmente dita o ritmo da inovação para todos os outros atores. Mesmo que o utilizador final só veja a interface ou o serviço, a capacidade de quem fabrica e distribui a base física condiciona a velocidade e a escala da adoção.\n\nNum futuro próximo, a vantagem competitiva não será apenas de quem tem o melhor modelo de IA, mas de quem consegue construir as fábricas, os datacenters e as parcerias que permitem que essa IA chegue ao mundo real. Quem não controlar esta base física, ficará dependente de quem a controla.\n\nPara o setor da saúde, em particular, onde a segurança e a soberania dos dados são críticas, esta dependência levanta questões importantes sobre a capacidade de inovação interna e a resiliência dos sistemas. A discussão sobre a IA na saúde não pode focar-se apenas em modelos e aplicações. É preciso olhar para a base: a capacidade de processamento instalada, a segurança dos dados e a dependência de infraestruturas externas.\n\nSem essa capacidade, o risco é sermos meros consumidores de inovação, em vez de participantes ativos na sua construção. A corrida não é só pelo algoritmo, mas por quem constrói e gere o hardware que o executa.\n\nFonte: [nvidianews.nvidia.com](https://nvidianews.nvidia.com/news/nvidia-foxconn-and-taiwan-medical-centers-bring-agentic-and-physical-ai-to-healthy-taiwan)",
+      "source_urls": [
+        "https://nvidianews.nvidia.com/news/nvidia-foxconn-and-taiwan-medical-centers-bring-agentic-and-physical-ai-to-healthy-taiwan"
+      ],
+      "image_path": "data\\final_assets\\post_b283d7abfb43195112_5321c278_ChatGPT-Image-2_06_2026-15_11_34.png",
+      "image_url": "assets/final/post_472c98db4b359f4cfc_site_1600x900.jpg",
+      "published_at": "2026-06-02T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-ia-na-saude-e-a-infraestrutura-fisica-o-exemplo-de-taiwan-43df84b363288a3a39"
+    },
+    {
+      "id": "post_d9cac2c3e400d579ee",
+      "title": "Google Cloud e NTT Data: a batalha pelo hábito da IA no retalho",
+      "body": "A Associação Portuguesa de Centros Comerciais (APCC) anunciou uma parceria com a Google Cloud e a NTT Data para a \"Retail Spaces AI Academy\", um programa de formação focado na inteligência artificial aplicada ao setor do retalho.\n\nEste não é apenas mais um programa de formação. O que se observa aqui é um movimento estratégico da Google que vai além da excelência dos seus modelos de IA. A gigante tecnológica não precisa só de ter a melhor tecnologia; precisa de a tornar a camada natural e quase invisível dos produtos que milhões de equipas já usam diariamente.\n\nQuando a inteligência artificial se integra na pesquisa, no vídeo ou nas ferramentas de trabalho que já fazem parte da rotina, a concorrência deixa de ser meramente técnica. A disputa passa a ser pelo hábito. Quem consegue inserir a IA nos fluxos de trabalho existentes, sem exigir uma nova curva de aprendizagem ou um software adicional, ganha uma vantagem decisiva na adoção.\n\nPara o retalho, um setor onde a eficiência e a personalização são críticas, a capacidade de integrar soluções de IA diretamente nas operações diárias, desde a gestão de stocks à experiência do cliente, pode ser o fator diferenciador. A questão não é tanto quem tem o algoritmo mais sofisticado, mas sim quem consegue torná-lo inevitável e ubíquo na rotina operacional.\n\nFonte: https://www.apcc.pt/noticias/formacao-apcc-google-cloud-/-ntt-data-retail-spaces-ai-academy/473",
+      "source_urls": [
+        "https://www.apcc.pt/noticias/formacao-apcc-google-cloud-/-ntt-data-retail-spaces-ai-academy/473"
+      ],
+      "image_path": "",
+      "image_url": "",
+      "published_at": "2026-06-02T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-cloud-e-ntt-data-a-batalha-pelo-habito-da-ia-no-retalho-d9cac2c3e400d579ee"
+    },
     {
       "id": "post_660394bd6831b094d6",
       "title": "Foxconn e Bull unem forças para infraestruturas de IA na Europa",
