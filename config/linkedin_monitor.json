@@ -1,0 +1,122 @@
+{
+  "monitored_profiles": [
+    {
+      "name": "Observador",
+      "url": "https://www.linkedin.com/company/observador",
+      "active": true
+    },
+    {
+      "name": "Jornal de Negócios",
+      "url": "https://www.linkedin.com/company/jornaldenegocios",
+      "active": true
+    },
+    {
+      "name": "ECO - Economia Online",
+      "url": "https://www.linkedin.com/company/eco-economia-online",
+      "active": true
+    },
+    {
+      "name": "Aon Portugal",
+      "url": "https://www.linkedin.com/company/aon-portugal",
+      "active": true
+    },
+    {
+      "name": "Defined.ai",
+      "url": "https://www.linkedin.com/company/definedai",
+      "active": true
+    },
+    {
+      "name": "Unbabel",
+      "url": "https://www.linkedin.com/company/unbabel",
+      "active": true
+    },
+    {
+      "name": "Feedzai",
+      "url": "https://www.linkedin.com/company/feedzai",
+      "active": true
+    },
+    {
+      "name": "YData",
+      "url": "https://www.linkedin.com/company/ydataai",
+      "active": true
+    },
+    {
+      "name": "APDC",
+      "url": "https://www.linkedin.com/company/apdc-associacao-portuguesa-para-o-desenvolvimento-das-comunicacoes",
+      "active": true
+    },
+    {
+      "name": "Microsoft Portugal",
+      "url": "https://www.linkedin.com/company/microsoft-portugal",
+      "active": true
+    },
+    {
+      "name": "Google Portugal",
+      "url": "https://www.linkedin.com/company/google-portugal",
+      "active": true
+    },
+    {
+      "name": "Daniela Braga",
+      "url": "https://www.linkedin.com/in/danielabraga",
+      "active": true
+    },
+    {
+      "name": "Vasco Pedro",
+      "url": "https://www.linkedin.com/in/vascopedro",
+      "active": true
+    },
+    {
+      "name": "Nuno Sebastião",
+      "url": "https://www.linkedin.com/in/nunosebastiao",
+      "active": true
+    },
+    {
+      "name": "Arlindo Oliveira",
+      "url": "https://www.linkedin.com/in/arlindooliveira",
+      "active": true
+    },
+    {
+      "name": "Fabiana Clemente",
+      "url": "https://www.linkedin.com/in/fabianaclemente",
+      "active": true
+    },
+    {
+      "name": "Stephan Morais",
+      "url": "https://www.linkedin.com/in/stephanmorais",
+      "active": true
+    },
+    {
+      "name": "Sofia Tenreiro",
+      "url": "https://www.linkedin.com/in/sofiatenreiro",
+      "active": true
+    },
+    {
+      "name": "Jaime Jorge",
+      "url": "https://www.linkedin.com/in/jaimejorge",
+      "active": true
+    },
+    {
+      "name": "Paulo Dimas",
+      "url": "https://www.linkedin.com/in/paulodimas",
+      "active": true
+    },
+    {
+      "name": "Celso Martinho",
+      "url": "https://www.linkedin.com/in/celsomartinho",
+      "active": true
+    }
+  ],
+  "max_comments_per_day": 3,
+  "comment_cool_down_minutes": 180,
+  "audit_mode": false,
+  "search_queries": [
+    "AI Portugal",
+    "Inteligência Artificial Portugal",
+    "IA Portugal",
+    "Inteligencia Artificial Portugal"
+  ],
+  "engagement_thresholds": {
+    "min_likes": 50,
+    "min_comments": 10
+  }
+}

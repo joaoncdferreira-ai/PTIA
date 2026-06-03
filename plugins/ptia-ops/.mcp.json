@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "ptia-ops": {
+      "type": "stdio",
+      "command": "python",
+      "args": [
+        "C:\\Users\\joaon\\ptia-content-engine\\plugins\\ptia-ops\\scripts\\ptia_ops_mcp.py"
+      ],
+      "note": "Local PTIA operations MCP: validates scheduled posts, audits final copy/image state, checks site feed timing, and updates one Buffer scheduled post from validated local data."
+    }
+  }
+}

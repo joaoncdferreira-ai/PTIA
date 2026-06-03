@@ -43,8 +43,22 @@ class EditorialBoardTests(unittest.TestCase):
     def setUp(self):
         self.root = Path.cwd() / ".test_tmp" / uuid.uuid4().hex
         self.root.mkdir(parents=True)
+        self.gemini_patcher = patch("ptia_engine.dashboard.GeminiGroundedSearchProvider")
+        self.mock_gemini_cls = self.gemini_patcher.start()
+        self.mock_provider = self.mock_gemini_cls.return_value
+        self.mock_provider.available = True
+        
+        from collections import namedtuple
+        Polished = namedtuple("Polished", ["title", "body", "hashtags", "rationale"])
+        self.mock_provider.polish_final_post.return_value = Polished(
+            title="Polished Title",
+            body="Polished body text.",
+            hashtags="#Polished #Hashtags",
+            rationale="Mock rationale",
+        )
 
     def tearDown(self):
+        self.gemini_patcher.stop()
         shutil.rmtree(self.root, ignore_errors=True)
 
     def test_new_flow_creates_signal_topic_and_final_post(self):

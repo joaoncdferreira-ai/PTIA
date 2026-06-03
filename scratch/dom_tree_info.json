@@ -1,0 +1,126 @@
+[
+  {
+    "level": 1,
+    "tagName": "DIV",
+    "className": "_7e89106e _4cc0f865 ebc5971b",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "level": 2,
+    "tagName": "DIV",
+    "className": "_26961a6c a0b37d66 d1d3c94b _38c8bff9 _8533cd3e _96ed007d _8494b4bb",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "level": 3,
+    "tagName": "DIV",
+    "className": "b5859774 _83b9add1 _132a85bf _36d77b6f edb0fe3a b191f414",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "level": 4,
+    "tagName": "DIV",
+    "className": "ba9057c9",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "level": 5,
+    "tagName": "DIV",
+    "className": "e070083c _4351a7b5 _9c9a4e6a _070fa733 eba433ab _751506a1 _251d36ac",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Exibir selecionador de emoji",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Compartilhar foto",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "tagName": "DIV",
+    "className": "_5b6832e6 _809dd39d _0418fdf8 _0c4ad18b bf9b759c _0c949198 f09247fe abf3d41f _1f66eeab e070083c _1ce6cb05 _43663e3b bb36defa eba433ab _751506a1 _3264bb0a _993da0b3 _1ff3de1f",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Exibir selecionador de emoji",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Compartilhar foto",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  },
+  {
+    "level": 7,
+    "tagName": "DIV",
+    "className": "ba9057c9",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Exibir selecionador de emoji",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Compartilhar foto",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  },
+  {
+    "level": 8,
+    "tagName": "DIV",
+    "className": "_5b6832e6 b5859774 e070083c _1ce6cb05 _43663e3b bb36defa eba433ab _751506a1 _251d36ac _2bcbddef",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Exibir selecionador de emoji",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Compartilhar foto",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  }
+]

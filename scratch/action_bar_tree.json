@@ -1,0 +1,218 @@
+[
+  {
+    "level": 1,
+    "tagName": "DIV",
+    "className": "_6e26fdd9 c083878c e070083c",
+    "interactiveCount": 1,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "tagName": "DIV",
+    "className": "_8a969380 edc2faff b5859774 bb36defa e070083c",
+    "interactiveCount": 1,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "tagName": "DIV",
+    "className": "_55738dbd ef3444f9 _5cb65085 e8743024",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e _8d5cc101 _4ea4b52b",
+        "ariaLabel": "Abrir menu de reações",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e"
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "tagName": "DIV",
+    "className": "_6ab9966d cfd443b5 e070083c f87446e2 bb36defa b5859774",
+    "interactiveCount": 4,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e _8d5cc101 _4ea4b52b",
+        "ariaLabel": "Abrir menu de reações",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Comentar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Compartilhar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "tagName": "DIV",
+    "className": "_5b0de059 af8034a4 e070083c _4351a7b5 _43663e3b bb36defa eba433ab _751506a1",
+    "interactiveCount": 5,
+    "interactiveChildren": [
+      {
+        "tagName": "IMG",
+        "className": "_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<img class=\"_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb\" fetchpriority=\"low\" alt=\"\" src=\"https://media.licdn.com/dms/image/v2/C4D03AQEt7p0YuBsEdQ/"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e _8d5cc101 _4ea4b52b",
+        "ariaLabel": "Abrir menu de reações",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Comentar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Compartilhar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      }
+    ]
+  },
+  {
+    "level": 6,
+    "tagName": "DIV",
+    "className": "_5b6832e6 e070083c _1ce6cb05 _43663e3b bb36defa eba433ab _751506a1",
+    "interactiveCount": 8,
+    "interactiveChildren": [
+      {
+        "tagName": "IMG",
+        "className": "_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<img class=\"_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb\" fetchpriority=\"low\" alt=\"Ver perfil de Vasco Pedro\" src=\"https://media.licdn.com/dms/imag"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b _414b1867 _89bd0fe6 _9ddcefdd _1d60659d _2aff6a5a _2bcbddef",
+        "ariaLabel": "Abrir menu de controle da publicação de Vasco Pedro",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b _414b1867 "
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b a45cb219 _0e6323ef _5cb65085",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Exibir tradução",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b a45cb219 "
+      },
+      {
+        "tagName": "IMG",
+        "className": "_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<img class=\"_0ca109ea _13294e96 ebc5971b _1fb58c8f fdd19edb\" fetchpriority=\"low\" alt=\"\" src=\"https://media.licdn.com/dms/image/v2/C4D03AQEt7p0YuBsEdQ/"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Situação do botão de reação: nenhuma reação",
+        "ariaHasPopup": "",
+        "innerText": "Gostar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"but"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e _8d5cc101 _4ea4b52b",
+        "ariaLabel": "Abrir menu de reações",
+        "ariaHasPopup": "",
+        "innerText": "",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _236ceb73 _04c31edd _9f89ee13 fa7cc803 bc833b0a _4589e26e _6456178e"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Comentar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "",
+        "ariaHasPopup": "",
+        "innerText": "Compartilhar",
+        "outerSnippet": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a _640a316f _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"bu"
+      }
+    ]
+  }
+]

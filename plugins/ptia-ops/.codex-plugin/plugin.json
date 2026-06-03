@@ -1,0 +1,23 @@
+{
+  "name": "ptia-ops",
+  "version": "0.1.0",
+  "description": "Local PTIA operations tools for validating scheduled posts, site feed timing, and Buffer updates.",
+  "author": {
+    "name": "PTIA"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PTIA Ops",
+    "shortDescription": "Validate PTIA posts and Buffer scheduling.",
+    "longDescription": "PTIA Ops adds local tools for the PTIA Content Engine: scheduled post validation, copy/image issue checks, site feed timing checks, and single-post Buffer updates from validated local data.",
+    "developerName": "PTIA",
+    "category": "Productivity",
+    "capabilities": [
+      "Local MCP tools",
+      "Buffer scheduling validation",
+      "PTIA editorial safeguards"
+    ],
+    "defaultPrompt": "Validate today's PTIA scheduled posts and report any copy, image, Buffer, or site-feed issues before publishing."
+  },
+  "mcpServers": "./.mcp.json"
+}

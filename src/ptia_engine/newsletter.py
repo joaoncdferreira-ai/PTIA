@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from html import escape
@@ -296,7 +298,7 @@ def weekly_candidates(
     return sorted(deduped.values(), key=lambda item: (item.score, item.published_at), reverse=True)[:limit]
 
 
-def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate]) -> str:
+def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], debates: list[dict] = None) -> str:
     months = [
         "janeiro",
         "fevereiro",
@@ -340,6 +342,43 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate]) 
             </tr>
             """
         )
+    debate_rows = []
+    if debates:
+        debate_cards = []
+        for d in debates:
+            profile = escape(d.get("profile_name", "Decisor"))
+            post_snippet = escape(_short(d.get("post_body", ""), 160))
+            comment = escape(d.get("comment_text", ""))
+            url = escape(d.get("post_url", "https://ptia.pt"))
+            
+            debate_cards.append(f"""
+            <tr>
+              <td style="padding:18px 40px;background:#FAF6EC;">
+                <div style="padding:22px;background:#FAF6EC;border-left:4px solid #C44419;border-top:1px solid #14110C14;border-right:1px solid #14110C14;border-bottom:1px solid #14110C14;border-radius:0 6px 6px 0;">
+                  <p style="margin:0 0 8px;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;">Discussão com {profile}</p>
+                  <p style="margin:0 0 14px;color:#3A332A;font:italic 14px Georgia,serif;line-height:1.48;">
+                    "{post_snippet}"
+                  </p>
+                  <div style="background:#FAF6EC;border:1px solid #14110C14;padding:16px 20px;border-radius:8px;">
+                    <p style="margin:0 0 4px;color:#C44419;font:700 9px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;">Resposta PTIA</p>
+                    <p style="margin:0;color:#14110C;font:400 14px Georgia,serif;line-height:1.5;">{comment}</p>
+                  </div>
+                  <p style="margin:12px 0 0;"><a href="{url}" style="color:#C44419;font:700 12px Arial,sans-serif;text-decoration:none;">Ver debate no LinkedIn &rarr;</a></p>
+                </div>
+              </td>
+            </tr>
+            """)
+            
+        debate_rows.append(f"""
+        <tr>
+          <td class="ptia-pad" style="padding:40px 40px 10px;background:#FAF6EC;border-top:1px solid #14110C26;">
+            <p style="margin:0 0 8px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Debate da Semana · PTIA no LinkedIn</p>
+            <h2 style="margin:0;color:#14110C;font:400 31px Georgia,serif;line-height:1.12;letter-spacing:-.016em;">A nossa presença nas caixas de comentários estratégicas.</h2>
+          </td>
+        </tr>
+        {"".join(debate_cards)}
+        """)
+
     return dedent(
         f"""\
         <!doctype html>
@@ -441,6 +480,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate]) 
                     </td>
                   </tr>
                   {''.join(story_rows)}
+                  {''.join(debate_rows)}
                   <tr>
                     <td class="ptia-pad" style="padding:44px 40px;background:#F3EEE2;border-top:1px solid #14110C26;border-bottom:1px solid #14110C26;">
                       <p style="margin:0 0 10px;color:#C44419;font:400 56px Georgia,serif;font-style:italic;line-height:.8;">"</p>
@@ -497,7 +537,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate]) 
     )
 
 
-def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate]) -> str:
+def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate], debates: list[dict] = None) -> str:
     lines = [f"PTIA Weekly - {issue_title}", "", intro, ""]
     for index, item in enumerate(items, start=1):
         lines.extend(
@@ -511,6 +551,26 @@ def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate]) 
                 "",
             ]
         )
+    if debates:
+        lines.extend([
+            "",
+            "DEBATE DA SEMANA - PTIA NO LINKEDIN",
+            "Comentamos e discutimos os avanços de IA com decisores nas redes:",
+            ""
+        ])
+        for index, d in enumerate(debates, start=1):
+            profile = d.get("profile_name", "Decisor")
+            post_snippet = _short(d.get("post_body", ""), 140)
+            comment = d.get("comment_text", "")
+            url = d.get("post_url", "")
+            lines.extend([
+                f"[{index}] Discussão com {profile}",
+                f"Post original: \"{post_snippet}\"",
+                f"Resposta PTIA: \"{comment}\"",
+                f"Link: {url}",
+                ""
+            ])
+
     lines.extend(["Sinal vs. Ruído: se não muda uma decisão, fica fora do radar PTIA."])
     return "\n".join(lines).strip()
 
@@ -529,6 +589,39 @@ def generate_weekly_issue(
         items = weekly_candidates(radar_signals, trend_signals, final_posts, limit=limit)
     if not items:
         raise ValueError("Ainda não há posts com métricas suficientes para gerar a newsletter.")
+        
+    # Load and filter LinkedIn debates of the week
+    debates = []
+    comments_path = Path(path).parent / "linkedin_comments.jsonl"
+    if comments_path.exists():
+        try:
+            with open(comments_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    if line.strip():
+                        record = json.loads(line)
+                        if record.get("status") in ["draft", "commented"]:
+                            # check if within last 7 days
+                            created = _parse_date(record.get("created_at", ""))
+                            if created >= datetime.now(timezone.utc) - timedelta(days=7):
+                                debates.append(record)
+        except Exception as e:
+            print(f"Erro ao carregar debates para newsletter: {e}")
+            
+    # Fallback to most recent 2 if empty
+    if not debates and comments_path.exists():
+        try:
+            all_records = []
+            with open(comments_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    if line.strip():
+                        record = json.loads(line)
+                        if record.get("status") in ["draft", "commented"]:
+                            all_records.append(record)
+            all_records.sort(key=lambda r: _parse_date(r.get("created_at", "")), reverse=True)
+            debates = all_records[:2]
+        except Exception:
+            pass
+
     count = len(items)
     title = f"Os {count} sinais PTIA com mais engagement esta semana"
     subject = f"PTIA Weekly: os {count} temas que mais mexeram esta semana"
@@ -543,8 +636,8 @@ def generate_weekly_issue(
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(title, intro, items),
-        text=_issue_text(title, intro, items),
+        html=_issue_html(title, intro, items, debates=debates),
+        text=_issue_text(title, intro, items, debates=debates),
         item_ids=[item.item_id for item in items],
     )
     append_jsonl(path, [issue])
@@ -566,8 +659,8 @@ def generate_sample_issue() -> NewsletterIssue:
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(title, intro, items),
-        text=_issue_text(title, intro, items),
+        html=_issue_html(title, intro, items, debates=[]),
+        text=_issue_text(title, intro, items, debates=[]),
         item_ids=[item.item_id for item in items],
         status="sample",
     )

@@ -1,0 +1,360 @@
+{
+  "companies": {
+    "nvidia": {
+      "urn": "urn:li:organization:2622",
+      "display_name": "NVIDIA"
+    },
+    "amd": {
+      "urn": "urn:li:organization:1838",
+      "display_name": "AMD"
+    },
+    "unbabel": {
+      "urn": "urn:li:organization:116070074",
+      "display_name": "Unbabel"
+    },
+    "defined.ai": {
+      "urn": "urn:li:organization:11825595",
+      "display_name": "Defined.ai"
+    },
+    "definedai": {
+      "urn": "urn:li:organization:11825595",
+      "display_name": "Defined.ai"
+    },
+    "feedzai": {
+      "urn": "urn:li:organization:2621008",
+      "display_name": "Feedzai"
+    },
+    "sword health": {
+      "urn": "urn:li:organization:18274026",
+      "display_name": "Sword Health"
+    },
+    "talkdesk": {
+      "urn": "urn:li:organization:2416045",
+      "display_name": "Talkdesk"
+    },
+    "outsystems": {
+      "urn": "urn:li:organization:39396",
+      "display_name": "OutSystems"
+    },
+    "farfetch": {
+      "urn": "urn:li:organization:386348",
+      "display_name": "Farfetch"
+    },
+    "ydata": {
+      "urn": "urn:li:organization:22285145",
+      "display_name": "YData"
+    },
+    "sensei": {
+      "urn": "urn:li:organization:18260193",
+      "display_name": "Sensei"
+    },
+    "stratio": {
+      "urn": "urn:li:organization:3564998",
+      "display_name": "Stratio"
+    },
+    "codacy": {
+      "urn": "urn:li:organization:3545041",
+      "display_name": "Codacy"
+    },
+    "infraspeak": {
+      "urn": "urn:li:organization:10408544",
+      "display_name": "Infraspeak"
+    },
+    "jungleai": {
+      "urn": "urn:li:organization:11046124",
+      "display_name": "Jungleai"
+    },
+    "barkyn": {
+      "urn": "urn:li:organization:11252277",
+      "display_name": "Barkyn"
+    },
+    "zaask": {
+      "urn": "urn:li:organization:2603816",
+      "display_name": "Zaask"
+    },
+    "kencko": {
+      "urn": "urn:li:organization:11417079",
+      "display_name": "Kencko"
+    },
+    "prodsmart": {
+      "urn": "urn:li:organization:5207039",
+      "display_name": "Prodsmart"
+    },
+    "glintt": {
+      "urn": "urn:li:organization:49673",
+      "display_name": "Glintt"
+    },
+    "critical software": {
+      "urn": "urn:li:organization:24869",
+      "display_name": "Critical Software"
+    },
+    "novabase": {
+      "urn": "urn:li:organization:35063",
+      "display_name": "Novabase"
+    },
+    "observador": {
+      "urn": "urn:li:organization:3810141",
+      "display_name": "Observador"
+    },
+    "jornal de negócios": {
+      "urn": "urn:li:organization:18501256",
+      "display_name": "Jornal de Negócios"
+    },
+    "eco - economia online": {
+      "urn": "urn:li:organization:11075677",
+      "display_name": "ECO - Economia Online"
+    },
+    "apdc": {
+      "urn": "urn:li:organization:13254924",
+      "display_name": "APDC"
+    },
+    "fct": {
+      "urn": "urn:li:organization:419169",
+      "display_name": "FCT"
+    },
+    "dge": {
+      "urn": "urn:li:organization:10847959",
+      "display_name": "DGE"
+    },
+    "indico capital partners": {
+      "urn": "urn:li:organization:18961730",
+      "display_name": "Indico Capital Partners"
+    },
+    "faber ventures": {
+      "urn": "urn:li:organization:2723707",
+      "display_name": "Faber Ventures"
+    },
+    "bright pixel": {
+      "urn": "urn:li:organization:10793264",
+      "display_name": "Bright Pixel"
+    },
+    "shilling": {
+      "urn": "urn:li:organization:2560803",
+      "display_name": "Shilling"
+    },
+    "portugal ventures": {
+      "urn": "urn:li:organization:2712959",
+      "display_name": "Portugal Ventures"
+    },
+    "edp": {
+      "urn": "urn:li:organization:10437",
+      "display_name": "EDP"
+    },
+    "galp": {
+      "urn": "urn:li:organization:40455",
+      "display_name": "Galp"
+    },
+    "millennium bcp": {
+      "urn": "urn:li:organization:19754",
+      "display_name": "Millennium bcp"
+    },
+    "bpi": {
+      "urn": "urn:li:organization:23073",
+      "display_name": "BPI"
+    },
+    "caixa geral de depósitos": {
+      "urn": "urn:li:organization:16035",
+      "display_name": "Caixa Geral de Depósitos"
+    },
+    "nos": {
+      "urn": "urn:li:organization:3667527",
+      "display_name": "NOS"
+    },
+    "meo": {
+      "urn": "urn:li:organization:22444",
+      "display_name": "MEO"
+    },
+    "vodafone portugal": {
+      "urn": "urn:li:organization:6114",
+      "display_name": "Vodafone Portugal"
+    },
+    "ctt": {
+      "urn": "urn:li:organization:25424",
+      "display_name": "CTT"
+    },
+    "tap air portugal": {
+      "urn": "urn:li:organization:162544",
+      "display_name": "TAP Air Portugal"
+    },
+    "sonae": {
+      "urn": "urn:li:organization:22345",
+      "display_name": "Sonae"
+    },
+    "jeronimo martins": {
+      "urn": "urn:li:organization:24391",
+      "display_name": "Jerónimo Martins"
+    },
+    "continente": {
+      "urn": "urn:li:organization:11047124",
+      "display_name": "Continente"
+    },
+    "worten": {
+      "urn": "urn:li:organization:11047248",
+      "display_name": "Worten"
+    },
+    "rtp": {
+      "urn": "urn:li:organization:12479",
+      "display_name": "RTP"
+    },
+    "sic": {
+      "urn": "urn:li:organization:36247",
+      "display_name": "SIC"
+    },
+    "tvi": {
+      "urn": "urn:li:organization:24162",
+      "display_name": "TVI"
+    },
+    "microsoft": {
+      "urn": "urn:li:organization:1035",
+      "display_name": "Microsoft"
+    },
+    "microsoft portugal": {
+      "urn": "urn:li:organization:162391",
+      "display_name": "Microsoft Portugal"
+    },
+    "google": {
+      "urn": "urn:li:organization:1441",
+      "display_name": "Google"
+    },
+    "google portugal": {
+      "urn": "urn:li:organization:9455",
+      "display_name": "Google Portugal"
+    },
+    "openai": {
+      "urn": "urn:li:organization:11045763",
+      "display_name": "OpenAI"
+    },
+    "anthropic": {
+      "urn": "urn:li:organization:74567232",
+      "display_name": "Anthropic"
+    },
+    "meta": {
+      "urn": "urn:li:organization:162479",
+      "display_name": "Meta"
+    },
+    "apple": {
+      "urn": "urn:li:organization:162478",
+      "display_name": "Apple"
+    },
+    "amazon": {
+      "urn": "urn:li:organization:1586",
+      "display_name": "Amazon"
+    },
+    "intel": {
+      "urn": "urn:li:organization:1053",
+      "display_name": "Intel"
+    },
+    "ibm": {
+      "urn": "urn:li:organization:1009",
+      "display_name": "IBM"
+    },
+    "tesla": {
+      "urn": "urn:li:organization:1556",
+      "display_name": "Tesla"
+    },
+    "netflix": {
+      "urn": "urn:li:organization:1651",
+      "display_name": "Netflix"
+    },
+    "salesforce": {
+      "urn": "urn:li:organization:3183",
+      "display_name": "Salesforce"
+    },
+    "adobe": {
+      "urn": "urn:li:organization:1493",
+      "display_name": "Adobe"
+    },
+    "oracle": {
+      "urn": "urn:li:organization:1028",
+      "display_name": "Oracle"
+    },
+    "sap": {
+      "urn": "urn:li:organization:1115",
+      "display_name": "SAP"
+    },
+    "samsung": {
+      "urn": "urn:li:organization:1491",
+      "display_name": "Samsung"
+    },
+    "sony": {
+      "urn": "urn:li:organization:1033",
+      "display_name": "Sony"
+    },
+    "cohere": {
+      "urn": "urn:li:organization:35649987",
+      "display_name": "Cohere"
+    },
+    "mistral ai": {
+      "urn": "urn:li:organization:96245678",
+      "display_name": "Mistral AI"
+    },
+    "perplexity": {
+      "urn": "urn:li:organization:89345241",
+      "display_name": "Perplexity"
+    },
+    "midjourney": {
+      "urn": "urn:li:organization:84567239",
+      "display_name": "Midjourney"
+    },
+    "hugging face": {
+      "urn": "urn:li:organization:18247952",
+      "display_name": "Hugging Face"
+    },
+    "scale ai": {
+      "urn": "urn:li:organization:11247956",
+      "display_name": "Scale AI"
+    },
+    "groq": {
+      "urn": "urn:li:organization:18247963",
+      "display_name": "Groq"
+    },
+    "runway": {
+      "urn": "urn:li:organization:18247974",
+      "display_name": "Runway"
+    },
+    "elevenlabs": {
+      "urn": "urn:li:organization:89456723",
+      "display_name": "ElevenLabs"
+    },
+    "deepl": {
+      "urn": "urn:li:organization:11247985",
+      "display_name": "DeepL"
+    },
+    "pika": {
+      "urn": "urn:li:organization:89456734",
+      "display_name": "Pika"
+    },
+    "character.ai": {
+      "urn": "urn:li:organization:89456745",
+      "display_name": "Character.ai"
+    },
+    "jasper": {
+      "urn": "urn:li:organization:89456756",
+      "display_name": "Jasper"
+    },
+    "synthesia": {
+      "urn": "urn:li:organization:89456767",
+      "display_name": "Synthesia"
+    },
+    "harvey": {
+      "urn": "urn:li:organization:89456778",
+      "display_name": "Harvey"
+    },
+    "aon": {
+      "urn": "urn:li:organization:1479",
+      "display_name": "Aon"
+    },
+    "ministério da educação": {
+      "urn": "urn:li:organization:19979",
+      "display_name": "Ministério da Educação"
+    },
+    "vasco pedro": {
+      "urn": "urn:li:organization:163494",
+      "display_name": "Vasco Pedro"
+    },
+    "fundação champalimaud": {
+      "urn": "urn:li:organization:10438487",
+      "display_name": "Fundação Champalimaud"
+    }
+  }
+}

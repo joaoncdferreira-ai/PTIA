@@ -208,6 +208,15 @@ class ContentPerformance:
     saves: int = 0
     clicks: int = 0
     followers_gained: int = 0
+    site_views: int = 0
+    unique_visitors: int = 0
+    newsletter_signups: int = 0
+    utm_source: str = ""
+    utm_medium: str = ""
+    utm_campaign: str = ""
+    utm_content: str = ""
+    page_url: str = ""
+    referrer: str = ""
     notes: str = ""
     created_at: str = field(default_factory=utc_now_iso)
 
@@ -231,6 +240,15 @@ class ContentPerformance:
             saves=int(record.get("saves", 0)),
             clicks=int(record.get("clicks", 0)),
             followers_gained=int(record.get("followers_gained", 0)),
+            site_views=int(record.get("site_views", 0)),
+            unique_visitors=int(record.get("unique_visitors", 0)),
+            newsletter_signups=int(record.get("newsletter_signups", 0)),
+            utm_source=str(record.get("utm_source", "")),
+            utm_medium=str(record.get("utm_medium", "")),
+            utm_campaign=str(record.get("utm_campaign", "")),
+            utm_content=str(record.get("utm_content", "")),
+            page_url=str(record.get("page_url", "")),
+            referrer=str(record.get("referrer", "")),
             notes=str(record.get("notes", "")),
             created_at=str(record.get("created_at", "")),
         )

@@ -1,0 +1,49 @@
+[
+  {
+    "ancestorLevel": 2,
+    "siblingTagName": "DIV",
+    "siblingClassName": "_71bd1774",
+    "siblingOuterHTML": "<div class=\"_71bd1774\" data-testid=\"ui-core-tiptap-text-editor-cursor\"></div>",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "ancestorLevel": 3,
+    "siblingTagName": "DIV",
+    "siblingClassName": "b391113f",
+    "siblingOuterHTML": "<div role=\"status\" aria-live=\"polite\" aria-atomic=\"true\" class=\"b391113f\"></div>",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  },
+  {
+    "ancestorLevel": 5,
+    "siblingTagName": "DIV",
+    "siblingClassName": "edb0fe3a e070083c _4351a7b5 _43663e3b _070fa733 eba433ab _846c339b _9c064355",
+    "siblingOuterHTML": "<div class=\"edb0fe3a e070083c _4351a7b5 _43663e3b _070fa733 eba433ab _846c339b _9c064355\"><button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"button\" compo",
+    "interactiveCount": 2,
+    "interactiveChildren": [
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Exibir selecionador de emoji",
+        "innerText": "",
+        "outerHTML": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"button\" componentkey=\"387483ea-1f10-4571-a233-52e8de7"
+      },
+      {
+        "tagName": "BUTTON",
+        "className": "_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b",
+        "ariaLabel": "Compartilhar foto",
+        "innerText": "",
+        "outerHTML": "<button class=\"_8653cae1 a3abfeab ba894f4c _0069bc4a _00e78148 _580de4b6 _0da1c14a ece7fc43 _3ca2c966 _07645a68 e8743024 _070fa733 d1d3c94b\" type=\"button\" componentkey=\"1ed72987-f4a5-4f4b-9e42-45115dc"
+      }
+    ]
+  },
+  {
+    "ancestorLevel": 6,
+    "siblingTagName": "DIV",
+    "siblingClassName": "_25b527c2",
+    "siblingOuterHTML": "<div class=\"_25b527c2\" componentkey=\"commentBoxLinkPreview-CgsIgMC94OG74KDPAQ-uR0oaxBkYiWjyYl6PqrGi3u41R3v1DYOzt14J91kMhgFeedType_FEED_DETAIL\"></div>",
+    "interactiveCount": 0,
+    "interactiveChildren": []
+  }
+]

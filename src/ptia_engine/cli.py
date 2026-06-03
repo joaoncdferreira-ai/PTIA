@@ -6,6 +6,15 @@ import os
 from collections import Counter
 from pathlib import Path
 
+import sys
+try:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding='utf-8', errors='backslashreplace')
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
+except Exception:
+    pass
+
 from ptia_engine.budget import (
     append_usage,
     estimate_tokens,
@@ -47,6 +56,8 @@ from ptia_engine.exports import (
     export_raw_articles_csv,
     export_sources_csv,
 )
+from ptia_engine.growth import format_growth_report, load_growth_report, write_growth_report
+from ptia_engine.ai_visibility import build_ai_visibility_report, format_ai_visibility_report
 from ptia_engine.learning import (
     generate_learning_weights,
     load_learning_weights,
@@ -58,11 +69,26 @@ from ptia_engine.models import RawArticle, Source
 from ptia_engine.performance_import import import_instagram_insights
 from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
+from ptia_engine.scheduler import (
+    NoopScheduleBackend,
+    build_schedule_day_plan,
+    build_schedule_execution_plan,
+    execute_schedule_plan,
+    format_execution_plan,
+    format_schedule_plan,
+    load_schedule_slots,
+)
+from ptia_engine.services.schedule_backend import (
+    DashboardScheduleBackend,
+    ScheduleCapabilities,
+    missing_capabilities,
+)
 from ptia_engine.source_verifier import verify_search_candidate
 from ptia_engine.storage import (
     append_jsonl,
     load_content_assets,
     load_content_drafts,
+    load_final_posts,
     load_processed_items,
     load_trend_signals,
 )
@@ -694,6 +720,85 @@ def cmd_dashboard(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_schedule_day(args: argparse.Namespace) -> int:
+    data_dir = Path(args.data_dir)
+    slots = load_schedule_slots(Path(args.plan)) if args.plan else None
+    final_posts_path = data_dir / "final_posts.jsonl"
+    plan = build_schedule_day_plan(
+        repo_root=Path.cwd(),
+        date=args.date,
+        final_posts_path=final_posts_path,
+        buffer_channels_path=data_dir / "buffer_channels.json",
+        slots=slots,
+        dry_run=True,
+    )
+    if args.execution_plan or args.simulate_execute or args.execute_real:
+        execution_plan = build_schedule_execution_plan(
+            plan,
+            final_posts=load_final_posts(final_posts_path),
+            dry_run=not (args.simulate_execute or args.execute_real),
+        )
+        if args.simulate_execute or args.execute_real:
+            capabilities = ScheduleCapabilities(
+                publish_assets=args.publish_assets,
+                send_buffer=args.send_buffer,
+                write_site_feed=args.write_site_feed,
+            )
+            if args.execute_real:
+                missing = missing_capabilities(execution_plan.actions, capabilities)
+                if missing:
+                    print("error missing explicit execution flags: " + ", ".join(missing))
+                    return 2
+                backend = DashboardScheduleBackend(
+                    repo_root=Path.cwd(),
+                    data_dir=data_dir,
+                    capabilities=capabilities,
+                )
+            else:
+                backend = NoopScheduleBackend()
+            try:
+                results = execute_schedule_plan(
+                    execution_plan,
+                    backend=backend,
+                    confirm_date=args.confirm,
+                    audit_path=Path(args.audit_log) if args.audit_log else None,
+                )
+            except ValueError as exc:
+                print(f"error {exc}")
+                return 2
+            payload = {
+                "execution_plan": execution_plan.to_record(),
+                "results": [result.to_record() for result in results],
+            }
+            if args.json:
+                print(json.dumps(payload, ensure_ascii=False, indent=2))
+            else:
+                print(format_execution_plan(execution_plan))
+                print("execution_results" if args.execute_real else "simulation_results")
+                for result in results:
+                    print(f"- {result.kind} {result.status} {result.external_id} {result.message}")
+            return 0
+        if args.json:
+            print(json.dumps(execution_plan.to_record(), ensure_ascii=False, indent=2))
+        else:
+            print(format_execution_plan(execution_plan))
+        return 0 if execution_plan.ready else 2
+    if args.json:
+        print(json.dumps(plan.to_record(), ensure_ascii=False, indent=2))
+    else:
+        print(format_schedule_plan(plan))
+    return 0 if plan.ready else 2
+
+
+def cmd_linkedin_comments(args: argparse.Namespace) -> int:
+    from ptia_engine.linkedin_commenter import run_linkedin_comments_pipeline
+    result = run_linkedin_comments_pipeline()
+    if result.get("ok"):
+        return 0
+    print(f"Erro ao executar comentários do LinkedIn: {result.get('error')}")
+    return 1
+
+
 def cmd_add_signal(args: argparse.Namespace) -> int:
     signal = add_radar_signal(
         Path(args.out),
@@ -843,6 +948,36 @@ def cmd_instagram_insights(args: argparse.Namespace) -> int:
             ensure_ascii=False,
         )
     )
+    return 0
+
+
+def cmd_growth_report(args: argparse.Namespace) -> int:
+    report = load_growth_report(
+        final_posts_path=Path(args.final_posts),
+        performance_path=Path(args.performance),
+        top_limit=args.top_limit,
+        min_samples=args.min_samples,
+    )
+    if args.json:
+        output = json.dumps(report.to_record(), ensure_ascii=False, indent=2)
+    else:
+        output = format_growth_report(report)
+    print(output)
+    if args.out:
+        write_growth_report(Path(args.out), report, json_output=args.json)
+    return 0
+
+
+def cmd_ai_visibility_report(args: argparse.Namespace) -> int:
+    report = build_ai_visibility_report(Path(args.site_dir))
+    if args.json:
+        output = json.dumps(report, ensure_ascii=False, indent=2)
+    else:
+        output = format_ai_visibility_report(report)
+    print(output)
+    if args.out:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(output, encoding="utf-8")
     return 0
 
 
@@ -1162,6 +1297,27 @@ def build_parser() -> argparse.ArgumentParser:
     instagram_insights.add_argument("--limit", type=int, default=25)
     instagram_insights.set_defaults(func=cmd_instagram_insights)
 
+    growth_report = subparsers.add_parser(
+        "growth-report",
+        help="Summarize content performance and growth recommendations without changing data.",
+    )
+    growth_report.add_argument("--final-posts", default="data/final_posts.jsonl")
+    growth_report.add_argument("--performance", default="data/content_performance.jsonl")
+    growth_report.add_argument("--top-limit", type=int, default=8)
+    growth_report.add_argument("--min-samples", type=int, default=3)
+    growth_report.add_argument("--out", default="", help="Optional path to write the report.")
+    growth_report.add_argument("--json", action="store_true", help="Print/write the report as JSON.")
+    growth_report.set_defaults(func=cmd_growth_report)
+
+    ai_visibility = subparsers.add_parser(
+        "ai-visibility-report",
+        help="Audit AI-search readiness of the static PTIA site without changing data.",
+    )
+    ai_visibility.add_argument("--site-dir", default="site")
+    ai_visibility.add_argument("--out", default="", help="Optional path to write the report.")
+    ai_visibility.add_argument("--json", action="store_true", help="Print/write the report as JSON.")
+    ai_visibility.set_defaults(func=cmd_ai_visibility_report)
+
     trend_radar = subparsers.add_parser("trend-radar", help="Fetch external AI engagement signals.")
     trend_radar.add_argument("--out", default="data/trend_signals.jsonl")
     trend_radar.add_argument("--markdown-out", default="data/trend_radar.md")
@@ -1266,6 +1422,43 @@ def build_parser() -> argparse.ArgumentParser:
     dashboard.add_argument("--host", default="127.0.0.1")
     dashboard.add_argument("--port", type=int, default=8765)
     dashboard.set_defaults(func=cmd_dashboard)
+
+    schedule_day = subparsers.add_parser(
+        "schedule-day",
+        help="Dry-run the daily scheduling preflight without changing posts, Git, or Buffer.",
+    )
+    schedule_day.add_argument("--date", required=True, help="Target day in YYYY-MM-DD format.")
+    schedule_day.add_argument("--data-dir", default="data")
+    schedule_day.add_argument(
+        "--plan",
+        default="",
+        help="Optional JSON schedule plan with topic_id and scheduled_time entries.",
+    )
+    schedule_day.add_argument(
+        "--execution-plan",
+        action="store_true",
+        help="Print the side-effect-free execution plan, including Instagram carousel grouping.",
+    )
+    schedule_day.add_argument(
+        "--simulate-execute",
+        action="store_true",
+        help="Run the execution plan against a noop backend. Requires --confirm and never calls Buffer or Git.",
+    )
+    schedule_day.add_argument(
+        "--execute-real",
+        action="store_true",
+        help="Execute against real dashboard operations. Requires --confirm and explicit capability flags.",
+    )
+    schedule_day.add_argument("--publish-assets", action="store_true", help="Allow publishing/preparing public media assets.")
+    schedule_day.add_argument("--send-buffer", action="store_true", help="Allow calls that create Buffer posts.")
+    schedule_day.add_argument("--write-site-feed", action="store_true", help="Allow writing/syncing static site feed files.")
+    schedule_day.add_argument("--confirm", default="", help="Required date confirmation for execution modes.")
+    schedule_day.add_argument("--audit-log", default="", help="Optional JSONL audit log for simulated execution.")
+    schedule_day.add_argument("--json", action="store_true", help="Print the preflight as JSON.")
+    schedule_day.set_defaults(func=cmd_schedule_day)
+
+    linkedin_comments = subparsers.add_parser("linkedin-comments", help="Run the automated LinkedIn commenting pipeline.")
+    linkedin_comments.set_defaults(func=cmd_linkedin_comments)
 
     return parser
 

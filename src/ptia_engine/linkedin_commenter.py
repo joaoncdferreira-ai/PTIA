@@ -27,28 +27,26 @@ LINKEDIN_COMMENT_PROMPT = """
 Atua como editor sénior de negócios e tecnologia da PTIA (ptia.pt).
 Escreve um comentário curto de alto valor acrescentado em resposta ao seguinte post de LinkedIn.
 
-O teu objetivo é construir autoridade de marca para o PTIA: sê perspicaz, analítico, otimista com o potencial prático da tecnologia e focado na realidade empresarial de Portugal.
-Adota sempre a filosofia do "Sim, e..." (adição construtiva) em vez do "Sim, mas..." (travar o progresso). Em vez de focares em barreiras, ceticismo contrariante ou conjunções adversativas (como "mas", "contudo", "no entanto"), foca-te em somar valor, propor novas ideias, e realçar caminhos impulsionadores de produtividade de forma profissional. Usa expressões e conectores aditivos ("e", "adicionalmente", "em cima disso", "além disso", "abrindo caminho para", "potenciando").
+O teu objetivo é construir autoridade de marca para a PTIA através de análises e reflexões de cariz puramente conceptual, macro-estrutural ou estratégico sobre tecnologia e sociedade.
+O tom deve ser sóbrio, inteligente, crítico-construtivo e focado no impacto de longo prazo.
 
 Post original do LinkedIn:
 "{post_body}"
 
-Regra de Relevância Absoluta (Filtro Obrigatório):
-Antes de escreveres, avalia se o post original está relacionado de alguma forma com inteligência artificial, tecnologia de negócios, software, inovação digital, regulação de tecnologia ou impacto tecnológico na produtividade empresarial. 
-Se o post NÃO for de todo relevante para esta linha temática (ex: se for sobre assuntos pessoais, contratações genéricas sem cariz tecnológico, festas de empresa, futebol, política geral, ou opiniões vazias), deves responder ÚNICA e ESTRICTAMENTE com a palavra "REJECT" (sem aspas, sem espaços e sem pontuação).
+Regra de Relevância Absoluta e Filtro de Tom (Filtro Obrigatório):
+Antes de escreveres, avalia a relevância e o teor do post:
+1. O post original deve estar relacionado com inteligência artificial, tecnologia de negócios, soberania digital, regulação, produtividade empresarial ou inovação digital.
+2. Filtro de Autopromoção: Se o post for apenas um anúncio comercial de uma empresa para vender os seus próprios produtos, demonstrar pequenas features/funcionalidades, lançamentos de produto irrelevantes, ofertas de emprego genéricas, prémios de escritório, conquistas pessoais de carreira ou autopromoção corporativa vazia, deves REJEITAR o post.
+Se o post falhar num destes pontos (não for relevante ou for meramente focado em features/vendas/promoção corporativa), responde ÚNICA e ESTRICTAMENTE com a palavra "REJECT" (sem aspas, sem espaços e sem pontuação). Nós não ajudamos empresas a promover produtos ou features gratuitas.
 
 Regras Editoriais Estritas para o comentário:
-1. Escreve exclusivamente em português europeu impecável (PT-PT), seguindo o Acordo Ortográfico de 1990.
+1. Sê estritamente conceptual: Comenta sobre as implicações estruturais do tema abordado (ex: a importância de reter talento tecnológico, a dependência estratégica de hiperescalas, a necessidade de governação clara de dados, o risco do lock-in tecnológico). Nunca elogies o produto, a feature ou a empresa autora do post. Não dês "graxa" nem sejas bajulador.
+2. Filosofia "Sim, e..." (Adição Conceptual): Adota o "Sim, e..." para expandir a reflexão. Liga o facto abordado a uma tendência macro ou tese editorial construtiva que faça sentido para quem decide em Portugal, realçando caminhos estruturais de competitividade.
+3. Escreve exclusivamente em português europeu impecável (PT-PT), seguindo o Acordo Ortográfico de 1990.
    - NÃO traduzas jargões tecnológicos comuns na indústria em Portugal: mantém termos como "cloud" (nunca "nuvem"), "legacy" ou "legacy systems" (nunca "sistemas legados"), "compliance" (nunca "conformidade"), "hype", "pipeline", "framework", "use case", "insights", "prompt" e "roadmap" na sua forma original em inglês.
-2. Sê conciso: Máximo de 380 caracteres (cerca de 1 a 2 frases curtas e fortes). O comentário tem de caber sem scroll.
-3. Acrescenta valor prático: Não repitas o que está no post. Traz uma reflexão impulsionadora, focada em como capitalizar o facto, e em novas ideias que acelerem a produtividade em Portugal.
-4. Filtro absoluto de clichés de IA e bajulação:
-   - Proibido saudações vazias como "Excelente partilha!", "Parabéns à equipa!", "Inovador!", "Revolucionário!".
-   - Proibido expressões artificiais como "panorama atual", "mergulhar profundamente", "em suma", "essencial recordar", "desbloquear o potencial".
-5. Não uses hashtags nem emojis (mantém o tom sóbrio de um editorialista humano).
-6. Não assines com o teu nome ou "PTIA" (a conta oficial da empresa já é visível).
-7. Escreve de forma declarativa e com ritmo variável (frase curta alternada com frase analítica).
-
+4. Sê conciso: Máximo de 380 caracteres (cerca de 1 a 2 frases curtas e fortes). O comentário tem de caber sem scroll.
+5. Não uses hashtags nem emojis.
+6. Não assines com o teu nome ou "PTIA".
 
 Responde apenas com o comentário final ou a palavra "REJECT", sem aspas e sem explicações adicionais.
 """
@@ -91,10 +89,11 @@ def _count_comments_today(history: list[dict[str, Any]]) -> int:
     return count
 
 def _is_recently_commented(history: list[dict[str, Any]], cool_down_minutes: int) -> bool:
-    if not history:
+    active_history = [r for r in history if r.get("status") in ("commented", "draft")]
+    if not active_history:
         return False
-    # Get last comment record
-    last_record = history[-1]
+    # Get last active comment record
+    last_record = active_history[-1]
     last_time_str = last_record.get("created_at", "")
     if not last_time_str:
         return False
@@ -105,6 +104,22 @@ def _is_recently_commented(history: list[dict[str, Any]], cool_down_minutes: int
         return diff < cool_down_minutes
     except Exception:
         return False
+
+def _is_profile_recently_commented_in_week(history: list[dict[str, Any]], author: str) -> bool:
+    now = datetime.now(timezone.utc)
+    author_clean = author.lower().strip()
+    for record in reversed(history):
+        if record.get("status") in ("commented", "draft") and record.get("profile_name", "").lower().strip() == author_clean:
+            created_at_str = record.get("created_at", "")
+            if created_at_str:
+                try:
+                    created_at = datetime.fromisoformat(created_at_str.replace("Z", "+00:00"))
+                    diff_days = (now - created_at).total_seconds() / (24 * 3600)
+                    if diff_days < 7.0:
+                        return True
+                except Exception:
+                    pass
+    return False
 
 def _run_node_command(args: list[str]) -> dict[str, Any]:
     cmd = ["node", str(ROOT / "scripts" / "linkedin_automation.js")] + args
@@ -193,12 +208,10 @@ def run_linkedin_comments_pipeline() -> dict[str, Any]:
         return {"ok": False, "error": "GEMINI_API_KEY_MISSING"}
 
     success_count = 0
-    
+    candidates = []
+
     # 3. Processar cada perfil monitorizado
     for profile in monitored:
-        if comments_today >= max_per_day:
-            break
-            
         name = profile.get("name", "Desconhecido")
         url = profile.get("url", "")
         print(f"\n-> A analisar publicações recentes de: {name} ({url})")
@@ -211,110 +224,150 @@ def run_linkedin_comments_pipeline() -> dict[str, Any]:
             
         posts = result.get("posts", [])
         print(f"   Encontradas {len(posts)} publicações.")
+        for p in posts:
+            p["author_name"] = name
+            p["source_type"] = "profile"
+            candidates.append(p)
+
+    # 4. Processar pesquisas por palavras-chave
+    search_queries = config.get("search_queries", [])
+    thresholds = config.get("engagement_thresholds", {"min_likes": 50, "min_comments": 10})
+    min_likes = thresholds.get("min_likes", 50)
+    min_comments = thresholds.get("min_comments", 10)
+
+    for query in search_queries:
+        print(f"\n-> A pesquisar no LinkedIn por: '{query}'")
+        result = _run_node_command(["scrape-search", query])
+        if not result.get("ok"):
+            print(f"   [Falhou] Pesquisa falhou: {result.get('error')}")
+            continue
+            
+        posts = result.get("posts", [])
+        print(f"   Encontradas {len(posts)} publicações na pesquisa.")
+        for p in posts:
+            p["author_name"] = f"Pesquisa: {query}"
+            p["source_type"] = "search"
+            candidates.append(p)
+
+    # 5. Avaliar candidatos consolidados
+    for post in candidates:
+        if comments_today >= max_per_day:
+            break
+            
+        urn = post.get("urn")
+        post_url = post.get("url")
+        body = post.get("body", "").strip()
+        relative_time = post.get("relative_time", "")
+        author = post.get("author_name", "Desconhecido")
+        source_type = post.get("source_type", "profile")
+        likes = post.get("likes", 0)
+        comments = post.get("comments", 0)
         
-        # Avaliar cada post
-        for post in posts:
-            urn = post.get("urn")
-            post_url = post.get("url")
-            body = post.get("body", "").strip()
-            relative_time = post.get("relative_time", "")
+        if not urn or not body:
+            continue
             
-            if not urn or not body:
-                continue
-                
-            # Verificar se já comentámos esta publicação
-            if urn in commented_urns:
-                continue
-                
-            # Verificar se a publicação é demasiado antiga
-            if _is_post_too_old(relative_time):
-                print(f"   [Ignorado] Publicação demasiado antiga ({relative_time}): {body[:40]}...")
-                continue
-                
-            # 4. Avaliar relevância com Gemini
-            print(f"   [Novo Post] {urn} ({relative_time})")
-            print(f"   Texto: {body[:120]}...")
+        # Verificar se já comentámos esta publicação
+        if urn in commented_urns:
+            continue
             
-            # Vamos pedir ao Gemini para gerar o comentário
-            prompt = LINKEDIN_COMMENT_PROMPT.format(post_body=body)
-            try:
-                # Usar o backend REST do Gemini para gerar a resposta
-                raw_response = provider._generate_json_response(prompt, temperature=0.72)
-                candidate = (raw_response.get("candidates") or [{}])[0]
-                parts = ((candidate.get("content") or {}).get("parts") or [])
-                generated_comment = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict)).strip()
-                
-                # Clean up markdown code wrapping if Gemini returned it
-                generated_comment = generated_comment.strip().strip('"').strip("'").replace("```json", "").replace("```", "").strip()
-            except Exception as e:
-                print(f"   [Falhou] Erro ao gerar comentário com Gemini: {e}")
-                continue
-                
-            if not generated_comment:
-                print("   [Falhou] Gemini devolveu comentário vazio.")
-                continue
-                
-            if generated_comment.upper().strip() == "REJECT":
-                print("   [Ignorado] Gemini classificou o post como irrelevante para a linha editorial (REJECT).")
-                # Gravar registo de rejeição para evitar reprocessar
-                record = {
-                    "urn": urn,
-                    "profile_name": name,
-                    "post_url": post_url,
-                    "post_body": body,
-                    "status": "rejected_by_ai",
-                    "created_at": utc_now_iso()
-                }
-                _save_comment_record(record)
-                continue
-                
-            print(f"   [Comentário Gerado] ({len(generated_comment)} chars):\n   \"{generated_comment}\"")
+        # Verificar se já comentámos alguma publicação desta página/perfil nos últimos 7 dias (low profile)
+        if _is_profile_recently_commented_in_week(history, author):
+            print(f"   [Ignorado] Já comentámos uma publicação de '{author}' esta semana (mantendo low profile e tático).")
+            continue
             
-            # 5. Executar automação de post de comentário
-            if audit_mode:
-                print("   [Audit Mode] A chamar Playwright para criar rascunho de comentário...")
-                post_result = _run_node_command(["post-comment", post_url, generated_comment, "draft"])
-            else:
-                print("   A chamar Playwright para submeter comentário ao vivo...")
-                post_result = _run_node_command(["post-comment", post_url, generated_comment])
+        # Verificar se a publicação é demasiado antiga
+        if _is_post_too_old(relative_time):
+            print(f"   [Ignorado] Publicação demasiado antiga ({relative_time}): {body[:40]}...")
+            continue
             
-            if post_result.get("ok"):
-                # Gravar registo de sucesso
-                status = "draft" if audit_mode else "commented"
-                record = {
-                    "urn": urn,
-                    "profile_name": name,
-                    "post_url": post_url,
-                    "post_body": body,
-                    "comment_text": generated_comment,
-                    "screenshot_path": post_result.get("screenshot", ""),
-                    "status": status,
-                    "created_at": utc_now_iso()
-                }
-                _save_comment_record(record)
-                commented_urns.add(urn)
-                if not audit_mode:
-                    comments_today += 1
-                success_count += 1
-                msg = "Rascunho criado!" if audit_mode else "Comentário publicado!"
-                print(f"   [Sucesso] {msg} Limite hoje: {comments_today} / {max_per_day}")
+        # Filtrar posts da pesquisa com baixo engajamento
+        if source_type == "search":
+            if likes < min_likes and comments < min_comments:
+                print(f"   [Ignorado] Baixo engajamento (Likes: {likes}/{min_likes}, Comentários: {comments}/{min_comments}): {body[:40]}...")
+                continue
                 
-                # Cooling down manual de 5 segundos para segurança do browser
-                time.sleep(5)
-                break # Apenas comentar 1 post por ciclo de execução por perfil para máxima discrição!
-            else:
-                print(f"   [Falhou] Submissão falhou: {post_result.get('error')}")
-                # Registar falha para evitar tentar o mesmo post consecutivamente
-                record = {
-                    "urn": urn,
-                    "profile_name": name,
-                    "post_url": post_url,
-                    "post_body": body,
-                    "status": "failed",
-                    "error": post_result.get("error", ""),
-                    "created_at": utc_now_iso()
-                }
-                _save_comment_record(record)
+        # 6. Avaliar relevância e tom conceptual com Gemini
+        print(f"\n   [Novo Candidato ({source_type})] De: {author} | URN: {urn} ({relative_time})")
+        print(f"   Métricas: {likes} likes, {comments} comentários")
+        print(f"   Texto: {body[:120]}...")
+        
+        prompt = LINKEDIN_COMMENT_PROMPT.format(post_body=body)
+        try:
+            raw_response = provider._generate_json_response(prompt, temperature=0.72)
+            candidate = (raw_response.get("candidates") or [{}])[0]
+            parts = ((candidate.get("content") or {}).get("parts") or [])
+            generated_comment = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict)).strip()
+            
+            # Clean up markdown code wrapping if Gemini returned it
+            generated_comment = generated_comment.strip().strip('"').strip("'").replace("```json", "").replace("```", "").strip()
+        except Exception as e:
+            print(f"   [Falhou] Erro ao gerar comentário com Gemini: {e}")
+            continue
+            
+        if not generated_comment:
+            print("   [Falhou] Gemini devolveu comentário vazio.")
+            continue
+            
+        if generated_comment.upper().strip() == "REJECT":
+            print("   [Ignorado] Gemini classificou o post como promocional/irrelevante (REJECT).")
+            # Gravar registo de rejeição para evitar reprocessar
+            record = {
+                "urn": urn,
+                "profile_name": author,
+                "post_url": post_url,
+                "post_body": body,
+                "status": "rejected_by_ai",
+                "created_at": utc_now_iso()
+            }
+            _save_comment_record(record)
+            continue
+            
+        print(f"   [Comentário Gerado] ({len(generated_comment)} chars):\n   \"{generated_comment}\"")
+        
+        # 7. Executar automação de post de comentário
+        if audit_mode:
+            print("   [Audit Mode] A chamar Playwright para criar rascunho de comentário...")
+            post_result = _run_node_command(["post-comment", post_url, generated_comment, "draft"])
+        else:
+            print("   A chamar Playwright para submeter comentário ao vivo...")
+            post_result = _run_node_command(["post-comment", post_url, generated_comment])
+        
+        if post_result.get("ok"):
+            status = "draft" if audit_mode else "commented"
+            record = {
+                "urn": urn,
+                "profile_name": author,
+                "post_url": post_url,
+                "post_body": body,
+                "comment_text": generated_comment,
+                "screenshot_path": post_result.get("screenshot", ""),
+                "status": status,
+                "created_at": utc_now_iso()
+            }
+            _save_comment_record(record)
+            commented_urns.add(urn)
+            if not audit_mode:
+                comments_today += 1
+            success_count += 1
+            msg = "Rascunho criado!" if audit_mode else "Comentário publicado!"
+            print(f"   [Sucesso] {msg} Limite hoje: {comments_today} / {max_per_day}")
+            
+            time.sleep(5)
+            # Ao vivo postamos 1 post de cada vez para discrição; em audit_mode podemos gerar rascunhos múltiplos
+            if not audit_mode:
+                break
+        else:
+            print(f"   [Falhou] Submissão falhou: {post_result.get('error')}")
+            record = {
+                "urn": urn,
+                "profile_name": author,
+                "post_url": post_url,
+                "post_body": body,
+                "status": "failed",
+                "error": post_result.get("error", ""),
+                "created_at": utc_now_iso()
+            }
+            _save_comment_record(record)
                 
-    print(f"\n=== MOTOR DE COMENTÁRIOS CONCLUÍDO. {success_count} COMENTÁRIOS PUBLICADOS. ===")
+    print(f"\n=== MOTOR DE COMENTÁRIOS CONCLUÍDO. {success_count} COMENTÁRIOS PROCESSADOS. ===")
     return {"ok": True, "comments_posted": success_count}

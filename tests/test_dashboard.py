@@ -1,7 +1,9 @@
+import json
 import shutil
 import unittest
 import uuid
-from datetime import datetime, timezone
+import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -12,6 +14,8 @@ from ptia_engine.dashboard import (
     _x_post_validation_issues,
     _fit_x_post_text,
     _reverify_verifying_signals,
+    _write_static_article_pages,
+    _write_static_discovery_files,
     _x_weighted_len,
 )
 from ptia_engine.editorial_board import add_final_post, add_radar_signal, update_final_post_status
@@ -296,6 +300,79 @@ class DashboardTests(unittest.TestCase):
 
         self.assertIn("sem link de fonte", issues)
         self.assertIn("sem imagem publica", issues)
+
+    def test_static_discovery_writes_news_sitemap_and_topic_pages(self):
+        published_at = (datetime.now(timezone.utc) - timedelta(minutes=5)).replace(microsecond=0).isoformat()
+        state = DashboardState(self.root / "data")
+        payload = {
+            "brand": "PTIA.pt",
+            "updated_at": published_at,
+            "posts": [
+                {
+                    "id": "post_pme",
+                    "title": "IA para PME portuguesas: produtividade real",
+                    "body": "As PME portuguesas usam inteligencia artificial para produtividade, retalho e operacao.",
+                    "source_urls": ["https://example.com/pme"],
+                    "image_url": "",
+                    "published_at": published_at,
+                    "section": ["Portugal", "Historias reais"],
+                    "article_url": "artigos/ia-para-pme-portuguesas-post-pme",
+                },
+                {
+                    "id": "post_aiact",
+                    "title": "AI Act e agentes de IA nas empresas",
+                    "body": "O AI Act muda governanca, risco e compliance para agentes de IA autonomos.",
+                    "source_urls": ["https://example.com/ai-act"],
+                    "image_url": "",
+                    "published_at": published_at,
+                    "section": ["Regulacao", "Builders"],
+                    "article_url": "artigos/ai-act-e-agentes-post-aiact",
+                },
+            ],
+        }
+
+        article_urls = _write_static_article_pages(state, payload)
+        _write_static_discovery_files(
+            state,
+            payload,
+            article_urls,
+        )
+
+        robots = (self.root / "site" / "robots.txt").read_text(encoding="utf-8")
+        llms = (self.root / "site" / "llms.txt").read_text(encoding="utf-8")
+        sitemap = (self.root / "site" / "sitemap.xml").read_text(encoding="utf-8")
+        news_sitemap = self.root / "site" / "news-sitemap.xml"
+        ai_index = json.loads((self.root / "site" / "ai-index.json").read_text(encoding="utf-8"))
+        article_html = (
+            self.root / "site" / "artigos" / "ia-para-pme-portuguesas-post-pme" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Sitemap: https://ptia.pt/news-sitemap.xml", robots)
+        self.assertIn("User-agent: OAI-SearchBot", robots)
+        self.assertIn("User-agent: Googlebot", robots)
+        self.assertIn("https://ptia.pt/ai-index.json", llms)
+        self.assertIn("https://ptia.pt/perguntas/como-usar-ia-numa-pme-portuguesa/", llms)
+        self.assertIn("https://ptia.pt/temas/ia-para-pme/", sitemap)
+        self.assertIn("https://ptia.pt/temas/ai-act/", sitemap)
+        self.assertIn("https://ptia.pt/perguntas/como-usar-ia-numa-pme-portuguesa/", sitemap)
+        self.assertIn("https://ptia.pt/sobre/", sitemap)
+        self.assertIn("Continuar leitura PTIA", article_html)
+        self.assertIn("/temas/ia-para-pme/", article_html)
+        self.assertIn("/perguntas/como-usar-ia-numa-pme-portuguesa/", article_html)
+        self.assertIn("/guias/ia-para-pme-portugal/", article_html)
+        self.assertIn('"about"', article_html)
+        self.assertTrue((self.root / "site" / "temas" / "ia-para-pme" / "index.html").exists())
+        self.assertTrue((self.root / "site" / "temas" / "agentes-de-ia" / "index.html").exists())
+        self.assertTrue((self.root / "site" / "sobre" / "index.html").exists())
+        answer_html = (
+            self.root / "site" / "perguntas" / "como-usar-ia-numa-pme-portuguesa" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("FAQPage", answer_html)
+        self.assertGreaterEqual(len(ai_index["answer_pages"]), 7)
+        self.assertEqual(ai_index["country_focus"], "Portugal")
+
+        root = ET.fromstring(news_sitemap.read_text(encoding="utf-8"))
+        self.assertEqual(root.tag, "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset")
+        self.assertIn("<news:title>AI Act e agentes de IA nas empresas</news:title>", news_sitemap.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
