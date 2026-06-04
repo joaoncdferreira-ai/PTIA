@@ -40,6 +40,15 @@ def load_jsonl(path: Path, factory: type[T]) -> list[T]:
 
 def append_jsonl(path: Path, records: list[JSONRecord]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.exists() and path.stat().st_size > 0:
+        try:
+            with path.open("rb") as f:
+                f.seek(-1, 2)
+                if f.read(1) != b"\n":
+                    with path.open("a", encoding="utf-8") as handle:
+                        handle.write("\n")
+        except Exception:
+            pass
     with path.open("a", encoding="utf-8") as handle:
         for record in records:
             handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")

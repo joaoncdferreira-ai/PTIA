@@ -316,22 +316,58 @@ async function postComment(postUrl, commentText, isDraft = false) {
     // Switch active identity (actor) to PTIA if necessary
     console.error("-> Verificar identidade de publicação (PTIA vs Pessoal)...");
     let actorBtn = null;
-    const likeBtn = page.locator("button").filter({ hasText: "Gostar" }).first();
-    if (await likeBtn.count() > 0 && await likeBtn.isVisible()) {
-      const container = likeBtn.locator("xpath=ancestor::div[contains(@class, 'eba433ab')]").first();
-      const avatar = container.locator("img").first();
-      if (await avatar.count() > 0 && await avatar.isVisible()) {
-        console.error("-> Encontrado avatar do utilizador na barra de ações. A usar como seletor de identidade.");
-        actorBtn = avatar;
+    
+    const actorSelectors = [
+      "[aria-label*='Mudar de conta']",
+      "[aria-label*='mudar de conta']",
+      "[aria-label*='Mudar a conta']",
+      "[aria-label*='mudar a conta']",
+      "[aria-label*='Mudar conta']",
+      "[aria-label*='mudar conta']",
+      "[aria-label*='Change account']",
+      "[aria-label*='change account']",
+      "[aria-label*='Switch account']",
+      "[aria-label*='switch account']",
+      "[aria-label*='Change member']",
+      "[aria-label*='change member']",
+      "[aria-label*='Switch member']",
+      "[aria-label*='switch member']",
+      "[aria-label*='Select active member']",
+      "[aria-label*='select active member']",
+      "[aria-label*='comentar como']",
+      "[aria-label*='Publicando como']",
+      "[aria-label*='Posting as']",
+      "[aria-label*='commenting as']",
+      "button.comments-select-actor-button",
+      "button.comments-comment-box__select-active-actor-button",
+      ".comments-comment-box__actor-container button"
+    ];
+    
+    for (const sel of actorSelectors) {
+      const el = page.locator(sel).first();
+      if (await el.count() > 0 && await el.isVisible()) {
+        console.error(`-> Encontrado seletor de identidade via seletor: ${sel}`);
+        actorBtn = el;
+        break;
       }
     }
     
     if (!actorBtn) {
-      const actorBtnSelector = "button.comments-select-actor-button, button.comments-comment-box__select-active-actor-button, .comments-comment-box__actor-container button, button[aria-label*='comentar como'], button[aria-label*='commenting as'], button[aria-label*='Posting as'], button[aria-label*='Publicando como']";
-      const legacyBtn = page.locator(actorBtnSelector).first();
-      if (await legacyBtn.count() > 0 && await legacyBtn.isVisible()) {
-        console.error("-> Encontrado seletor de identidade legado.");
-        actorBtn = legacyBtn;
+      try {
+        const likeBtn = page.locator("button").filter({ hasText: "Gostar" }).first();
+        if (await likeBtn.count() > 0 && await likeBtn.isVisible()) {
+          // Go up 3 levels to find the parent container
+          const socialBar = likeBtn.locator("xpath=../..").first();
+          // Find the sibling actor element containing img and caret
+          const siblingContainer = socialBar.locator("xpath=../div").first();
+          const avatar = siblingContainer.locator("img").first();
+          if (await avatar.count() > 0 && await avatar.isVisible()) {
+            console.error("-> Encontrado avatar do utilizador via estrutura de vizinhos. A usar como seletor de identidade.");
+            actorBtn = siblingContainer;
+          }
+        }
+      } catch (err) {
+        console.error("-> Erro no seletor fallback de vizinhos:", err.message);
       }
     }
     
@@ -359,13 +395,16 @@ async function postComment(postUrl, commentText, isDraft = false) {
         console.error("-> Identidade PTIA selecionada com sucesso!");
       } else {
         console.error("-> AVISO: Opção 'PTIA' não encontrada na lista de identidades. Irá comentar com o perfil predefinido.");
-        // If we clicked actorBtn to open dropdown, and didn't select, let's close it by clicking actorBtn or somewhere else
-        // but typically clicking editor will close it anyway.
       }
     } else {
       console.error("-> Não foi encontrado o seletor de identidade. A comentar com o perfil predefinido.");
     }
 
+    
+    // Re-focus and click the editor to ensure typing goes to the right place and enables the submit button!
+    console.error("-> A re-focar na caixa de comentários após mudança de identidade...");
+    await editor.click();
+    await page.waitForTimeout(1000);
     
     // Simulate realistic typing
     console.error("-> A digitar comentário de forma humana...");
