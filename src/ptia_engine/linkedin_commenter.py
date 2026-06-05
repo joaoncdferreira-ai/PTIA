@@ -205,7 +205,7 @@ def run_linkedin_comments_pipeline() -> dict[str, Any]:
         print(f"-> Período de arrefecimento ativo (mínimo {cool_down} min entre posts)! Cancelando pipeline por segurança.")
         return {"ok": True, "status": "cooling_down"}
 
-    commented_urns = {record["urn"] for record in history if "urn" in record}
+    commented_urns = {record["urn"] for record in history if "urn" in record and record.get("status") != "failed"}
     provider = GeminiGroundedSearchProvider()
     
     if not provider.available:

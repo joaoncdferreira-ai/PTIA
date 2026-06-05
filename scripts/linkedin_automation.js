@@ -401,16 +401,21 @@ async function postComment(postUrl, commentText, isDraft = false) {
     }
 
     
-    // Re-focus and click the editor to ensure typing goes to the right place and enables the submit button!
+    // Re-focus and click the editor to ensure typing goes to the right place
     console.error("-> A re-focar na caixa de comentários após mudança de identidade...");
+    await editor.focus();
     await editor.click();
     await page.waitForTimeout(1000);
     
-    // Simulate realistic typing
-    console.error("-> A digitar comentário de forma humana...");
-    for (const char of commentText) {
-      await editor.type(char, { delay: Math.floor(Math.random() * 40) + 20 }); // delay between 20ms and 60ms
-    }
+    // Simulate typing and dispatch events to trigger React/Quill validation
+    console.error("-> A preencher o comentário de forma robusta...");
+    await editor.fill(commentText);
+    await editor.dispatchEvent("input", { bubbles: true });
+    await editor.dispatchEvent("change", { bubbles: true });
+    
+    // Press a safe key (like Space and Backspace) to ensure virtual DOM updates
+    await page.keyboard.press("Space");
+    await page.keyboard.press("Backspace");
     
     await page.waitForTimeout(1500);
     

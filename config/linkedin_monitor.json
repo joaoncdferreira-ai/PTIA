@@ -109,6 +109,11 @@
       "name": "Bruno Horta Soares",
       "url": "https://www.linkedin.com/in/brunohsoares",
       "active": true
+    },
+    {
+      "name": "OutSystems",
+      "url": "https://www.linkedin.com/company/outsystems",
+      "active": true
     }
   ],
   "max_comments_per_day": 3,
