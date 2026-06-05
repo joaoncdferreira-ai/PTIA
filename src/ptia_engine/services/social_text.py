@@ -19,12 +19,11 @@ def x_post_body(summary: str, why_it_matters: str, source_line: str, hashtags: s
 
 
 def fit_x_post_text(body: str, hashtags: str = "", source_urls: list[str] | None = None) -> str:
-    urls = re.findall(r"https?://\S+", body)
-    source_url = (urls[-1].rstrip(".,;)") if urls else (source_urls or [""])[0]).strip()
     clean = re.sub(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$", "", body).strip()
     clean = re.sub(r"https?://\S+", "", clean)
     clean = re.sub(r"\s+", " ", clean).strip()
-    suffix_parts = [part for part in (source_url, hashtags) if part]
+    # Explicitly removed source_url from X posts to improve reach/avoid bot flag
+    suffix_parts = [part for part in (hashtags,) if part]
     suffix = ("\n\n" + "\n\n".join(suffix_parts)) if suffix_parts else ""
     limit = 280 - x_weighted_len(suffix)
     if x_weighted_len(clean) > limit:
@@ -51,8 +50,6 @@ def x_post_validation_issues(text: str, image_url: str = "") -> list[str]:
     text_no_urls = re.sub(r"https?://\S+", "", clean)
     if "\ufffd" in text_no_urls or re.search(r"[A-Za-z\u00c0-\u00ff]\?[A-Za-z\u00c0-\u00ff]", text_no_urls):
         issues.append("acentos possivelmente corrompidos")
-    if not re.search(r"https?://\S+", clean):
-        issues.append("sem link de fonte")
     if "#" not in clean:
         issues.append("sem hashtags")
     if not image_url.strip():

@@ -282,7 +282,7 @@ class DashboardTests(unittest.TestCase):
         text = _fit_x_post_text(body, "#IA #EticaIA", [source])
 
         self.assertIn("É responsabilidade humana", text)
-        self.assertIn(source, text)
+        self.assertNotIn(source, text)
         self.assertIn("#IA #EticaIA", text)
         self.assertLessEqual(_x_weighted_len(text), 280)
 
@@ -298,7 +298,6 @@ class DashboardTests(unittest.TestCase):
     def test_x_post_validation_requires_image_and_source(self):
         issues = _x_post_validation_issues("Texto curto sem fonte\n\n#IA", "")
 
-        self.assertIn("sem link de fonte", issues)
         self.assertIn("sem imagem publica", issues)
 
     def test_static_discovery_writes_news_sitemap_and_topic_pages(self):

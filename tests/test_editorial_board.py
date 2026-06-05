@@ -354,7 +354,7 @@ class EditorialBoardTests(unittest.TestCase):
         text = _final_post_text(post)
 
         self.assertNotIn("Fontes:", text)
-        self.assertEqual(text.count("https://example.com/source"), 1)
+        self.assertEqual(text.count("https://example.com/source"), 0)
         self.assertLessEqual(len(text), 280)
 
     def test_update_final_post_copy_records_feedback(self):
