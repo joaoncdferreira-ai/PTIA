@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-05T09:34:20+00:00",
+  "updated_at": "2026-06-05T23:05:25+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -235,6 +235,30 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "IBM e Google Cloud: Parceria Estratégica para Escalar IA no Segmento Enterprise",
+      "url": "https://ptia.pt/artigos/ibm-e-google-cloud-parceria-estrategica-para-escalar-ia-no-segmento-enterprise-3383a7e8b953fb8cc3",
+      "published_at": "2026-06-05T21:00:00+01:00",
+      "summary": "A IBM e a Google Cloud anunciaram hoje uma expansão da sua parceria estratégica para ajudar as empresas a adotar e escalar soluções de inteligência artificial generativa. A aliança combina a experiência de entrega da IB...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Lisboa recebe gala dos Health AI Innovation Awards em 2026",
+      "url": "https://ptia.pt/artigos/lisboa-recebe-gala-dos-health-ai-innovation-awards-em-2026-17cc3d6e7583319d04",
+      "published_at": "2026-06-05T13:00:00+01:00",
+      "summary": "Lisboa prepara-se para acolher a gala dos Health AI Innovation Awards em 2026, um evento concebido para celebrar a inovação na inteligência artificial aplicada ao setor da saúde. A iniciativa visa galardoar projetos e e...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
     {
       "title": "Soberania Digital: Bruxelas aposta em regulação da IA e chips como diferencial competitivo",
       "url": "https://ptia.pt/artigos/soberania-digital-bruxelas-aposta-em-regulacao-da-ia-e-chips-como-diferencial-competitivo-6fad02b9a8ec6d2582",
@@ -501,29 +525,6 @@
       "url": "https://ptia.pt/artigos/a-vaia-a-ia-na-graduacao-o-desafio-da-google-vai-alem-do-modelo-aa701e8aa526111f7c",
       "published_at": "2026-05-30T13:00:00+01:00",
       "summary": "Quando Eric Schmidt, ex-CEO da Google, subiu ao palco da Universidade do Arizona para falar aos finalistas sobre o futuro da inteligência artificial, a receção não foi a esperada. A sua exortação para que a turma de 202...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Illinois avança: auditorias obrigatórias para laboratórios de IA de fronteira",
-      "url": "https://ptia.pt/artigos/illinois-avanca-auditorias-obrigatorias-para-laboratorios-de-ia-de-fronteira-84891efe6b546e5a6f",
-      "published_at": "2026-05-30T09:00:00+01:00",
-      "summary": "A Câmara de Illinois aprovou a Lei de Medidas de Segurança de IA, tornando-se o primeiro estado norte-americano a exigir auditorias anuais de terceiros em laboratórios que desenvolvam inteligência artificial de fronteir...",
-      "sections": [
-        "Mundo",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Hassabis, AGI e a fronteira da medicina: o hábito como campo de batalha da IA",
-      "url": "https://ptia.pt/artigos/hassabis-agi-e-a-fronteira-da-medicina-o-habito-como-campo-de-batalha-da-ia-ec3ce913d64a385cf3",
-      "published_at": "2026-05-29T21:00:00+01:00",
-      "summary": "Demis Hassabis, CEO da Google DeepMind, abordou recentemente o cronograma para a Inteligência Artificial Geral (AGI) e o papel da IA na descoberta de novos medicamentos. A oncologia e a imunologia surgem como as áreas d...",
       "sections": [
         "Mundo",
         "Builders",
