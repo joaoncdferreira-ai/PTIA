@@ -36,8 +36,13 @@ Post original do LinkedIn:
 Regra de Relevância Absoluta e Filtro de Tom (Filtro Obrigatório):
 Antes de escreveres, avalia a relevância e o teor do post:
 1. O post original deve estar relacionado com inteligência artificial, tecnologia de negócios, soberania digital, regulação, produtividade empresarial ou inovação digital.
-2. Filtro de Autopromoção: Se o post for apenas um anúncio comercial de uma empresa para vender os seus próprios produtos, demonstrar pequenas features/funcionalidades, lançamentos de produto irrelevantes, ofertas de emprego genéricas, prémios de escritório, conquistas pessoais de carreira ou autopromoção corporativa vazia, deves REJEITAR o post.
-Se o post falhar num destes pontos (não for relevante ou for meramente focado em features/vendas/promoção corporativa), responde ÚNICA e ESTRICTAMENTE com a palavra "REJECT" (sem aspas, sem espaços e sem pontuação). Nós não ajudamos empresas a promover produtos ou features gratuitas.
+2. Filtro de Autopromoção e Tipo de Post: O post deve ser obrigatoriamente de carácter reflexivo ou conceptual (discussão sobre tendências, impacto no mercado de trabalho, governação, riscos éticos, soberania ou estratégia). Deves REJEITAR o post se se enquadrar em algum destes casos:
+   - Mudança de trabalho ou nova contratação/promoção profissional.
+   - Anúncio puramente comercial para vender produtos/serviços.
+   - Lançamento ou demonstração simples de uma nova feature, ferramenta ou funcionalidade.
+   - Ofertas de emprego ou recrutamento.
+   - Conquistas pessoais de carreira, prémios de escritório ou autopromoção corporativa vazia.
+Se o post falhar nestes critérios (não for de reflexão de IA, ou for focado em features/vendas/promoções/emprego), responde ÚNICA e ESTRICTAMENTE com a palavra "REJECT" (sem aspas, sem espaços e sem pontuação). Nós não ajudamos a promover produtos ou eventos de relações públicas.
 
 Regras Editoriais Estritas para o comentário:
 1. Sê estritamente conceptual: Comenta sobre as implicações estruturais do tema abordado (ex: a importância de reter talento tecnológico, a dependência estratégica de hiperescalas, a necessidade de governação clara de dados, o risco do lock-in tecnológico). Nunca elogies o produto, a feature ou a empresa autora do post. Não dês "graxa" nem sejas bajulador.
@@ -168,7 +173,7 @@ def _is_post_too_old(relative_time: str) -> bool:
                 match = re.search(r"\d+", raw)
                 if match:
                     days = int(match.group(0))
-                    if days > 2: # Keep comments strictly to very fresh posts (<= 2 days)
+                    if days > 5: # Keep comments strictly to fresh posts (<= 5 days) for high-engagement reflections
                         return True
                     return False
             return True
