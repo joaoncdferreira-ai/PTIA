@@ -104,6 +104,11 @@
       "name": "Celso Martinho",
       "url": "https://www.linkedin.com/in/celsomartinho",
       "active": true
+    },
+    {
+      "name": "Bruno Horta Soares",
+      "url": "https://www.linkedin.com/in/brunohsoares",
+      "active": true
     }
   ],
   "max_comments_per_day": 3,
