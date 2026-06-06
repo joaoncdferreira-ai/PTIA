@@ -28,6 +28,9 @@ class FakeBrevoClient:
         self.scheduled += 1
         return {"data": {"id": campaign_id, "status": "ready"}}
 
+    def find_weekly_campaign(self, send_at):
+        return None
+
 
 class NewsletterDeliveryTests(unittest.TestCase):
     def setUp(self):
@@ -230,6 +233,28 @@ class NewsletterDeliveryTests(unittest.TestCase):
         self.assertEqual(result.campaign_id, "campaign_retry")
         self.assertEqual(client.created, 0)
         self.assertEqual(client.scheduled, 1)
+
+    def test_scheduler_recovers_existing_remote_campaign_without_local_ledger(self):
+        self._add_signal()
+        send_at = next_friday_send_at()
+        client = FakeBrevoClient()
+
+        def existing_campaign(_send_at):
+            return {
+                "id": "campaign_remote",
+                "name": f"PTIA Weekly - {send_at.date().isoformat()}",
+                "status": "scheduled",
+            }
+
+        client.find_weekly_campaign = existing_campaign
+
+        result = schedule_weekly_newsletter(self.root, send_at=send_at, client=client)
+
+        self.assertEqual(result.action, "skipped_already_scheduled")
+        self.assertEqual(result.campaign_id, "campaign_remote")
+        self.assertEqual(result.issue.provider_campaign_id, "campaign_remote")
+        self.assertEqual(client.created, 0)
+        self.assertEqual(client.scheduled, 0)
 
 
 if __name__ == "__main__":

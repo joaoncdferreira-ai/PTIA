@@ -138,6 +138,25 @@ class BrevoTests(unittest.TestCase):
         self.assertEqual(seen[1][2]["scheduledAt"], "2026-06-12T09:00:00+01:00")
         self.assertTrue(seen[2][1].endswith("?excludeHtmlContent=true"))
 
+    def test_client_finds_weekly_campaign_by_exact_date_name(self):
+        def fake_transport(request, *, timeout):
+            self.assertIn("/emailCampaigns?", request.full_url)
+            return FakeResponse(
+                {
+                    "campaigns": [
+                        {"id": 41, "name": "PTIA Weekly - 2026-06-05", "status": "sent"},
+                        {"id": 42, "name": "PTIA Weekly - 2026-06-12", "status": "scheduled"},
+                    ]
+                }
+            )
+
+        client = BrevoClient(self._config(), transport=fake_transport)
+        send_at = datetime(2026, 6, 12, 9, 0, tzinfo=timezone(timedelta(hours=1)))
+
+        campaign = client.find_weekly_campaign(send_at)
+
+        self.assertEqual(campaign["id"], 42)
+
     def test_client_validates_list_sender_and_free_capacity(self):
         def fake_transport(request, *, timeout):
             if "/contacts/lists" in request.full_url:

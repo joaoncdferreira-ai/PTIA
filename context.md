@@ -152,3 +152,12 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Seguranca**: Firestore nega acesso direto; o state API exige `PTIA_STATE_TOKEN` dedicado e a integracao fica desligada por feature flag ate ao preflight.
 * **Bloqueio externo**: ativacao requer plano Firebase Blaze, login Firebase renovado, API key/lista/remetente Brevo e uma API key Render.
 * **Runbook cloud da newsletter**: ver `docs/NEWSLETTER_CLOUD_AUTOMATION.md`.
+
+### Newsletter GitHub Automation (7 de Junho de 2026)
+* **Executor gratuito**: GitHub Actions substitui Firebase como scheduler ativo; nao requer Blaze, Firestore nem Render para o envio semanal.
+* **Horario**: workflow corre nos dois equivalentes UTC de sexta 08:35 Europe/Lisbon e uma guarda de timezone aceita apenas a janela local de recuperacao.
+* **Fonte editorial**: usa `data/final_posts.jsonl`, ja versionado pelo fluxo de publicacao, e seleciona apenas posts recentes `scheduled`/`published`.
+* **Idempotencia remota**: antes de criar uma campanha, consulta a Brevo pelo nome canonico `PTIA Weekly - YYYY-MM-DD`; campanhas queued/scheduled/sent nao sao duplicadas e drafts sao reutilizados.
+* **Lista vazia**: com zero subscritores, valida a compilacao e termina com sucesso sem criar campanha. O primeiro envio passa a ser automatico quando existir um contacto confirmado.
+* **Plano gratuito**: bloqueio explicito acima de 300 destinatarios.
+* **Ativacao**: `scripts/activate_newsletter_github.ps1`; runbook em `docs/NEWSLETTER_GITHUB_AUTOMATION.md`.

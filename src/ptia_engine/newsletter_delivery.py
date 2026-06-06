@@ -202,6 +202,36 @@ def schedule_weekly_newsletter(
             client.validate_sender()
             client.validate_capacity()
         if not campaign_id:
+            existing = client.find_weekly_campaign(send_at)
+            if existing:
+                campaign_id = str(existing.get("id", ""))
+                provider_status = str(existing.get("status", "draft"))
+                issue = update_newsletter_delivery(
+                    issues_path,
+                    issue.issue_id,
+                    status=(
+                        "scheduled"
+                        if provider_status in {"queued", "scheduled", "sent"}
+                        else issue.status
+                    ),
+                    send_at=send_at_iso,
+                    delivery_provider="brevo",
+                    provider_campaign_id=campaign_id,
+                    provider_status=provider_status,
+                    delivery_error="",
+                )
+                if provider_status in {"queued", "scheduled", "sent"}:
+                    return NewsletterDeliveryResult(
+                        action="skipped_already_scheduled",
+                        issue=issue,
+                        send_at=send_at,
+                        campaign_id=campaign_id,
+                        message=(
+                            f"Brevo campaign already {provider_status} "
+                            f"for {send_at.date().isoformat()}."
+                        ),
+                    )
+        if not campaign_id:
             created = client.create_campaign(issue, send_at=send_at)
             campaign = created.get("data", {})
             campaign_id = str(campaign.get("id", ""))

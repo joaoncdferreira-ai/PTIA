@@ -284,6 +284,26 @@ class BrevoClient:
         campaign_id = str(payload.get("id", ""))
         return {"data": {"id": campaign_id, "status": "draft"}}
 
+    def list_campaigns(self, *, limit: int = 100) -> list[dict[str, Any]]:
+        query = urllib.parse.urlencode(
+            {
+                "type": "classic",
+                "limit": max(1, min(limit, 100)),
+                "offset": 0,
+                "sort": "desc",
+                "excludeHtmlContent": "true",
+            }
+        )
+        payload = self._request("GET", f"/emailCampaigns?{query}")
+        return [item for item in payload.get("campaigns", []) if isinstance(item, dict)]
+
+    def find_weekly_campaign(self, send_at: datetime) -> dict[str, Any] | None:
+        expected_name = f"PTIA Weekly - {send_at.date().isoformat()}"
+        for campaign in self.list_campaigns():
+            if str(campaign.get("name", "")) == expected_name:
+                return campaign
+        return None
+
     def get_campaign(self, campaign_id: str) -> dict[str, Any]:
         payload = self._request(
             "GET",

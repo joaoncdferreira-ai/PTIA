@@ -1,8 +1,7 @@
 # Newsletter
 
-The production runbook is in
-[`NEWSLETTER_CLOUD_AUTOMATION.md`](NEWSLETTER_CLOUD_AUTOMATION.md).
+The active free production runbook is in
+[`NEWSLETTER_GITHUB_AUTOMATION.md`](NEWSLETTER_GITHUB_AUTOMATION.md).
 
-The cloud design uses Firestore for shared editorial state, Firebase for the
-Friday scheduler and Brevo for delivery. The Windows task remains only as a
-temporary fallback until the cloud preflight is complete.
+GitHub Actions runs the Friday scheduler and Brevo handles delivery. The
+Firebase design remains documented as an optional future upgrade.

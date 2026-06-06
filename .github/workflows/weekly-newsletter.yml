@@ -1,0 +1,60 @@
+name: PTIA Weekly Newsletter
+
+on:
+  schedule:
+    # 08:35 in Lisbon: first entry covers daylight saving time, second winter.
+    - cron: "35 7,8 * * 5"
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Create or recover the Brevo campaign"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ptia-weekly-newsletter
+  cancel-in-progress: false
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+      BREVO_LIST_IDS: ${{ secrets.BREVO_LIST_IDS }}
+      BREVO_MAX_RECIPIENTS: "300"
+      PTIA_NEWSLETTER_FROM_EMAIL: ${{ secrets.PTIA_NEWSLETTER_FROM_EMAIL }}
+      PTIA_NEWSLETTER_FROM_NAME: "PTIA"
+      PTIA_NEWSLETTER_REPLY_TO: ${{ secrets.PTIA_NEWSLETTER_REPLY_TO }}
+
+    steps:
+      - name: Checkout current editorial state
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Install engine
+        run: python -m pip install --disable-pip-version-check -e .
+
+      - name: Validate newsletter compilation
+        run: python scripts/github_newsletter_runner.py --json
+
+      - name: Schedule Friday delivery
+        if: github.event_name == 'schedule'
+        run: >-
+          python scripts/github_newsletter_runner.py
+          --live
+          --scheduled-trigger
+          --json
+
+      - name: Manually create or recover campaign
+        if: github.event_name == 'workflow_dispatch' && inputs.live == true
+        run: python scripts/github_newsletter_runner.py --live --json
