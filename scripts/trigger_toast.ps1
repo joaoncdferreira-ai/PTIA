@@ -1,10 +1,12 @@
 # Script de Notificacao Nativa PTIA para Windows e Telemovel (E-mail)
 param(
     [string]$Title = "PTIA Co-Piloto",
-    [string]$Message = "Hora de verificar o LinkedIn Premium e convidar novos seguidores!"
+    [string]$Message = "Hora de verificar o LinkedIn Premium e convidar novos seguidores!",
+    [switch]$SkipEmail
 )
 
 # 1. Disparar notificacao nativa no ecra do Windows
+if (-not $SkipEmail) {
 try {
     Add-Type -AssemblyName System.Windows.Forms
     Add-Type -AssemblyName System.Drawing
@@ -29,4 +31,5 @@ try {
     Start-Process -FilePath $python -ArgumentList "`"$script`" `"$Title`" `"$Message`"" -WindowStyle Hidden
 } catch {
     # Ignorar erro se falhar o envio de email
+}
 }

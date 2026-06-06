@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from typing import Protocol, TypeVar
 
+from ptia_engine.cloud_state import persist_cloud_state_file, sync_cloud_state_file
 from ptia_engine.models import (
     ContentDraft,
     ContentAsset,
@@ -26,6 +27,7 @@ T = TypeVar("T")
 
 
 def load_jsonl(path: Path, factory: type[T]) -> list[T]:
+    sync_cloud_state_file(path)
     if not path.exists():
         return []
     records: list[T] = []
@@ -39,6 +41,7 @@ def load_jsonl(path: Path, factory: type[T]) -> list[T]:
 
 
 def append_jsonl(path: Path, records: list[JSONRecord]) -> None:
+    sync_cloud_state_file(path, force=True)
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.stat().st_size > 0:
         try:
@@ -52,6 +55,7 @@ def append_jsonl(path: Path, records: list[JSONRecord]) -> None:
     with path.open("a", encoding="utf-8") as handle:
         for record in records:
             handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
+    persist_cloud_state_file(path)
 
 
 def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
@@ -63,6 +67,7 @@ def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
                 handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
         import os
         os.replace(str(tmp_path), str(path))
+        persist_cloud_state_file(path)
     except Exception as e:
         if tmp_path.exists():
             try:

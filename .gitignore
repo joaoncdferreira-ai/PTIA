@@ -19,6 +19,7 @@ data/*.jsonl
 data/*.md
 data/*.csv
 data/reset_backups/
+data/.cloud_conflicts/
 !data/.gitkeep
 node_modules/
 data/*.bak_*
@@ -27,3 +28,5 @@ data/*corrupted*
 
 .vercel
 config/alert_config.json
+firebase_functions/ptia_engine/
+firebase_functions/seed_data/
