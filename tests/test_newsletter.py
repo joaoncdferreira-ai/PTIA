@@ -275,14 +275,16 @@ class NewsletterTests(unittest.TestCase):
             issue.issue_id,
             status="scheduled",
             send_at="2026-06-05T09:00:00+01:00",
-            mailerlite_campaign_id="campaign_123",
-            mailerlite_status="ready",
+            delivery_provider="brevo",
+            provider_campaign_id="campaign_123",
+            provider_status="ready",
             delivery_error="",
         )
 
         self.assertEqual(updated.status, "scheduled")
-        self.assertEqual(updated.mailerlite_campaign_id, "campaign_123")
-        self.assertEqual(updated.mailerlite_status, "ready")
+        self.assertEqual(updated.delivery_provider, "brevo")
+        self.assertEqual(updated.provider_campaign_id, "campaign_123")
+        self.assertEqual(updated.provider_status, "ready")
 
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@ from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_json
 
 
 NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
-NEWSLETTER_GENERATOR_VERSION = "2"
+NEWSLETTER_GENERATOR_VERSION = "3"
 
 
 @dataclass(slots=True)
@@ -564,7 +564,7 @@ def _issue_html(
                           </td>
                         </tr>
                       </table>
-                      <p style="margin:24px 0 0;color:#7A715E;font:400 11px Arial,sans-serif;line-height:1.55;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{$unsubscribe}}" style="color:#14110C;text-decoration:underline;">cancelar a subscrição</a> ou gerir preferências através dos links da MailerLite no rodapé.</p>
+                      <p style="margin:24px 0 0;color:#7A715E;font:400 11px Arial,sans-serif;line-height:1.55;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{{{ unsubscribe }}}}" style="color:#14110C;text-decoration:underline;">cancelar a subscrição</a> ou gerir preferências através dos links no rodapé.</p>
                       <p style="margin:14px 0 0;color:#7A715E;font:400 10px Arial,sans-serif;">PTIA.pt · Lisboa, Portugal · 2026</p>
                     </td>
                   </tr>
@@ -615,8 +615,8 @@ def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate], 
     lines.extend([
         "Sinal vs. Ruído: se não muda uma decisão, fica fora do radar PTIA.",
         "",
-        "Para cancelar a subscrição: {$unsubscribe}",
-        "Versão web: {$url}",
+        "Para cancelar a subscrição: {{ unsubscribe }}",
+        "Versão web: {{ mirror }}",
     ])
     return "\n".join(lines).strip()
 
@@ -767,8 +767,9 @@ def update_newsletter_delivery(
     *,
     status: str | None = None,
     send_at: str | None = None,
-    mailerlite_campaign_id: str | None = None,
-    mailerlite_status: str | None = None,
+    delivery_provider: str | None = None,
+    provider_campaign_id: str | None = None,
+    provider_status: str | None = None,
     delivery_error: str | None = None,
 ) -> NewsletterIssue:
     if status is not None and status not in NEWSLETTER_STATUSES:
@@ -781,10 +782,12 @@ def update_newsletter_delivery(
             issue.status = status
         if send_at is not None:
             issue.send_at = send_at
-        if mailerlite_campaign_id is not None:
-            issue.mailerlite_campaign_id = mailerlite_campaign_id
-        if mailerlite_status is not None:
-            issue.mailerlite_status = mailerlite_status
+        if delivery_provider is not None:
+            issue.delivery_provider = delivery_provider
+        if provider_campaign_id is not None:
+            issue.provider_campaign_id = provider_campaign_id
+        if provider_status is not None:
+            issue.provider_status = provider_status
         if delivery_error is not None:
             issue.delivery_error = delivery_error
         write_jsonl(path, issues)

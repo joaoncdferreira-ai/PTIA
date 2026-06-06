@@ -102,15 +102,13 @@ def local_checks(data_dir: Path) -> list[Check]:
 
     values = os.environ
     required_values = {
-        "mailer_api": bool(values.get("MAILERLITE_API_KEY", "").strip()),
-        "mailer_group": bool(
-            values.get("MAILERLITE_GROUP_IDS", "").strip()
-            or values.get("MAILERLITE_GROUP_ID", "").strip()
+        "brevo_api": bool(values.get("BREVO_API_KEY", "").strip()),
+        "brevo_list": bool(
+            values.get("BREVO_LIST_IDS", "").strip()
+            or values.get("BREVO_LIST_ID", "").strip()
         ),
-        "mailer_sender": bool(
-            values.get("PTIA_NEWSLETTER_FROM_EMAIL", "").strip()
-            or values.get("MAILERLITE_FROM_EMAIL", "").strip()
-        ),
+        "brevo_sender": bool(values.get("PTIA_NEWSLETTER_FROM_EMAIL", "").strip()),
+        "brevo_doi_template": bool(values.get("BREVO_DOI_TEMPLATE_ID", "").strip()),
         "state_token": len(values.get("PTIA_STATE_TOKEN", "").strip()) >= 32,
     }
     for name, present in required_values.items():
@@ -177,7 +175,10 @@ def online_checks(
         status == 200
         and payload.get("status") == "ready"
         and int(payload.get("item_count", 0)) > 0
-        and bool(payload.get("groups"))
+        and payload.get("provider") == "brevo"
+        and bool(payload.get("lists"))
+        and payload.get("sender", {}).get("active") is True
+        and 0 <= int(payload.get("recipient_count", -1)) <= 300
     )
     checks.append(
         Check(

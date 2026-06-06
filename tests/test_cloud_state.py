@@ -193,7 +193,7 @@ class CloudStateTests(unittest.TestCase):
                         subject="Local",
                         preheader="",
                         intro="",
-                        html="<html>{$unsubscribe}</html>",
+                        html="<html>{{ unsubscribe }}</html>",
                         text="Local",
                     )
                 ],

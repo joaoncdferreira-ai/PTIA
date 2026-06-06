@@ -17,5 +17,5 @@ Register-ScheduledTask -TaskName "PTIA_Alert_Premium_Monday" -Action $Action1 -T
 
 Write-Host "=== ALERTAS PTIA ATUALIZADOS COM SUCESSO NO WINDOWS TASK SCHEDULER! ==="
 Write-Host "1. PTIA_Alert_Premium_Monday   -> Segundas as 22:00 (LinkedIn Page Premium)"
-Write-Host "[-] PTIA_Alert_Newsletter_Friday -> REMOVIDO; o scheduler alerta apenas apos resposta real da MailerLite."
+Write-Host "[-] PTIA_Alert_Newsletter_Friday -> REMOVIDO; o scheduler alerta apenas apos resposta real da Brevo."
 Write-Host "[-] PTIA_Alert_Curation_Daily    -> REMOVIDO permanentemente."

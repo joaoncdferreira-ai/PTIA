@@ -6,11 +6,11 @@ from datetime import date, datetime, time, timedelta, tzinfo
 from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from ptia_engine.mailerlite import (
-    MailerLiteAPIError,
-    MailerLiteClient,
-    MailerLiteConfig,
-    MailerLiteConfigError,
+from ptia_engine.brevo import (
+    BrevoAPIError,
+    BrevoClient,
+    BrevoConfig,
+    BrevoConfigError,
 )
 from ptia_engine.models import NewsletterIssue
 from ptia_engine.newsletter import (
@@ -129,8 +129,8 @@ def validate_newsletter_issue(issue: NewsletterIssue) -> None:
         errors.append("no editorial items were selected")
     if not issue.html.strip():
         errors.append("HTML content is empty")
-    if "{$unsubscribe}" not in issue.html:
-        errors.append("HTML is missing the MailerLite unsubscribe tag")
+    if "{{ unsubscribe }}" not in issue.html:
+        errors.append("HTML is missing the Brevo unsubscribe tag")
     if not issue.text.strip():
         errors.append("plain-text content is empty")
     if errors:
@@ -144,28 +144,28 @@ def schedule_weekly_newsletter(
     limit: int = 5,
     force: bool = False,
     dry_run: bool = False,
-    client: MailerLiteClient | None = None,
+    client: BrevoClient | None = None,
 ) -> NewsletterDeliveryResult:
     issues_path = data_dir / "newsletter_issues.jsonl"
     send_at = send_at.astimezone(ptia_timezone())
     send_at_iso = send_at.isoformat()
 
     issue = latest_issue_for_send_date(load_newsletter_issues(issues_path), send_at.date())
-    if issue and issue.status in {"scheduled", "sent"} and issue.mailerlite_campaign_id:
+    if issue and issue.status in {"scheduled", "sent"} and issue.provider_campaign_id:
         return NewsletterDeliveryResult(
             action="skipped_already_scheduled",
             issue=issue,
             send_at=send_at,
-            campaign_id=issue.mailerlite_campaign_id,
+            campaign_id=issue.provider_campaign_id,
             message=f"Newsletter already {issue.status} for {send_at_iso}.",
         )
 
     outdated_draft = bool(
         issue
         and issue.generator_version != NEWSLETTER_GENERATOR_VERSION
-        and not issue.mailerlite_campaign_id
+        and not issue.provider_campaign_id
     )
-    if issue is None or outdated_draft or (force and not issue.mailerlite_campaign_id):
+    if issue is None or outdated_draft or (force and not issue.provider_campaign_id):
         issue = generate_weekly_issue(
             issues_path,
             radar_signals=load_radar_signals(data_dir / "radar_signals.jsonl"),
@@ -190,26 +190,30 @@ def schedule_weekly_newsletter(
             action="dry_run",
             issue=issue,
             send_at=send_at,
-            campaign_id=issue.mailerlite_campaign_id,
-            message="Newsletter generated/reused without touching MailerLite.",
+            campaign_id=issue.provider_campaign_id,
+            message="Newsletter generated/reused without touching Brevo.",
         )
 
-    campaign_id = issue.mailerlite_campaign_id
+    campaign_id = issue.provider_campaign_id
     try:
         if client is None:
-            client = MailerLiteClient(MailerLiteConfig.from_env())
+            client = BrevoClient(BrevoConfig.from_env())
+            client.validate_lists()
+            client.validate_sender()
+            client.validate_capacity()
         if not campaign_id:
             created = client.create_campaign(issue, send_at=send_at)
             campaign = created.get("data", {})
             campaign_id = str(campaign.get("id", ""))
             if not campaign_id:
-                raise MailerLiteAPIError(200, "Campaign created without data.id")
+                raise BrevoAPIError(200, "Campaign created without data.id")
             issue = update_newsletter_delivery(
                 issues_path,
                 issue.issue_id,
                 send_at=send_at_iso,
-                mailerlite_campaign_id=campaign_id,
-                mailerlite_status=str(campaign.get("status", "draft")),
+                delivery_provider="brevo",
+                provider_campaign_id=campaign_id,
+                provider_status=str(campaign.get("status", "draft")),
                 delivery_error="",
             )
 
@@ -220,8 +224,9 @@ def schedule_weekly_newsletter(
             issue.issue_id,
             status="scheduled",
             send_at=send_at_iso,
-            mailerlite_campaign_id=campaign_id,
-            mailerlite_status=str(campaign.get("status", "scheduled")),
+            delivery_provider="brevo",
+            provider_campaign_id=campaign_id,
+            provider_status=str(campaign.get("status", "scheduled")),
             delivery_error="",
         )
         return NewsletterDeliveryResult(
@@ -229,15 +234,16 @@ def schedule_weekly_newsletter(
             issue=issue,
             send_at=send_at,
             campaign_id=campaign_id,
-            message=f"Newsletter scheduled in MailerLite for {send_at_iso}.",
+            message=f"Newsletter scheduled in Brevo for {send_at_iso}.",
         )
-    except (MailerLiteAPIError, MailerLiteConfigError, NewsletterPreflightError) as exc:
+    except (BrevoAPIError, BrevoConfigError, NewsletterPreflightError) as exc:
         issue = update_newsletter_delivery(
             issues_path,
             issue.issue_id,
             status="failed",
             send_at=send_at_iso,
-            mailerlite_campaign_id=campaign_id,
+            delivery_provider="brevo",
+            provider_campaign_id=campaign_id,
             delivery_error=str(exc),
         )
         raise

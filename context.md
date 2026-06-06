@@ -81,16 +81,16 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Status**: **100% Validado**.
 * Inserida a Meta Tag de verificação do Google no cabeçalho do `site/index.html`. A propriedade foi verificada no Google Search Console, ativando o rastreio e indexação orgânica imediata de todos os artigos através do `sitemap.xml`.
 
-### 📧 Newsletter MailerLite
-* **Status**: Subscrição ativa; envio automático via API preparado.
-* O formulário da frontpage está diretamente interligado com o endpoint JSONP da MailerLite (`subscribe`), capturando subscritores e automatizando o double opt-in.
-* O envio semanal usa `scripts/auto_newsletter_scheduler.py`, que gera/reutiliza a issue da sexta-alvo, cria campanha MailerLite e agenda a entrega para as 09:00 Europe/Lisbon. Requer `MAILERLITE_API_KEY`, `MAILERLITE_GROUP_ID` e remetente verificado no `.env.local`.
+### 📧 Newsletter Brevo
+* **Status**: Migração do envio para Brevo Free implementada; ativação cloud pendente das credenciais externas.
+* O envio semanal usa `scripts/auto_newsletter_scheduler.py`, que gera/reutiliza a issue da sexta-alvo, cria uma campanha Brevo e agenda a entrega para as 09:00 Europe/Lisbon.
+* A produção exige `BREVO_API_KEY`, `BREVO_LIST_IDS` e remetente ativo. O preflight bloqueia audiências acima de 300 contactos para respeitar o limite diário gratuito.
 
 ### 🚀 Crescimento e Automação Editorial (1 de Junho de 2026)
 * **Diretório "Quem é Quem na IA"**: Lançado o banco de dados dinâmico `site/assets/quem-e-quem.json` e a página de alta autoridade SEO `site/quem-e-quem.html` contendo as 21 empresas e 21 personalidades mais relevantes do ecossistema em Portugal. URLs limpos e navbar/footer integrados.
 * **LinkedIn PDF Carousels**: Criada a automação de compilação `scripts/generate_linkedin_carousel.py` que lê os 4 principais posts da semana, desenha slides quadrados (1080x1080px) premium e os exporta como um único PDF de alto alcance via Playwright headless (`scripts/render_carousel_pdf.js`).
 * **Debate da Semana na Newsletter**: Alterada a lógica do compilador de email `src/ptia_engine/newsletter.py` para extrair debates ativos registados em `data/linkedin_comments.jsonl` e os injetar sob a secção visual premium "Debate da Semana".
-* **Automação Hands-free da Newsletter**: `scripts/auto_newsletter_scheduler.py` agenda a Weekly Briefing no MailerLite para sexta às 09h00. A deduplicação é feita por `send_at` da sexta-alvo, não por janela móvel de 6 dias, para evitar bloquear a edição semanal por drafts criadas ao domingo.
+* **Automação Hands-free da Newsletter**: `scripts/auto_newsletter_scheduler.py` agenda a Weekly Briefing na Brevo para sexta às 09h00. A deduplicação é feita por `send_at` da sexta-alvo, não por janela móvel de 6 dias, para evitar bloquear a edição semanal por drafts criadas ao domingo.
 * **Automação de Tagging no LinkedIn**: Criado o mapeamento inteligente `config/linkedin_urn_map.json` e atualizada a lógica central em `src/ptia_engine/dashboard.py` para converter automaticamente menções a empresas mapeadas (como @Unbabel, @Defined.ai, @NVIDIA) em tags azuis clicáveis (`@[Display Name](urn:li:organization:ID)`), mantendo fallbacks editoriais limpos para menções a pessoas e entidades externas.
 
 ### 💬 Motor de Comentários LinkedIn Conceptual-First & Scraper Robusto (2 de Junho de 2026)
@@ -136,19 +136,19 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Documento Completo**: Ver `docs/AI_VISIBILITY_2026_06_03.md`.
 
 ### Newsletter Production Hardening (6 de Junho de 2026)
-* **Contrato MailerLite corrigido**: o HTML passa em `emails[].content` na criação da campanha, conforme a API oficial; foi removido o endpoint inexistente `/campaigns/{id}/content`.
+* **Fornecedor Brevo Free**: o HTML PTIA é enviado via `htmlContent`, com tags nativas de cancelamento e versão web; o rodapé de marca Brevo é acrescentado pelo plano gratuito.
 * **Segurança editorial**: rascunhos de comentários LinkedIn nunca entram na newsletter. Apenas registos `commented`, recentes e com texto publicado podem aparecer, até ao máximo de três.
 * **Copy honesta**: linguagem de performance/engagement só é usada quando `content_performance.jsonl` contém resultados mensuráveis; sem dados, a edição assume explicitamente curadoria editorial.
-* **Idempotência**: campanhas `scheduled`/`sent` não são duplicadas nem com `--force`; retries reutilizam o `mailerlite_campaign_id`; drafts de compiladores antigos são regenerados.
+* **Idempotência**: campanhas `scheduled`/`sent` não são duplicadas nem com `--force`; retries reutilizam o `provider_campaign_id`; registos MailerLite antigos continuam legíveis.
 * **Automação local**: a tarefa Windows corre `scripts/run_newsletter_task.ps1` às sextas 08:45, usa `--live`, agenda para 09:00 e escreve `data/newsletter_scheduler.log`.
-* **Limite atual**: a ativação real depende de credenciais MailerLite, grupo de subscritores, remetente verificado e suporte do plano a HTML customizado via API.
+* **Limite atual**: a ativação real depende de credenciais Brevo, lista de subscritores, remetente ativo e audiência máxima de 300 no plano gratuito.
 * **Runbook**: ver `docs/NEWSLETTER_AUTOMATION.md`.
 
 ### Cloud Automation Foundation (6 de Junho de 2026)
 * **Prioridade atual**: tornar a newsletter de sexta-feira totalmente autonoma e independente deste PC, sem alterar criterios editoriais nesta fase.
 * **Estado partilhado**: implementado mirror transparente dos JSONL para Firestore, com checksum, escrita atomica local, chunking para ficheiros grandes e controlo de concorrencia.
 * **Deploy desta fase**: apenas `state_api`, `newsletter_preflight` e `schedule_weekly_newsletter_cloud`; Instagram e analytics ficam fora da ativacao.
-* **Horario garantido**: compilacao sexta as 08:45 `Europe/Lisbon`; MailerLite recebe `timezone_id` oficial de Lisboa e agenda para as 09:00.
+* **Horario garantido**: compilacao sexta as 08:45 `Europe/Lisbon`; Brevo recebe o timestamp ISO com offset de Lisboa e agenda para as 09:00.
 * **Seguranca**: Firestore nega acesso direto; o state API exige `PTIA_STATE_TOKEN` dedicado e a integracao fica desligada por feature flag ate ao preflight.
-* **Bloqueio externo**: ativacao requer plano Firebase Blaze, login Firebase renovado, token/grupo/remetente MailerLite e uma API key Render.
+* **Bloqueio externo**: ativacao requer plano Firebase Blaze, login Firebase renovado, API key/lista/remetente Brevo e uma API key Render.
 * **Runbook cloud da newsletter**: ver `docs/NEWSLETTER_CLOUD_AUTOMATION.md`.

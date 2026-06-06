@@ -2,80 +2,63 @@
 
 ## Production flow
 
-The Windows task `PTIA_Weekly_Newsletter` runs every Friday at 08:45 in the
-machine's Europe/Lisbon local time. It executes:
-
-```powershell
-scripts\run_newsletter_task.ps1
-```
-
-The wrapper uses the project virtual environment, writes an audit log to
-`data/newsletter_scheduler.log`, and calls the scheduler with `--live`. The
-scheduler compiles or reuses one issue for the target Friday and schedules it
-in MailerLite for 09:00. The task runs under the current Windows user with
-`StartWhenAvailable`; the user session may be locked, but the machine must be
-powered on and the user must have logged in.
+Firebase runs `schedule_weekly_newsletter_cloud` every Friday at 08:45 in
+`Europe/Lisbon`. The function compiles or reuses the issue for that Friday and
+creates a Brevo campaign scheduled for 09:00.
 
 The process is idempotent:
 
-- an already scheduled or sent campaign is never duplicated, including with
-  `--force`;
-- a failed schedule retry reuses the stored MailerLite campaign ID;
+- an already scheduled or sent campaign is never duplicated;
+- a failed scheduling retry reuses the stored provider campaign ID;
 - drafts from an older compiler version are regenerated;
 - Friday recovery is allowed only before 18:00; later runs target the next
   Friday.
 
 ## Required configuration
 
-Add these values to `.env.local`:
+The Brevo configuration is stored in the Firebase secret
+`PTIA_BREVO_CONFIG`:
 
 ```env
-MAILERLITE_API_KEY=
-MAILERLITE_GROUP_ID=
+BREVO_API_KEY=
+BREVO_LIST_IDS=
+BREVO_MAX_RECIPIENTS=300
 PTIA_NEWSLETTER_FROM_EMAIL=
 PTIA_NEWSLETTER_FROM_NAME=PTIA
 PTIA_NEWSLETTER_REPLY_TO=
 ```
 
-`MAILERLITE_GROUP_IDS=123,456` can replace the single group setting.
-
-Optional MailerLite IDs must be integers:
-
-```env
-MAILERLITE_TIMEZONE_ID=
-MAILERLITE_LANGUAGE_ID=
-```
-
-Omit `MAILERLITE_TIMEZONE_ID` to use the account timezone. Do not use a
-timezone name or an unverified numeric ID.
-
 Operational requirements:
 
-- the sender address must be verified in MailerLite;
-- the target group must be the intended subscriber audience;
-- the MailerLite plan must support custom HTML campaign content through the
-  API;
-- the MailerLite account profile must contain the legally required sender
-  identity and postal address.
+- the sender address must be active in Brevo;
+- the target list must contain the intended subscribers;
+- the free-plan gate blocks delivery above 300 recipients;
+- Brevo supplies its required footer branding on the free plan;
+- the Brevo account must contain the legally required sender identity.
+
+The homepage keeps the same visible signup form. Its submit handler calls the
+Firebase `newsletter_subscribe` endpoint, which starts Brevo's official double
+opt-in flow. Abuse limits are stored as salted hashes; raw emails and IP
+addresses are not written to Firestore.
 
 ## Commands
 
-Compile locally without contacting MailerLite:
+Compile locally without contacting Brevo:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\auto_newsletter_scheduler.py
 ```
 
-Perform the live MailerLite operation:
+Perform the live Brevo operation:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\auto_newsletter_scheduler.py --live
 ```
 
-Register or update the weekly Windows task:
+Activate the cloud stack:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File scripts\register_newsletter_task.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts\activate_newsletter_production.ps1
 ```
 
 ## Editorial safeguards
@@ -84,29 +67,12 @@ powershell.exe -ExecutionPolicy Bypass -File scripts\register_newsletter_task.ps
 - At most three recent published debates are included.
 - Draft comments are never used.
 - Performance language is used only when the performance ledger contains
-  measurable results. Otherwise the issue is labelled as editorial curation.
-- Every issue must contain editorial items, HTML, plain text, and the
-  MailerLite unsubscribe tag before any external request.
-
-## Cloud transition
-
-The shared Firestore state and cloud scheduler are implemented but remain
-disabled until Firebase billing, production secrets and the migration preflight
-are complete. Until then, the Windows task remains the active runner.
-
-Do not run the Windows and cloud Friday schedules independently. Disable the
-Windows task only after the cloud function and shared state have been verified.
-See `docs/NEWSLETTER_CLOUD_AUTOMATION.md`.
+  measurable results.
+- Every issue must contain editorial items, HTML, plain text, and the Brevo
+  unsubscribe tag before any external request.
 
 ## Recovery
 
-Inspect:
-
-```powershell
-Get-Content data\newsletter_scheduler.log -Tail 100
-Get-ScheduledTask -TaskName PTIA_Weekly_Newsletter
-```
-
-If a campaign creation succeeded but scheduling failed, rerun with `--live`.
-The stored campaign ID is reused. Do not delete the local issue before the
-retry.
+If campaign creation succeeds but scheduling fails, rerun the activation or
+live scheduler. The stored provider campaign ID is reused. Do not delete the
+newsletter issue before the retry.
