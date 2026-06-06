@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from html import escape
 from pathlib import Path
 from textwrap import dedent
@@ -20,7 +20,8 @@ from ptia_engine.models import (
 from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_jsonl
 
 
-NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected"}
+NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
+NEWSLETTER_GENERATOR_VERSION = "2"
 
 
 @dataclass(slots=True)
@@ -147,11 +148,14 @@ def _post_candidate(post: FinalPost) -> NewsletterCandidate:
 def _performance_score(perf: ContentPerformance) -> int:
     return (
         int(perf.likes or 0)
-        + int(perf.clicks or 0)
+        + int(perf.clicks or 0) * 2
         + int(perf.comments or 0) * 2
         + int(perf.shares or 0) * 3
         + int(perf.saves or 0) * 3
         + int(perf.followers_gained or 0) * 4
+        + int(perf.site_views or 0)
+        + int(perf.unique_visitors or 0) * 2
+        + int(perf.newsletter_signups or 0) * 8
     )
 
 
@@ -298,7 +302,14 @@ def weekly_candidates(
     return sorted(deduped.values(), key=lambda item: (item.score, item.published_at), reverse=True)[:limit]
 
 
-def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], debates: list[dict] = None) -> str:
+def _issue_html(
+    issue_title: str,
+    intro: str,
+    items: list[NewsletterCandidate],
+    debates: list[dict] | None = None,
+    issue_date: date | None = None,
+    selection_mode: str = "editorial",
+) -> str:
     months = [
         "janeiro",
         "fevereiro",
@@ -313,12 +324,42 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
         "novembro",
         "dezembro",
     ]
-    today = datetime.now().date()
-    issue_date = f"{today.day} {months[today.month - 1]} {today.year}"
+    display_date = issue_date or datetime.now().date()
+    issue_date_label = f"{display_date.day} {months[display_date.month - 1]} {display_date.year}"
     logo_url = "https://ptia.pt/assets/ptia-wordmark-navy-transparent.png"
     count = len(items)
     total_score = sum(item.score for item in items)
     lead = items[0]
+    performance_backed = selection_mode == "performance"
+    section_title = (
+        "O que a audiencia PTIA mostrou que vale aprofundar."
+        if performance_backed
+        else "Os sinais que passaram o filtro editorial PTIA esta semana."
+    )
+    editor_layer = (
+        "A camada PTIA pega no que gerou sinal real e traduz isso em leitura pratica para Portugal: "
+        "empresas, profissionais e builders."
+        if performance_backed
+        else "A camada PTIA cruza relevancia, fonte e impacto pratico e traduz os sinais em leitura "
+        "util para Portugal: empresas, profissionais e builders."
+    )
+    closing_quote = (
+        "A newsletter nao e uma segunda timeline. E a camada que transforma engagement em leitura editorial."
+        if performance_backed
+        else "A newsletter nao e uma segunda timeline. E a camada que transforma sinais dispersos em leitura editorial."
+    )
+    learning_title = (
+        "O que aprendemos com os posts que funcionaram."
+        if performance_backed
+        else "O que o radar editorial considera prioritario."
+    )
+    learning_body = (
+        "Na semana seguinte, estes sinais voltam ao radar como vantagem editorial: temas a repetir, "
+        "formatos a melhorar e perguntas mais fortes para LinkedIn, Instagram e site."
+        if performance_backed
+        else "Estes sinais foram escolhidos pela sua relevancia, qualidade da fonte e utilidade pratica. "
+        "Quando existirem metricas suficientes, a performance real passa a complementar este filtro."
+    )
     story_rows = []
     for index, item in enumerate(items[1:], start=2):
         story_rows.append(
@@ -414,8 +455,8 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                             <img src="{logo_url}" width="132" alt="PTIA" style="display:block;border:0;width:132px;height:auto;">
                           </td>
                           <td align="right" valign="middle" style="color:#7A715E;font:500 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;line-height:1.6;">
-                            Weekly · Quinta-feira<br>
-                            <span style="color:#14110C;">{escape(issue_date)}</span>
+                            Weekly · Sexta-feira<br>
+                            <span style="color:#14110C;">{escape(issue_date_label)}</span>
                           </td>
                         </tr>
                       </table>
@@ -436,7 +477,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                       <p style="margin:0 0 16px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Carta do editor</p>
                       <h1 class="ptia-h1" style="margin:0 0 18px;color:#14110C;font:400 44px Georgia,serif;line-height:1.06;letter-spacing:-.024em;">{escape(issue_title)}</h1>
                       <p style="margin:0 0 14px;color:#3A332A;font:400 17px Georgia,serif;line-height:1.58;">{escape(intro)}</p>
-                      <p style="margin:0;color:#3A332A;font:400 17px Georgia,serif;line-height:1.58;">A camada PTIA pega no que gerou sinal real e traduz isso em leitura pratica para Portugal: empresas, profissionais e builders.</p>
+                      <p style="margin:0;color:#3A332A;font:400 17px Georgia,serif;line-height:1.58;">{escape(editor_layer)}</p>
                       <p style="margin:22px 0 0;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">Editor <span style="color:#14110C;font:400 17px Georgia,serif;font-style:italic;letter-spacing:0;text-transform:none;">Joao Ferreira</span></p>
                     </td>
                   </tr>
@@ -455,7 +496,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                   <tr>
                     <td class="ptia-pad" style="padding:38px 40px 18px;background:#FAF6EC;">
                       <p style="margin:0 0 8px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Top 5 sinais · a semana em IA, lida em Portugal</p>
-                      <h2 style="margin:0;color:#14110C;font:400 31px Georgia,serif;line-height:1.12;letter-spacing:-.016em;">O que a audiencia PTIA mostrou que vale aprofundar.</h2>
+                      <h2 style="margin:0;color:#14110C;font:400 31px Georgia,serif;line-height:1.12;letter-spacing:-.016em;">{escape(section_title)}</h2>
                     </td>
                   </tr>
                   <tr>
@@ -484,7 +525,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                   <tr>
                     <td class="ptia-pad" style="padding:44px 40px;background:#F3EEE2;border-top:1px solid #14110C26;border-bottom:1px solid #14110C26;">
                       <p style="margin:0 0 10px;color:#C44419;font:400 56px Georgia,serif;font-style:italic;line-height:.8;">"</p>
-                      <p style="margin:0;color:#14110C;font:400 26px Georgia,serif;line-height:1.25;">A newsletter nao e uma segunda timeline. E a camada que transforma engagement em leitura editorial.</p>
+                      <p style="margin:0;color:#14110C;font:400 26px Georgia,serif;line-height:1.25;">{escape(closing_quote)}</p>
                       <p style="margin:18px 0 0;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;">Sinal vs. ruido · leitura editorial da semana</p>
                     </td>
                   </tr>
@@ -494,8 +535,8 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                         <tr>
                           <td style="padding:26px;">
                             <p style="margin:0 0 10px;color:#F0764A;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;">Camada PTIA</p>
-                            <h4 style="margin:0 0 12px;color:#FAF6EC;font:400 28px Georgia,serif;line-height:1.12;">O que aprendemos com os posts que funcionaram.</h4>
-                            <p style="margin:0;color:#FAF6ECCC;font:400 15px Georgia,serif;line-height:1.58;">Na semana seguinte, estes sinais voltam ao radar como vantagem editorial: temas a repetir, formatos a melhorar e perguntas mais fortes para LinkedIn, Instagram e site.</p>
+                            <h4 style="margin:0 0 12px;color:#FAF6EC;font:400 28px Georgia,serif;line-height:1.12;">{escape(learning_title)}</h4>
+                            <p style="margin:0;color:#FAF6ECCC;font:400 15px Georgia,serif;line-height:1.58;">{escape(learning_body)}</p>
                           </td>
                         </tr>
                       </table>
@@ -523,7 +564,7 @@ def _issue_html(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                           </td>
                         </tr>
                       </table>
-                      <p style="margin:24px 0 0;color:#7A715E;font:400 11px Arial,sans-serif;line-height:1.55;">Recebes este email porque subscreveste a PTIA Weekly. Podes cancelar a subscricao ou gerir preferencias atraves dos links da MailerLite no rodape.</p>
+                      <p style="margin:24px 0 0;color:#7A715E;font:400 11px Arial,sans-serif;line-height:1.55;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{$unsubscribe}}" style="color:#14110C;text-decoration:underline;">cancelar a subscrição</a> ou gerir preferências através dos links da MailerLite no rodapé.</p>
                       <p style="margin:14px 0 0;color:#7A715E;font:400 10px Arial,sans-serif;">PTIA.pt · Lisboa, Portugal · 2026</p>
                     </td>
                   </tr>
@@ -571,8 +612,42 @@ def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                 ""
             ])
 
-    lines.extend(["Sinal vs. Ruído: se não muda uma decisão, fica fora do radar PTIA."])
+    lines.extend([
+        "Sinal vs. Ruído: se não muda uma decisão, fica fora do radar PTIA.",
+        "",
+        "Para cancelar a subscrição: {$unsubscribe}",
+        "Versão web: {$url}",
+    ])
     return "\n".join(lines).strip()
+
+
+def _load_recent_debates(
+    comments_path: Path,
+    *,
+    limit: int = 3,
+    days: int = 7,
+    now: datetime | None = None,
+) -> list[dict]:
+    if not comments_path.exists() or limit <= 0:
+        return []
+    cutoff = (now or datetime.now(timezone.utc)) - timedelta(days=days)
+    debates = []
+    for line in comments_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if record.get("status") != "commented":
+            continue
+        if not _clean(record.get("comment_text", "")):
+            continue
+        if _parse_date(record.get("created_at", "")) < cutoff:
+            continue
+        debates.append(record)
+    debates.sort(key=lambda record: _parse_date(record.get("created_at", "")), reverse=True)
+    return debates[:limit]
 
 
 def generate_weekly_issue(
@@ -583,62 +658,60 @@ def generate_weekly_issue(
     final_posts: list[FinalPost],
     performance: list[ContentPerformance] | None = None,
     limit: int = 5,
+    status: str = "draft",
+    send_at: str = "",
+    issue_date: date | None = None,
+    debate_limit: int = 3,
 ) -> NewsletterIssue:
+    if status not in NEWSLETTER_STATUSES:
+        raise ValueError(f"Invalid newsletter status: {status}")
     items = weekly_owned_post_candidates(performance or [], final_posts, limit=limit)
+    selection_mode = "performance" if items else "editorial"
     if not items:
         items = weekly_candidates(radar_signals, trend_signals, final_posts, limit=limit)
     if not items:
         raise ValueError("Ainda não há posts com métricas suficientes para gerar a newsletter.")
         
-    # Load and filter LinkedIn debates of the week
-    debates = []
     comments_path = Path(path).parent / "linkedin_comments.jsonl"
-    if comments_path.exists():
-        try:
-            with open(comments_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    if line.strip():
-                        record = json.loads(line)
-                        if record.get("status") in ["draft", "commented"]:
-                            # check if within last 7 days
-                            created = _parse_date(record.get("created_at", ""))
-                            if created >= datetime.now(timezone.utc) - timedelta(days=7):
-                                debates.append(record)
-        except Exception as e:
-            print(f"Erro ao carregar debates para newsletter: {e}")
-            
-    # Fallback to most recent 2 if empty
-    if not debates and comments_path.exists():
-        try:
-            all_records = []
-            with open(comments_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    if line.strip():
-                        record = json.loads(line)
-                        if record.get("status") in ["draft", "commented"]:
-                            all_records.append(record)
-            all_records.sort(key=lambda r: _parse_date(r.get("created_at", "")), reverse=True)
-            debates = all_records[:2]
-        except Exception:
-            pass
+    debates = _load_recent_debates(comments_path, limit=debate_limit)
 
     count = len(items)
-    title = f"Os {count} sinais PTIA com mais engagement esta semana"
-    subject = f"PTIA Weekly: os {count} temas que mais mexeram esta semana"
-    preheader = "Ranking editorial a partir dos nossos posts: saves, shares, comentários, clicks e leitura para Portugal."
-    intro = (
-        "Esta edição é construída a partir dos posts PTIA com melhor tracking da semana. "
-        "Não é uma lista do que fez mais barulho lá fora: é o que a nossa audiência mostrou que vale a pena aprofundar."
-    )
+    if selection_mode == "performance":
+        title = f"Os {count} sinais PTIA com mais engagement esta semana"
+        subject = f"PTIA Weekly: os {count} temas que mais mexeram esta semana"
+        preheader = "Ranking editorial a partir dos nossos posts: saves, shares, comentários, clicks e leitura para Portugal."
+        intro = (
+            "Esta edição é construída a partir dos posts PTIA com melhor tracking da semana. "
+            "Não é uma lista do que fez mais barulho lá fora: é o que a nossa audiência mostrou que vale a pena aprofundar."
+        )
+    else:
+        title = f"Os {count} sinais de IA que merecem atenção esta semana"
+        subject = f"PTIA Weekly: {count} sinais de IA para ler esta semana"
+        preheader = "Curadoria editorial PTIA: fontes, impacto prático e leitura para Portugal."
+        intro = (
+            "Esta edição reúne os sinais selecionados pelo radar e pelo processo editorial PTIA. "
+            "Foram escolhidos pela qualidade da fonte, relevância e utilidade prática para Portugal."
+        )
     issue = NewsletterIssue(
         issue_id=f"weekly_{stable_hash(utc_now_iso() + ':' + '|'.join(item.item_id for item in items), 18)}",
         title=title,
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(title, intro, items, debates=debates),
+        html=_issue_html(
+            title,
+            intro,
+            items,
+            debates=debates,
+            issue_date=issue_date,
+            selection_mode=selection_mode,
+        ),
         text=_issue_text(title, intro, items, debates=debates),
         item_ids=[item.item_id for item in items],
+        selection_mode=selection_mode,
+        generator_version=NEWSLETTER_GENERATOR_VERSION,
+        status=status,
+        send_at=send_at,
     )
     append_jsonl(path, [issue])
     return issue
@@ -659,9 +732,11 @@ def generate_sample_issue() -> NewsletterIssue:
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(title, intro, items, debates=[]),
+        html=_issue_html(title, intro, items, debates=[], selection_mode="performance"),
         text=_issue_text(title, intro, items, debates=[]),
         item_ids=[item.item_id for item in items],
+        selection_mode="performance",
+        generator_version=NEWSLETTER_GENERATOR_VERSION,
         status="sample",
     )
 
@@ -681,6 +756,37 @@ def update_newsletter_status(
         issue.status = status
         if send_at:
             issue.send_at = send_at
+        write_jsonl(path, issues)
+        return issue
+    raise ValueError(f"Newsletter issue not found: {issue_id}")
+
+
+def update_newsletter_delivery(
+    path: Path,
+    issue_id: str,
+    *,
+    status: str | None = None,
+    send_at: str | None = None,
+    mailerlite_campaign_id: str | None = None,
+    mailerlite_status: str | None = None,
+    delivery_error: str | None = None,
+) -> NewsletterIssue:
+    if status is not None and status not in NEWSLETTER_STATUSES:
+        raise ValueError(f"Invalid newsletter status: {status}")
+    issues = load_newsletter_issues(path)
+    for issue in issues:
+        if issue.issue_id != issue_id:
+            continue
+        if status is not None:
+            issue.status = status
+        if send_at is not None:
+            issue.send_at = send_at
+        if mailerlite_campaign_id is not None:
+            issue.mailerlite_campaign_id = mailerlite_campaign_id
+        if mailerlite_status is not None:
+            issue.mailerlite_status = mailerlite_status
+        if delivery_error is not None:
+            issue.delivery_error = delivery_error
         write_jsonl(path, issues)
         return issue
     raise ValueError(f"Newsletter issue not found: {issue_id}")

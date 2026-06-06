@@ -24,8 +24,8 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from ptia_engine.assets import create_final_post_image
 from ptia_engine.buffer_api import BufferClient
+from ptia_engine.cloud_state import hydrate_cloud_state
 from ptia_engine.dedupe import stable_hash
-from ptia_engine.editorial import add_performance_record, update_draft_status, update_item_status
 from ptia_engine.http_client import urlopen_direct
 from ptia_engine.editorial_board import (
     add_editorial_topic,
@@ -37,10 +37,10 @@ from ptia_engine.editorial_board import (
     update_topic_status,
 )
 from ptia_engine.models import ContentPerformance, FinalPost, Source, utc_now_iso
-from ptia_engine.newsletter import generate_sample_issue, generate_weekly_issue, update_newsletter_status
+from ptia_engine.newsletter import generate_sample_issue
 from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
-from ptia_engine.source_verifier import resolve_submitted_link, verify_search_candidate, verify_url
+from ptia_engine.source_verifier import resolve_submitted_link, verify_search_candidate
 from ptia_engine.growth import tracked_article_url_for_social
 from ptia_engine.ai_visibility import (
     AI_CRAWLER_USER_AGENTS,
@@ -5721,6 +5721,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
         dashboard_do_post(self)
 
 def serve_dashboard(data_dir: Path, host: str = "127.0.0.1", port: int = 8765) -> None:
+    hydrate_cloud_state(data_dir)
     DashboardHandler.state = DashboardState(data_dir)
     server = ThreadingHTTPServer((host, port), DashboardHandler)
     print(f"PTIA dashboard running at http://{host}:{port}")

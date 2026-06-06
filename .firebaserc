@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "ptia-content-engine-prod"
+  },
+  "targets": {},
+  "etags": {}
+}

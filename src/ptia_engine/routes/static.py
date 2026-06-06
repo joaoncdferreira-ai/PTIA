@@ -14,6 +14,16 @@ def dashboard_do_get(handler) -> None:
     if path == "/api/state":
         handler._send_json(handler.state.snapshot())
         return
+    if path == "/api/health":
+        from ptia_engine.cloud_state import CloudStateConfig
+
+        handler._send_json(
+            {
+                "status": "ok",
+                "cloud_state_enabled": CloudStateConfig.from_env() is not None,
+            }
+        )
+        return
     if path == "/api/site-feed":
         from ptia_engine.dashboard import _site_feed
 

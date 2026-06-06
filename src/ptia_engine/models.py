@@ -470,8 +470,13 @@ class NewsletterIssue:
     html: str
     text: str
     item_ids: list[str] = field(default_factory=list)
+    selection_mode: str = "editorial"
+    generator_version: str = "1"
     status: str = "draft"
     send_at: str = ""
+    mailerlite_campaign_id: str = ""
+    mailerlite_status: str = ""
+    delivery_error: str = ""
     created_at: str = field(default_factory=utc_now_iso)
 
     def to_record(self) -> dict[str, Any]:
@@ -491,7 +496,12 @@ class NewsletterIssue:
             html=str(record.get("html", "")),
             text=str(record.get("text", "")),
             item_ids=[str(value) for value in item_ids],
+            selection_mode=str(record.get("selection_mode", "editorial")),
+            generator_version=str(record.get("generator_version", "1")),
             status=str(record.get("status", "draft")),
             send_at=str(record.get("send_at", "")),
+            mailerlite_campaign_id=str(record.get("mailerlite_campaign_id", "")),
+            mailerlite_status=str(record.get("mailerlite_status", "")),
+            delivery_error=str(record.get("delivery_error", "")),
             created_at=str(record.get("created_at", "")),
         )

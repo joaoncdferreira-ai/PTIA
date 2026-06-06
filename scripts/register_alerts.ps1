@@ -15,12 +15,7 @@ $Action1 = New-ScheduledTaskAction -Execute $PowerShell -Argument "-ExecutionPol
 $Trigger1 = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At 22:00
 Register-ScheduledTask -TaskName "PTIA_Alert_Premium_Monday" -Action $Action1 -Trigger $Trigger1 -Description "Alerta semanal de prospeccao LinkedIn Premium as segundas a noite." -Force
 
-# 2. Alerta de Revisao da Newsletter Weekly Briefing (Sextas-feiras as 10:00)
-$Action2 = New-ScheduledTaskAction -Execute $PowerShell -Argument "-ExecutionPolicy Bypass -File `"$ScriptPath`" -Title `"PTIA Newsletter Check`" -Message `"A Weekly Briefing vai sair agora. Entra no Dashboard para validar o rascunho de hoje!`""
-$Trigger2 = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Friday -At 10:00
-Register-ScheduledTask -TaskName "PTIA_Alert_Newsletter_Friday" -Action $Action2 -Trigger $Trigger2 -Description "Alerta semanal para revisao e confirmacao da newsletter." -Force
-
 Write-Host "=== ALERTAS PTIA ATUALIZADOS COM SUCESSO NO WINDOWS TASK SCHEDULER! ==="
 Write-Host "1. PTIA_Alert_Premium_Monday   -> Segundas as 22:00 (LinkedIn Page Premium)"
-Write-Host "2. PTIA_Alert_Newsletter_Friday -> Sextas as 10:00 (Confirmacao de Newsletter)"
+Write-Host "[-] PTIA_Alert_Newsletter_Friday -> REMOVIDO; o scheduler alerta apenas apos resposta real da MailerLite."
 Write-Host "[-] PTIA_Alert_Curation_Daily    -> REMOVIDO permanentemente."

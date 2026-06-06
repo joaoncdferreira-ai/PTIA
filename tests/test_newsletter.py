@@ -1,3 +1,4 @@
+import json
 import shutil
 import unittest
 import uuid
@@ -9,6 +10,7 @@ from ptia_engine.editorial_board import add_final_post, add_radar_signal
 from ptia_engine.models import ContentPerformance
 from ptia_engine.newsletter import (
     generate_weekly_issue,
+    update_newsletter_delivery,
     update_newsletter_status,
     weekly_candidates,
     weekly_owned_post_candidates,
@@ -110,6 +112,7 @@ class NewsletterTests(unittest.TestCase):
         self.assertIn("Importa para Portugal", issue.text)
         self.assertNotIn("Ângulo Portugal", issue.text)
         self.assertEqual(len(issue.item_ids), 5)
+        self.assertEqual(issue.selection_mode, "performance")
         self.assertEqual(load_newsletter_issues(self.root / "newsletter_issues.jsonl")[0].issue_id, issue.issue_id)
 
     def test_weekly_owned_post_candidates_rank_by_tracking(self):
@@ -148,6 +151,34 @@ class NewsletterTests(unittest.TestCase):
         self.assertEqual(candidates[0].title, "Post 5")
         self.assertEqual(candidates[0].kind, "owned_post")
 
+    def test_site_readership_metrics_are_valid_performance_signals(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="topic_site",
+            channel="site",
+            title="Artigo PTIA",
+            body="Leitura editorial.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/source"],
+        )
+        performance = ContentPerformance(
+            performance_id="perf_site",
+            draft_id=post.post_id,
+            post_id=post.post_id,
+            channel="site",
+            published_at=self.today,
+            topic=post.title,
+            section="site",
+            site_views=25,
+            unique_visitors=15,
+        )
+
+        candidates = weekly_owned_post_candidates([performance], [post])
+
+        self.assertEqual(len(candidates), 1)
+        self.assertGreater(candidates[0].score, 0)
+
     def test_update_newsletter_status(self):
         for index in range(5):
             self._signal(f"AI story {index}", 50 + index)
@@ -167,6 +198,91 @@ class NewsletterTests(unittest.TestCase):
 
         self.assertEqual(updated.status, "scheduled")
         self.assertEqual(updated.send_at, "2026-05-22T08:00:00+01:00")
+
+    def test_generate_weekly_issue_accepts_target_send_time(self):
+        for index in range(5):
+            self._signal(f"AI story {index}", 50 + index)
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=load_radar_signals(self.root / "radar_signals.jsonl"),
+            trend_signals=[],
+            final_posts=[],
+            send_at="2026-06-05T09:00:00+01:00",
+            issue_date=datetime(2026, 6, 5, tzinfo=timezone.utc).date(),
+        )
+
+        self.assertEqual(issue.send_at, "2026-06-05T09:00:00+01:00")
+        self.assertEqual(issue.selection_mode, "editorial")
+        self.assertNotIn("melhor tracking", issue.intro.lower())
+        self.assertNotIn("a nossa audiência mostrou", issue.intro.lower())
+        self.assertIn("Sexta-feira", issue.html)
+        self.assertIn("5 junho 2026", issue.html)
+
+    def test_newsletter_includes_only_recent_published_linkedin_debates(self):
+        self._signal("AI story", 50)
+        created_at = datetime.now(timezone.utc).isoformat()
+        records = [
+            {
+                "status": "commented",
+                "profile_name": f"Published {index}",
+                "post_body": f"Post {index}",
+                "comment_text": f"Public comment {index}",
+                "post_url": f"https://linkedin.com/posts/{index}",
+                "created_at": created_at,
+            }
+            for index in range(4)
+        ]
+        records.append(
+            {
+                "status": "draft",
+                "profile_name": "Private draft",
+                "post_body": "Unpublished post",
+                "comment_text": "PRIVATE DRAFT CONTENT",
+                "post_url": "https://linkedin.com/posts/draft",
+                "created_at": created_at,
+            }
+        )
+        comments_path = self.root / "linkedin_comments.jsonl"
+        comments_path.write_text(
+            "\n".join(json.dumps(record) for record in records) + "\n",
+            encoding="utf-8",
+        )
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=load_radar_signals(self.root / "radar_signals.jsonl"),
+            trend_signals=[],
+            final_posts=[],
+        )
+
+        self.assertNotIn("PRIVATE DRAFT CONTENT", issue.html)
+        self.assertNotIn("PRIVATE DRAFT CONTENT", issue.text)
+        self.assertEqual(issue.text.count("Discussão com Published"), 3)
+
+    def test_update_newsletter_delivery_fields(self):
+        for index in range(5):
+            self._signal(f"AI story {index}", 50 + index)
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=load_radar_signals(self.root / "radar_signals.jsonl"),
+            trend_signals=[],
+            final_posts=[],
+        )
+
+        updated = update_newsletter_delivery(
+            self.root / "newsletter_issues.jsonl",
+            issue.issue_id,
+            status="scheduled",
+            send_at="2026-06-05T09:00:00+01:00",
+            mailerlite_campaign_id="campaign_123",
+            mailerlite_status="ready",
+            delivery_error="",
+        )
+
+        self.assertEqual(updated.status, "scheduled")
+        self.assertEqual(updated.mailerlite_campaign_id, "campaign_123")
+        self.assertEqual(updated.mailerlite_status, "ready")
 
 
 if __name__ == "__main__":
