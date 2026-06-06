@@ -5,7 +5,6 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ptia_engine.dedupe import stable_hash
 from ptia_engine.models import TrendSignal, utc_now_iso
 from ptia_engine.storage import append_jsonl, load_trend_signals
 

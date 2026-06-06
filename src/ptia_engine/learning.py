@@ -13,11 +13,14 @@ from ptia_engine.storage import load_content_drafts, load_content_performance, l
 def engagement_score(perf: ContentPerformance) -> int:
     return (
         perf.likes
-        + perf.clicks
+        + perf.clicks * 2
         + perf.comments * 2
         + perf.shares * 3
         + perf.saves * 3
         + perf.followers_gained * 4
+        + perf.site_views
+        + perf.unique_visitors * 2
+        + perf.newsletter_signups * 8
     )
 
 

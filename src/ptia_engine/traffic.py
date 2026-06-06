@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """traffic.py
 
 Camada minima de analytics para o site estatico ptia.pt.
@@ -12,6 +10,8 @@ Responsabilidades:
 
 Nenhuma chamada a APIs externas e feita aqui. Tudo read/write local.
 """
+
+from __future__ import annotations
 
 import os
 from pathlib import Path

@@ -86,7 +86,6 @@ from ptia_engine.services.schedule_backend import (
 from ptia_engine.source_verifier import verify_search_candidate
 from ptia_engine.storage import (
     append_jsonl,
-    load_content_assets,
     load_content_drafts,
     load_final_posts,
     load_processed_items,

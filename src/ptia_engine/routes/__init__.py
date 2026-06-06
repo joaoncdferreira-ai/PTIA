@@ -1,7 +1,7 @@
 from urllib.parse import urlparse
 from http import HTTPStatus
 
-from ptia_engine.routes.static import dashboard_do_get
+from ptia_engine.routes.static import dashboard_do_get as dashboard_do_get
 from ptia_engine.routes.signals import (
     handle_add_signal,
     handle_signal_status,

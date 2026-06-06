@@ -77,9 +77,7 @@ def tracked_article_url_for_social(
 
 
 def growth_score(perf: ContentPerformance) -> int:
-    reader_score = (perf.clicks * 2) + getattr(perf, "site_views", 0) + (getattr(perf, "unique_visitors", 0) * 2)
-    conversion_score = getattr(perf, "newsletter_signups", 0) * 8
-    return engagement_score(perf) + reader_score + conversion_score
+    return engagement_score(perf)
 
 
 @dataclass(slots=True)

@@ -1,26 +1,29 @@
 from __future__ import annotations
+
 import re
+
 from pathlib import Path
-from ptia_engine.models import EditorialTopic, FinalPost, RadarSignal
-from ptia_engine.repositories import RadarSignalRepository, EditorialTopicRepository, FinalPostRepository
+
 from ptia_engine.editorial_board import (
-    add_editorial_topic,
-    update_topic_status,
     add_final_post,
-    update_final_post_status,
+    add_editorial_topic,
+    add_radar_signal,
     update_final_post_copy,
+    update_final_post_status,
     update_signal_status,
+    update_topic_status,
 )
-from ptia_engine.services.editorial_hygiene import (
-    normalise_hashtags,
-    apply_ptia_editorial_rules,
-    validate_final_post_copy,
-    validate_final_package_copy,
-)
-from ptia_engine.services.media import public_image_url
-from ptia_engine.services.channels import channel_enabled, load_channel_config
-from ptia_engine.services.social_text import x_post_body
+from ptia_engine.models import EditorialTopic, FinalPost, RadarSignal
+from ptia_engine.repositories import EditorialTopicRepository, FinalPostRepository, RadarSignalRepository
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
+from ptia_engine.services.channels import channel_enabled, load_channel_config
+from ptia_engine.services.editorial_hygiene import (
+    apply_ptia_editorial_rules,
+    normalise_hashtags,
+    validate_final_package_copy,
+    validate_final_post_copy,
+)
+from ptia_engine.services.social_text import x_post_body
 from ptia_engine.source_verifier import resolve_submitted_link
 
 # Private helpers copied/adapted from dashboard.py to prevent circular imports

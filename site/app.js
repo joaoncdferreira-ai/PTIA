@@ -531,12 +531,33 @@ function setupNewsletterForm() {
   const form = document.getElementById("ptia-newsletter-form");
   const status = document.getElementById("newsletter-status");
   if (!form || !status) return;
-  form.addEventListener("submit", () => {
-    status.textContent = "A enviar. Se o email existir, vais receber a confirmação de subscrição.";
-    window.setTimeout(() => {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button[type="submit"]');
+    const data = new FormData(form);
+    button.disabled = true;
+    status.textContent = "A enviar. Se o email for válido, vais receber a confirmação de subscrição.";
+    try {
+      const response = await fetch(
+        "https://europe-west1-ptia-content-engine-prod.cloudfunctions.net/newsletter_subscribe",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: data.get("email"),
+            name: data.get("name"),
+            company: data.get("company"),
+          }),
+        }
+      );
+      if (!response.ok) throw new Error(`Subscription failed: ${response.status}`);
       status.textContent = "Quase lá: confirma o email para receberes a PTIA Weekly.";
       form.reset();
-    }, 1800);
+    } catch (_) {
+      status.textContent = "Não foi possível concluir agora. Tenta novamente dentro de alguns minutos.";
+    } finally {
+      button.disabled = false;
+    }
   });
 }
 
@@ -748,4 +769,3 @@ document.addEventListener("click", function(e) {
     history.pushState(null, null, href);
   }
 });
-
