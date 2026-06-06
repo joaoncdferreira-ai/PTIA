@@ -43,16 +43,6 @@
       ]
     }
   </script>
-  <!-- MailerLite Universal -->
-  <script>
-    (function(w,d,e,u,f,l,n){
-      w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
-      l=d.createElement(e); l.async=1; l.src=u;
-      n=d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l,n);
-    })(window,document,"script","https://assets.mailerlite.com/js/universal.js","ml");
-    ml("account", "2352121");
-  </script>
-  <!-- End MailerLite Universal -->
 <!-- ptia-analytics -->
 <script defer data-domain="ptia.pt" src="https://plausible.io/js/script.tagged-events.js"></script>
 <!-- /ptia-analytics -->
@@ -232,7 +222,7 @@
         <div class="newsletter-copy reveal">
           <p class="eyebrow">PTIA Weekly</p>
           <h2>Os cinco sinais que merecem ficar.</h2>
-          <p>Sexta-feira, 8h00. Os posts PTIA com melhor resposta da semana, contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
+          <p>Sexta-feira, 9h00. Os posts PTIA com melhor resposta da semana, contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
           <dl class="weekly-stats">
             <div><dt data-count="4218">0</dt><dd>Subscritores alvo</dd></div>
             <div><dt data-count="27">0</dt><dd>Edições planeadas</dd></div>
@@ -242,30 +232,25 @@
         <div class="signup-card reveal delay-1">
           <div class="signup-top">
             <span>Pré-visualização</span>
-            <span>sexta · 8h00</span>
+            <span>sexta · 9h00</span>
           </div>
           <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
           <form
             id="ptia-newsletter-form"
             class="newsletter-form"
-            action="https://assets.mailerlite.com/jsonp/2352121/forms/187572192871974329/subscribe"
-            method="post"
-            target="ptia-newsletter-frame"
           >
             <label>
               <span>Email</span>
-              <input type="email" name="fields[email]" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
+              <input type="email" name="email" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
             </label>
             <label>
               <span>Nome</span>
-              <input type="text" name="fields[name]" placeholder="Nome" autocomplete="given-name">
+              <input type="text" name="name" placeholder="Nome" autocomplete="given-name">
             </label>
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
+            <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
             <button type="submit">Subscrever</button>
             <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
           </form>
-          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
           <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
         </div>
       </div>
