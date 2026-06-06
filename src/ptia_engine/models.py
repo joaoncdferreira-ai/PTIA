@@ -474,8 +474,9 @@ class NewsletterIssue:
     generator_version: str = "1"
     status: str = "draft"
     send_at: str = ""
-    mailerlite_campaign_id: str = ""
-    mailerlite_status: str = ""
+    delivery_provider: str = ""
+    provider_campaign_id: str = ""
+    provider_status: str = ""
     delivery_error: str = ""
     created_at: str = field(default_factory=utc_now_iso)
 
@@ -500,8 +501,18 @@ class NewsletterIssue:
             generator_version=str(record.get("generator_version", "1")),
             status=str(record.get("status", "draft")),
             send_at=str(record.get("send_at", "")),
-            mailerlite_campaign_id=str(record.get("mailerlite_campaign_id", "")),
-            mailerlite_status=str(record.get("mailerlite_status", "")),
+            delivery_provider=str(
+                record.get("delivery_provider", "")
+                or ("mailerlite" if record.get("mailerlite_campaign_id") else "")
+            ),
+            provider_campaign_id=str(
+                record.get("provider_campaign_id", "")
+                or record.get("mailerlite_campaign_id", "")
+            ),
+            provider_status=str(
+                record.get("provider_status", "")
+                or record.get("mailerlite_status", "")
+            ),
             delivery_error=str(record.get("delivery_error", "")),
             created_at=str(record.get("created_at", "")),
         )

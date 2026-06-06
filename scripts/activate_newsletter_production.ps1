@@ -128,24 +128,26 @@ function Set-FirebaseSecret {
 }
 
 $values = Read-DotEnv
-$mailerApiKey = Require-Value $values "MAILERLITE_API_KEY" "MailerLite API token" -Secret
-$mailerGroupIds = [string]$values["MAILERLITE_GROUP_IDS"]
-if ([string]::IsNullOrWhiteSpace($mailerGroupIds)) {
-    $mailerGroupIds = [string]$values["MAILERLITE_GROUP_ID"]
+$brevoApiKey = Require-Value $values "BREVO_API_KEY" "Brevo API key" -Secret
+$brevoListIds = [string]$values["BREVO_LIST_IDS"]
+if ([string]::IsNullOrWhiteSpace($brevoListIds)) {
+    $brevoListIds = [string]$values["BREVO_LIST_ID"]
 }
-if ([string]::IsNullOrWhiteSpace($mailerGroupIds)) {
-    Write-Host "Available MailerLite groups:"
-    & $Python scripts\list_mailerlite_groups.py
+if ([string]::IsNullOrWhiteSpace($brevoListIds)) {
+    Write-Host "Available Brevo lists and senders:"
+    & $Python scripts\list_brevo_resources.py
     if ($LASTEXITCODE -ne 0) {
-        throw "Could not list MailerLite groups with the supplied API token."
+        throw "Could not list Brevo resources with the supplied API key."
     }
-    $mailerGroupIds = Read-Host -Prompt "MailerLite subscriber Group ID"
+    $brevoListIds = Read-Host -Prompt "Brevo subscriber List ID"
 }
-if ([string]::IsNullOrWhiteSpace($mailerGroupIds)) {
-    throw "MAILERLITE_GROUP_IDS is required."
+if ([string]::IsNullOrWhiteSpace($brevoListIds)) {
+    throw "BREVO_LIST_IDS is required."
 }
-Set-DotEnvValue "MAILERLITE_GROUP_IDS" $mailerGroupIds
-$env:MAILERLITE_GROUP_IDS = $mailerGroupIds
+Set-DotEnvValue "BREVO_LIST_IDS" $brevoListIds
+$env:BREVO_LIST_IDS = $brevoListIds
+Set-DotEnvValue "BREVO_MAX_RECIPIENTS" "300"
+$env:BREVO_MAX_RECIPIENTS = "300"
 
 $fromEmail = Require-Value $values "PTIA_NEWSLETTER_FROM_EMAIL" "Verified sender email"
 $replyTo = [string]$values["PTIA_NEWSLETTER_REPLY_TO"]
@@ -175,23 +177,28 @@ if ($LASTEXITCODE -ne 0) {
     throw "Cloud Functions package preparation failed."
 }
 
+$validationJson = & $Python scripts\validate_brevo_production.py --ensure-doi-template --create-delete-draft --json
+if ($LASTEXITCODE -ne 0) {
+    throw "Brevo rejected the current sender, list or newsletter HTML."
+}
+$validation = $validationJson | ConvertFrom-Json
+$doiTemplateId = [string]$validation.doi_template_id
+if ([string]::IsNullOrWhiteSpace($doiTemplateId)) {
+    throw "Brevo double opt-in template could not be resolved."
+}
+Set-DotEnvValue "BREVO_DOI_TEMPLATE_ID" $doiTemplateId
+$env:BREVO_DOI_TEMPLATE_ID = $doiTemplateId
+Write-Host (
+    "Brevo contract validated; recipients: " +
+    [string]$validation.recipient_count +
+    "/300; sender: " +
+    [string]$validation.sender
+)
+
 & $Python scripts\newsletter_production_preflight.py
 if ($LASTEXITCODE -ne 0) {
     throw "Local newsletter preflight failed."
 }
-
-$validationJson = & $Python scripts\validate_mailerlite_production.py --create-delete-draft --json
-if ($LASTEXITCODE -ne 0) {
-    throw "MailerLite rejected the current sender, group or newsletter HTML."
-}
-$validation = $validationJson | ConvertFrom-Json
-$timezoneId = [string]$validation.timezone_id
-if ([string]::IsNullOrWhiteSpace($timezoneId)) {
-    throw "MailerLite Europe/Lisbon timezone ID could not be resolved."
-}
-Set-DotEnvValue "MAILERLITE_TIMEZONE_ID" $timezoneId
-$env:MAILERLITE_TIMEZONE_ID = $timezoneId
-Write-Host "MailerLite contract validated; Europe/Lisbon timezone ID: $timezoneId"
 
 if (-not $SkipDeploy) {
     & firebase projects:list
@@ -199,22 +206,25 @@ if (-not $SkipDeploy) {
         throw "Firebase authentication failed. Run: firebase login --reauth"
     }
 
-    $mailerConfig = @{
-        MAILERLITE_API_KEY = $mailerApiKey
-        MAILERLITE_GROUP_IDS = $mailerGroupIds
+    $brevoConfig = @{
+        BREVO_API_KEY = $brevoApiKey
+        BREVO_LIST_IDS = $brevoListIds
+        BREVO_MAX_RECIPIENTS = "300"
+        BREVO_DOI_TEMPLATE_ID = $doiTemplateId
+        PTIA_SUBSCRIBE_SALT = $stateToken
         PTIA_NEWSLETTER_FROM_EMAIL = $fromEmail
         PTIA_NEWSLETTER_FROM_NAME = "PTIA"
         PTIA_NEWSLETTER_REPLY_TO = $replyTo
-        MAILERLITE_TIMEZONE_ID = $timezoneId
     } | ConvertTo-Json -Compress
 
     Set-FirebaseSecret "PTIA_STATE_TOKEN" $stateToken
-    Set-FirebaseSecret "PTIA_MAILERLITE_CONFIG" $mailerConfig -Json
+    Set-FirebaseSecret "PTIA_BREVO_CONFIG" $brevoConfig -Json
 
     $targets = (
         "firestore," +
         "functions:ptia-cloud:state_api," +
         "functions:ptia-cloud:newsletter_preflight," +
+        "functions:ptia-cloud:newsletter_subscribe," +
         "functions:ptia-cloud:schedule_weekly_newsletter_cloud"
     )
     & firebase deploy --only $targets --project $ProjectId
@@ -246,4 +256,4 @@ if (-not $SkipRender) {
 
 Write-Host ""
 Write-Host "PTIA newsletter cloud automation is active."
-Write-Host "Schedule: Friday 08:45 Europe/Lisbon; MailerLite delivery: 09:00."
+Write-Host "Schedule: Friday 08:45 Europe/Lisbon; Brevo delivery: 09:00."

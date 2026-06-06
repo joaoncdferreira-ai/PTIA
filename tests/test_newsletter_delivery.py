@@ -15,7 +15,7 @@ from ptia_engine.newsletter_delivery import (
 from ptia_engine.storage import append_jsonl, load_newsletter_issues
 
 
-class FakeMailerLiteClient:
+class FakeBrevoClient:
     def __init__(self):
         self.created = 0
         self.scheduled = 0
@@ -96,7 +96,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
             ],
         )
         send_at = next_friday_send_at()
-        client = FakeMailerLiteClient()
+        client = FakeBrevoClient()
 
         result = schedule_weekly_newsletter(self.root, send_at=send_at, client=client)
 
@@ -104,7 +104,8 @@ class NewsletterDeliveryTests(unittest.TestCase):
         self.assertEqual(result.action, "scheduled")
         self.assertEqual(result.issue.status, "scheduled")
         self.assertEqual(result.issue.send_at, send_at.isoformat())
-        self.assertEqual(result.issue.mailerlite_campaign_id, "campaign_1")
+        self.assertEqual(result.issue.delivery_provider, "brevo")
+        self.assertEqual(result.issue.provider_campaign_id, "campaign_1")
         self.assertEqual(client.created, 1)
         self.assertEqual(client.scheduled, 1)
         self.assertEqual(len(issues), 2)
@@ -132,7 +133,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
         result = schedule_weekly_newsletter(self.root, send_at=send_at, dry_run=True)
 
         self.assertEqual(result.action, "dry_run")
-        self.assertEqual(result.issue.generator_version, "2")
+        self.assertEqual(result.issue.generator_version, "3")
         self.assertNotEqual(result.issue.issue_id, "weekly_outdated")
         self.assertNotIn("PRIVATE DRAFT CONTENT", result.issue.html)
 
@@ -151,11 +152,12 @@ class NewsletterDeliveryTests(unittest.TestCase):
                     text="",
                     status="scheduled",
                     send_at=send_at.isoformat(),
-                    mailerlite_campaign_id="campaign_existing",
+                    delivery_provider="brevo",
+                    provider_campaign_id="campaign_existing",
                 )
             ],
         )
-        client = FakeMailerLiteClient()
+        client = FakeBrevoClient()
 
         result = schedule_weekly_newsletter(self.root, send_at=send_at, client=client)
 
@@ -175,16 +177,17 @@ class NewsletterDeliveryTests(unittest.TestCase):
                     subject="Existing",
                     preheader="",
                     intro="",
-                    html="<html>{$unsubscribe}</html>",
+                    html="<html>{{ unsubscribe }}</html>",
                     text="Existing",
                     item_ids=["item_1"],
                     status="scheduled",
                     send_at=send_at.isoformat(),
-                    mailerlite_campaign_id="campaign_existing",
+                    delivery_provider="brevo",
+                    provider_campaign_id="campaign_existing",
                 )
             ],
         )
-        client = FakeMailerLiteClient()
+        client = FakeBrevoClient()
 
         result = schedule_weekly_newsletter(
             self.root,
@@ -208,17 +211,18 @@ class NewsletterDeliveryTests(unittest.TestCase):
                     subject="Retry",
                     preheader="",
                     intro="",
-                    html="<html>{$unsubscribe}</html>",
+                    html="<html>{{ unsubscribe }}</html>",
                     text="Retry",
                     item_ids=["item_1"],
-                    generator_version="2",
+                    generator_version="3",
                     status="failed",
                     send_at=send_at.isoformat(),
-                    mailerlite_campaign_id="campaign_retry",
+                    delivery_provider="brevo",
+                    provider_campaign_id="campaign_retry",
                 )
             ],
         )
-        client = FakeMailerLiteClient()
+        client = FakeBrevoClient()
 
         result = schedule_weekly_newsletter(self.root, send_at=send_at, client=client)
 

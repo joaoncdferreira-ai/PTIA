@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from dotenv import load_dotenv  # noqa: E402
 
-from ptia_engine.mailerlite import MailerLiteAPIError, MailerLiteConfigError  # noqa: E402
+from ptia_engine.brevo import BrevoAPIError, BrevoConfigError  # noqa: E402
 from ptia_engine.newsletter_delivery import (  # noqa: E402
     PTIA_TIMEZONE,
     next_friday_send_at,
@@ -51,7 +51,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--live",
         action="store_true",
-        help="Create and schedule the MailerLite campaign. Without this flag, only local compilation runs.",
+        help="Create and schedule the Brevo campaign. Without this flag, only local compilation runs.",
     )
     parser.add_argument("--dry-run", action="store_true", help=argparse.SUPPRESS)
     return parser
@@ -112,7 +112,7 @@ def main(argv: list[str] | None = None) -> int:
     send_at = _target_send_at(args.target_date, hour=args.hour, minute=args.minute)
     print("=== PTIA Weekly Newsletter Scheduler ===")
     print(f"Target send time: {send_at.isoformat()}")
-    print(f"Mode: {'MailerLite schedule' if live else 'local compilation'}")
+    print(f"Mode: {'Brevo schedule' if live else 'local compilation'}")
 
     # Detect recovery delivery if running on Friday after 9:00 with default target
     if not args.target_date:
@@ -132,18 +132,18 @@ def main(argv: list[str] | None = None) -> int:
             force=args.force,
             dry_run=not live,
         )
-    except MailerLiteConfigError as exc:
+    except BrevoConfigError as exc:
         details = []
         if exc.missing:
             details.append("faltam: " + ", ".join(exc.missing))
         if exc.invalid:
             details.append("inválidos: " + ", ".join(exc.invalid))
-        msg = "Configuração MailerLite incompleta ou inválida. " + "; ".join(details)
+        msg = "Configuração Brevo incompleta ou inválida. " + "; ".join(details)
         print(f"ERRO: {msg}")
         trigger_alert("PTIA Newsletter Failure", msg, dry_run=not live)
         return 2
-    except MailerLiteAPIError as exc:
-        msg = f"Erro API MailerLite ({exc.status_code}): {exc.body[:200]}"
+    except BrevoAPIError as exc:
+        msg = f"Erro API Brevo ({exc.status_code}): {exc.body[:200]}"
         print(f"ERRO: {msg}")
         trigger_alert("PTIA Newsletter Failure", msg, dry_run=not live)
         return 3
@@ -157,12 +157,12 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Issue: {result.issue.issue_id}")
     print(f"Status: {result.issue.status}")
     if result.campaign_id:
-        print(f"MailerLite campaign: {result.campaign_id}")
+        print(f"Brevo campaign: {result.campaign_id}")
     print(result.message)
     if live and result.action == "scheduled":
         trigger_alert(
             "PTIA Newsletter Scheduled",
-            f"A edição {result.issue.issue_id} ficou agendada no MailerLite para {send_at.strftime('%d/%m/%Y %H:%M')}.",
+            f"A edição {result.issue.issue_id} ficou agendada na Brevo para {send_at.strftime('%d/%m/%Y %H:%M')}.",
         )
     return 0
 

@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import hmac
+import hashlib
 import json
 import os
+import re
 import tempfile
 
 from datetime import datetime, timezone
@@ -14,7 +16,7 @@ from firebase_admin import firestore
 from firebase_functions import https_fn, logger, scheduler_fn
 
 from ptia_engine.cloud_state import MANAGED_STATE_FILES
-from ptia_engine.mailerlite import MailerLiteClient, MailerLiteConfig
+from ptia_engine.brevo import BrevoClient, BrevoConfig
 from ptia_engine.newsletter_delivery import next_friday_send_at, schedule_weekly_newsletter
 from ptia_engine.state_documents import (
     content_sha256,
@@ -32,11 +34,18 @@ def _db():
     return firestore.client()
 
 
-def _json_response(payload: dict[str, Any], status: int = 200) -> https_fn.Response:
+def _json_response(
+    payload: dict[str, Any],
+    status: int = 200,
+    *,
+    headers: dict[str, str] | None = None,
+) -> https_fn.Response:
+    response_headers = {"Content-Type": "application/json; charset=utf-8"}
+    response_headers.update(headers or {})
     return https_fn.Response(
         json.dumps(payload, ensure_ascii=False),
         status=status,
-        headers={"Content-Type": "application/json; charset=utf-8"},
+        headers=response_headers,
     )
 
 
@@ -238,15 +247,123 @@ NEWSLETTER_DATASETS = {
 }
 
 
-def _newsletter_client() -> MailerLiteClient:
-    return MailerLiteClient(
-        MailerLiteConfig.from_env(_secret_json("PTIA_MAILERLITE_CONFIG"))
-    )
+def _newsletter_secret_values() -> dict[str, str]:
+    return _secret_json("PTIA_BREVO_CONFIG")
+
+
+def _newsletter_client(values: dict[str, str] | None = None) -> BrevoClient:
+    return BrevoClient(BrevoConfig.from_env(values or _newsletter_secret_values()))
+
+
+ALLOWED_SUBSCRIBE_ORIGINS = {"https://ptia.pt", "https://www.ptia.pt"}
+EMAIL_PATTERN = re.compile(r"^[^@\s]{1,64}@[^@\s]{1,253}$")
+
+
+def _subscribe_cors_headers(request: https_fn.Request) -> dict[str, str]:
+    origin = request.headers.get("Origin", "")
+    if origin not in ALLOWED_SUBSCRIBE_ORIGINS:
+        return {}
+    return {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Vary": "Origin",
+    }
+
+
+def _signup_limit_key(kind: str, value: str, salt: str) -> str:
+    digest = hashlib.sha256(f"{salt}:{kind}:{value}".encode("utf-8")).hexdigest()
+    return f"{kind}_{digest}"
+
+
+def _consume_signup_limit(key: str, *, limit: int, window_seconds: int) -> bool:
+    reference = _db().collection("newsletter_signup_limits").document(key)
+    now = int(datetime.now(timezone.utc).timestamp())
+    transaction = _db().transaction()
+
+    @firestore.transactional
+    def consume(txn):
+        snapshot = reference.get(transaction=txn)
+        record = snapshot.to_dict() if snapshot.exists else {}
+        window_started = int(record.get("window_started", 0))
+        count = int(record.get("count", 0))
+        if now - window_started >= window_seconds:
+            window_started = now
+            count = 0
+        if count >= limit:
+            return False
+        txn.set(
+            reference,
+            {
+                "window_started": window_started,
+                "count": count + 1,
+                "expires_at": datetime.fromtimestamp(
+                    window_started + window_seconds,
+                    tz=timezone.utc,
+                ),
+            },
+        )
+        return True
+
+    return bool(consume(transaction))
+
+
+@https_fn.on_request(
+    region=REGION,
+    timeout_sec=60,
+    secrets=["PTIA_BREVO_CONFIG"],
+)
+def newsletter_subscribe(request: https_fn.Request) -> https_fn.Response:
+    headers = _subscribe_cors_headers(request)
+    if request.method == "OPTIONS":
+        return _json_response({}, 204, headers=headers)
+    if request.method != "POST":
+        return _json_response({"error": "Method not allowed"}, 405, headers=headers)
+    if request.headers.get("Origin", "") not in ALLOWED_SUBSCRIBE_ORIGINS:
+        return _json_response({"error": "Origin not allowed"}, 403, headers=headers)
+
+    payload = request.get_json(silent=True) or {}
+    email = str(payload.get("email", "")).strip().casefold()
+    first_name = str(payload.get("name", "")).strip()[:100]
+    honeypot = str(payload.get("company", "")).strip()
+    if honeypot:
+        return _json_response({"status": "accepted"}, 202, headers=headers)
+    if len(email) > 320 or not EMAIL_PATTERN.fullmatch(email):
+        return _json_response({"error": "Invalid email"}, 400, headers=headers)
+
+    try:
+        values = _newsletter_secret_values()
+        salt = values.get("PTIA_SUBSCRIBE_SALT", "").strip()
+        if len(salt) < 32:
+            raise RuntimeError("Subscription rate-limit salt is not configured.")
+        forwarded_for = request.headers.get("X-Forwarded-For", "")
+        source_ip = forwarded_for.split(",", 1)[0].strip() or str(request.remote_addr or "")
+        ip_allowed = _consume_signup_limit(
+            _signup_limit_key("ip", source_ip, salt),
+            limit=5,
+            window_seconds=3600,
+        )
+        email_allowed = _consume_signup_limit(
+            _signup_limit_key("email", email, salt),
+            limit=3,
+            window_seconds=86400,
+        )
+        if not ip_allowed or not email_allowed:
+            return _json_response({"error": "Too many requests"}, 429, headers=headers)
+        _newsletter_client(values).create_doi_contact(email, first_name=first_name)
+    except Exception as exc:
+        logger.error("Newsletter subscription failed.", error=type(exc).__name__)
+        return _json_response({"error": "Subscription unavailable"}, 503, headers=headers)
+    return _json_response({"status": "confirmation_sent"}, 201, headers=headers)
 
 
 def _newsletter_preflight_result(data_dir: Path) -> dict[str, Any]:
     client = _newsletter_client()
-    groups = client.validate_groups()
+    lists = client.validate_lists()
+    sender = client.validate_sender()
+    recipient_count = client.validate_capacity()
+    doi_template = client.validate_doi_template()
+    account = client.get_account()
     send_at = next_friday_send_at()
     result = schedule_weekly_newsletter(
         data_dir,
@@ -258,13 +375,21 @@ def _newsletter_preflight_result(data_dir: Path) -> dict[str, Any]:
         "issue_id": result.issue.issue_id,
         "item_count": len(result.issue.item_ids),
         "send_at": send_at.isoformat(),
-        "groups": [
+        "provider": "brevo",
+        "recipient_count": recipient_count,
+        "account_email": str(account.get("email", "")),
+        "sender": {
+            "id": str(sender.get("id", "")),
+            "email": str(sender.get("email", "")),
+            "active": sender.get("active") is True,
+        },
+        "doi_template_id": int(doi_template.get("id", 0)),
+        "lists": [
             {
-                "id": str(group.get("id", "")),
-                "name": str(group.get("name", "")),
-                "active_count": int(group.get("active_count", 0)),
+                "id": str(item.get("id", "")),
+                "name": str(item.get("name", "")),
             }
-            for group in groups
+            for item in lists
         ],
     }
 
@@ -272,7 +397,7 @@ def _newsletter_preflight_result(data_dir: Path) -> dict[str, Any]:
 @https_fn.on_request(
     region=REGION,
     timeout_sec=120,
-    secrets=["PTIA_STATE_TOKEN", "PTIA_MAILERLITE_CONFIG"],
+    secrets=["PTIA_STATE_TOKEN", "PTIA_BREVO_CONFIG"],
 )
 def newsletter_preflight(request: https_fn.Request) -> https_fn.Response:
     if not _authorized(request):
@@ -297,17 +422,21 @@ def newsletter_preflight(request: https_fn.Request) -> https_fn.Response:
     retry_count=3,
     min_backoff_seconds=60,
     max_backoff_seconds=600,
-    secrets=["PTIA_MAILERLITE_CONFIG"],
+    secrets=["PTIA_BREVO_CONFIG"],
 )
 def schedule_weekly_newsletter_cloud(event: scheduler_fn.ScheduledEvent) -> None:
     with tempfile.TemporaryDirectory(prefix="ptia-newsletter-") as temp_dir:
         data_dir = Path(temp_dir)
         _materialize_state(data_dir, NEWSLETTER_DATASETS)
         try:
+            client = _newsletter_client()
+            client.validate_lists()
+            client.validate_sender()
+            client.validate_capacity()
             result = schedule_weekly_newsletter(
                 data_dir,
                 send_at=next_friday_send_at(),
-                client=_newsletter_client(),
+                client=client,
             )
         except Exception as exc:
             _persist_local_dataset(data_dir, "newsletter_issues.jsonl")
