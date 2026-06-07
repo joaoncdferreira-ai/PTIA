@@ -238,6 +238,26 @@ class BrevoTests(unittest.TestCase):
         self.assertEqual(seen[0][2]["includeListIds"], [123])
         self.assertEqual(seen[0][2]["attributes"], {"FIRSTNAME": "João"})
 
+    def test_client_creates_utf8_double_opt_in_template(self):
+        seen = []
+
+        def fake_transport(request, *, timeout):
+            seen.append(json.loads(request.data.decode("utf-8")))
+            return FakeResponse({"id": 88})
+
+        client = BrevoClient(self._config(), transport=fake_transport)
+
+        self.assertEqual(client.create_doi_template(), 88)
+        payload = seen[0]
+        content = payload["subject"] + payload["htmlContent"]
+        self.assertIn("subscrição", content)
+        self.assertIn("não", content)
+        self.assertIn("serás", content)
+        self.assertIn("Inteligência", content)
+        self.assertIn("{{ doubleoptin }}", content)
+        self.assertNotIn("??", content)
+        self.assertEqual(payload["tag"], "optin")
+
     def test_client_validates_double_opt_in_template(self):
         def fake_transport(request, *, timeout):
             return FakeResponse({"id": 88, "isActive": True, "doiTemplate": True})
