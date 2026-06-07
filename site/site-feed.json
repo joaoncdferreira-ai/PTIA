@@ -1,7 +1,77 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-07T20:57:50+00:00",
+  "updated_at": "2026-06-07T21:15:09+00:00",
   "posts": [
+    {
+      "id": "post_fbd5f6ef66313ab24e",
+      "title": "A IA já pilota aviões. O que muda na adoção tecnológica?",
+      "body": "A inteligência artificial está a ser desenvolvida para pilotar aviões, e a indústria da aviação já começa a adotá-la. Este é o facto. O que este movimento nos diz é que o ponto crítico para a adoção de IA em setores tradicionais não é a capacidade técnica, mas a confiança no sistema e a regulação que o valida. Não se trata de uma inovação para o futuro, mas de uma realidade em execução que redefine o patamar de exigência para a automação.\n\nPara Portugal, esta notícia sublinha uma oportunidade e um imperativo. A questão não é se a IA vai chegar a setores como a logística, a manufatura ou os serviços públicos; a questão é como nos preparamos para a sua integração. O desafio passa por criar quadros de regulação ágeis que permitam a experimentação e a validação de novas tecnologias, sem comprometer a segurança ou a competitividade. A aviação, com os seus rigorosos protocolos, mostra o caminho: a adoção em larga escala exige uma estrutura de compliance robusta, capaz de antecipar riscos e garantir a fiabilidade.\n\nO que se segue não é um debate sobre o 'se' da IA, mas sobre o 'como'. Como se constroem os pipelines de talento que sustentam esta transição? Como se adaptam os legacy systems para integrar estas novas camadas de inteligência? E, mais importante, como se posicionam as empresas e os decisores portugueses para liderar, e não apenas seguir, esta onda de transformação? A experiência da aviação sugere que a resposta está na construção de ecossistemas onde a inovação tecnológica e a segurança regulatória evoluem em conjunto, impulsionando a produtividade e a competitividade a uma nova escala.\n\nFonte: https://cnnportugal.iol.pt/inteligencia-artificial/a-ia-esta-a-aprender-a-pilotar-avioes-e-a-aviacao-esta-a-comecar-a-adota-la/20260606/666191a6d34e65a7402a5089",
+      "source_urls": [
+        "https://cnnportugal.iol.pt/inteligencia-artificial/a-ia-esta-a-aprender-a-pilotar-avioes-e-a-aviacao-esta-a-comecar-a-adota-la/20260606/666191a6d34e65a7402a5089"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5fa223a1a0f6c9c8a5_72bef983_ChatGPT-Image-7_06_2026-22_02_40.png",
+      "image_url": "assets/final/post_5eb8f715bec888cb8d_site_1600x900.jpg",
+      "published_at": "2026-06-08T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-ia-ja-pilota-avioes-o-que-muda-na-adocao-tecnologica-fbd5f6ef66313ab24e"
+    },
+    {
+      "id": "post_f4a3a06b821829927f",
+      "title": "Quando a IA se constrói a si mesma",
+      "body": "A Anthropic discute a aceleração do desenvolvimento de sistemas de IA impulsionada pela própria IA, com engenheiros da empresa a produzir 8 vezes mais código por trimestre do que em anos anteriores.\n\nA corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.\n\nEste tema é de extrema relevância para a PTIA, pois aborda a capacidade de auto-melhoria da IA, o que pode levar a avanços exponenciais e a novos desafios em termos de controlo e segurança.\n\nO vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.\n\nFonte: https://www.anthropic.com/news/when-ai-builds-itself",
+      "source_urls": [
+        "https://www.anthropic.com/news/when-ai-builds-itself"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_46b73fb30a55f13cd1_252b5062_ChatGPT-Image-7_06_2026-22_06_59.png",
+      "image_url": "assets/final/post_02d20b0f5e7c52bf98_site_1600x900.jpg",
+      "published_at": "2026-06-08T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/quando-a-ia-se-constroi-a-si-mesma-f4a3a06b821829927f"
+    },
+    {
+      "id": "post_158eb39c5b06588bd0",
+      "title": "O Open-Source e a Arquitetura da IA em Portugal",
+      "body": "O open-source está a ganhar um protagonismo inegável no universo da inteligência artificial. Longe de ser um conceito novo, a sua relevância crescente na IA promete reconfigurar não só o desenvolvimento de soluções, como também a arquitetura da colaboração entre empresas e universidades em Portugal, com um impacto direto na democratização do acesso a estas tecnologias.\n\nContrariamente à ideia de que a inovação em IA depende exclusivamente de grandes laboratórios fechados, a proliferação de modelos e frameworks open-source está a inverter essa lógica. Esta mudança não é meramente técnica; é uma redefinição do acesso ao capital tecnológico. Para Portugal, onde o investimento em I&D nem sempre acompanha o ritmo das grandes economias, a capacidade de alavancar recursos abertos torna-se um fator crítico de competitividade.\n\nO verdadeiro valor não reside apenas na disponibilidade do código, mas na capacidade de o adaptar e integrar. As empresas e universidades que souberem construir sobre estas fundações abertas, personalizando modelos para *use cases* específicos e criando *pipelines* de desenvolvimento ágeis, serão as que realmente capturarão valor. A colaboração entre estes dois mundos – academia e indústria – pode acelerar o ciclo de inovação, transformando o acesso democratizado em vantagem de execução.\n\nIsto significa que a barreira de entrada para desenvolver e aplicar IA em Portugal baixa consideravelmente. Já não se trata de replicar o que os gigantes tecnológicos fazem, mas de construir sobre os seus alicerces. A questão, portanto, passa a ser: quem em Portugal está preparado para não só consumir, mas também contribuir para este ecossistema open-source, garantindo que as nossas necessidades específicas e o nosso talento se reflitam nos modelos futuros?\n\nFonte: https://observador.pt/2026/06/06/como-o-opensource-muda-a-ia-no-mundo/",
+      "source_urls": [
+        "https://observador.pt/2026/06/06/como-o-opensource-muda-a-ia-no-mundo/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2dd46e681744362e53_cb7ff6b9_ChatGPT-Image-7_06_2026-21_53_24.png",
+      "image_url": "assets/final/post_e317cd3975bf569f17_site_1600x900.jpg",
+      "published_at": "2026-06-08T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/o-open-source-e-a-arquitetura-da-ia-em-portugal-158eb39c5b06588bd0"
+    },
+    {
+      "id": "post_41d383cb55bb5faa9d",
+      "title": "Trump Pondera Entrada do Estado em Empresas de Inteligência Artificial",
+      "body": "Donald Trump afirmou que pondera a participação do Estado em empresas de inteligência artificial.\n\nO relato mostra a IA a sair do laboratório e a entrar na política industrial: o poder já não está só em lançar modelos, está em definir quem pode treiná-los, comprá-los e exportá-los.\n\nEmbora seja uma notícia internacional, a discussão sobre a intervenção estatal em empresas de IA pode ter implicações para o modelo de financiamento e desenvolvimento de IA em Portugal, especialmente no contexto da Agenda Nacional de IA.\n\nPara empresas europeias, este tipo de decisão transforma tecnologia em geopolítica operacional: acesso, fornecedores e compliance passam a fazer parte da mesma conversa.\n\nFonte: https://observador.pt/2026/06/05/trump-diz-ponderar-participacao-do-estado-em-empresas-de-ia/",
+      "source_urls": [
+        "https://observador.pt/2026/06/05/trump-diz-ponderar-participacao-do-estado-em-empresas-de-ia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d86030d2d777f0c2a3_499dc079_ChatGPT-Image-7_06_2026-21_45_14.png",
+      "image_url": "assets/final/post_4f7c54afe11be6f3d8_site_1600x900.jpg",
+      "published_at": "2026-06-08T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/trump-pondera-entrada-do-estado-em-empresas-de-inteligencia-artificial-41d383cb55bb5faa9d"
+    },
     {
       "id": "post_09db609314e0344146",
       "title": "Lisboa no Top 10 Europeu de Ecossistemas de Startups com Crescimento Acelerado",
