@@ -2,8 +2,9 @@ name: PTIA Weekly Newsletter
 
 on:
   schedule:
-    # 08:35 in Lisbon: first entry covers daylight saving time, second winter.
-    - cron: "35 7,8 * * 5"
+    # The runner accepts only the entry matching Lisbon's current UTC offset.
+    - cron: "35 7 * * 5"
+    - cron: "35 8 * * 5"
   workflow_dispatch:
     inputs:
       live:
@@ -53,6 +54,7 @@ jobs:
           python scripts/github_newsletter_runner.py
           --live
           --scheduled-trigger
+          --scheduled-cron "${{ github.event.schedule }}"
           --json
 
       - name: Manually create or recover campaign

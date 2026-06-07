@@ -30,10 +30,25 @@ REQUIRED_DATASETS = {
     "trend_signals.jsonl",
 }
 
+SUMMER_SCHEDULE = "35 7 * * 5"
+WINTER_SCHEDULE = "35 8 * * 5"
+RECOVERY_DEADLINE_HOUR = 18
 
-def scheduled_window_is_open(now: datetime) -> bool:
+
+def expected_scheduled_cron(now: datetime) -> str:
     local = now.astimezone(ptia_timezone(PTIA_TIMEZONE))
-    return local.weekday() == 4 and 8 <= local.hour <= 10
+    offset = local.utcoffset()
+    offset_hours = int(offset.total_seconds() // 3600) if offset else 0
+    return SUMMER_SCHEDULE if offset_hours == 1 else WINTER_SCHEDULE
+
+
+def scheduled_window_is_open(now: datetime, scheduled_cron: str) -> bool:
+    local = now.astimezone(ptia_timezone(PTIA_TIMEZONE))
+    return (
+        local.weekday() == 4
+        and local.hour < RECOVERY_DEADLINE_HOUR
+        and scheduled_cron == expected_scheduled_cron(local)
+    )
 
 
 def ensure_runner_datasets(data_dir: Path) -> None:
@@ -59,7 +74,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--scheduled-trigger",
         action="store_true",
-        help="Skip outside the Friday 08:00-10:59 Europe/Lisbon recovery window.",
+        help="Apply the Friday Europe/Lisbon schedule guard.",
+    )
+    parser.add_argument(
+        "--scheduled-cron",
+        default="",
+        help="GitHub schedule expression that triggered the workflow.",
     )
     parser.add_argument("--json", action="store_true", dest="json_output")
     return parser
@@ -68,17 +88,24 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None, *, now: datetime | None = None) -> int:
     args = build_parser().parse_args(argv)
     local_now = (now or datetime.now(ptia_timezone())).astimezone(ptia_timezone())
-    if args.scheduled_trigger and not scheduled_window_is_open(local_now):
+    if args.scheduled_trigger and not scheduled_window_is_open(
+        local_now,
+        args.scheduled_cron,
+    ):
         payload = {
-            "action": "skipped_outside_lisbon_window",
+            "action": "skipped_inactive_lisbon_schedule",
             "now": local_now.isoformat(),
+            "scheduled_cron": args.scheduled_cron,
         }
         print(json.dumps(payload) if args.json_output else f"SKIP: {payload}")
         append_step_summary(
             [
                 "## PTIA newsletter",
                 "",
-                f"Skipped outside Lisbon execution window: `{local_now.isoformat()}`.",
+                (
+                    "Skipped inactive Lisbon schedule: "
+                    f"`{args.scheduled_cron or 'missing'}` at `{local_now.isoformat()}`."
+                ),
             ]
         )
         return 0

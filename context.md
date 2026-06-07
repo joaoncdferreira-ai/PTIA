@@ -141,7 +141,7 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Copy honesta**: linguagem de performance/engagement só é usada quando `content_performance.jsonl` contém resultados mensuráveis; sem dados, a edição assume explicitamente curadoria editorial.
 * **Idempotência**: campanhas `scheduled`/`sent` não são duplicadas nem com `--force`; retries reutilizam o `provider_campaign_id`; registos MailerLite antigos continuam legíveis.
 * **Automação local**: a tarefa Windows corre `scripts/run_newsletter_task.ps1` às sextas 08:45, usa `--live`, agenda para 09:00 e escreve `data/newsletter_scheduler.log`.
-* **Limite atual**: a ativação real depende de credenciais Brevo, lista de subscritores, remetente ativo e audiência máxima de 300 no plano gratuito.
+* **Limite atual**: a audiência é bloqueada acima de 300 destinatários para respeitar o plano gratuito Brevo.
 * **Runbook**: ver `docs/NEWSLETTER_AUTOMATION.md`.
 
 ### Cloud Automation Foundation (6 de Junho de 2026)
@@ -150,14 +150,16 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Deploy desta fase**: apenas `state_api`, `newsletter_preflight` e `schedule_weekly_newsletter_cloud`; Instagram e analytics ficam fora da ativacao.
 * **Horario garantido**: compilacao sexta as 08:45 `Europe/Lisbon`; Brevo recebe o timestamp ISO com offset de Lisboa e agenda para as 09:00.
 * **Seguranca**: Firestore nega acesso direto; o state API exige `PTIA_STATE_TOKEN` dedicado e a integracao fica desligada por feature flag ate ao preflight.
-* **Bloqueio externo**: ativacao requer plano Firebase Blaze, login Firebase renovado, API key/lista/remetente Brevo e uma API key Render.
+* **Estado**: esta arquitetura Firebase ficou documentada como opção futura e não é necessária para a automação ativa.
 * **Runbook cloud da newsletter**: ver `docs/NEWSLETTER_CLOUD_AUTOMATION.md`.
 
 ### Newsletter GitHub Automation (7 de Junho de 2026)
 * **Executor gratuito**: GitHub Actions substitui Firebase como scheduler ativo; nao requer Blaze, Firestore nem Render para o envio semanal.
-* **Horario**: workflow corre nos dois equivalentes UTC de sexta 08:35 Europe/Lisbon e uma guarda de timezone aceita apenas a janela local de recuperacao.
+* **Horario**: workflow corre nos dois equivalentes UTC de sexta 08:35 Europe/Lisbon; a guarda de timezone aceita apenas o cron correspondente ao offset ativo, evitando duas execuções sazonais.
 * **Fonte editorial**: usa `data/final_posts.jsonl`, ja versionado pelo fluxo de publicacao, e seleciona apenas posts recentes `scheduled`/`published`.
 * **Idempotencia remota**: antes de criar uma campanha, consulta a Brevo pelo nome canonico `PTIA Weekly - YYYY-MM-DD`; campanhas queued/scheduled/sent nao sao duplicadas e drafts sao reutilizados.
 * **Lista vazia**: com zero subscritores, valida a compilacao e termina com sucesso sem criar campanha. O primeiro envio passa a ser automatico quando existir um contacto confirmado.
 * **Plano gratuito**: bloqueio explicito acima de 300 destinatarios.
 * **Ativacao**: `scripts/activate_newsletter_github.ps1`; runbook em `docs/NEWSLETTER_GITHUB_AUTOMATION.md`.
+* **Estado de producao**: secrets GitHub configurados, sender `info@ptia.pt` validado e teste remoto live concluido com `skipped_no_recipients`.
+* **Subscricoes**: formulario nativo `PTIA Weekly - Site` publicado na Brevo, ligado a lista `PTIA Weekly` e a double opt-in; o site mantém o mesmo formulario visual e nao expoe a API key.

@@ -7,7 +7,8 @@ Firebase Blaze, Firestore and Render secrets are not required.
 
 The workflow `.github/workflows/weekly-newsletter.yml` runs at both possible
 UTC equivalents of 08:35 Europe/Lisbon. A timezone guard permits execution only
-on Friday during the 08:00-10:59 Lisbon recovery window.
+for the cron expression matching Lisbon's active UTC offset. This prevents the
+summer and winter entries from both creating work in the same week.
 
 ## Data source
 
@@ -46,9 +47,21 @@ Secrets are never printed or committed.
 
 ## Free Brevo signup form
 
-Without Firebase, public signup should use a native Brevo full-page/embedded
-form with double confirmation, GDPR fields and CAPTCHA. Brevo provides iframe,
-HTML and simple HTML embed code from Contacts > Forms > Sign-up.
+The production homepage posts directly to the native Brevo form
+`PTIA Weekly - Site`. The form:
 
-The existing site form must only be switched after the Brevo form is published
-and its embed code is available. This is separate from weekly delivery.
+- targets list `PTIA Weekly`;
+- uses double opt-in with template `PTIA Weekly - Double opt-in`;
+- preserves the existing PTIA card and interaction;
+- exposes no API key in the browser;
+- requires no Firebase or Vercel function.
+
+MailerLite is no longer loaded by the homepage.
+
+## Production status
+
+- GitHub secrets configured.
+- Brevo sender `info@ptia.pt` active with DKIM and DMARC.
+- Controlled live workflow passed with zero recipients and created no campaign.
+- Native signup form published and connected to the weekly list.
+- Next automatic target: Friday at 09:00 Europe/Lisbon.

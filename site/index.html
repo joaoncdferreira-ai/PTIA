@@ -43,16 +43,6 @@
       ]
     }
   </script>
-  <!-- MailerLite Universal -->
-  <script>
-    (function(w,d,e,u,f,l,n){
-      w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
-      l=d.createElement(e); l.async=1; l.src=u;
-      n=d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l,n);
-    })(window,document,"script","https://assets.mailerlite.com/js/universal.js","ml");
-    ml("account", "2352121");
-  </script>
-  <!-- End MailerLite Universal -->
 <!-- ptia-analytics -->
 <script defer data-domain="ptia.pt" src="https://plausible.io/js/script.tagged-events.js"></script>
 <!-- /ptia-analytics -->
@@ -248,19 +238,24 @@
           <form
             id="ptia-newsletter-form"
             class="newsletter-form"
+            action="https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxoj8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
+            method="post"
+            target="ptia-newsletter-frame"
           >
             <label>
               <span>Email</span>
-              <input type="email" name="email" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
+              <input type="email" name="EMAIL" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
             </label>
             <label>
               <span>Nome</span>
-              <input type="text" name="name" placeholder="Nome" autocomplete="given-name">
+              <input type="text" name="FIRSTNAME" placeholder="Nome" autocomplete="given-name">
             </label>
-            <input type="text" name="company" tabindex="-1" autocomplete="off" hidden>
+            <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
+            <input type="hidden" name="locale" value="pt">
             <button type="submit">Subscrever</button>
             <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
           </form>
+          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
           <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
         </div>
       </div>

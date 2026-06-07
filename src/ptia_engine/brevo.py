@@ -226,7 +226,7 @@ class BrevoClient:
                     "color:#14110c;background:#faf6ec;padding:32px\">"
                     "<h1 style=\"font-family:Georgia,serif\">Confirma a subscrição</h1>"
                     "<p>Falta apenas confirmar o teu email para receberes a PTIA Weekly.</p>"
-                    "<p><a href=\"{{ params.DOIurl }}\" style=\"display:inline-block;"
+                    "<p><a href=\"{{ doubleoptin }}\" style=\"display:inline-block;"
                     "background:#14110c;color:#faf6ec;padding:12px 20px;"
                     "text-decoration:none\">Confirmar subscrição</a></p>"
                     "<p>Se não pediste esta subscrição, ignora este email.</p>"
@@ -234,7 +234,7 @@ class BrevoClient:
                 ),
                 "isActive": True,
                 "replyTo": self.config.reply_to,
-                "tag": "ptia-weekly-doi",
+                "tag": "optin",
             },
         )
         template_id = int(payload.get("id", 0))

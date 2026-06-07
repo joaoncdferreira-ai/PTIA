@@ -59,8 +59,16 @@ function Read-SecretText {
 
 function Set-GitHubSecret {
     param([string]$Name, [string]$Value)
-    $Value | & gh secret set $Name
-    if ($LASTEXITCODE -ne 0) {
+    $startInfo = [Diagnostics.ProcessStartInfo]::new()
+    $startInfo.FileName = "gh"
+    $startInfo.Arguments = "secret set $Name"
+    $startInfo.UseShellExecute = $false
+    $startInfo.RedirectStandardInput = $true
+    $process = [Diagnostics.Process]::Start($startInfo)
+    $process.StandardInput.Write($Value)
+    $process.StandardInput.Close()
+    $process.WaitForExit()
+    if ($process.ExitCode -ne 0) {
         throw "Failed to configure GitHub secret $Name."
     }
 }

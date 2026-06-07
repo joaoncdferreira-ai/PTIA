@@ -32,20 +32,52 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.root, ignore_errors=True)
 
-    def test_schedule_window_accepts_friday_recovery_hours(self):
+    def test_schedule_guard_accepts_only_summer_cron_during_dst(self):
         tz = ptia_timezone()
 
         self.assertTrue(
-            RUNNER.scheduled_window_is_open(datetime(2026, 6, 12, 8, 35, tzinfo=tz))
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 6, 12, 8, 35, tzinfo=tz),
+                RUNNER.SUMMER_SCHEDULE,
+            )
         )
+        self.assertFalse(
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 6, 12, 9, 35, tzinfo=tz),
+                RUNNER.WINTER_SCHEDULE,
+            )
+        )
+
+    def test_schedule_guard_accepts_only_winter_cron_outside_dst(self):
+        tz = ptia_timezone()
+
         self.assertTrue(
-            RUNNER.scheduled_window_is_open(datetime(2026, 6, 12, 10, 0, tzinfo=tz))
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 12, 11, 8, 35, tzinfo=tz),
+                RUNNER.WINTER_SCHEDULE,
+            )
         )
         self.assertFalse(
-            RUNNER.scheduled_window_is_open(datetime(2026, 6, 12, 7, 35, tzinfo=tz))
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 12, 11, 7, 35, tzinfo=tz),
+                RUNNER.SUMMER_SCHEDULE,
+            )
+        )
+
+    def test_schedule_guard_rejects_non_friday_and_late_recovery(self):
+        tz = ptia_timezone()
+
+        self.assertFalse(
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 6, 13, 8, 35, tzinfo=tz),
+                RUNNER.SUMMER_SCHEDULE,
+            )
         )
         self.assertFalse(
-            RUNNER.scheduled_window_is_open(datetime(2026, 6, 13, 8, 35, tzinfo=tz))
+            RUNNER.scheduled_window_is_open(
+                datetime(2026, 6, 12, 18, 0, tzinfo=tz),
+                RUNNER.SUMMER_SCHEDULE,
+            )
         )
 
     def test_runner_creates_missing_optional_datasets(self):
@@ -65,6 +97,8 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
                 "--data-dir",
                 str(self.root),
                 "--scheduled-trigger",
+                "--scheduled-cron",
+                RUNNER.WINTER_SCHEDULE,
                 "--json",
             ],
             now=datetime(2026, 6, 12, 7, 35, tzinfo=tz),
@@ -127,9 +161,11 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        self.assertIn('cron: "35 7,8 * * 5"', workflow)
+        self.assertIn('cron: "35 7 * * 5"', workflow)
+        self.assertIn('cron: "35 8 * * 5"', workflow)
         self.assertIn("contents: read", workflow)
         self.assertIn("--scheduled-trigger", workflow)
+        self.assertIn('--scheduled-cron "${{ github.event.schedule }}"', workflow)
         self.assertNotIn("firebase", workflow.casefold())
 
 
