@@ -575,7 +575,7 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
-  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-4">
+  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-5">
   <script>
     try {{ document.documentElement.dataset.theme = localStorage.getItem("ptia-theme") === "dark" ? "dark" : "light"; }} catch (_) {{}}
   </script>
@@ -1016,7 +1016,7 @@ def render_resources_page(payload: dict) -> str:
     leaders = "".join(
         (
             leader(
-                label="Empresas de IA em Portugal · #1",
+                label="Empresa",
                 name=leading_company["name"],
                 score=leading_company["score"],
                 href="/ia-em-portugal/",
@@ -1024,7 +1024,7 @@ def render_resources_page(payload: dict) -> str:
                 change=leading_company.get("ranking_change"),
             ),
             leader(
-                label="Pessoas da IA em Portugal · #1",
+                label="Pessoa",
                 name=leading_person["name"],
                 score=leading_person["score"],
                 href="/ia-em-portugal/",
@@ -1032,7 +1032,7 @@ def render_resources_page(payload: dict) -> str:
                 change=leading_person.get("ranking_change"),
             ),
             leader(
-                label="Ferramentas de IA · #1",
+                label="Ferramenta",
                 name=leading_tool["name"],
                 score=leading_tool["score"],
                 href="/ferramentas/",
@@ -1040,7 +1040,7 @@ def render_resources_page(payload: dict) -> str:
                 change=leading_tool.get("ranking_change"),
             ),
             leader(
-                label="Prompts PTIA · #1 da semana",
+                label="Prompt",
                 name=leading_prompt["title"],
                 score=leading_prompt["score"],
                 href="/prompts/",

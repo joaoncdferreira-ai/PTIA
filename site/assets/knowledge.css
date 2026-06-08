@@ -137,7 +137,10 @@
   max-width: 12ch;
   margin: 0;
   color: var(--ink);
-  font: 400 clamp(54px, 5.8vw, 78px)/.94 var(--serif);
+  font-family: var(--serif);
+  font-size: clamp(46px, 5.2vw, 68px);
+  font-weight: 400;
+  line-height: 1.04;
   letter-spacing: 0;
 }
 
@@ -179,9 +182,16 @@
 }
 
 .weekly-leader-label {
-  color: var(--knowledge-primary);
-  font: 600 10px/1.2 var(--mono);
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  min-height: 24px;
+  padding-left: 10px;
+  border-left: 3px solid var(--knowledge-accent);
+  color: var(--ink);
+  font: 700 15px/1.1 var(--sans);
+  letter-spacing: 0;
 }
 
 .weekly-leader > strong {
@@ -993,9 +1003,13 @@
     gap: 16px;
     padding: 28px 0 30px;
   }
-  .resources-hero-intro h1 { font-size: 42px; }
+  .resources-hero-intro h1 {
+    font-size: 40px;
+    line-height: 1.02;
+  }
   .resources-hero-intro > p { font-size: 16px; }
   .weekly-leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .weekly-leader-label { font-size: 13px; }
   .weekly-leader {
     grid-template-rows: auto minmax(48px, auto) auto auto;
     min-height: 150px;
