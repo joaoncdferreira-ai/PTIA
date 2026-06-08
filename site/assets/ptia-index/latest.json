@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "edition": "2026-W24",
-  "updated_at": "2026-06-08T10:15:42+00:00",
+  "updated_at": "2026-06-08T12:23:58+00:00",
   "signal_window_days": 84,
-  "signal_articles": 67,
+  "signal_articles": 68,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. Combina uma base editorial versionada com sinais dos artigos PTIA dos últimos 84 dias.",
   "companies": [
@@ -5445,7 +5445,7 @@
       ],
       "baseline_score": 95,
       "score": 96.1,
-      "topical_hits": 133,
+      "topical_hits": 135,
       "rank": 1,
       "previous_rank": 1,
       "movement": 0,
@@ -5541,7 +5541,7 @@
       ],
       "baseline_score": 91,
       "score": 93.0,
-      "topical_hits": 191,
+      "topical_hits": 193,
       "rank": 5,
       "previous_rank": 5,
       "movement": 0,
@@ -5588,8 +5588,8 @@
         "formação"
       ],
       "baseline_score": 92,
-      "score": 91.5,
-      "topical_hits": 48,
+      "score": 91.6,
+      "topical_hits": 49,
       "rank": 7,
       "previous_rank": 7,
       "movement": 0,
@@ -5624,6 +5624,30 @@
       }
     },
     {
+      "id": "plano-implementacao",
+      "title": "Plano de implementação sem saltar dependências",
+      "category": "coding",
+      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
+      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
+      "keywords": [
+        "arquitetura",
+        "implementação",
+        "software",
+        "automação"
+      ],
+      "baseline_score": 93,
+      "score": 91.2,
+      "topical_hits": 39,
+      "rank": 9,
+      "previous_rank": 10,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
       "id": "analise-dados",
       "title": "Analisar dados antes de procurar uma história",
       "category": "produtividade",
@@ -5638,37 +5662,13 @@
       "baseline_score": 91,
       "score": 91.1,
       "topical_hits": 52,
-      "rank": 9,
-      "previous_rank": 9,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "plano-implementacao",
-      "title": "Plano de implementação sem saltar dependências",
-      "category": "coding",
-      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
-      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
-      "keywords": [
-        "arquitetura",
-        "implementação",
-        "software",
-        "automação"
-      ],
-      "baseline_score": 93,
-      "score": 90.9,
-      "topical_hits": 37,
       "rank": 10,
-      "previous_rank": 10,
-      "movement": 0,
+      "previous_rank": 9,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -6024,7 +6024,7 @@
         "api"
       ],
       "english_term": "Application Programming Interface",
-      "mentions_12w": 17
+      "mentions_12w": 18
     },
     {
       "id": "rag",
