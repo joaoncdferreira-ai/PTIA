@@ -17,6 +17,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
     steps:
       - name: Checkout current editorial state
@@ -39,13 +41,13 @@ jobs:
 
       - name: Commit generated edition
         run: |
-          if git diff --quiet -- site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index; then
+          if git diff --quiet -- config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index; then
             echo "No knowledge changes."
             exit 0
           fi
           git config user.name "ptia-automation"
           git config user.email "actions@users.noreply.github.com"
-          git add site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index
+          git add config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index
           git commit -m "Update PTIA weekly knowledge index"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

@@ -46,6 +46,10 @@ from ptia_engine.routes.newsletter import (
     handle_newsletter_generate,
     handle_newsletter_status,
 )
+from ptia_engine.routes.knowledge import (
+    handle_knowledge_review,
+    handle_knowledge_run,
+)
 
 
 POST_ROUTES = {
@@ -92,6 +96,10 @@ POST_ROUTES = {
     # Newsletter
     "/api/newsletter-generate": handle_newsletter_generate,
     "/api/newsletter-status": handle_newsletter_status,
+
+    # Weekly knowledge/resources
+    "/api/knowledge-review": handle_knowledge_review,
+    "/api/knowledge-run": handle_knowledge_run,
 }
 
 def dashboard_do_post(handler):

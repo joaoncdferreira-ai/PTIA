@@ -163,3 +163,11 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Ativacao**: `scripts/activate_newsletter_github.ps1`; runbook em `docs/NEWSLETTER_GITHUB_AUTOMATION.md`.
 * **Estado de producao**: secrets GitHub configurados, sender `info@ptia.pt` validado e teste remoto live concluido com `skipped_no_recipients`.
 * **Subscricoes**: formulario nativo `PTIA Weekly - Site` publicado na Brevo, ligado a lista `PTIA Weekly` e a double opt-in; o site mantém o mesmo formulario visual e nao expoe a API key.
+
+### Resources External Automation (8 de Junho de 2026)
+* **Pesquisa semanal**: `weekly-knowledge.yml` usa Gemini com Google Search grounding para procurar alteracoes em pessoas, empresas, ferramentas, prompts e glossario.
+* **Publicacao por confianca**: alteracoes com confianca >= 92%, duas fontes independentes e movimentos dentro dos limites sao aplicadas automaticamente.
+* **Fila de excecoes**: casos suspeitos ou incompletos ficam em `data/knowledge_review.jsonl`; falhas da API nao bloqueiam a edicao valida anterior.
+* **Dashboard**: nova tab `Recursos` com historico, fontes, confianca, validacao e acoes Aprovar/Rejeitar/Executar agora.
+* **Executor**: segunda-feira as 09:00 Europe/Lisbon via GitHub Actions; exige o secret `GEMINI_API_KEY` para pesquisa externa.
+* **Runbook**: ver `docs/KNOWLEDGE_AUTOMATION.md`.

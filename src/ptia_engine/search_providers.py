@@ -324,6 +324,23 @@ Regras:
         query = f"discovery-source:{source_name}:{source_url}"
         return self._generate_candidates(prompt, query=query, limit=limit)
 
+    def grounded_json(self, prompt: str, *, temperature: float = 0.1) -> dict[str, Any]:
+        """Return structured JSON backed by Google Search grounding."""
+        if not self.available:
+            raise RuntimeError("GEMINI_API_KEY não está configurada.")
+        response_data = self._generate_json_response(
+            prompt,
+            temperature=temperature,
+            tools=[{"google_search": {}}],
+        )
+        candidate = (response_data.get("candidates") or [{}])[0]
+        parts = ((candidate.get("content") or {}).get("parts") or [])
+        text = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict))
+        parsed = _extract_json(text)
+        if not isinstance(parsed, dict):
+            raise RuntimeError("Gemini devolveu uma resposta estruturada inválida.")
+        return parsed
+
     def rewrite_final_post(
         self,
         *,
@@ -575,7 +592,13 @@ Responde apenas em JSON válido:
             self._generate_json_response(prompt, temperature=temperature)
         )
 
-    def _generate_json_response(self, prompt: str, *, temperature: float) -> dict[str, Any]:
+    def _generate_json_response(
+        self,
+        prompt: str,
+        *,
+        temperature: float,
+        tools: list[dict[str, Any]] | None = None,
+    ) -> dict[str, Any]:
         if not self.available:
             raise RuntimeError("GEMINI_API_KEY não está configurada.")
 
@@ -590,6 +613,8 @@ Responde apenas em JSON válido:
                 "thinkingConfig": {"thinkingBudget": 0},
             },
         }
+        if tools:
+            payload["tools"] = tools
         request = urllib.request.Request(
             url,
             data=json.dumps(payload).encode("utf-8"),

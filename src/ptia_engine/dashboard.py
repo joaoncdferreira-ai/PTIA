@@ -43,6 +43,7 @@ from ptia_engine.search_providers import GeminiGroundedSearchProvider
 from ptia_engine.source_verifier import resolve_submitted_link, verify_search_candidate
 from ptia_engine.growth import tracked_article_url_for_social
 from ptia_engine.knowledge import RESOURCE_PATHS
+from ptia_engine.knowledge_automation import knowledge_review_snapshot
 from ptia_engine.ai_visibility import (
     AI_CRAWLER_USER_AGENTS,
     ANSWER_PAGES,
@@ -394,6 +395,10 @@ class DashboardState:
         return self.data_dir / "newsletter_issues.jsonl"
 
     @property
+    def knowledge_review_path(self) -> Path:
+        return self.data_dir / "knowledge_review.jsonl"
+
+    @property
     def sources_config_path(self) -> Path:
         return self.data_dir.parent / "config" / "sources.sample.json"
 
@@ -441,6 +446,7 @@ class DashboardState:
             key=lambda issue: issue.created_at,
             reverse=True,
         )
+        knowledge = knowledge_review_snapshot(self.data_dir.parent)
         trends = sorted(
             load_trend_signals(self.trends_path),
             key=lambda signal: signal.engagement_score,
@@ -515,6 +521,7 @@ class DashboardState:
                 "newsletter_drafts": sum(
                     1 for issue in newsletter_issues if issue.status in {"draft", "approved"}
                 ),
+                "knowledge_pending": knowledge["counts"].get("pending", 0),
                 "raw_articles": len(articles),
                 "new_articles": article_status.get("new", 0),
                 "duplicates": article_status.get("duplicate", 0),
@@ -575,6 +582,7 @@ class DashboardState:
             "buffer_available": BufferClient().available,
             "learnings": _build_learnings(items, drafts, performance),
             "growth": _boost_candidates(final_posts, performance),
+            "knowledge": knowledge,
         }
 
 
@@ -3555,6 +3563,7 @@ HTML = r"""<!doctype html>
     button.primary:hover { background: #0A2B60; }
     button.good { background: var(--ok); border-color: var(--ok); color: var(--card-cream); }
     button.bad { background: #8B2E2E; border-color: #8B2E2E; color: var(--card-cream); }
+    .button-link { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 10px 20px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; color: var(--ptia-navy); font-size: 13px; font-weight: 600; }
     
     .wrap { padding: 40px; max-width: 1500px; margin: 0 auto; }
     .tab-panel {
@@ -4182,6 +4191,7 @@ HTML = r"""<!doctype html>
       <button class="tab" data-tab="published_tab" onclick="showTab('published_tab')">7 Published</button>
       <button class="tab" data-tab="newsletter_tab" onclick="showTab('newsletter_tab')">8 Newsletter</button>
       <button class="tab" data-tab="growth_tab" onclick="showTab('growth_tab')">9 Growth</button>
+      <button class="tab" data-tab="knowledge_tab" onclick="showTab('knowledge_tab')">10 Recursos</button>
     </nav>
     <section id="flow" class="tab-panel"></section>
     <section id="verifying_tab" class="tab-panel hidden"></section>
@@ -4198,6 +4208,7 @@ HTML = r"""<!doctype html>
     <section id="published_tab" class="tab-panel hidden"></section>
     <section id="newsletter_tab" class="tab-panel hidden"></section>
     <section id="growth_tab" class="tab-panel hidden"></section>
+    <section id="knowledge_tab" class="tab-panel hidden"></section>
     <section id="performance" class="tab-panel hidden"></section>
     <section id="learnings" class="tab-panel hidden"></section>
   </main>
@@ -4316,6 +4327,7 @@ HTML = r"""<!doctype html>
         ['Published', c.final_published, 'published_tab'],
         ['Newsletter', c.newsletter_drafts, 'newsletter_tab'],
         ['Growth', state.growth?.boost_candidates?.length || 0, 'growth_tab'],
+        ['Recursos', c.knowledge_pending, 'knowledge_tab'],
       ];
       const activeId = document.querySelector('.tab.active')?.dataset.tab || 'flow';
       document.getElementById('stats').innerHTML = stats.map(([label, value, tabId]) => `
@@ -4334,6 +4346,7 @@ HTML = r"""<!doctype html>
         ['A Rever', c.a_rever || 0, 'Pacotes por validar', 'final_draft_pack', (c.a_rever || 0) ? '' : 'ok'],
         ['Final OK', c.final_approved || 0, 'Pronto a agendar', 'schedule', (c.final_approved || 0) ? 'ok' : ''],
         ['Alertas', copyAlerts, 'Texto/imagem/schedule', 'schedule', copyAlerts ? 'alert' : 'ok'],
+        ['Recursos', c.knowledge_pending || 0, 'Exceções da atualização', 'knowledge_tab', (c.knowledge_pending || 0) ? 'alert' : 'ok'],
         ['X', xDisabled ? 'OFF' : 'ON', xDisabled ? 'Canal oculto' : 'Canal ativo', 'flow', xDisabled ? 'alert' : 'ok'],
       ];
       const target = document.getElementById('ops_strip');
@@ -5691,6 +5704,76 @@ HTML = r"""<!doctype html>
         </section>
       `;
     }
+    function knowledgeSourceLinks(sources) {
+      return (sources || []).map(source => `
+        <a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label || source.url)}</a>
+      `).join(' · ');
+    }
+    async function reviewKnowledge(proposalId, status) {
+      const notes = status === 'rejected'
+        ? (window.prompt('Motivo da rejeição:', '') || '')
+        : 'Aprovado no dashboard para a próxima atualização.';
+      await api('/api/knowledge-review', {proposal_id: proposalId, status, notes});
+      showToast(status === 'approved' ? 'Alteração aprovada' : 'Alteração rejeitada');
+      showTab('knowledge_tab');
+    }
+    async function runKnowledgeNow() {
+      showToast('A pesquisar e validar Recursos...');
+      const result = await requestJson('/api/knowledge-run', {});
+      await loadState();
+      showToast(`Recursos atualizados: ${result.edition}`);
+      showTab('knowledge_tab');
+    }
+    function knowledgeReviewCard(review) {
+      const issues = (review.issues || []).map(issue => `<li>${esc(issue)}</li>`).join('');
+      const actions = review.status === 'pending' ? `
+        <div class="actions">
+          <button class="good" onclick="reviewKnowledge('${esc(review.proposal_id)}','approved')">Aprovar</button>
+          <button class="bad" onclick="reviewKnowledge('${esc(review.proposal_id)}','rejected')">Rejeitar</button>
+        </div>` : '';
+      return `<article class="card">
+        <h3>${esc(review.target || 'Automação externa')}</h3>
+        <div class="meta">${pill(review.status)}${pill(review.kind)}${pill(`confiança ${Math.round((review.confidence || 0) * 100)}%`)}</div>
+        <p class="text">${esc(review.reason || '')}</p>
+        ${issues ? `<ul class="notice">${issues}</ul>` : ''}
+        <p class="notice">${knowledgeSourceLinks(review.sources)}</p>
+        ${review.notes ? `<p class="notice">${esc(review.notes)}</p>` : ''}
+        ${actions}
+      </article>`;
+    }
+    function renderKnowledge() {
+      const knowledge = state.knowledge || {};
+      const counts = knowledge.counts || {};
+      const lastRun = knowledge.last_run;
+      const pending = (knowledge.reviews || []).filter(review => review.status === 'pending');
+      const history = (knowledge.reviews || []).filter(review => review.status !== 'pending').slice(0, 12);
+      document.getElementById('knowledge_tab').innerHTML = `
+        <div class="panel">
+          <h2>Automação de Recursos</h2>
+          <p class="notice">À segunda-feira, o sistema pesquisa fontes externas, recalcula os índices e publica alterações de confiança elevada. Entradas novas, fontes insuficientes ou movimentos anormais ficam bloqueados aqui.</p>
+          <div class="actions">
+            <button class="primary" onclick="runKnowledgeNow()">Executar agora</button>
+            <a class="button-link" href="/recursos/" target="_blank" rel="noopener">Abrir Recursos</a>
+          </div>
+          <div class="meta">
+            ${pill(`${counts.pending || 0} pendentes`)}
+            ${pill(`${counts.applied || 0} aplicadas`)}
+            ${pill(lastRun ? lastRun.status : 'ainda sem execução')}
+            ${lastRun ? pill(lastRun.created_at) : ''}
+          </div>
+        </div>
+        <div class="two">
+          <section class="panel">
+            <h2>Precisa da tua atenção</h2>
+            ${pending.map(knowledgeReviewCard).join('') || '<p class="notice">Sem exceções. A automação pode publicar normalmente.</p>'}
+          </section>
+          <section class="panel">
+            <h2>Histórico recente</h2>
+            ${history.map(knowledgeReviewCard).join('') || '<p class="notice">Ainda sem histórico.</p>'}
+          </section>
+        </div>
+      `;
+    }
     function renderLearnings() {
       const l = state.learnings || {};
       document.getElementById('learnings').innerHTML = `
@@ -5719,6 +5802,7 @@ HTML = r"""<!doctype html>
       renderNewsletter();
       renderPerformance();
       renderGrowth();
+      renderKnowledge();
       renderLearnings();
       showTab(initialTabId(), false);
     }
