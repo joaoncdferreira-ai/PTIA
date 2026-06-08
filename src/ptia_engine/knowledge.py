@@ -575,7 +575,7 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
-  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-2">
+  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-3">
   <script>
     try {{ document.documentElement.dataset.theme = localStorage.getItem("ptia-theme") === "dark" ? "dark" : "light"; }} catch (_) {{}}
   </script>
@@ -982,12 +982,95 @@ def render_glossary_page(payload: dict) -> str:
 
 
 def render_resources_page(payload: dict) -> str:
-    body = _hero(
-        "Recursos · PTIA",
-        "Uma camada de referência sobre IA em português.",
-        "Índices, ferramentas, prompts e definições consolidados primeiro no site e atualizados semanalmente.",
-        payload,
+    leading_company = payload["companies"][0]
+    leading_person = payload["people"][0]
+    leading_tool = payload["tools"][0]
+    leading_prompt = payload["prompts"][0]
+    category_winners = []
+    for category, label in CATEGORY_LABELS.items():
+        category_tools = [
+            tool for tool in payload["tools"] if category in tool.get("category_ranks", {})
+        ]
+        winner = min(category_tools, key=lambda tool: tool["category_ranks"][category])
+        category_winners.append((category, label, winner))
+    def leader(
+        *,
+        label: str,
+        name: str,
+        score: float,
+        href: str,
+        action: str,
+        change: dict | None,
+    ) -> str:
+        score_label = f"{score:.1f}".replace(".", ",")
+        change_badge = _change_badge(change)
+        return f"""
+          <a class="weekly-leader" href="{href}">
+            <span class="weekly-leader-label">{html.escape(label)}</span>
+            <strong>{html.escape(name)}</strong>
+            <span class="weekly-leader-score"><b>{score_label}</b> PTIA Score</span>
+            <span class="weekly-leader-action">{html.escape(action)} →</span>{change_badge}
+          </a>
+"""
+
+    leaders = "".join(
+        (
+            leader(
+                label="Empresa #1",
+                name=leading_company["name"],
+                score=leading_company["score"],
+                href="/ia-em-portugal/",
+                action="Ver empresas",
+                change=leading_company.get("ranking_change"),
+            ),
+            leader(
+                label="Pessoa #1",
+                name=leading_person["name"],
+                score=leading_person["score"],
+                href="/ia-em-portugal/",
+                action="Ver pessoas",
+                change=leading_person.get("ranking_change"),
+            ),
+            leader(
+                label="Ferramenta #1",
+                name=leading_tool["name"],
+                score=leading_tool["score"],
+                href="/ferramentas/",
+                action="Comparar",
+                change=leading_tool.get("ranking_change"),
+            ),
+            leader(
+                label="Prompt #1",
+                name=leading_prompt["title"],
+                score=leading_prompt["score"],
+                href="/prompts/",
+                action="Abrir prompt",
+                change=leading_prompt.get("ranking_change"),
+            ),
+        )
     )
+    body = f"""
+  <main id="conteudo">
+    <section class="resources-hero">
+      <div class="wrap">
+        <div class="resources-hero-meta" aria-label="Dados da edição">
+          <span>Edição <strong>{html.escape(payload["edition"])}</strong></span>
+          <span><strong>{payload["signal_articles"]}</strong> artigos analisados</span>
+          <span>Janela <strong>{payload["signal_window_days"]} dias</strong></span>
+          <span>Atualizado <strong>{payload["updated_at"][:10]}</strong></span>
+        </div>
+        <div class="resources-hero-intro">
+          <div>
+            <p class="knowledge-kicker">Índice semanal · PTIA</p>
+            <h1>Quem e o que lidera a IA esta semana.</h1>
+          </div>
+          <p>Os sinais mais fortes entre pessoas, empresas, ferramentas e prompts, avaliados com critérios públicos e atualização semanal.</p>
+        </div>
+        <div class="weekly-leaders" aria-label="Líderes da semana">{leaders}
+        </div>
+      </div>
+    </section>
+"""
     company_rows = "".join(
         f'<li><b>{str(item["score"]).replace(".", ",")}<small>PTIA</small></b><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong>{_change_badge(item.get("ranking_change"))}</li>'
         for item in payload["companies"][:3]
@@ -997,11 +1080,7 @@ def render_resources_page(payload: dict) -> str:
         for item in payload["people"][:3]
     )
     winners = []
-    for category, label in CATEGORY_LABELS.items():
-        category_tools = [
-            tool for tool in payload["tools"] if category in tool.get("category_ranks", {})
-        ]
-        winner = min(category_tools, key=lambda tool: tool["category_ranks"][category])
+    for category, label, winner in category_winners:
         score_label = f'{winner["category_scores"][category]:.1f}'.replace(".", ",")
         winners.append(
             f'<li><b>{score_label}<small>PTIA</small></b><span>{html.escape(label)}</span><strong>{html.escape(winner["name"])}</strong>{_change_badge(winner["category_movements"][category])}</li>'
