@@ -132,8 +132,12 @@ def apply_ptia_editorial_rules(title: str, body: str, channel: str = "") -> tupl
     )
     if channel in {"instagram", "linkedin", "x"}:
         clean_body = re.sub(r"\*\*(.*?)\*\*", r"\1", clean_body)
+        clean_body = re.sub(r"\*(.*?)\*", r"\1", clean_body)
+        clean_body = re.sub(r"<i>(.*?)</i>", r"\1", clean_body)
+        clean_body = re.sub(r"</?i>", "", clean_body)
     if channel == "site":
         clean_body = re.sub(r"\*\*Fonte:\*\*", "Fonte:", clean_body)
+        clean_body = re.sub(r"\*(.*?)\*", r"<i>\1</i>", clean_body)
     clean_body = re.sub(r"(?im)^\s*-\s*-\s*(Fonte(?: original)?\s*:)", r"\1", clean_body)
     clean_body = re.sub(r"(?im)^\s*-\s*(?=Fonte(?: original)?\s*:)", "", clean_body)
     clean_body = re.sub(r"(?m)^\s*-\s*$\n?", "", clean_body)
@@ -172,7 +176,8 @@ def copy_quality_issues(post: FinalPost) -> list[str]:
         if post.channel == "instagram" and len(valid_bullets) < 2:
             issues.append("lista Instagram incompleta")
 
-    if re.search(r"\b\w+\?\w+", body):
+    body_no_urls = re.sub(r"https?://\S+", "", body)
+    if re.search(r"\b\w+\?\w+", body_no_urls):
         issues.append("possivel erro de encoding no texto")
 
     return list(dict.fromkeys(issues))

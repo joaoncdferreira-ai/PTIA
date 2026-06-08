@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-07T21:16:59+00:00",
+  "updated_at": "2026-06-08T18:08:29+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,40 @@
   ],
   "recent_articles": [
     {
+      "title": "Quando a IA se constrói a si mesma",
+      "url": "https://ptia.pt/artigos/quando-a-ia-se-constroi-a-si-mesma-f4a3a06b821829927f",
+      "published_at": "2026-06-08T16:00:00+01:00",
+      "summary": "A Anthropic discute a aceleração do desenvolvimento de sistemas de IA impulsionada pela própria IA, com engenheiros da empresa a produzir 8 vezes mais código por trimestre do que em anos anteriores. A corrida dos modelo...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "O Open-Source e a Arquitetura da IA em Portugal",
+      "url": "https://ptia.pt/artigos/o-open-source-e-a-arquitetura-da-ia-em-portugal-158eb39c5b06588bd0",
+      "published_at": "2026-06-08T13:00:00+01:00",
+      "summary": "O open-source está a ganhar um protagonismo inegável no universo da inteligência artificial. Longe de ser um conceito novo, a sua relevância crescente na IA promete reconfigurar não só o desenvolvimento de soluções, com...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Trump Pondera Entrada do Estado em Empresas de Inteligência Artificial",
+      "url": "https://ptia.pt/artigos/trump-pondera-entrada-do-estado-em-empresas-de-inteligencia-artificial-41d383cb55bb5faa9d",
+      "published_at": "2026-06-08T09:00:00+01:00",
+      "summary": "Donald Trump afirmou que pondera a participação do Estado em empresas de inteligência artificial. O relato mostra a IA a sair do laboratório e a entrar na política industrial: o poder já não está só em lançar modelos, e...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "Lisboa no Top 10 Europeu de Ecossistemas de Startups com Crescimento Acelerado",
       "url": "https://ptia.pt/artigos/lisboa-no-top-10-europeu-de-ecossistemas-de-startups-com-crescimento-acelerado-09db609314e0344146",
       "published_at": "2026-06-07T21:00:00+01:00",
@@ -520,41 +554,6 @@
       "sections": [
         "Portugal",
         "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "OpenAI lança programa de biodefesa Rosalind",
-      "url": "https://ptia.pt/artigos/openai-lanca-programa-de-biodefesa-rosalind-aa69ede93efc08a1b0",
-      "published_at": "2026-06-02T09:00:00+01:00",
-      "summary": "A OpenAI anunciou o lançamento do programa de biodefesa Rosalind Biodefense. Este programa demonstra a aplicação da inteligência artificial em áreas críticas como a biodefesa, o que pode abrir caminho para novas investi...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "A febre dos mega-IPO de IA: Wall Street antecipa lucros ou inflaciona o futuro?",
-      "url": "https://ptia.pt/artigos/a-febre-dos-mega-ipo-de-ia-wall-street-antecipa-lucros-ou-inflaciona-o-futuro-28520837b456eedd2b",
-      "published_at": "2026-06-01T21:00:00+01:00",
-      "summary": "Wall Street prepara-se para o que o Observador apelida de “o ano dos mega-IPO”, com empresas de inteligência artificial a impulsionar avaliações recorde no mercado. A corrida à bolsa sinaliza uma capitalização sem prece...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "A confiança portuguesa na IA esbarra na preparação interna, revela estudo da Aon",
-      "url": "https://ptia.pt/artigos/a-confianca-portuguesa-na-ia-esbarra-na-preparacao-interna-revela-estudo-da-aon-321a21bf42b0282df6",
-      "published_at": "2026-06-01T16:00:00+01:00",
-      "summary": "A maioria das empresas portuguesas deposita confiança no potencial da Inteligência Artificial para gerar novas oportunidades. Esta é uma das conclusões do mais recente Human Capital Trends Study da Aon, que, no entanto,...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
         "Histórias reais"
       ]
     }
