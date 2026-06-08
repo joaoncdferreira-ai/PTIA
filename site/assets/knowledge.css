@@ -695,7 +695,12 @@
   grid-template-columns: 68px 100px minmax(0, 1fr) auto;
 }
 
-.winner-list li b {
+.lobby-entity-list li {
+  grid-template-columns: 62px 34px minmax(0, 1fr) auto;
+}
+
+.winner-list li b,
+.lobby-entity-list li b {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -709,7 +714,8 @@
   font: 700 12px/1.1 var(--mono);
 }
 
-.winner-list li b small {
+.winner-list li b small,
+.lobby-entity-list li b small {
   margin-top: 2px;
   color: var(--muted);
   font: 600 8px/1 var(--mono);
@@ -886,9 +892,9 @@
   .prompt-suggestion-result { grid-column: auto; }
   .winner-list li { grid-template-columns: 62px 86px minmax(0, 1fr); }
   .winner-list li .movement-badge { grid-column: 3; justify-self: start; }
-  .lobby-ranked li,
-  .lobby-split li { grid-template-columns: 44px minmax(0, 1fr); }
-  .lobby-ranked li .movement-badge,
-  .lobby-split li .movement-badge { grid-column: 2; justify-self: start; }
+  .lobby-entity-list li { grid-template-columns: 62px 34px minmax(0, 1fr); }
+  .lobby-entity-list li .movement-badge { grid-column: 3; justify-self: start; }
+  .lobby-ranked li { grid-template-columns: 44px minmax(0, 1fr); }
+  .lobby-ranked li .movement-badge { grid-column: 2; justify-self: start; }
   .knowledge-note a { justify-self: start; }
 }

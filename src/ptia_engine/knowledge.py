@@ -544,10 +544,18 @@ def _movement_label(value: int | None) -> str:
 
 def _change_badge(change: dict | None) -> str:
     change = change or {"kind": "baseline", "label": "Nova edição"}
+    if change["kind"] == "same":
+        return ""
     return (
         f'<span class="movement-badge movement-{html.escape(str(change["kind"]))}">'
         f'{html.escape(str(change["label"]))}</span>'
     )
+
+
+def _change_suffix(change: dict | None) -> str:
+    if not change or change.get("kind") == "same":
+        return ""
+    return f' · {html.escape(str(change["label"]))}'
 
 
 def _page_shell(title: str, description: str, canonical: str, body: str, schema: dict) -> str:
@@ -563,7 +571,9 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:url" content="{html.escape(canonical)}">
   <meta property="og:type" content="website">
-  <link rel="icon" href="/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260608-ptia">
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
   <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-2">
   <script>
@@ -624,6 +634,7 @@ def _rank_list(items: list[dict], *, kind: str) -> str:
         subtitle = item.get("tagline") if kind == "company" else item.get("role")
         description = item.get("description") if kind == "company" else item.get("bio")
         evidence = item.get("evidence") or []
+        change_badge = _change_badge(item.get("ranking_change"))
         evidence_markup = (
             f'<a href="{html.escape(evidence[0]["url"])}">Evidência PTIA recente</a>'
             if evidence
@@ -641,7 +652,7 @@ def _rank_list(items: list[dict], *, kind: str) -> str:
           </div>
           <div class="rank-signal">
             <strong>{item["score"]}</strong>
-            {_change_badge(item.get("ranking_change"))}
+            <span>PTIA Score</span>{change_badge}
             {evidence_markup}
           </div>
         </article>
@@ -824,7 +835,7 @@ def render_prompts_page(payload: dict) -> str:
           <header><span>{prompt["rank"]:02d}</span><div><p>{html.escape(prompt["category"])}</p><h2>{html.escape(prompt["title"])}</h2></div></header>
           <p>{html.escape(prompt["purpose"])}</p>
           <pre><code>{html.escape(prompt["template"])}</code></pre>
-          <footer><span>Relevância semanal {prompt["score"]} · {html.escape(prompt["ranking_change"]["label"])}</span><button type="button" data-copy-prompt>Copiar prompt</button></footer>
+          <footer><span>Relevância semanal {prompt["score"]}{_change_suffix(prompt.get("ranking_change"))}</span><button type="button" data-copy-prompt>Copiar prompt</button></footer>
         </article>
 """
         )
@@ -978,11 +989,11 @@ def render_resources_page(payload: dict) -> str:
         payload,
     )
     company_rows = "".join(
-        f'<li><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong>{_change_badge(item.get("ranking_change"))}</li>'
+        f'<li><b>{str(item["score"]).replace(".", ",")}<small>PTIA</small></b><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong>{_change_badge(item.get("ranking_change"))}</li>'
         for item in payload["companies"][:3]
     )
     people_rows = "".join(
-        f'<li><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong>{_change_badge(item.get("ranking_change"))}</li>'
+        f'<li><b>{str(item["score"]).replace(".", ",")}<small>PTIA</small></b><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong>{_change_badge(item.get("ranking_change"))}</li>'
         for item in payload["people"][:3]
     )
     winners = []
@@ -1007,7 +1018,7 @@ def render_resources_page(payload: dict) -> str:
     <section class="knowledge-section"><div class="wrap lobby-grid">
       <article class="lobby-panel lobby-panel-wide">
         <header><div><span>Índice Portugal</span><h2>Quem está a construir a IA em Portugal</h2></div><a href="/ia-em-portugal/">Ver índice completo →</a></header>
-        <div class="lobby-split"><div><h3>Empresas</h3><ol>{company_rows}</ol></div><div><h3>Pessoas</h3><ol>{people_rows}</ol></div></div>
+        <div class="lobby-split"><div><h3>Empresas</h3><ol class="lobby-entity-list">{company_rows}</ol></div><div><h3>Pessoas</h3><ol class="lobby-entity-list">{people_rows}</ol></div></div>
       </article>
       <article class="lobby-panel">
         <header><div><span>Ferramentas</span><h2>A melhor por finalidade</h2></div><a href="/ferramentas/">Comparar →</a></header>

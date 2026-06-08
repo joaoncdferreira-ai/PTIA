@@ -2381,9 +2381,10 @@ def _site_page_shell(
     return f"""<!doctype html>
 <html lang="pt" data-theme="light">
 <head>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260608-ptia">
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260608-ptia">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{escaped_title}</title>
@@ -3361,9 +3362,10 @@ def _run_discovery_scout(state: DashboardState, *, source: str, limit: int = 8) 
 HTML = r"""<!doctype html>
 <html lang="pt">
 <head>
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260608-ptia">
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260608-ptia">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PTIA Editorial Engine</title>

@@ -84,9 +84,13 @@ class KnowledgeTests(unittest.TestCase):
         self.assertIn('href="/recursos/">Hub</a>', resources)
         self.assertEqual(resources.count("<li>"), 24)
         self.assertIn("<small>PTIA</small>", resources)
+        self.assertIn('class="lobby-entity-list"', resources)
+        self.assertNotIn(">Manteve<", resources)
         portugal = (self.root / "site" / "ia-em-portugal" / "index.html").read_text(encoding="utf-8")
         self.assertIn('data-index-tab="companies"', portugal)
         self.assertIn('data-index-panel="people"', portugal)
+        self.assertIn("PTIA Score", portugal)
+        self.assertNotIn(">Manteve<", portugal)
         prompts = (self.root / "site" / "prompts" / "index.html").read_text(encoding="utf-8")
         self.assertIn("Top 10 prompts PTIA", prompts)
         self.assertIn("data-prompt-search-input", prompts)
@@ -96,6 +100,7 @@ class KnowledgeTests(unittest.TestCase):
             prompts.index("data-prompt-suggestion-form"),
             prompts.index('class="prompt-grid"'),
         )
+        self.assertNotIn("· Manteve", prompts)
 
         repeated = build_knowledge_site(root=self.root, now=self.now)
         self.assertTrue(all(item["movement"] is None for item in repeated["companies"]))
