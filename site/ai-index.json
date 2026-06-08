@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-05T23:05:25+00:00",
+  "updated_at": "2026-06-07T21:16:59+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -18,8 +18,35 @@
     "sitemap": "https://ptia.pt/sitemap.xml",
     "news_sitemap": "https://ptia.pt/news-sitemap.xml",
     "rss": "https://ptia.pt/rss.xml",
-    "ai_index": "https://ptia.pt/ai-index.json"
+    "ai_index": "https://ptia.pt/ai-index.json",
+    "ptia_index": "https://ptia.pt/assets/ptia-index/latest.json"
   },
+  "knowledge_resources": [
+    {
+      "url": "https://ptia.pt/recursos/",
+      "type": "recursos"
+    },
+    {
+      "url": "https://ptia.pt/ia-em-portugal/",
+      "type": "ia_em_portugal"
+    },
+    {
+      "url": "https://ptia.pt/ferramentas/",
+      "type": "ferramentas"
+    },
+    {
+      "url": "https://ptia.pt/prompts/",
+      "type": "prompts"
+    },
+    {
+      "url": "https://ptia.pt/glossario/",
+      "type": "glossario"
+    },
+    {
+      "url": "https://ptia.pt/metodologia-indice/",
+      "type": "metodologia_indice"
+    }
+  ],
   "answer_pages": [
     {
       "question": "O que e o AI Act para empresas portuguesas?",
@@ -236,6 +263,100 @@
   ],
   "recent_articles": [
     {
+      "title": "Lisboa no Top 10 Europeu de Ecossistemas de Startups com Crescimento Acelerado",
+      "url": "https://ptia.pt/artigos/lisboa-no-top-10-europeu-de-ecossistemas-de-startups-com-crescimento-acelerado-09db609314e0344146",
+      "published_at": "2026-06-07T21:00:00+01:00",
+      "summary": "Lisboa consolidou a sua posição entre os dez ecossistemas de startups europeus com maior crescimento. Este avanço é impulsionado por uma nova geração de empresas e unicórnios, com particular destaque para as que operam...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Amazon investe €10 mil milhões na Europa e revela Proteus, o seu novo robô conversacional",
+      "url": "https://ptia.pt/artigos/amazon-investe-10-mil-milhoes-na-europa-e-revela-proteus-o-seu-novo-robo-conversacional-e15c59788bbfb558da",
+      "published_at": "2026-06-07T16:00:00+01:00",
+      "summary": "A Amazon anunciou um investimento de 10 mil milhões de euros na expansão das suas operações europeias. No centro desta estratégia, está a revelação de novos robôs para otimização logística, incluindo o Proteus, um robô...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Estudo da Anthropic: Homens Usam Agentes de Codificação de IA o Dobro que Mulheres em Ciências Sociais",
+      "url": "https://ptia.pt/artigos/estudo-da-anthropic-homens-usam-agentes-de-codificacao-de-ia-o-dobro-que-mulheres-em-ciencias-sociais-1d92756f5e5b093d0c",
+      "published_at": "2026-06-07T13:00:00+01:00",
+      "summary": "Um estudo recente da Anthropic revela que, no domínio da pesquisa em ciências sociais, os homens recorrem a agentes de codificação de IA com uma frequência que duplica a das mulheres. Este dado, aparentemente circunscri...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Espanha avança para 'gigafábrica' de IA e sinaliza parceria com o Brasil",
+      "url": "https://ptia.pt/artigos/espanha-avanca-para-gigafabrica-de-ia-e-sinaliza-parceria-com-o-brasil-4a38702ecb4100a90c",
+      "published_at": "2026-06-07T09:00:00+01:00",
+      "summary": "A Espanha confirmou a sua candidatura para acolher uma 'gigafábrica' de Inteligência Artificial, um movimento estratégico que inclui a procura de uma parceria com o Brasil. A informação foi avançada pelo ministro da Fun...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "A Cognizant e a Soberania da IA Física",
+      "url": "https://ptia.pt/artigos/a-cognizant-e-a-soberania-da-ia-fisica-89208a88f5804ab5d6",
+      "published_at": "2026-06-06T21:00:00+01:00",
+      "summary": "A Cognizant anunciou o lançamento de uma plataforma de IA física soberana, desenhada para gerir e operar sistemas de inteligência artificial em ambientes físicos de alta segurança. Esta iniciativa responde à crescente n...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Resiliência Biológica na Era da IA: Um Plano de Ação",
+      "url": "https://ptia.pt/artigos/resiliencia-biologica-na-era-da-ia-um-plano-de-acao-cc4a0eedc304cba9c5",
+      "published_at": "2026-06-06T16:00:00+01:00",
+      "summary": "A OpenAI publicou um plano de ação focado na resiliência biológica impulsionada pela inteligência artificial. O documento, intitulado \"Biodefense in the Intelligence Age\", detalha estratégias para mitigar riscos e poten...",
+      "sections": [
+        "Mundo",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Anthropic Pede Pausa na IA de Ponta: O Risco de Perda de Controlo Humano",
+      "url": "https://ptia.pt/artigos/anthropic-pede-pausa-na-ia-de-ponta-o-risco-de-perda-de-controlo-humano-c22faf91a9c2ec566d",
+      "published_at": "2026-06-06T13:00:00+01:00",
+      "summary": "A Anthropic, a empresa por trás dos modelos de IA do Claude, sugeriu publicamente uma pausa no desenvolvimento de IA de ponta. O motivo é claro: o risco crescente de sistemas que podem, eventualmente, sair do controlo h...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Empresas portuguesas na corrida da IA: investimento acelera, políticas internas ficam aquém",
+      "url": "https://ptia.pt/artigos/empresas-portuguesas-na-corrida-da-ia-investimento-acelera-politicas-internas-ficam-aquem-7f58dc366cdd0a35d9",
+      "published_at": "2026-06-06T09:00:00+01:00",
+      "summary": "Um estudo da QSP – Marketing Management & Research revela que as empresas portuguesas estão a intensificar o seu investimento em Inteligência Artificial, mas a maioria opera ainda sem políticas internas que regulem o us...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "IBM e Google Cloud: Parceria Estratégica para Escalar IA no Segmento Enterprise",
       "url": "https://ptia.pt/artigos/ibm-e-google-cloud-parceria-estrategica-para-escalar-ia-no-segmento-enterprise-3383a7e8b953fb8cc3",
       "published_at": "2026-06-05T21:00:00+01:00",
@@ -435,101 +556,6 @@
         "Builders",
         "Regulação",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "IA e a redefinição da humanidade: o regulador como co-criador do produto",
-      "url": "https://ptia.pt/artigos/ia-e-a-redefinicao-da-humanidade-o-regulador-como-co-criador-do-produto-9b480ef5d88f2d5008",
-      "published_at": "2026-06-01T13:00:00+01:00",
-      "summary": "Rafael Medeiros, especialista em estratégia de Inteligência Artificial, defende que a IA desafia capacidades historicamente atribuídas à humanidade e alerta para o risco da “terceirização” do pensamento. Para Medeiros,...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "EUA Consideram Ligar Chips de IA a Compromissos de Investimento Estrangeiro",
-      "url": "https://ptia.pt/artigos/eua-consideram-ligar-chips-de-ia-a-compromissos-de-investimento-estrangeiro-3be41472b84fd44333",
-      "published_at": "2026-06-01T09:00:00+01:00",
-      "summary": "O governo dos EUA está a ponderar associar a exportação de chips de inteligência artificial da Nvidia e AMD a compromissos de investimento estrangeiro. Esta medida, ainda em discussão, sublinha a forma como a tecnologia...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Regulação da IA: A Conformidade como Ativo Estratégico em Portugal",
-      "url": "https://ptia.pt/artigos/regulacao-da-ia-a-conformidade-como-ativo-estrategico-em-portugal-681d231f0c62e392ca",
-      "published_at": "2026-05-31T16:00:00+01:00",
-      "summary": "José Pedro Rodrigues, CEO da Caixa Mágica, defende que Portugal tem condições para se posicionar como um player relevante na Europa em áreas como identidade digital, cibersegurança e software de confiança. Contudo, o po...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "A IA não 'rouba' empregos, mas reescreve-os. É preciso entender a diferença.",
-      "url": "https://ptia.pt/artigos/a-ia-nao-rouba-empregos-mas-reescreve-os-e-preciso-entender-a-diferenca-3485e63e83d6a9c966",
-      "published_at": "2026-05-31T13:00:00+01:00",
-      "summary": "Especialistas do mercado de trabalho confirmam o que muitos já intuem: a Inteligência Artificial não está a substituir empregos inteiros, mas a automatizar parcelas de tarefas. O resultado é uma redefinição das responsa...",
-      "sections": [
-        "Portugal",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "SAP Portugal e a cloud soberana: o catalisador para a IA em Portugal?",
-      "url": "https://ptia.pt/artigos/sap-portugal-e-a-cloud-soberana-o-catalisador-para-a-ia-em-portugal-db9193bb38446848a6",
-      "published_at": "2026-05-31T09:00:00+01:00",
-      "summary": "O diretor-geral da SAP Portugal anunciou um investimento robusto na cloud soberana em território nacional, defendendo que o país pode cimentar a sua relevância europeia no domínio da Inteligência Artificial. Esta declar...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Google integra Display Ads na plataforma Demand Gen focada em IA",
-      "url": "https://ptia.pt/artigos/google-integra-display-ads-na-plataforma-demand-gen-focada-em-ia-937ccd862659e40260",
-      "published_at": "2026-05-30T21:00:00+01:00",
-      "summary": "A Google está a integrar os seus Display Ads na plataforma Demand Gen, uma ferramenta que prioriza a inteligência artificial, com o objetivo de otimizar a criação e o desempenho de campanhas publicitárias. Esta não é ap...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "A IA industrial e a produtividade portuguesa, segundo a Siemens",
-      "url": "https://ptia.pt/artigos/a-ia-industrial-e-a-produtividade-portuguesa-segundo-a-siemens-6a9d86b187b839d6ad",
-      "published_at": "2026-05-30T16:00:00+01:00",
-      "summary": "Sofia Tenreiro, CEO da Siemens Portugal, defende que a inteligência artificial industrial – uma vertente distinta da IA generativa a que o público se habituou – será fundamental para aumentar a produtividade, autonomia...",
-      "sections": [
-        "Portugal",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "A vaia à IA na graduação: o desafio da Google vai além do modelo",
-      "url": "https://ptia.pt/artigos/a-vaia-a-ia-na-graduacao-o-desafio-da-google-vai-alem-do-modelo-aa701e8aa526111f7c",
-      "published_at": "2026-05-30T13:00:00+01:00",
-      "summary": "Quando Eric Schmidt, ex-CEO da Google, subiu ao palco da Universidade do Arizona para falar aos finalistas sobre o futuro da inteligência artificial, a receção não foi a esperada. A sua exortação para que a turma de 202...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     }
   ],

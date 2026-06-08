@@ -23,7 +23,7 @@ from urllib.parse import quote, urlparse
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
 from ptia_engine.assets import create_final_post_image
-from ptia_engine.buffer_api import BufferClient
+from ptia_engine.buffer_api import BufferClient, _buffer_due_at
 from ptia_engine.cloud_state import hydrate_cloud_state
 from ptia_engine.dedupe import stable_hash
 from ptia_engine.http_client import urlopen_direct
@@ -42,6 +42,7 @@ from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
 from ptia_engine.source_verifier import resolve_submitted_link, verify_search_candidate
 from ptia_engine.growth import tracked_article_url_for_social
+from ptia_engine.knowledge import RESOURCE_PATHS
 from ptia_engine.ai_visibility import (
     AI_CRAWLER_USER_AGENTS,
     ANSWER_PAGES,
@@ -1323,6 +1324,24 @@ def _discover_buffer_channels(path: Path) -> dict:
     return payload
 
 
+def _clean_text_for_comparison(text: str) -> str:
+    return "".join(c for c in text.lower() if c.isalnum())
+
+
+def _posts_match(target_text: str, target_time: str, buffer_post) -> bool:
+    try:
+        dt1 = datetime.fromisoformat(target_time.replace("Z", "+00:00"))
+        dt2 = datetime.fromisoformat(buffer_post.due_at.replace("Z", "+00:00"))
+        if abs((dt1 - dt2).total_seconds()) > 60:
+            return False
+    except Exception:
+        if target_time != buffer_post.due_at:
+            return False
+    c1 = _clean_text_for_comparison(target_text)
+    c2 = _clean_text_for_comparison(buffer_post.text)
+    return c1[:60] == c2[:60]
+
+
 def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time: str):
     posts = {post.post_id: post for post in load_final_posts(state.final_posts_path)}
     post = posts.get(post_id)
@@ -1402,6 +1421,23 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
                 final_text = final_text.replace(f"\n\n{target_str}", "").replace(target_str, "").strip()
                 final_text += "\n\n👉 Link para a análise completa no primeiro comentário."
                 first_comment = f"👉 Análise completa: {article_url}"
+
+    # Check for existing scheduled post in Buffer to ensure idempotency
+    try:
+        target_utc_due = _buffer_due_at(scheduled_time)
+        existing = BufferClient().scheduled_posts(channel_id)
+        matched_post = next((p for p in existing if _posts_match(final_text, target_utc_due, p)), None)
+        if matched_post:
+            print(f"   [IDEMPOTENCY] Encontrado post correspondente ja agendado no Buffer (ID: {matched_post.id}).")
+            return update_final_post_status(
+                state.final_posts_path,
+                post_id,
+                "scheduled",
+                scheduled_time=scheduled_time,
+                buffer_post_id=matched_post.id,
+            )
+    except Exception as e:
+        print(f"   [AVISO] Falhou verificacao de idempotencia no Buffer: {e}")
 
     if post.channel == "x":
         _assert_x_post_ready(final_text, image_url)
@@ -3114,7 +3150,16 @@ def _write_static_discovery_files(state: DashboardState, payload: dict, article_
     entity_urls = _write_entity_pages(state, payload)
     news_sitemap_url = _write_news_sitemap(state, payload)
     ai_index_url = _write_ai_index_file(state, payload, article_urls)
-    sitemap_urls = [base_url, f"{base_url}/#newsletter", *entity_urls, *answer_urls, *topic_urls, *article_urls]
+    resource_urls = [f"{base_url}{path}" for path in RESOURCE_PATHS]
+    sitemap_urls = [
+        base_url,
+        f"{base_url}/#newsletter",
+        *resource_urls,
+        *entity_urls,
+        *answer_urls,
+        *topic_urls,
+        *article_urls,
+    ]
     sitemap = "\n".join(
         f"  <url><loc>{html.escape(url)}</loc><lastmod>{now[:10]}</lastmod></url>"
         for url in sitemap_urls
@@ -3209,6 +3254,13 @@ def _write_static_discovery_files(state: DashboardState, payload: dict, article_
         f"- Autor: {base_url}/autor/joao-ferreira/\n"
         f"- Metodologia editorial: {base_url}/metodologia-editorial/\n"
         f"- Fontes e criterios: {base_url}/fontes-e-criterios/\n"
+        f"- Recursos PTIA: {base_url}/recursos/\n"
+        f"- Indice de IA em Portugal: {base_url}/ia-em-portugal/\n"
+        f"- Ferramentas de IA: {base_url}/ferramentas/\n"
+        f"- Prompts PTIA: {base_url}/prompts/\n"
+        f"- Glossario de IA: {base_url}/glossario/\n"
+        f"- Metodologia do indice: {base_url}/metodologia-indice/\n"
+        f"- Dados estruturados do indice: {base_url}/assets/ptia-index/latest.json\n"
         "\n## Perguntas canonicas\n"
         f"{answer_lines}"
         "\n## Temas e guias\n"
@@ -3238,8 +3290,19 @@ def _write_static_site_feed(state: DashboardState) -> dict:
     return payload
 
 
-def _sync_static_site_feed(state: DashboardState, *, deploy: bool = True) -> None:
+def _sync_static_site_feed(state: DashboardState, *, deploy: bool = True, git_push: bool = False) -> None:
     _write_static_site_feed(state)
+    if git_push:
+        try:
+            _publish_site_assets_to_git(state, [
+                str(state.site_dir / "site-feed.json"),
+                str(state.site_dir / "sitemap.xml"),
+                str(state.site_dir / "news-sitemap.xml"),
+                str(state.site_dir / "rss.xml")
+            ])
+            print("-> Ficheiros de sitemaps e feed sincronizados com sucesso no Git!")
+        except Exception as e:
+            print(f"-> [AVISO] Falhou publicacao de sitemaps/feed para o Git: {e}")
     if deploy:
         _deploy_site_assets_to_vercel(state)
 
@@ -3735,13 +3798,13 @@ HTML = r"""<!doctype html>
     .header-copy { display: flex; align-items: center; min-width: 0; }
     .header-actions { display: flex; align-items: center; gap: 16px; }
     .header-brand-logo {
-      height: 82px;
+      height: 44px;
       width: auto;
-      max-width: min(440px, 60vw);
+      max-width: min(320px, 50vw);
       object-fit: contain;
       border-radius: 0;
       box-shadow: none;
-      filter: drop-shadow(0 8px 16px rgba(55,45,28,0.14));
+      filter: drop-shadow(0 4px 12px rgba(55,45,28,0.18));
     }
     
     /* Final layout splits */
@@ -4024,7 +4087,8 @@ HTML = r"""<!doctype html>
         gap: 10px;
       }
       .header-brand-logo {
-        height: 54px;
+        height: 36px;
+        width: auto;
         max-width: 230px;
       }
       .header-actions { width: 100%; }

@@ -187,6 +187,52 @@ class BufferClientTests(unittest.TestCase):
         variables = graphql.call_args.args[1]
         self.assertEqual(variables["input"]["id"], "post_1")
 
+    def test_scheduled_posts(self):
+        client = BufferClient(api_key="test")
+        with patch.object(
+            client,
+            "account_organizations",
+            return_value=[type("Org", (), {"id": "org_1", "name": "PTIA"})()],
+        ), patch.object(
+            client,
+            "_graphql",
+            return_value={
+                "data": {
+                    "posts": {
+                        "edges": [
+                            {
+                                "node": {
+                                    "id": "post_1",
+                                    "text": "Scheduled Post",
+                                    "status": "scheduled",
+                                    "dueAt": "2026-06-08T09:00:00.000Z",
+                                    "channelId": "chan_1",
+                                    "channelService": "linkedin",
+                                }
+                            },
+                            {
+                                "node": {
+                                    "id": "post_2",
+                                    "text": "Sent Post",
+                                    "status": "sent",
+                                    "dueAt": "2026-06-07T09:00:00.000Z",
+                                    "channelId": "chan_1",
+                                    "channelService": "linkedin",
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ) as graphql:
+            posts = client.scheduled_posts("chan_1")
+
+        self.assertEqual(len(posts), 1)
+        self.assertEqual(posts[0].id, "post_1")
+        self.assertEqual(posts[0].text, "Scheduled Post")
+        self.assertEqual(posts[0].status, "scheduled")
+        self.assertEqual(posts[0].due_at, "2026-06-08T09:00:00.000Z")
+
 
 if __name__ == "__main__":
     unittest.main()

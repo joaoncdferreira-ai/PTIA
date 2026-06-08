@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from ptia_engine.knowledge import RESOURCE_PATHS
+
 
 AI_CRAWLER_USER_AGENTS = [
     "Googlebot",
@@ -363,7 +365,12 @@ def build_ai_index(
             "news_sitemap": f"{base_url}/news-sitemap.xml",
             "rss": f"{base_url}/rss.xml",
             "ai_index": f"{base_url}/ai-index.json",
+            "ptia_index": f"{base_url}/assets/ptia-index/latest.json",
         },
+        "knowledge_resources": [
+            {"url": f"{base_url}{path}", "type": path.strip("/").replace("-", "_")}
+            for path in RESOURCE_PATHS
+        ],
         "answer_pages": [
             {
                 "question": page["question"],

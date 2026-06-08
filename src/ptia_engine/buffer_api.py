@@ -323,6 +323,51 @@ class BufferClient:
             raise BufferAPIError(str(result["message"]))
         return bool(result.get("id", post_id))
 
+    def scheduled_posts(self, channel_id: str) -> list[BufferPostDetails]:
+        orgs = self.account_organizations()
+        if not orgs:
+            return []
+        org_id = orgs[0].id
+        query = """
+        query GetPosts($input: PostsInput!) {
+          posts(input: $input) {
+            edges {
+              node {
+                id
+                text
+                status
+                dueAt
+                channelId
+                channelService
+              }
+            }
+          }
+        }
+        """
+        input_payload = {
+            "organizationId": org_id,
+            "filter": {
+                "channelIds": [channel_id]
+            }
+        }
+        payload = self._graphql(query, {"input": input_payload})
+        edges = payload.get("data", {}).get("posts", {}).get("edges", [])
+        results = []
+        for edge in edges:
+            node = edge.get("node") or {}
+            if node.get("status") != "sent":
+                results.append(
+                    BufferPostDetails(
+                        id=str(node.get("id", "")),
+                        text=str(node.get("text", "")),
+                        status=str(node.get("status", "")),
+                        due_at=str(node.get("dueAt", "")),
+                        channel_id=str(node.get("channelId", "")),
+                        channel_service=str(node.get("channelService", "")),
+                    )
+                )
+        return results
+
     def _graphql(self, query: str, variables: dict[str, Any] | None = None) -> dict[str, Any]:
         if not self.available:
             raise BufferAPIError("BUFFER_API_KEY nao esta configurada.")

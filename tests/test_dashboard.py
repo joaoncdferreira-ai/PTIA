@@ -354,6 +354,10 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("https://ptia.pt/temas/ai-act/", sitemap)
         self.assertIn("https://ptia.pt/perguntas/como-usar-ia-numa-pme-portuguesa/", sitemap)
         self.assertIn("https://ptia.pt/sobre/", sitemap)
+        self.assertIn("https://ptia.pt/recursos/", sitemap)
+        self.assertIn("https://ptia.pt/ia-em-portugal/", sitemap)
+        self.assertIn("https://ptia.pt/glossario/", sitemap)
+        self.assertIn("https://ptia.pt/assets/ptia-index/latest.json", llms)
         self.assertIn("Continuar leitura PTIA", article_html)
         self.assertIn("/temas/ia-para-pme/", article_html)
         self.assertIn("/perguntas/como-usar-ia-numa-pme-portuguesa/", article_html)
@@ -368,6 +372,11 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("FAQPage", answer_html)
         self.assertGreaterEqual(len(ai_index["answer_pages"]), 7)
         self.assertEqual(ai_index["country_focus"], "Portugal")
+        self.assertEqual(
+            ai_index["canonical_files"]["ptia_index"],
+            "https://ptia.pt/assets/ptia-index/latest.json",
+        )
+        self.assertGreaterEqual(len(ai_index["knowledge_resources"]), 6)
 
         root = ET.fromstring(news_sitemap.read_text(encoding="utf-8"))
         self.assertEqual(root.tag, "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset")
