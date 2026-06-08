@@ -1048,7 +1048,12 @@
   .prompt-top-row .movement-badge { grid-column: 2; justify-self: start; }
   .prompt-suggestion-result { grid-column: auto; }
   .winner-list li { grid-template-columns: 62px 86px minmax(0, 1fr); }
-  .winner-list li .movement-badge { grid-column: 3; justify-self: start; }
+  .winner-list li .movement-badge {
+    grid-column: 3;
+    justify-self: start;
+    max-width: 100%;
+    white-space: normal;
+  }
   .lobby-entity-list li { grid-template-columns: 62px 34px minmax(0, 1fr); }
   .lobby-entity-list li .movement-badge { grid-column: 3; justify-self: start; }
   .lobby-ranked li { grid-template-columns: 44px minmax(0, 1fr); }

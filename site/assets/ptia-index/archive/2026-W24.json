@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-W24",
-  "updated_at": "2026-06-08T09:20:40+00:00",
+  "updated_at": "2026-06-08T09:35:44+00:00",
   "signal_window_days": 84,
   "signal_articles": 67,
   "methodology_url": "https://ptia.pt/metodologia-indice/",

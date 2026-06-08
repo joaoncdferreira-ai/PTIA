@@ -575,7 +575,7 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
-  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-3">
+  <link rel="stylesheet" href="/assets/knowledge.css?v=20260608-4">
   <script>
     try {{ document.documentElement.dataset.theme = localStorage.getItem("ptia-theme") === "dark" ? "dark" : "light"; }} catch (_) {{}}
   </script>
@@ -1016,35 +1016,35 @@ def render_resources_page(payload: dict) -> str:
     leaders = "".join(
         (
             leader(
-                label="Empresa #1",
+                label="Empresas de IA em Portugal · #1",
                 name=leading_company["name"],
                 score=leading_company["score"],
                 href="/ia-em-portugal/",
-                action="Ver empresas",
+                action="Ver Top 10 empresas",
                 change=leading_company.get("ranking_change"),
             ),
             leader(
-                label="Pessoa #1",
+                label="Pessoas da IA em Portugal · #1",
                 name=leading_person["name"],
                 score=leading_person["score"],
                 href="/ia-em-portugal/",
-                action="Ver pessoas",
+                action="Ver Top 10 pessoas",
                 change=leading_person.get("ranking_change"),
             ),
             leader(
-                label="Ferramenta #1",
+                label="Ferramentas de IA · #1",
                 name=leading_tool["name"],
                 score=leading_tool["score"],
                 href="/ferramentas/",
-                action="Comparar",
+                action="Ver ranking de ferramentas",
                 change=leading_tool.get("ranking_change"),
             ),
             leader(
-                label="Prompt #1",
+                label="Prompts PTIA · #1 da semana",
                 name=leading_prompt["title"],
                 score=leading_prompt["score"],
                 href="/prompts/",
-                action="Abrir prompt",
+                action="Ver Top 10 prompts",
                 change=leading_prompt.get("ranking_change"),
             ),
         )
