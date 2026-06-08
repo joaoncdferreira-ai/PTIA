@@ -58,6 +58,7 @@ from ptia_engine.exports import (
 )
 from ptia_engine.growth import format_growth_report, load_growth_report, write_growth_report
 from ptia_engine.ai_visibility import build_ai_visibility_report, format_ai_visibility_report
+from ptia_engine.knowledge import KnowledgeValidationError, build_knowledge_site
 from ptia_engine.learning import (
     generate_learning_weights,
     load_learning_weights,
@@ -980,6 +981,25 @@ def cmd_ai_visibility_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_knowledge_update(args: argparse.Namespace) -> int:
+    try:
+        payload = build_knowledge_site(root=Path(args.root))
+    except KnowledgeValidationError as exc:
+        print("error " + json.dumps({"message": str(exc)}, ensure_ascii=False))
+        return 1
+    summary = {
+        "edition": payload["edition"],
+        "signal_articles": payload["signal_articles"],
+        "companies": len(payload["companies"]),
+        "people": len(payload["people"]),
+        "tools": len(payload["tools"]),
+        "prompts": len(payload["prompts"]),
+        "glossary": len(payload["glossary"]),
+    }
+    print(json.dumps(summary, ensure_ascii=False, indent=2 if args.json else None))
+    return 0
+
+
 def cmd_trend_radar(args: argparse.Namespace) -> int:
     out_path = Path(args.out)
     new_signals = fetch_hacker_news_trends(
@@ -1316,6 +1336,14 @@ def build_parser() -> argparse.ArgumentParser:
     ai_visibility.add_argument("--out", default="", help="Optional path to write the report.")
     ai_visibility.add_argument("--json", action="store_true", help="Print/write the report as JSON.")
     ai_visibility.set_defaults(func=cmd_ai_visibility_report)
+
+    knowledge_update = subparsers.add_parser(
+        "knowledge-update",
+        help="Rebuild the weekly PTIA indexes, tools, prompts and glossary pages.",
+    )
+    knowledge_update.add_argument("--root", default=".")
+    knowledge_update.add_argument("--json", action="store_true")
+    knowledge_update.set_defaults(func=cmd_knowledge_update)
 
     trend_radar = subparsers.add_parser("trend-radar", help="Fetch external AI engagement signals.")
     trend_radar.add_argument("--out", default="data/trend_signals.jsonl")

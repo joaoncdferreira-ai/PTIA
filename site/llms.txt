@@ -24,6 +24,13 @@ PTIA.pt e uma publicacao portuguesa independente sobre Inteligencia Artificial. 
 - Autor: https://ptia.pt/autor/joao-ferreira/
 - Metodologia editorial: https://ptia.pt/metodologia-editorial/
 - Fontes e criterios: https://ptia.pt/fontes-e-criterios/
+- Recursos PTIA: https://ptia.pt/recursos/
+- Indice de IA em Portugal: https://ptia.pt/ia-em-portugal/
+- Ferramentas de IA: https://ptia.pt/ferramentas/
+- Prompts PTIA: https://ptia.pt/prompts/
+- Glossario de IA: https://ptia.pt/glossario/
+- Metodologia do indice: https://ptia.pt/metodologia-indice/
+- Dados estruturados do indice: https://ptia.pt/assets/ptia-index/latest.json
 
 ## Perguntas canonicas
 - O que e o AI Act para empresas portuguesas?: https://ptia.pt/perguntas/o-que-e-o-ai-act-para-empresas-portuguesas/
