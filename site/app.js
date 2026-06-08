@@ -751,3 +751,46 @@ document.addEventListener("click", function(e) {
     history.pushState(null, null, href);
   }
 });
+
+function setupMobileMenu() {
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const backdrop = document.querySelector(".mobile-menu-backdrop");
+  const menu = document.getElementById("mobile-menu");
+  const closeButton = document.querySelector(".mobile-menu-close");
+  if (!toggle || !backdrop || !menu || !closeButton) return;
+
+  const closeMenu = () => {
+    backdrop.classList.remove("is-open");
+    backdrop.setAttribute("aria-hidden", "true");
+    menu.setAttribute("aria-hidden", "true");
+    toggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("mobile-menu-open");
+  };
+  const openMenu = () => {
+    backdrop.classList.add("is-open");
+    backdrop.setAttribute("aria-hidden", "false");
+    menu.setAttribute("aria-hidden", "false");
+    toggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("mobile-menu-open");
+    closeButton.focus();
+  };
+
+  toggle.addEventListener("click", openMenu);
+  closeButton.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  backdrop.addEventListener("click", (event) => {
+    if (event.target === backdrop) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && backdrop.classList.contains("is-open")) {
+      closeMenu();
+      toggle.focus();
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupMobileMenu);
+} else {
+  setupMobileMenu();
+}

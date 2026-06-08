@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260608-3">
+  <link rel="stylesheet" href="styles.css?v=20260608-4">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -95,9 +95,34 @@
           </svg>
         </a>
         <a class="header-cta" href="#newsletter">Weekly <span aria-hidden="true">-></span></a>
+        <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
+  <div class="mobile-menu-backdrop" aria-hidden="true">
+    <aside class="mobile-menu" id="mobile-menu" aria-label="Menu mobile" aria-hidden="true">
+      <div class="mobile-menu-head">
+        <span>Explorar PTIA</span>
+        <button class="mobile-menu-close" type="button" aria-label="Fechar menu">&times;</button>
+      </div>
+      <nav aria-label="Navegação mobile">
+        <a href="#hoje">Hoje</a>
+        <a href="/recursos/">Hub</a>
+        <a href="/ia-em-portugal/">Índice Portugal</a>
+        <a href="/ferramentas/">Ferramentas</a>
+        <a href="/prompts/">Prompts</a>
+        <a href="/glossario/">Glossário</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+      <div class="mobile-menu-social">
+        <a href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://x.com/PTIAPTPT" target="_blank" rel="noopener noreferrer">X</a>
+      </div>
+    </aside>
+  </div>
 
   <main id="top">
     <section class="breaking" aria-label="Atualizações">
@@ -317,7 +342,7 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20260528-0008"></script>
+  <script src="app.js?v=20260608-0009"></script>
   <script src="/analytics.js?v=20260606-1"></script>
 </body>
 </html>
