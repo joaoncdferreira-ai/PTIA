@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-09T08:54:32+00:00",
+  "updated_at": "2026-06-09T23:29:23+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,38 @@
   ],
   "recent_articles": [
     {
+      "title": "Scout da Microsoft: O Autopilot Agêntico no M365",
+      "url": "https://ptia.pt/artigos/scout-da-microsoft-o-autopilot-agentico-no-m365-2a3894114ee6007b84",
+      "published_at": "2026-06-09T21:00:00+01:00",
+      "summary": "A Microsoft anunciou o lançamento do Scout, um Autopilot agêntico que se integra de forma nativa em todo o ecossistema do Microsoft 365. Esta nova ferramenta visa estender a automação e a assistência inteligente a um le...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Nvidia adquire startup de IA preditiva Kumo por mais de US$ 400 milhões",
+      "url": "https://ptia.pt/artigos/nvidia-adquire-startup-de-ia-preditiva-kumo-por-mais-de-us-400-milhoes-fef0498e1bb1793f31",
+      "published_at": "2026-06-09T16:00:00+01:00",
+      "summary": "A Nvidia adquiriu a Kumo, uma startup de IA preditiva, por pelo menos US$ 400 milhões. A IA continua a ser vendida como software, mas O relato lembra a parte física da disputa: chips, energia, centros de dados e capacid...",
+      "sections": [
+        "Mundo",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "OpenAI quer transformar ChatGPT em 'superapp' antes de IPO",
+      "url": "https://ptia.pt/artigos/openai-quer-transformar-chatgpt-em-superapp-antes-de-ipo-7c77f47bc8e2e0753e",
+      "published_at": "2026-06-09T13:00:00+01:00",
+      "summary": "A OpenAI planeia reformular o ChatGPT para o converter numa 'superapp', integrando ferramentas de codificação e agentes de inteligência artificial. O objetivo é impulsionar as receitas da empresa antes de uma potencial...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "Portugal e a IA: Proteger o Trabalho Enquanto a Regulação se Torna Produto",
       "url": "https://ptia.pt/artigos/portugal-e-a-ia-proteger-o-trabalho-enquanto-a-regulacao-se-torna-produto-91313cc185601deb46",
       "published_at": "2026-06-09T09:00:00+01:00",
@@ -521,41 +553,6 @@
         "Mundo",
         "Builders",
         "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Bain: Empresas portuguesas que escalam IA ganham até 25% em produtividade, mas modernização é entrave",
-      "url": "https://ptia.pt/artigos/bain-empresas-portuguesas-que-escalam-ia-ganham-ate-25-em-produtividade-mas-modernizacao-e-entrave-cfdafc852f8596b9b6",
-      "published_at": "2026-06-03T13:00:00+01:00",
-      "summary": "Um estudo recente da Bain & Company revela que as empresas portuguesas que conseguem escalar a Inteligência Artificial podem alcançar ganhos significativos: até 25% em produtividade e 30% em EBITDA. Contudo, a análise a...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "NVIDIA e Microsoft Redefinem o PC Windows para a Era da IA Pessoal",
-      "url": "https://ptia.pt/artigos/nvidia-e-microsoft-redefinem-o-pc-windows-para-a-era-da-ia-pessoal-550acd0bf32e23374b",
-      "published_at": "2026-06-03T09:00:00+01:00",
-      "summary": "A NVIDIA anunciou o superchip RTX Spark™, numa colaboração com a Microsoft, que visa redefinir o PC Windows. A proposta é transformar o computador de uma ferramenta passiva num agente de IA pessoal, operando como um com...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "A IA na Saúde e a Infraestrutura Física: O Exemplo de Taiwan",
-      "url": "https://ptia.pt/artigos/a-ia-na-saude-e-a-infraestrutura-fisica-o-exemplo-de-taiwan-43df84b363288a3a39",
-      "published_at": "2026-06-02T21:00:00+01:00",
-      "summary": "A NVIDIA anunciou que a Foxconn e os principais centros médicos de Taiwan vão implementar forças de trabalho de “agentes especiais” movidas a tecnologia NVIDIA. O objetivo declarado é acelerar a transição da região para...",
-      "sections": [
-        "Mundo",
-        "Builders",
         "Histórias reais",
         "Previsões Futuras"
       ]
