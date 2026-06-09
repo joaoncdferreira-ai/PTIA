@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-08T18:08:29+00:00",
+  "updated_at": "2026-06-09T08:54:32+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -262,6 +262,31 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "Portugal e a IA: Proteger o Trabalho Enquanto a Regulação se Torna Produto",
+      "url": "https://ptia.pt/artigos/portugal-e-a-ia-proteger-o-trabalho-enquanto-a-regulacao-se-torna-produto-91313cc185601deb46",
+      "published_at": "2026-06-09T09:00:00+01:00",
+      "summary": "O governo português assume uma posição clara: a proteção dos trabalhadores e a garantia de condições laborais adequadas são imperativas na integração da inteligência artificial no mercado. Esta defesa não é uma nota de...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "A IA já pilota aviões. O que muda na adoção tecnológica?",
+      "url": "https://ptia.pt/artigos/a-ia-ja-pilota-avioes-o-que-muda-na-adocao-tecnologica-fbd5f6ef66313ab24e",
+      "published_at": "2026-06-08T21:00:00+01:00",
+      "summary": "A inteligência artificial está a ser desenvolvida para pilotar aviões, e a indústria da aviação já começa a adotá-la. Este é o facto. O que este movimento nos diz é que o ponto crítico para a adoção de IA em setores tra...",
+      "sections": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
     {
       "title": "Quando a IA se constrói a si mesma",
       "url": "https://ptia.pt/artigos/quando-a-ia-se-constroi-a-si-mesma-f4a3a06b821829927f",
@@ -533,28 +558,6 @@
         "Builders",
         "Histórias reais",
         "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Google Cloud e NTT Data: a batalha pelo hábito da IA no retalho",
-      "url": "https://ptia.pt/artigos/google-cloud-e-ntt-data-a-batalha-pelo-habito-da-ia-no-retalho-d9cac2c3e400d579ee",
-      "published_at": "2026-06-02T16:00:00+01:00",
-      "summary": "A Associação Portuguesa de Centros Comerciais (APCC) anunciou uma parceria com a Google Cloud e a NTT Data para a \"Retail Spaces AI Academy\", um programa de formação focado na inteligência artificial aplicada ao setor d...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Foxconn e Bull unem forças para infraestruturas de IA na Europa",
-      "url": "https://ptia.pt/artigos/foxconn-e-bull-unem-forcas-para-infraestruturas-de-ia-na-europa-660394bd6831b094d6",
-      "published_at": "2026-06-02T12:00:00+01:00",
-      "summary": "A Foxconn, gigante tecnológica taiwanesa, anunciou hoje uma parceria estratégica com a francesa Bull para desenvolver infraestruturas de inteligência artificial (IA) e computação na nuvem. O objetivo é servir o mercado...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais"
       ]
     }
   ],
