@@ -183,7 +183,7 @@ function articleVisual(post) {
 }
 
 async function loadFeed() {
-  for (const url of ["site-feed.json", "/api/site-feed"]) {
+  for (const url of ["/site-feed.json", "/api/site-feed"]) {
     const response = await fetch(url, { cache: "no-store" });
     if (response.ok) return response.json();
   }
