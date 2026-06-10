@@ -2342,7 +2342,7 @@ def _static_site_image_url(state: DashboardState, post: FinalPost) -> str:
     copied = _copy_image_to_public_site_assets(state, post)
     if not copied:
         return ""
-    return f"assets/final/{Path(copied).name}"
+    return f"/assets/final/{Path(copied).name}"
 
 
 def _site_public_base_url() -> str:
@@ -2484,7 +2484,7 @@ def _write_static_article_pages(state: DashboardState, payload: dict) -> list[st
             for url in source_urls
         )
         image_url = str(post.get("image_url") or "")
-        absolute_image = f"{base_url}/{image_url}" if image_url and not image_url.startswith(("http://", "https://")) else image_url
+        absolute_image = f"{base_url}/{image_url.lstrip('/')}" if image_url and not image_url.startswith(("http://", "https://")) else image_url
         article_schema = {
             "@context": "https://schema.org",
             "@type": "NewsArticle",
@@ -2507,13 +2507,13 @@ def _write_static_article_pages(state: DashboardState, payload: dict) -> list[st
         internal_links = _internal_links_for_post(post)
         if internal_links:
             article_schema["about"] = [
-                {"@type": "Thing", "name": link["label"], "url": f"{base_url}{link['href']}"}
+                {"@type": "Thing", "name": link["label"], "url": f"{base_url.rstrip('/')}{link['href']}"}
                 for link in internal_links
             ]
         schema_json = json.dumps(article_schema, ensure_ascii=False).replace("</", "<\\/")
         image_markup = ""
         if image_url:
-            src = image_url if image_url.startswith(("http://", "https://")) else f"/{image_url}"
+            src = image_url if image_url.startswith(("http://", "https://", "/")) else f"/{image_url}"
             image_markup = f'<figure class="article-hero-image"><img src="{html.escape(src)}" alt="" loading="eager"></figure>'
         related_markup = _related_links_markup(internal_links)
         first_source_host = urlparse(source_urls[0]).hostname.replace("www.", "") if source_urls and urlparse(source_urls[0]).hostname else "PTIA"
