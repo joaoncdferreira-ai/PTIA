@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-10T16:02:55+00:00",
+  "updated_at": "2026-06-10T17:03:11+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -262,6 +262,17 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "Nações Unidas alertam: fosso digital na IA pode gerar novas dependências",
+      "url": "https://ptia.pt/artigos/nacoes-unidas-alertam-fosso-digital-na-ia-pode-gerar-novas-dependencias-63473c83c36e092c2b",
+      "published_at": "2026-06-10T18:00:00+01:00",
+      "summary": "As Nações Unidas publicaram uma nova análise sobre a adoção global da inteligência artificial, destacando um crescente fosso entre países desenvolvidos e em desenvolvimento. O relatório aponta para uma concentração dese...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Previsões Futuras"
+      ]
+    },
     {
       "title": "Inteligência Artificial na Contabilidade: O Redesenho Estratégico do Papel do Contabilista",
       "url": "https://ptia.pt/artigos/inteligencia-artificial-na-contabilidade-o-redesenho-estrategico-do-papel-do-contabilista-18a9411220509cee96",
@@ -539,18 +550,6 @@
       "summary": "O Presidente Trump assinou uma ordem executiva que visa garantir acesso antecipado a novos lançamentos de IA. Esta decisão move a inteligência artificial para fora dos laboratórios, integrando-a plenamente na política i...",
       "sections": [
         "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Regulação da IA no Setor Público: O Workshop da Comissão Europeia em Portugal",
-      "url": "https://ptia.pt/artigos/regulacao-da-ia-no-setor-publico-o-workshop-da-comissao-europeia-em-portugal-bf1b893b4740d62eca",
-      "published_at": "2026-06-04T09:00:00+01:00",
-      "summary": "A Comissão Europeia em Portugal organiza um workshop gratuito no dia 17 de junho de 2026, com foco em ferramentas de Inteligência Artificial para serviços públicos. O objetivo é claro: aumentar a produtividade e melhora...",
-      "sections": [
-        "Portugal",
         "Builders",
         "Regulação",
         "Histórias reais"
