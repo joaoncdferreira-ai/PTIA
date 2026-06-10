@@ -1,7 +1,59 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-10T17:03:11+00:00",
+  "updated_at": "2026-06-10T22:48:41+00:00",
   "posts": [
+    {
+      "id": "post_9c03921a4916c5a598",
+      "title": "IA na Saúde: o hospital sem paredes",
+      "body": "A Luz Saúde está a utilizar a IA para moldar o futuro do setor da saúde, indo além das paredes do hospital e colocando a tecnologia ao serviço de um cuidado mais humano.\n\nO dado que interessa é este: A Luz Saúde está a utilizar a IA para moldar o futuro do setor da saúde, indo além das paredes do hospital e colocando a tecnologia ao serviço de um cuidado mais humano.\n\nEsta notícia é importante para o setor da saúde em Portugal, demonstrando como a IA pode  a prestação de cuidados e a experiência do paciente.\n\nEsta notícia é importante para o setor da saúde em Portugal, demonstrando como a IA pode  a prestação de cuidados e a experiência do paciente.\n\nFonte: https://observador.pt/seccao/a-conversa-com-a-inovacao/ia-na-saude-o-hospital-sem-paredes/",
+      "source_urls": [
+        "https://observador.pt/seccao/a-conversa-com-a-inovacao/ia-na-saude-o-hospital-sem-paredes/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5d127644e03e307b3b_df9f12eb_ChatGPT-Image-10_06_2026-23_36_57.png",
+      "image_url": "/assets/final/post_ecdcfcc50219eb802e_site_1600x900.jpg",
+      "published_at": "2026-06-11T18:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/ia-na-saude-o-hospital-sem-paredes-9c03921a4916c5a598"
+    },
+    {
+      "id": "post_bd3317e5cc7af4ed7d",
+      "title": "Meta deverá permitir acesso de outros chatbots ao WhatsApp, define Comissão Europeia",
+      "body": "A Comissão Europeia definiu que a Meta deverá permitir o acesso de outros chatbots ao WhatsApp.\n\nA tensão está no sinal laboral: a mesma empresa que vende produtividade algorítmica está a redesenhar internamente o tamanho e o papel das equipas.\n\nEsta decisão regulatória na Europa é relevante para empresas que desenvolvem soluções de IA, pois pode abrir novas oportunidades para a integração de chatbots em plataformas de comunicação amplamente utilizadas.\n\nIsto torna a IA menos uma narrativa de eficiência abstracta e mais uma escolha de gestão com consequências visíveis nas estruturas que a adoptam.\n\nFonte: https://exame.com/inteligencia-artificial/meta-devera-permitir-acesso-de-outros-chatbots-ao-whatsapp-define-comissao-europeia/",
+      "source_urls": [
+        "https://exame.com/inteligencia-artificial/meta-devera-permitir-acesso-de-outros-chatbots-ao-whatsapp-define-comissao-europeia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_643b3b1e87fb9b24ef_a92a571d_ChatGPT-Image-10_06_2026-23_31_11.png",
+      "image_url": "/assets/final/post_6a2dfcf0ea1d094656_site_1600x900.jpg",
+      "published_at": "2026-06-11T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/meta-devera-permitir-acesso-de-outros-chatbots-ao-whatsapp-define-comissao-europeia-bd3317e5cc7af4ed7d"
+    },
+    {
+      "id": "post_950b1814ee478d2559",
+      "title": "Inteligência Artificial no Centro das Jornadas Pastorais do Episcopado Português",
+      "body": "A Igreja Católica em Portugal vai dedicar as suas próximas Jornadas Pastorais à Inteligência Artificial. O encontro anual do Episcopado, agendado para 1 a 3 de julho de 2024, em Fátima, terá como tema central “Inteligência Artificial e Evangelização”.\n\nEste foco não é apenas um sinal de adaptação, mas um reconhecimento de que a IA já não é uma tecnologia marginal. A sua inclusão na agenda de uma instituição com a capilaridade e a influência da Igreja em Portugal sugere que a discussão sobre a IA está a transcender os círculos tecnológicos e empresariais, consolidando-se como um tema de relevância social e ética incontornável. Para decisores e fundadores, isto significa que a adoção e regulação da IA passarão por um escrutínio público mais alargado e multifacetado, onde os valores e as implicações humanas serão tão ou mais debatidos do que a eficiência ou o retorno do investimento.\n\nSim, e… esta abertura a debater a IA em contextos não-tecnológicos deve ser encarada como uma oportunidade. A discussão sobre ética, propósito e impacto social da IA precisa de vozes diversas. Quando uma instituição como a Igreja portuguesa coloca a IA no centro do seu debate, cria um espaço para contextualizar a tecnologia para públicos mais vastos, que podem estar distantes dos habituais <i>hubs</i> de inovação. Este é o momento para que empresas, <i>startups</i> e reguladores se envolvam proactivamente, partilhando conhecimentos e contribuindo para uma narrativa mais informada e menos polarizada. A alternativa é deixar que a percepção pública da IA seja moldada exclusivamente por debates internos, muitas vezes desfasados da realidade do desenvolvimento e aplicação tecnológica.\n\nO verdadeiro desafio é transformar esta reflexão em ações concretas. Não se trata apenas de compreender a IA, mas de definir como as suas capacidades podem ser alavancadas de forma responsável. Para as empresas portuguesas, a questão é como traduzir este debate cultural em estratégias de <i>compliance</i>, desenvolvimento de produto e comunicação que antecipem as preocupações sociais e éticas. A ausência de um diálogo estruturado com estas vozes emergentes pode levar a regulamentações reativas ou a uma desconfiança pública que trave a inovação. A capacidade de construir pontes entre o desenvolvimento tecnológico e o debate de valores será determinante para o crescimento sustentável da IA em Portugal.\n\nFonte: https://agencia.ecclesia.pt/portal/events/igreja-portugal-inteligencia-artificial-no-centro-das-proximas-jornadas-pastorais-do-episcopado/",
+      "source_urls": [
+        "https://agencia.ecclesia.pt/portal/events/igreja-portugal-inteligencia-artificial-no-centro-das-proximas-jornadas-pastorais-do-episcopado/"
+      ],
+      "image_path": "data/final_assets/post_c38262fe28ece80db3_church_ai_cover.png",
+      "image_url": "/assets/final/post_c38262fe28ece80db3_site_1600x900.jpg",
+      "published_at": "2026-06-11T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/inteligencia-artificial-no-centro-das-jornadas-pastorais-do-episcopado-portugues-950b1814ee478d2559"
+    },
     {
       "id": "post_fb299ee5519bbccb83",
       "title": "Mundial 2026: IA na Tática e no VAR",
