@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-10T22:48:41+00:00",
+  "updated_at": "2026-06-10T23:19:44+00:00",
   "posts": [
+    {
+      "id": "post_1f9dc38cd0a1847e7d",
+      "title": "Sustentabilidade da IA: EUA avaliam impacto ambiental da tecnologia.",
+      "body": "A fonte publicou uma nova informação sobre inteligência artificial.\n\nO dado que interessa é este: A fonte publicou uma nova informação sobre inteligência artificial.\n\nA fonte publicou uma nova informação sobre inteligência artificial.\n\nA fonte publicou uma nova informação sobre inteligência artificial.\n\nFonte: https://www.markey.senate.gov/news/press-releases/senator-markey-rep-beyer-reintroduce-ai-environmental-impacts-act",
+      "source_urls": [
+        "https://www.markey.senate.gov/news/press-releases/senator-markey-rep-beyer-reintroduce-ai-environmental-impacts-act"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_1ed95915a9355435f3_a5ec8143_ChatGPT-Image-10_06_2026-23_44_47.png",
+      "image_url": "/assets/final/post_e0ded54dd854c2d4f1_site_1600x900.jpg",
+      "published_at": "2026-06-11T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/sustentabilidade-da-ia-eua-avaliam-impacto-ambiental-da-tecnologia-1f9dc38cd0a1847e7d"
+    },
     {
       "id": "post_9c03921a4916c5a598",
       "title": "IA na Saúde: o hospital sem paredes",
@@ -11,7 +27,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5d127644e03e307b3b_df9f12eb_ChatGPT-Image-10_06_2026-23_36_57.png",
       "image_url": "/assets/final/post_ecdcfcc50219eb802e_site_1600x900.jpg",
-      "published_at": "2026-06-11T18:00:00+01:00",
+      "published_at": "2026-06-11T16:00:00+01:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
