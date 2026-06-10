@@ -1,7 +1,26 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-09T23:29:23+00:00",
+  "updated_at": "2026-06-10T15:57:00+00:00",
   "posts": [
+    {
+      "id": "post_950b1814ee478d2559",
+      "title": "Inteligência Artificial no Centro das Jornadas Pastorais do Episcopado Português",
+      "body": "A Igreja Católica em Portugal vai dedicar as suas próximas Jornadas Pastorais à Inteligência Artificial. O encontro anual do Episcopado, agendado para 1 a 3 de julho de 2024, em Fátima, terá como tema central “Inteligência Artificial e Evangelização”.\n\nEste foco não é apenas um sinal de adaptação, mas um reconhecimento de que a IA já não é uma tecnologia marginal. A sua inclusão na agenda de uma instituição com a capilaridade e a influência da Igreja em Portugal sugere que a discussão sobre a IA está a transcender os círculos tecnológicos e empresariais, consolidando-se como um tema de relevância social e ética incontornável. Para decisores e fundadores, isto significa que a adoção e regulação da IA passarão por um escrutínio público mais alargado e multifacetado, onde os valores e as implicações humanas serão tão ou mais debatidos do que a eficiência ou o retorno do investimento.\n\nSim, e… esta abertura a debater a IA em contextos não-tecnológicos deve ser encarada como uma oportunidade. A discussão sobre ética, propósito e impacto social da IA precisa de vozes diversas. Quando uma instituição como a Igreja portuguesa coloca a IA no centro do seu debate, cria um espaço para contextualizar a tecnologia para públicos mais vastos, que podem estar distantes dos habituais <i>hubs</i> de inovação. Este é o momento para que empresas, <i>startups</i> e reguladores se envolvam proactivamente, partilhando conhecimentos e contribuindo para uma narrativa mais informada e menos polarizada. A alternativa é deixar que a percepção pública da IA seja moldada exclusivamente por debates internos, muitas vezes desfasados da realidade do desenvolvimento e aplicação tecnológica.\n\nO verdadeiro desafio é transformar esta reflexão em ações concretas. Não se trata apenas de compreender a IA, mas de definir como as suas capacidades podem ser alavancadas de forma responsável. Para as empresas portuguesas, a questão é como traduzir este debate cultural em estratégias de <i>compliance</i>, desenvolvimento de produto e comunicação que antecipem as preocupações sociais e éticas. A ausência de um diálogo estruturado com estas vozes emergentes pode levar a regulamentações reativas ou a uma desconfiança pública que trave a inovação. A capacidade de construir pontes entre o desenvolvimento tecnológico e o debate de valores será determinante para o crescimento sustentável da IA em Portugal.\n\nFonte: https://agencia.ecclesia.pt/portal/events/igreja-portugal-inteligencia-artificial-no-centro-das-proximas-jornadas-pastorais-do-episcopado/",
+      "source_urls": [
+        "https://agencia.ecclesia.pt/portal/events/igreja-portugal-inteligencia-artificial-no-centro-das-proximas-jornadas-pastorais-do-episcopado/"
+      ],
+      "image_path": "data/final_assets/post_c38262fe28ece80db3_church_ai_cover.png",
+      "image_url": "/assets/final/post_c38262fe28ece80db3_site_1600x900.jpg",
+      "published_at": "2026-06-11T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/inteligencia-artificial-no-centro-das-jornadas-pastorais-do-episcopado-portugues-950b1814ee478d2559"
+    },
     {
       "id": "post_fb299ee5519bbccb83",
       "title": "Copa do Mundo 2026: IA na Tática e no VAR",
@@ -10,7 +29,7 @@
         "https://www.cnnbrasil.com.br/esportes/da-tatica-ao-var-como-a-ia-promete-inovar-na-copa-do-mundo-de-2026/"
       ],
       "image_path": "data\\final_assets\\post_cc7f2957fa85dd8441_f0608f46_ChatGPT-Image-10_06_2026-00_23_03.png",
-      "image_url": "assets/final/post_197a17174b6ca4813c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_197a17174b6ca4813c_site_1600x900.jpg",
       "published_at": "2026-06-10T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -27,7 +46,7 @@
         "https://news.un.org/en/story/2026/06/1167658"
       ],
       "image_path": "data\\final_assets\\post_7ca632f5119a44269a_818b7b29_ChatGPT-Image-10_06_2026-00_23_38.png",
-      "image_url": "assets/final/post_6f34123aab03d87268_site_1600x900.jpg",
+      "image_url": "/assets/final/post_6f34123aab03d87268_site_1600x900.jpg",
       "published_at": "2026-06-10T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -44,7 +63,7 @@
         "https://www.occ.pt/pt-pt/noticias/inteligencia-artificial-na-contabilidade-potencialidades-desafios-e-impactos"
       ],
       "image_path": "data\\final_assets\\post_46b2168a438ca425f7_c10140f8_ChatGPT-Image-10_06_2026-00_17_39.png",
-      "image_url": "assets/final/post_ffcd8eca89930f443a_site_1600x900.jpg",
+      "image_url": "/assets/final/post_ffcd8eca89930f443a_site_1600x900.jpg",
       "published_at": "2026-06-10T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -63,7 +82,7 @@
         "https://www.anthropic.com/news/claude-fable-5-mythos-5"
       ],
       "image_path": "data\\final_assets\\post_3c12014b907ef116ec_a35492d1_ChatGPT-Image-10_06_2026-00_15_20.png",
-      "image_url": "assets/final/post_c7ea3f5457582268fa_site_1600x900.jpg",
+      "image_url": "/assets/final/post_c7ea3f5457582268fa_site_1600x900.jpg",
       "published_at": "2026-06-10T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -81,7 +100,7 @@
         "https://www.microsoft.com/"
       ],
       "image_path": "data\\final_assets\\post_ea3e33e8c945881755_8d33743d_ChatGPT-Image-8_06_2026-18_57_50.png",
-      "image_url": "assets/final/post_a050a430289b939744_site_1600x900.jpg",
+      "image_url": "/assets/final/post_a050a430289b939744_site_1600x900.jpg",
       "published_at": "2026-06-09T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -98,7 +117,7 @@
         "https://www.nvidia.com/en-us/about-nvidia/newsroom/"
       ],
       "image_path": "data\\final_assets\\post_110f8de4eea4e1b54e_12cdc393_ChatGPT-Image-8_06_2026-18_55_43.png",
-      "image_url": "assets/final/post_679d16dc2e6531f5e4_site_1600x900.jpg",
+      "image_url": "/assets/final/post_679d16dc2e6531f5e4_site_1600x900.jpg",
       "published_at": "2026-06-09T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -114,7 +133,7 @@
         "https://www.cnnbrasil.com.br/tecnologia/openai-planeja-reformular-chatgpt-como-superapp-antes-de-ipo/"
       ],
       "image_path": "data\\final_assets\\post_781e963b1eae920f30_e98c2a0c_ChatGPT-Image-8_06_2026-18_50_24.png",
-      "image_url": "assets/final/post_48720f66c33845bc31_site_1600x900.jpg",
+      "image_url": "/assets/final/post_48720f66c33845bc31_site_1600x900.jpg",
       "published_at": "2026-06-09T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -131,7 +150,7 @@
         "https://www.portugal.gov.pt/pt/gc24/comunicacao/noticia?i=portugal-defende-protecao-dos-trabalhadores-em-tempos-de-ia-e-inovacao-tecnologica"
       ],
       "image_path": "data\\final_assets\\post_0c11bb678fc19f1575_809e89e8_ChatGPT-Image-8_06_2026-18_48_14.png",
-      "image_url": "assets/final/post_28d301964ffd9c3fe8_site_1600x900.jpg",
+      "image_url": "/assets/final/post_28d301964ffd9c3fe8_site_1600x900.jpg",
       "published_at": "2026-06-09T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -150,7 +169,7 @@
         "https://cnnportugal.iol.pt/inteligencia-artificial/a-ia-esta-a-aprender-a-pilotar-avioes-e-a-aviacao-esta-a-comecar-a-adota-la/20260606/666191a6d34e65a7402a5089"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5fa223a1a0f6c9c8a5_72bef983_ChatGPT-Image-7_06_2026-22_02_40.png",
-      "image_url": "assets/final/post_5eb8f715bec888cb8d_site_1600x900.jpg",
+      "image_url": "/assets/final/post_5eb8f715bec888cb8d_site_1600x900.jpg",
       "published_at": "2026-06-08T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -168,7 +187,7 @@
         "https://www.anthropic.com/news/when-ai-builds-itself"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_46b73fb30a55f13cd1_252b5062_ChatGPT-Image-7_06_2026-22_06_59.png",
-      "image_url": "assets/final/post_02d20b0f5e7c52bf98_site_1600x900.jpg",
+      "image_url": "/assets/final/post_02d20b0f5e7c52bf98_site_1600x900.jpg",
       "published_at": "2026-06-08T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -185,7 +204,7 @@
         "https://observador.pt/2026/06/06/como-o-opensource-muda-a-ia-no-mundo/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2dd46e681744362e53_cb7ff6b9_ChatGPT-Image-7_06_2026-21_53_24.png",
-      "image_url": "assets/final/post_e317cd3975bf569f17_site_1600x900.jpg",
+      "image_url": "/assets/final/post_e317cd3975bf569f17_site_1600x900.jpg",
       "published_at": "2026-06-08T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -203,7 +222,7 @@
         "https://observador.pt/2026/06/05/trump-diz-ponderar-participacao-do-estado-em-empresas-de-ia/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d86030d2d777f0c2a3_499dc079_ChatGPT-Image-7_06_2026-21_45_14.png",
-      "image_url": "assets/final/post_4f7c54afe11be6f3d8_site_1600x900.jpg",
+      "image_url": "/assets/final/post_4f7c54afe11be6f3d8_site_1600x900.jpg",
       "published_at": "2026-06-08T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -220,7 +239,7 @@
         "https://www.jornaldenegocios.pt/empresas/startups/detalhe/lisboa-entra-no-top-10-europeu-dos-ecossistemas-de-startups-com-maior-crescimento"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_1515c5854c2937bf6a_a198e84c_ChatGPT-Image-6_06_2026-22_21_41.png",
-      "image_url": "assets/final/post_1d2e9fe18417f254a9_site_1600x900.jpg",
+      "image_url": "/assets/final/post_1d2e9fe18417f254a9_site_1600x900.jpg",
       "published_at": "2026-06-07T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -238,7 +257,7 @@
         "https://press.aboutamazon.com/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2edf89a11d3c514e5f_7ff2b935_ChatGPT-Image-6_06_2026-22_18_59.png",
-      "image_url": "assets/final/post_ac55ee8bae3b43fa94_site_1600x900.jpg",
+      "image_url": "/assets/final/post_ac55ee8bae3b43fa94_site_1600x900.jpg",
       "published_at": "2026-06-07T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -256,7 +275,7 @@
         "https://www.anthropic.com/"
       ],
       "image_path": "c:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0357526a44045c199d_anthropic_gender_gap_ai.png",
-      "image_url": "assets/final/post_77ae0b8b14feb7bb60_site_1600x900.jpg",
+      "image_url": "/assets/final/post_77ae0b8b14feb7bb60_site_1600x900.jpg",
       "published_at": "2026-06-07T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -274,7 +293,7 @@
         "https://gzh.clicrbs.com.br/colunas/giane-guerra/2026/06/06/espanha-disputa-gigafabrica-de-ia-e-quer-parceria-do-brasil-diz-ministro-da-funcao-publica-clx516r9o000d01389274959i.html"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_66574ac183fd4dd6e5_03942e8b_ChatGPT-Image-6_06_2026-21_49_33.png",
-      "image_url": "assets/final/post_2054178f1c30eb2bd7_site_1600x900.jpg",
+      "image_url": "/assets/final/post_2054178f1c30eb2bd7_site_1600x900.jpg",
       "published_at": "2026-06-07T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -292,7 +311,7 @@
         "https://finance.yahoo.com/sectors/technology/articles/cognizant-launches-sovereign-physical-ai-190500919.html"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d9d5912a1ef2e25a24_b91eeb2a_ChatGPT-Image-5_06_2026-23_07_56.png",
-      "image_url": "assets/final/post_c2cba4801d60e0baab_site_1600x900.jpg",
+      "image_url": "/assets/final/post_c2cba4801d60e0baab_site_1600x900.jpg",
       "published_at": "2026-06-06T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -310,7 +329,7 @@
         "https://openai.com/index/biodefense-in-the-intelligence-age"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f40d5bf832b98e8717_5d90ccd8_ChatGPT-Image-5_06_2026-23_35_29.png",
-      "image_url": "assets/final/post_b3d2e82ee3c62a8552_site_1600x900.jpg",
+      "image_url": "/assets/final/post_b3d2e82ee3c62a8552_site_1600x900.jpg",
       "published_at": "2026-06-06T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -326,7 +345,7 @@
         "https://g1.globo.com/economia/tecnologia/noticia/2026/06/05/anthropic-sugere-pausa-na-ia-por-risco-de-perda-de-controle-humano.ghtml"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_453db7b0e48021dc69_976899e6_ChatGPT-Image-5_06_2026-23_05_16.png",
-      "image_url": "assets/final/post_30c5d78117a2da867e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_30c5d78117a2da867e_site_1600x900.jpg",
       "published_at": "2026-06-06T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -344,7 +363,7 @@
         "https://jornaleconomico.sapo.pt/noticias/empresas-portuguesas-aceleram-investimento-em-inteligencia-artificial-sem-regras-internas-definidas-1123287"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a0b83d463f3cb751c1_989c1f24_ChatGPT-Image-5_06_2026-22_26_05.png",
-      "image_url": "assets/final/post_6fe50eda1cb72fa485_site_1600x900.jpg",
+      "image_url": "/assets/final/post_6fe50eda1cb72fa485_site_1600x900.jpg",
       "published_at": "2026-06-06T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -362,7 +381,7 @@
         "https://newsroom.ibm.com/2026-06-04-ibm-and-google-cloud-announce-strategic-partnership-to-scale-ai-with-human-expertise-and-ai-powered-delivery"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fa38b8cdb5e677747c_fda5cd0b_ChatGPT-Image-4_06_2026-23_16_59.png",
-      "image_url": "assets/final/post_fa38b8cdb5e677747c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_fa38b8cdb5e677747c_site_1600x900.jpg",
       "published_at": "2026-06-05T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -380,7 +399,7 @@
         "https://healthnews.pt/2026/06/04/lisboa-acolhe-gala-dos-health-ai-innovation-awards-2026/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ad97db04e28b973f4e_d305bf77_ChatGPT-Image-4_06_2026-22_48_48.png",
-      "image_url": "assets/final/post_ad97db04e28b973f4e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_ad97db04e28b973f4e_site_1600x900.jpg",
       "published_at": "2026-06-05T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -398,7 +417,7 @@
         "https://eco.sapo.pt/2026/06/03/dos-chips-a-ia-novo-pacote-da-comissao-aposta-tudo-na-soberania-tecnologica-europeia/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_840895800dbba7b271_05aca28a_ChatGPT-Image-4_06_2026-22_42_41.png",
-      "image_url": "assets/final/post_08b5044299a41ece58_site_1600x900.jpg",
+      "image_url": "/assets/final/post_08b5044299a41ece58_site_1600x900.jpg",
       "published_at": "2026-06-05T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -417,7 +436,7 @@
         "https://jornaleconomico.sapo.pt/noticias/ia-feita-em-portugal-conquista-podio-e-aponta-aos-mercados-globais/"
       ],
       "image_path": "data\\final_assets\\post_23206e30772fdf7270_f8e889b3_ChatGPT-Image-3_06_2026-18_43_00.png",
-      "image_url": "assets/final/post_fc332917a65e003e4c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_fc332917a65e003e4c_site_1600x900.jpg",
       "published_at": "2026-06-04T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -434,7 +453,7 @@
         "https://openai.com/index/frontier-safety-blueprint"
       ],
       "image_path": "data\\final_assets\\post_634af459900dff9d1f_20bf0fed_ChatGPT-Image-3_06_2026-18_39_03.png",
-      "image_url": "assets/final/post_aa4a51ddc82267b979_site_1600x900.jpg",
+      "image_url": "/assets/final/post_aa4a51ddc82267b979_site_1600x900.jpg",
       "published_at": "2026-06-04T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -452,7 +471,7 @@
         "https://www.theguardian.com/us-news/2026/jun/02/trump-ai-executive-order-early-access"
       ],
       "image_path": "data\\final_assets\\post_6eb4bbff5ea63deb12_bb8e33ea_ChatGPT-Image-3_06_2026-18_34_41.png",
-      "image_url": "assets/final/post_bf266c3d4dc6a20cd5_site_1600x900.jpg",
+      "image_url": "/assets/final/post_bf266c3d4dc6a20cd5_site_1600x900.jpg",
       "published_at": "2026-06-04T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -470,7 +489,7 @@
         "https://portugal.representation.ec.europa.eu/events/workshop-inteligencia-artificial-para-servicos-publicos-ferramentas-gratuitas-para-aumentar-2026-06-17_pt"
       ],
       "image_path": "data\\final_assets\\post_fed0a7a5ac83010c1b_652be16c_ChatGPT-Image-3_06_2026-18_31_11.png",
-      "image_url": "assets/final/post_589f0cb4a7d030c42b_site_1600x900.jpg",
+      "image_url": "/assets/final/post_589f0cb4a7d030c42b_site_1600x900.jpg",
       "published_at": "2026-06-04T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -488,7 +507,7 @@
         "https://www.rtp.pt/noticias/mundo/ganhos-da-inteligencia-artificial-devem-beneficiar-tambem-os-trabalhadores-alerta-oit_n1744771"
       ],
       "image_path": "data\\final_assets\\post_4d9e816d132579b8fe_2cf28208_ChatGPT-Image-2_06_2026-22_54_06.png",
-      "image_url": "assets/final/post_db16a2b55a581478ed_site_1600x900.jpg",
+      "image_url": "/assets/final/post_db16a2b55a581478ed_site_1600x900.jpg",
       "published_at": "2026-06-03T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -507,7 +526,7 @@
         "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership"
       ],
       "image_path": "data\\final_assets\\post_b49782ee3afa4b0335_340b0590_ChatGPT-Image-2_06_2026-22_52_00.png",
-      "image_url": "assets/final/post_aad9183a95eff3e7a2_site_1600x900.jpg",
+      "image_url": "/assets/final/post_aad9183a95eff3e7a2_site_1600x900.jpg",
       "published_at": "2026-06-03T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -526,7 +545,7 @@
         "https://jornaleconomico.sapo.pt/noticias/empresas-portuguesas-que-escalam-ia-ganham-ate-25-em-produtividade-e-30-em-ebitda-mas-falta-de-modernizacao-trava-impacto-diz-bain-1123456"
       ],
       "image_path": "data\\final_assets\\post_32a5ded3b2938adac2_b330f6df_ChatGPT-Image-2_06_2026-22_47_09.png",
-      "image_url": "assets/final/post_ca2c25481fa626bbab_site_1600x900.jpg",
+      "image_url": "/assets/final/post_ca2c25481fa626bbab_site_1600x900.jpg",
       "published_at": "2026-06-03T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -544,7 +563,7 @@
         "https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark"
       ],
       "image_path": "data\\final_assets\\post_ecd2c7db03a1bea68a_f261a856_ChatGPT-Image-2_06_2026-22_44_48.png",
-      "image_url": "assets/final/post_519ad245b30cdac5d2_site_1600x900.jpg",
+      "image_url": "/assets/final/post_519ad245b30cdac5d2_site_1600x900.jpg",
       "published_at": "2026-06-03T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -561,7 +580,7 @@
         "https://nvidianews.nvidia.com/news/nvidia-foxconn-and-taiwan-medical-centers-bring-agentic-and-physical-ai-to-healthy-taiwan"
       ],
       "image_path": "data\\final_assets\\post_b283d7abfb43195112_5321c278_ChatGPT-Image-2_06_2026-15_11_34.png",
-      "image_url": "assets/final/post_472c98db4b359f4cfc_site_1600x900.jpg",
+      "image_url": "/assets/final/post_472c98db4b359f4cfc_site_1600x900.jpg",
       "published_at": "2026-06-02T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -579,7 +598,7 @@
         "https://www.apcc.pt/noticias/formacao-apcc-google-cloud-/-ntt-data-retail-spaces-ai-academy/473"
       ],
       "image_path": "data\\final_assets\\post_85ef07c5efea6372b4_2d6c481b_ChatGPT-Image-2_06_2026-15_01_34.png",
-      "image_url": "assets/final/post_15331982b1d6e29fa5_site_1600x900.jpg",
+      "image_url": "/assets/final/post_15331982b1d6e29fa5_site_1600x900.jpg",
       "published_at": "2026-06-02T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -596,7 +615,7 @@
         "https://www.rtp.pt/noticias/economia/foxconn-alia-se-a-francesa-bull-para-desenvolver-infraestruturas-de-ia-na-europa_n1744894"
       ],
       "image_path": "data\\final_assets\\post_e7c43644dbae65cbfd_62f36e2a_ChatGPT-Image-2_06_2026-10_21_29.png",
-      "image_url": "assets/final/post_e06e79995518dbf18e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_e06e79995518dbf18e_site_1600x900.jpg",
       "published_at": "2026-06-02T12:00:00+01:00",
       "section": [
         "Portugal",
@@ -613,7 +632,7 @@
         "https://exame.com/inteligencia-artificial/"
       ],
       "image_path": "data\\final_assets\\post_37ad5447ff82979341_68518341_ChatGPT-Image-2_06_2026-08_29_33.png",
-      "image_url": "assets/final/post_48b38a8114c6598469_site_1600x900.jpg",
+      "image_url": "/assets/final/post_48b38a8114c6598469_site_1600x900.jpg",
       "published_at": "2026-06-02T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -630,7 +649,7 @@
         "https://observador.pt/2026/05/30/o-ano-dos-mega-ipo-empresas-de-ia-aceleram-rumo-a-bolsa/"
       ],
       "image_path": "data\\final_assets\\post_bb91ea5f5c12e59c64_49b78f12_ChatGPT-Image-31_05_2026-23_13_15.png",
-      "image_url": "assets/final/post_a81af6593646cb95ca_site_1600x900.jpg",
+      "image_url": "/assets/final/post_a81af6593646cb95ca_site_1600x900.jpg",
       "published_at": "2026-06-01T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -648,7 +667,7 @@
         "https://www.jornaldenegocios.pt/empresas/recursos-humanos/detalhe/empresas-portuguesas-confiam-no-potencial-da-ia-mas-preparacao-fica-aquem-diz-aon"
       ],
       "image_path": "data\\final_assets\\post_2e3dd52597f4c8c896_1635f11e_ChatGPT-Image-31_05_2026-23_08_57.png",
-      "image_url": "assets/final/post_318940a76ec4104e0f_site_1600x900.jpg",
+      "image_url": "/assets/final/post_318940a76ec4104e0f_site_1600x900.jpg",
       "published_at": "2026-06-01T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -666,7 +685,7 @@
         "https://www.cnnbrasil.com.br/tecnologia/especialista-ia-radicaliza-reflexao-sobre-quem-e-o-ser-humano/"
       ],
       "image_path": "data\\final_assets\\post_afa3dfe1ae9260d53a_7130c705_ChatGPT-Image-31_05_2026-22_57_18.png",
-      "image_url": "assets/final/post_8ebfa34cb28950136e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_8ebfa34cb28950136e_site_1600x900.jpg",
       "published_at": "2026-06-01T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -685,7 +704,7 @@
         "https://www.ft.com/content/30d0b1df-ad8c-42eb-852b-dad53acaecfc?syn-25a6b1a6=1"
       ],
       "image_path": "data\\final_assets\\post_85075ba72b779aad39_838d50f4_ChatGPT-Image-31_05_2026-22_42_33.png",
-      "image_url": "assets/final/post_a7ed601d82a41409aa_site_1600x900.jpg",
+      "image_url": "/assets/final/post_a7ed601d82a41409aa_site_1600x900.jpg",
       "published_at": "2026-06-01T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -702,7 +721,7 @@
         "https://eco.sapo.pt/2026/05/26/colocar-portugal-no-mapa-europeu-da-identidade-digital-e-da-ia/"
       ],
       "image_path": "data\\final_assets\\post_76599bbb1c68ec0373_71fe426d_ChatGPT-Image-30_05_2026-23_42_17.png",
-      "image_url": "assets/final/post_8be4ab55f26cc29c36_site_1600x900.jpg",
+      "image_url": "/assets/final/post_8be4ab55f26cc29c36_site_1600x900.jpg",
       "published_at": "2026-05-31T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -721,7 +740,7 @@
         "https://cnnportugal.iol.pt/inteligencia-artificial/emprego/na-verdade-a-ia-nao-esta-a-roubar-o-seu-emprego-isto-e-o-que-esta-a-acontecer/20260530/66584283d34e651639c43d81"
       ],
       "image_path": "data\\final_assets\\post_d375c4af43443ac5cf_f003fabd_ChatGPT-Image-30_05_2026-23_27_30.png",
-      "image_url": "assets/final/post_11581e445245af9615_site_1600x900.jpg",
+      "image_url": "/assets/final/post_11581e445245af9615_site_1600x900.jpg",
       "published_at": "2026-05-31T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -738,7 +757,7 @@
         "https://eco.sapo.pt/2026/05/30/temos-a-capacidade-de-fazer-da-sap-portugal-uma-empresa-maior-do-que-o-mercado-portugues/"
       ],
       "image_path": "data\\final_assets\\post_34b08d24c2df857035_7d9db390_ChatGPT-Image-30_05_2026-23_25_08.png",
-      "image_url": "assets/final/post_d7b87cf8518f953413_site_1600x900.jpg",
+      "image_url": "/assets/final/post_d7b87cf8518f953413_site_1600x900.jpg",
       "published_at": "2026-05-31T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -757,7 +776,7 @@
         "https://www.blog.google/products/ads/google-folds-display-ads-into-ai-first-demand-gen-platform/"
       ],
       "image_path": "data\\final_assets\\post_2afb76414dd65e4235_f1f1d911_ChatGPT-Image-30_05_2026-01_19_58.png",
-      "image_url": "assets/final/post_9b3fc80431a87cb2ae_site_1600x900.jpg",
+      "image_url": "/assets/final/post_9b3fc80431a87cb2ae_site_1600x900.jpg",
       "published_at": "2026-05-30T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -774,7 +793,7 @@
         "https://observador.pt/2026/05/27/a-ia-industrial-pode-transformar-a-industria-portuguesa/"
       ],
       "image_path": "data\\final_assets\\post_0232748f3e65e4fd26_c983c3e4_ChatGPT-Image-30_05_2026-01_06_37.png",
-      "image_url": "assets/final/post_f93578e6d2b1a5e801_site_1600x900.jpg",
+      "image_url": "/assets/final/post_f93578e6d2b1a5e801_site_1600x900.jpg",
       "published_at": "2026-05-30T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -791,7 +810,7 @@
         "https://www.technologyreview.com/2026/05/28/1138053/the-ai-hype-index-ai-gets-booed-in-graduation-season"
       ],
       "image_path": "data\\final_assets\\post_9a3fdba20d8d006de2_56e4664c_ChatGPT-Image-30_05_2026-01_24_29.png",
-      "image_url": "assets/final/post_d3e0f923e3c26fce9c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_d3e0f923e3c26fce9c_site_1600x900.jpg",
       "published_at": "2026-05-30T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -809,7 +828,7 @@
         "https://www.nbcnews.com/tech/ai-safety-measures-act-illinois-first-us-law-mandate-annual-third-party-audits-frontier-ai-labs-rcna12345"
       ],
       "image_path": "data\\final_assets\\post_be18ad5d07901b8d1d_285a6bd4_ChatGPT-Image-30_05_2026-00_57_32.png",
-      "image_url": "assets/final/post_9dee92cf6662256f9e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_9dee92cf6662256f9e_site_1600x900.jpg",
       "published_at": "2026-05-30T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -826,7 +845,7 @@
         "https://deepmind.google/"
       ],
       "image_path": "data\\final_assets\\post_6c1246f3eb910e91e2_98b35f22_ChatGPT-Image-28_05_2026-22_14_34.png",
-      "image_url": "assets/final/post_27e1670dbd33dcb400_site_1600x900.jpg",
+      "image_url": "/assets/final/post_27e1670dbd33dcb400_site_1600x900.jpg",
       "published_at": "2026-05-29T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -844,7 +863,7 @@
         "https://observador.pt/2026/05/26/o-chatgpt-esta-a-reescrever-a-historia-do-pais-a-brincar/"
       ],
       "image_path": "data\\final_assets\\post_57ed8bb092dd3cffc8_6bf41cb3_ChatGPT-Image-28_05_2026-22_09_33.png",
-      "image_url": "assets/final/post_4632c1a88789c74c6b_site_1600x900.jpg",
+      "image_url": "/assets/final/post_4632c1a88789c74c6b_site_1600x900.jpg",
       "published_at": "2026-05-29T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -861,7 +880,7 @@
         "https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria"
       ],
       "image_path": "data\\final_assets\\post_68ae10d56e964670b2_5879033b_ChatGPT-Image-28_05_2026-21_42_44.png",
-      "image_url": "assets/final/post_777aa69ee085f5b59f_site_1600x900.jpg",
+      "image_url": "/assets/final/post_777aa69ee085f5b59f_site_1600x900.jpg",
       "published_at": "2026-05-29T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -877,7 +896,7 @@
         "https://www.gartner.com/en/newsroom/press-releases/2026-05-26-gartner-says-applying-uniform-governance-across-ai-agents-will-lead-to-enterprise-ai-agent-failure"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fcd664bccf2ed39284_77c5fe33_ChatGPT-Image-27_05_2026-19_08_07.png",
-      "image_url": "assets/final/post_f27293bfded89d7866_site_1600x900.jpg",
+      "image_url": "/assets/final/post_f27293bfded89d7866_site_1600x900.jpg",
       "published_at": "2026-05-28T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -894,7 +913,7 @@
         "https://observador.pt/2026/05/26/ia-e-oportunidade-de-mudar-a-forma-como-geramos-valor/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_672fb0ae2d168eac39_0e5072b6_ChatGPT-Image-27_05_2026-18_52_11.png",
-      "image_url": "assets/final/post_1acbdb6c181cac740c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_1acbdb6c181cac740c_site_1600x900.jpg",
       "published_at": "2026-05-28T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -910,7 +929,7 @@
         "https://www.technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a77935c4e8a3e6118d_898bc0fa_ChatGPT-Image-27_05_2026-18_50_05.png",
-      "image_url": "assets/final/post_acd8c4eb1f0977025b_site_1600x900.jpg",
+      "image_url": "/assets/final/post_acd8c4eb1f0977025b_site_1600x900.jpg",
       "published_at": "2026-05-28T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -926,7 +945,7 @@
         "https://openai.com/index/building-self-improving-tax-agents-with-codex"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_539ca86e4d9800d0eb_04c0bb99_ChatGPT-Image-27_05_2026-18_47_16.png",
-      "image_url": "assets/final/post_b6251636e7f6536c29_site_1600x900.jpg",
+      "image_url": "/assets/final/post_b6251636e7f6536c29_site_1600x900.jpg",
       "published_at": "2026-05-28T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -942,7 +961,7 @@
         "https://veja.abril.com.br/coluna/inteligencia-artificial/nvidia-acelera-expansao-na-ia-com-us-90-bilhoes-e-amplia-influencia-sobre-startups-e-big-techs/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_36012da7e4f5b36559_2bfdc493_ChatGPT-Image-26_05_2026-23_49_09.png",
-      "image_url": "assets/final/post_0a04335c22928a3747_site_1600x900.jpg",
+      "image_url": "/assets/final/post_0a04335c22928a3747_site_1600x900.jpg",
       "published_at": "2026-05-27T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -959,7 +978,7 @@
         "https://exame.com/inteligencia-artificial/ia-deve-ser-desenvolvida-e-nao-regulada-cedo-demais-diz-jeff-bezos/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_92c1926ec1dbcffe42_b56c6eb8_ChatGPT-Image-26_05_2026-23_44_01.png",
-      "image_url": "assets/final/post_088d04f60e8cc6c9a9_site_1600x900.jpg",
+      "image_url": "/assets/final/post_088d04f60e8cc6c9a9_site_1600x900.jpg",
       "published_at": "2026-05-27T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -975,7 +994,7 @@
         "https://www.forbes.com/sites/barrycollins/2026/05/25/google-search-ai-overhaul-leaves-publishers-bracing-for-google-zero/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_86ba49249cbc2af15e_d13fd551_ChatGPT-Image-26_05_2026-21_34_11.png",
-      "image_url": "assets/final/post_0a186acc502ff54c29_site_1600x900.jpg",
+      "image_url": "/assets/final/post_0a186acc502ff54c29_site_1600x900.jpg",
       "published_at": "2026-05-27T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -992,7 +1011,7 @@
         "https://g1.globo.com/mundo/noticia/2026/05/25/papa-leao-xiv-sobre-uso-de-ia-na-guerra-nao-e-permitido-confiar-decisoes-letais-ou-irreversiveis-a-sistemas-artificiais.ghtml"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f2dbef5f8b3ee91cb0_e78420b7_ChatGPT-Image-26_05_2026-23_39_42.png",
-      "image_url": "assets/final/post_f2dbef5f8b3ee91cb0_site_1600x900.jpg",
+      "image_url": "/assets/final/post_f2dbef5f8b3ee91cb0_site_1600x900.jpg",
       "published_at": "2026-05-27T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -1008,7 +1027,7 @@
         "https://www.bbc.com/news/articles/c78ke7vjn01o"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4ee7c05ad2977bbf4d_026589a0_ChatGPT-Image-25_05_2026-16_16_56.png",
-      "image_url": "assets/final/post_dcc1d8534a49bc3233_site_1600x900.jpg",
+      "image_url": "/assets/final/post_dcc1d8534a49bc3233_site_1600x900.jpg",
       "published_at": "2026-05-26T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -1024,7 +1043,7 @@
         "https://observador.pt/2026/05/25/projeto-europeu-arranca-em-lisboa-para-reforcar-literacia-digital-e-travar-desinformacao/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b49ac327cd8d1b9843_1c3abe8f_ChatGPT-Image-25_05_2026-16_15_46.png",
-      "image_url": "assets/final/post_18fbea83933572b6eb_site_1600x900.jpg",
+      "image_url": "/assets/final/post_18fbea83933572b6eb_site_1600x900.jpg",
       "published_at": "2026-05-26T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -1040,7 +1059,7 @@
         "https://techcrunch.com/2026/05/22/we-tried-googles-ai-glasses-and-theyre-almost-there/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_310f7004049043e4e4_9b3ea4e1_ChatGPT-Image-25_05_2026-16_13_47.png",
-      "image_url": "assets/final/post_4adee8a9694b416307_site_1600x900.jpg",
+      "image_url": "/assets/final/post_4adee8a9694b416307_site_1600x900.jpg",
       "published_at": "2026-05-26T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -1057,7 +1076,7 @@
         "https://www.bbc.com/news/articles/cdrp3zzzp71o"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0027ca7eb8240b36c0_c5787f2e_ChatGPT-Image-25_05_2026-16_11_09.png",
-      "image_url": "assets/final/post_e784ee9d944efc8761_site_1600x900.jpg",
+      "image_url": "/assets/final/post_e784ee9d944efc8761_site_1600x900.jpg",
       "published_at": "2026-05-26T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -1073,7 +1092,7 @@
         "https://observador.pt/2026/05/21/conselho-nacional-da-educacao-defende-ia-nos-curriculos/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0a3981334485030c2c_f8a8a14e_ChatGPT-Image-24_05_2026-21_18_10.png",
-      "image_url": "assets/final/post_342380d0013415ccfe_site_1600x900.jpg",
+      "image_url": "/assets/final/post_342380d0013415ccfe_site_1600x900.jpg",
       "published_at": "2026-05-25T21:00:00+01:00",
       "section": [
         "Portugal",
@@ -1090,7 +1109,7 @@
         "https://apnews.com/article/artificial-intelligence-trump-healthcare-fraud-54321"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_398263b1ec97eabae0_0adb67e8_ChatGPT-Image-24_05_2026-21_14_32.png",
-      "image_url": "assets/final/post_4a8cfddd2cd51343e0_site_1600x900.jpg",
+      "image_url": "/assets/final/post_4a8cfddd2cd51343e0_site_1600x900.jpg",
       "published_at": "2026-05-25T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -1107,7 +1126,7 @@
         "https://noticias.up.pt/startup-da-uptec-nas-100-melhores-de-inteligencia-artificial-do-mundo/"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_131f3e7bfbeb658acb_18dd938c_ChatGPT-Image-24_05_2026-20_41_50.png",
-      "image_url": "assets/final/post_7b0767d39005262edc_site_1600x900.jpg",
+      "image_url": "/assets/final/post_7b0767d39005262edc_site_1600x900.jpg",
       "published_at": "2026-05-25T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -1123,7 +1142,7 @@
         "https://edition.cnn.com/2026/05/20/tech/ai-executive-order-trump-white-house"
       ],
       "image_path": "data\\final_assets\\post_2260e4f136e57042db_7964e24e_ChatGPT-Image-23_05_2026-00_58_36.png",
-      "image_url": "assets/final/post_db04b628e3fc679a83_site_1600x900.jpg",
+      "image_url": "/assets/final/post_db04b628e3fc679a83_site_1600x900.jpg",
       "published_at": "2026-05-23T07:46:00+01:00",
       "section": [
         "Mundo",
@@ -1139,7 +1158,7 @@
         "https://www.nytimes.com/2026/05/19/technology/meta-layoffs-ai.html"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9b7c20df827ca6d3ec_06ac74b3_ChatGPT-Image-23_05_2026-05_14_59.png",
-      "image_url": "assets/final/post_15939d630abac80024_site_1600x900.jpg",
+      "image_url": "/assets/final/post_15939d630abac80024_site_1600x900.jpg",
       "published_at": "2026-05-23T07:16:00+01:00",
       "section": [
         "Mundo",
@@ -1155,7 +1174,7 @@
         "https://www.wsj.com/cio-journal/this-cannes-film-cost-500-000-to-make-400-000-was-ai-compute-costs-a823b08d"
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_18e0f3616de2612049_f4ff4f70_ChatGPT-Image-23_05_2026-05_06_39.png",
-      "image_url": "assets/final/post_435a9acc7aca31a26c_site_1600x900.jpg",
+      "image_url": "/assets/final/post_435a9acc7aca31a26c_site_1600x900.jpg",
       "published_at": "2026-05-23T06:46:00+01:00",
       "section": [
         "Mundo",
@@ -1171,7 +1190,7 @@
         "https://jornaleconomico.sapo.pt/noticias/empresas-portuguesas-negligenciam-aplicacao-de-ia-em-areas-que-geram-receita-direta/"
       ],
       "image_path": "data\\final_assets\\post_bb0c9289364b33b925_50af4c76_ChatGPT-Image-23_05_2026-01_35_49.png",
-      "image_url": "assets/final/post_8e77c8add0a212dd53_site_1600x900.jpg",
+      "image_url": "/assets/final/post_8e77c8add0a212dd53_site_1600x900.jpg",
       "published_at": "2026-05-23T06:16:00+01:00",
       "section": [
         "Portugal",
@@ -1187,7 +1206,7 @@
         "https://openai.com/index/model-disproves-discrete-geometry-conjecture"
       ],
       "image_path": "data\\final_assets\\post_8419560465fed4da0f_0e34301b_ChatGPT-Image-21_05_2026-11_41_31.png",
-      "image_url": "assets/final/post_56227b5df2f354e22e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_56227b5df2f354e22e_site_1600x900.jpg",
       "published_at": "2026-05-22T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -1203,7 +1222,7 @@
         "https://observador.pt/2026/05/19/google-i-o-mais-agentes-nova-pesquisa-e-resposta-as-rivais/"
       ],
       "image_path": "data\\final_assets\\post_17088cb97181ab3591_5b9aba0f_ChatGPT-Image-21_05_2026-11_11_12.png",
-      "image_url": "assets/final/post_a3e2ffcff25a2fd645_site_1600x900.jpg",
+      "image_url": "/assets/final/post_a3e2ffcff25a2fd645_site_1600x900.jpg",
       "published_at": "2026-05-22T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -1219,7 +1238,7 @@
         "https://www.dn.pt/opiniao/portugal-a-ia-e-uma-transicao-estrutural-na-educacao-10022026.html"
       ],
       "image_path": "data\\final_assets\\post_bea4106a2c98799e0c_af244cab_ChatGPT-Image-21_05_2026-11_06_47.png",
-      "image_url": "assets/final/post_651593cccfc2c69552_site_1600x900.jpg",
+      "image_url": "/assets/final/post_651593cccfc2c69552_site_1600x900.jpg",
       "published_at": "2026-05-22T13:00:00+01:00",
       "section": [
         "Portugal",
@@ -1235,7 +1254,7 @@
         "https://observador.pt/2026/05/18/elon-musk-perde-processo-contra-a-openai-e-sam-altman/"
       ],
       "image_path": "data\\final_assets\\post_f4c9ca8fe5ffd71760_4cc3056d_ChatGPT-Image-21_05_2026-11_03_20.png",
-      "image_url": "assets/final/post_c45c7a24b04d441a9d_site_1600x900.jpg",
+      "image_url": "/assets/final/post_c45c7a24b04d441a9d_site_1600x900.jpg",
       "published_at": "2026-05-22T09:00:00+01:00",
       "section": [
         "Mundo",
@@ -1251,7 +1270,7 @@
         "https://www.reuters.com/business/google-blackstone-create-new-ai-cloud-company-wsj-reports-2026-05-19/"
       ],
       "image_path": "data\\final_assets\\post_354500e8d839c6bbe2_2cd3147e_ChatGPT-Image-20_05_2026-21_35_32.png",
-      "image_url": "assets/final/post_3c91dc86e7537a3f01_site_1600x900.jpg",
+      "image_url": "/assets/final/post_3c91dc86e7537a3f01_site_1600x900.jpg",
       "published_at": "2026-05-21T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -1267,7 +1286,7 @@
         "https://openai.com/"
       ],
       "image_path": "data\\final_assets\\post_7b74e7a11e031550fc_4a123b12_ChatGPT-Image-19_05_2026-17_35_14.png",
-      "image_url": "assets/final/post_57e63d530441f4a45e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_57e63d530441f4a45e_site_1600x900.jpg",
       "published_at": "2026-05-21T16:00:00+01:00",
       "section": [
         "Mundo",
@@ -1283,7 +1302,7 @@
         "https://jornaleconomico.sapo.pt/noticias/estado-cria-rede-tecnologica-e-aposta-na-ia-na-saude-com-poupanca-de-300-milhoes/"
       ],
       "image_path": "data\\final_assets\\post_fe3f9e776325bc2dac_9994ee0c_ChatGPT-Image-19_05_2026-17_16_45.png",
-      "image_url": "assets/final/post_78483a72d50c99245e_site_1600x900.jpg",
+      "image_url": "/assets/final/post_78483a72d50c99245e_site_1600x900.jpg",
       "published_at": "2026-05-21T09:00:00+01:00",
       "section": [
         "Portugal",
@@ -1300,7 +1319,7 @@
         "https://observador.pt/2026/05/16/quem-lidera-a-ia-nas-empresas-eis-o-chief-ai-officer/"
       ],
       "image_path": "data\\final_assets\\post_256d7fa0ae652705dc_2cb31e1e_ChatGPT-Image-18_05_2026-22_35_42.png",
-      "image_url": "assets/final/post_401dfe4bb8637632d8_site_1600x900.jpg",
+      "image_url": "/assets/final/post_401dfe4bb8637632d8_site_1600x900.jpg",
       "published_at": "2026-05-19T21:00:00+01:00",
       "section": [
         "Mundo",
@@ -1316,7 +1335,7 @@
         "https://jornaleconomico.sapo.pt/noticias/metade-dos-portugueses-receia-que-a-inteligencia-artificial-substitua-o-seu-emprego-segundo-estudo-da-intercampus/"
       ],
       "image_path": "data\\final_assets\\post_669e3e9e7b2a54f0a4_50f272c8_ChatGPT-Image-18_05_2026-22_32_21.png",
-      "image_url": "assets/final/post_b4eff02030bf06b490_site_1600x900.jpg",
+      "image_url": "/assets/final/post_b4eff02030bf06b490_site_1600x900.jpg",
       "published_at": "2026-05-19T16:00:00+01:00",
       "section": [
         "Portugal",
@@ -1332,7 +1351,7 @@
         "https://grandeconsumo.com/portugal-sobe-adocao-de-ia-para-264-mas-perde-posicao-no-ranking-mundial/"
       ],
       "image_path": "data\\final_assets\\post_bcfdb577af20f981d6_f50b8398_ChatGPT-Image-18_05_2026-11_50_32.png",
-      "image_url": "assets/final/post_e76c897e478d43aee3_site_1600x900.jpg",
+      "image_url": "/assets/final/post_e76c897e478d43aee3_site_1600x900.jpg",
       "published_at": "2026-05-19T13:00:00+01:00",
       "section": [
         "Portugal",
