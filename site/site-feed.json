@@ -1,7 +1,72 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-11T16:11:57+00:00",
+  "updated_at": "2026-06-11T23:00:12+00:00",
   "posts": [
+    {
+      "id": "post_2e9938a90585f536c5",
+      "title": "BBVA puts AI at the core of banking with OpenAI",
+      "body": "Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.\n\nA corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.\n\nSinal recolhido directamente de uma fonte PTIA configurada.\n\nO vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.\n\nFonte: https://openai.com/index/bbva",
+      "source_urls": [
+        "https://openai.com/index/bbva"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c51b292ef9bfd53132_ca73bc0f_ChatGPT-Image-11_06_2026-23_52_10.png",
+      "image_url": "/assets/final/post_d16672f5f60c4507c1_site_1600x900.jpg",
+      "published_at": "2026-06-12T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/bbva-puts-ai-at-the-core-of-banking-with-openai-2e9938a90585f536c5"
+    },
+    {
+      "id": "post_67b4479fd7fba88233",
+      "title": "Portugal quer apoiar transformação digital e aposta em IA em Moçambique",
+      "body": "O Governo português manifestou disponibilidade para apoiar Moçambique na transformação digital do Estado e no desenvolvimento da inteligência artificial, partilhando experiência tecnológica.\n\nO dado que interessa é este: O Governo português manifestou disponibilidade para apoiar Moçambique na transformação digital do Estado e no desenvolvimento da inteligência artificial, partilhando experiência tecnológica.\n\nEsta iniciativa reflete o papel de Portugal na cooperação internacional para a promoção da IA e da transformação digital, especialmente em países de língua portuguesa.\n\nEsta iniciativa reflete o papel de Portugal na cooperação internacional para a promoção da IA e da transformação digital, especialmente em países de língua portuguesa.\n\nFonte: https://www.noticiasaominuto.com/politica/2573216/portugal-quer-apoiar-transformacao-digital-e-aposta-em-ia-em-mocambique",
+      "source_urls": [
+        "https://www.noticiasaominuto.com/politica/2573216/portugal-quer-apoiar-transformacao-digital-e-aposta-em-ia-em-mocambique"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_383d2f54851e1c9243_36edc57c_ChatGPT-Image-11_06_2026-23_03_23.png",
+      "image_url": "/assets/final/post_910ece3d7a2a4157db_site_1600x900.jpg",
+      "published_at": "2026-06-12T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/portugal-quer-apoiar-transformacao-digital-e-aposta-em-ia-em-mocambique-67b4479fd7fba88233"
+    },
+    {
+      "id": "post_21470082b3f76715e0",
+      "title": "OpenAI pondera corte drástico nos preços do ChatGPT",
+      "body": "A OpenAI está a considerar reduzir significativamente os preços dos tokens do ChatGPT para competir com a ferramenta Claude da Anthropic.\n\nA corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.\n\nUma potencial redução de preços pode tornar as ferramentas de IA generativa mais acessíveis para empresas e builders em Portugal, impulsionando a adoção e o desenvolvimento de novas aplicações.\n\nO vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.\n\nFonte: https://observador.pt/2026/06/11/openai-pondera-cortar-precos-drasticamente-do-chatgpt/",
+      "source_urls": [
+        "https://observador.pt/2026/06/11/openai-pondera-cortar-precos-drasticamente-do-chatgpt/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_947f26055f54189f46_39ed5ecb_ChatGPT-Image-11_06_2026-23_00_38.png",
+      "image_url": "/assets/final/post_b5daa346bd5c39d6b4_site_1600x900.jpg",
+      "published_at": "2026-06-12T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-pondera-corte-drastico-nos-precos-do-chatgpt-21470082b3f76715e0"
+    },
+    {
+      "id": "post_95914e959f82fc9e5f",
+      "title": "União Europeia aperta regras: tudo o que for gerado por inteligência artificial terá de ser rotulado",
+      "body": "A União Europeia está a implementar regras que exigem que todo o conteúdo gerado por inteligência artificial seja rotulado.\n\nA regulação deixou de ser cenário de fundo. Está a tornar-se parte do próprio produto, porque determina que provas, limites e responsabilidades acompanham cada sistema.\n\nEsta medida é importante para a transparência e a confiança na IA, impactando diretamente o desenvolvimento e a utilização de sistemas de IA em Portugal e na UE.\n\nA vantagem passa a depender menos da promessa comercial e mais da capacidade de provar funcionamento, risco e governação sem travar a adopção.\n\nFonte: https://cnnportugal.iol.pt/inteligencia-artificial/uniao-europeia/uniao-europeia-aperta-regras-tudo-o-que-for-gerado-por-inteligencia-artificial-tera-de-ser-rotulado/20260610/66675271d34e3716d901614f",
+      "source_urls": [
+        "https://cnnportugal.iol.pt/inteligencia-artificial/uniao-europeia/uniao-europeia-aperta-regras-tudo-o-que-for-gerado-por-inteligencia-artificial-tera-de-ser-rotulado/20260610/66675271d34e3716d901614f"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_8106b8713bd20f8376_c0bc6228_ChatGPT-Image-11_06_2026-23_02_13.png",
+      "image_url": "/assets/final/post_cf41ee1c6b7930df6a_site_1600x900.jpg",
+      "published_at": "2026-06-12T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ],
+      "article_url": "artigos/uniao-europeia-aperta-regras-tudo-o-que-for-gerado-por-inteligencia-artificial-tera-de-ser-rotulado-95914e959f82fc9e5f"
+    },
     {
       "id": "post_1f9dc38cd0a1847e7d",
       "title": "Sustentabilidade da IA: EUA avaliam impacto ambiental da tecnologia.",
