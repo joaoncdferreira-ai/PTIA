@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-11T16:11:57+00:00",
+  "updated_at": "2026-06-11T23:13:50+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -262,6 +262,16 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "Sustentabilidade da IA: EUA avaliam impacto ambiental da tecnologia.",
+      "url": "https://ptia.pt/artigos/sustentabilidade-da-ia-eua-avaliam-impacto-ambiental-da-tecnologia-1f9dc38cd0a1847e7d",
+      "published_at": "2026-06-11T21:00:00+01:00",
+      "summary": "A fonte publicou uma nova informação sobre inteligência artificial. O dado que interessa é este: A fonte publicou uma nova informação sobre inteligência artificial. A fonte publicou uma nova informação sobre inteligênci...",
+      "sections": [
+        "Mundo",
+        "Previsões Futuras"
+      ]
+    },
     {
       "title": "IA na Saúde: o hospital sem paredes",
       "url": "https://ptia.pt/artigos/ia-na-saude-o-hospital-sem-paredes-9c03921a4916c5a598",
@@ -537,18 +547,6 @@
         "Builders",
         "Regulação",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "Lisboa recebe gala dos Health AI Innovation Awards em 2026",
-      "url": "https://ptia.pt/artigos/lisboa-recebe-gala-dos-health-ai-innovation-awards-em-2026-17cc3d6e7583319d04",
-      "published_at": "2026-06-05T13:00:00+01:00",
-      "summary": "Lisboa prepara-se para acolher a gala dos Health AI Innovation Awards em 2026, um evento concebido para celebrar a inovação na inteligência artificial aplicada ao setor da saúde. A iniciativa visa galardoar projetos e e...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     }
   ],
