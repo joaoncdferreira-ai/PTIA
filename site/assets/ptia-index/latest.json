@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "edition": "2026-W24",
-  "updated_at": "2026-06-12T09:37:36+00:00",
+  "updated_at": "2026-06-12T14:12:04+00:00",
   "signal_window_days": 84,
-  "signal_articles": 83,
+  "signal_articles": 84,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. Combina uma base editorial versionada com sinais dos artigos PTIA dos últimos 84 dias.",
   "companies": [
@@ -1094,6 +1094,11 @@
       "score": 100.0,
       "evidence": [
         {
+          "title": "OpenAI pondera corte drástico nos preços do ChatGPT",
+          "url": "/artigos/openai-pondera-corte-drastico-nos-precos-do-chatgpt-21470082b3f76715e0",
+          "published_at": "2026-06-12"
+        },
+        {
           "title": "OpenAI quer transformar ChatGPT em 'superapp' antes de IPO",
           "url": "/artigos/openai-quer-transformar-chatgpt-em-superapp-antes-de-ipo-7c77f47bc8e2e0753e",
           "published_at": "2026-06-09"
@@ -2038,6 +2043,11 @@
       ],
       "score": 93.0,
       "evidence": [
+        {
+          "title": "OpenAI pondera corte drástico nos preços do ChatGPT",
+          "url": "/artigos/openai-pondera-corte-drastico-nos-precos-do-chatgpt-21470082b3f76715e0",
+          "published_at": "2026-06-12"
+        },
         {
           "title": "Claude Fable 5: A nova aposta da Anthropic no segmento 'Mythos-class'",
           "url": "/artigos/claude-fable-5-a-nova-aposta-da-anthropic-no-segmento-mythos-class-db9ea6b4c6d25a3e99",
@@ -5455,7 +5465,7 @@
       ],
       "baseline_score": 95,
       "score": 96.1,
-      "topical_hits": 159,
+      "topical_hits": 160,
       "rank": 1,
       "previous_rank": 1,
       "movement": 0,
@@ -5551,7 +5561,7 @@
       ],
       "baseline_score": 91,
       "score": 93.0,
-      "topical_hits": 231,
+      "topical_hits": 234,
       "rank": 5,
       "previous_rank": 5,
       "movement": 0,
@@ -6067,7 +6077,7 @@
         "benchmarks"
       ],
       "english_term": "",
-      "mentions_12w": 7
+      "mentions_12w": 8
     },
     {
       "id": "agi",
@@ -6133,7 +6143,7 @@
         "generative ai"
       ],
       "english_term": "Generative AI",
-      "mentions_12w": 2
+      "mentions_12w": 3
     },
     {
       "id": "ai-act",
@@ -6150,6 +6160,22 @@
         "regulamento europeu de ia"
       ],
       "english_term": "Artificial Intelligence Act",
+      "mentions_12w": 1
+    },
+    {
+      "id": "token",
+      "term": "Token",
+      "definition": "Unidade em que um modelo divide texto ou outros dados para os processar; uma palavra pode corresponder a um ou mais tokens.",
+      "example": "Custos e limites de contexto são frequentemente calculados em tokens.",
+      "related": [
+        "janela de contexto",
+        "LLM"
+      ],
+      "aliases": [
+        "token",
+        "tokens"
+      ],
+      "english_term": "",
       "mentions_12w": 1
     },
     {
@@ -6669,22 +6695,6 @@
         "temperature"
       ],
       "english_term": "Temperature",
-      "mentions_12w": 0
-    },
-    {
-      "id": "token",
-      "term": "Token",
-      "definition": "Unidade em que um modelo divide texto ou outros dados para os processar; uma palavra pode corresponder a um ou mais tokens.",
-      "example": "Custos e limites de contexto são frequentemente calculados em tokens.",
-      "related": [
-        "janela de contexto",
-        "LLM"
-      ],
-      "aliases": [
-        "token",
-        "tokens"
-      ],
-      "english_term": "",
       "mentions_12w": 0
     },
     {
