@@ -5,6 +5,7 @@ import shutil
 import unittest
 import uuid
 from copy import deepcopy
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,6 +13,7 @@ from ptia_engine.dashboard import HTML
 from ptia_engine.knowledge_automation import (
     apply_approved_reviews,
     knowledge_review_snapshot,
+    proposal_issues,
     run_knowledge_automation,
     update_review_status,
 )
@@ -478,6 +480,148 @@ class KnowledgeAutomationTests(unittest.TestCase):
             any("Transformar informação" in prompt for prompt in provider.research_prompts)
         )
         self.assertTrue(any("Contexto atual" in prompt for prompt in provider.research_prompts))
+        current_date = datetime.now(timezone.utc).date().isoformat()
+        self.assertTrue(
+            all(f"Data atual: {current_date}" in prompt for prompt in provider.research_prompts)
+        )
+        self.assertTrue(
+            all(f"Data atual: {current_date}" in prompt for prompt in provider.structured_prompts)
+        )
+
+    def test_stale_future_claim_is_flagged(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        proposal = {
+            "kind": "entity_upsert",
+            "target": "companies",
+            "confidence": 0.95,
+            "reason": "A organização anunciou que em 2025 terá um novo programa.",
+            "sources": [
+                {
+                    "label": "Fonte A",
+                    "url": "https://example.com/a",
+                    "evidence": "A agenda publicada descreve o programa previsto para 2025.",
+                },
+                {
+                    "label": "Fonte B",
+                    "url": "https://example.org/b",
+                    "evidence": "A segunda fonte confirma que o evento será realizado em 2025.",
+                },
+            ],
+            "payload": {},
+        }
+
+        issues = proposal_issues(proposal, catalog, directory)
+
+        self.assertIn("alegação futura baseada num ano já passado", issues)
+
+    def test_near_duplicate_glossary_term_is_flagged(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        proposal = {
+            "kind": "glossary_upsert",
+            "target": "agentes-autonomos-ia",
+            "confidence": 0.95,
+            "reason": "Expressão recente para sistemas que executam tarefas autonomamente.",
+            "sources": [
+                {
+                    "label": "Fonte A",
+                    "url": "https://example.com/a",
+                    "evidence": "A fonte descreve agentes autónomos de inteligência artificial.",
+                },
+                {
+                    "label": "Fonte B",
+                    "url": "https://example.org/b",
+                    "evidence": "A segunda fonte usa o termo para o mesmo conceito.",
+                },
+            ],
+            "payload": {
+                "id": "agentes-autonomos-ia",
+                "term": "Agentes Autónomos de IA",
+                "definition": (
+                    "Sistemas de inteligência artificial que planeiam e executam "
+                    "tarefas com autonomia."
+                ),
+                "example": (
+                    "Um agente pesquisa, compara opções e entrega uma recomendação."
+                ),
+                "related": ["agente-ia"],
+                "aliases": ["agentes de ia"],
+            },
+        }
+
+        issues = proposal_issues(proposal, catalog, directory)
+
+        self.assertIn("possível duplicado de termo existente", issues)
+
+    def test_tool_redirect_url_is_flagged(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        proposal = {
+            "kind": "tool_upsert",
+            "target": "example-tool",
+            "confidence": 0.95,
+            "reason": "Nova ferramenta relevante para pesquisa.",
+            "sources": [
+                {
+                    "label": "Fonte A",
+                    "url": "https://example.com/a",
+                    "evidence": "A fonte apresenta resultados recentes da ferramenta.",
+                },
+                {
+                    "label": "Fonte B",
+                    "url": "https://example.org/b",
+                    "evidence": "A segunda fonte documenta a utilização do produto.",
+                },
+            ],
+            "payload": {
+                "id": "example-tool",
+                "name": "Example Tool",
+                "url": (
+                    "https://vertexaisearch.cloud.google.com/"
+                    "grounding-api-redirect/example"
+                ),
+                "categories": ["pesquisa"],
+                "description": (
+                    "Ferramenta de pesquisa assistida por inteligência artificial."
+                ),
+                "best_for": "Pesquisa documental.",
+                "watch_out": "Confirmar fontes.",
+                "baseline_score": 80,
+                "aliases": [],
+                "sources": [],
+                "category_positions": {
+                    "pesquisa": {
+                        "capability": 1,
+                        "popularity": 1,
+                        "task_fit": 1,
+                        "access": 1,
+                    }
+                },
+            },
+        }
+
+        issues = proposal_issues(proposal, catalog, directory)
+
+        self.assertIn("ferramenta sem URL direta do produto", issues)
 
     def test_dashboard_exposes_resources_management_tab(self):
         self.assertIn('data-tab="knowledge_tab"', HTML)

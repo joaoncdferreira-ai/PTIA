@@ -3,10 +3,13 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
+
+from rapidfuzz import fuzz
 
 from ptia_engine.knowledge import validate_catalog
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
@@ -268,6 +271,19 @@ def _raw_confidence(proposal: dict[str, Any]) -> float:
         return 0.0
 
 
+def _contains_stale_future_claim(text: str) -> bool:
+    current_year = datetime.now(timezone.utc).year
+    folded_text = text.casefold()
+    for match in re.finditer(r"\b(20\d{2})\b", folded_text):
+        year = int(match.group(1))
+        if year >= current_year:
+            continue
+        nearby = folded_text[max(0, match.start() - 50) : match.end() + 50]
+        if re.search(r"\b(terá|será|vai|previst[oa]|planead[oa]|agendad[oa])\b", nearby):
+            return True
+    return False
+
+
 def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, Any]:
     if task_name == "entities":
         return {
@@ -354,6 +370,17 @@ def proposal_issues(
         for source in proposal.get("sources") or []
     ):
         issues.append("fontes sem evidência concreta")
+    evidence_text = " ".join(
+        [
+            str(proposal.get("reason") or ""),
+            *[
+                str(source.get("evidence") or "")
+                for source in proposal.get("sources") or []
+            ],
+        ]
+    )
+    if _contains_stale_future_claim(evidence_text):
+        issues.append("alegação futura baseada num ano já passado")
     if proposal.get("kind") in AUTO_APPLY_KINDS and not _has_trusted_source(proposal):
         issues.append("sem fonte independente de referência para auto-publicação")
     if not proposal.get("reason"):
@@ -405,6 +432,9 @@ def proposal_issues(
             issues.append("ferramenta incompleta")
         if not str(payload.get("url") or "").startswith("https://"):
             issues.append("URL de ferramenta inválido")
+        product_host = (urlparse(str(payload.get("url") or "")).hostname or "").casefold()
+        if product_host == "vertexaisearch.cloud.google.com":
+            issues.append("ferramenta sem URL direta do produto")
         valid_categories = set(catalog.get("tool_category_evidence") or {})
         categories = set(payload.get("categories") or [])
         if not categories or not categories <= valid_categories:
@@ -441,6 +471,24 @@ def proposal_issues(
             issues.append("termo incompleto")
         if len(str(payload.get("definition") or "")) < 40:
             issues.append("definição demasiado curta")
+        proposed_terms = [
+            str(payload.get("term") or ""),
+            str(payload.get("english_term") or ""),
+            *[str(alias) for alias in payload.get("aliases") or []],
+        ]
+        existing_terms = [
+            str(value)
+            for term in catalog.get("glossary") or []
+            for value in [term.get("term"), *(term.get("aliases") or [])]
+            if value
+        ]
+        if any(
+            fuzz.token_set_ratio(proposed, existing) >= 88
+            for proposed in proposed_terms
+            for existing in existing_terms
+            if proposed and existing
+        ):
+            issues.append("possível duplicado de termo existente")
     else:
         issues.append("tipo de proposta desconhecido")
     return issues
@@ -544,6 +592,7 @@ def run_knowledge_automation(
     directory_path = root / "site" / "assets" / "quem-e-quem.json"
     catalog = _read_json(catalog_path)
     directory = _read_json(directory_path)
+    current_date = datetime.now(timezone.utc).date().isoformat()
     existing = {
         record.get("proposal_id"): record for record in _load_jsonl(review_path)
     }
@@ -566,6 +615,7 @@ def run_knowledge_automation(
                     if getattr(provider, "partitioned_research", False):
                         research = provider.grounded_research(
                             RESEARCH_PROMPT
+                            + f"\n\nData atual: {current_date}"
                             + "\n\nFoco:\n"
                             + task_instruction
                             + "\n\nContexto atual que não deve ser repetido:\n"
@@ -580,6 +630,7 @@ def run_knowledge_automation(
                         permitted_sources = json.dumps(sources, ensure_ascii=False)
                         response = provider.structured_json(
                             DISCOVERY_PROMPT
+                            + f"\n\nData atual: {current_date}"
                             + "\n\nFoco obrigatório desta chamada:\n"
                             + task_instruction
                             + "\n\nUsa apenas a evidência e os URLs exatos abaixo. "

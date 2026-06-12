@@ -20,12 +20,21 @@ requiring editorial intervention for normal, well-supported changes.
    editorial approval.
 7. Rebuild the Resources pages, archive the weekly edition, commit and push.
 
+Each research area produces at most three proposals per run. Both AI passes
+receive the current UTC date so that old announcements are not presented as
+future events.
+
 ## Safety Rules
 
 - Tool rankings may not introduce unknown IDs.
 - Automatic tool movements are limited to three places per component.
 - Automatic people/company movements are limited to two places.
 - New records must satisfy the complete catalog schema.
+- Future-tense claims tied to a year that has already passed are flagged.
+- New glossary terms are compared with existing terms and aliases to surface
+  likely duplicates.
+- Tool proposals must use a direct HTTPS product URL rather than a grounding
+  redirect.
 - Each proposal is applied to an isolated copy and promoted only after the
   complete catalog passes validation.
 - A rejected proposal cannot be automatically applied in a later run unless
