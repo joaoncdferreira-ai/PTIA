@@ -108,12 +108,12 @@ Payloads:
    "tags":["..."],"aliases":["..."]}
 - tool_upsert:
   {"id":"slug","name":"...","url":"https://...","categories":["coding"],
-   "description":"...","best_for":"...","watch_out":"...","baseline_score":0,
+   "description":"...","best_for":"...","watch_out":"...","baseline_score":75,
    "aliases":["..."],"sources":[{"label":"...","url":"https://..."}],
    "category_positions":{"coding":{"capability":3,"popularity":4,"task_fit":2,"access":5}}}
 - prompt_upsert:
   {"id":"slug","title":"...","category":"...","purpose":"...",
-   "template":"mínimo 80 caracteres","keywords":["..."],"baseline_score":0}
+   "template":"mínimo 80 caracteres","keywords":["..."],"baseline_score":75}
 - glossary_upsert:
   {"id":"slug","term":"...","english_term":"...","definition":"mínimo 40 caracteres",
    "example":"...","related":["..."],"aliases":["..."]}
@@ -123,6 +123,11 @@ Regras:
 - Rankings contêm exatamente os mesmos IDs atuais, apenas reordenados.
 - Cada proposta precisa de pelo menos duas fontes independentes HTTPS.
 - Em cada fonte inclui um campo "evidence" com a afirmação concreta sustentada.
+- Novas entidades têm de ser pessoas ou organizações identificadas pelo nome real,
+  com URL oficial do LinkedIn; nunca uses nomes genéricos ou placeholders.
+- URLs de ferramentas apontam diretamente para o produto oficial.
+- baseline_score e todas as posições são inteiros entre 1 e 100 ou entre 1 e o
+  limite indicado pelo contexto, respetivamente. Nunca uses zero como placeholder.
 - Devolve no máximo três propostas, ordenadas por relevância material.
 - Não propor alterações sem evidência nova e material.
 - Confiança acima de 0.92 apenas quando as fontes concordam claramente.
@@ -269,6 +274,16 @@ def _raw_confidence(proposal: dict[str, Any]) -> float:
         return float(proposal.get("confidence") or 0.0)
     except (TypeError, ValueError):
         return 0.0
+
+
+def _integer_in_range(value: Any, minimum: int, maximum: int) -> bool:
+    if isinstance(value, bool):
+        return False
+    try:
+        integer = int(value)
+    except (TypeError, ValueError):
+        return False
+    return integer == value and minimum <= integer <= maximum
 
 
 def _contains_stale_future_claim(text: str) -> bool:
@@ -421,7 +436,9 @@ def proposal_issues(
             issues.append("tipo de entidade inválido")
         if not required <= set(payload):
             issues.append("entidade incompleta")
-        if payload.get("linkedin") and not str(payload.get("linkedin")).startswith("https://"):
+        if not str(payload.get("linkedin") or "").startswith("https://"):
+            issues.append("entidade sem LinkedIn verificável")
+        elif not str(payload.get("linkedin")).startswith("https://www.linkedin.com/"):
             issues.append("LinkedIn inválido")
     elif kind == "tool_upsert":
         required = {
@@ -440,21 +457,26 @@ def proposal_issues(
         if not categories or not categories <= valid_categories:
             issues.append("categorias de ferramenta inválidas")
         score = payload.get("baseline_score")
-        if score is None or not 0 <= int(score) <= 100:
+        if not _integer_in_range(score, 1, 100):
             issues.append("score de ferramenta inválido")
         positions = payload.get("category_positions") or {}
-        if set(positions) != categories:
+        if not isinstance(positions, dict) or set(positions) != categories:
             issues.append("posições por categoria incompletas")
         for category in categories:
-            components = positions.get(category) or {}
-            if set(components) != {"capability", "popularity", "task_fit", "access"}:
+            components = positions.get(category) if isinstance(positions, dict) else {}
+            if not isinstance(components, dict) or set(components) != {
+                "capability", "popularity", "task_fit", "access",
+            }:
                 issues.append(f"posições incompletas em {category}")
                 continue
             maximum = max(
                 len(data["ranking"])
                 for data in catalog["tool_category_evidence"][category]["components"].values()
             ) + 1
-            if any(not 1 <= int(position) <= maximum for position in components.values()):
+            if any(
+                not _integer_in_range(position, 1, maximum)
+                for position in components.values()
+            ):
                 issues.append(f"posição inválida em {category}")
     elif kind == "prompt_upsert":
         required = {"id", "title", "category", "purpose", "template", "keywords", "baseline_score"}
@@ -463,7 +485,7 @@ def proposal_issues(
         if len(str(payload.get("template") or "")) < 80:
             issues.append("template demasiado curto")
         score = payload.get("baseline_score")
-        if score is None or not 0 <= int(score) <= 100:
+        if not _integer_in_range(score, 1, 100):
             issues.append("score inválido")
     elif kind == "glossary_upsert":
         required = {"id", "term", "definition", "example", "related", "aliases"}

@@ -30,6 +30,10 @@ future events.
 - Automatic tool movements are limited to three places per component.
 - Automatic people/company movements are limited to two places.
 - New records must satisfy the complete catalog schema.
+- New entities without a verifiable official LinkedIn URL are held as explicit
+  exceptions.
+- New tool and prompt scores must be real values from 1 to 100; zero and
+  malformed numeric placeholders are rejected without interrupting the run.
 - Future-tense claims tied to a year that has already passed are flagged.
 - New glossary terms are compared with existing terms and aliases to surface
   likely duplicates.

@@ -623,6 +623,120 @@ class KnowledgeAutomationTests(unittest.TestCase):
 
         self.assertIn("ferramenta sem URL direta do produto", issues)
 
+    def test_entity_without_linkedin_is_flagged(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        proposal = {
+            "kind": "entity_upsert",
+            "target": "companies",
+            "confidence": 0.95,
+            "reason": "Novo centro relevante para o ecossistema nacional.",
+            "sources": [
+                {
+                    "label": "Fonte A",
+                    "url": "https://example.com/a",
+                    "evidence": "A fonte descreve o investimento e o centro proposto.",
+                },
+                {
+                    "label": "Fonte B",
+                    "url": "https://example.org/b",
+                    "evidence": "A segunda fonte confirma o investimento anunciado.",
+                },
+            ],
+            "payload": {
+                "id": "novo-centro",
+                "name": "Centro de Excelência em IA (Portugal)",
+                "tagline": "Novo centro de IA",
+                "description": "Centro dedicado ao desenvolvimento de inteligência artificial.",
+                "linkedin": None,
+                "category": "Investigação",
+                "tags": ["IA"],
+                "aliases": [],
+            },
+        }
+
+        issues = proposal_issues(proposal, catalog, directory)
+
+        self.assertIn("entidade sem LinkedIn verificável", issues)
+
+    def test_zero_and_malformed_scores_are_reported(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        prompt_proposal = {
+            "kind": "prompt_upsert",
+            "target": "prompts",
+            "confidence": 0.95,
+            "reason": "Novo padrão reutilizável.",
+            "sources": [
+                {
+                    "label": "Fonte A",
+                    "url": "https://example.com/a",
+                    "evidence": "A fonte descreve um padrão de prompting reutilizável.",
+                },
+                {
+                    "label": "Fonte B",
+                    "url": "https://example.org/b",
+                    "evidence": "A segunda fonte confirma a utilidade do padrão.",
+                },
+            ],
+            "payload": {
+                "id": "prompt-zero",
+                "title": "Prompt sem score",
+                "category": "produtividade",
+                "purpose": "Validar scores.",
+                "template": "Analisa o contexto fornecido e devolve uma resposta estruturada "
+                "com evidência, limitações e próximos passos claros para o utilizador.",
+                "keywords": ["teste"],
+                "baseline_score": 0,
+            },
+        }
+        tool_proposal = {
+            "kind": "tool_upsert",
+            "target": "tools",
+            "confidence": 0.95,
+            "reason": "Nova ferramenta relevante.",
+            "sources": prompt_proposal["sources"],
+            "payload": {
+                "id": "tool-malformed",
+                "name": "Tool Malformed",
+                "url": "https://example.com/product",
+                "categories": ["coding"],
+                "description": "Ferramenta para desenvolvimento assistido por IA.",
+                "best_for": "Desenvolvimento.",
+                "watch_out": "Validar resultados.",
+                "baseline_score": "desconhecido",
+                "aliases": [],
+                "sources": [],
+                "category_positions": {
+                    "coding": {
+                        "capability": "primeiro",
+                        "popularity": 1,
+                        "task_fit": 1,
+                        "access": 1,
+                    }
+                },
+            },
+        }
+
+        prompt_issues = proposal_issues(prompt_proposal, catalog, directory)
+        tool_issues = proposal_issues(tool_proposal, catalog, directory)
+
+        self.assertIn("score inválido", prompt_issues)
+        self.assertIn("score de ferramenta inválido", tool_issues)
+        self.assertIn("posição inválida em coding", tool_issues)
+
     def test_dashboard_exposes_resources_management_tab(self):
         self.assertIn('data-tab="knowledge_tab"', HTML)
         self.assertIn('id="knowledge_tab"', HTML)
