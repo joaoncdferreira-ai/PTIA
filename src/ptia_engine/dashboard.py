@@ -4224,6 +4224,7 @@ HTML = r"""<!doctype html>
   <div id="toast" class="toast"></div>
   <script>
     let state = {};
+    let knowledgeSyncing = false;
     let activeFinalChannel = 'linkedin';
     let activeFinalTopicId = '';
     let activeImagePromptModes = {};
@@ -5718,11 +5719,33 @@ HTML = r"""<!doctype html>
       showTab('knowledge_tab');
     }
     async function runKnowledgeNow() {
-      showToast('A pesquisar e validar Recursos...');
+      showToast('Atualização de Recursos enviada para o GitHub...');
       const result = await requestJson('/api/knowledge-run', {});
-      await loadState();
-      showToast(`Recursos atualizados: ${result.edition}`);
+      showToast(result.run?.status === 'dispatched'
+        ? 'Workflow de Recursos iniciado'
+        : 'Pedido de atualização enviado');
       showTab('knowledge_tab');
+    }
+    async function syncKnowledgeRemote({quiet = false} = {}) {
+      if (knowledgeSyncing) return;
+      knowledgeSyncing = true;
+      try {
+        const response = await fetch('/api/knowledge-sync', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: '{}'
+        });
+        if (!response.ok) {
+          const payload = await response.json().catch(() => ({}));
+          throw new Error(payload.error || 'Falha na sincronização de Recursos');
+        }
+        await loadState();
+        if (!quiet) showToast('Estado de Recursos sincronizado');
+      } catch (error) {
+        if (!quiet) showToast('Erro: ' + error.message);
+      } finally {
+        knowledgeSyncing = false;
+      }
     }
     function knowledgeReviewCard(review) {
       const issues = (review.issues || []).map(issue => `<li>${esc(issue)}</li>`).join('');
@@ -5753,6 +5776,7 @@ HTML = r"""<!doctype html>
           <p class="notice">À segunda-feira, o sistema pesquisa fontes externas, recalcula os índices e publica alterações de confiança elevada. Entradas novas, fontes insuficientes ou movimentos anormais ficam bloqueados aqui.</p>
           <div class="actions">
             <button class="primary" onclick="runKnowledgeNow()">Executar agora</button>
+            <button onclick="syncKnowledgeRemote()">Sincronizar</button>
             <a class="button-link" href="/recursos/" target="_blank" rel="noopener">Abrir Recursos</a>
           </div>
           <div class="meta">
@@ -5807,7 +5831,8 @@ HTML = r"""<!doctype html>
       showTab(initialTabId(), false);
     }
     window.addEventListener('hashchange', () => showTab(initialTabId(), false));
-    loadState();
+    loadState().then(() => syncKnowledgeRemote({quiet: true}));
+    setInterval(() => syncKnowledgeRemote({quiet: true}), 300000);
   </script>
 </body>
 </html>"""

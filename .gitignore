@@ -16,6 +16,8 @@ __pycache__/
 dashboard.err.log
 dashboard.out.log
 data/*.jsonl
+!data/knowledge_review.jsonl
+!data/knowledge_runs.jsonl
 data/*.md
 data/*.csv
 data/reset_backups/

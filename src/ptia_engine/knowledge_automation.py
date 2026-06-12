@@ -13,7 +13,59 @@ from ptia_engine.search_providers import GeminiGroundedSearchProvider
 
 
 AUTO_CONFIDENCE = 0.92
+AUTO_APPLY_KINDS = {"tool_component_order", "entity_baseline_order"}
 REVIEW_STATUSES = {"pending", "approved", "rejected", "applied", "failed"}
+TRUSTED_SOURCE_SUFFIXES = (
+    "a16z.com",
+    "arxiv.org",
+    "artificialanalysis.ai",
+    "bloomberg.com",
+    "europa.eu",
+    "ft.com",
+    "github.com",
+    "gov.pt",
+    "huggingface.co",
+    "lmarena.ai",
+    "reuters.com",
+    "similarweb.com",
+    "swebench.com",
+    "vellum.ai",
+)
+DISCOVERY_TASKS = (
+    (
+        "entities",
+        "Analisa apenas pessoas e empresas com impacto verificável em IA em Portugal. "
+        "Usa apenas entity_baseline_order ou entity_upsert.",
+    ),
+    (
+        "tools",
+        "Analisa apenas ferramentas e os rankings por finalidade. "
+        "Usa apenas tool_component_order ou tool_upsert.",
+    ),
+    (
+        "prompts",
+        "Analisa apenas prompts úteis, concretos e reutilizáveis. "
+        "Usa apenas prompt_upsert.",
+    ),
+    (
+        "glossary",
+        "Analisa apenas termos técnicos em falta ou materialmente desatualizados. "
+        "Usa apenas glossary_upsert.",
+    ),
+)
+TASK_KINDS = {
+    "entities": {"entity_baseline_order", "entity_upsert"},
+    "tools": {"tool_component_order", "tool_upsert"},
+    "prompts": {"prompt_upsert"},
+    "glossary": {"glossary_upsert"},
+}
+RESEARCH_PROMPT = """
+És investigador do índice PTIA. Pesquisa a web atual sobre o foco indicado.
+Devolve um relatório factual curto, com no máximo 12 constatações materiais.
+Cada constatação deve ser sustentada pelas fontes citadas pelo Google Search.
+Não inventes rankings, métricas, datas, pessoas, empresas ou produtos.
+Se não houver alteração material e recente, diz explicitamente que não há.
+""".strip()
 
 DISCOVERY_PROMPT = """
 És o investigador semanal do índice PTIA. Pesquisa a web atual e propõe apenas
@@ -32,7 +84,7 @@ Responde apenas em JSON válido:
   "target":"categoria ou companies/people",
   "confidence":0.0,
   "reason":"explicação factual curta",
-  "sources":[{"label":"fonte","url":"https://..."}],
+  "sources":[{"label":"fonte","url":"https://...","evidence":"facto concreto suportado"}],
   "payload":{}
 }]}
 
@@ -64,6 +116,7 @@ Regras:
 - Para rankings usa exclusivamente os IDs fornecidos no contexto.
 - Rankings contêm exatamente os mesmos IDs atuais, apenas reordenados.
 - Cada proposta precisa de pelo menos duas fontes independentes HTTPS.
+- Em cada fonte inclui um campo "evidence" com a afirmação concreta sustentada.
 - Não propor alterações sem evidência nova e material.
 - Confiança acima de 0.92 apenas quando as fontes concordam claramente.
 """.strip()
@@ -107,11 +160,25 @@ def _write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
 
 
 def _proposal_id(proposal: dict[str, Any]) -> str:
+    sources = sorted(
+        {
+            str(source.get("url") or "").strip()
+            for source in proposal.get("sources") or []
+            if isinstance(source, dict)
+        }
+    )
     canonical = json.dumps(
         {
             "kind": proposal.get("kind"),
             "target": proposal.get("target"),
             "payload": proposal.get("payload"),
+            "reason": proposal.get("reason"),
+            "sources": sources,
+            "occurrence": (
+                datetime.now(timezone.utc).strftime("%G-W%V")
+                if proposal.get("kind") == "system_alert"
+                else ""
+            ),
         },
         sort_keys=True,
         ensure_ascii=True,
@@ -129,6 +196,7 @@ def _normalise(raw: dict[str, Any]) -> dict[str, Any]:
             {
                 "label": str(source.get("label") or "").strip(),
                 "url": str(source.get("url") or "").strip(),
+                "evidence": str(source.get("evidence") or "").strip(),
             }
             for source in raw.get("sources") or []
             if isinstance(source, dict)
@@ -145,13 +213,39 @@ def _normalise(raw: dict[str, Any]) -> dict[str, Any]:
     return proposal
 
 
-def _source_hosts(proposal: dict[str, Any]) -> set[str]:
-    hosts = set()
+def _source_identities(proposal: dict[str, Any]) -> set[str]:
+    identities = set()
     for source in proposal.get("sources") or []:
         parsed = urlparse(str(source.get("url") or ""))
         if parsed.scheme == "https" and parsed.hostname:
-            hosts.add(parsed.hostname.casefold().removeprefix("www."))
-    return hosts
+            host = parsed.hostname.casefold().removeprefix("www.")
+            label = str(source.get("label") or "").strip().casefold().removeprefix("www.")
+            if host == "vertexaisearch.cloud.google.com" and "." in label and " " not in label:
+                identities.add(label)
+            else:
+                identities.add(host)
+    return identities
+
+
+def _grounding_hosts(grounding_sources: list[dict[str, Any]]) -> set[str]:
+    return _source_identities({"sources": grounding_sources})
+
+
+def _sources_are_grounded(
+    proposal: dict[str, Any],
+    grounding_sources: list[dict[str, Any]],
+) -> bool:
+    declared = _source_identities(proposal)
+    grounded = _grounding_hosts(grounding_sources)
+    return len(declared) >= 2 and declared <= grounded
+
+
+def _has_trusted_source(proposal: dict[str, Any]) -> bool:
+    return any(
+        identity == suffix or identity.endswith("." + suffix)
+        for identity in _source_identities(proposal)
+        for suffix in TRUSTED_SOURCE_SUFFIXES
+    )
 
 
 def _ranking_valid(current: list[str], proposed: list[str]) -> bool:
@@ -163,12 +257,27 @@ def _max_movement(current: list[str], proposed: list[str]) -> int:
     return max((abs(old[item_id] - index) for index, item_id in enumerate(proposed)), default=0)
 
 
-def proposal_issues(proposal: dict[str, Any], catalog: dict, directory: dict) -> list[str]:
+def proposal_issues(
+    proposal: dict[str, Any],
+    catalog: dict,
+    directory: dict,
+    *,
+    grounding_sources: list[dict[str, Any]] | None = None,
+) -> list[str]:
     issues: list[str] = []
     kind = proposal.get("kind")
     payload = proposal.get("payload") or {}
-    if len(_source_hosts(proposal)) < 2:
+    if len(_source_identities(proposal)) < 2:
         issues.append("menos de duas fontes HTTPS independentes")
+    if grounding_sources is not None and not _sources_are_grounded(proposal, grounding_sources):
+        issues.append("fontes declaradas não confirmadas pelo grounding")
+    if any(
+        len(str(source.get("evidence") or "").strip()) < 20
+        for source in proposal.get("sources") or []
+    ):
+        issues.append("fontes sem evidência concreta")
+    if proposal.get("kind") in AUTO_APPLY_KINDS and not _has_trusted_source(proposal):
+        issues.append("sem fonte independente de referência para auto-publicação")
     if not proposal.get("reason"):
         issues.append("sem justificação")
 
@@ -207,7 +316,7 @@ def proposal_issues(proposal: dict[str, Any], catalog: dict, directory: dict) ->
             issues.append("tipo de entidade inválido")
         if not required <= set(payload):
             issues.append("entidade incompleta")
-        if not str(payload.get("linkedin") or "").startswith("https://"):
+        if payload.get("linkedin") and not str(payload.get("linkedin")).startswith("https://"):
             issues.append("LinkedIn inválido")
     elif kind == "tool_upsert":
         required = {
@@ -222,7 +331,8 @@ def proposal_issues(proposal: dict[str, Any], catalog: dict, directory: dict) ->
         categories = set(payload.get("categories") or [])
         if not categories or not categories <= valid_categories:
             issues.append("categorias de ferramenta inválidas")
-        if not 0 <= int(payload.get("baseline_score") or -1) <= 100:
+        score = payload.get("baseline_score")
+        if score is None or not 0 <= int(score) <= 100:
             issues.append("score de ferramenta inválido")
         positions = payload.get("category_positions") or {}
         if set(positions) != categories:
@@ -244,7 +354,8 @@ def proposal_issues(proposal: dict[str, Any], catalog: dict, directory: dict) ->
             issues.append("prompt incompleto")
         if len(str(payload.get("template") or "")) < 80:
             issues.append("template demasiado curto")
-        if not 0 <= int(payload.get("baseline_score") or -1) <= 100:
+        score = payload.get("baseline_score")
+        if score is None or not 0 <= int(score) <= 100:
             issues.append("score inválido")
     elif kind == "glossary_upsert":
         required = {"id", "term", "definition", "example", "related", "aliases"}
@@ -325,8 +436,12 @@ def apply_approved_reviews(root: Path) -> dict[str, int]:
             ]
             if blocking:
                 raise ValueError("; ".join(blocking))
-            apply_proposal(record, catalog, directory)
-            validate_catalog(catalog, directory)
+            candidate_catalog = copy.deepcopy(catalog)
+            candidate_directory = copy.deepcopy(directory)
+            apply_proposal(record, candidate_catalog, candidate_directory)
+            validate_catalog(candidate_catalog, candidate_directory)
+            catalog = candidate_catalog
+            directory = candidate_directory
             record.update(status="applied", notes="Aplicada após aprovação editorial.")
             applied += 1
         except Exception as exc:
@@ -344,7 +459,7 @@ def run_knowledge_automation(
     *,
     provider: GeminiGroundedSearchProvider | None = None,
 ) -> dict[str, Any]:
-    provider = provider or GeminiGroundedSearchProvider()
+    provider = provider or GeminiGroundedSearchProvider(timeout_seconds=90)
     review_path = root / "data" / "knowledge_review.jsonl"
     run_path = root / "data" / "knowledge_runs.jsonl"
     catalog_path = root / "config" / "ptia_knowledge.json"
@@ -357,36 +472,99 @@ def run_knowledge_automation(
 
     provider_error = ""
     if provider.available:
-        try:
-            context = {
-                "tool_categories": {
-                    category: {
-                        component: data["ranking"]
-                        for component, data in evidence["components"].items()
-                    }
-                    for category, evidence in catalog["tool_category_evidence"].items()
-                },
-                "companies": catalog["entity_baselines"]["companies"],
-                "people": catalog["entity_baselines"]["people"],
-                "prompt_ids": [item["id"] for item in catalog["prompts"]],
-                "glossary_ids": [item["id"] for item in catalog["glossary"]],
-            }
-            response = provider.grounded_json(
-                DISCOVERY_PROMPT + "\n\nContexto atual:\n" + json.dumps(context, ensure_ascii=False),
-                temperature=0.1,
-            )
-            raw_proposals = list(response.get("proposals") or [])
-        except Exception as exc:
-            provider_error = str(exc)[:500]
-            raw_proposals = [{
-                "kind": "system_alert",
-                "target": "external_discovery",
-                "confidence": 0,
-                "reason": f"Pesquisa externa falhou sem bloquear a edição: {provider_error}",
-                "sources": [],
-                "payload": {},
-            }]
+        context = {
+            "tool_categories": {
+                category: {
+                    component: data["ranking"]
+                    for component, data in evidence["components"].items()
+                }
+                for category, evidence in catalog["tool_category_evidence"].items()
+            },
+            "companies": catalog["entity_baselines"]["companies"],
+            "people": catalog["entity_baselines"]["people"],
+            "prompt_ids": [item["id"] for item in catalog["prompts"]],
+            "glossary_ids": [item["id"] for item in catalog["glossary"]],
+        }
+        tasks = (
+            DISCOVERY_TASKS
+            if getattr(provider, "partitioned_research", False)
+            else (("all", ""),)
+        )
+        raw_proposals = []
+        task_errors: list[str] = []
+        for task_name, task_instruction in tasks:
+            response = None
+            errors: list[str] = []
+            for _ in range(2):
+                try:
+                    if getattr(provider, "partitioned_research", False):
+                        research = provider.grounded_research(
+                            RESEARCH_PROMPT
+                            + "\n\nFoco:\n"
+                            + task_instruction,
+                            temperature=0.1,
+                        )
+                        sources = [
+                            source
+                            for source in research.get("sources") or []
+                            if isinstance(source, dict)
+                        ]
+                        permitted_sources = json.dumps(sources, ensure_ascii=False)
+                        response = provider.structured_json(
+                            DISCOVERY_PROMPT
+                            + "\n\nFoco obrigatório desta chamada:\n"
+                            + task_instruction
+                            + "\n\nUsa apenas a evidência e os URLs exatos abaixo. "
+                            "Se a evidência não suportar uma proposta, não a cries."
+                            + "\n\nFontes permitidas:\n"
+                            + permitted_sources
+                            + "\n\nEvidência grounded:\n"
+                            + str(research.get("text") or "")
+                            + "\n\nContexto atual:\n"
+                            + json.dumps(context, ensure_ascii=False),
+                            temperature=0.0,
+                        )
+                        response["_grounding_sources"] = sources
+                    else:
+                        response = provider.grounded_json(
+                            DISCOVERY_PROMPT
+                            + "\n\nContexto atual:\n"
+                            + json.dumps(context, ensure_ascii=False),
+                            temperature=0.1,
+                        )
+                    break
+                except Exception as exc:
+                    errors.append(str(exc)[:500])
+            if response is None:
+                detail = " | ".join(errors)
+                task_errors.append(f"{task_name}: {detail}")
+                raw_proposals.append({
+                    "kind": "system_alert",
+                    "target": f"external_discovery:{task_name}",
+                    "confidence": 0,
+                    "reason": (
+                        f"Pesquisa de {task_name} falhou sem bloquear as restantes: {detail}"
+                    ),
+                    "sources": [],
+                    "payload": {},
+                })
+                continue
+            task_grounding = [
+                source
+                for source in response.get("_grounding_sources") or []
+                if isinstance(source, dict)
+            ]
+            for raw in response.get("proposals") or []:
+                if not isinstance(raw, dict):
+                    continue
+                raw = dict(raw)
+                raw["_grounding_sources"] = task_grounding
+                raw["_task_name"] = task_name
+                raw_proposals.append(raw)
+        provider_error = " || ".join(task_errors)[:1000]
+        grounding_sources = []
     else:
+        grounding_sources = []
         raw_proposals = [{
             "kind": "system_alert",
             "target": "external_discovery",
@@ -402,6 +580,12 @@ def run_knowledge_automation(
     for raw in raw_proposals:
         if not isinstance(raw, dict):
             continue
+        proposal_grounding = [
+            source
+            for source in raw.get("_grounding_sources", grounding_sources) or []
+            if isinstance(source, dict)
+        ]
+        task_name = str(raw.get("_task_name") or "")
         try:
             proposal = _normalise(raw)
         except (TypeError, ValueError) as exc:
@@ -413,20 +597,39 @@ def run_knowledge_automation(
                 "sources": [],
                 "payload": {},
             })
+        previous = existing.get(proposal["proposal_id"])
+        if previous and previous.get("status") in {"approved", "rejected", "applied"}:
+            proposal["status"] = previous["status"]
+            proposal["notes"] = previous.get("notes", "")
+            proposal["created_at"] = previous.get("created_at", proposal["created_at"])
+            proposal["issues"] = previous.get("issues", [])
+            existing[proposal["proposal_id"]] = proposal
+            continue
         issues = (
             [proposal["reason"]]
             if proposal["kind"] == "system_alert"
-            else proposal_issues(proposal, staged_catalog, staged_directory)
+            else proposal_issues(
+                proposal,
+                staged_catalog,
+                staged_directory,
+                grounding_sources=proposal_grounding,
+            )
         )
+        if task_name in TASK_KINDS and proposal["kind"] not in TASK_KINDS[task_name]:
+            issues.append(f"tipo incompatível com a pesquisa de {task_name}")
         proposal["issues"] = issues
         if (
-            proposal["kind"] != "system_alert"
+            proposal["kind"] in AUTO_APPLY_KINDS
             and proposal["confidence"] >= AUTO_CONFIDENCE
             and not issues
         ):
             try:
-                apply_proposal(proposal, staged_catalog, staged_directory)
-                validate_catalog(staged_catalog, staged_directory)
+                candidate_catalog = copy.deepcopy(staged_catalog)
+                candidate_directory = copy.deepcopy(staged_directory)
+                apply_proposal(proposal, candidate_catalog, candidate_directory)
+                validate_catalog(candidate_catalog, candidate_directory)
+                staged_catalog = candidate_catalog
+                staged_directory = candidate_directory
                 proposal.update(
                     status="applied",
                     notes="Aplicada automaticamente por confiança elevada.",
@@ -437,10 +640,6 @@ def run_knowledge_automation(
                 pending += 1
         else:
             pending += 1
-        previous = existing.get(proposal["proposal_id"])
-        if previous and previous.get("status") in {"approved", "rejected"}:
-            proposal["status"] = previous["status"]
-            proposal["notes"] = previous.get("notes", "")
         existing[proposal["proposal_id"]] = proposal
 
     validate_catalog(staged_catalog, staged_directory)
@@ -499,3 +698,35 @@ def update_review_status(
             _write_jsonl(path, records)
             return record
     raise ValueError("Proposta de Recursos não encontrada.")
+
+
+def update_review_status_remote(
+    root: Path,
+    *,
+    proposal_id: str,
+    status: str,
+    notes: str = "",
+) -> dict[str, Any]:
+    from ptia_engine.knowledge_remote import publish_review_state, read_remote_text
+
+    if status not in {"approved", "rejected", "pending"}:
+        raise ValueError("Estado de revisão inválido.")
+    remote_text, _ = read_remote_text("data/knowledge_review.jsonl")
+    records = [
+        json.loads(line)
+        for line in remote_text.splitlines()
+        if line.strip()
+    ]
+    if not records:
+        records = _load_jsonl(root / "data" / "knowledge_review.jsonl")
+    for record in records:
+        if record.get("proposal_id") != proposal_id:
+            continue
+        record.update(status=status, notes=notes, updated_at=_now())
+        text = "".join(
+            json.dumps(item, ensure_ascii=False) + "\n"
+            for item in records
+        )
+        publish_review_state(root, text)
+        return record
+    raise ValueError("Proposta de Recursos não encontrada no estado remoto.")

@@ -192,6 +192,8 @@ class GeminiGroundedSearchProvider:
     locally before anything reaches Verified Selection.
     """
 
+    partitioned_research = True
+
     def __init__(
         self,
         *,
@@ -339,7 +341,64 @@ Regras:
         parsed = _extract_json(text)
         if not isinstance(parsed, dict):
             raise RuntimeError("Gemini devolveu uma resposta estruturada inválida.")
+        parsed["_grounding_sources"] = self._grounding_sources(candidate)
         return parsed
+
+    def grounded_research(self, prompt: str, *, temperature: float = 0.1) -> dict[str, Any]:
+        """Research with Google Search while keeping the response format unconstrained."""
+        if not self.available:
+            raise RuntimeError("GEMINI_API_KEY não está configurada.")
+        response_data = self._generate_json_response(
+            prompt,
+            temperature=temperature,
+            tools=[{"google_search": {}}],
+        )
+        candidate = (response_data.get("candidates") or [{}])[0]
+        parts = ((candidate.get("content") or {}).get("parts") or [])
+        text = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict))
+        if not text.strip():
+            finish_reason = str(candidate.get("finishReason") or "sem conteúdo")
+            raise RuntimeError(f"Gemini não devolveu pesquisa utilizável: {finish_reason}.")
+        return {
+            "text": text,
+            "sources": self._grounding_sources(candidate),
+        }
+
+    def structured_json(self, prompt: str, *, temperature: float = 0.1) -> dict[str, Any]:
+        """Convert supplied evidence into strict JSON without performing another search."""
+        if not self.available:
+            raise RuntimeError("GEMINI_API_KEY não está configurada.")
+        response_data = self._generate_json_response(
+            prompt,
+            temperature=temperature,
+            response_mime_type="application/json",
+        )
+        candidate = (response_data.get("candidates") or [{}])[0]
+        parts = ((candidate.get("content") or {}).get("parts") or [])
+        text = "\n".join(str(part.get("text", "")) for part in parts if isinstance(part, dict))
+        parsed = _extract_json(text)
+        if not isinstance(parsed, dict):
+            raise RuntimeError("Gemini devolveu JSON estruturado inválido.")
+        return parsed
+
+    @staticmethod
+    def _grounding_sources(candidate: dict[str, Any]) -> list[dict[str, str]]:
+        metadata = candidate.get("groundingMetadata") or {}
+        grounding_sources = []
+        seen_urls: set[str] = set()
+        for chunk in metadata.get("groundingChunks") or []:
+            web = chunk.get("web") or {}
+            url = str(web.get("uri") or "").strip()
+            if not url or url in seen_urls:
+                continue
+            grounding_sources.append(
+                {
+                    "label": str(web.get("title") or url).strip(),
+                    "url": url,
+                }
+            )
+            seen_urls.add(url)
+        return grounding_sources
 
     def rewrite_final_post(
         self,
@@ -598,6 +657,7 @@ Responde apenas em JSON válido:
         *,
         temperature: float,
         tools: list[dict[str, Any]] | None = None,
+        response_mime_type: str = "",
     ) -> dict[str, Any]:
         if not self.available:
             raise RuntimeError("GEMINI_API_KEY não está configurada.")
@@ -615,6 +675,8 @@ Responde apenas em JSON válido:
         }
         if tools:
             payload["tools"] = tools
+        if response_mime_type:
+            payload["generationConfig"]["responseMimeType"] = response_mime_type
         request = urllib.request.Request(
             url,
             data=json.dumps(payload).encode("utf-8"),

@@ -49,6 +49,7 @@ from ptia_engine.routes.newsletter import (
 from ptia_engine.routes.knowledge import (
     handle_knowledge_review,
     handle_knowledge_run,
+    handle_knowledge_sync,
 )
 
 
@@ -100,6 +101,7 @@ POST_ROUTES = {
     # Weekly knowledge/resources
     "/api/knowledge-review": handle_knowledge_review,
     "/api/knowledge-run": handle_knowledge_run,
+    "/api/knowledge-sync": handle_knowledge_sync,
 }
 
 def dashboard_do_post(handler):

@@ -171,3 +171,11 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Dashboard**: nova tab `Recursos` com historico, fontes, confianca, validacao e acoes Aprovar/Rejeitar/Executar agora.
 * **Executor**: segunda-feira as 09:00 Europe/Lisbon via GitHub Actions; exige o secret `GEMINI_API_KEY` para pesquisa externa.
 * **Runbook**: ver `docs/KNOWLEDGE_AUTOMATION.md`.
+
+### Resources Automation Production Hardening (12 de Junho de 2026)
+* **Transações isoladas**: cada proposta é aplicada numa cópia do catálogo; falhas de validação nunca contaminam nem bloqueiam a edição válida anterior.
+* **Grounding verificável**: pesquisa web e geração JSON foram separadas; uma fonte declarada só conta quando corresponde à evidência devolvida pelo Google Search grounding.
+* **Auto-publicação conservadora**: apenas reordenações limitadas, com confiança >= 92%, duas fontes independentes e uma fonte de referência podem ser automáticas. Novos registos exigem revisão.
+* **Estado canónico remoto**: fila e histórico passam a ser ficheiros Git versionados. O dashboard sincroniza com GitHub, grava decisões remotamente e dispara o workflow de produção.
+* **Alertas recorrentes**: falhas recebem identidade semanal e rejeições anteriores não ocultam incidentes de semanas posteriores.
+* **CI**: o workflow semanal executa a suite completa antes de pesquisar ou publicar.
