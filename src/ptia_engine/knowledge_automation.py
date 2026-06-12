@@ -14,6 +14,7 @@ from ptia_engine.search_providers import GeminiGroundedSearchProvider
 
 AUTO_CONFIDENCE = 0.92
 AUTO_APPLY_KINDS = {"tool_component_order", "entity_baseline_order"}
+MAX_PROPOSALS_PER_TASK = 3
 REVIEW_STATUSES = {"pending", "approved", "rejected", "applied", "failed"}
 TRUSTED_SOURCE_SUFFIXES = (
     "a16z.com",
@@ -64,6 +65,8 @@ RESEARCH_PROMPT = """
 Devolve um relatório factual curto, com no máximo 12 constatações materiais.
 Cada constatação deve ser sustentada pelas fontes citadas pelo Google Search.
 Não inventes rankings, métricas, datas, pessoas, empresas ou produtos.
+Não repitas informação estável já presente no contexto atual.
+Procura apenas entradas realmente novas ou mudanças materiais desde a edição atual.
 Se não houver alteração material e recente, diz explicitamente que não há.
 """.strip()
 
@@ -117,6 +120,7 @@ Regras:
 - Rankings contêm exatamente os mesmos IDs atuais, apenas reordenados.
 - Cada proposta precisa de pelo menos duas fontes independentes HTTPS.
 - Em cada fonte inclui um campo "evidence" com a afirmação concreta sustentada.
+- Devolve no máximo três propostas, ordenadas por relevância material.
 - Não propor alterações sem evidência nova e material.
 - Confiança acima de 0.92 apenas quando as fontes concordam claramente.
 """.strip()
@@ -255,6 +259,80 @@ def _ranking_valid(current: list[str], proposed: list[str]) -> bool:
 def _max_movement(current: list[str], proposed: list[str]) -> int:
     old = {item_id: index for index, item_id in enumerate(current)}
     return max((abs(old[item_id] - index) for index, item_id in enumerate(proposed)), default=0)
+
+
+def _raw_confidence(proposal: dict[str, Any]) -> float:
+    try:
+        return float(proposal.get("confidence") or 0.0)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, Any]:
+    if task_name == "entities":
+        return {
+            "companies": [
+                {
+                    "id": item.get("id"),
+                    "name": item.get("name"),
+                    "tagline": item.get("tagline"),
+                    "category": item.get("category"),
+                }
+                for item in directory.get("companies") or []
+            ],
+            "people": [
+                {
+                    "id": item.get("id"),
+                    "name": item.get("name"),
+                    "role": item.get("role"),
+                }
+                for item in directory.get("people") or []
+            ],
+            "baselines": catalog.get("entity_baselines") or {},
+        }
+    if task_name == "tools":
+        return {
+            "tools": [
+                {
+                    "id": item.get("id"),
+                    "name": item.get("name"),
+                    "categories": item.get("categories"),
+                }
+                for item in catalog.get("tools") or []
+            ],
+            "rankings": {
+                category: {
+                    component: data["ranking"]
+                    for component, data in evidence["components"].items()
+                }
+                for category, evidence in (catalog.get("tool_category_evidence") or {}).items()
+            },
+        }
+    if task_name == "prompts":
+        return {
+            "prompts": [
+                {
+                    "id": item.get("id"),
+                    "title": item.get("title"),
+                    "category": item.get("category"),
+                    "purpose": item.get("purpose"),
+                }
+                for item in catalog.get("prompts") or []
+            ]
+        }
+    if task_name == "glossary":
+        english = catalog.get("glossary_english") or {}
+        return {
+            "glossary": [
+                {
+                    "id": item.get("id"),
+                    "term": item.get("term"),
+                    "english_term": english.get(str(item.get("id")), ""),
+                }
+                for item in catalog.get("glossary") or []
+            ]
+        }
+    return {}
 
 
 def proposal_issues(
@@ -472,19 +550,6 @@ def run_knowledge_automation(
 
     provider_error = ""
     if provider.available:
-        context = {
-            "tool_categories": {
-                category: {
-                    component: data["ranking"]
-                    for component, data in evidence["components"].items()
-                }
-                for category, evidence in catalog["tool_category_evidence"].items()
-            },
-            "companies": catalog["entity_baselines"]["companies"],
-            "people": catalog["entity_baselines"]["people"],
-            "prompt_ids": [item["id"] for item in catalog["prompts"]],
-            "glossary_ids": [item["id"] for item in catalog["glossary"]],
-        }
         tasks = (
             DISCOVERY_TASKS
             if getattr(provider, "partitioned_research", False)
@@ -493,6 +558,7 @@ def run_knowledge_automation(
         raw_proposals = []
         task_errors: list[str] = []
         for task_name, task_instruction in tasks:
+            context = _task_context(task_name, catalog, directory)
             response = None
             errors: list[str] = []
             for _ in range(2):
@@ -501,7 +567,9 @@ def run_knowledge_automation(
                         research = provider.grounded_research(
                             RESEARCH_PROMPT
                             + "\n\nFoco:\n"
-                            + task_instruction,
+                            + task_instruction
+                            + "\n\nContexto atual que não deve ser repetido:\n"
+                            + json.dumps(context, ensure_ascii=False),
                             temperature=0.1,
                         )
                         sources = [
@@ -554,9 +622,13 @@ def run_knowledge_automation(
                 for source in response.get("_grounding_sources") or []
                 if isinstance(source, dict)
             ]
-            for raw in response.get("proposals") or []:
-                if not isinstance(raw, dict):
-                    continue
+            task_proposals = [
+                raw
+                for raw in response.get("proposals") or []
+                if isinstance(raw, dict)
+            ]
+            task_proposals.sort(key=_raw_confidence, reverse=True)
+            for raw in task_proposals[:MAX_PROPOSALS_PER_TASK]:
                 raw = dict(raw)
                 raw["_grounding_sources"] = task_grounding
                 raw["_task_name"] = task_name

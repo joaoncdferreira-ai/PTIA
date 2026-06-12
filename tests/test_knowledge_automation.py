@@ -55,6 +55,26 @@ class FailingProvider:
         raise RuntimeError("temporary API failure")
 
 
+class PartitionedProvider:
+    available = True
+    partitioned_research = True
+
+    def __init__(self):
+        self.research_prompts = []
+        self.structured_prompts = []
+
+    def grounded_research(self, prompt: str, *, temperature: float = 0.1):
+        self.research_prompts.append(prompt)
+        return {
+            "text": "Não foi encontrada alteração material.",
+            "sources": [],
+        }
+
+    def structured_json(self, prompt: str, *, temperature: float = 0.0):
+        self.structured_prompts.append(prompt)
+        return {"proposals": []}
+
+
 class KnowledgeAutomationTests(unittest.TestCase):
     def setUp(self):
         self.repo = Path.cwd()
@@ -292,6 +312,42 @@ class KnowledgeAutomationTests(unittest.TestCase):
             )["prompts"]],
         )
 
+    def test_weekly_task_is_capped_to_three_proposals(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        proposals = []
+        for index in range(5):
+            prompt = deepcopy(catalog["prompts"][0])
+            prompt["id"] = f"candidate-{index}"
+            prompt["title"] = f"Candidate {index}"
+            proposals.append(
+                {
+                    "kind": "prompt_upsert",
+                    "target": "produtividade",
+                    "confidence": 0.90 + index / 100,
+                    "reason": f"Candidato material número {index}.",
+                    "sources": [
+                        {
+                            "label": "Vellum",
+                            "url": "https://vellum.ai/a",
+                            "evidence": "A fonte demonstra um padrão de utilização concreto.",
+                        },
+                        {
+                            "label": "GitHub",
+                            "url": "https://github.com/b",
+                            "evidence": "A segunda fonte documenta o mesmo padrão.",
+                        },
+                    ],
+                    "payload": prompt,
+                }
+            )
+
+        run = run_knowledge_automation(self.root, provider=FakeProvider(proposals))
+
+        self.assertEqual(run["proposals"], 3)
+        self.assertEqual(knowledge_review_snapshot(self.root)["counts"]["pending"], 3)
+
     def test_ungrounded_sources_cannot_be_auto_applied(self):
         ranking = self._coding_ranking()
         proposed = ranking.copy()
@@ -407,6 +463,21 @@ class KnowledgeAutomationTests(unittest.TestCase):
         self.assertIn("temporary API failure", run["provider_error"])
         snapshot = knowledge_review_snapshot(self.root)
         self.assertEqual(snapshot["counts"]["pending"], 1)
+
+    def test_partitioned_research_receives_current_catalog_context(self):
+        provider = PartitionedProvider()
+
+        run = run_knowledge_automation(self.root, provider=provider)
+
+        self.assertEqual(run["status"], "completed")
+        self.assertEqual(run["proposals"], 0)
+        self.assertEqual(len(provider.research_prompts), 4)
+        self.assertTrue(any("Feedzai" in prompt for prompt in provider.research_prompts))
+        self.assertTrue(any("Claude Opus 4.8" in prompt for prompt in provider.research_prompts))
+        self.assertTrue(
+            any("Transformar informação" in prompt for prompt in provider.research_prompts)
+        )
+        self.assertTrue(any("Contexto atual" in prompt for prompt in provider.research_prompts))
 
     def test_dashboard_exposes_resources_management_tab(self):
         self.assertIn('data-tab="knowledge_tab"', HTML)
