@@ -2,9 +2,9 @@ name: PTIA Weekly Newsletter
 
 on:
   schedule:
-    # The runner accepts only the entry matching Lisbon's current UTC offset.
-    - cron: "35 7 * * 5"
-    - cron: "35 8 * * 5"
+    # Prepare on Thursday, then run an idempotent Friday recovery well before 09:00 Lisbon.
+    - cron: "35 18 * * 4"
+    - cron: "5 2 * * 5"
   workflow_dispatch:
     inputs:
       live:
@@ -12,6 +12,11 @@ on:
         required: true
         default: false
         type: boolean
+      send_at:
+        description: "Optional ISO-8601 delivery time, e.g. 2026-06-12T17:00:00+01:00"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -59,4 +64,10 @@ jobs:
 
       - name: Manually create or recover campaign
         if: github.event_name == 'workflow_dispatch' && inputs.live == true
-        run: python scripts/github_newsletter_runner.py --live --json
+        env:
+          PTIA_SEND_AT: ${{ inputs.send_at }}
+        run: >-
+          python scripts/github_newsletter_runner.py
+          --live
+          --send-at "$PTIA_SEND_AT"
+          --json

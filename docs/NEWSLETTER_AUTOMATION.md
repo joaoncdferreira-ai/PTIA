@@ -1,10 +1,13 @@
 # PTIA Weekly Newsletter Automation
 
-## Production flow
+## Legacy Firebase flow
 
 Firebase runs `schedule_weekly_newsletter_cloud` every Friday at 08:45 in
 `Europe/Lisbon`. The function compiles or reuses the issue for that Friday and
 creates a Brevo campaign scheduled for 09:00.
+
+The active production executor is GitHub Actions. See
+`docs/NEWSLETTER_GITHUB_AUTOMATION.md`.
 
 The process is idempotent:
 
@@ -76,3 +79,7 @@ powershell.exe -ExecutionPolicy Bypass -File scripts\activate_newsletter_product
 If campaign creation succeeds but scheduling fails, rerun the activation or
 live scheduler. The stored provider campaign ID is reused. Do not delete the
 newsletter issue before the retry.
+
+For a dated GitHub Actions recovery, dispatch `PTIA Weekly Newsletter` with
+`live=true` and an ISO-8601 `send_at`, for example
+`2026-06-12T17:00:00+01:00`.

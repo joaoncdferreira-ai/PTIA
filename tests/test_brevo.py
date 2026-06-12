@@ -103,6 +103,7 @@ class BrevoTests(unittest.TestCase):
         self.assertEqual(payload["previewText"], "preheader")
         self.assertIn("{{ unsubscribe }}", payload["htmlContent"])
         self.assertEqual(payload["scheduledAt"], "2026-06-12T09:00:00+01:00")
+        self.assertNotIn("tag", payload)
 
     def test_brevo_html_converts_legacy_mailerlite_tags(self):
         converted = brevo_html("{$unsubscribe} {$url} MailerLite")
@@ -130,6 +131,7 @@ class BrevoTests(unittest.TestCase):
         self.assertEqual(created["data"]["id"], "42")
         self.assertEqual(scheduled["data"]["status"], "scheduled")
         self.assertEqual(seen[0][0:2], ("POST", "https://api.brevo.test/v3/emailCampaigns"))
+        self.assertEqual(seen[0][2]["name"], "PTIA Weekly - 2026-06-12")
         self.assertNotIn("scheduledAt", seen[0][2])
         self.assertEqual(
             seen[1][0:2],

@@ -32,53 +32,57 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.root, ignore_errors=True)
 
-    def test_schedule_guard_accepts_only_summer_cron_during_dst(self):
+    def test_schedule_guard_accepts_thursday_preparation(self):
         tz = ptia_timezone()
 
         self.assertTrue(
             RUNNER.scheduled_window_is_open(
-                datetime(2026, 6, 12, 8, 35, tzinfo=tz),
-                RUNNER.SUMMER_SCHEDULE,
+                datetime(2026, 6, 11, 19, 35, tzinfo=tz),
+                RUNNER.PREPARE_SCHEDULE,
             )
         )
         self.assertFalse(
             RUNNER.scheduled_window_is_open(
-                datetime(2026, 6, 12, 9, 35, tzinfo=tz),
-                RUNNER.WINTER_SCHEDULE,
+                datetime(2026, 6, 12, 19, 35, tzinfo=tz),
+                RUNNER.PREPARE_SCHEDULE,
             )
         )
 
-    def test_schedule_guard_accepts_only_winter_cron_outside_dst(self):
+    def test_schedule_guard_accepts_early_friday_recovery(self):
         tz = ptia_timezone()
 
         self.assertTrue(
             RUNNER.scheduled_window_is_open(
-                datetime(2026, 12, 11, 8, 35, tzinfo=tz),
-                RUNNER.WINTER_SCHEDULE,
+                datetime(2026, 12, 11, 2, 5, tzinfo=tz),
+                RUNNER.RECOVERY_SCHEDULE,
             )
         )
         self.assertFalse(
             RUNNER.scheduled_window_is_open(
-                datetime(2026, 12, 11, 7, 35, tzinfo=tz),
-                RUNNER.SUMMER_SCHEDULE,
+                datetime(2026, 12, 11, 9, 0, tzinfo=tz),
+                RUNNER.RECOVERY_SCHEDULE,
             )
         )
 
-    def test_schedule_guard_rejects_non_friday_and_late_recovery(self):
+    def test_schedule_guard_rejects_unknown_cron(self):
         tz = ptia_timezone()
 
         self.assertFalse(
             RUNNER.scheduled_window_is_open(
-                datetime(2026, 6, 13, 8, 35, tzinfo=tz),
-                RUNNER.SUMMER_SCHEDULE,
+                datetime(2026, 6, 12, 8, 0, tzinfo=tz),
+                "0 0 * * *",
             )
         )
-        self.assertFalse(
-            RUNNER.scheduled_window_is_open(
-                datetime(2026, 6, 12, 18, 0, tzinfo=tz),
-                RUNNER.SUMMER_SCHEDULE,
-            )
+
+    def test_explicit_send_at_uses_lisbon_timezone(self):
+        tz = ptia_timezone()
+
+        send_at = RUNNER.resolve_send_at(
+            "2026-06-12T17:00:00+01:00",
+            datetime(2026, 6, 12, 15, 0, tzinfo=tz),
         )
+
+        self.assertEqual(send_at.isoformat(), "2026-06-12T17:00:00+01:00")
 
     def test_runner_creates_missing_optional_datasets(self):
         (self.root / "final_posts.jsonl").write_text("", encoding="utf-8")
@@ -98,7 +102,7 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
                 str(self.root),
                 "--scheduled-trigger",
                 "--scheduled-cron",
-                RUNNER.WINTER_SCHEDULE,
+                RUNNER.PREPARE_SCHEDULE,
                 "--json",
             ],
             now=datetime(2026, 6, 12, 7, 35, tzinfo=tz),
@@ -161,11 +165,13 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
             encoding="utf-8"
         )
 
-        self.assertIn('cron: "35 7 * * 5"', workflow)
-        self.assertIn('cron: "35 8 * * 5"', workflow)
+        self.assertIn('cron: "35 18 * * 4"', workflow)
+        self.assertIn('cron: "5 2 * * 5"', workflow)
         self.assertIn("contents: read", workflow)
         self.assertIn("--scheduled-trigger", workflow)
         self.assertIn('--scheduled-cron "${{ github.event.schedule }}"', workflow)
+        self.assertIn("PTIA_SEND_AT: ${{ inputs.send_at }}", workflow)
+        self.assertIn('--send-at "$PTIA_SEND_AT"', workflow)
         self.assertNotIn("firebase", workflow.casefold())
 
 

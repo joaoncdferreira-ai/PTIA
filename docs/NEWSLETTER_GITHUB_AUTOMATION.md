@@ -5,10 +5,10 @@
 GitHub Actions is the weekly executor. Brevo remains the delivery provider.
 Firebase Blaze, Firestore and Render secrets are not required.
 
-The workflow `.github/workflows/weekly-newsletter.yml` runs at both possible
-UTC equivalents of 08:35 Europe/Lisbon. A timezone guard permits execution only
-for the cron expression matching Lisbon's active UTC offset. This prevents the
-summer and winter entries from both creating work in the same week.
+The workflow `.github/workflows/weekly-newsletter.yml` prepares each edition on
+Thursday evening and runs an idempotent recovery early on Friday. Both runs
+target Friday at 09:00 Europe/Lisbon. Preparing the Brevo campaign in advance
+avoids depending on GitHub Actions starting at an exact minute.
 
 ## Data source
 
@@ -23,9 +23,13 @@ runner files when absent. Selection remains limited to recent posts with
   campaign is created.
 - Existing queued, scheduled or sent campaigns are never duplicated.
 - Existing drafts are reused.
+- Campaign names are derived from the Friday delivery date, even when the
+  campaign is created on Thursday.
+- The free-plan campaign payload does not request Brevo's paid tag feature.
 - With zero recipients, compilation is validated but no campaign is created.
 - More than 300 recipients is blocked while the free-plan ceiling is active.
 - Manual workflow runs are dry-run by default.
+- Manual live recovery accepts an optional ISO-8601 `send_at` value.
 - The workflow has read-only repository permissions.
 
 ## Required GitHub secrets
@@ -64,4 +68,4 @@ MailerLite is no longer loaded by the homepage.
 - Brevo sender `info@ptia.pt` active with DKIM and DMARC.
 - Controlled live workflow passed with zero recipients and created no campaign.
 - Native signup form published and connected to the weekly list.
-- Next automatic target: Friday at 09:00 Europe/Lisbon.
+- Automatic delivery target: Friday at 09:00 Europe/Lisbon.

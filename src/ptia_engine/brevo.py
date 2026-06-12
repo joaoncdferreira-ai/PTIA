@@ -144,7 +144,6 @@ def build_campaign_payload(
         "recipients": {"listIds": list(config.list_ids)},
         "htmlContent": brevo_html(issue.html),
         "mirrorActive": True,
-        "tag": "ptia-weekly",
     }
     if send_at is not None:
         payload["scheduledAt"] = send_at.isoformat()
@@ -296,10 +295,12 @@ class BrevoClient:
         self._request("POST", "/contacts/doubleOptinConfirmation", payload)
 
     def create_campaign(self, issue: NewsletterIssue, *, send_at: datetime) -> dict[str, Any]:
+        payload = build_campaign_payload(issue, self.config, send_at=send_at)
+        payload.pop("scheduledAt", None)
         payload = self._request(
             "POST",
             "/emailCampaigns",
-            build_campaign_payload(issue, self.config),
+            payload,
         )
         campaign_id = str(payload.get("id", ""))
         return {"data": {"id": campaign_id, "status": "draft"}}

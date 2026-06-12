@@ -30,25 +30,30 @@ REQUIRED_DATASETS = {
     "trend_signals.jsonl",
 }
 
-SUMMER_SCHEDULE = "35 7 * * 5"
-WINTER_SCHEDULE = "35 8 * * 5"
-RECOVERY_DEADLINE_HOUR = 18
-
-
-def expected_scheduled_cron(now: datetime) -> str:
-    local = now.astimezone(ptia_timezone(PTIA_TIMEZONE))
-    offset = local.utcoffset()
-    offset_hours = int(offset.total_seconds() // 3600) if offset else 0
-    return SUMMER_SCHEDULE if offset_hours == 1 else WINTER_SCHEDULE
+PREPARE_SCHEDULE = "35 18 * * 4"
+RECOVERY_SCHEDULE = "5 2 * * 5"
 
 
 def scheduled_window_is_open(now: datetime, scheduled_cron: str) -> bool:
     local = now.astimezone(ptia_timezone(PTIA_TIMEZONE))
-    return (
-        local.weekday() == 4
-        and local.hour < RECOVERY_DEADLINE_HOUR
-        and scheduled_cron == expected_scheduled_cron(local)
-    )
+    if scheduled_cron == PREPARE_SCHEDULE:
+        return local.weekday() == 3
+    if scheduled_cron == RECOVERY_SCHEDULE:
+        return local.weekday() == 4 and local.hour < 9
+    return False
+
+
+def resolve_send_at(value: str, now: datetime) -> datetime:
+    if not value.strip():
+        return next_friday_send_at(now)
+    try:
+        parsed = datetime.fromisoformat(value.strip())
+    except ValueError as exc:
+        raise ValueError("--send-at must be a valid ISO-8601 datetime") from exc
+    timezone = ptia_timezone(PTIA_TIMEZONE)
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone)
+    return parsed.astimezone(timezone)
 
 
 def ensure_runner_datasets(data_dir: Path) -> None:
@@ -74,12 +79,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--scheduled-trigger",
         action="store_true",
-        help="Apply the Friday Europe/Lisbon schedule guard.",
+        help="Apply the PTIA weekly automation schedule guard.",
     )
     parser.add_argument(
         "--scheduled-cron",
         default="",
         help="GitHub schedule expression that triggered the workflow.",
+    )
+    parser.add_argument(
+        "--send-at",
+        default="",
+        help="Optional ISO-8601 delivery time; defaults to Friday at 09:00 Lisbon.",
     )
     parser.add_argument("--json", action="store_true", dest="json_output")
     return parser
@@ -111,7 +121,7 @@ def main(argv: list[str] | None = None, *, now: datetime | None = None) -> int:
         return 0
 
     ensure_runner_datasets(args.data_dir)
-    send_at = next_friday_send_at(local_now)
+    send_at = resolve_send_at(args.send_at, local_now)
     client = None
     recipient_count = None
     if args.live:
