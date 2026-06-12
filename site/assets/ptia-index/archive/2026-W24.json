@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "edition": "2026-W24",
-  "updated_at": "2026-06-08T12:23:58+00:00",
+  "updated_at": "2026-06-12T09:09:58+00:00",
   "signal_window_days": 84,
-  "signal_articles": 68,
+  "signal_articles": 83,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. Combina uma base editorial versionada com sinais dos artigos PTIA dos últimos 84 dias.",
   "companies": [
@@ -1094,6 +1094,11 @@
       "score": 100.0,
       "evidence": [
         {
+          "title": "OpenAI quer transformar ChatGPT em 'superapp' antes de IPO",
+          "url": "/artigos/openai-quer-transformar-chatgpt-em-superapp-antes-de-ipo-7c77f47bc8e2e0753e",
+          "published_at": "2026-06-09"
+        },
+        {
           "title": "ChatGPT e a Reescrita da História: Um Alerta para a Educação em Portugal",
           "url": "/artigos/chatgpt-e-a-reescrita-da-historia-um-alerta-para-a-educacao-em-portugal-dd370e570a70ac3002",
           "published_at": "2026-05-29"
@@ -2033,6 +2038,11 @@
       ],
       "score": 93.0,
       "evidence": [
+        {
+          "title": "Claude Fable 5: A nova aposta da Anthropic no segmento 'Mythos-class'",
+          "url": "/artigos/claude-fable-5-a-nova-aposta-da-anthropic-no-segmento-mythos-class-db9ea6b4c6d25a3e99",
+          "published_at": "2026-06-10"
+        },
         {
           "title": "Anthropic Pede Pausa na IA de Ponta: O Risco de Perda de Controlo Humano",
           "url": "/artigos/anthropic-pede-pausa-na-ia-de-ponta-o-risco-de-perda-de-controlo-humano-c22faf91a9c2ec566d",
@@ -5445,33 +5455,9 @@
       ],
       "baseline_score": 95,
       "score": 96.1,
-      "topical_hits": 135,
+      "topical_hits": 159,
       "rank": 1,
       "previous_rank": 1,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "contraditorio",
-      "title": "Testar uma estratégia com contraditório sério",
-      "category": "pesquisa",
-      "purpose": "Descobrir pressupostos frágeis antes da execução.",
-      "template": "Atua como revisor independente desta proposta: [PROPOSTA]. Identifica pressupostos, incentivos, efeitos de segunda ordem, evidência em falta e condições em que falha. Apresenta o melhor argumento contra a proposta e depois uma versão melhorada que preserve o objetivo.",
-      "keywords": [
-        "estratégia",
-        "risco",
-        "regulação",
-        "decisão"
-      ],
-      "baseline_score": 93,
-      "score": 94.5,
-      "topical_hits": 91,
-      "rank": 2,
-      "previous_rank": 2,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
@@ -5492,15 +5478,39 @@
         "pesquisa"
       ],
       "baseline_score": 96,
-      "score": 94.4,
-      "topical_hits": 46,
-      "rank": 3,
+      "score": 95.5,
+      "topical_hits": 58,
+      "rank": 2,
       "previous_rank": 3,
-      "movement": 0,
+      "movement": 1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "contraditorio",
+      "title": "Testar uma estratégia com contraditório sério",
+      "category": "pesquisa",
+      "purpose": "Descobrir pressupostos frágeis antes da execução.",
+      "template": "Atua como revisor independente desta proposta: [PROPOSTA]. Identifica pressupostos, incentivos, efeitos de segunda ordem, evidência em falta e condições em que falha. Apresenta o melhor argumento contra a proposta e depois uma versão melhorada que preserve o objetivo.",
+      "keywords": [
+        "estratégia",
+        "risco",
+        "regulação",
+        "decisão"
+      ],
+      "baseline_score": 93,
+      "score": 94.5,
+      "topical_hits": 105,
+      "rank": 3,
+      "previous_rank": 2,
+      "movement": -1,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -5516,8 +5526,8 @@
         "agentes"
       ],
       "baseline_score": 94,
-      "score": 93.6,
-      "topical_hits": 54,
+      "score": 94.2,
+      "topical_hits": 61,
       "rank": 4,
       "previous_rank": 4,
       "movement": 0,
@@ -5541,33 +5551,9 @@
       ],
       "baseline_score": 91,
       "score": 93.0,
-      "topical_hits": 193,
+      "topical_hits": 231,
       "rank": 5,
       "previous_rank": 5,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "resumo-reuniao",
-      "title": "Converter uma reunião em compromissos claros",
-      "category": "produtividade",
-      "purpose": "Extrair decisões, responsáveis e bloqueios.",
-      "template": "A partir destas notas, produz: decisões tomadas, ações com responsável e prazo, questões em aberto, riscos e informação em falta. Não transformes sugestões em decisões. Usa 'não definido' quando não houver responsável ou data. Notas: [NOTAS].",
-      "keywords": [
-        "trabalho",
-        "equipa",
-        "gestão",
-        "produtividade"
-      ],
-      "baseline_score": 90,
-      "score": 92.2,
-      "topical_hits": 96,
-      "rank": 6,
-      "previous_rank": 6,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
@@ -5588,15 +5574,87 @@
         "formação"
       ],
       "baseline_score": 92,
-      "score": 91.6,
-      "topical_hits": 49,
-      "rank": 7,
+      "score": 92.3,
+      "topical_hits": 57,
+      "rank": 6,
       "previous_rank": 7,
-      "movement": 0,
+      "movement": 1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "resumo-reuniao",
+      "title": "Converter uma reunião em compromissos claros",
+      "category": "produtividade",
+      "purpose": "Extrair decisões, responsáveis e bloqueios.",
+      "template": "A partir destas notas, produz: decisões tomadas, ações com responsável e prazo, questões em aberto, riscos e informação em falta. Não transformes sugestões em decisões. Usa 'não definido' quando não houver responsável ou data. Notas: [NOTAS].",
+      "keywords": [
+        "trabalho",
+        "equipa",
+        "gestão",
+        "produtividade"
+      ],
+      "baseline_score": 90,
+      "score": 92.2,
+      "topical_hits": 111,
+      "rank": 7,
+      "previous_rank": 6,
+      "movement": -1,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
+      }
+    },
+    {
+      "id": "analise-dados",
+      "title": "Analisar dados antes de procurar uma história",
+      "category": "produtividade",
+      "purpose": "Evitar conclusões precipitadas numa tabela ou conjunto de métricas.",
+      "template": "Analisa estes dados: [DADOS]. Primeiro descreve estrutura, qualidade, valores ausentes e possíveis enviesamentos. Depois calcula apenas métricas justificadas, identifica padrões e anomalias e separa correlação de causalidade. Termina com três verificações que fariam a análise mais robusta.",
+      "keywords": [
+        "dados",
+        "métricas",
+        "análise",
+        "decisão"
+      ],
+      "baseline_score": 91,
+      "score": 92.1,
+      "topical_hits": 64,
+      "rank": 8,
+      "previous_rank": 9,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "plano-implementacao",
+      "title": "Plano de implementação sem saltar dependências",
+      "category": "coding",
+      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
+      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
+      "keywords": [
+        "arquitetura",
+        "implementação",
+        "software",
+        "automação"
+      ],
+      "baseline_score": 93,
+      "score": 92.0,
+      "topical_hits": 46,
+      "rank": 9,
+      "previous_rank": 10,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
       }
     },
     {
@@ -5613,62 +5671,14 @@
       ],
       "baseline_score": 89,
       "score": 91.4,
-      "topical_hits": 83,
-      "rank": 8,
-      "previous_rank": 8,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "plano-implementacao",
-      "title": "Plano de implementação sem saltar dependências",
-      "category": "coding",
-      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
-      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
-      "keywords": [
-        "arquitetura",
-        "implementação",
-        "software",
-        "automação"
-      ],
-      "baseline_score": 93,
-      "score": 91.2,
-      "topical_hits": 39,
-      "rank": 9,
-      "previous_rank": 10,
-      "movement": 1,
-      "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
-      }
-    },
-    {
-      "id": "analise-dados",
-      "title": "Analisar dados antes de procurar uma história",
-      "category": "produtividade",
-      "purpose": "Evitar conclusões precipitadas numa tabela ou conjunto de métricas.",
-      "template": "Analisa estes dados: [DADOS]. Primeiro descreve estrutura, qualidade, valores ausentes e possíveis enviesamentos. Depois calcula apenas métricas justificadas, identifica padrões e anomalias e separa correlação de causalidade. Termina com três verificações que fariam a análise mais robusta.",
-      "keywords": [
-        "dados",
-        "métricas",
-        "análise",
-        "decisão"
-      ],
-      "baseline_score": 91,
-      "score": 91.1,
-      "topical_hits": 52,
+      "topical_hits": 96,
       "rank": 10,
-      "previous_rank": 9,
-      "movement": -1,
+      "previous_rank": 8,
+      "movement": -2,
       "ranking_change": {
         "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "delta": -2,
+        "label": "Desceu 2"
       }
     },
     {
@@ -5684,8 +5694,8 @@
         "produto"
       ],
       "baseline_score": 90,
-      "score": 90.5,
-      "topical_hits": 54,
+      "score": 91.4,
+      "topical_hits": 65,
       "rank": 11,
       "previous_rank": 11,
       "movement": 0,
@@ -5708,8 +5718,8 @@
         "conteúdo"
       ],
       "baseline_score": 91,
-      "score": 89.4,
-      "topical_hits": 37,
+      "score": 90.2,
+      "topical_hits": 44,
       "rank": 12,
       "previous_rank": 12,
       "movement": 0,
@@ -5732,34 +5742,10 @@
         "formação"
       ],
       "baseline_score": 89,
-      "score": 88.8,
-      "topical_hits": 45,
+      "score": 89.6,
+      "topical_hits": 53,
       "rank": 13,
       "previous_rank": 13,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "pesquisa-literatura",
-      "title": "Mapear literatura científica sobre um problema",
-      "category": "pesquisa",
-      "purpose": "Estruturar uma revisão inicial sem confundir consenso com quantidade de resultados.",
-      "template": "Investiga [PERGUNTA] usando prioritariamente revisões sistemáticas, meta-análises e fontes primárias recentes. Organiza a resposta por consenso, resultados contraditórios, limitações metodológicas e perguntas ainda abertas. Inclui data, autores e ligação de cada fonte. Não inventes referências.",
-      "keywords": [
-        "estudo",
-        "investigação",
-        "evidência",
-        "pesquisa"
-      ],
-      "baseline_score": 92,
-      "score": 87.8,
-      "topical_hits": 23,
-      "rank": 14,
-      "previous_rank": 14,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
@@ -5780,15 +5766,39 @@
         "aprendizagem"
       ],
       "baseline_score": 88,
-      "score": 87.7,
-      "topical_hits": 42,
-      "rank": 15,
+      "score": 88.6,
+      "topical_hits": 51,
+      "rank": 14,
       "previous_rank": 15,
-      "movement": 0,
+      "movement": 1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "pesquisa-literatura",
+      "title": "Mapear literatura científica sobre um problema",
+      "category": "pesquisa",
+      "purpose": "Estruturar uma revisão inicial sem confundir consenso com quantidade de resultados.",
+      "template": "Investiga [PERGUNTA] usando prioritariamente revisões sistemáticas, meta-análises e fontes primárias recentes. Organiza a resposta por consenso, resultados contraditórios, limitações metodológicas e perguntas ainda abertas. Inclui data, autores e ligação de cada fonte. Não inventes referências.",
+      "keywords": [
+        "estudo",
+        "investigação",
+        "evidência",
+        "pesquisa"
+      ],
+      "baseline_score": 92,
+      "score": 88.0,
+      "topical_hits": 24,
+      "rank": 15,
+      "previous_rank": 14,
+      "movement": -1,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -5804,8 +5814,8 @@
         "software"
       ],
       "baseline_score": 90,
-      "score": 85.4,
-      "topical_hits": 19,
+      "score": 86.3,
+      "topical_hits": 23,
       "rank": 16,
       "previous_rank": 16,
       "movement": 0,
@@ -5828,8 +5838,8 @@
         "coding"
       ],
       "baseline_score": 92,
-      "score": 85.1,
-      "topical_hits": 13,
+      "score": 86.1,
+      "topical_hits": 16,
       "rank": 17,
       "previous_rank": 17,
       "movement": 0,
@@ -5852,8 +5862,8 @@
         "distribuição"
       ],
       "baseline_score": 89,
-      "score": 83.4,
-      "topical_hits": 15,
+      "score": 84.0,
+      "topical_hits": 17,
       "rank": 18,
       "previous_rank": 18,
       "movement": 0,
@@ -5876,58 +5886,10 @@
         "comunicação"
       ],
       "baseline_score": 88,
-      "score": 83.0,
-      "topical_hits": 16,
+      "score": 83.8,
+      "topical_hits": 19,
       "rank": 19,
       "previous_rank": 19,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "estudo-flashcards",
-      "title": "Criar flashcards que testam compreensão",
-      "category": "estudo",
-      "purpose": "Rever conceitos sem depender apenas de memorização literal.",
-      "template": "Com base em [MATERIAL], cria 20 flashcards. Mistura definições, aplicação, comparação, causa e efeito e deteção de erros. Cada resposta deve ser curta mas suficiente. Não introduzas informação ausente no material e identifica os cinco conceitos que exigem revisão adicional.",
-      "keywords": [
-        "estudo",
-        "aprendizagem",
-        "revisão",
-        "educação"
-      ],
-      "baseline_score": 87,
-      "score": 82.5,
-      "topical_hits": 17,
-      "rank": 20,
-      "previous_rank": 20,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "brief-criativo",
-      "title": "Criar um brief visual que não seja genérico",
-      "category": "design",
-      "purpose": "Dar direção concreta a uma imagem, vídeo ou peça.",
-      "template": "Cria um brief visual para [OBJETIVO]. Define mensagem, audiência, hierarquia, composição, ambiente, luz, paleta, materiais, enquadramento e elementos a excluir. Evita clichés visuais de IA, texto ilegível e decoração sem função. Formato final: [FORMATO E DIMENSÕES].",
-      "keywords": [
-        "design",
-        "imagem",
-        "video",
-        "conteúdo"
-      ],
-      "baseline_score": 88,
-      "score": 82.3,
-      "topical_hits": 14,
-      "rank": 21,
-      "previous_rank": 21,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
@@ -5948,15 +5910,63 @@
         "jornalismo"
       ],
       "baseline_score": 88,
-      "score": 82.3,
-      "topical_hits": 14,
-      "rank": 22,
+      "score": 83.5,
+      "topical_hits": 18,
+      "rank": 20,
       "previous_rank": 22,
+      "movement": 2,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 2,
+        "label": "Subiu 2"
+      }
+    },
+    {
+      "id": "brief-criativo",
+      "title": "Criar um brief visual que não seja genérico",
+      "category": "design",
+      "purpose": "Dar direção concreta a uma imagem, vídeo ou peça.",
+      "template": "Cria um brief visual para [OBJETIVO]. Define mensagem, audiência, hierarquia, composição, ambiente, luz, paleta, materiais, enquadramento e elementos a excluir. Evita clichés visuais de IA, texto ilegível e decoração sem função. Formato final: [FORMATO E DIMENSÕES].",
+      "keywords": [
+        "design",
+        "imagem",
+        "video",
+        "conteúdo"
+      ],
+      "baseline_score": 88,
+      "score": 83.0,
+      "topical_hits": 16,
+      "rank": 21,
+      "previous_rank": 21,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
         "delta": 0,
         "label": "Manteve"
+      }
+    },
+    {
+      "id": "estudo-flashcards",
+      "title": "Criar flashcards que testam compreensão",
+      "category": "estudo",
+      "purpose": "Rever conceitos sem depender apenas de memorização literal.",
+      "template": "Com base em [MATERIAL], cria 20 flashcards. Mistura definições, aplicação, comparação, causa e efeito e deteção de erros. Cada resposta deve ser curta mas suficiente. Não introduzas informação ausente no material e identifica os cinco conceitos que exigem revisão adicional.",
+      "keywords": [
+        "estudo",
+        "aprendizagem",
+        "revisão",
+        "educação"
+      ],
+      "baseline_score": 87,
+      "score": 82.8,
+      "topical_hits": 18,
+      "rank": 22,
+      "previous_rank": 20,
+      "movement": -2,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -2,
+        "label": "Desceu 2"
       }
     },
     {
@@ -5973,8 +5983,8 @@
         "design"
       ],
       "baseline_score": 91,
-      "score": 78.0,
-      "topical_hits": 3,
+      "score": 79.1,
+      "topical_hits": 4,
       "rank": 23,
       "previous_rank": 23,
       "movement": 0,
@@ -6024,7 +6034,7 @@
         "api"
       ],
       "english_term": "Application Programming Interface",
-      "mentions_12w": 18
+      "mentions_12w": 23
     },
     {
       "id": "rag",
@@ -6041,7 +6051,23 @@
         "retrieval augmented generation"
       ],
       "english_term": "Retrieval-Augmented Generation",
-      "mentions_12w": 11
+      "mentions_12w": 12
+    },
+    {
+      "id": "benchmark",
+      "term": "Benchmark",
+      "definition": "Teste ou conjunto de tarefas usado para comparar o desempenho de modelos ou sistemas.",
+      "example": "Um benchmark pode medir qualidade em programação, matemática ou compreensão de texto.",
+      "related": [
+        "avaliação",
+        "modelo"
+      ],
+      "aliases": [
+        "benchmark",
+        "benchmarks"
+      ],
+      "english_term": "",
+      "mentions_12w": 7
     },
     {
       "id": "agi",
@@ -6091,22 +6117,6 @@
         "alignment"
       ],
       "english_term": "Alignment",
-      "mentions_12w": 4
-    },
-    {
-      "id": "benchmark",
-      "term": "Benchmark",
-      "definition": "Teste ou conjunto de tarefas usado para comparar o desempenho de modelos ou sistemas.",
-      "example": "Um benchmark pode medir qualidade em programação, matemática ou compreensão de texto.",
-      "related": [
-        "avaliação",
-        "modelo"
-      ],
-      "aliases": [
-        "benchmark",
-        "benchmarks"
-      ],
-      "english_term": "",
       "mentions_12w": 4
     },
     {

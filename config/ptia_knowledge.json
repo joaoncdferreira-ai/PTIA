@@ -50,84 +50,637 @@
   },
   "tool_category_evidence": {
     "coding": {
-      "weights": {"capability": 0.45, "popularity": 0.20, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.45,
+        "popularity": 0.2,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Vellum, SWE-bench e Terminal-Bench", "url": "https://www.vellum.ai/llm-leaderboard", "ranking": ["claude-opus-4-8", "codex", "antigravity", "cursor", "gemini-code-assist", "github-copilot", "windsurf", "replit", "v0"]},
-        "popularity": {"label": "a16z Top 100 Gen AI Apps, 6.ª edição", "url": "https://a16z.com/100-gen-ai-apps-6/", "ranking": ["github-copilot", "cursor", "replit", "claude-opus-4-8", "codex", "windsurf", "gemini-code-assist", "antigravity", "v0"]},
-        "task_fit": {"label": "Cobertura do workflow de engenharia", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["codex", "claude-opus-4-8", "antigravity", "cursor", "github-copilot", "windsurf", "gemini-code-assist", "replit", "v0"]},
-        "access": {"label": "Disponibilidade, integração e valor", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["github-copilot", "gemini-code-assist", "replit", "cursor", "codex", "claude-opus-4-8", "windsurf", "v0", "antigravity"]}
+        "capability": {
+          "label": "Vellum, SWE-bench e Terminal-Bench",
+          "url": "https://www.vellum.ai/llm-leaderboard",
+          "ranking": [
+            "claude-opus-4-8",
+            "codex",
+            "antigravity",
+            "cursor",
+            "gemini-code-assist",
+            "github-copilot",
+            "windsurf",
+            "replit",
+            "v0"
+          ]
+        },
+        "popularity": {
+          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
+          "ranking": [
+            "github-copilot",
+            "cursor",
+            "replit",
+            "claude-opus-4-8",
+            "codex",
+            "windsurf",
+            "gemini-code-assist",
+            "antigravity",
+            "v0"
+          ]
+        },
+        "task_fit": {
+          "label": "Cobertura do workflow de engenharia",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "codex",
+            "claude-opus-4-8",
+            "antigravity",
+            "cursor",
+            "github-copilot",
+            "windsurf",
+            "gemini-code-assist",
+            "replit",
+            "v0"
+          ]
+        },
+        "access": {
+          "label": "Disponibilidade, integração e valor",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "github-copilot",
+            "gemini-code-assist",
+            "replit",
+            "cursor",
+            "codex",
+            "claude-opus-4-8",
+            "windsurf",
+            "v0",
+            "antigravity"
+          ]
+        }
       }
     },
     "estudo": {
-      "weights": {"capability": 0.50, "popularity": 0.15, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.5,
+        "popularity": 0.15,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Grounding, síntese e trabalho sobre fontes", "url": "https://notebooklm.google/", "ranking": ["notebooklm", "chatgpt", "claude", "gemini", "perplexity", "elicit", "consensus", "scite", "notion-ai", "replit"]},
-        "popularity": {"label": "Similarweb, utilização global em agosto de 2025", "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/", "ranking": ["chatgpt", "gemini", "claude", "perplexity", "notebooklm", "replit", "notion-ai", "elicit", "consensus", "scite"]},
-        "task_fit": {"label": "Leitura, estudo e rastreabilidade das fontes", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["notebooklm", "chatgpt", "claude", "perplexity", "gemini", "elicit", "consensus", "scite", "notion-ai", "replit"]},
-        "access": {"label": "Acesso gratuito e facilidade de utilização", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["notebooklm", "gemini", "chatgpt", "perplexity", "claude", "notion-ai", "replit", "consensus", "elicit", "scite"]}
+        "capability": {
+          "label": "Grounding, síntese e trabalho sobre fontes",
+          "url": "https://notebooklm.google/",
+          "ranking": [
+            "notebooklm",
+            "chatgpt",
+            "claude",
+            "gemini",
+            "perplexity",
+            "elicit",
+            "consensus",
+            "scite",
+            "notion-ai",
+            "replit"
+          ]
+        },
+        "popularity": {
+          "label": "Similarweb, utilização global em agosto de 2025",
+          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "claude",
+            "perplexity",
+            "notebooklm",
+            "replit",
+            "notion-ai",
+            "elicit",
+            "consensus",
+            "scite"
+          ]
+        },
+        "task_fit": {
+          "label": "Leitura, estudo e rastreabilidade das fontes",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "notebooklm",
+            "chatgpt",
+            "claude",
+            "perplexity",
+            "gemini",
+            "elicit",
+            "consensus",
+            "scite",
+            "notion-ai",
+            "replit"
+          ]
+        },
+        "access": {
+          "label": "Acesso gratuito e facilidade de utilização",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "notebooklm",
+            "gemini",
+            "chatgpt",
+            "perplexity",
+            "claude",
+            "notion-ai",
+            "replit",
+            "consensus",
+            "elicit",
+            "scite"
+          ]
+        }
       }
     },
     "pesquisa": {
-      "weights": {"capability": 0.45, "popularity": 0.20, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.45,
+        "popularity": 0.2,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Pesquisa com fontes e literatura", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["perplexity", "elicit", "notebooklm", "consensus", "scite", "claude", "chatgpt", "gemini", "manus", "claude-opus-4-8"]},
-        "popularity": {"label": "Similarweb, utilização global em agosto de 2025", "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/", "ranking": ["chatgpt", "gemini", "claude", "perplexity", "notebooklm", "manus", "elicit", "consensus", "scite", "claude-opus-4-8"]},
-        "task_fit": {"label": "Citações, rastreabilidade e workflow", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["perplexity", "elicit", "notebooklm", "scite", "consensus", "manus", "claude", "chatgpt", "gemini", "claude-opus-4-8"]},
-        "access": {"label": "Acesso, custo e exportação", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["perplexity", "notebooklm", "gemini", "chatgpt", "claude", "consensus", "elicit", "scite", "manus", "claude-opus-4-8"]}
+        "capability": {
+          "label": "Pesquisa com fontes e literatura",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "perplexity",
+            "elicit",
+            "notebooklm",
+            "consensus",
+            "scite",
+            "claude",
+            "chatgpt",
+            "gemini",
+            "manus",
+            "claude-opus-4-8"
+          ]
+        },
+        "popularity": {
+          "label": "Similarweb, utilização global em agosto de 2025",
+          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "claude",
+            "perplexity",
+            "notebooklm",
+            "manus",
+            "elicit",
+            "consensus",
+            "scite",
+            "claude-opus-4-8"
+          ]
+        },
+        "task_fit": {
+          "label": "Citações, rastreabilidade e workflow",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "perplexity",
+            "elicit",
+            "notebooklm",
+            "scite",
+            "consensus",
+            "manus",
+            "claude",
+            "chatgpt",
+            "gemini",
+            "claude-opus-4-8"
+          ]
+        },
+        "access": {
+          "label": "Acesso, custo e exportação",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "perplexity",
+            "notebooklm",
+            "gemini",
+            "chatgpt",
+            "claude",
+            "consensus",
+            "elicit",
+            "scite",
+            "manus",
+            "claude-opus-4-8"
+          ]
+        }
       }
     },
     "produtividade": {
-      "weights": {"capability": 0.35, "popularity": 0.30, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.35,
+        "popularity": 0.3,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "GDPval-AA e execução de trabalho profissional", "url": "https://artificialanalysis.ai/evaluations/gdpval-aa", "ranking": ["claude", "chatgpt", "manus", "gemini", "notion-ai", "n8n", "zapier", "notebooklm", "gamma", "descript"]},
-        "popularity": {"label": "Similarweb, utilização global em agosto de 2025", "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/", "ranking": ["chatgpt", "gemini", "claude", "notion-ai", "manus", "notebooklm", "n8n", "zapier", "gamma", "descript"]},
-        "task_fit": {"label": "Amplitude e conclusão de tarefas", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["chatgpt", "manus", "claude", "gemini", "notion-ai", "n8n", "zapier", "notebooklm", "gamma", "descript"]},
-        "access": {"label": "Acesso, integrações e valor", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["chatgpt", "gemini", "notion-ai", "claude", "notebooklm", "n8n", "zapier", "gamma", "descript", "manus"]}
+        "capability": {
+          "label": "GDPval-AA e execução de trabalho profissional",
+          "url": "https://artificialanalysis.ai/evaluations/gdpval-aa",
+          "ranking": [
+            "claude",
+            "chatgpt",
+            "manus",
+            "gemini",
+            "notion-ai",
+            "n8n",
+            "zapier",
+            "notebooklm",
+            "gamma",
+            "descript"
+          ]
+        },
+        "popularity": {
+          "label": "Similarweb, utilização global em agosto de 2025",
+          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "claude",
+            "notion-ai",
+            "manus",
+            "notebooklm",
+            "n8n",
+            "zapier",
+            "gamma",
+            "descript"
+          ]
+        },
+        "task_fit": {
+          "label": "Amplitude e conclusão de tarefas",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "chatgpt",
+            "manus",
+            "claude",
+            "gemini",
+            "notion-ai",
+            "n8n",
+            "zapier",
+            "notebooklm",
+            "gamma",
+            "descript"
+          ]
+        },
+        "access": {
+          "label": "Acesso, integrações e valor",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "notion-ai",
+            "claude",
+            "notebooklm",
+            "n8n",
+            "zapier",
+            "gamma",
+            "descript",
+            "manus"
+          ]
+        }
       }
     },
     "design": {
-      "weights": {"capability": 0.35, "popularity": 0.30, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.35,
+        "popularity": 0.3,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Qualidade visual e controlo profissional", "url": "https://artificialanalysis.ai/text-to-image/arena", "ranking": ["figma-ai", "canva", "firefly", "midjourney", "ideogram", "v0", "gamma", "lovable", "higgsfield", "pomelli"]},
-        "popularity": {"label": "a16z Top 100 Gen AI Apps, 6.ª edição", "url": "https://a16z.com/100-gen-ai-apps-6/", "ranking": ["canva", "figma-ai", "midjourney", "lovable", "v0", "gamma", "firefly", "higgsfield", "ideogram", "pomelli"]},
-        "task_fit": {"label": "Workflow de design e colaboração", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["figma-ai", "canva", "firefly", "v0", "midjourney", "gamma", "lovable", "ideogram", "higgsfield", "pomelli"]},
-        "access": {"label": "Acesso, aprendizagem e valor", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["canva", "figma-ai", "gamma", "v0", "firefly", "lovable", "ideogram", "midjourney", "higgsfield", "pomelli"]}
+        "capability": {
+          "label": "Qualidade visual e controlo profissional",
+          "url": "https://artificialanalysis.ai/text-to-image/arena",
+          "ranking": [
+            "figma-ai",
+            "canva",
+            "firefly",
+            "midjourney",
+            "ideogram",
+            "v0",
+            "gamma",
+            "lovable",
+            "higgsfield",
+            "pomelli"
+          ]
+        },
+        "popularity": {
+          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
+          "ranking": [
+            "canva",
+            "figma-ai",
+            "midjourney",
+            "lovable",
+            "v0",
+            "gamma",
+            "firefly",
+            "higgsfield",
+            "ideogram",
+            "pomelli"
+          ]
+        },
+        "task_fit": {
+          "label": "Workflow de design e colaboração",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "figma-ai",
+            "canva",
+            "firefly",
+            "v0",
+            "midjourney",
+            "gamma",
+            "lovable",
+            "ideogram",
+            "higgsfield",
+            "pomelli"
+          ]
+        },
+        "access": {
+          "label": "Acesso, aprendizagem e valor",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "canva",
+            "figma-ai",
+            "gamma",
+            "v0",
+            "firefly",
+            "lovable",
+            "ideogram",
+            "midjourney",
+            "higgsfield",
+            "pomelli"
+          ]
+        }
       }
     },
     "video": {
-      "weights": {"capability": 0.45, "popularity": 0.30, "task_fit": 0.15, "access": 0.10},
+      "weights": {
+        "capability": 0.45,
+        "popularity": 0.3,
+        "task_fit": 0.15,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Artificial Analysis Text-to-Video Arena", "url": "https://artificialanalysis.ai/text-to-video/arena", "ranking": ["higgsfield", "veo", "runway", "sora", "firefly", "canva", "capcut", "descript"]},
-        "popularity": {"label": "a16z Top 100 Gen AI Apps, 6.ª edição", "url": "https://a16z.com/100-gen-ai-apps-6/", "ranking": ["capcut", "canva", "higgsfield", "runway", "sora", "veo", "firefly", "descript"]},
-        "task_fit": {"label": "Modelos disponíveis, controlo e workflow", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["higgsfield", "runway", "veo", "sora", "canva", "firefly", "capcut", "descript"]},
-        "access": {"label": "Acesso, custo e facilidade", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["canva", "capcut", "higgsfield", "runway", "firefly", "descript", "sora", "veo"]}
+        "capability": {
+          "label": "Artificial Analysis Text-to-Video Arena",
+          "url": "https://artificialanalysis.ai/text-to-video/arena",
+          "ranking": [
+            "higgsfield",
+            "veo",
+            "runway",
+            "sora",
+            "firefly",
+            "canva",
+            "capcut",
+            "descript"
+          ]
+        },
+        "popularity": {
+          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
+          "ranking": [
+            "capcut",
+            "canva",
+            "higgsfield",
+            "runway",
+            "sora",
+            "veo",
+            "firefly",
+            "descript"
+          ]
+        },
+        "task_fit": {
+          "label": "Modelos disponíveis, controlo e workflow",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "higgsfield",
+            "runway",
+            "veo",
+            "sora",
+            "canva",
+            "firefly",
+            "capcut",
+            "descript"
+          ]
+        },
+        "access": {
+          "label": "Acesso, custo e facilidade",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "canva",
+            "capcut",
+            "higgsfield",
+            "runway",
+            "firefly",
+            "descript",
+            "sora",
+            "veo"
+          ]
+        }
       }
     },
     "imagem": {
-      "weights": {"capability": 0.45, "popularity": 0.25, "task_fit": 0.20, "access": 0.10},
+      "weights": {
+        "capability": 0.45,
+        "popularity": 0.25,
+        "task_fit": 0.2,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Artificial Analysis Text-to-Image Arena", "url": "https://artificialanalysis.ai/text-to-image/arena", "ranking": ["chatgpt", "gemini", "higgsfield", "midjourney", "firefly", "ideogram", "leonardo", "canva", "runway", "figma-ai"]},
-        "popularity": {"label": "a16z Top 100 Gen AI Apps, 6.ª edição", "url": "https://a16z.com/100-gen-ai-apps-6/", "ranking": ["chatgpt", "canva", "gemini", "midjourney", "higgsfield", "runway", "firefly", "leonardo", "ideogram", "figma-ai"]},
-        "task_fit": {"label": "Qualidade, edição e controlo", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["chatgpt", "higgsfield", "firefly", "midjourney", "gemini", "ideogram", "canva", "leonardo", "runway", "figma-ai"]},
-        "access": {"label": "Acesso, custo e facilidade", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["chatgpt", "gemini", "canva", "firefly", "ideogram", "higgsfield", "leonardo", "runway", "figma-ai", "midjourney"]}
+        "capability": {
+          "label": "Artificial Analysis Text-to-Image Arena",
+          "url": "https://artificialanalysis.ai/text-to-image/arena",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "higgsfield",
+            "midjourney",
+            "firefly",
+            "ideogram",
+            "leonardo",
+            "canva",
+            "runway",
+            "figma-ai"
+          ]
+        },
+        "popularity": {
+          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
+          "ranking": [
+            "chatgpt",
+            "canva",
+            "gemini",
+            "midjourney",
+            "higgsfield",
+            "runway",
+            "firefly",
+            "leonardo",
+            "ideogram",
+            "figma-ai"
+          ]
+        },
+        "task_fit": {
+          "label": "Qualidade, edição e controlo",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "chatgpt",
+            "higgsfield",
+            "firefly",
+            "midjourney",
+            "gemini",
+            "ideogram",
+            "canva",
+            "leonardo",
+            "runway",
+            "figma-ai"
+          ]
+        },
+        "access": {
+          "label": "Acesso, custo e facilidade",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "chatgpt",
+            "gemini",
+            "canva",
+            "firefly",
+            "ideogram",
+            "higgsfield",
+            "leonardo",
+            "runway",
+            "figma-ai",
+            "midjourney"
+          ]
+        }
       }
     },
     "marketing": {
-      "weights": {"capability": 0.30, "popularity": 0.35, "task_fit": 0.25, "access": 0.10},
+      "weights": {
+        "capability": 0.3,
+        "popularity": 0.35,
+        "task_fit": 0.25,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Cobertura de criação e operação de campanhas", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["canva", "chatgpt", "gamma", "figma-ai", "pomelli", "notion-ai", "gemini", "claude", "zapier", "manus"]},
-        "popularity": {"label": "a16z Top 100 Gen AI Apps, 6.ª edição", "url": "https://a16z.com/100-gen-ai-apps-6/", "ranking": ["chatgpt", "canva", "gemini", "claude", "notion-ai", "figma-ai", "gamma", "manus", "zapier", "pomelli"]},
-        "task_fit": {"label": "Branding, conteúdo, canais e automação", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["canva", "pomelli", "chatgpt", "gamma", "figma-ai", "notion-ai", "zapier", "gemini", "claude", "manus"]},
-        "access": {"label": "Acesso, integração e valor", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["canva", "chatgpt", "gemini", "gamma", "notion-ai", "figma-ai", "claude", "zapier", "manus", "pomelli"]}
+        "capability": {
+          "label": "Cobertura de criação e operação de campanhas",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "canva",
+            "chatgpt",
+            "gamma",
+            "figma-ai",
+            "pomelli",
+            "notion-ai",
+            "gemini",
+            "claude",
+            "zapier",
+            "manus"
+          ]
+        },
+        "popularity": {
+          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
+          "ranking": [
+            "chatgpt",
+            "canva",
+            "gemini",
+            "claude",
+            "notion-ai",
+            "figma-ai",
+            "gamma",
+            "manus",
+            "zapier",
+            "pomelli"
+          ]
+        },
+        "task_fit": {
+          "label": "Branding, conteúdo, canais e automação",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "canva",
+            "pomelli",
+            "chatgpt",
+            "gamma",
+            "figma-ai",
+            "notion-ai",
+            "zapier",
+            "gemini",
+            "claude",
+            "manus"
+          ]
+        },
+        "access": {
+          "label": "Acesso, integração e valor",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "canva",
+            "chatgpt",
+            "gemini",
+            "gamma",
+            "notion-ai",
+            "figma-ai",
+            "claude",
+            "zapier",
+            "manus",
+            "pomelli"
+          ]
+        }
       }
     },
     "automacoes": {
-      "weights": {"capability": 0.35, "popularity": 0.25, "task_fit": 0.30, "access": 0.10},
+      "weights": {
+        "capability": 0.35,
+        "popularity": 0.25,
+        "task_fit": 0.3,
+        "access": 0.1
+      },
       "components": {
-        "capability": {"label": "Orquestração, agentes e controlo de workflows", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["n8n", "make", "power-automate", "zapier", "manus"]},
-        "popularity": {"label": "Adoção pública e ecossistema de integrações", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["zapier", "power-automate", "n8n", "make", "manus"]},
-        "task_fit": {"label": "Flexibilidade, observabilidade e execução autónoma", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["n8n", "make", "zapier", "power-automate", "manus"]},
-        "access": {"label": "Facilidade de entrada, alojamento e valor", "url": "https://ptia.pt/metodologia-indice/", "ranking": ["make", "zapier", "n8n", "power-automate", "manus"]}
+        "capability": {
+          "label": "Orquestração, agentes e controlo de workflows",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "n8n",
+            "make",
+            "power-automate",
+            "zapier",
+            "manus"
+          ]
+        },
+        "popularity": {
+          "label": "Adoção pública e ecossistema de integrações",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "zapier",
+            "power-automate",
+            "n8n",
+            "make",
+            "manus"
+          ]
+        },
+        "task_fit": {
+          "label": "Flexibilidade, observabilidade e execução autónoma",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "n8n",
+            "make",
+            "zapier",
+            "power-automate",
+            "manus"
+          ]
+        },
+        "access": {
+          "label": "Facilidade de entrada, alojamento e valor",
+          "url": "https://ptia.pt/metodologia-indice/",
+          "ranking": [
+            "make",
+            "zapier",
+            "n8n",
+            "power-automate",
+            "manus"
+          ]
+        }
       }
     }
   },
@@ -153,434 +706,667 @@
       "id": "claude-opus-4-8",
       "name": "Claude Opus 4.8",
       "url": "https://www.anthropic.com/claude",
-      "categories": ["coding", "pesquisa"],
+      "categories": [
+        "coding",
+        "pesquisa"
+      ],
       "description": "Modelo de fronteira da Anthropic com desempenho de referência em tarefas de engenharia de software.",
       "best_for": "Problemas complexos de coding, revisão arquitetural e investigação técnica exigente.",
       "watch_out": "O melhor benchmark não garante o melhor resultado em todos os repositórios, custos ou latências.",
       "baseline_score": 98,
-      "aliases": ["claude opus 4.8", "opus 4.8"],
+      "aliases": [
+        "claude opus 4.8",
+        "opus 4.8"
+      ],
       "sources": [
-        {"label": "Vellum LLM Leaderboard", "url": "https://www.vellum.ai/llm-leaderboard"},
-        {"label": "SWE-bench", "url": "https://www.swebench.com/"}
+        {
+          "label": "Vellum LLM Leaderboard",
+          "url": "https://www.vellum.ai/llm-leaderboard"
+        },
+        {
+          "label": "SWE-bench",
+          "url": "https://www.swebench.com/"
+        }
       ]
     },
     {
       "id": "antigravity",
       "name": "Google Antigravity",
       "url": "https://antigravity.google/",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Ambiente de desenvolvimento com agentes da Google orientado para execução autónoma e trabalho multimodal.",
       "best_for": "Desenvolvimento assistido por agentes, prototipagem e tarefas longas dentro de um projeto.",
       "watch_out": "Validar disponibilidade, limites do produto e todas as alterações antes de integrar.",
       "baseline_score": 93,
-      "aliases": ["antigravity", "google antigravity"]
+      "aliases": [
+        "antigravity",
+        "google antigravity"
+      ]
     },
     {
       "id": "manus",
       "name": "Manus",
       "url": "https://manus.im/",
-      "categories": ["produtividade", "pesquisa", "marketing", "automacoes"],
+      "categories": [
+        "produtividade",
+        "pesquisa",
+        "marketing",
+        "automacoes"
+      ],
       "description": "Agente generalista que executa tarefas com vários passos e entrega artefactos completos.",
       "best_for": "Pesquisa operacional, preparação de entregáveis e workflows que combinam várias ferramentas.",
       "watch_out": "Rever fontes, permissões, custos e ações externas antes de aceitar o resultado.",
       "baseline_score": 94,
-      "aliases": ["manus", "manus ai"]
+      "aliases": [
+        "manus",
+        "manus ai"
+      ]
     },
     {
       "id": "pomelli",
       "name": "Pomelli",
       "url": "https://labs.google.com/pomelli/about/",
-      "categories": ["marketing", "design", "produtividade"],
+      "categories": [
+        "marketing",
+        "design",
+        "produtividade"
+      ],
       "description": "Ferramenta experimental da Google Labs para transformar identidade de marca em campanhas e peças de marketing.",
       "best_for": "Gerar conceitos, copy e ativos de campanha consistentes com uma marca.",
       "watch_out": "Produto experimental; confirmar disponibilidade regional e rever consistência de marca.",
       "baseline_score": 92,
-      "aliases": ["pomelli"]
+      "aliases": [
+        "pomelli"
+      ]
     },
     {
       "id": "figma-ai",
       "name": "Figma AI",
       "url": "https://www.figma.com/ai/",
-      "categories": ["design", "imagem", "marketing"],
+      "categories": [
+        "design",
+        "imagem",
+        "marketing"
+      ],
       "description": "Funcionalidades de IA integradas no fluxo profissional de desenho de produto e colaboração.",
       "best_for": "Interfaces, sistemas de design, protótipos e colaboração entre design e produto.",
       "watch_out": "A geração acelera o trabalho, mas não substitui pesquisa de utilizador nem decisões de sistema.",
       "baseline_score": 95,
-      "aliases": ["figma ai", "figma make"]
+      "aliases": [
+        "figma ai",
+        "figma make"
+      ]
     },
     {
       "id": "higgsfield",
       "name": "Higgsfield",
       "url": "https://higgsfield.ai/",
-      "categories": ["video", "imagem", "design"],
+      "categories": [
+        "video",
+        "imagem",
+        "design"
+      ],
       "description": "Plataforma criativa que reúne geração de vídeo e imagem com forte controlo visual e vários modelos.",
       "best_for": "Conteúdo visual rápido, movimentos de câmara, publicidade e exploração criativa.",
       "watch_out": "Comparar qualidade, direitos de utilização e custo por geração no plano escolhido.",
       "baseline_score": 96,
-      "aliases": ["higgsfield", "higgsfield ai"]
+      "aliases": [
+        "higgsfield",
+        "higgsfield ai"
+      ]
     },
     {
       "id": "chatgpt",
       "name": "ChatGPT",
       "url": "https://chatgpt.com/",
-      "categories": ["estudo", "pesquisa", "produtividade", "imagem", "marketing"],
+      "categories": [
+        "estudo",
+        "pesquisa",
+        "produtividade",
+        "imagem",
+        "marketing"
+      ],
       "description": "Assistente generalista para escrita, análise, aprendizagem, pesquisa e trabalho multimodal.",
       "best_for": "Trabalho generalista com texto, ficheiros, dados e imagens.",
       "watch_out": "Confirmar factos e evitar introduzir informação confidencial sem controlos empresariais.",
       "baseline_score": 94,
-      "aliases": ["chatgpt"]
+      "aliases": [
+        "chatgpt"
+      ]
     },
     {
       "id": "claude",
       "name": "Claude",
       "url": "https://claude.ai/",
-      "categories": ["coding", "estudo", "pesquisa", "produtividade", "marketing"],
+      "categories": [
+        "coding",
+        "estudo",
+        "pesquisa",
+        "produtividade",
+        "marketing"
+      ],
       "description": "Assistente generalista orientado para análise, escrita, raciocínio e trabalho com documentos.",
       "best_for": "Análise longa, síntese, escrita e colaboração sobre documentos.",
       "watch_out": "A qualidade depende do contexto e as respostas continuam a exigir verificação.",
       "baseline_score": 93,
-      "aliases": ["claude"]
+      "aliases": [
+        "claude"
+      ]
     },
     {
       "id": "gemini",
       "name": "Gemini",
       "url": "https://gemini.google.com/",
-      "categories": ["estudo", "pesquisa", "produtividade", "imagem", "marketing"],
+      "categories": [
+        "estudo",
+        "pesquisa",
+        "produtividade",
+        "imagem",
+        "marketing"
+      ],
       "description": "Assistente multimodal da Google integrado no seu ecossistema de produtividade.",
       "best_for": "Pesquisa, análise multimodal e fluxos ligados ao ecossistema Google.",
       "watch_out": "Validar disponibilidade e tratamento de dados em cada plano e integração.",
       "baseline_score": 91,
-      "aliases": ["gemini"]
+      "aliases": [
+        "gemini"
+      ]
     },
     {
       "id": "perplexity",
       "name": "Perplexity",
       "url": "https://www.perplexity.ai/",
-      "categories": ["pesquisa", "estudo"],
+      "categories": [
+        "pesquisa",
+        "estudo"
+      ],
       "description": "Motor de resposta com pesquisa web e referências visíveis.",
       "best_for": "Exploração rápida de um tema e descoberta inicial de fontes.",
       "watch_out": "Abrir as fontes citadas; uma citação não garante que a síntese esteja correta.",
       "baseline_score": 90,
-      "aliases": ["perplexity"]
+      "aliases": [
+        "perplexity"
+      ]
     },
     {
       "id": "notebooklm",
       "name": "NotebookLM",
       "url": "https://notebooklm.google.com/",
-      "categories": ["estudo", "pesquisa", "produtividade"],
+      "categories": [
+        "estudo",
+        "pesquisa",
+        "produtividade"
+      ],
       "description": "Ambiente de estudo e síntese ancorado nas fontes fornecidas pelo utilizador.",
       "best_for": "Compreender documentos, criar resumos e estudar coleções de fontes.",
       "watch_out": "A resposta só é tão boa quanto a qualidade e cobertura das fontes carregadas.",
       "baseline_score": 92,
-      "aliases": ["notebooklm", "notebook lm"]
+      "aliases": [
+        "notebooklm",
+        "notebook lm"
+      ]
     },
     {
       "id": "codex",
       "name": "OpenAI Codex",
       "url": "https://openai.com/codex/",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Agente de engenharia de software para compreender, alterar e validar bases de código.",
       "best_for": "Tarefas de desenvolvimento executadas sobre um repositório real.",
       "watch_out": "Rever alterações, permissões e testes antes de integrar código em produção.",
       "baseline_score": 94,
-      "aliases": ["codex", "openai codex"]
+      "aliases": [
+        "codex",
+        "openai codex"
+      ]
     },
     {
       "id": "claude-code",
       "name": "Claude Code",
       "url": "https://www.anthropic.com/claude-code",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Agente de coding da Anthropic para trabalhar diretamente com projetos e ferramentas de desenvolvimento.",
       "best_for": "Exploração de código, implementação, testes e automação no terminal.",
       "watch_out": "Controlar comandos, custos de contexto e alterações com impacto amplo.",
       "baseline_score": 93,
-      "aliases": ["claude code"]
+      "aliases": [
+        "claude code"
+      ]
     },
     {
       "id": "github-copilot",
       "name": "GitHub Copilot",
       "url": "https://github.com/features/copilot",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Assistente de programação integrado em IDEs e fluxos GitHub.",
       "best_for": "Acelerar implementação e revisão no fluxo normal de desenvolvimento.",
       "watch_out": "Não substitui revisão de segurança, arquitetura nem testes.",
       "baseline_score": 91,
-      "aliases": ["github copilot", "copilot"]
+      "aliases": [
+        "github copilot",
+        "copilot"
+      ]
     },
     {
       "id": "cursor",
       "name": "Cursor",
       "url": "https://www.cursor.com/",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Editor de código orientado para colaboração com modelos e agentes de IA.",
       "best_for": "Desenvolvimento assistido dentro de uma experiência próxima de IDE.",
       "watch_out": "Avaliar regras de privacidade e retenção antes de usar código sensível.",
       "baseline_score": 90,
-      "aliases": ["cursor"]
+      "aliases": [
+        "cursor"
+      ]
     },
     {
       "id": "windsurf",
       "name": "Windsurf",
       "url": "https://windsurf.com/",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Ambiente de desenvolvimento com assistência e execução agentic integrada.",
       "best_for": "Edição e execução de tarefas de software com contexto do projeto.",
       "watch_out": "Validar sempre mudanças multi-ficheiro e dependências introduzidas.",
       "baseline_score": 86,
-      "aliases": ["windsurf", "codeium"]
+      "aliases": [
+        "windsurf",
+        "codeium"
+      ]
     },
     {
       "id": "gemini-code-assist",
       "name": "Gemini Code Assist",
       "url": "https://codeassist.google/",
-      "categories": ["coding"],
+      "categories": [
+        "coding"
+      ],
       "description": "Assistência de programação da Google para IDEs e equipas de desenvolvimento.",
       "best_for": "Sugestões, explicações e tarefas de código em ecossistemas Google Cloud.",
       "watch_out": "Confirmar suporte e políticas aplicáveis ao plano utilizado.",
       "baseline_score": 84,
-      "aliases": ["gemini code assist"]
+      "aliases": [
+        "gemini code assist"
+      ]
     },
     {
       "id": "replit",
       "name": "Replit",
       "url": "https://replit.com/",
-      "categories": ["coding", "estudo"],
+      "categories": [
+        "coding",
+        "estudo"
+      ],
       "description": "Ambiente cloud para criar, executar e publicar aplicações com assistência de IA.",
       "best_for": "Protótipos rápidos, aprendizagem e pequenas aplicações.",
       "watch_out": "Rever arquitetura, segurança e custos antes de escalar um protótipo.",
       "baseline_score": 83,
-      "aliases": ["replit"]
+      "aliases": [
+        "replit"
+      ]
     },
     {
       "id": "lovable",
       "name": "Lovable",
       "url": "https://lovable.dev/",
-      "categories": ["coding", "design"],
+      "categories": [
+        "coding",
+        "design"
+      ],
       "description": "Construtor de aplicações web a partir de instruções em linguagem natural.",
       "best_for": "Prototipagem de interfaces e produtos web.",
       "watch_out": "Código gerado precisa de revisão antes de suportar dados ou processos críticos.",
       "baseline_score": 82,
-      "aliases": ["lovable"]
+      "aliases": [
+        "lovable"
+      ]
     },
     {
       "id": "v0",
       "name": "v0",
       "url": "https://v0.dev/",
-      "categories": ["coding", "design"],
+      "categories": [
+        "coding",
+        "design"
+      ],
       "description": "Ferramenta da Vercel para gerar e iterar interfaces e aplicações web.",
       "best_for": "Exploração rápida de UI e implementação em ecossistemas web modernos.",
       "watch_out": "Uniformizar acessibilidade, design system e qualidade do código produzido.",
       "baseline_score": 84,
-      "aliases": ["v0", "vercel v0"]
+      "aliases": [
+        "v0",
+        "vercel v0"
+      ]
     },
     {
       "id": "canva",
       "name": "Canva Magic Studio",
       "url": "https://www.canva.com/magic/",
-      "categories": ["design", "imagem", "video", "produtividade", "marketing"],
+      "categories": [
+        "design",
+        "imagem",
+        "video",
+        "produtividade",
+        "marketing"
+      ],
       "description": "Conjunto de ferramentas de IA integrado no Canva para design, imagem e vídeo.",
       "best_for": "Produção visual rápida por equipas sem fluxo de design especializado.",
       "watch_out": "Evitar resultados genéricos e confirmar direitos sobre materiais utilizados.",
       "baseline_score": 91,
-      "aliases": ["canva", "magic studio"]
+      "aliases": [
+        "canva",
+        "magic studio"
+      ]
     },
     {
       "id": "firefly",
       "name": "Adobe Firefly",
       "url": "https://www.adobe.com/products/firefly.html",
-      "categories": ["design", "imagem", "video"],
+      "categories": [
+        "design",
+        "imagem",
+        "video"
+      ],
       "description": "Família de ferramentas generativas da Adobe para criação e edição visual.",
       "best_for": "Fluxos profissionais ligados ao ecossistema Creative Cloud.",
       "watch_out": "Confirmar condições de utilização comercial do plano e do resultado.",
       "baseline_score": 90,
-      "aliases": ["adobe firefly", "firefly"]
+      "aliases": [
+        "adobe firefly",
+        "firefly"
+      ]
     },
     {
       "id": "midjourney",
       "name": "Midjourney",
       "url": "https://www.midjourney.com/",
-      "categories": ["imagem", "design"],
+      "categories": [
+        "imagem",
+        "design"
+      ],
       "description": "Ferramenta de geração de imagem conhecida pelo controlo estético e exploração visual.",
       "best_for": "Conceitos, direção visual e imagens de forte componente estética.",
       "watch_out": "Rever consistência de marca, proveniência e direitos de utilização.",
       "baseline_score": 89,
-      "aliases": ["midjourney"]
+      "aliases": [
+        "midjourney"
+      ]
     },
     {
       "id": "ideogram",
       "name": "Ideogram",
       "url": "https://ideogram.ai/",
-      "categories": ["imagem", "design"],
+      "categories": [
+        "imagem",
+        "design"
+      ],
       "description": "Geração de imagens com especial utilidade em composições que incluem texto.",
       "best_for": "Cartazes, conceitos de marca e peças visuais com tipografia.",
       "watch_out": "Rever manualmente texto, logótipos e detalhes antes de publicar.",
       "baseline_score": 86,
-      "aliases": ["ideogram"]
+      "aliases": [
+        "ideogram"
+      ]
     },
     {
       "id": "leonardo",
       "name": "Leonardo AI",
       "url": "https://leonardo.ai/",
-      "categories": ["imagem", "design"],
+      "categories": [
+        "imagem",
+        "design"
+      ],
       "description": "Plataforma de criação visual com geração, edição e controlo de estilos.",
       "best_for": "Produção de variações e ativos visuais para campanhas e produtos.",
       "watch_out": "Controlar coerência visual e licenciamento em produção comercial.",
       "baseline_score": 83,
-      "aliases": ["leonardo ai"]
+      "aliases": [
+        "leonardo ai"
+      ]
     },
     {
       "id": "runway",
       "name": "Runway",
       "url": "https://runwayml.com/",
-      "categories": ["video", "imagem", "design"],
+      "categories": [
+        "video",
+        "imagem",
+        "design"
+      ],
       "description": "Plataforma de geração e edição de vídeo e imagem assistida por IA.",
       "best_for": "Prototipagem audiovisual, efeitos e produção de clips.",
       "watch_out": "Custos, consistência temporal e direitos exigem controlo de produção.",
       "baseline_score": 91,
-      "aliases": ["runway", "runwayml"]
+      "aliases": [
+        "runway",
+        "runwayml"
+      ]
     },
     {
       "id": "sora",
       "name": "Sora",
       "url": "https://sora.com/",
-      "categories": ["video"],
+      "categories": [
+        "video"
+      ],
       "description": "Ferramenta da OpenAI para criação e transformação de vídeo com IA.",
       "best_for": "Ideação e produção de sequências audiovisuais geradas.",
       "watch_out": "Confirmar disponibilidade regional, proveniência e regras de conteúdo.",
       "baseline_score": 89,
-      "aliases": ["sora"]
+      "aliases": [
+        "sora"
+      ]
     },
     {
       "id": "veo",
       "name": "Veo",
       "url": "https://deepmind.google/models/veo/",
-      "categories": ["video"],
+      "categories": [
+        "video"
+      ],
       "description": "Modelo de geração de vídeo da Google DeepMind.",
       "best_for": "Criação audiovisual e exploração de cenas a partir de instruções.",
       "watch_out": "Acesso, custos e funcionalidades dependem do produto onde o modelo está disponível.",
       "baseline_score": 88,
-      "aliases": ["veo", "google veo"]
+      "aliases": [
+        "veo",
+        "google veo"
+      ]
     },
     {
       "id": "descript",
       "name": "Descript",
       "url": "https://www.descript.com/",
-      "categories": ["video", "produtividade"],
+      "categories": [
+        "video",
+        "produtividade"
+      ],
       "description": "Editor de áudio e vídeo baseado em transcrição, com automações de IA.",
       "best_for": "Podcasts, entrevistas, legendagem e edição rápida por texto.",
       "watch_out": "Rever transcrições, vozes sintéticas e consentimento dos participantes.",
       "baseline_score": 86,
-      "aliases": ["descript"]
+      "aliases": [
+        "descript"
+      ]
     },
     {
       "id": "capcut",
       "name": "CapCut",
       "url": "https://www.capcut.com/",
-      "categories": ["video", "design"],
+      "categories": [
+        "video",
+        "design"
+      ],
       "description": "Editor de vídeo com automações e ferramentas generativas orientadas para conteúdo social.",
       "best_for": "Edição rápida, legendas e formatos para redes sociais.",
       "watch_out": "Rever termos, privacidade e dependência de templates genéricos.",
       "baseline_score": 84,
-      "aliases": ["capcut"]
+      "aliases": [
+        "capcut"
+      ]
     },
     {
       "id": "notion-ai",
       "name": "Notion AI",
       "url": "https://www.notion.com/product/ai",
-      "categories": ["produtividade", "estudo", "marketing"],
+      "categories": [
+        "produtividade",
+        "estudo",
+        "marketing"
+      ],
       "description": "Assistência de IA integrada em documentação, pesquisa e gestão de conhecimento.",
       "best_for": "Equipas que já concentram processos e documentação no Notion.",
       "watch_out": "Definir permissões e qualidade da base de conhecimento antes de automatizar.",
       "baseline_score": 87,
-      "aliases": ["notion ai", "notion"]
+      "aliases": [
+        "notion ai",
+        "notion"
+      ]
     },
     {
       "id": "make",
       "name": "Make",
       "url": "https://www.make.com/",
-      "categories": ["automacoes"],
+      "categories": [
+        "automacoes"
+      ],
       "description": "Plataforma visual para construir e operar automações entre aplicações, APIs e dados.",
       "best_for": "Workflows visuais com ramificações, transformação de dados e grande catálogo de integrações.",
       "watch_out": "Cenários extensos exigem convenções, tratamento de erros e controlo do consumo de operações.",
       "baseline_score": 89,
-      "aliases": ["make.com", "make automation", "integromat"]
+      "aliases": [
+        "make.com",
+        "make automation",
+        "integromat"
+      ]
     },
     {
       "id": "power-automate",
       "name": "Microsoft Power Automate",
       "url": "https://www.microsoft.com/power-platform/products/power-automate",
-      "categories": ["automacoes"],
+      "categories": [
+        "automacoes"
+      ],
       "description": "Plataforma de automação da Microsoft para cloud, desktop e processos ligados ao ecossistema empresarial.",
       "best_for": "Organizações Microsoft 365 que precisam de workflows, aprovações e automação de desktop.",
       "watch_out": "Licenciamento, conectores premium e governação podem aumentar a complexidade operacional.",
       "baseline_score": 88,
-      "aliases": ["power automate", "microsoft power automate"]
+      "aliases": [
+        "power automate",
+        "microsoft power automate"
+      ]
     },
     {
       "id": "n8n",
       "name": "n8n",
       "url": "https://n8n.io/",
-      "categories": ["produtividade", "coding", "automacoes"],
+      "categories": [
+        "produtividade",
+        "coding",
+        "automacoes"
+      ],
       "description": "Plataforma de automação de workflows com integrações e componentes de IA.",
       "best_for": "Automação controlada de processos entre sistemas.",
       "watch_out": "Tratar credenciais, retries, observabilidade e idempotência como requisitos de produção.",
       "baseline_score": 89,
-      "aliases": ["n8n"]
+      "aliases": [
+        "n8n"
+      ]
     },
     {
       "id": "zapier",
       "name": "Zapier",
       "url": "https://zapier.com/ai",
-      "categories": ["produtividade", "marketing", "automacoes"],
+      "categories": [
+        "produtividade",
+        "marketing",
+        "automacoes"
+      ],
       "description": "Plataforma de automação no-code com funcionalidades e agentes de IA.",
       "best_for": "Automatizar rapidamente processos entre aplicações SaaS.",
       "watch_out": "Monitorizar custos por tarefa, erros silenciosos e acesso a dados.",
       "baseline_score": 86,
-      "aliases": ["zapier"]
+      "aliases": [
+        "zapier"
+      ]
     },
     {
       "id": "elicit",
       "name": "Elicit",
       "url": "https://elicit.com/",
-      "categories": ["pesquisa", "estudo"],
+      "categories": [
+        "pesquisa",
+        "estudo"
+      ],
       "description": "Assistente para pesquisa académica, descoberta de papers e síntese de evidência.",
       "best_for": "Revisões de literatura e exploração estruturada de investigação.",
       "watch_out": "Ler os estudos originais e verificar cobertura, método e qualidade da evidência.",
       "baseline_score": 88,
-      "aliases": ["elicit"]
+      "aliases": [
+        "elicit"
+      ]
     },
     {
       "id": "consensus",
       "name": "Consensus",
       "url": "https://consensus.app/",
-      "categories": ["pesquisa", "estudo"],
+      "categories": [
+        "pesquisa",
+        "estudo"
+      ],
       "description": "Motor de pesquisa orientado para perguntas respondidas com literatura científica.",
       "best_for": "Obter uma primeira leitura do estado da evidência científica.",
       "watch_out": "Não substituir avaliação metodológica nem interpretação por especialistas.",
       "baseline_score": 86,
-      "aliases": ["consensus"]
+      "aliases": [
+        "consensus"
+      ]
     },
     {
       "id": "scite",
       "name": "scite",
       "url": "https://scite.ai/",
-      "categories": ["pesquisa", "estudo"],
+      "categories": [
+        "pesquisa",
+        "estudo"
+      ],
       "description": "Plataforma que ajuda a avaliar como artigos científicos são citados por outros trabalhos.",
       "best_for": "Verificar suporte, contraste e contexto de citações académicas.",
       "watch_out": "Cobertura de indexação e classificação automática não são completas.",
       "baseline_score": 85,
-      "aliases": ["scite"]
+      "aliases": [
+        "scite"
+      ]
     },
     {
       "id": "gamma",
       "name": "Gamma",
       "url": "https://gamma.app/",
-      "categories": ["produtividade", "design", "estudo", "marketing"],
+      "categories": [
+        "produtividade",
+        "design",
+        "estudo",
+        "marketing"
+      ],
       "description": "Criação assistida de apresentações, documentos e páginas visuais.",
       "best_for": "Estruturar rapidamente uma narrativa visual ou documento de trabalho.",
       "watch_out": "Rever factos, hierarquia de informação e consistência com a marca.",
       "baseline_score": 84,
-      "aliases": ["gamma"]
+      "aliases": [
+        "gamma"
+      ]
     }
   ],
   "prompts": [
@@ -590,7 +1376,12 @@
       "category": "produtividade",
       "purpose": "Converter um documento ou tema numa recomendação acionável.",
       "template": "Analisa o conteúdo abaixo como consultor sénior. Separa: 1) factos confirmados, 2) implicações, 3) riscos, 4) opções disponíveis e 5) recomendação. Não inventes dados. Assinala explicitamente o que precisa de validação. Contexto: [COLAR CONTEÚDO].",
-      "keywords": ["empresa", "decisão", "estratégia", "produtividade"],
+      "keywords": [
+        "empresa",
+        "decisão",
+        "estratégia",
+        "produtividade"
+      ],
       "baseline_score": 95
     },
     {
@@ -599,7 +1390,12 @@
       "category": "pesquisa",
       "purpose": "Distinguir evidência, inferência e afirmações sem suporte.",
       "template": "Avalia a alegação: [ALEGAÇÃO]. Identifica as partes verificáveis, procura fontes primárias quando tiveres acesso à web, indica a data de cada fonte e classifica a conclusão como confirmada, parcialmente confirmada, inconclusiva ou falsa. Não uses uma notícia secundária quando existir fonte original.",
-      "keywords": ["fonte", "estudo", "regulação", "pesquisa"],
+      "keywords": [
+        "fonte",
+        "estudo",
+        "regulação",
+        "pesquisa"
+      ],
       "baseline_score": 96
     },
     {
@@ -608,7 +1404,12 @@
       "category": "estudo",
       "purpose": "Criar uma explicação rigorosa sem jargão desnecessário.",
       "template": "Explica [CONCEITO] em português de Portugal para uma pessoa inteligente sem formação técnica. Começa com uma definição de duas frases, dá um exemplo concreto, explica por que importa, apresenta o principal limite e termina com três perguntas de verificação.",
-      "keywords": ["educação", "literacia", "conceito", "formação"],
+      "keywords": [
+        "educação",
+        "literacia",
+        "conceito",
+        "formação"
+      ],
       "baseline_score": 92
     },
     {
@@ -617,7 +1418,12 @@
       "category": "coding",
       "purpose": "Encontrar bugs e regressões antes de discutir estilo.",
       "template": "Revê este código como engenheiro sénior. Prioriza bugs, segurança, perda de dados, concorrência, contratos quebrados e testes em falta. Para cada problema indica severidade, ficheiro/linha, cenário de falha e correção mínima. Só depois comenta manutenção ou estilo. Código: [CÓDIGO OU REPOSITÓRIO].",
-      "keywords": ["software", "coding", "segurança", "agentes"],
+      "keywords": [
+        "software",
+        "coding",
+        "segurança",
+        "agentes"
+      ],
       "baseline_score": 94
     },
     {
@@ -626,7 +1432,12 @@
       "category": "coding",
       "purpose": "Decompor uma mudança técnica em passos verificáveis.",
       "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
-      "keywords": ["arquitetura", "implementação", "software", "automação"],
+      "keywords": [
+        "arquitetura",
+        "implementação",
+        "software",
+        "automação"
+      ],
       "baseline_score": 93
     },
     {
@@ -635,7 +1446,12 @@
       "category": "produtividade",
       "purpose": "Evitar comparações genéricas sem contexto.",
       "template": "Compara [FERRAMENTAS] para este caso: [CASO DE USO]. Usa os critérios: qualidade do resultado, integração, privacidade, custo total, curva de aprendizagem e risco de dependência. Explicita dados desconhecidos e recomenda uma opção apenas se a evidência for suficiente.",
-      "keywords": ["ferramentas", "empresa", "adoção", "produtividade"],
+      "keywords": [
+        "ferramentas",
+        "empresa",
+        "adoção",
+        "produtividade"
+      ],
       "baseline_score": 91
     },
     {
@@ -644,7 +1460,12 @@
       "category": "produtividade",
       "purpose": "Extrair decisões, responsáveis e bloqueios.",
       "template": "A partir destas notas, produz: decisões tomadas, ações com responsável e prazo, questões em aberto, riscos e informação em falta. Não transformes sugestões em decisões. Usa 'não definido' quando não houver responsável ou data. Notas: [NOTAS].",
-      "keywords": ["trabalho", "equipa", "gestão", "produtividade"],
+      "keywords": [
+        "trabalho",
+        "equipa",
+        "gestão",
+        "produtividade"
+      ],
       "baseline_score": 90
     },
     {
@@ -653,7 +1474,12 @@
       "category": "estudo",
       "purpose": "Aprender através de perguntas em vez de receber apenas respostas.",
       "template": "Quero aprender [TEMA]. Avalia primeiro o meu nível com três perguntas. Depois ensina por etapas curtas, fazendo uma pergunta de cada vez. Não reveles imediatamente a solução; dá pistas graduais. No fim, cria um exercício aplicado e uma síntese dos erros que cometi.",
-      "keywords": ["estudo", "educação", "competências", "formação"],
+      "keywords": [
+        "estudo",
+        "educação",
+        "competências",
+        "formação"
+      ],
       "baseline_score": 89
     },
     {
@@ -662,7 +1488,12 @@
       "category": "design",
       "purpose": "Dar direção concreta a uma imagem, vídeo ou peça.",
       "template": "Cria um brief visual para [OBJETIVO]. Define mensagem, audiência, hierarquia, composição, ambiente, luz, paleta, materiais, enquadramento e elementos a excluir. Evita clichés visuais de IA, texto ilegível e decoração sem função. Formato final: [FORMATO E DIMENSÕES].",
-      "keywords": ["design", "imagem", "video", "conteúdo"],
+      "keywords": [
+        "design",
+        "imagem",
+        "video",
+        "conteúdo"
+      ],
       "baseline_score": 88
     },
     {
@@ -671,7 +1502,12 @@
       "category": "pesquisa",
       "purpose": "Descobrir pressupostos frágeis antes da execução.",
       "template": "Atua como revisor independente desta proposta: [PROPOSTA]. Identifica pressupostos, incentivos, efeitos de segunda ordem, evidência em falta e condições em que falha. Apresenta o melhor argumento contra a proposta e depois uma versão melhorada que preserve o objetivo.",
-      "keywords": ["estratégia", "risco", "regulação", "decisão"],
+      "keywords": [
+        "estratégia",
+        "risco",
+        "regulação",
+        "decisão"
+      ],
       "baseline_score": 93
     },
     {
@@ -680,7 +1516,12 @@
       "category": "pesquisa",
       "purpose": "Estruturar uma revisão inicial sem confundir consenso com quantidade de resultados.",
       "template": "Investiga [PERGUNTA] usando prioritariamente revisões sistemáticas, meta-análises e fontes primárias recentes. Organiza a resposta por consenso, resultados contraditórios, limitações metodológicas e perguntas ainda abertas. Inclui data, autores e ligação de cada fonte. Não inventes referências.",
-      "keywords": ["estudo", "investigação", "evidência", "pesquisa"],
+      "keywords": [
+        "estudo",
+        "investigação",
+        "evidência",
+        "pesquisa"
+      ],
       "baseline_score": 92
     },
     {
@@ -689,7 +1530,12 @@
       "category": "produtividade",
       "purpose": "Evitar conclusões precipitadas numa tabela ou conjunto de métricas.",
       "template": "Analisa estes dados: [DADOS]. Primeiro descreve estrutura, qualidade, valores ausentes e possíveis enviesamentos. Depois calcula apenas métricas justificadas, identifica padrões e anomalias e separa correlação de causalidade. Termina com três verificações que fariam a análise mais robusta.",
-      "keywords": ["dados", "métricas", "análise", "decisão"],
+      "keywords": [
+        "dados",
+        "métricas",
+        "análise",
+        "decisão"
+      ],
       "baseline_score": 91
     },
     {
@@ -698,7 +1544,12 @@
       "category": "produtividade",
       "purpose": "Comunicar uma decisão ou pedido sem texto desnecessário.",
       "template": "Escreve um email em português de Portugal sobre [ASSUNTO]. O destinatário é [PESSOA/FUNÇÃO] e o objetivo é [RESULTADO]. Usa até 140 palavras, começa pela conclusão, inclui contexto mínimo, pedido concreto e prazo. Mantém tom direto e profissional, sem frases feitas.",
-      "keywords": ["trabalho", "comunicação", "gestão", "produtividade"],
+      "keywords": [
+        "trabalho",
+        "comunicação",
+        "gestão",
+        "produtividade"
+      ],
       "baseline_score": 89
     },
     {
@@ -707,7 +1558,12 @@
       "category": "pesquisa",
       "purpose": "Criar perguntas que obtenham factos, exemplos e contradições.",
       "template": "Prepara uma entrevista sobre [TEMA] com [PERFIL]. Cria 12 perguntas abertas por ordem lógica. Para cada uma indica o facto ou hipótese que testa e uma pergunta de seguimento. Evita perguntas que sugiram a resposta e inclui verificação de números, datas e potenciais conflitos de interesse.",
-      "keywords": ["entrevista", "fonte", "investigação", "jornalismo"],
+      "keywords": [
+        "entrevista",
+        "fonte",
+        "investigação",
+        "jornalismo"
+      ],
       "baseline_score": 88
     },
     {
@@ -716,7 +1572,12 @@
       "category": "coding",
       "purpose": "Reduzir tentativas aleatórias durante debugging.",
       "template": "Ajuda-me a diagnosticar este problema: [ERRO E CONTEXTO]. Começa por formular hipóteses ordenadas por probabilidade e impacto. Para cada hipótese propõe uma observação ou teste mínimo que a confirme ou elimine. Não sugiras alterações permanentes antes de localizar a causa. Regista o resultado esperado de cada teste.",
-      "keywords": ["software", "bug", "debug", "coding"],
+      "keywords": [
+        "software",
+        "bug",
+        "debug",
+        "coding"
+      ],
       "baseline_score": 92
     },
     {
@@ -725,7 +1586,12 @@
       "category": "coding",
       "purpose": "Tornar uma funcionalidade verificável antes da implementação.",
       "template": "Transforma este requisito em testes de aceitação: [REQUISITO]. Cobre caminho principal, limites, erros, permissões, dados vazios e regressões prováveis. Para cada cenário escreve estado inicial, ação, resultado observável e dados necessários. Assinala ambiguidades que impedem um teste objetivo.",
-      "keywords": ["testes", "requisitos", "qualidade", "software"],
+      "keywords": [
+        "testes",
+        "requisitos",
+        "qualidade",
+        "software"
+      ],
       "baseline_score": 90
     },
     {
@@ -734,7 +1600,12 @@
       "category": "estudo",
       "purpose": "Rever conceitos sem depender apenas de memorização literal.",
       "template": "Com base em [MATERIAL], cria 20 flashcards. Mistura definições, aplicação, comparação, causa e efeito e deteção de erros. Cada resposta deve ser curta mas suficiente. Não introduzas informação ausente no material e identifica os cinco conceitos que exigem revisão adicional.",
-      "keywords": ["estudo", "aprendizagem", "revisão", "educação"],
+      "keywords": [
+        "estudo",
+        "aprendizagem",
+        "revisão",
+        "educação"
+      ],
       "baseline_score": 87
     },
     {
@@ -743,7 +1614,12 @@
       "category": "estudo",
       "purpose": "Passar de um objetivo vago para prática mensurável.",
       "template": "Cria um plano para aprender [COMPETÊNCIA] em [PRAZO], com [HORAS] horas por semana e nível inicial [NÍVEL]. Divide por resultados semanais, exercícios práticos, recursos, revisão espaçada e teste final. Define um critério observável de domínio e reduz o plano se o tempo disponível for irrealista.",
-      "keywords": ["estudo", "competências", "formação", "aprendizagem"],
+      "keywords": [
+        "estudo",
+        "competências",
+        "formação",
+        "aprendizagem"
+      ],
       "baseline_score": 88
     },
     {
@@ -752,7 +1628,12 @@
       "category": "marketing",
       "purpose": "Construir uma mensagem específica sem promessas vazias.",
       "template": "Escreve a estrutura e copy de uma página para [PRODUTO], dirigida a [AUDIÊNCIA], com o objetivo [CONVERSÃO]. Usa apenas estas provas: [PROVAS]. Inclui proposta de valor, problema, mecanismo, benefícios concretos, objeções, prova, CTA e FAQ. Não inventes métricas, clientes ou testemunhos.",
-      "keywords": ["marketing", "conversão", "produto", "conteúdo"],
+      "keywords": [
+        "marketing",
+        "conversão",
+        "produto",
+        "conteúdo"
+      ],
       "baseline_score": 91
     },
     {
@@ -761,7 +1642,12 @@
       "category": "marketing",
       "purpose": "Ligar conteúdo a perguntas reais da audiência e objetivos mensuráveis.",
       "template": "Cria um calendário editorial de quatro semanas para [MARCA] e [AUDIÊNCIA]. Parte destas perguntas e dores: [LISTA]. Para cada peça define ângulo, formato, canal, estágio da jornada, CTA, fonte necessária e métrica principal. Evita repetir a mesma ideia com títulos diferentes.",
-      "keywords": ["conteúdo", "marketing", "audiência", "distribuição"],
+      "keywords": [
+        "conteúdo",
+        "marketing",
+        "audiência",
+        "distribuição"
+      ],
       "baseline_score": 89
     },
     {
@@ -770,7 +1656,12 @@
       "category": "design",
       "purpose": "Avaliar uma interface por objetivos e não por gosto pessoal.",
       "template": "Analisa este ecrã ou fluxo: [IMAGEM/DESCRIÇÃO]. Avalia hierarquia, clareza, acessibilidade, consistência, carga cognitiva, estados e adequação ao objetivo do utilizador. Ordena problemas por severidade e indica uma alteração concreta para cada um. Não proponhas decoração sem função.",
-      "keywords": ["design", "interface", "ux", "produto"],
+      "keywords": [
+        "design",
+        "interface",
+        "ux",
+        "produto"
+      ],
       "baseline_score": 90
     },
     {
@@ -779,7 +1670,12 @@
       "category": "video",
       "purpose": "Transformar uma ideia num vídeo claro sem clickbait enganador.",
       "template": "Cria um roteiro de [DURAÇÃO] sobre [TEMA] para [AUDIÊNCIA]. Abre com a tensão principal, entrega contexto mínimo, desenvolve três pontos com exemplos visuais e fecha com uma conclusão útil e CTA proporcional. Inclui texto falado, indicação de imagem e fonte para cada afirmação factual.",
-      "keywords": ["video", "conteúdo", "audiência", "comunicação"],
+      "keywords": [
+        "video",
+        "conteúdo",
+        "audiência",
+        "comunicação"
+      ],
       "baseline_score": 88
     },
     {
@@ -788,7 +1684,13 @@
       "category": "imagem",
       "purpose": "Converter uma intenção numa instrução visual concreta e controlável.",
       "template": "Cria uma imagem para [OBJETIVO] com [SUJEITO] em [AMBIENTE]. Define composição, enquadramento, perspetiva, luz, paleta, materiais, profundidade e nível de realismo. Formato: [DIMENSÕES]. Preserva estes elementos: [OBRIGATÓRIOS]. Exclui: texto ilegível, anatomia incorreta, objetos duplicados, clichés de IA e [OUTROS ELEMENTOS].",
-      "keywords": ["imagem", "fotografia", "ilustração", "visual", "design"],
+      "keywords": [
+        "imagem",
+        "fotografia",
+        "ilustração",
+        "visual",
+        "design"
+      ],
       "baseline_score": 91
     },
     {
@@ -797,7 +1699,13 @@
       "category": "imagem",
       "purpose": "Delimitar uma edição visual e preservar identidade, composição e detalhes importantes.",
       "template": "Edita a imagem fornecida apenas desta forma: [ALTERAÇÃO]. Mantém sem mudanças a identidade das pessoas, composição, proporções, enquadramento, iluminação e todos os elementos não mencionados. O resultado deve parecer natural e coerente com a imagem original. Não acrescentes texto, objetos ou efeitos que não tenham sido pedidos.",
-      "keywords": ["imagem", "edição", "fotografia", "retoque", "visual"],
+      "keywords": [
+        "imagem",
+        "edição",
+        "fotografia",
+        "retoque",
+        "visual"
+      ],
       "baseline_score": 90
     }
   ],
@@ -834,50 +1742,646 @@
     "visao-computacional": "Computer vision"
   },
   "glossary": [
-    {"id": "agente-ia", "term": "Agente de IA", "definition": "Sistema que usa um modelo de IA para escolher e executar passos, utilizar ferramentas e verificar resultados com algum grau de autonomia.", "example": "Um agente pode consultar uma base de dados, preparar um relatório e pedir aprovação antes de o enviar.", "related": ["LLM", "tool use", "workflow"], "aliases": ["agente de ia", "agentes de ia", "ai agent"]},
-    {"id": "agi", "term": "AGI", "definition": "Conceito de uma inteligência artificial geral capaz de realizar uma grande variedade de tarefas cognitivas, sem ficar limitada a um domínio estreito.", "example": "AGI é uma hipótese e um objetivo de investigação, não uma capacidade com definição ou teste universalmente aceite.", "related": ["IA", "modelo de fronteira"], "aliases": ["agi", "inteligência artificial geral"]},
-    {"id": "ai-act", "term": "AI Act", "definition": "Regulamento da União Europeia que estabelece obrigações para sistemas de IA de acordo com o risco, o papel de cada interveniente e o tipo de utilização.", "example": "Um sistema usado em recrutamento pode estar sujeito a requisitos mais exigentes do que um filtro de spam.", "related": ["sistema de alto risco", "GPAI", "governação"], "aliases": ["ai act", "regulamento europeu de ia"]},
-    {"id": "alinhamento", "term": "Alinhamento", "definition": "Área que procura fazer com que o comportamento de um sistema de IA corresponda às intenções, regras e valores definidos pelos seus operadores e pela sociedade.", "example": "Um modelo alinhado deve recusar ações perigosas mesmo quando a instrução parece tecnicamente executável.", "related": ["segurança de IA", "RLHF"], "aliases": ["alinhamento", "alignment"]},
-    {"id": "alucinacao", "term": "Alucinação", "definition": "Resposta gerada com informação falsa, inventada ou sem suporte, apresentada de forma plausível.", "example": "Um modelo pode criar uma referência académica que não existe.", "related": ["grounding", "RAG", "verificação"], "aliases": ["alucinação", "hallucination"]},
-    {"id": "api", "term": "API", "definition": "Interface que permite a um programa pedir dados ou ações a outro sistema de forma estruturada.", "example": "Uma aplicação pode usar uma API para enviar texto a um modelo e receber uma resposta.", "related": ["integração", "tool use"], "aliases": ["api"]},
-    {"id": "aprendizagem-automatica", "term": "Aprendizagem automática", "definition": "Conjunto de técnicas em que sistemas aprendem padrões a partir de dados para fazer previsões, classificações ou gerar conteúdo.", "example": "Um modelo pode aprender a identificar fraude a partir de transações históricas.", "related": ["deep learning", "modelo"], "aliases": ["machine learning", "aprendizagem automática"]},
-    {"id": "benchmark", "term": "Benchmark", "definition": "Teste ou conjunto de tarefas usado para comparar o desempenho de modelos ou sistemas.", "example": "Um benchmark pode medir qualidade em programação, matemática ou compreensão de texto.", "related": ["avaliação", "modelo"], "aliases": ["benchmark", "benchmarks"]},
-    {"id": "cadeia-raciocinio", "term": "Cadeia de raciocínio", "definition": "Sequência intermédia de passos usada por um modelo para chegar a uma resposta; nem sempre é visível nem deve ser confundida com uma explicação verificável.", "example": "Pedir uma justificação concisa e factos verificáveis é mais útil do que assumir que texto intermédio prova o raciocínio real.", "related": ["modelo de raciocínio", "prompt"], "aliases": ["chain of thought", "cadeia de raciocínio"]},
-    {"id": "context-window", "term": "Janela de contexto", "definition": "Quantidade máxima de informação que um modelo consegue considerar numa interação, medida normalmente em tokens.", "example": "Documentos muito extensos podem ultrapassar a janela e exigir seleção ou divisão.", "related": ["token", "LLM"], "aliases": ["context window", "janela de contexto"]},
-    {"id": "deep-learning", "term": "Deep learning", "definition": "Subárea da aprendizagem automática baseada em redes neuronais com múltiplas camadas.", "example": "Reconhecimento de imagem e grandes modelos de linguagem usam técnicas de deep learning.", "related": ["rede neuronal", "transformer"], "aliases": ["deep learning", "aprendizagem profunda"]},
-    {"id": "deepfake", "term": "Deepfake", "definition": "Conteúdo audiovisual sintético ou manipulado para imitar de forma convincente uma pessoa, voz ou acontecimento.", "example": "Um vídeo pode aparentar mostrar alguém a dizer algo que nunca disse.", "related": ["IA generativa", "proveniência"], "aliases": ["deepfake", "deepfakes"]},
-    {"id": "destilacao", "term": "Destilação", "definition": "Técnica para treinar um modelo mais pequeno a reproduzir parte do comportamento de um modelo maior.", "example": "Uma empresa pode destilar um modelo para reduzir custo e latência numa tarefa específica.", "related": ["SLM", "modelo"], "aliases": ["distillation", "destilação"]},
-    {"id": "embeddings", "term": "Embeddings", "definition": "Representações numéricas de texto, imagem ou outros dados que preservam relações de significado e permitem comparar proximidade semântica.", "example": "Embeddings permitem encontrar documentos relacionados mesmo quando não usam as mesmas palavras.", "related": ["base vetorial", "RAG"], "aliases": ["embedding", "embeddings"]},
-    {"id": "fine-tuning", "term": "Fine-tuning", "definition": "Treino adicional de um modelo pré-existente com dados direcionados para adaptar comportamento ou desempenho.", "example": "Um modelo pode ser afinado para classificar documentos de um setor específico.", "related": ["modelo de fundação", "dados de treino"], "aliases": ["fine-tuning", "afinação"]},
-    {"id": "foundation-model", "term": "Modelo de fundação", "definition": "Modelo treinado em grandes volumes de dados que pode ser adaptado a muitas tarefas posteriores.", "example": "Um LLM generalista pode servir de base a assistentes, classificadores e agentes.", "related": ["LLM", "fine-tuning"], "aliases": ["foundation model", "modelo de fundação"]},
-    {"id": "gpai", "term": "GPAI", "definition": "Modelo de IA de finalidade geral, designação usada no AI Act para modelos capazes de servir múltiplos objetivos e integrações.", "example": "Um modelo generalista fornecido por API pode ser integrado em muitas aplicações diferentes.", "related": ["AI Act", "modelo de fundação"], "aliases": ["gpai", "general-purpose ai"]},
-    {"id": "grounding", "term": "Grounding", "definition": "Ligação da resposta de um modelo a dados, documentos ou ferramentas concretas para reduzir invenções e aumentar verificabilidade.", "example": "Um assistente responde com base no manual interno e mostra a secção usada.", "related": ["RAG", "alucinação"], "aliases": ["grounding", "ancoragem"]},
-    {"id": "guardrails", "term": "Guardrails", "definition": "Regras e controlos técnicos que limitam entradas, ações ou saídas de um sistema de IA.", "example": "Um guardrail pode bloquear a exposição de dados pessoais ou exigir aprovação humana.", "related": ["segurança", "governação"], "aliases": ["guardrails", "barreiras de segurança"]},
-    {"id": "ia-generativa", "term": "IA generativa", "definition": "Sistemas de IA capazes de criar texto, imagem, áudio, vídeo, código ou outros conteúdos.", "example": "Um modelo pode gerar um primeiro rascunho de uma apresentação a partir de um brief.", "related": ["LLM", "difusão"], "aliases": ["ia generativa", "generative ai"]},
-    {"id": "inferencia", "term": "Inferência", "definition": "Momento em que um modelo já treinado processa uma entrada para produzir uma previsão ou resposta.", "example": "Cada resposta de um chatbot implica uma execução de inferência.", "related": ["treino", "latência"], "aliases": ["inferência", "inference"]},
-    {"id": "llm", "term": "LLM", "definition": "Grande modelo de linguagem treinado para prever e gerar sequências de texto, podendo também trabalhar com código, imagens ou ferramentas.", "example": "Um LLM pode resumir um contrato, mas o resultado deve ser revisto.", "related": ["transformer", "token", "modelo de fundação"], "aliases": ["llm", "large language model", "grande modelo de linguagem"]},
-    {"id": "mcp", "term": "MCP", "definition": "Protocolo aberto para ligar aplicações de IA a ferramentas, dados e serviços através de uma interface comum.", "example": "Um cliente de IA pode usar MCP para consultar um repositório ou uma base de dados autorizada.", "related": ["agente de IA", "tool use", "API"], "aliases": ["mcp", "model context protocol"]},
-    {"id": "modelo-fronteira", "term": "Modelo de fronteira", "definition": "Expressão usada para modelos entre os mais capazes do momento, normalmente com elevado custo, escala e potencial de risco.", "example": "A definição exata depende do contexto técnico ou regulatório.", "related": ["GPAI", "segurança de IA"], "aliases": ["frontier model", "modelo de fronteira"]},
-    {"id": "modelo-multimodal", "term": "Modelo multimodal", "definition": "Modelo capaz de processar ou gerar mais do que um tipo de informação, como texto, imagem, áudio ou vídeo.", "example": "Um modelo multimodal pode analisar uma fotografia e responder a perguntas sobre ela.", "related": ["LLM", "visão computacional"], "aliases": ["multimodal", "modelo multimodal"]},
-    {"id": "modelo-raciocinio", "term": "Modelo de raciocínio", "definition": "Modelo otimizado para dedicar mais computação a problemas com vários passos, como programação, matemática ou planeamento.", "example": "Pode ser mais eficaz em tarefas complexas, mas também mais lento e caro.", "related": ["inferência", "cadeia de raciocínio"], "aliases": ["reasoning model", "modelo de raciocínio"]},
-    {"id": "nlp", "term": "NLP", "definition": "Processamento de linguagem natural: área dedicada a fazer computadores analisar, compreender ou gerar linguagem humana.", "example": "Classificação de texto, tradução e pesquisa semântica são tarefas de NLP.", "related": ["LLM", "embeddings"], "aliases": ["nlp", "processamento de linguagem natural"]},
-    {"id": "open-weights", "term": "Open weights", "definition": "Modelo cujos pesos treinados são disponibilizados para utilização ou adaptação, sob uma licença que pode manter restrições.", "example": "Open weights não significa necessariamente código aberto nem liberdade total de uso.", "related": ["modelo", "licença"], "aliases": ["open weights", "pesos abertos"]},
-    {"id": "parametros", "term": "Parâmetros", "definition": "Valores internos aprendidos durante o treino que influenciam como o modelo transforma entradas em resultados.", "example": "O número de parâmetros é um indicador de escala, não uma medida suficiente de qualidade.", "related": ["treino", "modelo"], "aliases": ["parâmetros", "parameters"]},
-    {"id": "prompt", "term": "Prompt", "definition": "Instrução, contexto ou conjunto de exemplos fornecido a um modelo para orientar a resposta.", "example": "Um bom prompt define objetivo, contexto, restrições e formato esperado.", "related": ["few-shot", "zero-shot"], "aliases": ["prompt", "prompts"]},
-    {"id": "prompt-injection", "term": "Prompt injection", "definition": "Ataque ou manipulação em que instruções maliciosas tentam desviar um sistema de IA das suas regras ou fazê-lo revelar informação.", "example": "Texto escondido num documento pode tentar ordenar ao agente que ignore a política de segurança.", "related": ["segurança", "agente de IA", "guardrails"], "aliases": ["prompt injection", "injeção de prompt"]},
-    {"id": "quantizacao", "term": "Quantização", "definition": "Redução da precisão numérica dos pesos ou cálculos de um modelo para diminuir memória, custo e latência.", "example": "Um modelo quantizado pode correr num portátil com alguma perda de qualidade.", "related": ["inferência", "SLM"], "aliases": ["quantization", "quantização"]},
-    {"id": "rag", "term": "RAG", "definition": "Arquitetura que recupera informação relevante antes de gerar uma resposta, permitindo usar fontes externas ou privadas.", "example": "Um chatbot interno procura documentos da empresa e responde com referências.", "related": ["embeddings", "base vetorial", "grounding"], "aliases": ["rag", "retrieval augmented generation"]},
-    {"id": "rede-neuronal", "term": "Rede neuronal", "definition": "Modelo computacional composto por camadas de unidades ligadas que aprendem padrões através do ajuste de parâmetros.", "example": "Redes neuronais são usadas em visão, fala e linguagem.", "related": ["deep learning", "transformer"], "aliases": ["rede neuronal", "neural network"]},
-    {"id": "rlhf", "term": "RLHF", "definition": "Treino por reforço com feedback humano, técnica usada para ajustar modelos segundo preferências avaliadas por pessoas.", "example": "Avaliadores comparam respostas para ajudar o modelo a produzir resultados mais úteis.", "related": ["alinhamento", "fine-tuning"], "aliases": ["rlhf", "reinforcement learning from human feedback"]},
-    {"id": "sistema-alto-risco", "term": "Sistema de alto risco", "definition": "Categoria do AI Act para certas utilizações de IA com potencial significativo de afetar segurança ou direitos fundamentais.", "example": "Algumas utilizações em emprego, educação ou serviços essenciais podem entrar nesta categoria.", "related": ["AI Act", "avaliação de risco"], "aliases": ["sistema de alto risco", "high-risk ai"]},
-    {"id": "slm", "term": "SLM", "definition": "Modelo de linguagem pequeno, concebido para menor custo, latência ou execução local face a modelos de grande escala.", "example": "Um SLM pode ser suficiente para classificar pedidos num dispositivo.", "related": ["LLM", "destilação", "quantização"], "aliases": ["slm", "small language model"]},
-    {"id": "temperatura", "term": "Temperatura", "definition": "Parâmetro que influencia a variabilidade das respostas geradas por alguns modelos.", "example": "Temperatura mais baixa tende a produzir respostas mais previsíveis, sem garantir exatidão.", "related": ["inferência", "prompt"], "aliases": ["temperatura", "temperature"]},
-    {"id": "token", "term": "Token", "definition": "Unidade em que um modelo divide texto ou outros dados para os processar; uma palavra pode corresponder a um ou mais tokens.", "example": "Custos e limites de contexto são frequentemente calculados em tokens.", "related": ["janela de contexto", "LLM"], "aliases": ["token", "tokens"]},
-    {"id": "tool-use", "term": "Tool use", "definition": "Capacidade de um modelo chamar funções ou serviços externos para obter dados ou executar ações.", "example": "Um assistente pode consultar o calendário através de uma ferramenta autorizada.", "related": ["agente de IA", "API", "MCP"], "aliases": ["tool use", "uso de ferramentas"]},
-    {"id": "transformer", "term": "Transformer", "definition": "Arquitetura de rede neuronal baseada em mecanismos de atenção, usada em muitos modelos modernos de linguagem e multimodais.", "example": "A arquitetura transformer permite relacionar elementos distantes numa sequência.", "related": ["LLM", "atenção"], "aliases": ["transformer", "transformers"]},
-    {"id": "base-vetorial", "term": "Base de dados vetorial", "definition": "Sistema otimizado para guardar embeddings e encontrar itens semanticamente semelhantes.", "example": "Uma base vetorial pode recuperar os documentos mais próximos de uma pergunta.", "related": ["embeddings", "RAG"], "aliases": ["vector database", "base de dados vetorial", "base vetorial"]},
-    {"id": "visao-computacional", "term": "Visão computacional", "definition": "Área da IA dedicada à análise e compreensão automática de imagens e vídeo.", "example": "Deteção de objetos e inspeção industrial são aplicações de visão computacional.", "related": ["modelo multimodal", "deep learning"], "aliases": ["visão computacional", "computer vision"]},
-    {"id": "few-shot", "term": "Few-shot", "definition": "Técnica de prompting em que são fornecidos alguns exemplos para mostrar ao modelo o padrão esperado.", "example": "Dois exemplos de classificação podem orientar o formato das respostas seguintes.", "related": ["prompt", "zero-shot"], "aliases": ["few-shot", "few shot"]},
-    {"id": "zero-shot", "term": "Zero-shot", "definition": "Execução de uma tarefa através de instruções sem fornecer exemplos específicos no prompt.", "example": "Pedir ao modelo que classifique um texto apenas com a descrição das categorias.", "related": ["prompt", "few-shot"], "aliases": ["zero-shot", "zero shot"]}
+    {
+      "id": "agente-ia",
+      "term": "Agente de IA",
+      "definition": "Sistema que usa um modelo de IA para escolher e executar passos, utilizar ferramentas e verificar resultados com algum grau de autonomia.",
+      "example": "Um agente pode consultar uma base de dados, preparar um relatório e pedir aprovação antes de o enviar.",
+      "related": [
+        "LLM",
+        "tool use",
+        "workflow"
+      ],
+      "aliases": [
+        "agente de ia",
+        "agentes de ia",
+        "ai agent"
+      ]
+    },
+    {
+      "id": "agi",
+      "term": "AGI",
+      "definition": "Conceito de uma inteligência artificial geral capaz de realizar uma grande variedade de tarefas cognitivas, sem ficar limitada a um domínio estreito.",
+      "example": "AGI é uma hipótese e um objetivo de investigação, não uma capacidade com definição ou teste universalmente aceite.",
+      "related": [
+        "IA",
+        "modelo de fronteira"
+      ],
+      "aliases": [
+        "agi",
+        "inteligência artificial geral"
+      ]
+    },
+    {
+      "id": "ai-act",
+      "term": "AI Act",
+      "definition": "Regulamento da União Europeia que estabelece obrigações para sistemas de IA de acordo com o risco, o papel de cada interveniente e o tipo de utilização.",
+      "example": "Um sistema usado em recrutamento pode estar sujeito a requisitos mais exigentes do que um filtro de spam.",
+      "related": [
+        "sistema de alto risco",
+        "GPAI",
+        "governação"
+      ],
+      "aliases": [
+        "ai act",
+        "regulamento europeu de ia"
+      ]
+    },
+    {
+      "id": "alinhamento",
+      "term": "Alinhamento",
+      "definition": "Área que procura fazer com que o comportamento de um sistema de IA corresponda às intenções, regras e valores definidos pelos seus operadores e pela sociedade.",
+      "example": "Um modelo alinhado deve recusar ações perigosas mesmo quando a instrução parece tecnicamente executável.",
+      "related": [
+        "segurança de IA",
+        "RLHF"
+      ],
+      "aliases": [
+        "alinhamento",
+        "alignment"
+      ]
+    },
+    {
+      "id": "alucinacao",
+      "term": "Alucinação",
+      "definition": "Resposta gerada com informação falsa, inventada ou sem suporte, apresentada de forma plausível.",
+      "example": "Um modelo pode criar uma referência académica que não existe.",
+      "related": [
+        "grounding",
+        "RAG",
+        "verificação"
+      ],
+      "aliases": [
+        "alucinação",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "api",
+      "term": "API",
+      "definition": "Interface que permite a um programa pedir dados ou ações a outro sistema de forma estruturada.",
+      "example": "Uma aplicação pode usar uma API para enviar texto a um modelo e receber uma resposta.",
+      "related": [
+        "integração",
+        "tool use"
+      ],
+      "aliases": [
+        "api"
+      ]
+    },
+    {
+      "id": "aprendizagem-automatica",
+      "term": "Aprendizagem automática",
+      "definition": "Conjunto de técnicas em que sistemas aprendem padrões a partir de dados para fazer previsões, classificações ou gerar conteúdo.",
+      "example": "Um modelo pode aprender a identificar fraude a partir de transações históricas.",
+      "related": [
+        "deep learning",
+        "modelo"
+      ],
+      "aliases": [
+        "machine learning",
+        "aprendizagem automática"
+      ]
+    },
+    {
+      "id": "benchmark",
+      "term": "Benchmark",
+      "definition": "Teste ou conjunto de tarefas usado para comparar o desempenho de modelos ou sistemas.",
+      "example": "Um benchmark pode medir qualidade em programação, matemática ou compreensão de texto.",
+      "related": [
+        "avaliação",
+        "modelo"
+      ],
+      "aliases": [
+        "benchmark",
+        "benchmarks"
+      ]
+    },
+    {
+      "id": "cadeia-raciocinio",
+      "term": "Cadeia de raciocínio",
+      "definition": "Sequência intermédia de passos usada por um modelo para chegar a uma resposta; nem sempre é visível nem deve ser confundida com uma explicação verificável.",
+      "example": "Pedir uma justificação concisa e factos verificáveis é mais útil do que assumir que texto intermédio prova o raciocínio real.",
+      "related": [
+        "modelo de raciocínio",
+        "prompt"
+      ],
+      "aliases": [
+        "chain of thought",
+        "cadeia de raciocínio"
+      ]
+    },
+    {
+      "id": "context-window",
+      "term": "Janela de contexto",
+      "definition": "Quantidade máxima de informação que um modelo consegue considerar numa interação, medida normalmente em tokens.",
+      "example": "Documentos muito extensos podem ultrapassar a janela e exigir seleção ou divisão.",
+      "related": [
+        "token",
+        "LLM"
+      ],
+      "aliases": [
+        "context window",
+        "janela de contexto"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "term": "Deep learning",
+      "definition": "Subárea da aprendizagem automática baseada em redes neuronais com múltiplas camadas.",
+      "example": "Reconhecimento de imagem e grandes modelos de linguagem usam técnicas de deep learning.",
+      "related": [
+        "rede neuronal",
+        "transformer"
+      ],
+      "aliases": [
+        "deep learning",
+        "aprendizagem profunda"
+      ]
+    },
+    {
+      "id": "deepfake",
+      "term": "Deepfake",
+      "definition": "Conteúdo audiovisual sintético ou manipulado para imitar de forma convincente uma pessoa, voz ou acontecimento.",
+      "example": "Um vídeo pode aparentar mostrar alguém a dizer algo que nunca disse.",
+      "related": [
+        "IA generativa",
+        "proveniência"
+      ],
+      "aliases": [
+        "deepfake",
+        "deepfakes"
+      ]
+    },
+    {
+      "id": "destilacao",
+      "term": "Destilação",
+      "definition": "Técnica para treinar um modelo mais pequeno a reproduzir parte do comportamento de um modelo maior.",
+      "example": "Uma empresa pode destilar um modelo para reduzir custo e latência numa tarefa específica.",
+      "related": [
+        "SLM",
+        "modelo"
+      ],
+      "aliases": [
+        "distillation",
+        "destilação"
+      ]
+    },
+    {
+      "id": "embeddings",
+      "term": "Embeddings",
+      "definition": "Representações numéricas de texto, imagem ou outros dados que preservam relações de significado e permitem comparar proximidade semântica.",
+      "example": "Embeddings permitem encontrar documentos relacionados mesmo quando não usam as mesmas palavras.",
+      "related": [
+        "base vetorial",
+        "RAG"
+      ],
+      "aliases": [
+        "embedding",
+        "embeddings"
+      ]
+    },
+    {
+      "id": "fine-tuning",
+      "term": "Fine-tuning",
+      "definition": "Treino adicional de um modelo pré-existente com dados direcionados para adaptar comportamento ou desempenho.",
+      "example": "Um modelo pode ser afinado para classificar documentos de um setor específico.",
+      "related": [
+        "modelo de fundação",
+        "dados de treino"
+      ],
+      "aliases": [
+        "fine-tuning",
+        "afinação"
+      ]
+    },
+    {
+      "id": "foundation-model",
+      "term": "Modelo de fundação",
+      "definition": "Modelo treinado em grandes volumes de dados que pode ser adaptado a muitas tarefas posteriores.",
+      "example": "Um LLM generalista pode servir de base a assistentes, classificadores e agentes.",
+      "related": [
+        "LLM",
+        "fine-tuning"
+      ],
+      "aliases": [
+        "foundation model",
+        "modelo de fundação"
+      ]
+    },
+    {
+      "id": "gpai",
+      "term": "GPAI",
+      "definition": "Modelo de IA de finalidade geral, designação usada no AI Act para modelos capazes de servir múltiplos objetivos e integrações.",
+      "example": "Um modelo generalista fornecido por API pode ser integrado em muitas aplicações diferentes.",
+      "related": [
+        "AI Act",
+        "modelo de fundação"
+      ],
+      "aliases": [
+        "gpai",
+        "general-purpose ai"
+      ]
+    },
+    {
+      "id": "grounding",
+      "term": "Grounding",
+      "definition": "Ligação da resposta de um modelo a dados, documentos ou ferramentas concretas para reduzir invenções e aumentar verificabilidade.",
+      "example": "Um assistente responde com base no manual interno e mostra a secção usada.",
+      "related": [
+        "RAG",
+        "alucinação"
+      ],
+      "aliases": [
+        "grounding",
+        "ancoragem"
+      ]
+    },
+    {
+      "id": "guardrails",
+      "term": "Guardrails",
+      "definition": "Regras e controlos técnicos que limitam entradas, ações ou saídas de um sistema de IA.",
+      "example": "Um guardrail pode bloquear a exposição de dados pessoais ou exigir aprovação humana.",
+      "related": [
+        "segurança",
+        "governação"
+      ],
+      "aliases": [
+        "guardrails",
+        "barreiras de segurança"
+      ]
+    },
+    {
+      "id": "ia-generativa",
+      "term": "IA generativa",
+      "definition": "Sistemas de IA capazes de criar texto, imagem, áudio, vídeo, código ou outros conteúdos.",
+      "example": "Um modelo pode gerar um primeiro rascunho de uma apresentação a partir de um brief.",
+      "related": [
+        "LLM",
+        "difusão"
+      ],
+      "aliases": [
+        "ia generativa",
+        "generative ai"
+      ]
+    },
+    {
+      "id": "inferencia",
+      "term": "Inferência",
+      "definition": "Momento em que um modelo já treinado processa uma entrada para produzir uma previsão ou resposta.",
+      "example": "Cada resposta de um chatbot implica uma execução de inferência.",
+      "related": [
+        "treino",
+        "latência"
+      ],
+      "aliases": [
+        "inferência",
+        "inference"
+      ]
+    },
+    {
+      "id": "llm",
+      "term": "LLM",
+      "definition": "Grande modelo de linguagem treinado para prever e gerar sequências de texto, podendo também trabalhar com código, imagens ou ferramentas.",
+      "example": "Um LLM pode resumir um contrato, mas o resultado deve ser revisto.",
+      "related": [
+        "transformer",
+        "token",
+        "modelo de fundação"
+      ],
+      "aliases": [
+        "llm",
+        "large language model",
+        "grande modelo de linguagem"
+      ]
+    },
+    {
+      "id": "mcp",
+      "term": "MCP",
+      "definition": "Protocolo aberto para ligar aplicações de IA a ferramentas, dados e serviços através de uma interface comum.",
+      "example": "Um cliente de IA pode usar MCP para consultar um repositório ou uma base de dados autorizada.",
+      "related": [
+        "agente de IA",
+        "tool use",
+        "API"
+      ],
+      "aliases": [
+        "mcp",
+        "model context protocol"
+      ]
+    },
+    {
+      "id": "modelo-fronteira",
+      "term": "Modelo de fronteira",
+      "definition": "Expressão usada para modelos entre os mais capazes do momento, normalmente com elevado custo, escala e potencial de risco.",
+      "example": "A definição exata depende do contexto técnico ou regulatório.",
+      "related": [
+        "GPAI",
+        "segurança de IA"
+      ],
+      "aliases": [
+        "frontier model",
+        "modelo de fronteira"
+      ]
+    },
+    {
+      "id": "modelo-multimodal",
+      "term": "Modelo multimodal",
+      "definition": "Modelo capaz de processar ou gerar mais do que um tipo de informação, como texto, imagem, áudio ou vídeo.",
+      "example": "Um modelo multimodal pode analisar uma fotografia e responder a perguntas sobre ela.",
+      "related": [
+        "LLM",
+        "visão computacional"
+      ],
+      "aliases": [
+        "multimodal",
+        "modelo multimodal"
+      ]
+    },
+    {
+      "id": "modelo-raciocinio",
+      "term": "Modelo de raciocínio",
+      "definition": "Modelo otimizado para dedicar mais computação a problemas com vários passos, como programação, matemática ou planeamento.",
+      "example": "Pode ser mais eficaz em tarefas complexas, mas também mais lento e caro.",
+      "related": [
+        "inferência",
+        "cadeia de raciocínio"
+      ],
+      "aliases": [
+        "reasoning model",
+        "modelo de raciocínio"
+      ]
+    },
+    {
+      "id": "nlp",
+      "term": "NLP",
+      "definition": "Processamento de linguagem natural: área dedicada a fazer computadores analisar, compreender ou gerar linguagem humana.",
+      "example": "Classificação de texto, tradução e pesquisa semântica são tarefas de NLP.",
+      "related": [
+        "LLM",
+        "embeddings"
+      ],
+      "aliases": [
+        "nlp",
+        "processamento de linguagem natural"
+      ]
+    },
+    {
+      "id": "open-weights",
+      "term": "Open weights",
+      "definition": "Modelo cujos pesos treinados são disponibilizados para utilização ou adaptação, sob uma licença que pode manter restrições.",
+      "example": "Open weights não significa necessariamente código aberto nem liberdade total de uso.",
+      "related": [
+        "modelo",
+        "licença"
+      ],
+      "aliases": [
+        "open weights",
+        "pesos abertos"
+      ]
+    },
+    {
+      "id": "parametros",
+      "term": "Parâmetros",
+      "definition": "Valores internos aprendidos durante o treino que influenciam como o modelo transforma entradas em resultados.",
+      "example": "O número de parâmetros é um indicador de escala, não uma medida suficiente de qualidade.",
+      "related": [
+        "treino",
+        "modelo"
+      ],
+      "aliases": [
+        "parâmetros",
+        "parameters"
+      ]
+    },
+    {
+      "id": "prompt",
+      "term": "Prompt",
+      "definition": "Instrução, contexto ou conjunto de exemplos fornecido a um modelo para orientar a resposta.",
+      "example": "Um bom prompt define objetivo, contexto, restrições e formato esperado.",
+      "related": [
+        "few-shot",
+        "zero-shot"
+      ],
+      "aliases": [
+        "prompt",
+        "prompts"
+      ]
+    },
+    {
+      "id": "prompt-injection",
+      "term": "Prompt injection",
+      "definition": "Ataque ou manipulação em que instruções maliciosas tentam desviar um sistema de IA das suas regras ou fazê-lo revelar informação.",
+      "example": "Texto escondido num documento pode tentar ordenar ao agente que ignore a política de segurança.",
+      "related": [
+        "segurança",
+        "agente de IA",
+        "guardrails"
+      ],
+      "aliases": [
+        "prompt injection",
+        "injeção de prompt"
+      ]
+    },
+    {
+      "id": "quantizacao",
+      "term": "Quantização",
+      "definition": "Redução da precisão numérica dos pesos ou cálculos de um modelo para diminuir memória, custo e latência.",
+      "example": "Um modelo quantizado pode correr num portátil com alguma perda de qualidade.",
+      "related": [
+        "inferência",
+        "SLM"
+      ],
+      "aliases": [
+        "quantization",
+        "quantização"
+      ]
+    },
+    {
+      "id": "rag",
+      "term": "RAG",
+      "definition": "Arquitetura que recupera informação relevante antes de gerar uma resposta, permitindo usar fontes externas ou privadas.",
+      "example": "Um chatbot interno procura documentos da empresa e responde com referências.",
+      "related": [
+        "embeddings",
+        "base vetorial",
+        "grounding"
+      ],
+      "aliases": [
+        "rag",
+        "retrieval augmented generation"
+      ]
+    },
+    {
+      "id": "rede-neuronal",
+      "term": "Rede neuronal",
+      "definition": "Modelo computacional composto por camadas de unidades ligadas que aprendem padrões através do ajuste de parâmetros.",
+      "example": "Redes neuronais são usadas em visão, fala e linguagem.",
+      "related": [
+        "deep learning",
+        "transformer"
+      ],
+      "aliases": [
+        "rede neuronal",
+        "neural network"
+      ]
+    },
+    {
+      "id": "rlhf",
+      "term": "RLHF",
+      "definition": "Treino por reforço com feedback humano, técnica usada para ajustar modelos segundo preferências avaliadas por pessoas.",
+      "example": "Avaliadores comparam respostas para ajudar o modelo a produzir resultados mais úteis.",
+      "related": [
+        "alinhamento",
+        "fine-tuning"
+      ],
+      "aliases": [
+        "rlhf",
+        "reinforcement learning from human feedback"
+      ]
+    },
+    {
+      "id": "sistema-alto-risco",
+      "term": "Sistema de alto risco",
+      "definition": "Categoria do AI Act para certas utilizações de IA com potencial significativo de afetar segurança ou direitos fundamentais.",
+      "example": "Algumas utilizações em emprego, educação ou serviços essenciais podem entrar nesta categoria.",
+      "related": [
+        "AI Act",
+        "avaliação de risco"
+      ],
+      "aliases": [
+        "sistema de alto risco",
+        "high-risk ai"
+      ]
+    },
+    {
+      "id": "slm",
+      "term": "SLM",
+      "definition": "Modelo de linguagem pequeno, concebido para menor custo, latência ou execução local face a modelos de grande escala.",
+      "example": "Um SLM pode ser suficiente para classificar pedidos num dispositivo.",
+      "related": [
+        "LLM",
+        "destilação",
+        "quantização"
+      ],
+      "aliases": [
+        "slm",
+        "small language model"
+      ]
+    },
+    {
+      "id": "temperatura",
+      "term": "Temperatura",
+      "definition": "Parâmetro que influencia a variabilidade das respostas geradas por alguns modelos.",
+      "example": "Temperatura mais baixa tende a produzir respostas mais previsíveis, sem garantir exatidão.",
+      "related": [
+        "inferência",
+        "prompt"
+      ],
+      "aliases": [
+        "temperatura",
+        "temperature"
+      ]
+    },
+    {
+      "id": "token",
+      "term": "Token",
+      "definition": "Unidade em que um modelo divide texto ou outros dados para os processar; uma palavra pode corresponder a um ou mais tokens.",
+      "example": "Custos e limites de contexto são frequentemente calculados em tokens.",
+      "related": [
+        "janela de contexto",
+        "LLM"
+      ],
+      "aliases": [
+        "token",
+        "tokens"
+      ]
+    },
+    {
+      "id": "tool-use",
+      "term": "Tool use",
+      "definition": "Capacidade de um modelo chamar funções ou serviços externos para obter dados ou executar ações.",
+      "example": "Um assistente pode consultar o calendário através de uma ferramenta autorizada.",
+      "related": [
+        "agente de IA",
+        "API",
+        "MCP"
+      ],
+      "aliases": [
+        "tool use",
+        "uso de ferramentas"
+      ]
+    },
+    {
+      "id": "transformer",
+      "term": "Transformer",
+      "definition": "Arquitetura de rede neuronal baseada em mecanismos de atenção, usada em muitos modelos modernos de linguagem e multimodais.",
+      "example": "A arquitetura transformer permite relacionar elementos distantes numa sequência.",
+      "related": [
+        "LLM",
+        "atenção"
+      ],
+      "aliases": [
+        "transformer",
+        "transformers"
+      ]
+    },
+    {
+      "id": "base-vetorial",
+      "term": "Base de dados vetorial",
+      "definition": "Sistema otimizado para guardar embeddings e encontrar itens semanticamente semelhantes.",
+      "example": "Uma base vetorial pode recuperar os documentos mais próximos de uma pergunta.",
+      "related": [
+        "embeddings",
+        "RAG"
+      ],
+      "aliases": [
+        "vector database",
+        "base de dados vetorial",
+        "base vetorial"
+      ]
+    },
+    {
+      "id": "visao-computacional",
+      "term": "Visão computacional",
+      "definition": "Área da IA dedicada à análise e compreensão automática de imagens e vídeo.",
+      "example": "Deteção de objetos e inspeção industrial são aplicações de visão computacional.",
+      "related": [
+        "modelo multimodal",
+        "deep learning"
+      ],
+      "aliases": [
+        "visão computacional",
+        "computer vision"
+      ]
+    },
+    {
+      "id": "few-shot",
+      "term": "Few-shot",
+      "definition": "Técnica de prompting em que são fornecidos alguns exemplos para mostrar ao modelo o padrão esperado.",
+      "example": "Dois exemplos de classificação podem orientar o formato das respostas seguintes.",
+      "related": [
+        "prompt",
+        "zero-shot"
+      ],
+      "aliases": [
+        "few-shot",
+        "few shot"
+      ]
+    },
+    {
+      "id": "zero-shot",
+      "term": "Zero-shot",
+      "definition": "Execução de uma tarefa através de instruções sem fornecer exemplos específicos no prompt.",
+      "example": "Pedir ao modelo que classifique um texto apenas com a descrição das categorias.",
+      "related": [
+        "prompt",
+        "few-shot"
+      ],
+      "aliases": [
+        "zero-shot",
+        "zero shot"
+      ]
+    }
   ]
 }
