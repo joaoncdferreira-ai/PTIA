@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-13T00:03:20+00:00",
+  "updated_at": "2026-06-13T08:35:48+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -262,6 +262,17 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "Web Summit Rio com 27 startups portuguesas que empregam quase 270 pessoas",
+      "url": "https://ptia.pt/artigos/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas-c01ec248258599d00b",
+      "published_at": "2026-06-13T09:00:00+01:00",
+      "summary": "O Web Summit Rio acolheu este ano 27 startups portuguesas, com forte presença nos setores de inteligência artificial (IA), que empregam em conjunto quase 270 colaboradores. Esta representação destaca a crescente projeçã...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Previsões Futuras"
+      ]
+    },
     {
       "title": "BBVA puts AI at the core of banking with OpenAI",
       "url": "https://ptia.pt/artigos/bbva-puts-ai-at-the-core-of-banking-with-openai-2e9938a90585f536c5",
@@ -530,18 +541,6 @@
         "Builders",
         "Histórias reais",
         "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "A Cognizant e a Soberania da IA Física",
-      "url": "https://ptia.pt/artigos/a-cognizant-e-a-soberania-da-ia-fisica-89208a88f5804ab5d6",
-      "published_at": "2026-06-06T21:00:00+01:00",
-      "summary": "A Cognizant anunciou o lançamento de uma plataforma de IA física soberana, desenhada para gerir e operar sistemas de inteligência artificial em ambientes físicos de alta segurança. Esta iniciativa responde à crescente n...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
       ]
     }
   ],

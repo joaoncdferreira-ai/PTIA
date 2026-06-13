@@ -49,7 +49,7 @@ def load_dotenv() -> None:
 # Plano de agendamento cronológico para amanhã (13 de Junho de 2026)
 PLAN = [
     ("topic_acaa93f9583f66d4e6", "2026-06-13T09:00:00+01:00"),  # Web Summit Rio (Startups PT)
-    ("topic_6638e8781943234a7e", "2026-06-13T13:00:00+01:00"),  # Google investe R$ 5M em professores
+    ("topic_f9aeb53ae499235cbb", "2026-06-13T13:00:00+01:00"),  # Suspensão do Claude Fable 5
     ("topic_6357fbda9adb3add6d", "2026-06-13T16:00:00+01:00"),  # Deezer lança detector de música IA
     ("topic_c96d25d3d7dd98e39d", "2026-06-13T21:00:00+01:00"),  # Amazon toma 17 bi USD para IA
 ]
@@ -162,7 +162,7 @@ def main() -> None:
     instagram_posts_sorted = []
     original_plan_order = [
         "topic_acaa93f9583f66d4e6",  # Web Summit Rio
-        "topic_6638e8781943234a7e",  # Google investe
+        "topic_f9aeb53ae499235cbb",  # Suspensão do Claude Fable 5
         "topic_6357fbda9adb3add6d",  # Deezer
         "topic_c96d25d3d7dd98e39d",  # Amazon
     ]
@@ -183,7 +183,7 @@ def main() -> None:
                 sources.append(f"- {p.source_urls[0]}")
                 
         combined_body = "\n\n".join(paragraphs)
-        combined_hashtags = "#InteligenciaArtificial #IA #Startups #Educacao #Musica #Amazon #Google #PTIA #Negocios #Tech"
+        combined_hashtags = "#InteligenciaArtificial #IA #Ciberseguranca #Startups #Musica #Amazon #Anthropic #PTIA #Negocios #Tech"
         combined_sources = "Fontes:\n" + "\n".join(sources)
         
         legend_text = f"{combined_body}\n\n{combined_hashtags}\n\n{combined_sources}".strip()
