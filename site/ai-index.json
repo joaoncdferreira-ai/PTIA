@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-13T08:35:48+00:00",
+  "updated_at": "2026-06-13T20:42:34+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,39 @@
   ],
   "recent_articles": [
     {
+      "title": "Amazon reforça caixa com 17 mil milhões de dólares para despesas de capital",
+      "url": "https://ptia.pt/artigos/amazon-reforca-caixa-com-17-mil-milhoes-de-dolares-para-despesas-de-capital-c6fd2fb74ba232b1b3",
+      "published_at": "2026-06-13T21:00:00+01:00",
+      "summary": "A Amazon assegurou um empréstimo de 17 mil milhões de dólares, um movimento estratégico que lhe permitirá aceder a uma linha de dívida de forma incremental, à medida que as suas necessidades de capital evoluem. Este ref...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Deezer lança detector de músicas com IA gratuito para outras plataformas",
+      "url": "https://ptia.pt/artigos/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas-772bf5148f2d796eae",
+      "published_at": "2026-06-13T16:00:00+01:00",
+      "summary": "A Deezer lançou um detector de músicas baseado em inteligência artificial, disponível de forma gratuita para utilizadores de cerca de 20 plataformas de streaming de música concorrentes. Esta iniciativa não é apenas uma...",
+      "sections": [
+        "Mundo",
+        "Builders"
+      ]
+    },
+    {
+      "title": "Suspensão do Claude Fable 5: Segurança trava corrida aos modelos",
+      "url": "https://ptia.pt/artigos/suspensao-do-claude-fable-5-seguranca-trava-corrida-aos-modelos-945ea3a2f6779b851d",
+      "published_at": "2026-06-13T13:00:00+01:00",
+      "summary": "O modelo Claude Fable 5 da Anthropic, disponibilizado publicamente esta semana, foi suspenso devido a preocupações graves de cibersegurança e vulnerabilidades de hacking. Esta decisão revela que a corrida aos modelos de...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "Web Summit Rio com 27 startups portuguesas que empregam quase 270 pessoas",
       "url": "https://ptia.pt/artigos/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas-c01ec248258599d00b",
       "published_at": "2026-06-13T09:00:00+01:00",
@@ -505,42 +538,6 @@
         "Builders",
         "Regulação",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "Amazon investe €10 mil milhões na Europa e revela Proteus, o seu novo robô conversacional",
-      "url": "https://ptia.pt/artigos/amazon-investe-10-mil-milhoes-na-europa-e-revela-proteus-o-seu-novo-robo-conversacional-e15c59788bbfb558da",
-      "published_at": "2026-06-07T16:00:00+01:00",
-      "summary": "A Amazon anunciou um investimento de 10 mil milhões de euros na expansão das suas operações europeias. No centro desta estratégia, está a revelação de novos robôs para otimização logística, incluindo o Proteus, um robô...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Estudo da Anthropic: Homens Usam Agentes de Codificação de IA o Dobro que Mulheres em Ciências Sociais",
-      "url": "https://ptia.pt/artigos/estudo-da-anthropic-homens-usam-agentes-de-codificacao-de-ia-o-dobro-que-mulheres-em-ciencias-sociais-1d92756f5e5b093d0c",
-      "published_at": "2026-06-07T13:00:00+01:00",
-      "summary": "Um estudo recente da Anthropic revela que, no domínio da pesquisa em ciências sociais, os homens recorrem a agentes de codificação de IA com uma frequência que duplica a das mulheres. Este dado, aparentemente circunscri...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Espanha avança para 'gigafábrica' de IA e sinaliza parceria com o Brasil",
-      "url": "https://ptia.pt/artigos/espanha-avanca-para-gigafabrica-de-ia-e-sinaliza-parceria-com-o-brasil-4a38702ecb4100a90c",
-      "published_at": "2026-06-07T09:00:00+01:00",
-      "summary": "A Espanha confirmou a sua candidatura para acolher uma 'gigafábrica' de Inteligência Artificial, um movimento estratégico que inclui a procura de uma parceria com o Brasil. A informação foi avançada pelo ministro da Fun...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     }
   ],
