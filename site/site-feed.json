@@ -1,7 +1,75 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-11T23:13:50+00:00",
+  "updated_at": "2026-06-13T00:01:18+00:00",
   "posts": [
+    {
+      "id": "post_c6fd2fb74ba232b1b3",
+      "title": "Amazon reforça caixa com 17 mil milhões de dólares para despesas de capital",
+      "body": "A Amazon assegurou um empréstimo de 17 mil milhões de dólares, um movimento estratégico que lhe permitirá aceder a uma linha de dívida de forma incremental, à medida que as suas necessidades de capital evoluem. Este reforço financeiro surge após um período de gastos históricos por parte da gigante do <i>e-commerce</i> e da <i>cloud computing</i>.\n\nEste financiamento não é um mero ajustamento contabilístico. Sinaliza a escala dos investimentos necessários para o desenvolvimento e implementação de inteligência artificial em larga escala. Para as empresas e investidores em Portugal, este dado da Amazon serve como um indicador direto da intensidade de capital que o setor da IA exige.\n\nO que a Amazon está a fazer é, na prática, criar uma almofada financeira robusta para os seus ambiciosos planos de IA, assumindo que a inovação neste campo não será barata nem rápida. A tese editorial aqui é clara: o desafio da IA para a maioria das organizações não será apenas tecnológico, mas fundamentalmente financeiro. Não se trata de ter a melhor ideia, mas de ter a capacidade de a financiar até à maturidade.\n\nEste movimento da Amazon sublinha que a corrida da IA é, em grande parte, uma corrida de capital. Quem não estiver preparado para alocar recursos significativos, não apenas em talento e tecnologia, mas também na infraestrutura de suporte, corre o risco de ficar para trás. A capacidade de aceder a dívida, ou de ter reservas de caixa, torna-se um diferencial competitivo.\n\nPara o ecossistema português, isto significa que a ambição na IA deve ser calibrada com a realidade dos investimentos. A capacidade de escalar soluções de IA não virá de pequenos orçamentos, mas de estratégias de financiamento que espelhem a escala do desafio. O capital será o verdadeiro acelerador, ou o travão, da adoção da IA.\n\nFonte: https://www.cnnbrasil.com.br/negocios/amazon-toma-us-17-bi-para-reforcar-reserva-apos-aumento-historico-de-gasto/",
+      "source_urls": [
+        "https://www.cnnbrasil.com.br/negocios/amazon-toma-us-17-bi-para-reforcar-reserva-apos-aumento-historico-de-gasto/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_aeac836349bfdb5f05_b9050210_ChatGPT-Image-13_06_2026-00_55_45.png",
+      "image_url": "/assets/final/post_2770072f32603e4689_site_1600x900.jpg",
+      "published_at": "2026-06-13T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/amazon-reforca-caixa-com-17-mil-milhoes-de-dolares-para-despesas-de-capital-c6fd2fb74ba232b1b3"
+    },
+    {
+      "id": "post_772bf5148f2d796eae",
+      "title": "Deezer lança detector de músicas com IA gratuito para outras plataformas",
+      "body": "A Deezer lançou um detector de músicas baseado em inteligência artificial, disponível de forma gratuita para utilizadores de cerca de 20 plataformas de streaming de música concorrentes.\n\nEsta iniciativa não é apenas uma funcionalidade utilitária; representa uma estratégia clara de distribuição e captação de clientes. Ao disponibilizar valor interoperável fora do seu ecossistema fechado, a Deezer demonstra como a IA pode servir de alavanca comercial para quebrar barreiras de concorrência tradicional.\n\nPara decisores e builders de IA em Portugal, isto ilustra que a inovação focada na utilidade aberta pode atrair utilizadores qualificados de outras marcas, abrindo novas portas para a expansão e crescimento de use cases pragmáticos.\n\nFonte: https://www.cnnbrasil.com.br/tecnologia/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas/",
+      "source_urls": [
+        "https://www.cnnbrasil.com.br/tecnologia/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_bba7b4414179d7f3d6_13056f58_ChatGPT-Image-13_06_2026-00_48_05.png",
+      "image_url": "/assets/final/post_fa48950bf3ce54a867_site_1600x900.jpg",
+      "published_at": "2026-06-13T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas-772bf5148f2d796eae"
+    },
+    {
+      "id": "post_30e0ca1fbdc5f90305",
+      "title": "Google investe R$ 5 milhões em formação de IA para professores",
+      "body": "O Google está investindo R$ 5 milhões em formação de Inteligência Artificial para professores, visando capacitar educadores no uso da tecnologia.\n\nA leitura PTIA está na distribuição: a Google não precisa apenas de ter bons modelos, precisa de os tornar a camada natural dos produtos que milhões de equipas já usam.\n\nEmbora O relato seja do Brasil, a iniciativa do Google em formação de IA para professores é relevante globalmente, incluindo Portugal, pois demonstra a crescente necessidade de capacitação em IA na educação, impactando a futura força de trabalho e o desenvolvimento de builders em IA.\n\nQuando a IA aparece dentro da pesquisa, do vídeo ou das ferramentas de trabalho, a concorrência deixa de ser só técnica e passa a ser uma disputa pelo hábito.\n\nFonte: https://exame.com/inteligencia-artificial/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores/",
+      "source_urls": [
+        "https://exame.com/inteligencia-artificial/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_dddb28d0c349f31d8b_7c1e738e_ChatGPT-Image-13_06_2026-00_40_30.png",
+      "image_url": "/assets/final/post_f7f529d14ff98eed06_site_1600x900.jpg",
+      "published_at": "2026-06-13T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores-30e0ca1fbdc5f90305"
+    },
+    {
+      "id": "post_c01ec248258599d00b",
+      "title": "Web Summit Rio com 27 startups portuguesas que empregam quase 270 pessoas",
+      "body": "O Web Summit Rio acolheu este ano 27 startups portuguesas, com forte presença nos setores de inteligência artificial (IA), que empregam em conjunto quase 270 colaboradores.\n\nEsta representação destaca a crescente projeção internacional do ecossistema tecnológico português e a capacidade de exportação de talento altamente qualificado. Mais do que visibilidade, demonstra a validação comercial de soluções de IA portuguesas em geografias competitivas de larga escala.\n\nA tese editorial da PTIA é que a expansão global deve ser o foco inicial dos builders nacionais, dado que o mercado português é limitado para sustentar soluções de IA intensivas. A longo prazo, o desafio passa por atrair capital estrangeiro e converter esta representatividade global em propriedade intelectual retida em Portugal.\n\nFonte: https://www.sabado.pt/dinheiro/detalhe/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas",
+      "source_urls": [
+        "https://www.sabado.pt/dinheiro/detalhe/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_44658bfa03fb64cf0a_2c4122ca_ChatGPT-Image-13_06_2026-00_52_50.png",
+      "image_url": "/assets/final/post_22c85ebe6d1b7f3ab9_site_1600x900.jpg",
+      "published_at": "2026-06-13T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas-c01ec248258599d00b"
+    },
     {
       "id": "post_2e9938a90585f536c5",
       "title": "BBVA puts AI at the core of banking with OpenAI",
