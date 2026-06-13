@@ -1,7 +1,79 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-13T08:35:48+00:00",
+  "updated_at": "2026-06-13T20:42:34+00:00",
   "posts": [
+    {
+      "id": "post_9eed210097c04d8166",
+      "title": "Samsung integra IA generativa em todas as funções de negócio",
+      "body": "A Samsung anunciou a 9 de junho um plano de transformação que levará a inteligência artificial a todas as suas funções de negócio, formalizando a adoção de serviços externos de IA generativa como o ChatGPT, Gemini e Claude nas suas afiliadas. A iniciativa abrange todo o grupo, sinalizando uma integração transversal destas ferramentas.\n\nEste movimento da Samsung sublinha uma tendência que vai além da simples inovação tecnológica. A verdadeira corrida, neste momento, não se trava apenas na capacidade dos modelos de IA, mas na sua distribuição. Quando a inteligência artificial se torna uma camada natural e invisível nos produtos e ferramentas que milhões de equipas já usam diariamente – seja na pesquisa, no vídeo ou nas plataformas de trabalho –, a concorrência deixa de ser puramente técnica. Passa a ser uma disputa pelo hábito, pelo controlo do ponto de entrada do utilizador.\n\nA Google, por exemplo, não precisa apenas de ter os melhores modelos; precisa de os tornar a interface padrão nos produtos que as empresas já usam. A Samsung, ao integrar estas capacidades externas diretamente nas suas operações, está a reconhecer que a vantagem competitiva não reside apenas em desenvolver a IA internamente, mas em torná-la indispensável, sem exigir uma nova rotina. Quem conseguir consolidar a IA dentro dos fluxos de trabalho existentes, sem fricção, será quem verdadeiramente dominará a próxima fase da produtividade.\n\nFonte: https://english.donga.com/3/all/267/4553315/1",
+      "source_urls": [
+        "https://english.donga.com/3/all/267/4553315/1"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_316aa3bf2f2de12799_153a9648_ChatGPT-Image-13_06_2026-21_37_19.png",
+      "image_url": "/assets/final/post_15a03361e52226f422_site_1600x900.jpg",
+      "published_at": "2026-06-14T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/samsung-integra-ia-generativa-em-todas-as-funcoes-de-negocio-9eed210097c04d8166"
+    },
+    {
+      "id": "post_de7b8e23e05e9dc50d",
+      "title": "Casa Branca define diretrizes para inovação e segurança na IA avançada",
+      "body": "A Casa Branca publicou novas diretrizes focadas na promoção da inovação e segurança em inteligência artificial avançada. O documento detalha as prioridades da administração norte-americana para o desenvolvimento e a adoção responsável de tecnologias de IA.\n\nEste movimento não é apenas um sinal de regulação iminente, mas um claro reposicionamento do papel do Estado na vanguarda tecnológica. Ao definir um framework para a IA, Washington está a moldar o ecossistema global, ditando as condições para o que é considerado desenvolvimento aceitável e seguro. Para os decisores e founders em Portugal, a mensagem é inequívoca: a soberania tecnológica e a competitividade futura dependem da capacidade de alinhar as nossas estratégias com estes vetores, não só em termos de compliance, mas na capacidade de construir e inovar ativamente dentro destas fronteiras. Ignorar este quadro é abdicar de uma posição ativa na corrida global, relegando-nos a meros consumidores de tecnologia em vez de participantes no seu desenvolvimento.\n\nA questão agora passa por saber como as empresas e o Estado português vão traduzir estas diretrizes em ação concreta, evitando a inércia e transformando a regulação em vantagem competitiva.\n\nFonte: https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/",
+      "source_urls": [
+        "https://www.whitehouse.gov/presidential-actions/2026/06/promoting-advanced-artificial-intelligence-innovation-and-security/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_74caa834da1aa66202_05af20d6_ChatGPT-Image-13_06_2026-21_29_04.png",
+      "image_url": "/assets/final/post_a70b4e11d52fcd5f7a_site_1600x900.jpg",
+      "published_at": "2026-06-14T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/casa-branca-define-diretrizes-para-inovacao-e-seguranca-na-ia-avancada-de7b8e23e05e9dc50d"
+    },
+    {
+      "id": "post_31422bbadb9ce06037",
+      "title": "Apple Intelligence e Siri: A Nova Geração Integrada Chega ao Ecossistema",
+      "body": "A Apple anunciou uma nova geração de Apple Intelligence e aprimoramentos significativos à Siri, integrando capacidades avançadas de inteligência artificial nos seus ecossistemas. As novidades, detalhadas num comunicado recente, prometem redefinir a interação dos utilizadores com os dispositivos da marca.\n\nEsta não é apenas mais uma atualização de funcionalidade. Ao distribuir a capacidade de IA dentro do produto que já dominam, a Apple muda o ponto de entrada para a inteligência artificial. A vantagem passa a estar no controlo do hábito diário do utilizador. Quem domina a rotina de trabalho e lazer, controla também a adoção da IA, tornando a tecnologia não uma opção, mas uma extensão inevitável da experiência.\n\nO detalhe importante reside na forma como esta capacidade chega ao mercado. Quando a inteligência artificial deixa de ser uma ferramenta separada e passa a aparecer no <i>software</i> que a equipa ou o indivíduo já usa, a pergunta comercial muda radicalmente. Não se trata de quem tem o melhor modelo, mas sim de quem consegue tornar esse modelo inevitável sem exigir uma nova rotina ou um novo ponto de fricção.\n\nPara os decisores e <i>builders</i> em Portugal, esta abordagem da Apple sublinha uma lição fundamental: a tecnologia, por mais avançada que seja, só ganha tração quando se torna transparente e se encaixa sem esforço no <i>workflow</i> existente. A verdadeira corrida não é apenas para construir o modelo mais potente, mas para integrá-lo de forma tão orgânica que se torne invisível, impulsionando a produtividade sem que o utilizador precise de pensar no “como”.\n\nFonte: https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
+      "source_urls": [
+        "https://www.apple.com/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4f9fc6bff297793cba_56a6d69e_ChatGPT-Image-13_06_2026-21_28_05.png",
+      "image_url": "/assets/final/post_0bea12cc29457fe724_site_1600x900.jpg",
+      "published_at": "2026-06-14T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/apple-intelligence-e-siri-a-nova-geracao-integrada-chega-ao-ecossistema-31422bbadb9ce06037"
+    },
+    {
+      "id": "post_59a5079c4b4fd4824b",
+      "title": "Marcelo alerta para o atraso de Portugal na regulação da IA",
+      "body": "O Presidente da República, Marcelo Rebelo de Sousa, sublinhou recentemente a perceção de que Portugal se encontra a “correr atrás do prejuízo” no que concerne à regulação da Inteligência Artificial. A declaração surge no contexto de um avanço europeu para enquadrar a IA, onde Portugal, apesar de não estar na linha da frente, enfrenta a necessidade de acelerar a sua adaptação legislativa.\n\nA questão não é apenas a velocidade, é a direção. A regulação da IA não se resume a criar barreiras, e sim a desenhar um <i>framework</i> que permita a inovação responsável e a competitividade. A preocupação de Marcelo, ao focar-se no “prejuízo”, aponta para uma visão reativa, quando a oportunidade reside em posicionar Portugal como um laboratório de boas práticas, explorando os <i>use cases</i> da IA em setores estratégicos.\n\nSim, estamos atrás, e a janela para a liderança legislativa pode ter fechado. A ausência de um <i>legacy</i> regulatório pesado pode ser uma vantagem se for usada para agilizar um processo que permita às empresas portuguesas e estrangeiras testar e desenvolver soluções de IA num ambiente seguro e previsível. A prioridade agora é traduzir a urgência num plano de ação que não se limite a transpor diretivas, mas que crie um ecossistema que atraia investimento e talento, transformando a regulação num facilitador de negócio, e não apenas num custo de <i>compliance</i>.\n\nFonte: IOL",
+      "source_urls": [
+        "https://sol.iol.pt/politica/noticias/marcelo-alerta-que-portugal-esta-a-correr-atras-do-prejuizo-na-regulacao-da-inteligencia-artificial/20260608/6a27143c0cf27cac6fcf57ac"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_cdb06bdbb55452c302_725f1939_ChatGPT-Image-13_06_2026-21_25_48.png",
+      "image_url": "/assets/final/post_8171706bc2950ea042_site_1600x900.jpg",
+      "published_at": "2026-06-14T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/marcelo-alerta-para-o-atraso-de-portugal-na-regulacao-da-ia-59a5079c4b4fd4824b"
+    },
     {
       "id": "post_c6fd2fb74ba232b1b3",
       "title": "Amazon reforça caixa com 17 mil milhões de dólares para despesas de capital",
