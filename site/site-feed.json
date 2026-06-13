@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-13T00:03:20+00:00",
+  "updated_at": "2026-06-13T08:35:48+00:00",
   "posts": [
     {
       "id": "post_c6fd2fb74ba232b1b3",
@@ -36,14 +36,14 @@
       "article_url": "artigos/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas-772bf5148f2d796eae"
     },
     {
-      "id": "post_30e0ca1fbdc5f90305",
-      "title": "Google investe R$ 5 milhões em formação de IA para professores",
-      "body": "O Google está investindo R$ 5 milhões em formação de Inteligência Artificial para professores, visando capacitar educadores no uso da tecnologia.\n\nA leitura PTIA está na distribuição: a Google não precisa apenas de ter bons modelos, precisa de os tornar a camada natural dos produtos que milhões de equipas já usam.\n\nEmbora O relato seja do Brasil, a iniciativa do Google em formação de IA para professores é relevante globalmente, incluindo Portugal, pois demonstra a crescente necessidade de capacitação em IA na educação, impactando a futura força de trabalho e o desenvolvimento de builders em IA.\n\nQuando a IA aparece dentro da pesquisa, do vídeo ou das ferramentas de trabalho, a concorrência deixa de ser só técnica e passa a ser uma disputa pelo hábito.\n\nFonte: https://exame.com/inteligencia-artificial/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores/",
+      "id": "post_945ea3a2f6779b851d",
+      "title": "Suspensão do Claude Fable 5: Segurança trava corrida aos modelos",
+      "body": "O modelo Claude Fable 5 da Anthropic, disponibilizado publicamente esta semana, foi suspenso devido a preocupações graves de cibersegurança e vulnerabilidades de hacking.\n\nEsta decisão revela que a corrida aos modelos de inteligência artificial está a decorrer a uma velocidade que colide com a robustez e a segurança. Mais do que ter o melhor benchmark técnico em abstrato, as empresas e a sociedade necessitam de sistemas confiáveis que possam ser integrados de forma segura nos processos de negócios.\n\nPara decisores e builders em Portugal, o caso reforça que a adoção tecnológica não se deve basear na novidade, mas na maturidade e na resiliência da infraestrutura. A segurança deve ser a prioridade número um ao escolher um modelo.\n\nFonte: https://www.bbc.com/news/articles/c932g3v3e13o",
       "source_urls": [
-        "https://exame.com/inteligencia-artificial/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores/"
+        "https://www.bbc.com/news/articles/c932g3v3e13o"
       ],
-      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_dddb28d0c349f31d8b_7c1e738e_ChatGPT-Image-13_06_2026-00_40_30.png",
-      "image_url": "/assets/final/post_f7f529d14ff98eed06_site_1600x900.jpg",
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_43d259c5c85d52ca87_29127ebd_ChatGPT-Image-13_06_2026-09_32_56.png",
+      "image_url": "/assets/final/post_062f27ef30d00bb072_site_1600x900.jpg",
       "published_at": "2026-06-13T13:00:00+01:00",
       "section": [
         "Mundo",
@@ -51,7 +51,7 @@
         "Regulação",
         "Histórias reais"
       ],
-      "article_url": "artigos/google-investe-r-5-milhoes-em-formacao-de-ia-para-professores-30e0ca1fbdc5f90305"
+      "article_url": "artigos/suspensao-do-claude-fable-5-seguranca-trava-corrida-aos-modelos-945ea3a2f6779b851d"
     },
     {
       "id": "post_c01ec248258599d00b",
