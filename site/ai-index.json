@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-13T20:42:34+00:00",
+  "updated_at": "2026-06-14T23:47:39+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,54 @@
   ],
   "recent_articles": [
     {
+      "title": "Samsung integra IA generativa em todas as funções de negócio",
+      "url": "https://ptia.pt/artigos/samsung-integra-ia-generativa-em-todas-as-funcoes-de-negocio-9eed210097c04d8166",
+      "published_at": "2026-06-14T21:00:00+01:00",
+      "summary": "A Samsung anunciou a 9 de junho um plano de transformação que levará a inteligência artificial a todas as suas funções de negócio, formalizando a adoção de serviços externos de IA generativa como o ChatGPT, Gemini e Cla...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Casa Branca define diretrizes para inovação e segurança na IA avançada",
+      "url": "https://ptia.pt/artigos/casa-branca-define-diretrizes-para-inovacao-e-seguranca-na-ia-avancada-de7b8e23e05e9dc50d",
+      "published_at": "2026-06-14T16:00:00+01:00",
+      "summary": "A Casa Branca publicou novas diretrizes focadas na promoção da inovação e segurança em inteligência artificial avançada. O documento detalha as prioridades da administração norte-americana para o desenvolvimento e a ado...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Apple Intelligence e Siri: A Nova Geração Integrada Chega ao Ecossistema",
+      "url": "https://ptia.pt/artigos/apple-intelligence-e-siri-a-nova-geracao-integrada-chega-ao-ecossistema-31422bbadb9ce06037",
+      "published_at": "2026-06-14T13:00:00+01:00",
+      "summary": "A Apple anunciou uma nova geração de Apple Intelligence e aprimoramentos significativos à Siri, integrando capacidades avançadas de inteligência artificial nos seus ecossistemas. As novidades, detalhadas num comunicado...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Marcelo alerta para o atraso de Portugal na regulação da IA",
+      "url": "https://ptia.pt/artigos/marcelo-alerta-para-o-atraso-de-portugal-na-regulacao-da-ia-59a5079c4b4fd4824b",
+      "published_at": "2026-06-14T09:00:00+01:00",
+      "summary": "O Presidente da República, Marcelo Rebelo de Sousa, sublinhou recentemente a perceção de que Portugal se encontra a “correr atrás do prejuízo” no que concerne à regulação da Inteligência Artificial. A declaração surge n...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
       "title": "Amazon reforça caixa com 17 mil milhões de dólares para despesas de capital",
       "url": "https://ptia.pt/artigos/amazon-reforca-caixa-com-17-mil-milhoes-de-dolares-para-despesas-de-capital-c6fd2fb74ba232b1b3",
       "published_at": "2026-06-13T21:00:00+01:00",
@@ -492,52 +540,6 @@
         "Regulação",
         "Histórias reais",
         "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Quando a IA se constrói a si mesma",
-      "url": "https://ptia.pt/artigos/quando-a-ia-se-constroi-a-si-mesma-f4a3a06b821829927f",
-      "published_at": "2026-06-08T16:00:00+01:00",
-      "summary": "A Anthropic discute a aceleração do desenvolvimento de sistemas de IA impulsionada pela própria IA, com engenheiros da empresa a produzir 8 vezes mais código por trimestre do que em anos anteriores. A corrida dos modelo...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "O Open-Source e a Arquitetura da IA em Portugal",
-      "url": "https://ptia.pt/artigos/o-open-source-e-a-arquitetura-da-ia-em-portugal-158eb39c5b06588bd0",
-      "published_at": "2026-06-08T13:00:00+01:00",
-      "summary": "O open-source está a ganhar um protagonismo inegável no universo da inteligência artificial. Longe de ser um conceito novo, a sua relevância crescente na IA promete reconfigurar não só o desenvolvimento de soluções, com...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Trump Pondera Entrada do Estado em Empresas de Inteligência Artificial",
-      "url": "https://ptia.pt/artigos/trump-pondera-entrada-do-estado-em-empresas-de-inteligencia-artificial-41d383cb55bb5faa9d",
-      "published_at": "2026-06-08T09:00:00+01:00",
-      "summary": "Donald Trump afirmou que pondera a participação do Estado em empresas de inteligência artificial. O relato mostra a IA a sair do laboratório e a entrar na política industrial: o poder já não está só em lançar modelos, e...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Lisboa no Top 10 Europeu de Ecossistemas de Startups com Crescimento Acelerado",
-      "url": "https://ptia.pt/artigos/lisboa-no-top-10-europeu-de-ecossistemas-de-startups-com-crescimento-acelerado-09db609314e0344146",
-      "published_at": "2026-06-07T21:00:00+01:00",
-      "summary": "Lisboa consolidou a sua posição entre os dez ecossistemas de startups europeus com maior crescimento. Este avanço é impulsionado por uma nova geração de empresas e unicórnios, com particular destaque para as que operam...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
       ]
     }
   ],
