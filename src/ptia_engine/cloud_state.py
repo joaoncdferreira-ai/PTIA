@@ -22,6 +22,8 @@ MANAGED_STATE_FILES = frozenset(
         "content_drafts.jsonl",
         "content_performance.jsonl",
         "editorial_topics.jsonl",
+        "editorial_fact_packs.jsonl",
+        "editorial_automation_runs.jsonl",
         "final_posts.jsonl",
         "linkedin_comments.jsonl",
         "newsletter_issues.jsonl",

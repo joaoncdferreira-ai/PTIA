@@ -42,6 +42,7 @@ from ptia_engine.editorial import (
     update_draft_status,
     update_item_status,
 )
+from ptia_engine.editorial_automation import EditorialAutomationService
 from ptia_engine.editorial_board import (
     add_editorial_topic,
     add_final_post,
@@ -64,6 +65,7 @@ from ptia_engine.learning import (
     load_learning_weights,
     write_learning_weights,
 )
+from ptia_engine.linkedin_performance import import_linkedin_export
 from ptia_engine.llm_providers import default_model_for_provider, normalize_provider
 from ptia_engine.meta_insights import MetaGraphClient, MetaInsightsError
 from ptia_engine.models import RawArticle, Source
@@ -104,6 +106,8 @@ DEFAULT_DATA_FILES = [
     "radar_signals.jsonl",
     "editorial_topics.jsonl",
     "final_posts.jsonl",
+    "editorial_fact_packs.jsonl",
+    "editorial_automation_runs.jsonl",
 ]
 
 SIGNAL_KEYWORDS = {
@@ -902,6 +906,7 @@ def cmd_learn(args: argparse.Namespace) -> int:
         drafts_path=Path(args.drafts),
         performance_path=Path(args.performance),
         min_samples=args.min_samples,
+        final_posts_path=Path(args.final_posts),
     )
     write_learning_weights(Path(args.out), weights)
     print(
@@ -978,6 +983,28 @@ def cmd_ai_visibility_report(args: argparse.Namespace) -> int:
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out).write_text(output, encoding="utf-8")
+    return 0
+
+
+def cmd_linkedin_insights(args: argparse.Namespace) -> int:
+    result = import_linkedin_export(
+        export_path=Path(args.export),
+        final_posts_path=Path(args.final_posts),
+        performance_path=Path(args.performance),
+        match_threshold=args.match_threshold,
+    )
+    print(
+        "summary "
+        + json.dumps(
+            {
+                "imported": result.imported,
+                "matched": result.matched,
+                "unmatched": result.unmatched,
+                "performance": args.performance,
+            },
+            ensure_ascii=False,
+        )
+    )
     return 0
 
 
@@ -1071,6 +1098,17 @@ def cmd_gemini_scout(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def cmd_editorial_automation(args: argparse.Namespace) -> int:
+    load_local_env()
+    data_dir = Path(args.data_dir)
+    run = EditorialAutomationService(
+        repo_root=data_dir.parent,
+        data_dir=data_dir,
+    ).run(limit=args.limit, scout=not args.no_scout)
+    print("summary " + json.dumps(run.to_record(), ensure_ascii=False))
+    return 0 if run.status in {"completed", "partial"} else 1
 
 
 def cmd_daily_run(args: argparse.Namespace) -> int:
@@ -1303,6 +1341,7 @@ def build_parser() -> argparse.ArgumentParser:
     learn.add_argument("--processed", default="data/processed_items.jsonl")
     learn.add_argument("--drafts", default="data/content_drafts.jsonl")
     learn.add_argument("--performance", default="data/content_performance.jsonl")
+    learn.add_argument("--final-posts", default="data/final_posts.jsonl")
     learn.add_argument("--out", default="config/learning_weights.json")
     learn.add_argument("--min-samples", type=int, default=3)
     learn.set_defaults(func=cmd_learn)
@@ -1315,6 +1354,16 @@ def build_parser() -> argparse.ArgumentParser:
     instagram_insights.add_argument("--performance", default="data/content_performance.jsonl")
     instagram_insights.add_argument("--limit", type=int, default=25)
     instagram_insights.set_defaults(func=cmd_instagram_insights)
+
+    linkedin_insights = subparsers.add_parser(
+        "linkedin-insights",
+        help="Import a LinkedIn page analytics .xls export into content_performance.jsonl.",
+    )
+    linkedin_insights.add_argument("--export", required=True)
+    linkedin_insights.add_argument("--final-posts", default="data/final_posts.jsonl")
+    linkedin_insights.add_argument("--performance", default="data/content_performance.jsonl")
+    linkedin_insights.add_argument("--match-threshold", type=float, default=76.0)
+    linkedin_insights.set_defaults(func=cmd_linkedin_insights)
 
     growth_report = subparsers.add_parser(
         "growth-report",
@@ -1361,6 +1410,19 @@ def build_parser() -> argparse.ArgumentParser:
     gemini_scout.add_argument("--model", default=os.getenv("GEMINI_SEARCH_MODEL", "gemini-2.5-flash"))
     gemini_scout.add_argument("--engagement-score", type=int, default=55)
     gemini_scout.set_defaults(func=cmd_gemini_scout)
+
+    editorial_auto = subparsers.add_parser(
+        "editorial-auto",
+        help="Prepare complete editorial packages in A Rever without scheduling anything.",
+    )
+    editorial_auto.add_argument("--data-dir", default="data")
+    editorial_auto.add_argument("--limit", type=int, default=4)
+    editorial_auto.add_argument(
+        "--no-scout",
+        action="store_true",
+        help="Use only signals already verified in the local radar.",
+    )
+    editorial_auto.set_defaults(func=cmd_editorial_automation)
 
     add_signal = subparsers.add_parser("add-signal", help="Add a news/social signal to the new radar.")
     add_signal.add_argument("--out", default="data/radar_signals.jsonl")

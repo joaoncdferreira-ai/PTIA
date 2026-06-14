@@ -64,6 +64,7 @@ from ptia_engine.storage import (
     load_trend_signals,
     write_jsonl,
 )
+from ptia_engine.editorial_automation import load_automation_runs
 from ptia_engine.services.channels import (
     buffer_channel_id_for as _service_buffer_channel_id_for,
     channel_enabled as _service_channel_enabled,
@@ -399,6 +400,10 @@ class DashboardState:
         return self.data_dir / "knowledge_review.jsonl"
 
     @property
+    def editorial_automation_runs_path(self) -> Path:
+        return self.data_dir / "editorial_automation_runs.jsonl"
+
+    @property
     def sources_config_path(self) -> Path:
         return self.data_dir.parent / "config" / "sources.sample.json"
 
@@ -447,6 +452,7 @@ class DashboardState:
             reverse=True,
         )
         knowledge = knowledge_review_snapshot(self.data_dir.parent)
+        automation_runs = load_automation_runs(self.editorial_automation_runs_path)
         trends = sorted(
             load_trend_signals(self.trends_path),
             key=lambda signal: signal.engagement_score,
@@ -522,6 +528,7 @@ class DashboardState:
                     1 for issue in newsletter_issues if issue.status in {"draft", "approved"}
                 ),
                 "knowledge_pending": knowledge["counts"].get("pending", 0),
+                "editorial_automation_runs": len(automation_runs),
                 "raw_articles": len(articles),
                 "new_articles": article_status.get("new", 0),
                 "duplicates": article_status.get("duplicate", 0),
@@ -583,6 +590,10 @@ class DashboardState:
             "learnings": _build_learnings(items, drafts, performance),
             "growth": _boost_candidates(final_posts, performance),
             "knowledge": knowledge,
+            "editorial_automation": {
+                "last_run": automation_runs[-1] if automation_runs else None,
+                "runs": automation_runs[-10:][::-1],
+            },
         }
 
 
@@ -4480,8 +4491,19 @@ HTML = r"""<!doctype html>
     }
     function renderVerified() {
       const verified = [...(state.verified_signals || []), ...(state.selected_signals || [])];
+      const lastRun = state.editorial_automation?.last_run;
+      const automationStatus = lastRun
+        ? `${lastRun.status}: ${lastRun.created_topic_ids?.length || 0} pacote(s) preparado(s)`
+        : 'Ainda sem execução automática.';
       document.getElementById('verified_tab').innerHTML = `
-        <div class="panel"><h2>Verified Selection</h2><p class="notice">Só entram fontes credíveis. Selecciona 3-4 por dia para curadoria.</p></div>
+        <div class="panel">
+          <h2>Verified Selection</h2>
+          <p class="notice">Só entram fontes credíveis. A automação escolhe um portefólio equilibrado, cria textos e imagens e termina em A Rever.</p>
+          <div class="actions">
+            <button class="primary" onclick="runEditorialAutomation()">Preparar curadoria automaticamente</button>
+          </div>
+          <p class="hint">${esc(automationStatus)}</p>
+        </div>
         ${renderSignalList(verified, 'Ainda sem fontes verificadas.', 'verified')}
       `;
     }
@@ -4535,6 +4557,23 @@ HTML = r"""<!doctype html>
     async function buildFinalPack(signalId) {
       await api('/api/build-final-pack', {signal_id: signalId});
       showToast('Pacote final criado');
+      showTab('final_draft_pack');
+    }
+    async function runEditorialAutomation() {
+      showToast('A pesquisar, validar e preparar a curadoria...');
+      const result = await requestJson('/api/editorial-automation', {limit: 4, scout: true});
+      await loadState();
+      const created = result.run?.created_topic_ids?.length || 0;
+      const errors = result.run?.errors?.length || 0;
+      showToast(`${created} pacote(s) em A Rever${errors ? `; ${errors} erro(s)` : ''}`);
+      showTab('final_draft_pack');
+    }
+    async function replaceFinalPackage(topicId) {
+      showToast('A procurar e preparar uma notícia alternativa...');
+      const result = await requestJson('/api/replace-editorial-package', {topic_id: topicId});
+      await loadState();
+      const created = result.run?.created_topic_ids?.length || 0;
+      showToast(created ? 'Alternativa preparada em A Rever' : 'Não foi encontrada alternativa válida');
       showTab('final_draft_pack');
     }
     async function approveFinalPackage(postId) {
@@ -4994,7 +5033,7 @@ HTML = r"""<!doctype html>
               <button class="primary" onclick="rewriteFinalPost('${esc(post.post_id)}')">Reescrever este canal</button>
               <button class="primary" onclick="rewriteFinalPackage('${esc(post.post_id)}')">Reescrever pacote</button>
               <button class="good" onclick="approveFinalPackage('${esc(post.post_id)}')">OK pacote → Final OK</button>
-              <button class="bad" onclick="api('/api/final-post-status',{post_id:'${esc(post.post_id)}',status:'rejected'})">Rejeitar</button>
+              <button class="bad" onclick="replaceFinalPackage('${esc(post.topic_id)}')">Rejeitar e substituir notícia</button>
             </div>
           </div>
           <aside>

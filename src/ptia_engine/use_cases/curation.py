@@ -13,6 +13,7 @@ from ptia_engine.editorial_board import (
     update_signal_status,
     update_topic_status,
 )
+from ptia_engine.editorial_quality import build_fact_pack, validate_fact_pack
 from ptia_engine.models import EditorialTopic, FinalPost, RadarSignal
 from ptia_engine.repositories import EditorialTopicRepository, FinalPostRepository, RadarSignalRepository
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
@@ -34,45 +35,6 @@ def _first_sentence(text: str, fallback: str = "") -> str:
         return fallback
     match = re.search(r"(.{24,220}?[.!?])(?:\s|$)", clean)
     return (match.group(1) if match else clean[:220]).strip()
-
-def _specific_editorial_seed(title: str, summary: str, why_it_matters: str) -> tuple[str, str]:
-    text = f"{title} {summary} {why_it_matters}".casefold()
-    if any(token in text for token in ("google", "gemini", "i/o", "alphabet")):
-        return (
-            "A leitura PTIA está na distribuição: a Google não precisa apenas de ter bons modelos, precisa de os tornar a camada natural dos produtos que milhões de equipas já usam.",
-            "Quando a IA aparece dentro da pesquisa, do vídeo ou das ferramentas de trabalho, a concorrência deixa de ser só técnica e passa a ser uma disputa pelo hábito.",
-        )
-    if any(token in text for token in ("meta", "layoff", "demiss", "desped")):
-        return (
-            "A tensão está no sinal laboral: a mesma empresa que vende produtividade algorítmica está a redesenhar internamente o tamanho e o papel das equipas.",
-            "Isto torna a IA menos uma narrativa de eficiência abstracta e mais uma escolha de gestão com consequências visíveis nas estruturas que a adoptam.",
-        )
-    if any(token in text for token in ("trump", "casa branca", "ordem executiva", "white house")):
-        return (
-            "A notícia mostra a IA a sair do laboratório e a entrar na política industrial: o poder já não está só em lançar modelos, está em definir quem pode treiná-los, comprá-los e exportá-los.",
-            "Para empresas europeias, este tipo de decisão transforma tecnologia em geopolítica operacional: acesso, fornecedores e compliance passam a fazer parte da mesma conversa.",
-        )
-    if any(token in text for token in ("openai", "anthropic", "claude", "gpt", "modelo")):
-        return (
-            "A corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.",
-            "O vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.",
-        )
-    if any(token in text for token in ("regula", "bruxelas", "união europeia", "ai act", "comissão europeia")):
-        return (
-            "A regulação deixou de ser cenário de fundo. Está a tornar-se parte do próprio produto, porque determina que provas, limites e responsabilidades acompanham cada sistema.",
-            "A vantagem passa a depender menos da promessa comercial e mais da capacidade de provar funcionamento, risco e governação sem travar a adopção.",
-        )
-    if any(token in text for token in ("nvidia", "chip", "semicondutor", "data center", "energia", "compute")):
-        return (
-            "A IA continua a ser vendida como software, mas a notícia lembra a parte física da disputa: chips, energia, centros de dados e capacidade de entrega.",
-            "Quem controla essa infra-estrutura condiciona o ritmo de inovação dos outros, mesmo quando não aparece na interface que o utilizador vê.",
-        )
-
-    factual = _first_sentence(summary, title.rstrip("."))
-    relevance = _first_sentence(why_it_matters, "")
-    thesis = f"O dado que interessa é este: {factual}"
-    consequence = relevance or f"Este movimento revela uma escolha concreta de mercado, produto ou poder em {title.rstrip('.')}"
-    return thesis, consequence.rstrip(".") + "."
 
 def _ensure_source_line(body: str, source_line: str, source_url: str) -> str:
     if not source_url or source_url in body:
@@ -256,14 +218,15 @@ class BuildFinalPackUseCase:
             raise ValueError("Só sinais verificados podem gerar pacote final.")
 
         source_url = signal.url
+        fact_pack = build_fact_pack(signal)
+        fact_report = validate_fact_pack(fact_pack)
+        if not fact_report.passed:
+            raise ValueError("Fact Pack bloqueado: " + "; ".join(fact_report.issues))
         topic = add_editorial_topic(
             self.topic_repo.file_path,
             title=signal.title[:120],
             thesis=signal.summary or signal.why_it_matters or signal.title,
-            portugal_angle=(
-                "Validar o impacto para empresas, profissionais e builders em Portugal "
-                "antes de publicar."
-            ),
+            portugal_angle=fact_pack.portugal_angle,
             audience="PTIA",
             source_signal_ids=[signal.signal_id],
             urgency_score=max(6, min(10, signal.engagement_score // 10 or 6)),
@@ -275,11 +238,21 @@ class BuildFinalPackUseCase:
             "Criado a partir de Verified Selection.",
         )
 
-        base_summary = signal.summary or "A fonte publicou uma nova informação sobre inteligência artificial."
-        why_it_matters = signal.why_it_matters or (_first_sentence(base_summary, signal.title))
-        ptia_lens, next_action = _specific_editorial_seed(signal.title, base_summary, why_it_matters)
-        hashtags = "#InteligenciaArtificial #IA #Portugal #PTIA"
-        body_context = f"{base_summary}\n\n{why_it_matters}\n\n{ptia_lens}"
+        base_summary = " ".join(fact_pack.facts[1:] or fact_pack.facts[:1]).strip()
+        why_it_matters = fact_pack.consequence.strip()
+        ptia_lens = fact_pack.thesis.strip()
+        paragraphs = list(
+            dict.fromkeys(
+                value
+                for value in (base_summary, ptia_lens, why_it_matters)
+                if value
+            )
+        )
+        body_without_source = "\n\n".join(paragraphs)
+        hashtags = "#InteligenciaArtificial #IA #PTIA"
+        if fact_pack.portugal_angle:
+            hashtags += " #Portugal"
+        body_context = body_without_source
         
         linkedin_site_image_prompt = _high_quality_image_prompt(signal.title, body_context)
         channel_config = load_channel_config(self.buffer_channels_path)
@@ -300,7 +273,7 @@ class BuildFinalPackUseCase:
                 topic_id=topic.topic_id,
                 channel="linkedin",
                 title=signal.title,
-                body=f"{base_summary}\n\n{ptia_lens}\n\n{why_it_matters} {next_action}\n\n{source_line}",
+                body=f"{body_without_source}\n\n{source_line}",
                 hashtags=hashtags,
                 image_prompt=linkedin_site_image_prompt,
                 source_urls=[source_url],
@@ -310,7 +283,7 @@ class BuildFinalPackUseCase:
                 topic_id=topic.topic_id,
                 channel="instagram",
                 title=signal.title,
-                body=f"{base_summary}\n\n{ptia_lens}\n\n{why_it_matters}\n\n{next_action}\n\n{source_line}",
+                body=f"{body_without_source}\n\n{source_line}",
                 hashtags=hashtags,
                 image_prompt=instagram_x_image_prompt,
                 source_urls=[source_url],
@@ -320,7 +293,7 @@ class BuildFinalPackUseCase:
                 topic_id=topic.topic_id,
                 channel="site",
                 title=signal.title,
-                body=f"{base_summary}\n\n{ptia_lens}\n\n{why_it_matters}\n\n{next_action}\n\n{source_line}",
+                body=f"{body_without_source}\n\n{source_line}",
                 hashtags="",
                 image_prompt=linkedin_site_image_prompt,
                 source_urls=[source_url],

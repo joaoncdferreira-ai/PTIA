@@ -1,12 +1,60 @@
 {
-  "version": 1,
-  "min_samples": 3,
-  "baseline_score": 0.0,
-  "sample_count": 0,
+  "version": 2,
+  "min_samples": 5,
+  "baseline_score": 17.9,
+  "sample_count": 89,
   "source_boosts": {},
   "section_boosts": {},
-  "channel_notes": {},
+  "channel_notes": {
+    "linkedin": {
+      "avg_score": 17.9,
+      "sample_count": 89
+    }
+  },
+  "editorial_patterns": {
+    "question": {
+      "present": {
+        "avg_score": 12.75,
+        "sample_count": 36,
+        "adjustment": -3
+      },
+      "absent": {
+        "avg_score": 21.4,
+        "sample_count": 53,
+        "adjustment": 2
+      }
+    },
+    "local_relevance": {
+      "present": {
+        "avg_score": 17.73,
+        "sample_count": 78,
+        "adjustment": 0
+      },
+      "absent": {
+        "avg_score": 19.09,
+        "sample_count": 11,
+        "adjustment": 1
+      }
+    },
+    "length": {
+      "short": {
+        "avg_score": 0,
+        "sample_count": 1,
+        "adjustment": 0
+      },
+      "medium": {
+        "avg_score": 24.29,
+        "sample_count": 14,
+        "adjustment": 4
+      },
+      "long": {
+        "avg_score": 16.93,
+        "sample_count": 74,
+        "adjustment": -1
+      }
+    }
+  },
   "recommendations": [
-    "Amostra insuficiente para alterar a classificacao. Continuar a recolher metricas."
+    "Aplicar sinais editoriais conservadores: question:present (-3), question:absent (+2), local_relevance:absent (+1), length:medium (+4), length:long (-1)."
   ]
 }

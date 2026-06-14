@@ -5,8 +5,8 @@ from pathlib import Path
 
 from ptia_engine.classifier import classify_heuristic
 from ptia_engine.learning import generate_learning_weights
-from ptia_engine.models import ContentDraft, ContentPerformance, ProcessedItem, RawArticle
-from ptia_engine.storage import append_jsonl
+from ptia_engine.models import ContentDraft, ContentPerformance, FinalPost, ProcessedItem, RawArticle
+from ptia_engine.storage import append_jsonl, write_jsonl
 
 
 class LearningTests(unittest.TestCase):
@@ -104,6 +104,55 @@ class LearningTests(unittest.TestCase):
 
         self.assertGreater(boosted.relevance_score, neutral.relevance_score)
         self.assertLessEqual(boosted.relevance_score, 10)
+
+    def test_final_post_metrics_create_bounded_editorial_patterns(self):
+        posts = []
+        performance = []
+        for index in range(6):
+            post = FinalPost(
+                post_id=f"final_{index}",
+                topic_id=f"topic_{index}",
+                channel="linkedin",
+                title=f"Notícia de inteligência artificial {index}",
+                body=(
+                    "O que muda para Portugal?"
+                    if index < 3
+                    else "A mudança tem impacto concreto nas equipas portuguesas."
+                ),
+                hashtags="#IA #PTIA",
+                image_prompt="Editorial image",
+                status="published",
+            )
+            posts.append(post)
+            performance.append(
+                ContentPerformance(
+                    performance_id=f"final_perf_{index}",
+                    draft_id=post.post_id,
+                    post_id=post.post_id,
+                    channel="linkedin",
+                    published_at="2026-06-12T00:00:00+00:00",
+                    topic=post.title,
+                    section="LinkedIn",
+                    likes=1 if index < 3 else 20,
+                )
+            )
+        write_jsonl(self.root / "final_posts.jsonl", posts)
+        write_jsonl(self.root / "content_performance.jsonl", performance)
+
+        weights = generate_learning_weights(
+            self.root / "processed_items.jsonl",
+            self.root / "content_drafts.jsonl",
+            self.root / "content_performance.jsonl",
+            min_samples=3,
+            final_posts_path=self.root / "final_posts.jsonl",
+        )
+
+        self.assertEqual(weights["sample_count"], 6)
+        self.assertIn("question", weights["editorial_patterns"])
+        for group in weights["editorial_patterns"].values():
+            for data in group.values():
+                self.assertGreaterEqual(data["adjustment"], -6)
+                self.assertLessEqual(data["adjustment"], 6)
 
 
 if __name__ == "__main__":

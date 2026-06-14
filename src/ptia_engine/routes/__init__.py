@@ -51,6 +51,10 @@ from ptia_engine.routes.knowledge import (
     handle_knowledge_run,
     handle_knowledge_sync,
 )
+from ptia_engine.routes.automation import (
+    handle_editorial_automation,
+    handle_replace_editorial_package,
+)
 
 
 POST_ROUTES = {
@@ -102,6 +106,10 @@ POST_ROUTES = {
     "/api/knowledge-review": handle_knowledge_review,
     "/api/knowledge-run": handle_knowledge_run,
     "/api/knowledge-sync": handle_knowledge_sync,
+
+    # Editorial automation. These routes stop at needs_final_review.
+    "/api/editorial-automation": handle_editorial_automation,
+    "/api/replace-editorial-package": handle_replace_editorial_package,
 }
 
 def dashboard_do_post(handler):

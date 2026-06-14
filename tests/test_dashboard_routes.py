@@ -53,6 +53,8 @@ class DashboardRoutesTests(unittest.TestCase):
             "/api/build-final-pack": "ptia_engine.routes.posts",
             "/api/reverify-signal": "ptia_engine.routes.signals",
             "/api/schedule-package": "ptia_engine.routes.scheduling",
+            "/api/editorial-automation": "ptia_engine.routes.automation",
+            "/api/replace-editorial-package": "ptia_engine.routes.automation",
         }
 
         for path, module_name in expected.items():
