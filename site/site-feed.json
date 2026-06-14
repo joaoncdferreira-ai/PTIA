@@ -1,7 +1,57 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-13T20:42:34+00:00",
+  "updated_at": "2026-06-14T23:47:39+00:00",
   "posts": [
+    {
+      "id": "post_49bbc847040cdf6c1a",
+      "title": "DeepMind Alerta para Riscos na Interação Massiva de Agentes de IA",
+      "body": "A Google DeepMind está a financiar investigação sobre os potenciais perigos que surgem quando milhões de diferentes agentes de inteligência artificial interagem entre si online. Segundo Rohin Shah, diretor de segurança e alinhamento de AGI na empresa, o receio centra-se na chegada ao mercado de massas de agentes capazes de executar tarefas sem supervisão humana e de seguir instruções dadas por outros.\n\nEsta preocupação da Google DeepMind não é apenas técnica; aponta para um desafio de arquitetura de mercado. Quando os modelos de IA se tornam a camada natural dos produtos que milhões de equipas já utilizam, a competição deixa de ser só sobre a qualidade do modelo. A disputa passa a ser pelo hábito. A integração da IA dentro da pesquisa, do vídeo ou das ferramentas de trabalho quotidiano não é apenas uma melhoria de funcionalidade; é uma redefinição do ponto de entrada para a inovação.\n\nO verdadeiro valor para os decisores e <i>builders</i> não reside apenas em ter acesso a modelos mais potentes, mas sim em como esses modelos se integram de forma invisível nas suas rotinas. A empresa que conseguir tornar a IA inevitável, sem exigir uma nova rotina ou um novo ponto de fricção para o utilizador, será a que dominará a adoção. O risco levantado pela DeepMind sublinha que esta ubiquidade – a interação de milhões de agentes – não é uma questão futurista, mas uma realidade iminente que exige atenção agora, antes que a escala do problema ultrapasse a capacidade de controlo.\n\nQuem domina o canal de distribuição e o contexto de uso diário, detém a alavanca para a adoção massiva. A segurança e o alinhamento de agentes de IA em escala não são apenas um problema da Google; são um problema de mercado que define quem vai ditar as regras da próxima geração de produtividade digital.\n\nFonte: https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact",
+      "source_urls": [
+        "https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_aed51851b55bbfd076_f326866f_ChatGPT-Image-15_06_2026-00_12_04.png",
+      "image_url": "/assets/final/post_0fad2a9f0f76bde56d_site_1600x900.jpg",
+      "published_at": "2026-06-16T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/deepmind-alerta-para-riscos-na-interacao-massiva-de-agentes-de-ia-49bbc847040cdf6c1a"
+    },
+    {
+      "id": "post_165409e57542df855d",
+      "title": "Seguro alerta para o impacto da IA na Justiça",
+      "body": "António José Seguro alertou para os desafios e implicações do uso da Inteligência Artificial no setor da justiça durante uma cerimónia comemorativa dos 100 anos da Ordem dos Advogados.\n\nA regulação deixou de ser cenário de fundo. Está a tornar-se parte do próprio produto, porque determina que provas, limites e responsabilidades acompanham cada sistema.\n\nEste alerta sublinha a importância de debater a aplicação ética e regulada da IA em áreas sensíveis como a justiça em Portugal, garantindo a proteção dos direitos e a confiança dos cidadãos.\n\nA vantagem passa a depender menos da promessa comercial e mais da capacidade de provar funcionamento, risco e governação sem travar a adopção.\n\nFonte: https://observador.pt/2026/06/12/seguro-deixa-alerta-sobre-uso-da-ia-na-na-justica/",
+      "source_urls": [
+        "https://observador.pt/2026/06/12/seguro-deixa-alerta-sobre-uso-da-ia-na-na-justica/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_919ad1df3a1ea29bb3_e5937e59_ChatGPT-Image-15_06_2026-00_16_08.png",
+      "image_url": "/assets/final/post_c03d7a1af34991026b_site_1600x900.jpg",
+      "published_at": "2026-06-16T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ],
+      "article_url": "artigos/seguro-alerta-para-o-impacto-da-ia-na-justica-165409e57542df855d"
+    },
+    {
+      "id": "post_81d15624741f208613",
+      "title": "Visa e OpenAI unem forças para criar uma nova era de compras feitas por IA",
+      "body": "A Visa e a OpenAI anunciaram uma parceria para desenvolver uma nova era de experiências de compra impulsionadas por inteligência artificial.\n\nA corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: cada melhoria técnica é também uma tentativa de prender o utilizador a uma forma específica de trabalhar.\n\nEsta colaboração entre gigantes da tecnologia e finanças sinaliza a crescente integração da IA em setores tradicionais, abrindo caminho para inovações em pagamentos e comércio eletrónico que podem impactar o mercado português.\n\nO vencedor pode não ser o modelo mais brilhante em abstracto, mas o que conseguir transformar capacidade em rotina antes de o mercado comparar alternativas.\n\nFonte: https://exame.com/inteligencia-artificial/",
+      "source_urls": [
+        "https://exame.com/inteligencia-artificial/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9d33bdc8f9419ca859_284f5f43_ChatGPT-Image-15_06_2026-00_04_10.png",
+      "image_url": "/assets/final/post_f21f49ab0536e96c6c_site_1600x900.jpg",
+      "published_at": "2026-06-16T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/visa-e-openai-unem-forcas-para-criar-uma-nova-era-de-compras-feitas-por-ia-81d15624741f208613"
+    },
     {
       "id": "post_9eed210097c04d8166",
       "title": "Samsung integra IA generativa em todas as funções de negócio",
@@ -876,23 +926,6 @@
         "Histórias reais"
       ],
       "article_url": "artigos/foxconn-e-bull-unem-forcas-para-infraestruturas-de-ia-na-europa-660394bd6831b094d6"
-    },
-    {
-      "id": "post_aa69ede93efc08a1b0",
-      "title": "OpenAI lança programa de biodefesa Rosalind",
-      "body": "A OpenAI anunciou o lançamento do programa de biodefesa Rosalind Biodefense. Este programa demonstra a aplicação da inteligência artificial em áreas críticas como a biodefesa, o que pode abrir caminho para novas investigações e desenvolvimento. O relato, aparentemente técnica, surge num momento em que a corrida pelos modelos de IA se joga também na capacidade de fixar o utilizador a uma forma específica de trabalhar.\n\nCada melhoria técnica é, acima de tudo, uma tentativa de dominar o ecossistema. Não se trata apenas de construir o modelo mais brilhante em abstrato, mas de o transformar em rotina antes que o mercado tenha tempo de comparar alternativas. A biodefesa, com as suas implicações na segurança e saúde pública, oferece um campo fértil para esta estratégia.\n\nEm Portugal, a potencial abertura de novas áreas de investigação e desenvolvimento nesta vertente da IA poderá ser importante. O desafio será não apenas acompanhar a inovação, mas integrá-la de forma a criar valor e competitividade, sem cair na dependência de soluções que prendem o utilizador a arquiteturas fechadas. A questão não é se a IA é útil para a biodefesa, mas sim quem controla essa utilidade e a que custo.\n\nFonte: https://exame.com/inteligencia-artificial/",
-      "source_urls": [
-        "https://exame.com/inteligencia-artificial/"
-      ],
-      "image_path": "data\\final_assets\\post_37ad5447ff82979341_68518341_ChatGPT-Image-2_06_2026-08_29_33.png",
-      "image_url": "/assets/final/post_48b38a8114c6598469_site_1600x900.jpg",
-      "published_at": "2026-06-02T09:00:00+01:00",
-      "section": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ],
-      "article_url": "artigos/openai-lanca-programa-de-biodefesa-rosalind-aa69ede93efc08a1b0"
     },
     {
       "id": "post_28520837b456eedd2b",
