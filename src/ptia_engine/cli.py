@@ -1416,7 +1416,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Prepare complete editorial packages in A Rever without scheduling anything.",
     )
     editorial_auto.add_argument("--data-dir", default="data")
-    editorial_auto.add_argument("--limit", type=int, default=4)
+    editorial_auto.add_argument("--limit", type=int, default=6)
     editorial_auto.add_argument(
         "--no-scout",
         action="store_true",

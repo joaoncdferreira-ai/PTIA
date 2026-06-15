@@ -104,6 +104,12 @@ class EditorialAutomationService:
             verification = verify_search_candidate(candidate)
             if verification.status != "verified":
                 continue
+            trend_score = candidate.trend_score or int(candidate.confidence * 100)
+            trend_note = (
+                f" Evidência de momentum: {candidate.trend_evidence}"
+                if candidate.trend_evidence
+                else ""
+            )
             add_radar_signal(
                 self.signal_repo.file_path,
                 source_type="gemini_scout",
@@ -111,11 +117,14 @@ class EditorialAutomationService:
                 title=verification.title or candidate.title,
                 url=verification.verified_url or candidate.url,
                 published_at=verification.published_at,
-                engagement_score=max(55, int(candidate.confidence * 100)),
+                engagement_score=max(55, trend_score),
                 summary=verification.summary or candidate.summary,
                 topic_hint=candidate.title,
                 why_it_matters=candidate.why_it_matters,
-                notes="Descoberto pela automação editorial; fonte e data verificadas.",
+                notes=(
+                    "Descoberto pela pesquisa grounded de notícias trending; "
+                    f"fonte e data verificadas.{trend_note}"
+                ),
                 status="verified",
                 require_recent=True,
             )

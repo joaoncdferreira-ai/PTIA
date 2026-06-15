@@ -507,7 +507,18 @@ def verify_search_candidate(candidate: SearchCandidate) -> VerificationResult:
         )
     result = verify_url(candidate.url)
     if result.status == "verified":
-        return result
+        title = result.title
+        if re.match(r"^https?://", title or "", flags=re.IGNORECASE):
+            title = candidate.title or title
+        return VerificationResult(
+            status=result.status,
+            source_name=result.source_name,
+            title=title,
+            published_at=result.published_at,
+            summary=result.summary or candidate.summary,
+            notes=result.notes,
+            verified_url=result.verified_url,
+        )
     if credible_source_name(candidate.url) and candidate.published_at:
         try:
             ensure_recent_signal(candidate.published_at)

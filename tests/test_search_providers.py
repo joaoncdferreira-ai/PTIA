@@ -26,6 +26,54 @@ class SearchProvidersTests(unittest.TestCase):
         self.assertEqual(candidates[0].source_name, "OpenAI")
         self.assertEqual(candidates[0].url, "https://openai.com/news/example")
 
+    def test_trending_scout_requests_momentum_evidence_and_article_urls(self):
+        provider = GeminiGroundedSearchProvider(api_key="test")
+        calls = {}
+
+        def fake_candidates(prompt, *, query, limit):
+            calls["prompt"] = prompt
+            calls["query"] = query
+            calls["limit"] = limit
+            return []
+
+        provider._generate_candidates = fake_candidates
+        provider.scout_today_ai_news(limit=12)
+
+        self.assertIn("trend_score", calls["prompt"])
+        self.assertIn("duas", calls["prompt"])
+        self.assertIn("Nunca devolvas", calls["prompt"])
+        self.assertEqual(calls["query"], "gemini-trending-ai-news")
+        self.assertEqual(calls["limit"], 12)
+
+    def test_candidate_extracts_trend_fields(self):
+        response = {
+            "candidates": [
+                {
+                    "content": {
+                        "parts": [
+                            {
+                                "text": (
+                                    '{"candidates":[{"title":"AI news",'
+                                    '"source_url":"https://openai.com/news/example",'
+                                    '"source_name":"OpenAI","published_at":"2026-06-15",'
+                                    '"summary":"Summary","why_it_matters":"Useful",'
+                                    '"trend_score":87,"trend_evidence":"Multiple sources",'
+                                    '"confidence":0.9}]}'
+                                )
+                            }
+                        ]
+                    },
+                    "groundingMetadata": {"groundingChunks": []},
+                }
+            ]
+        }
+        provider = GeminiGroundedSearchProvider(api_key="test")
+
+        candidate = provider._candidates_from_response(response, query="test")[0]
+
+        self.assertEqual(candidate.trend_score, 87)
+        self.assertEqual(candidate.trend_evidence, "Multiple sources")
+
     def test_uses_grounding_chunks_as_fallback_candidates(self):
         response = {
             "candidates": [

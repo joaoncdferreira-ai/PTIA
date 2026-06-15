@@ -56,6 +56,30 @@ class SourceVerifierTests(unittest.TestCase):
         self.assertEqual(result.status, "rejected")
         self.assertIn("fonte original", result.notes)
 
+    def test_verified_page_uses_grounded_title_when_metadata_returns_url(self):
+        candidate = SearchCandidate(
+            title="OpenAI lança um novo produto empresarial",
+            url="https://openai.com/news/example",
+            source_name="OpenAI",
+            published_at=datetime.now(timezone.utc).date().isoformat(),
+            summary="A empresa lançou um produto com novas capacidades para equipas.",
+        )
+        verified = VerificationResult(
+            status="verified",
+            source_name="OpenAI",
+            title=candidate.url,
+            published_at=candidate.published_at,
+            summary="",
+            notes="Data verificada pelo URL.",
+            verified_url=candidate.url,
+        )
+
+        with patch("ptia_engine.source_verifier.verify_url", return_value=verified):
+            result = verify_search_candidate(candidate)
+
+        self.assertEqual(result.title, candidate.title)
+        self.assertEqual(result.summary, candidate.summary)
+
     def test_extracts_credible_links_from_discovery_page(self):
         html = """
         <a href="https://www.rundown.ai/articles/internal">Internal</a>

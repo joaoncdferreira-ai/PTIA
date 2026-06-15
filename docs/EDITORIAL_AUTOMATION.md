@@ -32,9 +32,10 @@ engine.
 
 ## Queue safety
 
-The daily run fills the queue up to four topics. It does not add another four
-topics on every run. A rejected topic is replaced explicitly, without being
-blocked by the remaining queue.
+The daily run fills the queue up to six topics. The editor normally approves
+four for `Final OK`; the remaining topics stay in `A Rever` and can be used the
+next day. The next run only tops the queue back up to six. A rejected topic is
+replaced explicitly, without being blocked by the remaining queue.
 
 ## Required GitHub Actions secrets
 
@@ -53,13 +54,13 @@ template fallback.
 Prepare or fill the local queue:
 
 ```powershell
-python -m ptia_engine.cli editorial-auto --limit 4
+python -m ptia_engine.cli editorial-auto --limit 6
 ```
 
 Use only signals already verified:
 
 ```powershell
-python -m ptia_engine.cli editorial-auto --limit 4 --no-scout
+python -m ptia_engine.cli editorial-auto --limit 6 --no-scout
 ```
 
 Import a LinkedIn page analytics export:

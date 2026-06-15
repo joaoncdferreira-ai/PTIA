@@ -4498,9 +4498,9 @@ HTML = r"""<!doctype html>
       document.getElementById('verified_tab').innerHTML = `
         <div class="panel">
           <h2>Verified Selection</h2>
-          <p class="notice">Só entram fontes credíveis. A automação escolhe um portefólio equilibrado, cria textos e imagens e termina em A Rever.</p>
+          <p class="notice">Só entram fontes credíveis. A automação mantém 6 candidatos completos em A Rever: escolhes 4 para Final OK e os restantes continuam disponíveis para o dia seguinte.</p>
           <div class="actions">
-            <button class="primary" onclick="runEditorialAutomation()">Preparar curadoria automaticamente</button>
+            <button class="primary" onclick="runEditorialAutomation()">Preparar 6 candidatos automaticamente</button>
           </div>
           <p class="hint">${esc(automationStatus)}</p>
         </div>
@@ -4561,7 +4561,7 @@ HTML = r"""<!doctype html>
     }
     async function runEditorialAutomation() {
       showToast('A pesquisar, validar e preparar a curadoria...');
-      const result = await requestJson('/api/editorial-automation', {limit: 4, scout: true});
+      const result = await requestJson('/api/editorial-automation', {limit: 6, scout: true});
       await loadState();
       const created = result.run?.created_topic_ids?.length || 0;
       const errors = result.run?.errors?.length || 0;

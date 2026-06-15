@@ -9,7 +9,7 @@ on:
       limit:
         description: "Maximum number of packages waiting in A Rever"
         required: true
-        default: "4"
+        default: "6"
         type: string
       scout:
         description: "Discover and verify new stories before selection"
@@ -70,7 +70,7 @@ jobs:
         if: github.event_name == 'schedule' || inputs.scout == true
         run: >-
           python -m ptia_engine.cli editorial-auto
-          --limit "${{ github.event_name == 'workflow_dispatch' && inputs.limit || '4' }}"
+          --limit "${{ github.event_name == 'workflow_dispatch' && inputs.limit || '6' }}"
 
       - name: Fill from verified signals only
         if: github.event_name == 'workflow_dispatch' && inputs.scout == false

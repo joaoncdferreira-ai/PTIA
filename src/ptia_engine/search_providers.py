@@ -21,6 +21,8 @@ class SearchCandidate:
     summary: str = ""
     why_it_matters: str = ""
     confidence: float = 0.0
+    trend_score: int = 0
+    trend_evidence: str = ""
     query: str = ""
 
 
@@ -70,6 +72,11 @@ def _candidate_from_record(record: dict[str, Any], query: str = "") -> SearchCan
         summary=str(record.get("summary") or record.get("claim") or ""),
         why_it_matters=str(record.get("why_it_matters") or record.get("why") or ""),
         confidence=float(record.get("confidence") or 0.0),
+        trend_score=max(
+            0,
+            min(100, int(float(record.get("trend_score") or record.get("momentum_score") or 0))),
+        ),
+        trend_evidence=str(record.get("trend_evidence") or record.get("momentum_evidence") or ""),
         query=query,
     )
 
@@ -256,33 +263,47 @@ Regras:
 
     def scout_today_ai_news(self, *, limit: int = 8) -> list[SearchCandidate]:
         prompt = f"""
-Quais são as notícias mais importantes sobre Inteligência Artificial publicadas hoje
-ou nos últimos 5 dias, no mundo e em Portugal?
+Age como editor de breaking news de Inteligência Artificial para a PTIA. Pesquisa na
+web as notícias de IA com maior momentum real publicadas hoje ou nos últimos 5 dias.
+Não quero uma lista genérica das notícias mais recentes: quero acontecimentos que
+estejam a ganhar cobertura, discussão ou impacto material agora.
 
-Data de hoje: {date.today().isoformat()}
+Data de hoje: {date.today().isoformat()}.
 
-Responde apenas em JSON válido, sem markdown, com no máximo {limit} candidatos:
+Responde apenas em JSON válido, sem markdown, com no máximo {limit} candidatos,
+ordenados do maior para o menor momentum:
 {{
   "candidates": [
     {{
-      "title": "título da notícia",
-      "source_url": "https://...",
-      "source_name": "nome da fonte",
+      "title": "título factual do acontecimento",
+      "source_url": "URL exato do artigo individual ou anúncio original",
+      "source_name": "nome da fonte original ou media credível",
       "published_at": "YYYY-MM-DD",
-      "summary": "1 frase factual",
-      "why_it_matters": "1 frase sobre relevância para PTIA",
+      "summary": "2 frases factuais com ator, ação e dado concreto",
+      "why_it_matters": "consequência específica para empresas, profissionais, builders, regulação ou Portugal",
+      "trend_score": 0,
+      "trend_evidence": "sinal concreto de momentum: cobertura independente, anúncio material, discussão pública ou adoção",
       "confidence": 0.0
     }}
   ]
 }}
 
-Critérios editoriais PTIA:
-- Priorizar impacto real para empresas, profissionais, builders, regulação e Portugal.
-- Separar mundo e Portugal, mas não forçar Portugal se não houver fonte credível.
-- Não incluir rumores sem fonte.
-- Não inventar datas nem URLs.
+Regras de seleção:
+- Momentum não é clickbait. Pontua alto quando existe cobertura por pelo menos duas
+  fontes independentes, anúncio oficial material, forte discussão pública verificável,
+  adoção relevante, benchmark credível, investimento, regulação ou impacto operacional.
+- Privilegia notícias que mudem uma decisão ou expliquem uma mudança real. Penaliza
+  opinião genérica, previsões vagas, listas, tutoriais, páginas evergreen e press releases
+  sem consequência material.
+- Devolve sempre o URL de um artigo individual ou da fonte primária. Nunca devolvas
+  homepage, página de categoria, tag, pesquisa, arquivo ou página "últimas notícias".
+- Não repitas o mesmo acontecimento através de URLs ou fontes diferentes.
+- Inclui Portugal quando existir uma notícia portuguesa forte; não inventes nem forces
+  um ângulo português numa notícia global.
+- Não incluir rumores sem confirmação, nem inventar datas, scores, evidência ou URLs.
+- confidence mede confiança factual na fonte e data. trend_score mede momentum editorial.
 """.strip()
-        return self._generate_candidates(prompt, query="gemini-scout-today", limit=limit)
+        return self._generate_candidates(prompt, query="gemini-trending-ai-news", limit=limit)
 
     def scout_discovery_source(
         self,

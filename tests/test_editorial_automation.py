@@ -66,6 +66,26 @@ class EditorialAutomationTests(unittest.TestCase):
             image_generator=_FakeImageGenerator(),
         )
 
+    def _signal(self, index: int) -> RadarSignal:
+        return RadarSignal(
+            signal_id=f"signal_{index}",
+            source_type="news",
+            source_name=f"Source {index}",
+            title=f"Empresa {index} lança sistema de inteligência artificial",
+            url=f"https://example.com/news/{index}",
+            published_at="2026-06-14T09:00:00+00:00",
+            engagement_score=80 - index,
+            summary=(
+                f"A Empresa {index} lançou um sistema de inteligência artificial com "
+                "resultados concretos publicados para equipas e organizações. A fonte "
+                "descreve a implementação, os testes e as limitações observadas."
+            ),
+            why_it_matters=(
+                "A mudança pode alterar custos, processos e decisões de adoção no curto prazo."
+            ),
+            status="verified",
+        )
+
     @patch("ptia_engine.use_cases.curation.GeminiGroundedSearchProvider")
     def test_run_stops_at_review_and_does_not_duplicate_a_full_queue(self, provider_cls):
         provider_cls.return_value.available = False
@@ -131,6 +151,36 @@ class EditorialAutomationTests(unittest.TestCase):
         self.assertNotEqual(replacement.created_topic_ids[0], original_topic)
         self.assertTrue(active)
         self.assertEqual({post.topic_id for post in active}, set(replacement.created_topic_ids))
+
+    @patch("ptia_engine.use_cases.curation.GeminiGroundedSearchProvider")
+    def test_six_candidate_queue_keeps_two_and_only_refills_four(self, provider_cls):
+        provider_cls.return_value.available = False
+        write_jsonl(
+            self.data_dir / "radar_signals.jsonl",
+            [self._signal(index) for index in range(1, 11)],
+        )
+        service = self._service()
+
+        first = service.run(limit=6, scout=False)
+        self.assertEqual(len(first.created_topic_ids), 6)
+
+        posts = load_final_posts(self.data_dir / "final_posts.jsonl")
+        approved_topics = set(first.created_topic_ids[:4])
+        for post in posts:
+            if post.topic_id in approved_topics:
+                post.status = "approved_for_schedule"
+        write_jsonl(self.data_dir / "final_posts.jsonl", posts)
+
+        second = service.run(limit=6, scout=False)
+        remaining_review_topics = {
+            post.topic_id
+            for post in load_final_posts(self.data_dir / "final_posts.jsonl")
+            if post.status == "needs_final_review"
+        }
+
+        self.assertEqual(len(second.created_topic_ids), 4)
+        self.assertEqual(len(remaining_review_topics), 6)
+        self.assertTrue(set(first.created_topic_ids[4:]).issubset(remaining_review_topics))
 
 
 if __name__ == "__main__":
