@@ -88,13 +88,23 @@ jobs:
             data/final_posts.jsonl
             site/assets/editorial-review
           )
-          if [ -z "$(git status --porcelain -- "${review_paths[@]}")" ]; then
-            echo "No editorial queue changes."
+          existing_paths=()
+          for path in "${review_paths[@]}"; do
+            if [ -e "$path" ]; then
+              existing_paths+=("$path")
+            fi
+          done
+          if [ "${#existing_paths[@]}" -eq 0 ]; then
+            echo "No editorial queue files."
             exit 0
           fi
           git config user.name "ptia-automation"
           git config user.email "actions@users.noreply.github.com"
-          git add -f -- "${review_paths[@]}"
+          git add -f -- "${existing_paths[@]}"
+          if git diff --cached --quiet; then
+            echo "No editorial queue changes."
+            exit 0
+          fi
           git commit -m "Prepare PTIA editorial review queue"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
