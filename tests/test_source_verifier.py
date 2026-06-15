@@ -1,5 +1,6 @@
 import unittest
 from datetime import datetime, timezone
+from urllib.error import HTTPError
 from unittest.mock import patch
 
 from ptia_engine.search_providers import SearchCandidate
@@ -206,6 +207,19 @@ class SourceVerifierTests(unittest.TestCase):
         self.assertEqual(result.status, "verified")
         self.assertEqual(result.source_name, "Gartner")
         self.assertEqual(result.published_at, today.isoformat())
+
+    def test_rejects_missing_article_even_when_url_contains_today(self):
+        today = datetime.now(timezone.utc).date()
+        url = f"https://www.forbes.com/sites/example/{today:%Y/%m/%d}/invented-story/"
+
+        with patch(
+            "ptia_engine.source_verifier.fetch_page_metadata",
+            side_effect=HTTPError(url, 404, "Not Found", {}, None),
+        ):
+            result = verify_url(url)
+
+        self.assertEqual(result.status, "rejected")
+        self.assertIn("HTTP 404", result.notes)
 
     def test_apdc_visible_date_is_used_for_recency_rejection(self):
         html = """

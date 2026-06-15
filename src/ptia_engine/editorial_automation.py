@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from datetime import date, timedelta
@@ -28,6 +29,38 @@ from ptia_engine.source_verifier import verify_search_candidate
 from ptia_engine.storage import load_final_posts
 from ptia_engine.use_cases import BuildFinalPackUseCase
 from ptia_engine.editorial_board import add_radar_signal
+
+
+_EVENT_STOPWORDS = {
+    "com",
+    "das",
+    "dos",
+    "para",
+    "por",
+    "que",
+    "the",
+}
+
+
+def _event_tokens(value: str) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]+", value.casefold())
+        if (len(token) > 2 or token.isdigit()) and token not in _EVENT_STOPWORDS
+    }
+
+
+def _same_event(left: RadarSignal, right: RadarSignal) -> bool:
+    left_tokens = _event_tokens(f"{left.title} {left.summary}")
+    right_tokens = _event_tokens(f"{right.title} {right.summary}")
+    if not left_tokens or not right_tokens:
+        return False
+    left_numbers = {token for token in left_tokens if token.isdigit()}
+    right_numbers = {token for token in right_tokens if token.isdigit()}
+    if left_numbers and right_numbers and left_numbers != right_numbers:
+        return False
+    overlap = len(left_tokens & right_tokens)
+    return overlap / min(len(left_tokens), len(right_tokens)) >= 0.58
 
 
 @dataclass(slots=True)
@@ -288,6 +321,7 @@ class EditorialAutomationService:
             )
             run.alternative_signal_ids = [signal.signal_id for signal, _score in alternatives[:12]]
             attempted_urls: set[str] = set()
+            attempted_events: list[RadarSignal] = []
             for signal, score in [*selected, *alternatives]:
                 if len(run.created_topic_ids) >= create_count:
                     break
@@ -298,6 +332,9 @@ class EditorialAutomationService:
                     continue
                 if canonical_url:
                     attempted_urls.add(canonical_url)
+                if any(_same_event(signal, previous) for previous in attempted_events):
+                    continue
+                attempted_events.append(signal)
                 run.selected_signal_ids.append(signal.signal_id)
                 try:
                     topic_id, warnings = self._build_candidate(signal, score)

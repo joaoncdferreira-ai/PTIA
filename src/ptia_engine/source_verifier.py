@@ -5,6 +5,7 @@ import urllib.request
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from html import unescape
+from urllib.error import HTTPError
 from urllib.parse import urljoin, urlparse, urlunparse
 
 from ptia_engine.editorial_board import ensure_recent_signal
@@ -33,6 +34,7 @@ EDITORIAL_CREDIBLE_DOMAINS = {
     "adaptionlabs.ai": "Adaption Labs",
     "aisi.gov.uk": "UK AI Safety Institute",
     "businesswire.com": "Business Wire",
+    "prnewswire.com": "PR Newswire",
     "reuters.com": "Reuters",
     "apnews.com": "AP",
     "theguardian.com": "The Guardian",
@@ -43,7 +45,12 @@ EDITORIAL_CREDIBLE_DOMAINS = {
     "wired.com": "Wired",
     "techcrunch.com": "TechCrunch",
     "venturebeat.com": "VentureBeat",
+    "siliconangle.com": "SiliconANGLE",
     "the-decoder.com": "The Decoder",
+    "iapp.org": "IAPP",
+    "biometricupdate.com": "Biometric Update",
+    "futurumgroup.com": "Futurum Group",
+    "morningstar.com": "Morningstar",
     "gartner.com": "Gartner",
     "arxiv.org": "arXiv",
     "europa.eu": "European Commission",
@@ -65,6 +72,7 @@ EDITORIAL_CREDIBLE_DOMAINS = {
     "publico.pt": "Público",
     "observador.pt": "Observador",
     "expresso.pt": "Expresso",
+    "portugalresident.com": "Portugal Resident",
     "dn.pt": "Diário de Notícias",
 }
 
@@ -285,6 +293,16 @@ def verify_url(url: str) -> VerificationResult:
     try:
         title, summary, published_at = fetch_page_metadata(url)
     except Exception as exc:  # noqa: BLE001 - keep submitted links visible in verifying.
+        if isinstance(exc, HTTPError) and exc.code not in {401, 403, 429}:
+            return VerificationResult(
+                status="rejected",
+                source_name=source_name,
+                title=url,
+                published_at="",
+                summary="",
+                notes=f"A fonte respondeu HTTP {exc.code}; o artigo individual não existe ou não está acessível.",
+                verified_url=url,
+            )
         url_date = _date_from_url(url)
         if url_date:
             try:
