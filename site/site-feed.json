@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-15T08:53:43+00:00",
+  "updated_at": "2026-06-15T10:25:29+00:00",
   "posts": [
+    {
+      "id": "post_ae954d66e4ab4e5e55",
+      "title": "A IA e a 'Ressurreição' de Vidas na Guerra: Uma Encruzilhada Sensível",
+      "body": "No epicentro do conflito na Ucrânia, emerge uma tendência profundamente controversa: famílias russas utilizam tecnologias de inteligência artificial para 'ressuscitar' entes queridos falecidos em combate. Este fenómeno singular reside na intersecção da guerra, das novas capacidades da IA e do luto, levantando questões éticas e sociais complexas.\n\nEsta prática, ainda que nasça da dor humana, força-nos a encarar o que significa prolongar digitalmente uma existência. Não se trata apenas de criar memórias ou homenagens, mas de replicar interações e presenças. A questão não é se a tecnologia permite, mas sim qual o custo psicológico e social de uma 'imortalidade' digital artificial. Se a ausência é um motor de adaptação e de superação do luto, a sua mitigação tecnológica pode, paradoxalmente, travar a progressão emocional e a aceitação da realidade.\n\nPara os decisores e empreendedores em Portugal, esta notícia sublinha uma verdade incontornável: a inteligência artificial não é uma ferramenta neutra. A sua adoção ativa em qualquer contexto, seja empresarial ou público, implica uma análise profunda das consequências não intencionais. Não basta focar na eficiência ou na inovação; é imperativo considerar os limites éticos e o impacto humano de cada <i>use case</i>. A verdadeira competitividade no futuro da IA residirá não só na capacidade de implementar, mas na sabedoria de discernir onde e como aplicar, evitando armadilhas que, sob o manto da solução, podem gerar novos e mais complexos problemas. A questão não é se a IA pode, mas se deve, e com que responsabilidade.\n\nFonte: https://www.bbc.com/news/articles/cwy24v72n19o",
+      "source_urls": [
+        "https://www.bbc.com/news/articles/cwy24v72n19o"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f9dd6a0ccfbceddafe_551f8fc4_ChatGPT-Image-15_06_2026-11_22_25.png",
+      "image_url": "/assets/final/post_bd41ce45cd2f1312c4_site_1600x900.jpg",
+      "published_at": "2026-06-15T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-ia-e-a-ressurreicao-de-vidas-na-guerra-uma-encruzilhada-sensivel-ae954d66e4ab4e5e55"
+    },
     {
       "id": "post_49bbc847040cdf6c1a",
       "title": "DeepMind Alerta para Riscos na Interação Massiva de Agentes de IA",
