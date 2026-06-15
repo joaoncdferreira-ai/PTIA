@@ -264,7 +264,8 @@ Regras:
     def scout_today_ai_news(self, *, limit: int = 8) -> list[SearchCandidate]:
         prompt = f"""
 Age como editor de breaking news de Inteligência Artificial para a PTIA. Pesquisa na
-web as notícias de IA com maior momentum real publicadas hoje ou nos últimos 5 dias.
+web as notícias de IA com maior momentum real publicadas hoje. Só admite uma notícia
+do dia anterior quando continuar a ganhar cobertura ou impacto material hoje.
 Não quero uma lista genérica das notícias mais recentes: quero acontecimentos que
 estejam a ganhar cobertura, discussão ou impacto material agora.
 
@@ -298,6 +299,8 @@ Regras de seleção:
 - Devolve sempre o URL de um artigo individual ou da fonte primária. Nunca devolvas
   homepage, página de categoria, tag, pesquisa, arquivo ou página "últimas notícias".
 - Não repitas o mesmo acontecimento através de URLs ou fontes diferentes.
+- Prioriza publicações com a data de hoje. Uma publicação do dia anterior só pode
+  entrar se trend_evidence explicar concretamente por que continua trending hoje.
 - Inclui Portugal quando existir uma notícia portuguesa forte; não inventes nem forces
   um ângulo português numa notícia global.
 - Não incluir rumores sem confirmação, nem inventar datas, scores, evidência ou URLs.

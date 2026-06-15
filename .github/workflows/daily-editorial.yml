@@ -2,7 +2,7 @@ name: PTIA Daily Editorial Preparation
 
 on:
   schedule:
-    - cron: "15 7 * * 1-5"
+    - cron: "0 18 * * 1-5"
       timezone: "Europe/Lisbon"
   workflow_dispatch:
     inputs:

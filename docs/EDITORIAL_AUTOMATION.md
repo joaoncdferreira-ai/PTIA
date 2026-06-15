@@ -8,8 +8,11 @@ engine.
 
 ## Production flow
 
-1. GitHub Actions runs at 07:15 Europe/Lisbon on weekdays.
+1. GitHub Actions runs at 18:00 Europe/Lisbon on weekdays.
 2. Gemini discovers candidates and the source verifier checks URL, source and date.
+   The daily scout prioritizes news published that day. A story from the previous
+   day is accepted only when grounded evidence shows that it is still gaining
+   momentum today.
 3. The engine scores candidates with a fixed portfolio policy:
    - 55% editorial value;
    - 25% estimated engagement;

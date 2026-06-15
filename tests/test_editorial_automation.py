@@ -1,6 +1,7 @@
 import shutil
 import unittest
 import uuid
+from datetime import date, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,6 +13,16 @@ from ptia_engine.storage import load_final_posts, write_jsonl
 
 class _UnavailableSearch:
     available = False
+
+
+class _CandidateSearch:
+    available = True
+
+    def __init__(self, candidates):
+        self.candidates = candidates
+
+    def scout_today_ai_news(self, *, limit):
+        return self.candidates[:limit]
 
 
 class _FakeImageGenerator:
@@ -181,6 +192,78 @@ class EditorialAutomationTests(unittest.TestCase):
         self.assertEqual(len(second.created_topic_ids), 4)
         self.assertEqual(len(remaining_review_topics), 6)
         self.assertTrue(set(first.created_topic_ids[4:]).issubset(remaining_review_topics))
+
+    @patch("ptia_engine.editorial_automation.verify_search_candidate")
+    def test_discovery_rejects_old_news_and_requires_momentum_for_yesterday(
+        self,
+        verify_candidate,
+    ):
+        from ptia_engine.search_providers import SearchCandidate
+        from ptia_engine.source_verifier import VerificationResult
+
+        candidates = [
+            SearchCandidate(
+                title="Today",
+                url="https://example.com/today",
+                trend_score=80,
+            ),
+            SearchCandidate(
+                title="Yesterday without momentum",
+                url="https://example.com/yesterday",
+                trend_score=80,
+            ),
+            SearchCandidate(
+                title="Yesterday still trending",
+                url="https://example.com/yesterday-trending",
+                trend_score=85,
+                trend_evidence="Cobertura independente aumentou hoje.",
+            ),
+            SearchCandidate(
+                title="Old",
+                url="https://example.com/old",
+                trend_score=95,
+                trend_evidence="Ainda discutida.",
+            ),
+        ]
+        dates = {
+            "Today": date.today(),
+            "Yesterday without momentum": date.today() - timedelta(days=1),
+            "Yesterday still trending": date.today() - timedelta(days=1),
+            "Old": date.today() - timedelta(days=2),
+        }
+
+        def verified(candidate):
+            return VerificationResult(
+                status="verified",
+                source_name="Reuters",
+                title=candidate.title,
+                published_at=dates[candidate.title].isoformat(),
+                summary=(
+                    "A fonte publicou dados concretos sobre inteligência artificial "
+                    "e explicou o impacto material da mudança."
+                ),
+                notes="Verified",
+                verified_url=candidate.url,
+            )
+
+        verify_candidate.side_effect = verified
+        service = EditorialAutomationService(
+            repo_root=self.root,
+            data_dir=self.data_dir,
+            search_provider=_CandidateSearch(candidates),
+            image_generator=_FakeImageGenerator(),
+        )
+
+        discovered, verified_count = service._discover(limit=8)
+
+        self.assertEqual(discovered, 4)
+        self.assertEqual(verified_count, 2)
+        discovered_titles = {
+            signal.title
+            for signal in service.signal_repo.load_all()
+            if signal.source_type == "gemini_scout"
+        }
+        self.assertEqual(discovered_titles, {"Today", "Yesterday still trending"})
 
 
 if __name__ == "__main__":

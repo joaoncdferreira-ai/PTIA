@@ -42,6 +42,8 @@ class SearchProvidersTests(unittest.TestCase):
         self.assertIn("trend_score", calls["prompt"])
         self.assertIn("duas", calls["prompt"])
         self.assertIn("Nunca devolvas", calls["prompt"])
+        self.assertIn("data de hoje", calls["prompt"])
+        self.assertIn("dia anterior", calls["prompt"])
         self.assertEqual(calls["query"], "gemini-trending-ai-news")
         self.assertEqual(calls["limit"], 12)
 

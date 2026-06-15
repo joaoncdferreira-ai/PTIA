@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import asdict, dataclass, field
+from datetime import date, timedelta
 from pathlib import Path
 
 from ptia_engine.cloud_state import persist_cloud_state_file, sync_cloud_state_file
@@ -103,6 +104,14 @@ class EditorialAutomationService:
         for candidate in candidates:
             verification = verify_search_candidate(candidate)
             if verification.status != "verified":
+                continue
+            try:
+                published_date = date.fromisoformat(verification.published_at[:10])
+            except ValueError:
+                continue
+            if published_date < date.today() - timedelta(days=1):
+                continue
+            if published_date < date.today() and not candidate.trend_evidence.strip():
                 continue
             trend_score = candidate.trend_score or int(candidate.confidence * 100)
             trend_note = (
