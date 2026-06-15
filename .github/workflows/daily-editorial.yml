@@ -31,6 +31,7 @@ jobs:
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_SEARCH_MODEL: gemini-2.5-flash
+      GEMINI_SEARCH_TIMEOUT_SECONDS: "90"
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       PTIA_IMAGE_PROVIDER: auto
       PTIA_IMAGE_MODEL: gpt-image-2

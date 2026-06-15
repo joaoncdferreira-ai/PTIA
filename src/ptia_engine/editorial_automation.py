@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from dataclasses import asdict, dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
@@ -99,7 +100,15 @@ class EditorialAutomationService:
     def _discover(self, limit: int) -> tuple[int, int]:
         if not self.search_provider.available:
             return 0, 0
-        candidates = self.search_provider.scout_today_ai_news(limit=max(limit, 8))
+        candidates = []
+        for attempt in range(2):
+            try:
+                candidates = self.search_provider.scout_today_ai_news(limit=max(limit, 8))
+                break
+            except (TimeoutError, OSError):
+                if attempt == 1:
+                    raise
+                time.sleep(2)
         verified = 0
         for candidate in candidates:
             verification = verify_search_candidate(candidate)

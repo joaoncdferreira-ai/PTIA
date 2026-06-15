@@ -206,11 +206,13 @@ class GeminiGroundedSearchProvider:
         *,
         api_key: str | None = None,
         model: str | None = None,
-        timeout_seconds: int = 30,
+        timeout_seconds: int | None = None,
     ) -> None:
         self.api_key = api_key or os.getenv("GEMINI_API_KEY", "")
         self.model = model or os.getenv("GEMINI_SEARCH_MODEL", "gemini-2.5-flash")
-        self.timeout_seconds = timeout_seconds
+        self.timeout_seconds = timeout_seconds or int(
+            os.getenv("GEMINI_SEARCH_TIMEOUT_SECONDS", "90")
+        )
 
     @property
     def available(self) -> bool:

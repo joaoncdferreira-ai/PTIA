@@ -25,6 +25,18 @@ class _CandidateSearch:
         return self.candidates[:limit]
 
 
+class _TransientTimeoutSearch(_CandidateSearch):
+    def __init__(self, candidates):
+        super().__init__(candidates)
+        self.calls = 0
+
+    def scout_today_ai_news(self, *, limit):
+        self.calls += 1
+        if self.calls == 1:
+            raise TimeoutError("temporary Gemini timeout")
+        return super().scout_today_ai_news(limit=limit)
+
+
 class _FakeImageGenerator:
     def generate(self, post, out_dir):
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -264,6 +276,43 @@ class EditorialAutomationTests(unittest.TestCase):
             if signal.source_type == "gemini_scout"
         }
         self.assertEqual(discovered_titles, {"Today", "Yesterday still trending"})
+
+    @patch("ptia_engine.editorial_automation.time.sleep")
+    @patch("ptia_engine.editorial_automation.verify_search_candidate")
+    def test_discovery_retries_one_transient_timeout(self, verify_candidate, sleep):
+        from ptia_engine.search_providers import SearchCandidate
+        from ptia_engine.source_verifier import VerificationResult
+
+        candidate = SearchCandidate(
+            title="Today",
+            url="https://example.com/today",
+            trend_score=80,
+        )
+        verify_candidate.return_value = VerificationResult(
+            status="verified",
+            source_name="Reuters",
+            title=candidate.title,
+            published_at=date.today().isoformat(),
+            summary=(
+                "A fonte publicou dados concretos sobre inteligÃªncia artificial "
+                "e explicou o impacto material da mudanÃ§a."
+            ),
+            notes="Verified",
+            verified_url=candidate.url,
+        )
+        search = _TransientTimeoutSearch([candidate])
+        service = EditorialAutomationService(
+            repo_root=self.root,
+            data_dir=self.data_dir,
+            search_provider=search,
+            image_generator=_FakeImageGenerator(),
+        )
+
+        discovered, verified_count = service._discover(limit=8)
+
+        self.assertEqual((discovered, verified_count), (1, 1))
+        self.assertEqual(search.calls, 2)
+        sleep.assert_called_once_with(2)
 
 
 if __name__ == "__main__":
