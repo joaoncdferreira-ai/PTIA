@@ -5,7 +5,6 @@ import os
 import shutil
 import sys
 import time
-from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -48,9 +47,10 @@ def load_dotenv() -> None:
 
 # Plano de agendamento cronológico para amanhã (16 de Junho de 2026)
 PLAN = [
-    ("topic_1ab3dae66e6a9c88ec", "2026-06-16T09:00:00+01:00"),  # Visa e OpenAI
-    ("topic_b35c96b074a01d441f", "2026-06-16T13:00:00+01:00"),  # Seguro - IA na Justiça
-    ("topic_4b3b62db06f6eec116", "2026-06-16T16:00:00+01:00"),  # DeepMind - Interação de Agentes
+    ("topic_7bbee129693c5108e9", "2026-06-16T09:00:00+01:00"),  # Bloco de Esquerda
+    ("topic_9e5573d95bc86614f1", "2026-06-16T13:00:00+01:00"),  # Presidente / COTEC
+    ("topic_3240428d1243052f83", "2026-06-16T16:00:00+01:00"),  # Briya AIRE
+    ("topic_2f9ec3a395544d4b63", "2026-06-16T21:00:00+01:00"),  # Cognizant
 ]
 
 def main() -> None:
@@ -68,7 +68,7 @@ def main() -> None:
     # Recarregar posts
     posts = load_final_posts(state.final_posts_path)
 
-    # 2. Filtrar posts em "approved_for_schedule" ou "scheduled" para os tópicos do plano
+    # 2. Filtrar posts em "approved_for_schedule" ou "scheduled" para amanhã
     target_topic_ids = {topic_id for topic_id, _ in PLAN}
     relevant = [
         post
@@ -94,8 +94,7 @@ def main() -> None:
 
     # 4. Preparar e publicar imagens no repositório de assets públicos do Git
     print("-> A copiar e publicar imagens variantes de todos os posts sociais no Git...")
-    # Apenas copiar imagens de canais que vamos agendar agora (LinkedIn, X)
-    social_posts = [p for p in relevant if p.channel in {"linkedin", "x"} and p.image_path]
+    social_posts = [p for p in relevant if p.channel in {"instagram", "linkedin", "x"} and p.image_path]
     public_paths = []
     for post in social_posts:
         path = _copy_image_to_public_site_assets(state, post)
@@ -133,9 +132,9 @@ def main() -> None:
     # 6. Executar agendamento por canais (LinkedIn, X, Site)
     print("\n--- INICIANDO PROCESSAMENTO DE AGENDAMENTOS ---")
     
-    # Vamos armazenar os resultados
     scheduled_summary = []
 
+    # Primeiro: LinkedIn, Site e X (agendamentos diretos e normais)
     for topic_id, scheduled_time in PLAN:
         package = posts_by_topic[topic_id]
         
@@ -156,8 +155,110 @@ def main() -> None:
                 except Exception as exc:
                     print(f"   [ERRO] Falha no agendamento de {post.channel.upper()}: {exc}")
 
-    # Instagram Carousel: Omitido agora por indicação do utilizador ("o que falta das 21h ponho amanhã")
-    print("\n-> [INFO] Agendamento de Instagram Carrossel omitido hoje. Será processado amanhã com o post das 21:00.")
+    # Segundo: Instagram Carrossel às 21:00
+    print("\n-> A preparar o Carrossel de Instagram para as 21:00...")
+    instagram_posts_sorted = []
+    original_plan_order = [
+        "topic_7bbee129693c5108e9",  # Bloco de Esquerda
+        "topic_9e5573d95bc86614f1",  # Presidente / COTEC
+        "topic_3240428d1243052f83",  # Briya AIRE
+        "topic_2f9ec3a395544d4b63",  # Cognizant
+    ]
+    for topic_id in original_plan_order:
+        inst_posts = [p for p in posts_by_topic[topic_id] if p.channel == "instagram" and p.image_path]
+        if inst_posts:
+            instagram_posts_sorted.append(inst_posts[0])
+
+    if len(instagram_posts_sorted) == 4:
+        # Construir legenda
+        paragraphs = []
+        sources = []
+        
+        for idx, p in enumerate(instagram_posts_sorted, start=1):
+            first_p = p.body.strip().split("\n\n")[0].strip()
+            paragraphs.append(f"{idx}. {first_p}")
+            if p.source_urls:
+                sources.append(f"- {p.source_urls[0]}")
+                
+        combined_body = "\n\n".join(paragraphs)
+        combined_hashtags = "#InteligenciaArtificial #IA #Cotec #BriyaAIRE #Cognizant #BlocodeEsquerda #PTIA #Negocios #Tech #Portugal #Trabalho #Saude"
+        combined_sources = "Fontes:\n" + "\n".join(sources)
+        
+        legend_text = f"{combined_body}\n\n{combined_hashtags}\n\n{combined_sources}".strip()
+        
+        # Recolher as imagens públicas do Instagram
+        image_urls = [_public_image_url_for_buffer(p, state) for p in instagram_posts_sorted]
+        print(f"   Instagram composto por {len(image_urls)} slides:")
+        for url in image_urls:
+            print(f"     - {url}")
+
+        # Configurar Canal do Instagram no Buffer
+        config = dashboard_module._load_buffer_channels(state.buffer_channels_path)
+        instagram_channel_id = dashboard_module._buffer_channel_id_for("instagram", config)
+        if not instagram_channel_id:
+            raise ValueError("Canal de Instagram não está configurado no Buffer!")
+
+        # Agendar no Buffer
+        print("   A chamar API do Buffer para carregar imagem/carrossel...")
+        buffer_client = BufferClient()
+        carousel_time = "2026-06-16T21:00:00+01:00"
+        
+        first_inst = instagram_posts_sorted[0]
+        if first_inst.status == "scheduled" and first_inst.buffer_post_id and first_inst.buffer_post_id != "manual_buffer_media_required":
+            print(f"   [SKIP] O Instagram já parece estar agendado no Buffer (ID: {first_inst.buffer_post_id}).")
+            for p in instagram_posts_sorted:
+                scheduled_summary.append({
+                    "post_id": p.post_id,
+                    "channel": "instagram",
+                    "time": "21:00:00",
+                    "buffer_id": p.buffer_post_id,
+                    "title": p.title
+                })
+        else:
+            try:
+                buffer_post = buffer_client.create_scheduled_post(
+                    channel_id=instagram_channel_id,
+                    text=legend_text,
+                    due_at=carousel_time,
+                    image_urls=image_urls,
+                    post_type="post"
+                )
+                print(f"   [OK] Instagram agendado no Buffer com ID: {buffer_post.id}")
+
+                # Sincronizar posts no final_posts.jsonl como scheduled
+                for p in instagram_posts_sorted:
+                    # Usar um loop com retentativas para evitar o erro WinError 5 de bloqueio do arquivo
+                    for attempt in range(5):
+                        try:
+                            update_final_post_status(
+                                state.final_posts_path,
+                                post_id=p.post_id,
+                                status="scheduled",
+                                scheduled_time=carousel_time,
+                                buffer_post_id=buffer_post.id
+                            )
+                            update_final_post_copy(
+                                state.final_posts_path,
+                                post_id=p.post_id,
+                                notes="[2026-06-16] Agendado no Instagram às 21:00."
+                            )
+                            break
+                        except Exception as e:
+                            print(f"   [RETRY {attempt + 1}/5] Falha ao atualizar post local {p.post_id}: {e}")
+                            time.sleep(2)
+                            
+                    scheduled_summary.append({
+                        "post_id": p.post_id,
+                        "channel": "instagram",
+                        "time": "21:00:00",
+                        "buffer_id": buffer_post.id,
+                        "title": p.title
+                    })
+                    print(f"   Sincronizado post local {p.post_id} (Instagram) como Scheduled.")
+            except Exception as exc:
+                print(f"   [ERRO] Falha ao agendar Instagram no Buffer: {exc}")
+    else:
+        print("-> Nenhum post de Instagram encontrado ou contagem incorreta. A saltar.")
 
     # 7. Sincronizar static site feed final e dar git push
     _sync_static_site_feed(state, git_push=True)

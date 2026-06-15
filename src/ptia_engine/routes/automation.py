@@ -21,4 +21,3 @@ def handle_editorial_automation(handler, payload) -> None:
 def handle_replace_editorial_package(handler, payload) -> None:
     run = _service(handler).replace_topic(str(payload["topic_id"]))
     handler._send_json({"ok": run.status != "failed", "run": run.to_record()})
-
