@@ -335,6 +335,35 @@
       "aliases": [
         "Governo Português"
       ]
+    },
+    {
+      "id": "lusoai",
+      "name": "LusoAI",
+      "tagline": "Agência especializada em inteligência artificial em Portugal",
+      "description": "A LusoAI é uma agência portuguesa dedicada à integração da inteligência artificial no quotidiano de pessoas e empresas. Oferece serviços de consultoria estratégica, automação de processos, formação e desenvolvimento de agentes inteligentes personalizados.",
+      "linkedin": "https://www.linkedin.com/company/lusoai/",
+      "category": "Consultoria / IA",
+      "tags": [
+        "consultoria IA",
+        "automação",
+        "agentes inteligentes",
+        "formação IA"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "mais-ai",
+      "name": "MAIS AI",
+      "tagline": "Agência de inteligência artificial para criação de agentes e automação de processos",
+      "description": "A MAIS AI é uma agência portuguesa especializada em inteligência artificial, focada no desenvolvimento de agentes de IA e na automação de processos para empresas, visando otimizar operações e impulsionar a eficiência.",
+      "linkedin": "https://www.linkedin.com/company/mais-ai-agency/",
+      "category": "Consultoria / IA",
+      "tags": [
+        "agentes de IA",
+        "automação",
+        "consultoria IA"
+      ],
+      "aliases": []
     }
   ],
   "people": [
