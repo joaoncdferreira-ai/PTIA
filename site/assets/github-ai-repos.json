@@ -1,30 +1,30 @@
 {
-  "updated_at": "2026-06-08T07:16:40.313575+00:00",
+  "updated_at": "2026-06-15T07:55:50.951912+00:00",
   "method": "GitHub Search API: AI/LLM topics, stars, forks and activity in the last 45 days.",
   "repos": [],
   "errors": [
     {
-      "query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-04-24",
+      "query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     },
     {
-      "query": "topic:large-language-models stars:>500 pushed:>=2026-04-24",
+      "query": "topic:large-language-models stars:>500 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     },
     {
-      "query": "topic:generative-ai stars:>500 pushed:>=2026-04-24",
+      "query": "topic:generative-ai stars:>500 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     },
     {
-      "query": "topic:llm stars:>500 pushed:>=2026-04-24",
+      "query": "topic:llm stars:>500 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     },
     {
-      "query": "topic:ai-agents stars:>200 pushed:>=2026-04-24",
+      "query": "topic:ai-agents stars:>200 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     },
     {
-      "query": "topic:rag stars:>200 pushed:>=2026-04-24",
+      "query": "topic:rag stars:>200 pushed:>=2026-05-01",
       "error": "<urlopen error [WinError 10061] Nenhuma ligação pôde ser feita porque o computador de destino\r\nas recusou ativamente>"
     }
   ]
