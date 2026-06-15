@@ -272,6 +272,69 @@
         "IoT",
         "Transportes"
       ]
+    },
+    {
+      "id": "cgi-portugal",
+      "name": "CGI Portugal",
+      "tagline": "Consultoria de TI e Centro de Excelência em IA",
+      "description": "A CGI Portugal é a subsidiária da consultora canadiana de tecnologias de informação, que abriu o seu primeiro Centro de Excelência em Inteligência Artificial no país. O centro foca-se em IA baseada em agentes e IA Generativa para acelerar a transformação digital dos clientes, com uma equipa de mais de 700 colaboradores e parcerias com universidades portuguesas.",
+      "linkedin": "https://www.linkedin.com/company/cgi/",
+      "category": "Consultoria / Big Tech",
+      "tags": [
+        "IA Generativa",
+        "IA baseada em agentes",
+        "transformação digital",
+        "parcerias académicas"
+      ],
+      "aliases": [
+        "CGI"
+      ]
+    },
+    {
+      "id": "daredata",
+      "name": "DareData",
+      "tagline": "Soluções de IA e Dados para empresas",
+      "description": "A DareData é uma empresa portuguesa especializada em soluções de Inteligência Artificial e Dados, que registou um crescimento significativo em 2025. A empresa expandiu a sua equipa para mais de 130 especialistas e lançou o Gen-OS, um AI Operating System para orquestrar e escalar ecossistemas de IA empresariais.",
+      "linkedin": "https://www.linkedin.com/company/daredata/",
+      "category": "Consultoria / Tecnologia",
+      "tags": [
+        "IA",
+        "Dados",
+        "Gen-OS",
+        "AI Operating System"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "nimber",
+      "name": "Nimber",
+      "tagline": "Serviços de cibersegurança e IA",
+      "description": "A Nimber é uma empresa fundada em 2023 com o objetivo de que, até 2028, metade do seu volume de negócios provenha de serviços de cibersegurança e inteligência artificial. A empresa tem crescido sem investimento externo e está a expandir-se internacionalmente, com clientes na Dinamarca e no Canadá.",
+      "linkedin": "https://www.linkedin.com/company/nimber/",
+      "category": "Cibersegurança / Consultoria",
+      "tags": [
+        "IA",
+        "cibersegurança",
+        "internacionalização"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "governo-portugal",
+      "name": "Governo de Portugal",
+      "tagline": "Promotor da Agenda Nacional de Inteligência Artificial (ANIA)",
+      "description": "O Governo de Portugal é o principal impulsionador da Agenda Nacional de Inteligência Artificial (ANIA) para 2026-2030, com um investimento superior a 400 milhões de euros. A ANIA visa acelerar a adoção da IA na economia e na Administração Pública, focando em inovação, talento, ética e crescimento económico sustentável.",
+      "linkedin": "https://www.linkedin.com/company/governo-de-portugal/",
+      "category": "Governo",
+      "tags": [
+        "ANIA",
+        "Política Pública",
+        "Investimento em IA",
+        "Estratégia Nacional"
+      ],
+      "aliases": [
+        "Governo Português"
+      ]
     }
   ],
   "people": [

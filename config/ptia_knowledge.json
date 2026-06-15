@@ -22,7 +22,11 @@
       "aon-portugal",
       "observador-pt",
       "jornal-de-negocios",
-      "eco-economia-online"
+      "eco-economia-online",
+      "cgi-portugal",
+      "daredata",
+      "nimber",
+      "governo-portugal"
     ],
     "people": [
       "danielabraga-in",
@@ -1707,6 +1711,25 @@
         "visual"
       ],
       "baseline_score": 90
+    },
+    {
+      "id": "prompt-estruturado-eficaz",
+      "title": "Criar um prompt estruturado e eficaz",
+      "category": "produtividade",
+      "purpose": "Gerar respostas claras, precisas e úteis de um modelo de linguagem, utilizando técnicas de engenharia de prompts.",
+      "template": "Atua como um [persona/quadro de referência]. A minha tarefa é [descrever a tarefa complexa]. Para me ajudar, por favor, segue estes passos:\n1. [Passo 1 da tarefa]\n2. [Passo 2 da tarefa]\n3. [Passo 3 da tarefa]\n\nUsa delimitadores como `---` para separar as diferentes partes do teu raciocínio. Fornece exemplos se necessário para clarificar a tua intenção. O formato de saída desejado é [formato de saída].\n\nEm vez de me dizeres o que não fazer, foca-te em instruir-me sobre o que fazer. Se precisares de mais informações, por favor, faz perguntas de acompanhamento para esclarecimento.",
+      "keywords": [
+        "engenharia de prompts",
+        "especificidade",
+        "few-shot prompting",
+        "formato de saída",
+        "persona",
+        "chain-of-thought",
+        "meta-prompting",
+        "delimitadores",
+        "active prompting"
+      ],
+      "baseline_score": 90
     }
   ],
   "glossary_english": {
@@ -1739,7 +1762,11 @@
     "slm": "Small Language Model",
     "temperatura": "Temperature",
     "base-vetorial": "Vector database",
-    "visao-computacional": "Computer vision"
+    "visao-computacional": "Computer vision",
+    "mixture-of-experts": "Mixture of Experts (MoE)",
+    "ia-agentica": "Agentic AI",
+    "tool-calling": "Tool Calling / Function Calling",
+    "vlm": "Vision Language Model"
   },
   "glossary": [
     {
@@ -2381,6 +2408,65 @@
       "aliases": [
         "zero-shot",
         "zero shot"
+      ]
+    },
+    {
+      "id": "mixture-of-experts",
+      "term": "Mixture of Experts (MoE)",
+      "definition": "Uma arquitetura de modelo de aprendizado de máquina que combina vários 'especialistas' (redes neurais menores) para lidar com diferentes partes de um problema, permitindo que o modelo se especialize em várias tarefas e melhore a eficiência e o desempenho.",
+      "example": "Modelos de linguagem grandes como o Gemini 1.5 Pro e o GPT-4o utilizam a arquitetura Mixture of Experts para otimizar o processamento de diferentes tipos de dados e tarefas.",
+      "related": [
+        "rede-neuronal",
+        "llm",
+        "transformer"
+      ],
+      "aliases": [
+        "MoE"
+      ]
+    },
+    {
+      "id": "ia-agentica",
+      "term": "IA Agêntica",
+      "definition": "Sistemas de inteligência artificial capazes de operar de forma autônoma, percebendo o ambiente, raciocinando sobre problemas, tomando decisões e executando tarefas para alcançar objetivos definidos, indo além da mera geração de conteúdo.",
+      "example": "Um agente de IA agêntica pode ser programado para gerir a agenda de um utilizador, respondendo a emails, agendando reuniões e organizando documentos sem intervenção humana constante.",
+      "related": [
+        "agente-ia",
+        "ia-generativa",
+        "tool-use"
+      ],
+      "aliases": [
+        "Agentic AI"
+      ]
+    },
+    {
+      "id": "tool-calling",
+      "term": "Tool Calling",
+      "definition": "Capacidade de um Large Language Model (LLM) de invocar funções ou APIs externas para executar ações específicas, permitindo que o modelo interaja com ferramentas e serviços do mundo real, sendo um pilar para a construção de sistemas de IA agênticos.",
+      "example": "Um LLM pode usar 'tool calling' para aceder a uma API de meteorologia e fornecer a previsão do tempo atual, ou para enviar um email através de um serviço de email.",
+      "related": [
+        "llm",
+        "api",
+        "ia-agentica",
+        "tool-use"
+      ],
+      "aliases": [
+        "Function Calling",
+        "Chamada de Ferramenta",
+        "Chamada de Função"
+      ]
+    },
+    {
+      "id": "vlm",
+      "term": "VLM",
+      "definition": "Um tipo de modelo de inteligência artificial multimodal capaz de processar e compreender informações tanto textuais quanto visuais, permitindo-lhe realizar tarefas que envolvem a interpretação conjunta de imagens e texto, como descrição de imagens ou resposta a perguntas sobre conteúdo visual.",
+      "example": "O GPT-4V é um exemplo de VLM que pode analisar uma imagem e gerar uma descrição detalhada ou responder a perguntas específicas sobre os elementos visuais presentes.",
+      "related": [
+        "modelo-multimodal",
+        "llm",
+        "visao-computacional"
+      ],
+      "aliases": [
+        "Modelo de Linguagem Visual"
       ]
     }
   ]

@@ -1,12 +1,43 @@
 {
   "schema_version": 1,
   "edition": "2026-W25",
-  "updated_at": "2026-06-15T13:50:38+00:00",
+  "updated_at": "2026-06-15T22:33:37+00:00",
   "signal_window_days": 84,
-  "signal_articles": 95,
+  "signal_articles": 97,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. Combina uma base editorial versionada com sinais dos artigos PTIA dos últimos 84 dias.",
   "companies": [
+    {
+      "id": "definedai",
+      "name": "Defined.ai",
+      "tagline": "Dados de treino éticos e serviços para IA",
+      "description": "O maior marketplace mundial de dados de voz, texto e imagem estruturados e licenciados de forma ética para treinar grandes modelos de inteligência artificial de fronteira.",
+      "linkedin": "https://www.linkedin.com/company/definedai",
+      "category": "Data Provider",
+      "tags": [
+        "Dados de Treino",
+        "Ethical AI",
+        "Modelos"
+      ],
+      "baseline_position": 4,
+      "score": 82.4,
+      "evidence": [
+        {
+          "title": "DefinedCrowd da UPTEC: entre as 100 startups de IA mais promissoras globalmente",
+          "url": "/artigos/definedcrowd-da-uptec-entre-as-100-startups-de-ia-mais-promissoras-globalmente-01d69850d15830739a",
+          "published_at": "2026-05-25"
+        }
+      ],
+      "confidence": "média",
+      "rank": 1,
+      "previous_rank": 2,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
     {
       "id": "feedzai",
       "name": "Feedzai",
@@ -23,44 +54,13 @@
       "score": 82.0,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 1,
-      "previous_rank": 1,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "definedai",
-      "name": "Defined.ai",
-      "tagline": "Dados de treino éticos e serviços para IA",
-      "description": "O maior marketplace mundial de dados de voz, texto e imagem estruturados e licenciados de forma ética para treinar grandes modelos de inteligência artificial de fronteira.",
-      "linkedin": "https://www.linkedin.com/company/definedai",
-      "category": "Data Provider",
-      "tags": [
-        "Dados de Treino",
-        "Ethical AI",
-        "Modelos"
-      ],
-      "baseline_position": 4,
-      "score": 81.6,
-      "evidence": [
-        {
-          "title": "DefinedCrowd da UPTEC: entre as 100 startups de IA mais promissoras globalmente",
-          "url": "/artigos/definedcrowd-da-uptec-entre-as-100-startups-de-ia-mais-promissoras-globalmente-01d69850d15830739a",
-          "published_at": "2026-05-25"
-        }
-      ],
-      "confidence": "média",
       "rank": 2,
-      "previous_rank": 2,
-      "movement": 0,
+      "previous_rank": 1,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -76,7 +76,7 @@
         "Apoio ao Cliente"
       ],
       "baseline_position": 2,
-      "score": 80.4,
+      "score": 80.6,
       "evidence": [],
       "confidence": "editorial",
       "rank": 3,
@@ -101,7 +101,7 @@
         "Unicórnio"
       ],
       "baseline_position": 3,
-      "score": 78.7,
+      "score": 79.3,
       "evidence": [],
       "confidence": "editorial",
       "rank": 4,
@@ -126,7 +126,7 @@
         "Cloud SaaS"
       ],
       "baseline_position": 5,
-      "score": 75.4,
+      "score": 76.5,
       "evidence": [],
       "confidence": "editorial",
       "rank": 5,
@@ -151,7 +151,7 @@
         "IoT"
       ],
       "baseline_position": 6,
-      "score": 73.8,
+      "score": 75.2,
       "evidence": [],
       "confidence": "editorial",
       "rank": 6,
@@ -176,7 +176,7 @@
         "Privacidade"
       ],
       "baseline_position": 7,
-      "score": 72.2,
+      "score": 73.8,
       "evidence": [],
       "confidence": "editorial",
       "rank": 7,
@@ -201,7 +201,7 @@
         "Automação"
       ],
       "baseline_position": 8,
-      "score": 70.5,
+      "score": 72.4,
       "evidence": [],
       "confidence": "editorial",
       "rank": 8,
@@ -226,7 +226,7 @@
         "Transportes"
       ],
       "baseline_position": 9,
-      "score": 68.9,
+      "score": 71.1,
       "evidence": [],
       "confidence": "editorial",
       "rank": 9,
@@ -251,7 +251,7 @@
         "Responsible AI"
       ],
       "baseline_position": 10,
-      "score": 67.2,
+      "score": 69.7,
       "evidence": [],
       "confidence": "editorial",
       "rank": 10,
@@ -276,7 +276,7 @@
         "Produtividade"
       ],
       "baseline_position": 11,
-      "score": 65.6,
+      "score": 68.3,
       "evidence": [],
       "confidence": "editorial",
       "rank": 11,
@@ -301,7 +301,7 @@
         "Aceleração"
       ],
       "baseline_position": 12,
-      "score": 64.0,
+      "score": 67.0,
       "evidence": [],
       "confidence": "editorial",
       "rank": 12,
@@ -326,7 +326,7 @@
         "Deep Tech"
       ],
       "baseline_position": 13,
-      "score": 62.3,
+      "score": 65.6,
       "evidence": [],
       "confidence": "editorial",
       "rank": 13,
@@ -351,7 +351,7 @@
         "Early Stage"
       ],
       "baseline_position": 14,
-      "score": 60.7,
+      "score": 64.2,
       "evidence": [],
       "confidence": "editorial",
       "rank": 14,
@@ -376,7 +376,7 @@
         "Enterprise"
       ],
       "baseline_position": 15,
-      "score": 59.0,
+      "score": 62.9,
       "evidence": [],
       "confidence": "editorial",
       "rank": 15,
@@ -386,6 +386,51 @@
         "kind": "same",
         "delta": 0,
         "label": "Manteve"
+      }
+    },
+    {
+      "id": "governo-portugal",
+      "name": "Governo de Portugal",
+      "tagline": "Promotor da Agenda Nacional de Inteligência Artificial (ANIA)",
+      "description": "O Governo de Portugal é o principal impulsionador da Agenda Nacional de Inteligência Artificial (ANIA) para 2026-2030, com um investimento superior a 400 milhões de euros. A ANIA visa acelerar a adoção da IA na economia e na Administração Pública, focando em inovação, talento, ética e crescimento económico sustentável.",
+      "linkedin": "https://www.linkedin.com/company/governo-de-portugal/",
+      "category": "Governo",
+      "tags": [
+        "ANIA",
+        "Política Pública",
+        "Investimento em IA",
+        "Estratégia Nacional"
+      ],
+      "aliases": [
+        "Governo Português"
+      ],
+      "baseline_position": 25,
+      "score": 62.7,
+      "evidence": [
+        {
+          "title": "Portugal quer apoiar transformação digital e aposta em IA em Moçambique",
+          "url": "/artigos/portugal-quer-apoiar-transformacao-digital-e-aposta-em-ia-em-mocambique-67b4479fd7fba88233",
+          "published_at": "2026-06-12"
+        },
+        {
+          "title": "Portugal e a IA: Proteger o Trabalho Enquanto a Regulação se Torna Produto",
+          "url": "/artigos/portugal-e-a-ia-proteger-o-trabalho-enquanto-a-regulacao-se-torna-produto-91313cc185601deb46",
+          "published_at": "2026-06-09"
+        },
+        {
+          "title": "Governo centraliza gestão tecnológica e aposta na IA na Saúde, prevendo poupança de 300 milhões",
+          "url": "/artigos/governo-centraliza-gestao-tecnologica-e-aposta-na-ia-na-saude-prevendo-poupanca-de-300-milhoes-2e33bf4399239fbd8c",
+          "published_at": "2026-05-21"
+        }
+      ],
+      "confidence": "alta",
+      "rank": 16,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Nova entrada"
       }
     },
     {
@@ -401,16 +446,16 @@
         "Scaleup"
       ],
       "baseline_position": 16,
-      "score": 57.4,
+      "score": 61.5,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 16,
+      "rank": 17,
       "previous_rank": 16,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -426,16 +471,16 @@
         "Comunicações"
       ],
       "baseline_position": 17,
-      "score": 55.8,
+      "score": 60.1,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 17,
+      "rank": 18,
       "previous_rank": 17,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -451,16 +496,16 @@
         "Advisory"
       ],
       "baseline_position": 18,
-      "score": 54.1,
+      "score": 58.8,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 18,
+      "rank": 19,
       "previous_rank": 18,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -476,16 +521,16 @@
         "Inovação"
       ],
       "baseline_position": 19,
-      "score": 52.5,
+      "score": 57.4,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 19,
+      "rank": 20,
       "previous_rank": 19,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -501,16 +546,16 @@
         "Investimentos"
       ],
       "baseline_position": 20,
-      "score": 50.8,
+      "score": 56.0,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 20,
+      "rank": 21,
       "previous_rank": 20,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -526,16 +571,98 @@
         "Emprego"
       ],
       "baseline_position": 21,
-      "score": 49.2,
+      "score": 54.7,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 21,
+      "rank": 22,
       "previous_rank": 21,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
+      }
+    },
+    {
+      "id": "cgi-portugal",
+      "name": "CGI Portugal",
+      "tagline": "Consultoria de TI e Centro de Excelência em IA",
+      "description": "A CGI Portugal é a subsidiária da consultora canadiana de tecnologias de informação, que abriu o seu primeiro Centro de Excelência em Inteligência Artificial no país. O centro foca-se em IA baseada em agentes e IA Generativa para acelerar a transformação digital dos clientes, com uma equipa de mais de 700 colaboradores e parcerias com universidades portuguesas.",
+      "linkedin": "https://www.linkedin.com/company/cgi/",
+      "category": "Consultoria / Big Tech",
+      "tags": [
+        "IA Generativa",
+        "IA baseada em agentes",
+        "transformação digital",
+        "parcerias académicas"
+      ],
+      "aliases": [
+        "CGI"
+      ],
+      "baseline_position": 22,
+      "score": 53.3,
+      "evidence": [],
+      "confidence": "editorial",
+      "rank": 23,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Nova entrada"
+      }
+    },
+    {
+      "id": "daredata",
+      "name": "DareData",
+      "tagline": "Soluções de IA e Dados para empresas",
+      "description": "A DareData é uma empresa portuguesa especializada em soluções de Inteligência Artificial e Dados, que registou um crescimento significativo em 2025. A empresa expandiu a sua equipa para mais de 130 especialistas e lançou o Gen-OS, um AI Operating System para orquestrar e escalar ecossistemas de IA empresariais.",
+      "linkedin": "https://www.linkedin.com/company/daredata/",
+      "category": "Consultoria / Tecnologia",
+      "tags": [
+        "IA",
+        "Dados",
+        "Gen-OS",
+        "AI Operating System"
+      ],
+      "aliases": [],
+      "baseline_position": 23,
+      "score": 51.9,
+      "evidence": [],
+      "confidence": "editorial",
+      "rank": 24,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Nova entrada"
+      }
+    },
+    {
+      "id": "nimber",
+      "name": "Nimber",
+      "tagline": "Serviços de cibersegurança e IA",
+      "description": "A Nimber é uma empresa fundada em 2023 com o objetivo de que, até 2028, metade do seu volume de negócios provenha de serviços de cibersegurança e inteligência artificial. A empresa tem crescido sem investimento externo e está a expandir-se internacionalmente, com clientes na Dinamarca e no Canadá.",
+      "linkedin": "https://www.linkedin.com/company/nimber/",
+      "category": "Cibersegurança / Consultoria",
+      "tags": [
+        "IA",
+        "cibersegurança",
+        "internacionalização"
+      ],
+      "aliases": [],
+      "baseline_position": 24,
+      "score": 50.6,
+      "evidence": [],
+      "confidence": "editorial",
+      "rank": 25,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Nova entrada"
       }
     }
   ],
@@ -5474,8 +5601,8 @@
         "pesquisa"
       ],
       "baseline_score": 96,
-      "score": 96.2,
-      "topical_hits": 67,
+      "score": 96.3,
+      "topical_hits": 68,
       "rank": 1,
       "previous_rank": 2,
       "movement": 1,
@@ -5499,7 +5626,7 @@
       ],
       "baseline_score": 95,
       "score": 96.1,
-      "topical_hits": 170,
+      "topical_hits": 174,
       "rank": 2,
       "previous_rank": 1,
       "movement": -1,
@@ -5522,8 +5649,8 @@
         "agentes"
       ],
       "baseline_score": 94,
-      "score": 94.7,
-      "topical_hits": 67,
+      "score": 95.2,
+      "topical_hits": 74,
       "rank": 3,
       "previous_rank": 4,
       "movement": 1,
@@ -5547,7 +5674,7 @@
       ],
       "baseline_score": 93,
       "score": 94.5,
-      "topical_hits": 117,
+      "topical_hits": 119,
       "rank": 4,
       "previous_rank": 3,
       "movement": -1,
@@ -5571,7 +5698,7 @@
       ],
       "baseline_score": 91,
       "score": 93.0,
-      "topical_hits": 248,
+      "topical_hits": 256,
       "rank": 5,
       "previous_rank": 5,
       "movement": 0,
@@ -5618,8 +5745,8 @@
         "decisão"
       ],
       "baseline_score": 91,
-      "score": 92.2,
-      "topical_hits": 65,
+      "score": 92.3,
+      "topical_hits": 66,
       "rank": 7,
       "previous_rank": 8,
       "movement": 1,
@@ -5643,7 +5770,7 @@
       ],
       "baseline_score": 90,
       "score": 92.2,
-      "topical_hits": 118,
+      "topical_hits": 121,
       "rank": 8,
       "previous_rank": 7,
       "movement": -1,
@@ -5666,8 +5793,8 @@
         "automação"
       ],
       "baseline_score": 93,
-      "score": 92.1,
-      "topical_hits": 47,
+      "score": 92.2,
+      "topical_hits": 48,
       "rank": 9,
       "previous_rank": 9,
       "movement": 0,
@@ -5690,8 +5817,8 @@
         "produto"
       ],
       "baseline_score": 90,
-      "score": 91.8,
-      "topical_hits": 71,
+      "score": 91.9,
+      "topical_hits": 72,
       "rank": 10,
       "previous_rank": 11,
       "movement": 1,
@@ -5715,7 +5842,7 @@
       ],
       "baseline_score": 89,
       "score": 91.4,
-      "topical_hits": 101,
+      "topical_hits": 103,
       "rank": 11,
       "previous_rank": 10,
       "movement": -1,
@@ -5738,8 +5865,8 @@
         "conteúdo"
       ],
       "baseline_score": 91,
-      "score": 90.7,
-      "topical_hits": 48,
+      "score": 90.8,
+      "topical_hits": 49,
       "rank": 12,
       "previous_rank": 12,
       "movement": 0,
@@ -5810,8 +5937,8 @@
         "pesquisa"
       ],
       "baseline_score": 92,
-      "score": 88.0,
-      "topical_hits": 24,
+      "score": 88.4,
+      "topical_hits": 26,
       "rank": 15,
       "previous_rank": 15,
       "movement": 0,
@@ -5834,8 +5961,8 @@
         "software"
       ],
       "baseline_score": 90,
-      "score": 86.5,
-      "topical_hits": 24,
+      "score": 86.7,
+      "topical_hits": 25,
       "rank": 16,
       "previous_rank": 16,
       "movement": 0,
@@ -5882,8 +6009,8 @@
         "distribuição"
       ],
       "baseline_score": 89,
-      "score": 84.6,
-      "topical_hits": 19,
+      "score": 84.8,
+      "topical_hits": 20,
       "rank": 18,
       "previous_rank": 18,
       "movement": 0,
@@ -5906,8 +6033,8 @@
         "comunicação"
       ],
       "baseline_score": 88,
-      "score": 84.0,
-      "topical_hits": 20,
+      "score": 84.3,
+      "topical_hits": 21,
       "rank": 19,
       "previous_rank": 19,
       "movement": 0,
@@ -5930,8 +6057,8 @@
         "jornalismo"
       ],
       "baseline_score": 88,
-      "score": 83.5,
-      "topical_hits": 18,
+      "score": 83.8,
+      "topical_hits": 19,
       "rank": 20,
       "previous_rank": 20,
       "movement": 0,
@@ -5954,8 +6081,8 @@
         "conteúdo"
       ],
       "baseline_score": 88,
-      "score": 83.3,
-      "topical_hits": 17,
+      "score": 83.5,
+      "topical_hits": 18,
       "rank": 21,
       "previous_rank": 21,
       "movement": 0,
@@ -6038,6 +6165,35 @@
         "delta": 0,
         "label": "Manteve"
       }
+    },
+    {
+      "id": "prompt-estruturado-eficaz",
+      "title": "Criar um prompt estruturado e eficaz",
+      "category": "produtividade",
+      "purpose": "Gerar respostas claras, precisas e úteis de um modelo de linguagem, utilizando técnicas de engenharia de prompts.",
+      "template": "Atua como um [persona/quadro de referência]. A minha tarefa é [descrever a tarefa complexa]. Para me ajudar, por favor, segue estes passos:\n1. [Passo 1 da tarefa]\n2. [Passo 2 da tarefa]\n3. [Passo 3 da tarefa]\n\nUsa delimitadores como `---` para separar as diferentes partes do teu raciocínio. Fornece exemplos se necessário para clarificar a tua intenção. O formato de saída desejado é [formato de saída].\n\nEm vez de me dizeres o que não fazer, foca-te em instruir-me sobre o que fazer. Se precisares de mais informações, por favor, faz perguntas de acompanhamento para esclarecimento.",
+      "keywords": [
+        "engenharia de prompts",
+        "especificidade",
+        "few-shot prompting",
+        "formato de saída",
+        "persona",
+        "chain-of-thought",
+        "meta-prompting",
+        "delimitadores",
+        "active prompting"
+      ],
+      "baseline_score": 90,
+      "score": 75.8,
+      "topical_hits": 2,
+      "rank": 25,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Nova entrada"
+      }
     }
   ],
   "glossary": [
@@ -6071,7 +6227,7 @@
         "retrieval augmented generation"
       ],
       "english_term": "Retrieval-Augmented Generation",
-      "mentions_12w": 13
+      "mentions_12w": 14
     },
     {
       "id": "benchmark",
@@ -6103,7 +6259,7 @@
         "inteligência artificial geral"
       ],
       "english_term": "Artificial General Intelligence",
-      "mentions_12w": 7
+      "mentions_12w": 8
     },
     {
       "id": "agente-ia",
@@ -6121,7 +6277,7 @@
         "ai agent"
       ],
       "english_term": "AI agent",
-      "mentions_12w": 4
+      "mentions_12w": 5
     },
     {
       "id": "alinhamento",
@@ -6137,7 +6293,7 @@
         "alignment"
       ],
       "english_term": "Alignment",
-      "mentions_12w": 4
+      "mentions_12w": 5
     },
     {
       "id": "ia-generativa",
@@ -6399,6 +6555,22 @@
       "mentions_12w": 0
     },
     {
+      "id": "ia-agentica",
+      "term": "IA Agêntica",
+      "definition": "Sistemas de inteligência artificial capazes de operar de forma autônoma, percebendo o ambiente, raciocinando sobre problemas, tomando decisões e executando tarefas para alcançar objetivos definidos, indo além da mera geração de conteúdo.",
+      "example": "Um agente de IA agêntica pode ser programado para gerir a agenda de um utilizador, respondendo a emails, agendando reuniões e organizando documentos sem intervenção humana constante.",
+      "related": [
+        "agente-ia",
+        "ia-generativa",
+        "tool-use"
+      ],
+      "aliases": [
+        "Agentic AI"
+      ],
+      "english_term": "Agentic AI",
+      "mentions_12w": 0
+    },
+    {
       "id": "inferencia",
       "term": "Inferência",
       "definition": "Momento em que um modelo já treinado processa uma entrada para produzir uma previsão ou resposta.",
@@ -6463,6 +6635,22 @@
         "model context protocol"
       ],
       "english_term": "Model Context Protocol",
+      "mentions_12w": 0
+    },
+    {
+      "id": "mixture-of-experts",
+      "term": "Mixture of Experts (MoE)",
+      "definition": "Uma arquitetura de modelo de aprendizado de máquina que combina vários 'especialistas' (redes neurais menores) para lidar com diferentes partes de um problema, permitindo que o modelo se especialize em várias tarefas e melhore a eficiência e o desempenho.",
+      "example": "Modelos de linguagem grandes como o Gemini 1.5 Pro e o GPT-4o utilizam a arquitetura Mixture of Experts para otimizar o processamento de diferentes tipos de dados e tarefas.",
+      "related": [
+        "rede-neuronal",
+        "llm",
+        "transformer"
+      ],
+      "aliases": [
+        "MoE"
+      ],
+      "english_term": "Mixture of Experts (MoE)",
       "mentions_12w": 0
     },
     {
@@ -6708,6 +6896,25 @@
       "mentions_12w": 0
     },
     {
+      "id": "tool-calling",
+      "term": "Tool Calling",
+      "definition": "Capacidade de um Large Language Model (LLM) de invocar funções ou APIs externas para executar ações específicas, permitindo que o modelo interaja com ferramentas e serviços do mundo real, sendo um pilar para a construção de sistemas de IA agênticos.",
+      "example": "Um LLM pode usar 'tool calling' para aceder a uma API de meteorologia e fornecer a previsão do tempo atual, ou para enviar um email através de um serviço de email.",
+      "related": [
+        "llm",
+        "api",
+        "ia-agentica",
+        "tool-use"
+      ],
+      "aliases": [
+        "Function Calling",
+        "Chamada de Ferramenta",
+        "Chamada de Função"
+      ],
+      "english_term": "Tool Calling / Function Calling",
+      "mentions_12w": 0
+    },
+    {
       "id": "tool-use",
       "term": "Tool use",
       "definition": "Capacidade de um modelo chamar funções ou serviços externos para obter dados ou executar ações.",
@@ -6754,6 +6961,22 @@
         "computer vision"
       ],
       "english_term": "Computer vision",
+      "mentions_12w": 0
+    },
+    {
+      "id": "vlm",
+      "term": "VLM",
+      "definition": "Um tipo de modelo de inteligência artificial multimodal capaz de processar e compreender informações tanto textuais quanto visuais, permitindo-lhe realizar tarefas que envolvem a interpretação conjunta de imagens e texto, como descrição de imagens ou resposta a perguntas sobre conteúdo visual.",
+      "example": "O GPT-4V é um exemplo de VLM que pode analisar uma imagem e gerar uma descrição detalhada ou responder a perguntas específicas sobre os elementos visuais presentes.",
+      "related": [
+        "modelo-multimodal",
+        "llm",
+        "visao-computacional"
+      ],
+      "aliases": [
+        "Modelo de Linguagem Visual"
+      ],
+      "english_term": "Vision Language Model",
       "mentions_12w": 0
     },
     {
