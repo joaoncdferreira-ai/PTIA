@@ -1,7 +1,77 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-15T10:33:04+00:00",
+  "updated_at": "2026-06-15T22:04:26+00:00",
   "posts": [
+    {
+      "id": "post_5480a987ea45f8431e",
+      "title": "Cognizant: 4,7 biliões de dólares em valor de IA por explorar nas G2000",
+      "body": "Uma nova pesquisa da Cognizant revela que as empresas que combinam uma infraestrutura tecnológica madura com uma estratégia de investimento em IA focada nos seus fundamentos superam as restantes em 31% nos resultados compostos. O estudo indica que dois terços dos líderes ainda não demonstraram ganhos mensuráveis de produtividade de negócio com a IA, e um em cada quatro já pausou ou abandonou as suas implementações.\n\nEste cenário de ganhos potenciais versus a dificuldade real de execução sublinha uma tensão crítica. O problema não reside na promessa da inteligência artificial, que a Cognizant quantifica em 4,7 biliões de dólares de valor inexplorado nas empresas G2000, mas sim na capacidade de transformar essa promessa em retorno tangível. O diferencial de 31% não é um acaso; ele surge onde a visão estratégica da IA encontra uma base tecnológica robusta, capaz de a suportar.\n\nO que observamos é que a aposta na IA, por si só, não é suficiente. As empresas que falham não o fazem por falta de intenção ou investimento, mas por uma desconexão entre a ambição e a preparação da sua infraestrutura e dos seus <i>pipelines</i> de dados. Pausar ou abandonar implementações, como um quarto das empresas já fez, não é um sinal de que a IA não funciona, mas sim de que a sua adoção exige mais do que a simples aquisição de tecnologia.\n\nPara decisores e <i>founders</i> em Portugal, isto deve servir como um <i>insight</i> fundamental: a corrida não é para quem adota a IA mais cedo, mas para quem a integra de forma mais inteligente. Antes de escalar projetos, é preciso solidificar a base. Isso significa investir na modernização dos <i>legacy systems</i>, na governança dos dados e na capacitação das equipas para que consigam extrair valor real dos modelos. A produtividade não é um subproduto automático da IA; é o resultado de uma estratégia consciente que alinha a tecnologia com a arquitetura de negócio já existente.\n\nA verdadeira vantagem competitiva não virá de um modelo de IA superior, mas da capacidade de uma organização para o absorver e aplicar de forma eficaz, transformando a capacidade bruta em valor operacional. A questão, portanto, não é se a IA criará valor, mas sim quem está verdadeiramente preparado para o reclamar.\n\nFonte: https://www.prnewswire.com/news-releases/new-cognizant-research-reveals-4-7-trillion-in-untapped-ai-value-across-g2000-302364404.html",
+      "source_urls": [
+        "https://www.prnewswire.com/news-releases/new-cognizant-research-reveals-4-7-trillion-in-untapped-ai-value-across-g2000-302364404.html"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_427c33fbc60e136a54_ea776ca5_ChatGPT-Image-15_06_2026-22_57_29.png",
+      "image_url": "/assets/final/post_324779fe7e8d968b76_site_1600x900.jpg",
+      "published_at": "2026-06-16T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/cognizant-4-7-bilioes-de-dolares-em-valor-de-ia-por-explorar-nas-g2000-5480a987ea45f8431e"
+    },
+    {
+      "id": "post_aaf0c5f540fdae886b",
+      "title": "A Briya abre o AIRE™: Plataforma de IA para a Pesquisa Médica e o Dilema da Acessibilidade",
+      "body": "A Briya anunciou o acesso gratuito ao AIRE™, a sua plataforma de IA científica conversacional, desenhada para a pesquisa clínica, epidemiológica e de evidências do mundo real. Esta iniciativa visa democratizar o acesso a capacidades avançadas de investigação em saúde, através de um ambiente <i>SaaS</i> transparente e baseado em navegador.\n\nEste movimento da Briya tem a capacidade de acelerar descobertas médicas e melhorar a saúde da população, ao tornar a pesquisa avançada mais acessível. O impacto direto estende-se a profissionais de saúde, investigadores e empresas de biotecnologia.\n\nAqui, o facto novo não é apenas a disponibilidade de mais uma ferramenta de IA para a medicina, mas a decisão de a oferecer sem custos, num modelo <i>SaaS</i>. Esta é uma aposta clara na democratização de uma capacidade que, até agora, estava restrita a quem tinha orçamentos avultados ou acesso a infraestruturas complexas. A questão passa a ser: o que acontece quando a barreira de entrada para a inovação médica é drasticamente reduzida? O modelo <i>freemium</i> ou de acesso aberto no desenvolvimento de <i>frameworks</i> de IA para a saúde pode ser a via para acelerar a adoção e a criação de novos <i>use cases</i>. A verdadeira tensão surge na forma como esta capacidade gratuita pode redefinir o <i>pipeline</i> de descobertas, forçando os <i>players</i> estabelecidos a repensar as suas estratégias de investimento e de colaboração.\n\nPara quem decide, a pergunta não é se a IA será relevante para a saúde, mas como se pode capitalizar a disponibilidade de ferramentas como o AIRE™ para impulsionar a investigação e o desenvolvimento a uma escala que, antes, seria impensável. A competitividade no setor da saúde pode agora depender menos da capacidade de construir ferramentas de raiz e mais da agilidade em integrar e aproveitar o que já está disponível, gratuitamente.\n\nFonte: https://www.prnewswire.com/news-releases/briya-opens-free-access-to-aire-bringing-a-transparent-ai-powered-medical-research-platform-to-the-global-scientific-community-302364405.html",
+      "source_urls": [
+        "https://www.prnewswire.com/news-releases/briya-opens-free-access-to-aire-bringing-a-transparent-ai-powered-medical-research-platform-to-the-global-scientific-community-302364405.html"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_66c8d677e3c5db0021_1153edc5_ChatGPT-Image-15_06_2026-22_52_27.png",
+      "image_url": "/assets/final/post_43e3f4f8c879ac4a76_site_1600x900.jpg",
+      "published_at": "2026-06-16T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-briya-abre-o-airetm-plataforma-de-ia-para-a-pesquisa-medica-e-o-dilema-da-acessibilidade-aaf0c5f540fdae886b"
+    },
+    {
+      "id": "post_bafee32332a7fab603",
+      "title": "Presidente em Cimeira COTEC sobre IA: Governança Ética no Centro da Agenda",
+      "body": "O Presidente português vai participar na cimeira da COTEC sobre Inteligência Artificial em Itália. O evento focar-se-á em estratégias para governar a integração da IA de forma ética, eficaz e sustentável, sinalizando a crescente importância do tema na agenda política e empresarial de Portugal.\n\nA presença do Chefe de Estado numa discussão que transcende a tecnologia e entra no campo da governação e da ética sublinha uma tese: a IA não é mais uma questão apenas para programadores ou tecnólogos. É uma prioridade de soberania, competitividade e regulação que exige uma visão de topo. O alinhamento com outros líderes europeus na busca por uma governança responsável e sustentável da IA é um passo importante para Portugal. Não se trata de travar o progresso com regras excessivas, mas de construir um <i>framework</i> que permita a inovação e a adoção, salvaguardando ao mesmo tempo os valores e a segurança.\n\nEste movimento, que coloca a ética e a sustentabilidade no coração da discussão sobre IA, deve servir de catalisador para uma reflexão mais profunda em Portugal. Quais são os nossos reais <i>use cases</i> para a IA? Como podemos assegurar que a nossa força de trabalho está preparada para esta transição? E, mais importante, como podemos posicionar Portugal não apenas como um consumidor, mas como um ator ativo na definição das normas e no desenvolvimento de soluções de IA que reflitam os nossos próprios valores e necessidades?\n\nA cimeira da COTEC oferece a oportunidade de regressar com <i>insights</i> práticos e um <i>roadmap</i> claro para a implementação. A partir daqui, a questão não é se Portugal vai adotar a IA, mas como vai liderar a sua adoção, transformando a ética e a sustentabilidade em vantagens competitivas.\n\nFonte: https://www.portugalresident.com/president-to-attend-cotec-summit-on-ai-in-italy/",
+      "source_urls": [
+        "https://www.portugalresident.com/president-to-attend-cotec-summit-on-ai-in-italy/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fef29d465cf5737a2e_cdd1feca_ChatGPT-Image-15_06_2026-22_50_59.png",
+      "image_url": "/assets/final/post_226d2963edbfcacb29_site_1600x900.jpg",
+      "published_at": "2026-06-16T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/presidente-em-cimeira-cotec-sobre-ia-governanca-etica-no-centro-da-agenda-bafee32332a7fab603"
+    },
+    {
+      "id": "post_b9e9fad5b6469bda38",
+      "title": "Bloco de Esquerda propõe supervisão humana em despedimentos por IA",
+      "body": "O Bloco de Esquerda (BE) propôs um conjunto de salvaguardas legais para impedir que, em Portugal, trabalhadores sejam despedidos exclusivamente por sistemas de inteligência artificial. A iniciativa surge como parte de um pacote mais vasto de reformas à lei laboral, em discussão parlamentar esta semana.\n\nEsta proposta de lei visa assegurar a supervisão humana nas decisões de emprego, protegendo os trabalhadores de serem demitidos apenas com base em algoritmos. Um passo que estabelece um precedente regulatório significativo para empresas e profissionais no país.\n\nO que esta proposta do Bloco de Esquerda sinaliza é uma tensão crescente entre a promessa de eficiência da IA e a necessidade de preservar direitos laborais fundamentais. A discussão não se foca na proibição da IA em si, mas na delimitação da sua autonomia em decisões com impacto humano direto. Esta intervenção regulatória, mesmo que com um foco específico, é um indicador de que a introdução de IA no mercado de trabalho português não será um processo meramente técnico; será, sobretudo, um campo de negociação política e social.\n\nPara os decisores e <i>founders</i> em Portugal, a questão de fundo não é se a IA vai influenciar os processos de recursos humanos — isso já é uma realidade — mas sim como se vai navegar um cenário regulatório que começa a desenhar limites. A proibição de despedimentos “exclusivamente” por IA levanta a questão da definição de “exclusivamente”. A fronteira entre uma decisão assistida por IA e uma decisão impulsionada por IA é, na prática, fluida. E é nessa fluidez que residirão os desafios de <i>compliance</i> e as oportunidades para quem conseguir integrar a tecnologia de forma ética e legalmente robusta, sem travar a inovação.\n\nFonte: https://www.portugalresident.com/be-wants-to-ban-ai-driven-dismissals-in-portugal/",
+      "source_urls": [
+        "https://www.portugalresident.com/be-wants-to-ban-ai-driven-dismissals-in-portugal/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_43c315cb2672f1d5a7_66289871_ChatGPT-Image-15_06_2026-22_19_40.png",
+      "image_url": "/assets/final/post_e5eb1ad4b4314d618b_site_1600x900.jpg",
+      "published_at": "2026-06-16T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/bloco-de-esquerda-propoe-supervisao-humana-em-despedimentos-por-ia-b9e9fad5b6469bda38"
+    },
     {
       "id": "post_ae954d66e4ab4e5e55",
       "title": "A IA e a 'Ressurreição' de Vidas na Guerra: Uma Encruzilhada Sensível",
