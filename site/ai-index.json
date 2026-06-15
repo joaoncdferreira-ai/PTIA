@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-15T08:53:43+00:00",
+  "updated_at": "2026-06-15T10:25:29+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -262,6 +262,16 @@
     }
   ],
   "recent_articles": [
+    {
+      "title": "Visa e OpenAI unem forças para criar uma nova era de compras feitas por IA",
+      "url": "https://ptia.pt/artigos/visa-e-openai-unem-forcas-para-criar-uma-nova-era-de-compras-feitas-por-ia-81d15624741f208613",
+      "published_at": "2026-06-15T10:00:00+01:00",
+      "summary": "A Visa e a OpenAI anunciaram uma parceria para desenvolver uma nova era de experiências de compra impulsionadas por inteligência artificial. A corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: c...",
+      "sections": [
+        "Mundo",
+        "Builders"
+      ]
+    },
     {
       "title": "Samsung integra IA generativa em todas as funções de negócio",
       "url": "https://ptia.pt/artigos/samsung-integra-ia-generativa-em-todas-as-funcoes-de-negocio-9eed210097c04d8166",
@@ -525,18 +535,6 @@
       "sections": [
         "Portugal",
         "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "A IA já pilota aviões. O que muda na adoção tecnológica?",
-      "url": "https://ptia.pt/artigos/a-ia-ja-pilota-avioes-o-que-muda-na-adocao-tecnologica-fbd5f6ef66313ab24e",
-      "published_at": "2026-06-08T21:00:00+01:00",
-      "summary": "A inteligência artificial está a ser desenvolvida para pilotar aviões, e a indústria da aviação já começa a adotá-la. Este é o facto. O que este movimento nos diz é que o ponto crítico para a adoção de IA em setores tra...",
-      "sections": [
-        "Portugal",
         "Regulação",
         "Histórias reais",
         "Previsões Futuras"
