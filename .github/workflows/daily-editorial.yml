@@ -36,9 +36,7 @@ jobs:
       PTIA_IMAGE_MODEL: gpt-image-2
       PTIA_IMAGE_QUALITY: medium
       PTIA_EDITORIAL_ASSETS_DIR: site/assets/editorial-review
-      PTIA_CLOUD_STATE_ENABLED: "true"
-      PTIA_STATE_API_URL: https://europe-west1-ptia-content-engine-prod.cloudfunctions.net/state_api
-      PTIA_STATE_TOKEN: ${{ secrets.PTIA_STATE_TOKEN }}
+      PTIA_CLOUD_STATE_ENABLED: "false"
 
     steps:
       - name: Checkout current engine
@@ -57,7 +55,6 @@ jobs:
         shell: bash
         run: |
           test -n "$GEMINI_API_KEY" || { echo "Missing GEMINI_API_KEY"; exit 1; }
-          test -n "$PTIA_STATE_TOKEN" || { echo "Missing PTIA_STATE_TOKEN"; exit 1; }
 
       - name: Validate editorial automation boundary
         run: >-
@@ -79,16 +76,24 @@ jobs:
           --limit "${{ inputs.limit }}"
           --no-scout
 
-      - name: Publish new review assets
+      - name: Publish editorial review queue
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- site/assets/editorial-review)" ]; then
-            echo "No new editorial assets."
+          review_paths=(
+            data/radar_signals.jsonl
+            data/editorial_topics.jsonl
+            data/editorial_fact_packs.jsonl
+            data/editorial_automation_runs.jsonl
+            data/final_posts.jsonl
+            site/assets/editorial-review
+          )
+          if [ -z "$(git status --porcelain -- "${review_paths[@]}")" ]; then
+            echo "No editorial queue changes."
             exit 0
           fi
           git config user.name "ptia-automation"
           git config user.email "actions@users.noreply.github.com"
-          git add site/assets/editorial-review
-          git commit -m "Prepare PTIA editorial review assets"
+          git add -- "${review_paths[@]}"
+          git commit -m "Prepare PTIA editorial review queue"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
