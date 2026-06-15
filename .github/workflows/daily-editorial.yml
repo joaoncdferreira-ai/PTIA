@@ -66,9 +66,13 @@ jobs:
 
       - name: Fill the A Rever queue
         if: github.event_name == 'schedule' || inputs.scout == true
-        run: >-
-          python -m ptia_engine.cli editorial-auto
-          --limit "${{ github.event_name == 'workflow_dispatch' && inputs.limit || '6' }}"
+        shell: bash
+        run: |
+          limit="${{ github.event_name == 'workflow_dispatch' && inputs.limit || '6' }}"
+          for attempt in 1 2 3; do
+            echo "Editorial discovery attempt ${attempt}/3"
+            python -m ptia_engine.cli editorial-auto --limit "$limit"
+          done
 
       - name: Fill from verified signals only
         if: github.event_name == 'workflow_dispatch' && inputs.scout == false
