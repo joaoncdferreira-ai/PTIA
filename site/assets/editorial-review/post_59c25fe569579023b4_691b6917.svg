@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E1C57B"/>
+      <stop offset="50%" stop-color="#C0A062"/>
+      <stop offset="100%" stop-color="#8D6B2D"/>
+    </linearGradient>
+    <radialGradient id="wash" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#F9F7F1" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="mesh" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#051A3B" stroke-width="1" opacity="0.055"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#wash)"/>
+  <rect width="1080" height="1080" fill="url(#mesh)"/>
+  <rect x="72" y="72" width="936" height="936" rx="34" fill="#FFFFFF" opacity="0.62" stroke="#E5DEC9" stroke-width="2"/>
+  <rect x="112" y="112" width="856" height="856" rx="28" fill="none" stroke="url(#gold)" stroke-width="4" opacity="0.85"/>
+  
+  <circle cx="540" cy="540" r="260" fill="none" stroke="#051A3B" stroke-width="26" opacity="0.86"/>
+  <circle cx="540" cy="540" r="176" fill="none" stroke="#C0A062" stroke-width="22" opacity="0.82"/>
+  <circle cx="540" cy="540" r="96" fill="#1B6B5F" opacity="0.36"/>
+  <path d="M184 742 C330 518, 496 748, 660 462 C748 308, 838 284, 920 236" fill="none" stroke="#051A3B" stroke-width="16" stroke-linecap="round" opacity="0.38"/>
+
+  <circle cx="900" cy="168" r="38" fill="url(#gold)" opacity="0.95"/>
+  <path d="M176 902 H904" stroke="#051A3B" stroke-width="10" stroke-linecap="round" opacity="0.88"/>
+  <text x="176" y="865" font-size="44" font-weight="800" fill="#051A3B" font-family="Georgia, serif">PTIA</text>
+</svg>
