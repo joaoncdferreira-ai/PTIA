@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-15T10:33:04+00:00",
+  "updated_at": "2026-06-15T22:04:26+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,40 @@
   ],
   "recent_articles": [
     {
+      "title": "A IA e a 'Ressurreição' de Vidas na Guerra: Uma Encruzilhada Sensível",
+      "url": "https://ptia.pt/artigos/a-ia-e-a-ressurreicao-de-vidas-na-guerra-uma-encruzilhada-sensivel-ae954d66e4ab4e5e55",
+      "published_at": "2026-06-15T21:00:00+01:00",
+      "summary": "No epicentro do conflito na Ucrânia, emerge uma tendência profundamente controversa: famílias russas utilizam tecnologias de inteligência artificial para 'ressuscitar' entes queridos falecidos em combate. Este fenómeno...",
+      "sections": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "DeepMind Alerta para Riscos na Interação Massiva de Agentes de IA",
+      "url": "https://ptia.pt/artigos/deepmind-alerta-para-riscos-na-interacao-massiva-de-agentes-de-ia-49bbc847040cdf6c1a",
+      "published_at": "2026-06-15T16:00:00+01:00",
+      "summary": "A Google DeepMind está a financiar investigação sobre os potenciais perigos que surgem quando milhões de diferentes agentes de inteligência artificial interagem entre si online. Segundo Rohin Shah, diretor de segurança...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Seguro alerta para o impacto da IA na Justiça",
+      "url": "https://ptia.pt/artigos/seguro-alerta-para-o-impacto-da-ia-na-justica-165409e57542df855d",
+      "published_at": "2026-06-15T13:00:00+01:00",
+      "summary": "António José Seguro alertou para os desafios e implicações do uso da Inteligência Artificial no setor da justiça durante uma cerimónia comemorativa dos 100 anos da Ordem dos Advogados. A regulação deixou de ser cenário...",
+      "sections": [
+        "Portugal",
+        "Regulação"
+      ]
+    },
+    {
       "title": "Visa e OpenAI unem forças para criar uma nova era de compras feitas por IA",
       "url": "https://ptia.pt/artigos/visa-e-openai-unem-forcas-para-criar-uma-nova-era-de-compras-feitas-por-ia-81d15624741f208613",
       "published_at": "2026-06-15T10:00:00+01:00",
@@ -504,40 +538,6 @@
         "Mundo",
         "Builders",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "Nvidia adquire startup de IA preditiva Kumo por mais de US$ 400 milhões",
-      "url": "https://ptia.pt/artigos/nvidia-adquire-startup-de-ia-preditiva-kumo-por-mais-de-us-400-milhoes-fef0498e1bb1793f31",
-      "published_at": "2026-06-09T16:00:00+01:00",
-      "summary": "A Nvidia adquiriu a Kumo, uma startup de IA preditiva, por pelo menos US$ 400 milhões. A IA continua a ser vendida como software, mas O relato lembra a parte física da disputa: chips, energia, centros de dados e capacid...",
-      "sections": [
-        "Mundo",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "OpenAI quer transformar ChatGPT em 'superapp' antes de IPO",
-      "url": "https://ptia.pt/artigos/openai-quer-transformar-chatgpt-em-superapp-antes-de-ipo-7c77f47bc8e2e0753e",
-      "published_at": "2026-06-09T13:00:00+01:00",
-      "summary": "A OpenAI planeia reformular o ChatGPT para o converter numa 'superapp', integrando ferramentas de codificação e agentes de inteligência artificial. O objetivo é impulsionar as receitas da empresa antes de uma potencial...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Portugal e a IA: Proteger o Trabalho Enquanto a Regulação se Torna Produto",
-      "url": "https://ptia.pt/artigos/portugal-e-a-ia-proteger-o-trabalho-enquanto-a-regulacao-se-torna-produto-91313cc185601deb46",
-      "published_at": "2026-06-09T09:00:00+01:00",
-      "summary": "O governo português assume uma posição clara: a proteção dos trabalhadores e a garantia de condições laborais adequadas são imperativas na integração da inteligência artificial no mercado. Esta defesa não é uma nota de...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     }
   ],
