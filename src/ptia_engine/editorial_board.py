@@ -230,12 +230,14 @@ def update_final_post_copy(
     image_prompt: str | None = None,
     notes: str = "",
 ) -> FinalPost:
+    from ptia_engine.services.editorial_hygiene import clean_editorial_title
+
     posts = load_final_posts(path)
     for post in posts:
         if post.post_id != post_id:
             continue
         if title is not None:
-            post.title = title
+            post.title = clean_editorial_title(title)
         if body is not None:
             post.body = body
         if hashtags is not None:

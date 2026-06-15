@@ -8,6 +8,7 @@ from ptia_engine.editorial_board import add_final_post
 from ptia_engine.services.channels import buffer_channel_id_for, expected_schedule_channels
 from ptia_engine.services.editorial_hygiene import (
     apply_ptia_editorial_rules,
+    clean_editorial_title,
     copy_quality_issues,
     normalise_hashtags,
 )
@@ -41,6 +42,14 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(title, "Tema")
         self.assertIn("O relato da Reuters", body)
         self.assertNotIn("lista de prioridades", body)
+
+    def test_editorial_titles_are_plain_text(self):
+        self.assertEqual(
+            clean_editorial_title(
+                "Responsible AI lança <i>framework</i> **TrustX** &amp; validação"
+            ),
+            "Responsible AI lança framework TrustX & validação",
+        )
 
     def test_hashtag_normalisation_limits_by_channel(self):
         hashtags = normalise_hashtags(

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import html
 import re
 import unicodedata
 
@@ -55,6 +56,15 @@ EDITORIAL_WORD_REPLACEMENTS = [
 ]
 
 
+def clean_editorial_title(value: str) -> str:
+    """Keep titles as plain text across UI, social copy and metadata."""
+    clean = html.unescape(str(value or ""))
+    clean = re.sub(r"<[^>]+>", "", clean)
+    clean = re.sub(r"\*\*(.*?)\*\*", r"\1", clean)
+    clean = re.sub(r"\*(.*?)\*", r"\1", clean)
+    return re.sub(r"\s+", " ", clean).strip()
+
+
 def normalise_hashtags(raw, channel: str = "") -> str:
     """Return clean social hashtags as '#TagA #TagB', never Python/JSON list syntax."""
     if not raw:
@@ -99,12 +109,12 @@ def normalise_hashtags(raw, channel: str = "") -> str:
 
 def apply_ptia_editorial_rules(title: str, body: str, channel: str = "") -> tuple[str, str]:
     """Apply non-negotiable PTIA editorial hygiene before review/publish."""
-    clean_title = re.sub(
+    clean_title = clean_editorial_title(re.sub(
         r"\s*[—–\-:]\s*O que significa para Portugal\??\s*$",
         "",
         title,
         flags=re.IGNORECASE,
-    ).strip()
+    ))
     clean_body = body
     for pattern in GENERIC_EDITORIAL_CTA_PATTERNS:
         clean_body = re.sub(pattern, "", clean_body, flags=re.IGNORECASE)
