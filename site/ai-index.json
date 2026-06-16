@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-15T22:04:26+00:00",
+  "updated_at": "2026-06-16T23:04:46+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,52 @@
   ],
   "recent_articles": [
     {
+      "title": "Cognizant: 4,7 biliões de dólares em valor de IA por explorar nas G2000",
+      "url": "https://ptia.pt/artigos/cognizant-4-7-bilioes-de-dolares-em-valor-de-ia-por-explorar-nas-g2000-5480a987ea45f8431e",
+      "published_at": "2026-06-16T21:00:00+01:00",
+      "summary": "Uma nova pesquisa da Cognizant revela que as empresas que combinam uma infraestrutura tecnológica madura com uma estratégia de investimento em IA focada nos seus fundamentos superam as restantes em 31% nos resultados co...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "A Briya abre o AIRE™: Plataforma de IA para a Pesquisa Médica e o Dilema da Acessibilidade",
+      "url": "https://ptia.pt/artigos/a-briya-abre-o-airetm-plataforma-de-ia-para-a-pesquisa-medica-e-o-dilema-da-acessibilidade-aaf0c5f540fdae886b",
+      "published_at": "2026-06-16T16:00:00+01:00",
+      "summary": "A Briya anunciou o acesso gratuito ao AIRE™, a sua plataforma de IA científica conversacional, desenhada para a pesquisa clínica, epidemiológica e de evidências do mundo real. Esta iniciativa visa democratizar o acesso...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Presidente em Cimeira COTEC sobre IA: Governança Ética no Centro da Agenda",
+      "url": "https://ptia.pt/artigos/presidente-em-cimeira-cotec-sobre-ia-governanca-etica-no-centro-da-agenda-bafee32332a7fab603",
+      "published_at": "2026-06-16T13:00:00+01:00",
+      "summary": "O Presidente português vai participar na cimeira da COTEC sobre Inteligência Artificial em Itália. O evento focar-se-á em estratégias para governar a integração da IA de forma ética, eficaz e sustentável, sinalizando a...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Bloco de Esquerda propõe supervisão humana em despedimentos por IA",
+      "url": "https://ptia.pt/artigos/bloco-de-esquerda-propoe-supervisao-humana-em-despedimentos-por-ia-b9e9fad5b6469bda38",
+      "published_at": "2026-06-16T09:00:00+01:00",
+      "summary": "O Bloco de Esquerda (BE) propôs um conjunto de salvaguardas legais para impedir que, em Portugal, trabalhadores sejam despedidos exclusivamente por sistemas de inteligência artificial. A iniciativa surge como parte de u...",
+      "sections": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "A IA e a 'Ressurreição' de Vidas na Guerra: Uma Encruzilhada Sensível",
       "url": "https://ptia.pt/artigos/a-ia-e-a-ressurreicao-de-vidas-na-guerra-uma-encruzilhada-sensivel-ae954d66e4ab4e5e55",
       "published_at": "2026-06-15T21:00:00+01:00",
@@ -491,53 +537,6 @@
       "sections": [
         "Mundo",
         "Regulação"
-      ]
-    },
-    {
-      "title": "Nações Unidas alertam: fosso digital na IA pode gerar novas dependências",
-      "url": "https://ptia.pt/artigos/nacoes-unidas-alertam-fosso-digital-na-ia-pode-gerar-novas-dependencias-63473c83c36e092c2b",
-      "published_at": "2026-06-10T18:00:00+01:00",
-      "summary": "As Nações Unidas publicaram uma nova análise sobre a adoção global da inteligência artificial, destacando um crescente fosso entre países desenvolvidos e em desenvolvimento. O relatório aponta para uma concentração dese...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Inteligência Artificial na Contabilidade: O Redesenho Estratégico do Papel do Contabilista",
-      "url": "https://ptia.pt/artigos/inteligencia-artificial-na-contabilidade-o-redesenho-estrategico-do-papel-do-contabilista-18a9411220509cee96",
-      "published_at": "2026-06-10T13:00:00+01:00",
-      "summary": "A Ordem dos Contabilistas Certificados (OCC) lançou uma análise detalhada sobre a Inteligência Artificial no setor da contabilidade, explorando as suas potencialidades, os desafios e os impactos na profissão. O document...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Claude Fable 5: A nova aposta da Anthropic no segmento 'Mythos-class'",
-      "url": "https://ptia.pt/artigos/claude-fable-5-a-nova-aposta-da-anthropic-no-segmento-mythos-class-db9ea6b4c6d25a3e99",
-      "published_at": "2026-06-10T09:00:00+01:00",
-      "summary": "A Anthropic acaba de anunciar o lançamento do Claude Fable 5, um modelo que a empresa classifica como 'Mythos-class' e que foi desenvolvido para uso geral seguro. Este lançamento insere-se numa corrida onde a sofisticaç...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Scout da Microsoft: O Autopilot Agêntico no M365",
-      "url": "https://ptia.pt/artigos/scout-da-microsoft-o-autopilot-agentico-no-m365-2a3894114ee6007b84",
-      "published_at": "2026-06-09T21:00:00+01:00",
-      "summary": "A Microsoft anunciou o lançamento do Scout, um Autopilot agêntico que se integra de forma nativa em todo o ecossistema do Microsoft 365. Esta nova ferramenta visa estender a automação e a assistência inteligente a um le...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
       ]
     }
   ],
