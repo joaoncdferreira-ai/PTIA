@@ -1,7 +1,76 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-17T21:12:07+00:00",
+  "updated_at": "2026-06-19T12:21:40+00:00",
   "posts": [
+    {
+      "id": "post_f24692e41d4d3fe52a",
+      "title": "Portugal aprova Agenda Nacional de IA com meta de 1000 MW e impacto de €22 mil milhões no PIB",
+      "body": "O Conselho de Ministros de Portugal aprovou a Agenda Nacional de Inteligência Artificial (ANIA) e o Plano de Ação 2026-2030 (PAANIA). Este plano ambiciona aumentar a capacidade de computação do país para 700-1000 MW, projetando um impulso de 18 a 22 mil milhões de euros no Produto Interno Bruto (PIB).\n\nA estratégia nacional para a IA na próxima meia década foca-se em quatro pilares: infraestrutura, inovação nas PME, formação de talento e <i>compliance</i> com o Regulamento de IA da União Europeia. A aprovação da ANIA sublinha uma vontade política de posicionar Portugal na vanguarda da corrida tecnológica, com uma aposta clara em escalar a capacidade energética necessária para alimentar a próxima vaga de desenvolvimento.\n\nContudo, a ambição de 700-1000 MW de capacidade de computação levanta uma questão central: a origem dessa energia. Portugal tem uma oportunidade única de alinhar a sua estratégia de IA com a sua matriz energética, dominada por renováveis. Construir e operar <i>data centers</i> que suportem esta capacidade, alimentados por fontes limpas, não é apenas uma questão de sustentabilidade, mas uma vantagem competitiva inegável. Não se trata apenas de ter mais capacidade de computação, mas de ter a capacidade de computação mais 'verde' e, potencialmente, mais resiliente da Europa.\n\nIntegrar a IA na inovação das PME, por sua vez, requer mais do que incentivos. Exige uma estratégia de capacitação prática que vá além da formação genérica, focando-se em <i>use cases</i> específicos e ferramentas acessíveis. A formação de talento, embora importante, deve ser pensada em termos de um <i>pipeline</i> contínuo de competências que respondam às necessidades do mercado, e não apenas em programas isolados.\n\nAlinhar com o Regulamento de IA da UE é um dado adquirido, mas a questão é como Portugal pode transformar essa <i>compliance</i> numa vantagem. Em vez de uma mera adaptação, a interpretação e implementação proativa das diretrizes europeias pode criar um ambiente de confiança e segurança que atraia investimento e talento, diferenciando o país como um polo de IA responsável. O desafio, portanto, não é apenas atingir as metas energéticas e económicas, mas fazê-lo de forma a que a sustentabilidade e a ética se tornem elementos intrínsecos à proposta de valor da IA portuguesa, e não meros apêndices.\n\nFonte: [PLMJ](https://www.plmj.com/pt/conhecimento/notas-informativas/Agenda-Nacional-de-Inteligencia-Artificial-2026-2030/34274/)",
+      "source_urls": [
+        "https://www.plmj.com/pt/conhecimento/notas-informativas/Agenda-Nacional-de-Inteligencia-Artificial-2026-2030/34274/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e18c31c185103e34bb_2891592e_ChatGPT-Image-19_06_2026-13_14_05.png",
+      "image_url": "/assets/final/post_a168187e0b5bf9b2e8_site_1600x900.jpg",
+      "published_at": "2026-06-19T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/portugal-aprova-agenda-nacional-de-ia-com-meta-de-1000-mw-e-impacto-de-22-mil-milhoes-no-pib-f24692e41d4d3fe52a"
+    },
+    {
+      "id": "post_d764a3a5c0130755a7",
+      "title": "Grok de Elon Musk utilizada nos ataques dos Estados Unidos contra o Irão",
+      "body": "O Pentágono confirmou, sob juramento, o uso do Grok em operações militares no Irão. Revelação surgiu num processo judicial sobre poluição em bairros negros de Memphis.\n\nO Pentágono confirmou, sob juramento, o uso do Grok em operações militares no Irão.\n\nFonte: https://observador.pt/2026/06/17/grok-de-elon-musk-utilizada-nos-ataques-dos-estados-unidos-contra-o-irao/",
+      "source_urls": [
+        "https://observador.pt/2026/06/17/grok-de-elon-musk-utilizada-nos-ataques-dos-estados-unidos-contra-o-irao/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_61efde9d47d7fd4449_65c79806_ChatGPT-Image-19_06_2026-13_10_03.png",
+      "image_url": "/assets/final/post_ae1a0c044e681519d5_site_1600x900.jpg",
+      "published_at": "2026-06-19T18:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ],
+      "article_url": "artigos/grok-de-elon-musk-utilizada-nos-ataques-dos-estados-unidos-contra-o-irao-d764a3a5c0130755a7"
+    },
+    {
+      "id": "post_0c5dc8bc9220b57860",
+      "title": "Bruxelas alerta que Portugal está a ficar para trás na adoção de tecnologias avançadas",
+      "body": "País \"enfrenta uma série de desafios para alcançar uma digitalização bem-sucedida nas empresas\"\n\nFonte: https://cnnportugal.iol.pt/comissao-europeia/uniao-europeia/bruxelas-alerta-que-portugal-esta-a-ficar-para-tras-na-adocao-de-tecnologias-avancadas/20260617/6a32d03cd34edcee7c656556",
+      "source_urls": [
+        "https://cnnportugal.iol.pt/comissao-europeia/uniao-europeia/bruxelas-alerta-que-portugal-esta-a-ficar-para-tras-na-adocao-de-tecnologias-avancadas/20260617/6a32d03cd34edcee7c656556"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7b27e62e5000fc9cdd_bfc1e099_ChatGPT-Image-19_06_2026-13_08_55.png",
+      "image_url": "/assets/final/post_3ccc626698cc6e2745_site_1600x900.jpg",
+      "published_at": "2026-06-19T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/bruxelas-alerta-que-portugal-esta-a-ficar-para-tras-na-adocao-de-tecnologias-avancadas-0c5dc8bc9220b57860"
+    },
+    {
+      "id": "post_cb81e32511c8327feb",
+      "title": "Tóquio exige explicações a Washington sobre restrições à Anthropic",
+      "body": "A suspensão do acesso a modelos de inteligência artificial da Anthropic, decretada por Washington por motivos de segurança nacional, motivou um pedido de explicações do Japão. A ministra das Finanças japonesa, durante a visita de Sam Altman a Tóquio, questionou os Estados Unidos sobre uma decisão que afetou clientes em todo o mundo.\n\nEste episódio sublinha a crescente tensão geopolítica na corrida pela IA e, mais especificamente, a forma como a segurança nacional se sobrepõe rapidamente à liberalização tecnológica. Não se trata apenas de regular a tecnologia em solo doméstico, mas de uma projeção de poder que afeta cadeias de valor e a capacidade de inovação de nações aliadas. A dependência de infraestruturas e modelos de IA desenvolvidos em jurisdições externas é um risco estratégico que Portugal e a Europa não podem ignorar.\n\nA verdadeira questão não é se devemos regular, mas como construir uma soberania tecnológica que permita a empresas e governos nacionais operar e inovar sem estarem à mercê de decisões unilaterais de outras potências. A Europa tem uma oportunidade única para investir em modelos de IA abertos e em infraestruturas computacionais próprias, criando um ecossistema que garanta resiliência e competitividade. A alternativa é aceitar uma condição de utilizador passivo, sujeito a interrupções abruptas e restrições que podem comprometer a nossa própria segurança e capacidade de crescimento. É tempo de passar de consumidor a construtor ativo neste novo cenário tecnológico.\n\nFonte: https://observador.pt/2026/06/16/japao-pede-explicacoes-aos-eua-apos-restricoes-no-acesso-a-modelos-de-ia-da-anthropic/",
+      "source_urls": [
+        "https://observador.pt/2026/06/16/japao-pede-explicacoes-aos-eua-apos-restricoes-no-acesso-a-modelos-de-ia-da-anthropic/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fcf1b917ec9d973354_d3b3724f_ChatGPT-Image-19_06_2026-13_07_15.png",
+      "image_url": "/assets/final/post_2fd0bf37a1e524a302_site_1600x900.jpg",
+      "published_at": "2026-06-19T14:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/toquio-exige-explicacoes-a-washington-sobre-restricoes-a-anthropic-cb81e32511c8327feb"
+    },
     {
       "id": "post_ca8d52dec355493412",
       "title": "Lisboa acelera programa para 1 GW de capacidade em centros de dados até 2030",
