@@ -1,7 +1,74 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-19T12:21:40+00:00",
+  "updated_at": "2026-06-22T20:45:01+00:00",
   "posts": [
+    {
+      "id": "post_65769091c38b3e7203",
+      "title": "Cientista vencedor do Nobel John Jumper deixa Google DeepMind para a Anthropic",
+      "body": "John Jumper, cientista que liderou a equipa AlphaFold da Google DeepMind e co-vencedor do Prémio Nobel da Química de 2024, anunciou a sua saída para se juntar à Anthropic.\n\nFonte: https://www.businessinsider.com/alphafold-creator-john-jumper-quits-google-deepmind-for-anthropic-2026-6",
+      "source_urls": [
+        "https://www.businessinsider.com/alphafold-creator-john-jumper-quits-google-deepmind-for-anthropic-2026-6"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9cf9893470840f6ae8_f6bf5590_ChatGPT-Image-22_06_2026-21_41_06.png",
+      "image_url": "/assets/final/post_4708f2dbb3d6a00b7f_site_1600x900.jpg",
+      "published_at": "2026-06-23T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/cientista-vencedor-do-nobel-john-jumper-deixa-google-deepmind-para-a-anthropic-65769091c38b3e7203"
+    },
+    {
+      "id": "post_18b239caba6b34935b",
+      "title": "A Ascensão Silenciosa da China nos Robotáxis: Um Novo Barómetro de Domínio Tecnológico",
+      "body": "O mais recente <i>scorecard</i> da TechCrunch Mobility revela um dado inegável: a China está a consolidar uma posição de liderança no desenvolvimento e implementação de <i>robotáxis</i>. A análise detalhada das métricas de progresso, que incluem licenciamento, áreas de operação e quilometragem autónoma, aponta para uma aceleração notável no ecossistema chinês, superando outras regiões que, até há pouco, eram vistas como pioneiras neste segmento.\n\nEsta notícia não é apenas um registo de domínio geográfico; é um espelho do que acontece quando o investimento em tecnologia de ponta se alinha com uma visão estratégica de longo prazo e um ambiente regulatório que, embora complexo, é capaz de se adaptar rapidamente para impulsionar a inovação. A capacidade de escalar estes serviços, testá-los em cenários urbanos densos e integrá-los na infraestrutura existente, sem a rigidez que muitas vezes caracteriza outros mercados, está a criar uma vantagem cumulativa.\n\nPara os decisores e <i>founders</i> em Portugal e na Europa, isto não é um mero ponto de curiosidade tecnológica. É um alerta sobre a arquitetura da competitividade futura. Onde a China avança com uma abordagem de 'tudo incluído' — desde a produção de veículos à gestão de dados e à infraestrutura de IA —, a Europa corre o risco de ficar presa na discussão de fragmentos, sem uma estratégia coesa para o transporte autónomo. Não se trata apenas de ter a tecnologia, mas de ter a capacidade de a implementar em escala, de a integrar nos nossos ecossistemas urbanos e de capitalizar os <i>insights</i> que daí advêm.\n\nÉ imperativo que se comece a olhar para a adoção de tecnologia não apenas como um custo ou uma otimização, mas como uma questão de soberania e de futuro económico. O silêncio com que a China constrói esta liderança deve fazer-nos questionar que tipo de futuro estamos a desenhar para a mobilidade e para a indústria tecnológica em Portugal. Estamos a criar as condições para a experimentação e a escala, ou estamos a contentar-nos em ser meros consumidores de inovações criadas noutros pontos do globo?\n\nFonte: https://techcrunch.com/2026/06/21/techcrunch-mobility-a-new-robotaxi-scorecard-shows-chinas-dominance/",
+      "source_urls": [
+        "https://techcrunch.com/2026/06/21/techcrunch-mobility-a-new-robotaxi-scorecard-shows-chinas-dominance/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_38cf889229faebe977_4f7370e9_ChatGPT-Image-22_06_2026-21_37_37.png",
+      "image_url": "/assets/final/post_fb7c6b726d335265fb_site_1600x900.jpg",
+      "published_at": "2026-06-23T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-ascensao-silenciosa-da-china-nos-robotaxis-um-novo-barometro-de-dominio-tecnologico-18b239caba6b34935b"
+    },
+    {
+      "id": "post_10af05f28e4fff9642",
+      "title": "SpaceX assina acordo de computação de US$ 6,3 bilhões com a startup de IA de código aberto Reflection",
+      "body": "A Reflection AI pagará à SpaceX US$ 150 milhões por mês a partir de 1º de julho por acesso aos chips Nvidia GB300 dentro do data center Colossus 2, em um acordo que pode chegar a aproximadamente US$ 6,3 bilhões.\n\nFonte: https://qz.com/spacex-signed-a-6-3-billion-computing-deal-with-open-source-ai-startup-reflection-1850989088",
+      "source_urls": [
+        "https://qz.com/spacex-signed-a-6-3-billion-computing-deal-with-open-source-ai-startup-reflection-1850989088"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_bac06755ef006c6fcf_0540ea93_ChatGPT-Image-22_06_2026-21_35_33.png",
+      "image_url": "/assets/final/post_c331756ae4dc9c82d7_site_1600x900.jpg",
+      "published_at": "2026-06-23T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/spacex-assina-acordo-de-computacao-de-us-6-3-bilhoes-com-a-startup-de-ia-de-codigo-aberto-reflection-10af05f28e4fff9642"
+    },
+    {
+      "id": "post_e05c36a181c3a1b989",
+      "title": "Portugal junta-se a Espanha e Turquia para criar fábrica de inteligência artificial",
+      "body": "O país integra o consórcio do MareNostrum 5, que vai receber uma “fábrica de inteligência artificial” para  as previsões do tempo e a medicina.\n\nFonte: https://www.publico.pt/2026/06/22/enter/noticia/portugal-juntase-espanha-turquia-criar-fabrica-inteligencia-artificial-2179071",
+      "source_urls": [
+        "https://www.publico.pt/2026/06/22/enter/noticia/portugal-juntase-espanha-turquia-criar-fabrica-inteligencia-artificial-2179071"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_90a8acc013568cc731_0b7e6e00_ChatGPT-Image-22_06_2026-21_34_03.png",
+      "image_url": "/assets/final/post_c4d319242d14f0ce8b_site_1600x900.jpg",
+      "published_at": "2026-06-23T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/portugal-junta-se-a-espanha-e-turquia-para-criar-fabrica-de-inteligencia-artificial-e05c36a181c3a1b989"
+    },
     {
       "id": "post_f24692e41d4d3fe52a",
       "title": "Portugal aprova Agenda Nacional de IA com meta de 1000 MW e impacto de €22 mil milhões no PIB",
