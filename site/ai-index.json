@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-19T12:21:40+00:00",
+  "updated_at": "2026-06-22T20:46:14+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,51 @@
   ],
   "recent_articles": [
     {
+      "title": "Portugal aprova Agenda Nacional de IA com meta de 1000 MW e impacto de €22 mil milhões no PIB",
+      "url": "https://ptia.pt/artigos/portugal-aprova-agenda-nacional-de-ia-com-meta-de-1000-mw-e-impacto-de-22-mil-milhoes-no-pib-f24692e41d4d3fe52a",
+      "published_at": "2026-06-19T21:00:00+01:00",
+      "summary": "O Conselho de Ministros de Portugal aprovou a Agenda Nacional de Inteligência Artificial (ANIA) e o Plano de Ação 2026-2030 (PAANIA). Este plano ambiciona aumentar a capacidade de computação do país para 700-1000 MW, pr...",
+      "sections": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Grok de Elon Musk utilizada nos ataques dos Estados Unidos contra o Irão",
+      "url": "https://ptia.pt/artigos/grok-de-elon-musk-utilizada-nos-ataques-dos-estados-unidos-contra-o-irao-d764a3a5c0130755a7",
+      "published_at": "2026-06-19T18:00:00+01:00",
+      "summary": "O Pentágono confirmou, sob juramento, o uso do Grok em operações militares no Irão. Revelação surgiu num processo judicial sobre poluição em bairros negros de Memphis. O Pentágono confirmou, sob juramento, o uso do Grok...",
+      "sections": [
+        "Portugal",
+        "Regulação"
+      ]
+    },
+    {
+      "title": "Bruxelas alerta que Portugal está a ficar para trás na adoção de tecnologias avançadas",
+      "url": "https://ptia.pt/artigos/bruxelas-alerta-que-portugal-esta-a-ficar-para-tras-na-adocao-de-tecnologias-avancadas-0c5dc8bc9220b57860",
+      "published_at": "2026-06-19T16:00:00+01:00",
+      "summary": "País \"enfrenta uma série de desafios para alcançar uma digitalização bem-sucedida nas empresas\" Fonte: https://cnnportugal.iol.pt/comissao-europeia/uniao-europeia/bruxelas-alerta-que-portugal-esta-a-ficar-para-tras-na-a...",
+      "sections": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Tóquio exige explicações a Washington sobre restrições à Anthropic",
+      "url": "https://ptia.pt/artigos/toquio-exige-explicacoes-a-washington-sobre-restricoes-a-anthropic-cb81e32511c8327feb",
+      "published_at": "2026-06-19T14:00:00+01:00",
+      "summary": "A suspensão do acesso a modelos de inteligência artificial da Anthropic, decretada por Washington por motivos de segurança nacional, motivou um pedido de explicações do Japão. A ministra das Finanças japonesa, durante a...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
       "title": "Lisboa acelera programa para 1 GW de capacidade em centros de dados até 2030",
       "url": "https://ptia.pt/artigos/lisboa-acelera-programa-para-1-gw-de-capacidade-em-centros-de-dados-ate-2030-ca8d52dec355493412",
       "published_at": "2026-06-18T21:00:00+01:00",
@@ -504,49 +549,6 @@
         "Mundo",
         "Builders",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "Deezer lança detector de músicas com IA gratuito para outras plataformas",
-      "url": "https://ptia.pt/artigos/deezer-lanca-detector-de-musicas-com-ia-gratuito-para-outras-plataformas-772bf5148f2d796eae",
-      "published_at": "2026-06-13T16:00:00+01:00",
-      "summary": "A Deezer lançou um detector de músicas baseado em inteligência artificial, disponível de forma gratuita para utilizadores de cerca de 20 plataformas de streaming de música concorrentes. Esta iniciativa não é apenas uma...",
-      "sections": [
-        "Mundo",
-        "Builders"
-      ]
-    },
-    {
-      "title": "Suspensão do Claude Fable 5: Segurança trava corrida aos modelos",
-      "url": "https://ptia.pt/artigos/suspensao-do-claude-fable-5-seguranca-trava-corrida-aos-modelos-945ea3a2f6779b851d",
-      "published_at": "2026-06-13T13:00:00+01:00",
-      "summary": "O modelo Claude Fable 5 da Anthropic, disponibilizado publicamente esta semana, foi suspenso devido a preocupações graves de cibersegurança e vulnerabilidades de hacking. Esta decisão revela que a corrida aos modelos de...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Web Summit Rio com 27 startups portuguesas que empregam quase 270 pessoas",
-      "url": "https://ptia.pt/artigos/web-summit-rio-com-27-startups-portuguesas-que-empregam-quase-270-pessoas-c01ec248258599d00b",
-      "published_at": "2026-06-13T09:00:00+01:00",
-      "summary": "O Web Summit Rio acolheu este ano 27 startups portuguesas, com forte presença nos setores de inteligência artificial (IA), que empregam em conjunto quase 270 colaboradores. Esta representação destaca a crescente projeçã...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "BBVA puts AI at the core of banking with OpenAI",
-      "url": "https://ptia.pt/artigos/bbva-puts-ai-at-the-core-of-banking-with-openai-2e9938a90585f536c5",
-      "published_at": "2026-06-12T21:00:00+01:00",
-      "summary": "Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide. A corrida dos modelos está a ficar menos limpa do que os benchmarks suge...",
-      "sections": [
-        "Mundo",
-        "Builders"
       ]
     }
   ],
