@@ -1,7 +1,76 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-22T20:46:14+00:00",
+  "updated_at": "2026-06-24T09:09:41+00:00",
   "posts": [
+    {
+      "id": "post_51fad74253e990a2e2",
+      "title": "Amália: O Primeiro Modelo de IA Português Chega ao Mercado",
+      "body": "O panorama tecnológico português acaba de alcançar um marco decisivo com o lançamento do Amália, o primeiro modelo de inteligência artificial de linguagem desenvolvido em Portugal.\n\nA iniciativa promete trazer maior autonomia e soberania digital para as empresas e organizações nacionais, permitindo processar dados sensíveis com segurança e com um alinhamento profundo com as especificidades linguísticas do português europeu.\n\nFonte original: SIC Notícias (https://sicnoticias.pt/podcasts/economia-dia-a-dia/2026-06-23-vem-ai-o-amalia-o-primeiro-modelo-portugues-de-inteligencia-artificial-o-que-pode-fazer--33932431)",
+      "source_urls": [
+        "https://sicnoticias.pt/podcasts/economia-dia-a-dia/2026-06-23-vem-ai-o-amalia-o-primeiro-modelo-portugues-de-inteligencia-artificial-o-que-pode-fazer--33932431"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_391dc1a47de5f25974_3c81297e_ChatGPT-Image-23_06_2026-21_57_16.png",
+      "image_url": "/assets/final/post_81287c2f0cd5e81385_site_1600x900.jpg",
+      "published_at": "2026-06-24T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/amalia-o-primeiro-modelo-de-ia-portugues-chega-ao-mercado-51fad74253e990a2e2"
+    },
+    {
+      "id": "post_1688bb9100cb72b389",
+      "title": "Oracle corta 21.000 empregos para focar na Inteligência Artificial",
+      "body": "A Oracle está a cortar 21.000 postos de trabalho como parte de uma tendência mais ampla entre as empresas tecnológicas de reestruturação para focar os seus investimentos em Inteligência Artificial.\n\nEste ajuste reflete a realocação massiva de recursos e capital das grandes tecnológicas rumo ao desenvolvimento e integração de sistemas de IA, redefinindo as prioridades de talento e a estrutura operacional do setor.\n\nFonte original: BBC News (https://www.bbc.com/news/articles/c4gy0x0j5deo)",
+      "source_urls": [
+        "https://www.bbc.com/news/articles/c4gy0x0j5deo"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a8ac0e071139de45f5_ffb38eef_ChatGPT-Image-23_06_2026-21_59_44.png",
+      "image_url": "/assets/final/post_2e8284e0f376ce7c20_site_1600x900.jpg",
+      "published_at": "2026-06-24T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/oracle-corta-21-000-empregos-para-focar-na-inteligencia-artificial-1688bb9100cb72b389"
+    },
+    {
+      "id": "post_abd1e990be5be36a0f",
+      "title": "Anúncios de Pesquisa de IA Estão a Mover-se para Dentro da Resposta: O que os Novos Formatos do ChatGPT e Google Significam para os Marketers",
+      "body": "Tanto o OpenAI quanto o Google moveram os anúncios de pesquisa de IA para dentro da própria resposta, transformando um experimento silencioso no próximo canal de desempenho. Isso significa que os anúncios pagos agora aparecem dentro das respostas geradas por IA, com o modelo a gerir a segmentação, licitação e criativo.\n\nEsta mudança representa uma transformação fundamental para o marketing digital, exigindo que os anunciantes adaptem as suas estratégias para competir por posicionamentos dentro das respostas de IA, com foco em ativos 'answer-ready' e dados de conversão.\n\nFonte: https://www.newsobserver.com/money/ai-search-ads-are-moving-inside-the-answer-what-chatgpt-and-googles-new-formats-mean-for-marketers/article289569730.html",
+      "source_urls": [
+        "https://www.newsobserver.com/money/ai-search-ads-are-moving-inside-the-answer-what-chatgpt-and-googles-new-formats-mean-for-marketers/article289569730.html"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_584c7f93b207afefe7_5a8623e7_ChatGPT-Image-23_06_2026-21_35_16.png",
+      "image_url": "/assets/final/post_4cf81a621e7b3f0745_site_1600x900.jpg",
+      "published_at": "2026-06-24T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/anuncios-de-pesquisa-de-ia-estao-a-mover-se-para-dentro-da-resposta-o-que-os-novos-formatos-do-chatgpt-e-google-significam-para-os-marketers-abd1e990be5be36a0f"
+    },
+    {
+      "id": "post_30bdab556e044dd55b",
+      "title": "Unbabel: Insolvência e o Desafio da Supervisão no Financiamento de IA em Portugal",
+      "body": "A Unbabel, uma das mais conhecidas <i>startups</i> portuguesas de inteligência artificial, foi declarada insolvente após ter recebido 13,3 milhões de euros em financiamento do Plano de Recuperação e Resiliência (PRR). O pedido de insolvência foi apresentado em fevereiro, e o processo corre agora no Tribunal do Comércio, com cerca de 30 credores, entre os quais várias entidades públicas.\n\nEste desfecho coloca em evidência a complexidade inerente à gestão de capital público em empresas de tecnologia avançada. A questão não se resume à falha de uma empresa, mas sim à eficácia dos mecanismos de acompanhamento e à capacidade de mitigar riscos quando os valores envolvidos vêm de fundos estruturais. A Unbabel, que chegou a integrar a <i>Unicorn Factory Lisboa</i>, representava uma aposta significativa no ecossistema de inovação nacional.\n\nO verdadeiro desafio que emerge desta situação é a necessidade de criar um <i>framework</i> de supervisão que vá além da mera atribuição de fundos. Não basta injetar capital em projetos promissores; é preciso garantir que o ciclo de vida do investimento, desde a sua aplicação até à avaliação de impacto, seja transparente e adaptável. O que se observa é uma lacuna na capacidade de intervir proactivamente quando os indicadores de desempenho começam a divergir das expectativas iniciais.\n\nPara os decisores e <i>builders</i> em Portugal, este caso sublinha a urgência de estabelecer protocolos de <i>compliance</i> e monitorização mais robustos para o financiamento de IA. É preciso desenhar modelos que permitam reorientar ou recalibrar o apoio antes que a insolvência se torne a única saída. A reputação do ecossistema e a confiança em futuros investimentos dependem diretamente da forma como estes incidentes são analisados e, mais importante, como as lições são integradas para fortalecer o próximo <i>pipeline</i> de inovação. A questão não é se devemos financiar a IA, mas como garantir que cada euro investido contribui para uma resiliência duradoura e para o avanço efetivo da tecnologia em Portugal.\n\nFonte: https://www.portugalresident.com/ai-startup-unbabel-declared-insolvent-after-receiving-e13-3-million-in-prr-funding/",
+      "source_urls": [
+        "https://www.portugalresident.com/ai-startup-unbabel-declared-insolvent-after-receiving-e13-3-million-in-prr-funding/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_3a89c05a5cfd917996_d2a00a51_ChatGPT-Image-23_06_2026-21_38_10.png",
+      "image_url": "/assets/final/post_72e0c371f5c501ac5a_site_1600x900.jpg",
+      "published_at": "2026-06-24T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/unbabel-insolvencia-e-o-desafio-da-supervisao-no-financiamento-de-ia-em-portugal-30bdab556e044dd55b"
+    },
     {
       "id": "post_65769091c38b3e7203",
       "title": "Cientista vencedor do Nobel John Jumper deixa Google DeepMind para a Anthropic",
