@@ -7,6 +7,7 @@ from pathlib import Path
 
 from ptia_engine.editorial_board import add_radar_signal
 from ptia_engine.models import NewsletterIssue
+from ptia_engine.newsletter import NEWSLETTER_GENERATOR_VERSION
 from ptia_engine.newsletter_delivery import (
     next_friday_send_at,
     ptia_timezone,
@@ -136,7 +137,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
         result = schedule_weekly_newsletter(self.root, send_at=send_at, dry_run=True)
 
         self.assertEqual(result.action, "dry_run")
-        self.assertEqual(result.issue.generator_version, "3")
+        self.assertEqual(result.issue.generator_version, NEWSLETTER_GENERATOR_VERSION)
         self.assertNotEqual(result.issue.issue_id, "weekly_outdated")
         self.assertNotIn("PRIVATE DRAFT CONTENT", result.issue.html)
 
@@ -217,7 +218,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
                     html="<html>{{ unsubscribe }}</html>",
                     text="Retry",
                     item_ids=["item_1"],
-                    generator_version="3",
+                    generator_version=NEWSLETTER_GENERATOR_VERSION,
                     status="failed",
                     send_at=send_at.isoformat(),
                     delivery_provider="brevo",

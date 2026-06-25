@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import re
+import unicodedata
 
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -17,11 +19,13 @@ from ptia_engine.models import (
     TrendSignal,
     utc_now_iso,
 )
+from ptia_engine.services.media import public_image_url
+from ptia_engine.services.site import article_url_for_site_post, site_public_base_url
 from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_jsonl
 
 
 NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
-NEWSLETTER_GENERATOR_VERSION = "3"
+NEWSLETTER_GENERATOR_VERSION = "4"
 
 
 @dataclass(slots=True)
@@ -37,6 +41,8 @@ class NewsletterCandidate:
     portugal_angle: str
     score: int
     kind: str
+    event_key: str = ""
+    image_url: str = ""
 
 
 def _parse_date(value: str) -> datetime:
@@ -75,6 +81,119 @@ def _short(value: str, limit: int = 260) -> str:
     return text[:limit].rsplit(" ", 1)[0].rstrip(".,;:") + "..."
 
 
+_EVENT_STOPWORDS = {
+    "about",
+    "after",
+    "and",
+    "aos",
+    "aqui",
+    "artificial",
+    "abert",
+    "apresentad",
+    "com",
+    "como",
+    "codigo",
+    "codig",
+    "daqui",
+    "daqu",
+    "das",
+    "disponivel",
+    "dos",
+    "for",
+    "from",
+    "fica",
+    "ferramenta",
+    "ferrament",
+    "inteligencia",
+    "inteligenc",
+    "into",
+    "julho",
+    "julh",
+    "lancad",
+    "modelo",
+    "model",
+    "para",
+    "pela",
+    "pelo",
+    "por",
+    "portugal",
+    "portugues",
+    "portugu",
+    "portuguesa",
+    "primeiro",
+    "primeir",
+    "que",
+    "ser",
+    "sobre",
+    "the",
+    "uma",
+    "vai",
+    "with",
+}
+
+
+def _normalize_event_text(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value or "")
+    return normalized.encode("ascii", "ignore").decode("ascii").casefold()
+
+
+def _canonical_event_token(token: str) -> str:
+    if token.isdigit() or len(token) <= 4 or token.endswith("ia"):
+        return token
+    return token.rstrip("aeios")
+
+
+def _event_tokens(value: str) -> set[str]:
+    tokens = set()
+    for token in re.findall(r"[a-z0-9]+", _normalize_event_text(value)):
+        canonical = _canonical_event_token(token)
+        if (len(canonical) > 2 or canonical.isdigit()) and canonical not in _EVENT_STOPWORDS:
+            tokens.add(canonical)
+    return tokens
+
+
+def _same_news_event(left: NewsletterCandidate, right: NewsletterCandidate) -> bool:
+    if left.event_key and right.event_key and left.event_key == right.event_key:
+        return True
+    left_title_tokens = _event_tokens(left.title)
+    right_title_tokens = _event_tokens(right.title)
+    left_tokens = _event_tokens(f"{left.title} {left.summary}")
+    right_tokens = _event_tokens(f"{right.title} {right.summary}")
+    if not left_tokens or not right_tokens:
+        return False
+    left_numbers = {token for token in left_tokens if token.isdigit()}
+    right_numbers = {token for token in right_tokens if token.isdigit()}
+    if left_numbers and right_numbers and left_numbers != right_numbers:
+        return False
+    shared_tokens = left_tokens & right_tokens
+    overlap_ratio = len(shared_tokens) / min(len(left_tokens), len(right_tokens))
+    if overlap_ratio >= 0.58:
+        return True
+    strong_shared_tokens = {token for token in shared_tokens if len(token) >= 5 and not token.isdigit()}
+    if strong_shared_tokens and overlap_ratio >= 0.34:
+        return True
+    title_strong_tokens = {token for token in left_title_tokens & right_title_tokens if len(token) >= 5 and not token.isdigit()}
+    return bool(title_strong_tokens) and (
+        len(left_title_tokens) <= 4 or len(right_title_tokens) <= 4 or len(shared_tokens) >= 2
+    )
+
+
+def _dedupe_newsletter_candidates(candidates: list[NewsletterCandidate], *, limit: int) -> list[NewsletterCandidate]:
+    selected: list[NewsletterCandidate] = []
+    seen_keys: set[str] = set()
+    for candidate in sorted(candidates, key=lambda item: (item.score, item.published_at), reverse=True):
+        direct_key = candidate.event_key or stable_hash(f"{candidate.url}:{candidate.title}", 16)
+        if direct_key in seen_keys:
+            continue
+        if any(_same_news_event(candidate, previous) for previous in selected):
+            continue
+        selected.append(candidate)
+        seen_keys.add(direct_key)
+        if len(selected) >= limit:
+            break
+    return selected
+
+
 def _portugal_angle(title: str, hint: str = "") -> str:
     text = f"{title} {hint}".lower()
     if any(word in text for word in ["regulation", "regul", "ai act", "gdpr", "privacy"]):
@@ -96,6 +215,17 @@ def _action_line(candidate: NewsletterCandidate) -> str:
     return "Guarda a fonte, avalia impacto no teu contexto e decide se merece teste, briefing interno ou simples monitorização."
 
 
+def _ptia_post_url(post: FinalPost | None) -> str:
+    base_url = site_public_base_url()
+    if not post:
+        return base_url
+    if post.published_url and "ptia.pt" in post.published_url:
+        return post.published_url
+    if post.channel == "site":
+        return f"{base_url}/{article_url_for_site_post(post).lstrip('/')}"
+    return base_url
+
+
 def _radar_candidate(signal: RadarSignal) -> NewsletterCandidate:
     return NewsletterCandidate(
         item_id=signal.signal_id,
@@ -109,6 +239,7 @@ def _radar_candidate(signal: RadarSignal) -> NewsletterCandidate:
         portugal_angle=_short(_portugal_angle(signal.title, signal.topic_hint), 220),
         score=int(signal.engagement_score or 0),
         kind="news",
+        event_key=stable_hash(f"news:{signal.url or signal.title}", 16),
     )
 
 
@@ -126,6 +257,7 @@ def _trend_candidate(signal: TrendSignal) -> NewsletterCandidate:
         portugal_angle=_short(_portugal_angle(signal.title, signal.topic), 220),
         score=score,
         kind="social_trend",
+        event_key=stable_hash(f"trend:{signal.url or signal.discussion_url or signal.title}", 16),
     )
 
 
@@ -134,7 +266,7 @@ def _post_candidate(post: FinalPost) -> NewsletterCandidate:
         item_id=post.post_id,
         title=_clean(post.title, "Curadoria PTIA"),
         source_name="PTIA",
-        url=post.source_urls[0] if post.source_urls else post.published_url,
+        url=_ptia_post_url(post),
         published_at=post.scheduled_time or post.created_at,
         summary=_short(post.body, 300),
         why_it_matters=_short(post.body, 260),
@@ -142,6 +274,8 @@ def _post_candidate(post: FinalPost) -> NewsletterCandidate:
         portugal_angle=_short(_portugal_angle(post.title, post.body), 220),
         score=70 if post.status == "published" else 55,
         kind="ptia_post",
+        event_key=post.topic_id or stable_hash(f"post:{post.source_urls[0] if post.source_urls else post.title}", 16),
+        image_url=public_image_url(post),
     )
 
 
@@ -165,9 +299,9 @@ def _performance_candidate(perf: ContentPerformance, final_posts: dict[str, Fina
     body = post.body if post else perf.notes
     url = ""
     if post:
-        url = post.published_url or perf.post_id or (post.source_urls[0] if post.source_urls else "")
+        url = _ptia_post_url(post)
     else:
-        url = perf.post_id
+        url = site_public_base_url()
     metrics = (
         f"Likes {perf.likes}, comentários {perf.comments}, shares {perf.shares}, "
         f"saves {perf.saves}, clicks {perf.clicks}."
@@ -187,6 +321,8 @@ def _performance_candidate(perf: ContentPerformance, final_posts: dict[str, Fina
         portugal_angle=_short(_portugal_angle(title, body), 220),
         score=_performance_score(perf),
         kind="owned_post",
+        event_key=(post.topic_id if post else stable_hash(f"performance:{url or title}", 16)),
+        image_url=public_image_url(post) if post else "",
     )
 
 
@@ -204,7 +340,7 @@ def weekly_owned_post_candidates(
         if _recent_enough(perf.published_at or perf.created_at, days)
     ]
     candidates = [candidate for candidate in candidates if candidate.score > 0]
-    return sorted(candidates, key=lambda item: (item.score, item.published_at), reverse=True)[:limit]
+    return _dedupe_newsletter_candidates(candidates, limit=limit)
 
 
 def sample_weekly_items() -> list[NewsletterCandidate]:
@@ -263,6 +399,7 @@ def sample_weekly_items() -> list[NewsletterCandidate]:
             portugal_angle=portugal,
             score=score,
             kind="owned_post",
+            event_key=f"sample_{index}",
         )
         for index, (title, channel, score, summary, why, portugal) in enumerate(samples, start=1)
     ]
@@ -293,13 +430,12 @@ def weekly_candidates(
         if _recent_enough(post.scheduled_time or post.created_at, days):
             candidates.append(_post_candidate(post))
 
-    deduped: dict[str, NewsletterCandidate] = {}
-    for candidate in candidates:
-        key = stable_hash(f"{candidate.url}:{candidate.title}", 16)
-        existing = deduped.get(key)
-        if not existing or candidate.score > existing.score:
-            deduped[key] = candidate
-    return sorted(deduped.values(), key=lambda item: (item.score, item.published_at), reverse=True)[:limit]
+    return _dedupe_newsletter_candidates(candidates, limit=limit)
+
+
+
+def _ptia_article_url(item: NewsletterCandidate) -> str:
+    return item.url if item.kind in {"ptia_post", "owned_post"} and item.url else "https://ptia.pt"
 
 
 def _issue_html(
@@ -311,114 +447,58 @@ def _issue_html(
     selection_mode: str = "editorial",
 ) -> str:
     months = [
-        "janeiro",
-        "fevereiro",
-        "marco",
-        "abril",
-        "maio",
-        "junho",
-        "julho",
-        "agosto",
-        "setembro",
-        "outubro",
-        "novembro",
-        "dezembro",
+        "janeiro", "fevereiro", "marco", "abril", "maio", "junho",
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
     ]
     display_date = issue_date or datetime.now().date()
-    issue_date_label = f"{display_date.day} {months[display_date.month - 1]} {display_date.year}"
-    logo_url = "https://ptia.pt/assets/ptia-wordmark-navy-transparent.png"
-    count = len(items)
-    total_score = sum(item.score for item in items)
+    short_date_label = f"{display_date.day:02d} {months[display_date.month - 1][:3]} {display_date.year}".upper()
+    issue_number = f"W{display_date.isocalendar().week:02d}"
     lead = items[0]
-    performance_backed = selection_mode == "performance"
     section_title = (
-        "O que a audiencia PTIA mostrou que vale aprofundar."
-        if performance_backed
-        else "Os sinais que passaram o filtro editorial PTIA esta semana."
+        "Os temas que a audi?ncia PTIA mostrou que vale aprofundar"
+        if selection_mode == "performance"
+        else "Os sinais que passaram o filtro editorial"
     )
     editor_layer = (
-        "A camada PTIA pega no que gerou sinal real e traduz isso em leitura pratica para Portugal: "
-        "empresas, profissionais e builders."
-        if performance_backed
-        else "A camada PTIA cruza relevancia, fonte e impacto pratico e traduz os sinais em leitura "
-        "util para Portugal: empresas, profissionais e builders."
+        "A camada editorial cruza fonte, relev?ncia e impacto para traduzir o ru?do da semana em leitura ?til para empresas, profissionais e builders."
     )
-    closing_quote = (
-        "A newsletter nao e uma segunda timeline. E a camada que transforma engagement em leitura editorial."
-        if performance_backed
-        else "A newsletter nao e uma segunda timeline. E a camada que transforma sinais dispersos em leitura editorial."
+    method_body = (
+        "Cada sinal ? escolhido pela relev?ncia, pela qualidade da fonte e pela utilidade pr?tica. "
+        "Quando h? m?tricas suficientes, a performance real entra como filtro adicional, nunca como substituto do crit?rio editorial."
     )
-    learning_title = (
-        "O que aprendemos com os posts que funcionaram."
-        if performance_backed
-        else "O que o radar editorial considera prioritario."
-    )
-    learning_body = (
-        "Na semana seguinte, estes sinais voltam ao radar como vantagem editorial: temas a repetir, "
-        "formatos a melhorar e perguntas mais fortes para LinkedIn, Instagram e site."
-        if performance_backed
-        else "Estes sinais foram escolhidos pela sua relevancia, qualidade da fonte e utilidade pratica. "
-        "Quando existirem metricas suficientes, a performance real passa a complementar este filtro."
-    )
-    story_rows = []
-    for index, item in enumerate(items[1:], start=2):
-        story_rows.append(
-            f"""
-            <tr>
-              <td style="padding:28px 40px;border-bottom:1px solid #14110C14;background:#FAF6EC;">
-                <p style="margin:0 0 8px;color:#7A715E;font:500 9px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.13em;text-transform:uppercase;">
-                  <span style="color:#C44419;font:400 22px Georgia,serif;font-style:italic;letter-spacing:0;">Nº{index:02d}</span>
-                  &nbsp;&nbsp;{escape(item.source_name)} · score {item.score}
-                </p>
-                <h3 style="margin:0 0 10px;color:#14110C;font:400 23px Georgia,serif;line-height:1.18;letter-spacing:-.012em;">
-                  <a href="{escape(item.url or 'https://ptia.pt')}" style="color:#14110C;text-decoration:none;">{escape(item.title)}</a>
-                </h3>
-                <p style="margin:0 0 12px;color:#3A332A;font:400 15px Georgia,serif;line-height:1.55;">{escape(item.summary)}</p>
-                <p style="margin:0;color:#3A332A;font:400 14px Arial,sans-serif;line-height:1.5;">
-                  <span style="display:inline-block;margin-right:8px;padding:3px 7px;background:#C4441933;color:#C44419;font:700 9px Arial,sans-serif;letter-spacing:.08em;">PT</span>
-                  {escape(item.portugal_angle)}
-                </p>
-                <p style="margin:14px 0 0;"><a href="{escape(item.url or 'https://ptia.pt')}" style="color:#C44419;font:700 13px Arial,sans-serif;text-decoration:none;">Fonte original</a></p>
-              </td>
-            </tr>
-            """
-        )
-    debate_rows = []
-    if debates:
-        debate_cards = []
-        for d in debates:
-            profile = escape(d.get("profile_name", "Decisor"))
-            post_snippet = escape(_short(d.get("post_body", ""), 160))
-            comment = escape(d.get("comment_text", ""))
-            url = escape(d.get("post_url", "https://ptia.pt"))
-            
-            debate_cards.append(f"""
-            <tr>
-              <td style="padding:18px 40px;background:#FAF6EC;">
-                <div style="padding:22px;background:#FAF6EC;border-left:4px solid #C44419;border-top:1px solid #14110C14;border-right:1px solid #14110C14;border-bottom:1px solid #14110C14;border-radius:0 6px 6px 0;">
-                  <p style="margin:0 0 8px;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;">Discussão com {profile}</p>
-                  <p style="margin:0 0 14px;color:#3A332A;font:italic 14px Georgia,serif;line-height:1.48;">
-                    "{post_snippet}"
-                  </p>
-                  <div style="background:#FAF6EC;border:1px solid #14110C14;padding:16px 20px;border-radius:8px;">
-                    <p style="margin:0 0 4px;color:#C44419;font:700 9px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;">Resposta PTIA</p>
-                    <p style="margin:0;color:#14110C;font:400 14px Georgia,serif;line-height:1.5;">{comment}</p>
-                  </div>
-                  <p style="margin:12px 0 0;"><a href="{url}" style="color:#C44419;font:700 12px Arial,sans-serif;text-decoration:none;">Ver debate no LinkedIn &rarr;</a></p>
-                </div>
-              </td>
-            </tr>
-            """)
-            
-        debate_rows.append(f"""
+
+    toc_rows = "".join(
+        f"""
         <tr>
-          <td class="ptia-pad" style="padding:40px 40px 10px;background:#FAF6EC;border-top:1px solid #14110C26;">
-            <p style="margin:0 0 8px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Debate da Semana · PTIA no LinkedIn</p>
-            <h2 style="margin:0;color:#14110C;font:400 31px Georgia,serif;line-height:1.12;letter-spacing:-.016em;">A nossa presença nas caixas de comentários estratégicas.</h2>
-          </td>
+          <td width="34" valign="top" style="padding:9px 0;border-top:1px solid #E2DBCB;color:#BF4A2E;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.06em;">{index:02d}</td>
+          <td valign="top" style="padding:9px 0;border-top:1px solid #E2DBCB;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:16px;line-height:1.32;">{escape(item.title)}</td>
         </tr>
-        {"".join(debate_cards)}
-        """)
+        """
+        for index, item in enumerate(items, start=1)
+    )
+    hero_html = ""
+    if lead.image_url:
+        hero_html = f"""
+        <tr><td colspan="2" style="padding:0 0 22px;">
+          <img src="{escape(lead.image_url)}" width="554" alt="" style="display:block;width:100%;max-width:554px;height:auto;border:1px solid #E2DBCB;">
+          <div style="margin-top:8px;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;">Imagem ? {escape(lead.source_name)}</div>
+        </td></tr>
+        """
+
+    signal_rows = "".join(
+        f"""
+        <tr><td style="padding:32px 0;border-top:1px solid #E2DBCB;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr>
+            <td valign="baseline" style="padding:0 0 11px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(item.source_name)}</td>
+            <td align="right" valign="baseline" style="padding:0 0 11px;color:#BF4A2E;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N?&nbsp;{index:02d}</td>
+          </tr></table>
+          <h3 style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.008em;line-height:1.22;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;text-decoration:none;">{escape(item.title)}</a></h3>
+          <p style="margin:13px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:16.5px;line-height:1.55;">{escape(item.summary)}</p>
+          <p style="margin:18px 0 0;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #BF4A2E;padding-bottom:2px;">Ler mais <span style="color:#BF4A2E;">?</span></a></p>
+        </td></tr>
+        """
+        for index, item in enumerate(items[1:], start=2)
+    )
 
     return dedent(
         f"""\
@@ -428,150 +508,26 @@ def _issue_html(
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width,initial-scale=1">
           <meta name="color-scheme" content="light only">
-          <style>
-            .preheader {{
-              display:none !important; visibility:hidden; opacity:0; color:transparent;
-              height:0; width:0; overflow:hidden; mso-hide:all;
-            }}
-            @media only screen and (max-width: 640px) {{
-              .ptia-shell {{ width:100% !important; }}
-              .ptia-pad {{ padding-left:22px !important; padding-right:22px !important; }}
-              .ptia-h1 {{ font-size:34px !important; }}
-              .ptia-lead-title {{ font-size:28px !important; }}
-            }}
-          </style>
+          <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+          <style>.preheader{{display:none!important;visibility:hidden;opacity:0;color:transparent;height:0;width:0;overflow:hidden;mso-hide:all}}@media only screen and (max-width:680px){{.ptia-shell{{width:100%!important}}.ptia-pad{{padding-left:24px!important;padding-right:24px!important}}.ptia-h1{{font-size:31px!important}}.ptia-lead-title{{font-size:28px!important}}}}</style>
         </head>
-        <body style="margin:0;background:#F3EEE2;padding:0;">
+        <body style="margin:0;background:#E7E2D6;padding:0;-webkit-font-smoothing:antialiased;">
           <div class="preheader">{escape(intro)}</div>
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#F3EEE2;">
-            <tr>
-              <td align="center" style="padding:32px 14px;">
-                <table role="presentation" width="640" cellspacing="0" cellpadding="0" class="ptia-shell" style="max-width:640px;width:640px;background:#FAF6EC;border-collapse:collapse;border:1px solid #D9C8AA;">
-                  <tr>
-                    <td class="ptia-pad" style="padding:34px 40px 26px;background:#FAF6EC;border-bottom:1px solid #14110C26;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td valign="middle">
-                            <img src="{logo_url}" width="132" alt="PTIA" style="display:block;border:0;width:132px;height:auto;">
-                          </td>
-                          <td align="right" valign="middle" style="color:#7A715E;font:500 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;line-height:1.6;">
-                            Weekly · Sexta-feira<br>
-                            <span style="color:#14110C;">{escape(issue_date_label)}</span>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:14px 40px;background:#F3EEE2;border-bottom:1px solid #14110C14;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td style="color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;">Lisboa · edicao semanal</td>
-                          <td align="right" style="color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;">Top {count} · score {total_score} · leitura PTIA</td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:44px 40px 34px;background:#FAF6EC;">
-                      <p style="margin:0 0 16px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Carta do editor</p>
-                      <h1 class="ptia-h1" style="margin:0 0 18px;color:#14110C;font:400 44px Georgia,serif;line-height:1.06;letter-spacing:-.024em;">{escape(issue_title)}</h1>
-                      <p style="margin:0 0 14px;color:#3A332A;font:400 17px Georgia,serif;line-height:1.58;">{escape(intro)}</p>
-                      <p style="margin:0;color:#3A332A;font:400 17px Georgia,serif;line-height:1.58;">{escape(editor_layer)}</p>
-                      <p style="margin:22px 0 0;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">Editor <span style="color:#14110C;font:400 17px Georgia,serif;font-style:italic;letter-spacing:0;text-transform:none;">Joao Ferreira</span></p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:0;background:#FAF6EC;border-top:1px solid #14110C26;border-bottom:1px solid #14110C26;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td width="25%" align="center" style="padding:18px 6px;border-right:1px solid #14110C14;"><div style="color:#14110C;font:400 30px Georgia,serif;">{count}</div><div style="color:#7A715E;font:700 9px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">posts</div></td>
-                          <td width="25%" align="center" style="padding:18px 6px;border-right:1px solid #14110C14;"><div style="color:#14110C;font:400 30px Georgia,serif;">7</div><div style="color:#7A715E;font:700 9px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">dias</div></td>
-                          <td width="25%" align="center" style="padding:18px 6px;border-right:1px solid #14110C14;"><div style="color:#14110C;font:400 30px Georgia,serif;">{total_score}</div><div style="color:#7A715E;font:700 9px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">score</div></td>
-                          <td width="25%" align="center" style="padding:18px 6px;"><div style="color:#14110C;font:400 30px Georgia,serif;">9</div><div style="color:#7A715E;font:700 9px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">min</div></td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:38px 40px 18px;background:#FAF6EC;">
-                      <p style="margin:0 0 8px;color:#C44419;font:700 10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;">Top 5 sinais · a semana em IA, lida em Portugal</p>
-                      <h2 style="margin:0;color:#14110C;font:400 31px Georgia,serif;line-height:1.12;letter-spacing:-.016em;">{escape(section_title)}</h2>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:22px 40px 36px;background:#FAF6EC;border-bottom:1px solid #14110C14;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#14110C;border-radius:4px;margin:0 0 22px;">
-                        <tr>
-                          <td height="200" style="height:200px;padding:0;background:#14110C;background-image:radial-gradient(circle at 25% 30%, #C44419 0, transparent 34%), radial-gradient(circle at 80% 65%, #1A3A6B 0, transparent 42%);border-radius:4px;">
-                            <table role="presentation" width="100%" height="200" cellspacing="0" cellpadding="0">
-                              <tr>
-                                <td align="center" valign="middle" style="color:#FAF6EC;font:400 64px Georgia,serif;letter-spacing:-.06em;">PTIA</td>
-                                <td align="right" valign="top" style="padding:22px;color:#FAF6EC;font:400 28px Georgia,serif;font-style:italic;">Nº01</td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
-                      <p style="margin:0 0 9px;color:#7A715E;font:700 9px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;"><span style="color:#C44419;">Lead</span> · {escape(lead.source_name)} · score {lead.score}</p>
-                      <h3 class="ptia-lead-title" style="margin:0 0 12px;color:#14110C;font:400 32px Georgia,serif;line-height:1.16;letter-spacing:-.018em;"><a href="{escape(lead.url or 'https://ptia.pt')}" style="color:#14110C;text-decoration:none;">{escape(lead.title)}</a></h3>
-                      <p style="margin:0 0 14px;color:#3A332A;font:400 16px Georgia,serif;line-height:1.56;">{escape(lead.summary)}</p>
-                      <p style="margin:0 0 16px;color:#3A332A;font:400 15px Arial,sans-serif;line-height:1.5;"><span style="display:inline-block;margin-right:8px;padding:3px 7px;background:#C4441933;color:#C44419;font:700 9px Arial,sans-serif;letter-spacing:.08em;">PT</span>{escape(lead.portugal_angle)}</p>
-                      <p style="margin:0;"><a href="{escape(lead.url or 'https://ptia.pt')}" style="color:#C44419;font:700 14px Arial,sans-serif;text-decoration:none;">Fonte original</a></p>
-                    </td>
-                  </tr>
-                  {''.join(story_rows)}
-                  {''.join(debate_rows)}
-                  <tr>
-                    <td class="ptia-pad" style="padding:44px 40px;background:#F3EEE2;border-top:1px solid #14110C26;border-bottom:1px solid #14110C26;">
-                      <p style="margin:0 0 10px;color:#C44419;font:400 56px Georgia,serif;font-style:italic;line-height:.8;">"</p>
-                      <p style="margin:0;color:#14110C;font:400 26px Georgia,serif;line-height:1.25;">{escape(closing_quote)}</p>
-                      <p style="margin:18px 0 0;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;">Sinal vs. ruido · leitura editorial da semana</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:36px 40px;background:#FAF6EC;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#14110C;border-radius:6px;">
-                        <tr>
-                          <td style="padding:26px;">
-                            <p style="margin:0 0 10px;color:#F0764A;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;">Camada PTIA</p>
-                            <h4 style="margin:0 0 12px;color:#FAF6EC;font:400 28px Georgia,serif;line-height:1.12;">{escape(learning_title)}</h4>
-                            <p style="margin:0;color:#FAF6ECCC;font:400 15px Georgia,serif;line-height:1.58;">{escape(learning_body)}</p>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center" class="ptia-pad" style="padding:50px 40px;background:#FAF6EC;border-top:1px solid #14110C14;">
-                      <p style="margin:0 0 10px;color:#7A715E;font:700 10px Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;">Continua no PTIA.pt</p>
-                      <h3 style="margin:0 0 22px;color:#14110C;font:400 28px Georgia,serif;line-height:1.18;">Le a edicao completa e guarda os sinais que interessam para a tua equipa.</h3>
-                      <a href="https://ptia.pt" style="display:inline-block;background:#14110C;color:#FAF6EC;text-decoration:none;border-radius:999px;padding:14px 26px;font:700 14px Arial,sans-serif;">Abrir PTIA.pt</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="ptia-pad" style="padding:34px 40px;background:#ECE5D3;color:#7A715E;">
-                      <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td valign="top">
-                            <img src="{logo_url}" width="92" alt="PTIA" style="display:block;border:0;width:92px;height:auto;margin-bottom:10px;">
-                            <p style="margin:0;color:#3A332A;font:400 14px Georgia,serif;font-style:italic;">Curadoria portuguesa de Inteligencia Artificial.</p>
-                          </td>
-                          <td align="right" valign="top" style="font:700 10px Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;line-height:1.9;">
-                            <a href="https://ptia.pt" style="color:#14110C;text-decoration:none;">Site</a><br>
-                            <a href="https://ptia.pt/#newsletter" style="color:#14110C;text-decoration:none;">Newsletter</a><br>
-                            <a href="https://www.linkedin.com/company/116070074" style="color:#14110C;text-decoration:none;">LinkedIn</a>
-                          </td>
-                        </tr>
-                      </table>
-                      <p style="margin:24px 0 0;color:#7A715E;font:400 11px Arial,sans-serif;line-height:1.55;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{{{ unsubscribe }}}}" style="color:#14110C;text-decoration:underline;">cancelar a subscrição</a> ou gerir preferências através dos links no rodapé.</p>
-                      <p style="margin:14px 0 0;color:#7A715E;font:400 10px Arial,sans-serif;">PTIA.pt · Lisboa, Portugal · 2026</p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#E7E2D6;border-collapse:collapse;"><tr><td align="center" style="padding:56px 20px 72px;">
+            <table role="presentation" width="660" cellspacing="0" cellpadding="0" class="ptia-shell" style="width:660px;max-width:660px;background:#F6F3EB;border:1px solid #E2DBCB;border-collapse:collapse;box-shadow:0 1px 50px rgba(27,26,23,.07);">
+              <tr><td style="height:4px;background:#BF4A2E;font-size:0;line-height:0;">&nbsp;</td></tr>
+              <tr><td class="ptia-pad" style="padding:30px 52px 22px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td valign="bottom" style="color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:34px;font-weight:500;letter-spacing:.14em;line-height:1;">PTIA</td><td align="right" valign="bottom" style="color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.16em;line-height:1.7;text-transform:uppercase;"><span style="color:#BF4A2E;font-weight:500;">Weekly</span><br>Sexta-feira</td></tr></table><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-top:20px;border-top:1px solid #1B1A17;"><tr><td style="padding-top:13px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">Edi??o N?&nbsp;{issue_number}</td><td align="center" style="padding-top:13px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">Curadoria portuguesa de IA</td><td align="right" style="padding-top:13px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(short_date_label)}</td></tr></table></td></tr>
+              <tr><td class="ptia-pad" style="padding:22px 52px 38px;background:#F6F3EB;"><p style="margin:0;color:#BF4A2E;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Carta do editor</p><h1 class="ptia-h1" style="margin:16px 0 0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:33px;font-weight:500;letter-spacing:-.012em;line-height:1.14;">{escape(issue_title)}</h1><p style="margin:20px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:17.5px;line-height:1.62;">{escape(intro)}</p><p style="margin:14px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:17.5px;line-height:1.62;">{escape(editor_layer)}</p><p style="margin:22px 0 0;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">Editor ? <span style="color:#1B1A17;">Jo?o Ferreira</span></p></td></tr>
+              <tr><td class="ptia-pad" style="padding:0 52px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#FBF9F3;border:1px solid #E2DBCB;"><tr><td style="padding:26px 28px;"><p style="margin:0 0 16px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Nesta edi??o</p><table role="presentation" width="100%" cellspacing="0" cellpadding="0">{toc_rows}</table></td></tr></table></td></tr>
+              <tr><td class="ptia-pad" style="padding:44px 52px 0;background:#F6F3EB;"><p style="margin:0;color:#BF4A2E;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Top 5 sinais ? A semana em IA, lida de Portugal</p><h2 style="margin:12px 0 0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:24px;font-weight:500;letter-spacing:-.01em;line-height:1.2;">{escape(section_title)}</h2></td></tr>
+              <tr><td class="ptia-pad" style="padding:30px 52px 36px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td valign="baseline" style="padding:0 0 16px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(lead.source_name)}</td><td align="right" valign="baseline" style="padding:0 0 16px;color:#BF4A2E;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N?&nbsp;01</td></tr>{hero_html}<tr><td colspan="2"><h3 class="ptia-lead-title" style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:30px;font-weight:500;letter-spacing:-.012em;line-height:1.16;"><a href="{escape(_ptia_article_url(lead))}" style="color:#1B1A17;text-decoration:none;">{escape(lead.title)}</a></h3><p style="margin:16px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:18px;line-height:1.58;">{escape(lead.summary)}</p><p style="margin:20px 0 0;"><a href="{escape(_ptia_article_url(lead))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #BF4A2E;padding-bottom:2px;">Ler mais <span style="color:#BF4A2E;">?</span></a></p></td></tr></table></td></tr>
+              <tr><td class="ptia-pad" style="padding:0 52px 8px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0">{signal_rows}</table></td></tr>
+              <tr><td class="ptia-pad" style="padding:30px 52px 44px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-top:1px solid #1B1A17;"><tr><td style="padding-top:30px;"><p style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:27px;font-style:italic;font-weight:400;letter-spacing:-.01em;line-height:1.28;">?A newsletter n?o ? uma segunda timeline. ? a camada que transforma sinais dispersos em leitura editorial.?</p><p style="margin:18px 0 0;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;">Sinal vs. ru?do</p></td></tr></table></td></tr>
+              <tr><td class="ptia-pad" style="padding:0 52px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#1B1A17;"><tr><td style="padding:36px 34px;"><p style="margin:0;color:#BF4A2E;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">M?todo ? C?mara PTIA</p><h3 style="margin:14px 0 0;color:#F6F3EB;font-family:Newsreader,Georgia,serif;font-size:23px;font-weight:500;letter-spacing:-.008em;line-height:1.25;">O que o radar editorial considera priorit?rio</h3><p style="margin:15px 0 0;color:#B7B2A7;font-family:Newsreader,Georgia,serif;font-size:16px;line-height:1.6;">{escape(method_body)}</p></td></tr></table></td></tr>
+              <tr><td align="center" class="ptia-pad" style="padding:40px 52px 44px;background:#F6F3EB;"><p style="margin:0;color:#BF4A2E;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Continua no PTIA.pt</p><p style="margin:14px auto 22px;max-width:380px;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:19px;line-height:1.42;">L? a edi??o completa e guarda os sinais que interessam ? tua equipa.</p><a href="https://ptia.pt" style="display:inline-block;background:#1B1A17;color:#F6F3EB;font-family:'IBM Plex Mono',Consolas,monospace;font-size:12px;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;padding:14px 26px;">Abrir PTIA.pt ?</a></td></tr>
+              <tr><td class="ptia-pad" style="padding:30px 52px 40px;background:#F6F3EB;border-top:1px solid #1B1A17;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td valign="top"><div style="color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:.12em;line-height:1;">PTIA</div><div style="margin-top:5px;color:#6E6A62;font-family:Newsreader,Georgia,serif;font-size:14px;font-style:italic;line-height:1.4;">Curadoria portuguesa de Intelig?ncia Artificial.</div></td><td align="right" valign="top" style="color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10px;letter-spacing:.12em;line-height:1.9;text-transform:uppercase;"><a href="https://ptia.pt" style="color:#6E6A62;text-decoration:none;">PTIA.pt</a><br><a href="https://ptia.pt/#newsletter" style="color:#6E6A62;text-decoration:none;">Weekly</a><br><a href="https://www.linkedin.com/company/116070074" style="color:#6E6A62;text-decoration:none;">LinkedIn</a></td></tr></table><p style="margin:26px 0 0;max-width:460px;color:#9E988C;font-family:Newsreader,Georgia,serif;font-size:12px;line-height:1.6;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{{{ unsubscribe }}}}" style="color:#1B1A17;text-decoration:underline;">cancelar a subscri??o</a> ou gerir as tuas prefer?ncias a qualquer momento.</p><p style="margin:16px 0 0;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;">PTIA.pt ? Lisboa, Portugal ? 2026</p></td></tr>
+            </table>
+          </td></tr></table>
         </body>
         </html>
         """
@@ -587,7 +543,6 @@ def _issue_text(issue_title: str, intro: str, items: list[NewsletterCandidate], 
                 f"Fonte: {item.source_name} - {item.url}",
                 item.summary,
                 item.why_it_matters,
-                item.portugal_angle,
                 _action_line(item),
                 "",
             ]

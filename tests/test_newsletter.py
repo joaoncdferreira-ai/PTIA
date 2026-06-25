@@ -50,6 +50,37 @@ class NewsletterTests(unittest.TestCase):
         self.assertEqual(len(candidates), 5)
         self.assertEqual(candidates[0].score, 6)
 
+    def test_weekly_candidates_dedupe_same_named_news_event(self):
+        add_radar_signal(
+            self.root / "radar_signals.jsonl",
+            source_type="news",
+            source_name="MSN",
+            title="Primeiro modelo portugues de inteligencia artificial AMALIA vai ser lancado em julho",
+            url="https://example.com/amalia-msn",
+            published_at=self.today,
+            engagement_score=80,
+            summary="AMALIA sera lancado em codigo aberto.",
+            why_it_matters="Modelo portugues de IA.",
+            status="verified",
+        )
+        add_radar_signal(
+            self.root / "radar_signals.jsonl",
+            source_type="news",
+            source_name="TSF",
+            title="Amalia: ferramenta de Inteligencia Artificial portuguesa vai ser apresentada daqui a um mes",
+            url="https://example.com/amalia-tsf",
+            published_at=self.today,
+            engagement_score=70,
+            summary="Ferramenta portuguesa de IA apresentada em breve.",
+            why_it_matters="Mesmo evento noticiado por outra fonte.",
+            status="verified",
+        )
+
+        candidates = weekly_candidates(load_radar_signals(self.root / "radar_signals.jsonl"), [], [], limit=5)
+
+        self.assertEqual(len(candidates), 1)
+        self.assertIn("AMALIA", candidates[0].title.upper())
+
     def test_generate_weekly_issue_outputs_email_ready_html_and_text(self):
         for index in range(5):
             post = add_final_post(
@@ -107,13 +138,78 @@ class NewsletterTests(unittest.TestCase):
             ],
         )
 
-        self.assertIn("PTIA Weekly", issue.html)
-        self.assertIn("Fonte original", issue.html)
-        self.assertIn("Importa para Portugal", issue.text)
-        self.assertNotIn("Ângulo Portugal", issue.text)
+        self.assertIn("PTIA", issue.html)
+        self.assertIn("Weekly", issue.html)
+        self.assertIn("Ler mais", issue.html)
+        self.assertNotIn("Fonte original", issue.html)
+        self.assertNotIn("O que isto significa para Portugal", issue.html)
+        self.assertNotIn("O que isto significa para Portugal", issue.text)
+        self.assertNotIn("??ngulo Portugal", issue.text)
         self.assertEqual(len(issue.item_ids), 5)
         self.assertEqual(issue.selection_mode, "performance")
         self.assertEqual(load_newsletter_issues(self.root / "newsletter_issues.jsonl")[0].issue_id, issue.issue_id)
+
+    def test_newsletter_links_to_ptia_and_uses_selected_story_image(self):
+        lead_post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="lead_topic",
+            channel="site",
+            title="Lead AI Story",
+            body="Texto editorial do lead.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/original-lead"],
+            image_path=str(self.root / "lead-image.jpg"),
+        )
+        other_post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="other_topic",
+            channel="site",
+            title="Other AI Story",
+            body="Texto editorial secundario.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/original-other"],
+            image_path=str(self.root / "wrong-image.jpg"),
+        )
+        performance = [
+            ContentPerformance(
+                performance_id="perf_lead",
+                draft_id=lead_post.post_id,
+                post_id="https://linkedin.com/posts/lead",
+                channel="site",
+                published_at=self.today,
+                topic=lead_post.title,
+                section="site",
+                likes=100,
+            ),
+            ContentPerformance(
+                performance_id="perf_other",
+                draft_id=other_post.post_id,
+                post_id="https://linkedin.com/posts/other",
+                channel="site",
+                published_at=self.today,
+                topic=other_post.title,
+                section="site",
+                likes=1,
+            ),
+        ]
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=[],
+            trend_signals=[],
+            final_posts=load_final_posts(self.root / "final_posts.jsonl"),
+            performance=performance,
+            limit=2,
+        )
+
+        self.assertIn("lead-image.jpg", issue.html)
+        self.assertNotIn("wrong-image.jpg", issue.html)
+        self.assertIn("Ler mais", issue.html)
+        self.assertIn("https://ptia.pt/artigos/lead-ai-story-", issue.html)
+        self.assertNotIn("https://example.com/original-lead", issue.html)
+        self.assertNotIn("Fonte original", issue.html)
 
     def test_weekly_owned_post_candidates_rank_by_tracking(self):
         posts = []
@@ -150,6 +246,55 @@ class NewsletterTests(unittest.TestCase):
         self.assertEqual(len(candidates), 5)
         self.assertEqual(candidates[0].title, "Post 5")
         self.assertEqual(candidates[0].kind, "owned_post")
+
+    def test_weekly_owned_post_candidates_dedupe_same_topic(self):
+        first = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="same_ai_event",
+            channel="linkedin",
+            title="AI company announces same product",
+            body="Primeira versao do mesmo evento.",
+            hashtags="#IA",
+            image_prompt="",
+            source_urls=["https://example.com/a"],
+        )
+        duplicate = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="same_ai_event",
+            channel="site",
+            title="Same AI product gets second writeup",
+            body="Segunda versao do mesmo evento.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/b"],
+        )
+        performance = [
+            ContentPerformance(
+                performance_id="perf_first",
+                draft_id=first.post_id,
+                post_id="https://linkedin.com/posts/a",
+                channel="linkedin",
+                published_at=self.today,
+                topic=first.title,
+                section="business",
+                likes=20,
+            ),
+            ContentPerformance(
+                performance_id="perf_duplicate",
+                draft_id=duplicate.post_id,
+                post_id="https://ptia.pt/artigos/b",
+                channel="site",
+                published_at=self.today,
+                topic=duplicate.title,
+                section="business",
+                likes=10,
+            ),
+        ]
+
+        candidates = weekly_owned_post_candidates(performance, [first, duplicate], limit=5)
+
+        self.assertEqual(len(candidates), 1)
+        self.assertEqual(candidates[0].event_key, "same_ai_event")
 
     def test_site_readership_metrics_are_valid_performance_signals(self):
         post = add_final_post(
@@ -217,7 +362,7 @@ class NewsletterTests(unittest.TestCase):
         self.assertNotIn("melhor tracking", issue.intro.lower())
         self.assertNotIn("a nossa audiência mostrou", issue.intro.lower())
         self.assertIn("Sexta-feira", issue.html)
-        self.assertIn("5 junho 2026", issue.html)
+        self.assertIn("05 JUN 2026", issue.html)
 
     def test_newsletter_includes_only_recent_published_linkedin_debates(self):
         self._signal("AI story", 50)
