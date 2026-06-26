@@ -71,7 +71,7 @@ def upsert_saturday_resource_posts(
         topic_id = _topic_id(target_date, item.slot)
         scheduled_time = _scheduled_time(target_date, item.slot)
         editor_notes = (
-            f"[{now}] Série Recursos PTIA gerada automaticamente. "
+            f"Série Recursos PTIA gerada automaticamente para {target_date.isoformat()}. "
             f"Peça {order + 1}/4. Visual brief:\n{item.visual_brief}"
         )
         post = by_id.get(post_id)
