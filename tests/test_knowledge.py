@@ -58,7 +58,7 @@ class KnowledgeTests(unittest.TestCase):
 
         self.assertEqual(payload["edition"], "2026-W23")
         self.assertEqual(payload["signal_articles"], 1)
-        self.assertEqual(len(payload["prompts"]), 24)
+        self.assertEqual(len(payload["prompts"]), 25)
         self.assertGreaterEqual(len(payload["glossary"]), 35)
         for path in (
             "recursos/index.html",
@@ -135,7 +135,7 @@ class KnowledgeTests(unittest.TestCase):
         self.assertTrue(defined["evidence"])
         self.assertFalse(observador["evidence"])
         self.assertTrue(codex["evidence"])
-        self.assertEqual(sorted(item["rank"] for item in payload["prompts"]), list(range(1, 25)))
+        self.assertEqual(sorted(item["rank"] for item in payload["prompts"]), list(range(1, 26)))
         agent = next(item for item in payload["glossary"] if item["id"] == "agente-ia")
         self.assertEqual(agent["english_term"], "AI agent")
 
