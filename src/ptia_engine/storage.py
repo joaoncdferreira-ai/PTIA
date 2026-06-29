@@ -66,7 +66,15 @@ def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
             for record in records:
                 handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
         import os
-        os.replace(str(tmp_path), str(path))
+        import time
+        for attempt in range(10):
+            try:
+                os.replace(str(tmp_path), str(path))
+                break
+            except PermissionError as pe:
+                if attempt == 9:
+                    raise pe
+                time.sleep(0.15)
         persist_cloud_state_file(path)
     except Exception as e:
         if tmp_path.exists():

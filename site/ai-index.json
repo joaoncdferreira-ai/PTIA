@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-22T20:46:14+00:00",
+  "updated_at": "2026-06-28T23:37:32+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,97 @@
   ],
   "recent_articles": [
     {
+      "title": "Apple Aumenta Preços em Quase 20% e Xbox Segue Tendência de Custos",
+      "url": "https://ptia.pt/artigos/apple-aumenta-precos-em-quase-20-e-xbox-segue-tendencia-de-custos-ca28e48d21d880a356",
+      "published_at": "2026-06-28T21:00:00+01:00",
+      "summary": "A Apple anunciou aumentos de preços em alguns dos seus produtos, com subidas que chegam a quase 20%. A justificação, segundo a empresa, prende-se com uma escalada sem precedentes nos custos dos componentes. A Xbox, por...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "EUA preparam-se para autorizar Anthropic a restaurar modelo Fable 5",
+      "url": "https://ptia.pt/artigos/eua-preparam-se-para-autorizar-anthropic-a-restaurar-modelo-fable-5-796c56f4bddc2a9d8c",
+      "published_at": "2026-06-28T16:00:00+01:00",
+      "summary": "A Anthropic, a empresa por trás dos modelos de IA do Claude, sugeriu publicamente uma pausa no desenvolvimento de IA de ponta. O motivo é claro: o risco crescente de sistemas que podem, eventualmente, sair do controlo h...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Robôs Humanoides na Hyundai: A Disputa Laboral Começou",
+      "url": "https://ptia.pt/artigos/robos-humanoides-na-hyundai-a-disputa-laboral-comecou-66115da1814c8564d0",
+      "published_at": "2026-06-28T13:00:00+01:00",
+      "summary": "Os trabalhadores da Hyundai na Coreia do Sul anunciaram uma greve em resposta aos planos da empresa de integrar 25 mil robôs humanoides nas suas fábricas. A reivindicação centra-se na necessidade de ter voz ativa sobre...",
+      "sections": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Sines e a Estratégia Ibérica: Portugal Investe 200 Milhões em Gigafábrica de IA",
+      "url": "https://ptia.pt/artigos/sines-e-a-estrategia-iberica-portugal-investe-200-milhoes-em-gigafabrica-de-ia-b0daa47d3f9eb59c95",
+      "published_at": "2026-06-28T09:00:00+01:00",
+      "summary": "O Conselho de Ministros aprovou um investimento de 200 milhões de euros para a participação de Portugal numa candidatura ibérica ao programa europeu EuroHPC. O objetivo é claro: instalar uma gigafábrica de inteligência...",
+      "sections": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Cientista vencedor do Nobel John Jumper deixa Google DeepMind para a Anthropic",
+      "url": "https://ptia.pt/artigos/cientista-vencedor-do-nobel-john-jumper-deixa-google-deepmind-para-a-anthropic-65769091c38b3e7203",
+      "published_at": "2026-06-23T21:00:00+01:00",
+      "summary": "John Jumper, cientista que liderou a equipa AlphaFold da Google DeepMind e co-vencedor do Prémio Nobel da Química de 2024, anunciou a sua saída para se juntar à Anthropic. Fonte: https://www.businessinsider.com/alphafol...",
+      "sections": [
+        "Mundo",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "A Ascensão Silenciosa da China nos Robotáxis: Um Novo Barómetro de Domínio Tecnológico",
+      "url": "https://ptia.pt/artigos/a-ascensao-silenciosa-da-china-nos-robotaxis-um-novo-barometro-de-dominio-tecnologico-18b239caba6b34935b",
+      "published_at": "2026-06-23T16:00:00+01:00",
+      "summary": "O mais recente <i>scorecard</i> da TechCrunch Mobility revela um dado inegável: a China está a consolidar uma posição de liderança no desenvolvimento e implementação de <i>robotáxis</i>. A análise detalhada das métricas...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "SpaceX assina acordo de computação de US$ 6,3 bilhões com a startup de IA de código aberto Reflection",
+      "url": "https://ptia.pt/artigos/spacex-assina-acordo-de-computacao-de-us-6-3-bilhoes-com-a-startup-de-ia-de-codigo-aberto-reflection-10af05f28e4fff9642",
+      "published_at": "2026-06-23T13:00:00+01:00",
+      "summary": "A Reflection AI pagará à SpaceX US$ 150 milhões por mês a partir de 1º de julho por acesso aos chips Nvidia GB300 dentro do data center Colossus 2, em um acordo que pode chegar a aproximadamente US$ 6,3 bilhões. Fonte:...",
+      "sections": [
+        "Mundo",
+        "Builders"
+      ]
+    },
+    {
+      "title": "Portugal junta-se a Espanha e Turquia para criar fábrica de inteligência artificial",
+      "url": "https://ptia.pt/artigos/portugal-junta-se-a-espanha-e-turquia-para-criar-fabrica-de-inteligencia-artificial-e05c36a181c3a1b989",
+      "published_at": "2026-06-23T09:00:00+01:00",
+      "summary": "O país integra o consórcio do MareNostrum 5, que vai receber uma “fábrica de inteligência artificial” para as previsões do tempo e a medicina. Fonte: https://www.publico.pt/2026/06/22/enter/noticia/portugal-juntase-espa...",
+      "sections": [
+        "Portugal",
+        "Previsões Futuras"
+      ]
+    },
+    {
       "title": "Portugal aprova Agenda Nacional de IA com meta de 1000 MW e impacto de €22 mil milhões no PIB",
       "url": "https://ptia.pt/artigos/portugal-aprova-agenda-nacional-de-ia-com-meta-de-1000-mw-e-impacto-de-22-mil-milhoes-no-pib-f24692e41d4d3fe52a",
       "published_at": "2026-06-19T21:00:00+01:00",
@@ -458,97 +549,6 @@
         "Regulação",
         "Histórias reais",
         "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "DeepMind Alerta para Riscos na Interação Massiva de Agentes de IA",
-      "url": "https://ptia.pt/artigos/deepmind-alerta-para-riscos-na-interacao-massiva-de-agentes-de-ia-49bbc847040cdf6c1a",
-      "published_at": "2026-06-15T16:00:00+01:00",
-      "summary": "A Google DeepMind está a financiar investigação sobre os potenciais perigos que surgem quando milhões de diferentes agentes de inteligência artificial interagem entre si online. Segundo Rohin Shah, diretor de segurança...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Seguro alerta para o impacto da IA na Justiça",
-      "url": "https://ptia.pt/artigos/seguro-alerta-para-o-impacto-da-ia-na-justica-165409e57542df855d",
-      "published_at": "2026-06-15T13:00:00+01:00",
-      "summary": "António José Seguro alertou para os desafios e implicações do uso da Inteligência Artificial no setor da justiça durante uma cerimónia comemorativa dos 100 anos da Ordem dos Advogados. A regulação deixou de ser cenário...",
-      "sections": [
-        "Portugal",
-        "Regulação"
-      ]
-    },
-    {
-      "title": "Visa e OpenAI unem forças para criar uma nova era de compras feitas por IA",
-      "url": "https://ptia.pt/artigos/visa-e-openai-unem-forcas-para-criar-uma-nova-era-de-compras-feitas-por-ia-81d15624741f208613",
-      "published_at": "2026-06-15T10:00:00+01:00",
-      "summary": "A Visa e a OpenAI anunciaram uma parceria para desenvolver uma nova era de experiências de compra impulsionadas por inteligência artificial. A corrida dos modelos está a ficar menos limpa do que os benchmarks sugerem: c...",
-      "sections": [
-        "Mundo",
-        "Builders"
-      ]
-    },
-    {
-      "title": "Samsung integra IA generativa em todas as funções de negócio",
-      "url": "https://ptia.pt/artigos/samsung-integra-ia-generativa-em-todas-as-funcoes-de-negocio-9eed210097c04d8166",
-      "published_at": "2026-06-14T21:00:00+01:00",
-      "summary": "A Samsung anunciou a 9 de junho um plano de transformação que levará a inteligência artificial a todas as suas funções de negócio, formalizando a adoção de serviços externos de IA generativa como o ChatGPT, Gemini e Cla...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Casa Branca define diretrizes para inovação e segurança na IA avançada",
-      "url": "https://ptia.pt/artigos/casa-branca-define-diretrizes-para-inovacao-e-seguranca-na-ia-avancada-de7b8e23e05e9dc50d",
-      "published_at": "2026-06-14T16:00:00+01:00",
-      "summary": "A Casa Branca publicou novas diretrizes focadas na promoção da inovação e segurança em inteligência artificial avançada. O documento detalha as prioridades da administração norte-americana para o desenvolvimento e a ado...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Apple Intelligence e Siri: A Nova Geração Integrada Chega ao Ecossistema",
-      "url": "https://ptia.pt/artigos/apple-intelligence-e-siri-a-nova-geracao-integrada-chega-ao-ecossistema-31422bbadb9ce06037",
-      "published_at": "2026-06-14T13:00:00+01:00",
-      "summary": "A Apple anunciou uma nova geração de Apple Intelligence e aprimoramentos significativos à Siri, integrando capacidades avançadas de inteligência artificial nos seus ecossistemas. As novidades, detalhadas num comunicado...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Marcelo alerta para o atraso de Portugal na regulação da IA",
-      "url": "https://ptia.pt/artigos/marcelo-alerta-para-o-atraso-de-portugal-na-regulacao-da-ia-59a5079c4b4fd4824b",
-      "published_at": "2026-06-14T09:00:00+01:00",
-      "summary": "O Presidente da República, Marcelo Rebelo de Sousa, sublinhou recentemente a perceção de que Portugal se encontra a “correr atrás do prejuízo” no que concerne à regulação da Inteligência Artificial. A declaração surge n...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Amazon reforça caixa com 17 mil milhões de dólares para despesas de capital",
-      "url": "https://ptia.pt/artigos/amazon-reforca-caixa-com-17-mil-milhoes-de-dolares-para-despesas-de-capital-c6fd2fb74ba232b1b3",
-      "published_at": "2026-06-13T21:00:00+01:00",
-      "summary": "A Amazon assegurou um empréstimo de 17 mil milhões de dólares, um movimento estratégico que lhe permitirá aceder a uma linha de dívida de forma incremental, à medida que as suas necessidades de capital evoluem. Este ref...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
       ]
     }
   ],

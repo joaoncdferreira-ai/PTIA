@@ -2382,9 +2382,22 @@ def _is_public_site_post(post: dict) -> bool:
 
 def _static_site_feed_payload(state: DashboardState) -> dict:
     posts = _ensure_image_variants_for_posts(state, load_final_posts(state.final_posts_path))
-    site_posts = [
-        post for post in posts if post.channel == "site" and post.status in {"scheduled", "published"}
-    ]
+    new_apple_post = next((p for p in posts if p.post_id == "post_a42ec13e57b539f599"), None)
+    hide_old_apple = False
+    if new_apple_post and new_apple_post.scheduled_time:
+        try:
+            scheduled_dt = datetime.fromisoformat(new_apple_post.scheduled_time)
+            if scheduled_dt <= datetime.now(timezone.utc):
+                hide_old_apple = True
+        except Exception:
+            pass
+
+    site_posts = []
+    for post in posts:
+        if post.channel == "site" and post.status in {"scheduled", "published"}:
+            if post.post_id == "post_ca28e48d21d880a356" and hide_old_apple:
+                continue
+            site_posts.append(post)
     site_posts.sort(key=lambda post: post.scheduled_time or post.created_at, reverse=True)
     deduped_posts = []
     seen_keys = set()
