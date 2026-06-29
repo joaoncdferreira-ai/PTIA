@@ -1,12 +1,74 @@
 {
   "schema_version": 1,
-  "edition": "2026-W25",
-  "updated_at": "2026-06-15T22:37:45+00:00",
+  "edition": "2026-W26",
+  "updated_at": "2026-06-23T14:45:19+00:00",
   "signal_window_days": 84,
-  "signal_articles": 97,
+  "signal_articles": 115,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. Combina uma base editorial versionada com sinais dos artigos PTIA dos últimos 84 dias.",
   "companies": [
+    {
+      "id": "feedzai",
+      "name": "Feedzai",
+      "tagline": "Prevenção de crime financeiro e fraudes com IA",
+      "description": "Líder de mercado na proteção de transações financeiras mundiais através de motores de machine learning em tempo real que gerem e analisam riscos em frações de segundo.",
+      "linkedin": "https://www.linkedin.com/company/feedzai",
+      "category": "Enterprise / Fintech",
+      "tags": [
+        "Fintech",
+        "Prevenção de Fraude",
+        "Real-Time AI"
+      ],
+      "baseline_position": 1,
+      "score": 86.5,
+      "evidence": [
+        {
+          "title": "Augusta Labs capta mais de 5 milhões de euros em ronda apoiada por fundadores de unicórnios portugueses",
+          "url": "/artigos/augusta-labs-capta-mais-de-5-milhoes-de-euros-em-ronda-apoiada-por-fundadores-de-unicornios-portugueses-c5e746dd2ea846b605",
+          "published_at": "2026-06-17"
+        }
+      ],
+      "confidence": "média",
+      "rank": 1,
+      "previous_rank": 2,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "swordhealth",
+      "name": "Sword Health",
+      "tagline": "Fisioterapia clínica e cuidados de saúde com IA",
+      "description": "Unicórnio português que desenvolveu o primeiro terapeuta clínico digital de IA, prestando cuidados clínicos musculoesqueléticos a milhões de pessoas no mundo.",
+      "linkedin": "https://www.linkedin.com/company/sword-health",
+      "category": "Unicórnio / MedTech",
+      "tags": [
+        "Cuidados Clínicos",
+        "Healthcare",
+        "Unicórnio"
+      ],
+      "baseline_position": 3,
+      "score": 84.0,
+      "evidence": [
+        {
+          "title": "Augusta Labs capta mais de 5 milhões de euros em ronda apoiada por fundadores de unicórnios portugueses",
+          "url": "/artigos/augusta-labs-capta-mais-de-5-milhoes-de-euros-em-ronda-apoiada-por-fundadores-de-unicornios-portugueses-c5e746dd2ea846b605",
+          "published_at": "2026-06-17"
+        }
+      ],
+      "confidence": "média",
+      "rank": 2,
+      "previous_rank": 4,
+      "movement": 2,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 2,
+        "label": "Subiu 2"
+      }
+    },
     {
       "id": "definedai",
       "name": "Defined.ai",
@@ -29,38 +91,13 @@
         }
       ],
       "confidence": "média",
-      "rank": 1,
-      "previous_rank": 2,
-      "movement": 1,
-      "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
-      }
-    },
-    {
-      "id": "feedzai",
-      "name": "Feedzai",
-      "tagline": "Prevenção de crime financeiro e fraudes com IA",
-      "description": "Líder de mercado na proteção de transações financeiras mundiais através de motores de machine learning em tempo real que gerem e analisam riscos em frações de segundo.",
-      "linkedin": "https://www.linkedin.com/company/feedzai",
-      "category": "Enterprise / Fintech",
-      "tags": [
-        "Fintech",
-        "Prevenção de Fraude",
-        "Real-Time AI"
-      ],
-      "baseline_position": 1,
-      "score": 82.0,
-      "evidence": [],
-      "confidence": "editorial",
-      "rank": 2,
+      "rank": 3,
       "previous_rank": 1,
-      "movement": -1,
+      "movement": -2,
       "ranking_change": {
         "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "delta": -2,
+        "label": "Desceu 2"
       }
     },
     {
@@ -79,38 +116,13 @@
       "score": 80.7,
       "evidence": [],
       "confidence": "editorial",
-      "rank": 3,
-      "previous_rank": 3,
-      "movement": 0,
-      "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
-      }
-    },
-    {
-      "id": "swordhealth",
-      "name": "Sword Health",
-      "tagline": "Fisioterapia clínica e cuidados de saúde com IA",
-      "description": "Unicórnio português que desenvolveu o primeiro terapeuta clínico digital de IA, prestando cuidados clínicos musculoesqueléticos a milhões de pessoas no mundo.",
-      "linkedin": "https://www.linkedin.com/company/sword-health",
-      "category": "Unicórnio / MedTech",
-      "tags": [
-        "Cuidados Clínicos",
-        "Healthcare",
-        "Unicórnio"
-      ],
-      "baseline_position": 3,
-      "score": 79.5,
-      "evidence": [],
-      "confidence": "editorial",
       "rank": 4,
-      "previous_rank": 4,
-      "movement": 0,
+      "previous_rank": 3,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -400,12 +412,12 @@
       ],
       "confidence": "alta",
       "rank": 15,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 15,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -425,12 +437,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 16,
-      "previous_rank": 15,
-      "movement": -1,
+      "previous_rank": 16,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -450,12 +462,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 17,
-      "previous_rank": 16,
-      "movement": -1,
+      "previous_rank": 17,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -475,12 +487,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 18,
-      "previous_rank": 17,
-      "movement": -1,
+      "previous_rank": 18,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -500,12 +512,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 19,
-      "previous_rank": 18,
-      "movement": -1,
+      "previous_rank": 19,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -525,12 +537,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 20,
-      "previous_rank": 19,
-      "movement": -1,
+      "previous_rank": 20,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -550,12 +562,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 21,
-      "previous_rank": 20,
-      "movement": -1,
+      "previous_rank": 21,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -575,12 +587,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 22,
-      "previous_rank": 21,
-      "movement": -1,
+      "previous_rank": 22,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -604,12 +616,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 23,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 23,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -631,12 +643,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 24,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 24,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -657,12 +669,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 25,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 25,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -684,12 +696,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 26,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 26,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -710,12 +722,12 @@
       "evidence": [],
       "confidence": "editorial",
       "rank": 27,
-      "previous_rank": null,
-      "movement": null,
+      "previous_rank": 27,
+      "movement": 0,
       "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Nova entrada"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     }
   ],
@@ -3198,7 +3210,13 @@
         "cursor"
       ],
       "score": 85.4,
-      "evidence": [],
+      "evidence": [
+        {
+          "title": "SpaceX compra a Anysphere por 60 mil milhões de dólares numa aposta massiva em desenvolvimento com IA",
+          "url": "/artigos/spacex-compra-a-anysphere-por-60-mil-milhoes-de-dolares-numa-aposta-massiva-em-desenvolvimento-com-ia-62c756de1ea6801cb8",
+          "published_at": "2026-06-17"
+        }
+      ],
       "category_ranks": {
         "coding": 3
       },
@@ -5654,15 +5672,15 @@
         "pesquisa"
       ],
       "baseline_score": 96,
-      "score": 96.3,
-      "topical_hits": 68,
+      "score": 96.9,
+      "topical_hits": 76,
       "rank": 1,
-      "previous_rank": 2,
-      "movement": 1,
+      "previous_rank": 1,
+      "movement": 0,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -5679,14 +5697,14 @@
       ],
       "baseline_score": 95,
       "score": 96.1,
-      "topical_hits": 174,
+      "topical_hits": 212,
       "rank": 2,
-      "previous_rank": 1,
-      "movement": -1,
+      "previous_rank": 2,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -5702,15 +5720,15 @@
         "agentes"
       ],
       "baseline_score": 94,
-      "score": 95.2,
-      "topical_hits": 74,
+      "score": 95.3,
+      "topical_hits": 85,
       "rank": 3,
-      "previous_rank": 4,
-      "movement": 1,
+      "previous_rank": 3,
+      "movement": 0,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -5727,33 +5745,9 @@
       ],
       "baseline_score": 93,
       "score": 94.5,
-      "topical_hits": 119,
+      "topical_hits": 136,
       "rank": 4,
-      "previous_rank": 3,
-      "movement": -1,
-      "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
-      }
-    },
-    {
-      "id": "comparador-ferramentas",
-      "title": "Comparar ferramentas para um caso de uso real",
-      "category": "produtividade",
-      "purpose": "Evitar comparações genéricas sem contexto.",
-      "template": "Compara [FERRAMENTAS] para este caso: [CASO DE USO]. Usa os critérios: qualidade do resultado, integração, privacidade, custo total, curva de aprendizagem e risco de dependência. Explicita dados desconhecidos e recomenda uma opção apenas se a evidência for suficiente.",
-      "keywords": [
-        "ferramentas",
-        "empresa",
-        "adoção",
-        "produtividade"
-      ],
-      "baseline_score": 91,
-      "score": 93.0,
-      "topical_hits": 256,
-      "rank": 5,
-      "previous_rank": 5,
+      "previous_rank": 4,
       "movement": 0,
       "ranking_change": {
         "kind": "same",
@@ -5774,15 +5768,39 @@
         "formação"
       ],
       "baseline_score": 92,
-      "score": 92.8,
-      "topical_hits": 63,
-      "rank": 6,
+      "score": 93.6,
+      "topical_hits": 74,
+      "rank": 5,
       "previous_rank": 6,
-      "movement": 0,
+      "movement": 1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "plano-implementacao",
+      "title": "Plano de implementação sem saltar dependências",
+      "category": "coding",
+      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
+      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
+      "keywords": [
+        "arquitetura",
+        "implementação",
+        "software",
+        "automação"
+      ],
+      "baseline_score": 93,
+      "score": 93.3,
+      "topical_hits": 59,
+      "rank": 6,
+      "previous_rank": 10,
+      "movement": 4,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 4,
+        "label": "Subiu 4"
       }
     },
     {
@@ -5798,15 +5816,39 @@
         "decisão"
       ],
       "baseline_score": 91,
-      "score": 92.3,
-      "topical_hits": 66,
+      "score": 93.0,
+      "topical_hits": 78,
       "rank": 7,
-      "previous_rank": 8,
-      "movement": 1,
+      "previous_rank": 7,
+      "movement": 0,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
+      }
+    },
+    {
+      "id": "comparador-ferramentas",
+      "title": "Comparar ferramentas para um caso de uso real",
+      "category": "produtividade",
+      "purpose": "Evitar comparações genéricas sem contexto.",
+      "template": "Compara [FERRAMENTAS] para este caso: [CASO DE USO]. Usa os critérios: qualidade do resultado, integração, privacidade, custo total, curva de aprendizagem e risco de dependência. Explicita dados desconhecidos e recomenda uma opção apenas se a evidência for suficiente.",
+      "keywords": [
+        "ferramentas",
+        "empresa",
+        "adoção",
+        "produtividade"
+      ],
+      "baseline_score": 91,
+      "score": 93.0,
+      "topical_hits": 297,
+      "rank": 8,
+      "previous_rank": 5,
+      "movement": -3,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -3,
+        "label": "Desceu 3"
       }
     },
     {
@@ -5823,9 +5865,9 @@
       ],
       "baseline_score": 90,
       "score": 92.2,
-      "topical_hits": 121,
-      "rank": 8,
-      "previous_rank": 7,
+      "topical_hits": 135,
+      "rank": 9,
+      "previous_rank": 8,
       "movement": -1,
       "ranking_change": {
         "kind": "down",
@@ -5848,31 +5890,7 @@
       ],
       "baseline_score": 90,
       "score": 92.2,
-      "topical_hits": 113,
-      "rank": 9,
-      "previous_rank": null,
-      "movement": null,
-      "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Entrou no Top"
-      }
-    },
-    {
-      "id": "plano-implementacao",
-      "title": "Plano de implementação sem saltar dependências",
-      "category": "coding",
-      "purpose": "Decompor uma mudança técnica em passos verificáveis.",
-      "template": "Com base neste objetivo e no sistema existente, cria um plano de implementação por ordem de dependências. Para cada passo indica ficheiros afetados, contrato alterado, risco, teste e critério de conclusão. Mantém o âmbito mínimo e identifica o que não deve ser alterado. Objetivo: [OBJETIVO]. Contexto: [ARQUITETURA].",
-      "keywords": [
-        "arquitetura",
-        "implementação",
-        "software",
-        "automação"
-      ],
-      "baseline_score": 93,
-      "score": 92.2,
-      "topical_hits": 48,
+      "topical_hits": 128,
       "rank": 10,
       "previous_rank": 9,
       "movement": -1,
@@ -5895,8 +5913,8 @@
         "produto"
       ],
       "baseline_score": 90,
-      "score": 91.9,
-      "topical_hits": 72,
+      "score": 92.2,
+      "topical_hits": 76,
       "rank": 11,
       "previous_rank": 11,
       "movement": 0,
@@ -5920,38 +5938,14 @@
       ],
       "baseline_score": 89,
       "score": 91.4,
-      "topical_hits": 103,
+      "topical_hits": 113,
       "rank": 12,
-      "previous_rank": 10,
-      "movement": -2,
-      "ranking_change": {
-        "kind": "down",
-        "delta": -2,
-        "label": "Desceu 2"
-      }
-    },
-    {
-      "id": "copy-landing-page",
-      "title": "Escrever copy de uma página orientada a conversão",
-      "category": "marketing",
-      "purpose": "Construir uma mensagem específica sem promessas vazias.",
-      "template": "Escreve a estrutura e copy de uma página para [PRODUTO], dirigida a [AUDIÊNCIA], com o objetivo [CONVERSÃO]. Usa apenas estas provas: [PROVAS]. Inclui proposta de valor, problema, mecanismo, benefícios concretos, objeções, prova, CTA e FAQ. Não inventes métricas, clientes ou testemunhos.",
-      "keywords": [
-        "marketing",
-        "conversão",
-        "produto",
-        "conteúdo"
-      ],
-      "baseline_score": 91,
-      "score": 90.8,
-      "topical_hits": 49,
-      "rank": 13,
       "previous_rank": 12,
-      "movement": -1,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -5967,8 +5961,32 @@
         "formação"
       ],
       "baseline_score": 89,
-      "score": 90.1,
-      "topical_hits": 59,
+      "score": 91.3,
+      "topical_hits": 75,
+      "rank": 13,
+      "previous_rank": 14,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "copy-landing-page",
+      "title": "Escrever copy de uma página orientada a conversão",
+      "category": "marketing",
+      "purpose": "Construir uma mensagem específica sem promessas vazias.",
+      "template": "Escreve a estrutura e copy de uma página para [PRODUTO], dirigida a [AUDIÊNCIA], com o objetivo [CONVERSÃO]. Usa apenas estas provas: [PROVAS]. Inclui proposta de valor, problema, mecanismo, benefícios concretos, objeções, prova, CTA e FAQ. Não inventes métricas, clientes ou testemunhos.",
+      "keywords": [
+        "marketing",
+        "conversão",
+        "produto",
+        "conteúdo"
+      ],
+      "baseline_score": 91,
+      "score": 91.1,
+      "topical_hits": 52,
       "rank": 14,
       "previous_rank": 13,
       "movement": -1,
@@ -5991,15 +6009,15 @@
         "aprendizagem"
       ],
       "baseline_score": 88,
-      "score": 89.2,
-      "topical_hits": 57,
+      "score": 90.3,
+      "topical_hits": 72,
       "rank": 15,
-      "previous_rank": 14,
-      "movement": -1,
+      "previous_rank": 15,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6015,15 +6033,15 @@
         "pesquisa"
       ],
       "baseline_score": 92,
-      "score": 88.4,
-      "topical_hits": 26,
+      "score": 89.8,
+      "topical_hits": 34,
       "rank": 16,
-      "previous_rank": 15,
-      "movement": -1,
+      "previous_rank": 16,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6039,15 +6057,15 @@
         "software"
       ],
       "baseline_score": 90,
-      "score": 86.7,
-      "topical_hits": 25,
+      "score": 87.2,
+      "topical_hits": 28,
       "rank": 17,
-      "previous_rank": 16,
-      "movement": -1,
+      "previous_rank": 17,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6063,15 +6081,15 @@
         "coding"
       ],
       "baseline_score": 92,
-      "score": 86.4,
-      "topical_hits": 17,
+      "score": 87.2,
+      "topical_hits": 20,
       "rank": 18,
-      "previous_rank": 17,
-      "movement": -1,
+      "previous_rank": 18,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6090,12 +6108,36 @@
       "score": 84.8,
       "topical_hits": 20,
       "rank": 19,
-      "previous_rank": 18,
-      "movement": -1,
+      "previous_rank": 19,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
+      }
+    },
+    {
+      "id": "preparar-entrevista",
+      "title": "Preparar uma entrevista de investigação",
+      "category": "pesquisa",
+      "purpose": "Criar perguntas que obtenham factos, exemplos e contradições.",
+      "template": "Prepara uma entrevista sobre [TEMA] com [PERFIL]. Cria 12 perguntas abertas por ordem lógica. Para cada uma indica o facto ou hipótese que testa e uma pergunta de seguimento. Evita perguntas que sugiram a resposta e inclui verificação de números, datas e potenciais conflitos de interesse.",
+      "keywords": [
+        "entrevista",
+        "fonte",
+        "investigação",
+        "jornalismo"
+      ],
+      "baseline_score": 88,
+      "score": 84.7,
+      "topical_hits": 23,
+      "rank": 20,
+      "previous_rank": 21,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
       }
     },
     {
@@ -6113,30 +6155,6 @@
       "baseline_score": 88,
       "score": 84.3,
       "topical_hits": 21,
-      "rank": 20,
-      "previous_rank": 19,
-      "movement": -1,
-      "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
-      }
-    },
-    {
-      "id": "preparar-entrevista",
-      "title": "Preparar uma entrevista de investigação",
-      "category": "pesquisa",
-      "purpose": "Criar perguntas que obtenham factos, exemplos e contradições.",
-      "template": "Prepara uma entrevista sobre [TEMA] com [PERFIL]. Cria 12 perguntas abertas por ordem lógica. Para cada uma indica o facto ou hipótese que testa e uma pergunta de seguimento. Evita perguntas que sugiram a resposta e inclui verificação de números, datas e potenciais conflitos de interesse.",
-      "keywords": [
-        "entrevista",
-        "fonte",
-        "investigação",
-        "jornalismo"
-      ],
-      "baseline_score": 88,
-      "score": 83.8,
-      "topical_hits": 19,
       "rank": 21,
       "previous_rank": 20,
       "movement": -1,
@@ -6162,12 +6180,12 @@
       "score": 83.5,
       "topical_hits": 18,
       "rank": 22,
-      "previous_rank": 21,
-      "movement": -1,
+      "previous_rank": 22,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6183,15 +6201,15 @@
         "educação"
       ],
       "baseline_score": 87,
-      "score": 82.8,
-      "topical_hits": 18,
+      "score": 83.3,
+      "topical_hits": 20,
       "rank": 23,
-      "previous_rank": 22,
-      "movement": -1,
+      "previous_rank": 23,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6211,12 +6229,12 @@
       "score": 79.1,
       "topical_hits": 4,
       "rank": 24,
-      "previous_rank": 23,
-      "movement": -1,
+      "previous_rank": 24,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -6236,12 +6254,12 @@
       "score": 77.2,
       "topical_hits": 3,
       "rank": 25,
-      "previous_rank": 24,
-      "movement": -1,
+      "previous_rank": 25,
+      "movement": 0,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     }
   ],
@@ -6259,7 +6277,7 @@
         "api"
       ],
       "english_term": "Application Programming Interface",
-      "mentions_12w": 25
+      "mentions_12w": 32
     },
     {
       "id": "rag",
@@ -6276,7 +6294,23 @@
         "retrieval augmented generation"
       ],
       "english_term": "Retrieval-Augmented Generation",
-      "mentions_12w": 14
+      "mentions_12w": 16
+    },
+    {
+      "id": "agi",
+      "term": "AGI",
+      "definition": "Conceito de uma inteligência artificial geral capaz de realizar uma grande variedade de tarefas cognitivas, sem ficar limitada a um domínio estreito.",
+      "example": "AGI é uma hipótese e um objetivo de investigação, não uma capacidade com definição ou teste universalmente aceite.",
+      "related": [
+        "IA",
+        "modelo de fronteira"
+      ],
+      "aliases": [
+        "agi",
+        "inteligência artificial geral"
+      ],
+      "english_term": "Artificial General Intelligence",
+      "mentions_12w": 13
     },
     {
       "id": "benchmark",
@@ -6295,22 +6329,6 @@
       "mentions_12w": 11
     },
     {
-      "id": "agi",
-      "term": "AGI",
-      "definition": "Conceito de uma inteligência artificial geral capaz de realizar uma grande variedade de tarefas cognitivas, sem ficar limitada a um domínio estreito.",
-      "example": "AGI é uma hipótese e um objetivo de investigação, não uma capacidade com definição ou teste universalmente aceite.",
-      "related": [
-        "IA",
-        "modelo de fronteira"
-      ],
-      "aliases": [
-        "agi",
-        "inteligência artificial geral"
-      ],
-      "english_term": "Artificial General Intelligence",
-      "mentions_12w": 8
-    },
-    {
       "id": "geo",
       "term": "GEO",
       "definition": "Disciplina de otimização de conteúdo e dados para aumentar a visibilidade de marcas e informações em respostas geradas por motores de busca baseados em IA generativa, análogo ao SEO para a era dos LLMs.",
@@ -6324,7 +6342,7 @@
         "Generative Engine Optimization"
       ],
       "english_term": "Generative Engine Optimization",
-      "mentions_12w": 8
+      "mentions_12w": 9
     },
     {
       "id": "agente-ia",
@@ -6342,7 +6360,7 @@
         "ai agent"
       ],
       "english_term": "AI agent",
-      "mentions_12w": 5
+      "mentions_12w": 6
     },
     {
       "id": "alinhamento",
@@ -6358,7 +6376,7 @@
         "alignment"
       ],
       "english_term": "Alignment",
-      "mentions_12w": 5
+      "mentions_12w": 6
     },
     {
       "id": "ia-generativa",

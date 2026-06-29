@@ -81,6 +81,21 @@ class NewsletterTests(unittest.TestCase):
         self.assertEqual(len(candidates), 1)
         self.assertIn("AMALIA", candidates[0].title.upper())
 
+    def test_newsletter_read_more_links_match_news_urls(self):
+        for index in range(5):
+            self._signal(f"AI source story {index}", 50 + index)
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=load_radar_signals(self.root / "radar_signals.jsonl"),
+            trend_signals=[],
+            final_posts=[],
+        )
+
+        for score in range(50, 55):
+            self.assertIn(f'href="https://example.com/{score}"', issue.html)
+        self.assertNotIn('href="https://ptia.pt" style="color:#1B1A17;text-decoration:none;">AI source story', issue.html)
+
     def test_generate_weekly_issue_outputs_email_ready_html_and_text(self):
         for index in range(5):
             post = add_final_post(
@@ -141,10 +156,17 @@ class NewsletterTests(unittest.TestCase):
         self.assertIn("PTIA", issue.html)
         self.assertIn("Weekly", issue.html)
         self.assertIn("Ler mais", issue.html)
+        self.assertIn("ptia-wordmark-navy-transparent.png", issue.html)
+        self.assertIn("#051A3B", issue.html)
+        self.assertNotIn("#BF4A2E", issue.html)
         self.assertNotIn("Fonte original", issue.html)
         self.assertNotIn("O que isto significa para Portugal", issue.html)
         self.assertNotIn("O que isto significa para Portugal", issue.text)
-        self.assertNotIn("??ngulo Portugal", issue.text)
+        for broken in ["Edi??o", "Jo?o", "M?todo", "C?mara", "ru?do", "?til", "subscri??o", "prefer?ncias"]:
+            self.assertNotIn(broken, issue.html)
+        self.assertIn("Edi\u00e7\u00e3o", issue.html)
+        self.assertIn("Jo\u00e3o Ferreira", issue.html)
+        self.assertIn("M\u00e9todo", issue.html)
         self.assertEqual(len(issue.item_ids), 5)
         self.assertEqual(issue.selection_mode, "performance")
         self.assertEqual(load_newsletter_issues(self.root / "newsletter_issues.jsonl")[0].issue_id, issue.issue_id)
