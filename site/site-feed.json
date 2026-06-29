@@ -1,7 +1,71 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-29T19:51:05+00:00",
+  "updated_at": "2026-06-29T20:48:20+00:00",
   "posts": [
+    {
+      "id": "post_adb199a4d7cf858749",
+      "title": "Sword Health fecha acordo em Portugal para fisioterapia com apoio de IA",
+      "body": "Sword Health fecha acordo em Portugal para fisioterapia com apoio de IA.\n\nFonte: https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/",
+      "source_urls": [
+        "https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_93d5831175127320c9_47ab6ad1_ChatGPT-Image-29_06_2026-21_34_22.png",
+      "image_url": "/assets/final/post_ef9da84b3afeeac4d2_site_1600x900.jpg",
+      "published_at": "2026-06-30T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders"
+      ],
+      "article_url": "artigos/sword-health-fecha-acordo-em-portugal-para-fisioterapia-com-apoio-de-ia-adb199a4d7cf858749"
+    },
+    {
+      "id": "post_005e9be417cf1b0e2d",
+      "title": "Artificial Intelligence: Council gives final green light to simplify and streamline rules",
+      "body": "The Council gave its final green light on a new regulation aiming to streamline and simplify certain rules regarding artificial intelligence (AI).&nbsp;\n\nFonte: https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/",
+      "source_urls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_26cce27f09f0bf8a2c_ace09488_ChatGPT-Image-29_06_2026-21_24_47.png",
+      "image_url": "/assets/final/post_8a13d6a7b86b2ebcb8_site_1600x900.jpg",
+      "published_at": "2026-06-30T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação"
+      ],
+      "article_url": "artigos/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules-005e9be417cf1b0e2d"
+    },
+    {
+      "id": "post_1c686f5d5bc681184e",
+      "title": "Ford: IA falha controlos de qualidade, recontrata engenheiros humanos",
+      "body": "A Ford recontratou engenheiros humanos após os sistemas de Inteligência Artificial terem falhado nos controlos de qualidade. A fabricante automóvel verificou que as verificações de qualidade com IA não conseguiam replicar a perícia dos técnicos veteranos.\n\nEsta notícia não se limita a um tropeção pontual da tecnologia; expõe uma tensão fundamental na adoção da IA em indústrias de alta precisão. A obsessão pela escala e pela automação total pode, por vezes, negligenciar o valor insubstituível da intuição humana e da experiência acumulada. Não se trata de rejeitar a IA, mas de reconhecer que a sua implementação bem-sucedida raramente passa por uma substituição pura e simples, mas sim por uma amplificação das capacidades humanas. O foco deve ser na forma como a IA liberta os especialistas para tarefas de maior valor, ao invés de tentar replicar a totalidade do seu trabalho.\n\nPara as empresas portuguesas, isto representa um convite claro: antes de embarcar em projetos ambiciosos de automação total, é preciso mapear as fronteiras da intervenção humana. Onde é que a experiência de anos e o 'saber fazer' se tornam um fator crítico de qualidade? É aí que a IA deve ser um parceiro, não um substituto. E é aí que se define a verdadeira vantagem competitiva.",
+      "source_urls": [
+        "https://www.bbc.com/news/articles/cgrkd41n2v9o"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f1c5d7235368e23dba_40f982c5_ChatGPT-Image-29_06_2026-21_24_40.png",
+      "image_url": "/assets/final/post_1c686f5d5bc681184e_site_1600x900.jpg",
+      "published_at": "2026-06-30T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/ford-ia-falha-controlos-de-qualidade-recontrata-engenheiros-humanos-1c686f5d5bc681184e"
+    },
+    {
+      "id": "post_a7d870eb71c1339557",
+      "title": "Apple antecipa atualizações em resposta a preocupações de cibersegurança em IA",
+      "body": "Apple antecipa atualizações em resposta a preocupações de cibersegurança em IA.\n\nFonte: https://www.usnews.com/news/top-news/articles/2026-06-29/apple-says-it-is-releasing-updates-early-in-response-to-ai-cybersecurity-concerns",
+      "source_urls": [
+        "https://www.usnews.com/news/top-news/articles/2026-06-29/apple-says-it-is-releasing-updates-early-in-response-to-ai-cybersecurity-concerns"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_47fa867a7dcc96371e_ad375325_ChatGPT-Image-29_06_2026-21_28_50.png",
+      "image_url": "/assets/final/post_6513cdbe174501b97e_site_1600x900.jpg",
+      "published_at": "2026-06-30T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/apple-antecipa-atualizacoes-em-resposta-a-preocupacoes-de-ciberseguranca-em-ia-a7d870eb71c1339557"
+    },
     {
       "id": "post_5deac5c2caf2903507",
       "title": "Gleedot lança assistente de IA para organização de atividades infantis em Portugal",
@@ -38,7 +102,7 @@
     {
       "id": "post_a42ec13e57b539f599",
       "title": "Apple e Microsoft sobem preços de hardware com a pressão da IA",
-      "body": "Apple e Microsoft anunciaram aumentos de preços em vários dos seus dispositivos, citando a subida dos custos de memória e armazenamento. A pressão acrescida da procura, impulsionada pelos datacenters de IA, é um dos fatores decisivos para esta correção.\n\nEsta notícia concreta mostra que a economia física da inteligência artificial já se reflete diretamente no preço do hardware de consumo. Não se trata apenas de um movimento de mercado isolado, mas de um sinal tangível de que a infraestrutura necessária para alimentar a IA está a criar uma nova camada de custos em toda a cadeia de valor.\n\nO que observamos é uma competição silenciosa, mas feroz, pelo acesso a componentes essenciais. Enquanto a retórica da IA se foca na inovação e na eficiência, a realidade material é que o seu avanço exige uma quantidade crescente de recursos físicos. Esta dinâmica não só encarece os dispositivos, como também acentua a dependência de fornecedores de chips e de capacidade de processamento.\n\nPara decisores e founders, esta escalada de preços sublinha uma verdade inconveniente: o custo de entrada na era da IA, seja através do consumo direto ou do desenvolvimento de soluções, está a aumentar. Não basta focar na camada do software ou nos modelos; é fundamental compreender e planear para a nova realidade dos custos de infraestrutura. A questão não é apenas “o que podemos construir com IA?”, mas “o que podemos realmente pagar para escalar essa construção?”.\n\nA consequência imediata é que a capacidade de absorver estes aumentos, ou de encontrar alternativas mais eficientes, vai diferenciar quem consegue capitalizar a nova vaga tecnológica de quem fica para trás. A escassez de recursos e a concentração de poder nos fornecedores de componentes são os novos pontos de tensão que moldarão o panorama competitivo.\n\nFonte: https://www.cbsnews.com/news/apple-microsoft-price-hikes-chip-costs-ai-data-centers/",
+      "body": "Apple e Microsoft anunciaram aumentos de preços em vários dos seus dispositivos, citando a subida dos custos de memória e armazenamento. A pressão acrescida da procura, impulsionada pelos <i>datacenters</i> de IA, é um dos fatores decisivos para esta correção.\n\nEsta notícia concreta mostra que a economia física da inteligência artificial já se reflete diretamente no preço do hardware de consumo. Não se trata apenas de um movimento de mercado isolado, mas de um sinal tangível de que a infraestrutura necessária para alimentar a IA está a criar uma nova camada de custos em toda a cadeia de valor.\n\nO que observamos é uma competição silenciosa, mas feroz, pelo acesso a componentes essenciais. Enquanto a retórica da IA se foca na inovação e na eficiência, a realidade material é que o seu avanço exige uma quantidade crescente de recursos físicos. Esta dinâmica não só encarece os dispositivos, como também acentua a dependência de fornecedores de <i>chips</i> e de capacidade de processamento.\n\nPara decisores e <i>founders</i>, esta escalada de preços sublinha uma verdade inconveniente: o custo de entrada na era da IA, seja através do consumo direto ou do desenvolvimento de soluções, está a aumentar. Não basta focar na camada do <i>software</i> ou nos modelos; é fundamental compreender e planear para a nova realidade dos custos de infraestrutura. A questão não é apenas “o que podemos construir com IA?”, mas “o que podemos realmente pagar para escalar essa construção?”.\n\nA consequência imediata é que a capacidade de absorver estes aumentos, ou de encontrar alternativas mais eficientes, vai diferenciar quem consegue capitalizar a nova vaga tecnológica de quem fica para trás. A escassez de recursos e a concentração de poder nos fornecedores de componentes são os novos pontos de tensão que moldarão o panorama competitivo.\n\nFonte: https://www.cbsnews.com/news/apple-microsoft-price-hikes-chip-costs-ai-data-centers/",
       "source_urls": [
         "https://www.cbsnews.com/news/apple-microsoft-price-hikes-chip-costs-ai-data-centers/"
       ],
