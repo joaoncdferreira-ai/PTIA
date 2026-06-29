@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-06-28T23:37:32+00:00",
+  "updated_at": "2026-06-29T11:41:50+00:00",
   "posts": [
     {
       "id": "post_5deac5c2caf2903507",
@@ -68,24 +68,6 @@
         "Histórias reais"
       ],
       "article_url": "artigos/tekever-e-skeleton-technologies-a-convergencia-de-drones-e-ia-na-defesa-europeia-47592e3ad9a60c9afd"
-    },
-    {
-      "id": "post_ca28e48d21d880a356",
-      "title": "Apple Aumenta Preços em Quase 20% e Xbox Segue Tendência de Custos",
-      "body": "A Apple anunciou aumentos de preços em alguns dos seus produtos, com subidas que chegam a quase 20%. A justificação, segundo a empresa, prende-se com uma escalada sem precedentes nos custos dos componentes. A Xbox, por seu lado, também já sinalizou aumentos no preço das suas consolas, ecoando uma tendência que se observa em vários pontos da cadeia de valor tecnológica.\n\nEsta subida não é um mero ajuste de tabela; é um sintoma da pressão inflacionária global que se manifesta, agora, nas margens de gigantes como a Apple. Quando uma empresa com o seu poder de compra e otimização de cadeia de abastecimento declara que \"nunca viu um aumento de preço de componentes tão significativo e tão rápido\", a mensagem é clara: os custos de produção estão a reconfigurar o panorama do hardware de consumo e empresarial.\n\nPara os decisores e <i>founders</i> em Portugal, esta dinâmica sublinha uma realidade incontornável: a dependência de cadeias de abastecimento globais e a volatilidade dos custos de componentes afetam diretamente a competitividade. Não se trata apenas de absorver um custo, mas de repensar estratégias de aquisição, de desenvolvimento de produto e, sobretudo, de resiliência operacional. A questão deixa de ser se os preços vão subir, e passa a ser como gerir este novo patamar de custo em projetos que dependem de hardware, desde infraestruturas de <i>cloud</i> até dispositivos de <i>edge computing</i>.\n\nA resposta não pode ser passiva. Sim, os custos sobem. E isso exige uma reavaliação dos <i>roadmaps</i> tecnológicos, uma procura ativa por alternativas e a exploração de modelos de negócio que mitiguem a exposição a estas flutuações. Pense-se, por exemplo, na otimização da utilização de recursos existentes, na adoção de arquiteturas mais eficientes que prolonguem a vida útil do hardware ou na aposta em soluções de <i>software</i> que reduzam a necessidade de atualizações constantes de equipamento. Esta é a altura para as empresas portuguesas olharem para a inovação não só como uma fonte de novas receitas, mas como uma ferramenta de gestão de risco e de sustentabilidade financeira a longo prazo.\n\nFonte: https://www.bbc.com/news/articles/c3ryj81ywlro",
-      "source_urls": [
-        "https://www.bbc.com/news/articles/c3ryj81ywlro"
-      ],
-      "image_path": "data\\final_assets\\post_163e331031546313b8_f32c58ec_ChatGPT-Image-28_06_2026-00_09_01.png",
-      "image_url": "/assets/final/post_64d5df1fb2748d04b3_site_1600x900.jpg",
-      "published_at": "2026-06-28T21:00:00+01:00",
-      "section": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ],
-      "article_url": "artigos/apple-aumenta-precos-em-quase-20-e-xbox-segue-tendencia-de-custos-ca28e48d21d880a356"
     },
     {
       "id": "post_796c56f4bddc2a9d8c",
