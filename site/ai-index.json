@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-28T23:37:32+00:00",
+  "updated_at": "2026-06-29T11:41:50+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,15 +263,25 @@
   ],
   "recent_articles": [
     {
-      "title": "Apple Aumenta Preços em Quase 20% e Xbox Segue Tendência de Custos",
-      "url": "https://ptia.pt/artigos/apple-aumenta-precos-em-quase-20-e-xbox-segue-tendencia-de-custos-ca28e48d21d880a356",
-      "published_at": "2026-06-28T21:00:00+01:00",
-      "summary": "A Apple anunciou aumentos de preços em alguns dos seus produtos, com subidas que chegam a quase 20%. A justificação, segundo a empresa, prende-se com uma escalada sem precedentes nos custos dos componentes. A Xbox, por...",
+      "title": "Apple e Microsoft sobem preços de hardware com a pressão da IA",
+      "url": "https://ptia.pt/artigos/apple-e-microsoft-sobem-precos-de-hardware-com-a-pressao-da-ia-a42ec13e57b539f599",
+      "published_at": "2026-06-29T12:00:00+01:00",
+      "summary": "Apple e Microsoft anunciaram aumentos de preços em vários dos seus dispositivos, citando a subida dos custos de memória e armazenamento. A pressão acrescida da procura, impulsionada pelos datacenters de IA, é um...",
       "sections": [
         "Mundo",
         "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "TEKEVER e Skeleton Technologies: A Convergência de Drones e IA na Defesa Europeia",
+      "url": "https://ptia.pt/artigos/tekever-e-skeleton-technologies-a-convergencia-de-drones-e-ia-na-defesa-europeia-47592e3ad9a60c9afd",
+      "published_at": "2026-06-29T09:00:00+01:00",
+      "summary": "A portuguesa TEKEVER e a estoniana Skeleton Technologies formalizaram um memorando de entendimento para cooperar em áreas de defesa, aeroespacial e tecnologia avançada. O acordo foca-se na combinação de sistemas autónom...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
       ]
     },
     {
@@ -537,18 +547,6 @@
         "Portugal",
         "Regulação",
         "Histórias reais"
-      ]
-    },
-    {
-      "title": "A IA e a 'Ressurreição' de Vidas na Guerra: Uma Encruzilhada Sensível",
-      "url": "https://ptia.pt/artigos/a-ia-e-a-ressurreicao-de-vidas-na-guerra-uma-encruzilhada-sensivel-ae954d66e4ab4e5e55",
-      "published_at": "2026-06-15T21:00:00+01:00",
-      "summary": "No epicentro do conflito na Ucrânia, emerge uma tendência profundamente controversa: famílias russas utilizam tecnologias de inteligência artificial para 'ressuscitar' entes queridos falecidos em combate. Este fenómeno...",
-      "sections": [
-        "Mundo",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     }
   ],
