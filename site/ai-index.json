@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-29T20:48:20+00:00",
+  "updated_at": "2026-07-01T01:33:26+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,46 @@
   ],
   "recent_articles": [
     {
+      "title": "Sword Health fecha acordo em Portugal para fisioterapia com apoio de IA",
+      "url": "https://ptia.pt/artigos/sword-health-fecha-acordo-em-portugal-para-fisioterapia-com-apoio-de-ia-adb199a4d7cf858749",
+      "published_at": "2026-06-30T21:00:00+01:00",
+      "summary": "Sword Health fecha acordo em Portugal para fisioterapia com apoio de IA. Fonte: https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/",
+      "sections": [
+        "Portugal",
+        "Builders"
+      ]
+    },
+    {
+      "title": "Artificial Intelligence: Council gives final green light to simplify and streamline rules",
+      "url": "https://ptia.pt/artigos/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules-005e9be417cf1b0e2d",
+      "published_at": "2026-06-30T16:00:00+01:00",
+      "summary": "The Council gave its final green light on a new regulation aiming to streamline and simplify certain rules regarding artificial intelligence (AI).&nbsp; Fonte: https://www.consilium.europa.eu/en/press/press-releases/202...",
+      "sections": [
+        "Mundo",
+        "Regulação"
+      ]
+    },
+    {
+      "title": "Ford: IA falha controlos de qualidade, recontrata engenheiros humanos",
+      "url": "https://ptia.pt/artigos/ford-ia-falha-controlos-de-qualidade-recontrata-engenheiros-humanos-1c686f5d5bc681184e",
+      "published_at": "2026-06-30T13:00:00+01:00",
+      "summary": "A Ford recontratou engenheiros humanos após os sistemas de Inteligência Artificial terem falhado nos controlos de qualidade. A fabricante automóvel verificou que as verificações de qualidade com IA não conseguiam replic...",
+      "sections": [
+        "Mundo",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "Apple antecipa atualizações em resposta a preocupações de cibersegurança em IA",
+      "url": "https://ptia.pt/artigos/apple-antecipa-atualizacoes-em-resposta-a-preocupacoes-de-ciberseguranca-em-ia-a7d870eb71c1339557",
+      "published_at": "2026-06-30T09:00:00+01:00",
+      "summary": "Apple antecipa atualizações em resposta a preocupações de cibersegurança em IA. Fonte: https://www.usnews.com/news/top-news/articles/2026-06-29/apple-says-it-is-releasing-updates-early-in-response-to-ai-cybersecurity-co...",
+      "sections": [
+        "Mundo",
+        "Previsões Futuras"
+      ]
+    },
+    {
       "title": "Gleedot lança assistente de IA para organização de atividades infantis em Portugal",
       "url": "https://ptia.pt/artigos/gleedot-lanca-assistente-de-ia-para-organizacao-de-atividades-infantis-em-portugal-5deac5c2caf2903507",
       "published_at": "2026-06-29T21:00:00+01:00",
@@ -493,53 +533,6 @@
       "url": "https://ptia.pt/artigos/spacex-compra-a-anysphere-por-60-mil-milhoes-de-dolares-numa-aposta-massiva-em-desenvolvimento-com-ia-62c756de1ea6801cb8",
       "published_at": "2026-06-17T16:00:00+01:00",
       "summary": "A SpaceX anunciou um acordo definitivo para adquirir a Anysphere, a startup responsável pelo desenvolvimento do Cursor, o editor de código baseado em Inteligência Artificial que se tornou um padrão na indústria de desen...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Augusta Labs capta mais de 5 milhões de euros em ronda apoiada por fundadores de unicórnios portugueses",
-      "url": "https://ptia.pt/artigos/augusta-labs-capta-mais-de-5-milhoes-de-euros-em-ronda-apoiada-por-fundadores-de-unicornios-portugueses-c5e746dd2ea846b605",
-      "published_at": "2026-06-17T13:00:00+01:00",
-      "summary": "A Augusta Labs, uma startup portuguesa fundada em 2024 por Rodrigo Fernandes e João Cerejeira, anunciou a conclusão da sua primeira ronda de investimento no valor de mais de cinco milhões de euros. A operação, que avali...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Charm Security Premiada em Lisboa Pela Solução IA Contra Fraudes",
-      "url": "https://ptia.pt/artigos/charm-security-premiada-em-lisboa-pela-solucao-ia-contra-fraudes-3ae1cb2e3a255a24a0",
-      "published_at": "2026-06-17T09:00:00+01:00",
-      "summary": "A Charm Security, empresa especializada no desenvolvimento de uma Força de Trabalho de IA Agente para prevenção e resolução de fraudes e cibercrime, foi distinguida com o prémio de Melhor Solução Tecnológica no Global A...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Cognizant: 4,7 biliões de dólares em valor de IA por explorar nas G2000",
-      "url": "https://ptia.pt/artigos/cognizant-4-7-bilioes-de-dolares-em-valor-de-ia-por-explorar-nas-g2000-5480a987ea45f8431e",
-      "published_at": "2026-06-16T21:00:00+01:00",
-      "summary": "Uma nova pesquisa da Cognizant revela que as empresas que combinam uma infraestrutura tecnológica madura com uma estratégia de investimento em IA focada nos seus fundamentos superam as restantes em 31% nos resultados co...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "A Briya abre o AIRE™: Plataforma de IA para a Pesquisa Médica e o Dilema da Acessibilidade",
-      "url": "https://ptia.pt/artigos/a-briya-abre-o-airetm-plataforma-de-ia-para-a-pesquisa-medica-e-o-dilema-da-acessibilidade-aaf0c5f540fdae886b",
-      "published_at": "2026-06-16T16:00:00+01:00",
-      "summary": "A Briya anunciou o acesso gratuito ao AIRE™, a sua plataforma de IA científica conversacional, desenhada para a pesquisa clínica, epidemiológica e de evidências do mundo real. Esta iniciativa visa democratizar o acesso...",
       "sections": [
         "Mundo",
         "Builders",

@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-01T21:07:31+00:00",
+  "updated_at": "2026-07-01T21:28:06+00:00",
   "posts": [
     {
       "id": "post_40a65072a46b4364f6",
@@ -16,6 +16,22 @@
         "Mundo",
         "Builders",
         "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "id": "post_9f87bf5627a6ba8703",
+      "title": "USD.AI e BSQ Capital Partners: 300M$ para Computação de IA na Ásia-Pacífico",
+      "body": "A USD.AI, uma plataforma de financiamento especializada em ativos de computação de IA, e a BSQ Capital Partners, gestora de ativos alternativos com sede em Singapura, anunciaram a formação de uma <i>joint venture</i>. O objetivo é disponibilizar financiamento sénior garantido por GPUs a operadores de infraestrutura de computação de IA na região Ásia-Pacífico, com um montante inicial de até 300 milhões de dólares, com potencial de expansão para 1 bilião de dólares.\n\nEste movimento não é apenas um sinal de liquidez no mercado de IA. Ao direcionar o financiamento para o elo mais tangível e, por vezes, mais restritivo da cadeia – o hardware de computação –, a <i>joint venture</i> posiciona-se para mitigar um dos maiores gargalos na escalabilidade da inteligência artificial: a disponibilidade de GPUs. Não se trata apenas de injetar capital, mas de desatar um nó estratégico que impede a construção de centros de dados e a implementação de modelos de IA em larga escala.\n\nPara a competitividade de Portugal, esta dinâmica sublinha uma realidade incontornável: o acesso a capacidade de computação não é um luxo, é uma fundação. O financiamento direto de infraestruturas, como o que agora se vê na Ásia-Pacífico, demonstra que o capital já percebeu onde está o valor e o atrito. A questão para os decisores e <i>builders</i> em Portugal não é \"se\" devemos investir em IA, mas \"como\" garantimos que as nossas empresas e a nossa investigação têm acesso prioritário e economicamente viável a esta capacidade.\n\nA verdadeira corrida não é apenas pelo talento em IA ou pelos melhores algoritmos. É, fundamentalmente, pela infraestrutura que os suporta. A capacidade de financiar, construir e operar parques de GPUs torna-se um fator diferenciador crítico. Ignorar esta componente é arriscar que a nossa ambição em IA, por mais inovadora que seja, fique refém de uma dependência externa insustentável. A Ásia-Pacífico mostra o caminho: o investimento tem de ir para a base, para o ferro que faz a IA acontecer.\n\nFonte: https://www.morningstar.com/news/pr-newswire/20260630NY30000/usd-ai-and-bsq-capital-partners-form-joint-venture-to-finance-300m-of-ai-compute-across-asia-pacific",
+      "source_urls": [
+        "https://www.morningstar.com/news/pr-newswire/20260630NY30000/usd-ai-and-bsq-capital-partners-form-joint-venture-to-finance-300m-of-ai-compute-across-asia-pacific"
+      ],
+      "image_path": "data\\final_assets\\post_5ccc78e04ff2989fbe_7958a035.svg",
+      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_5ccc78e04ff2989fbe_7958a035.svg",
+      "published_at": "2026-07-03T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
         "Histórias reais"
       ]
     },
@@ -54,6 +70,21 @@
       ]
     },
     {
+      "id": "post_50ec1d7e0650fec870",
+      "title": "INESC TEC participa no lançamento do projeto europeu AI Grids em Bruxelas",
+      "body": "INESC TEC participa no lançamento do projeto europeu AI Grids em Bruxelas.\n\nFonte: https://www.inesctec.pt/en/news/inesc-tec-travels-to-brussels-to-sign-the-launch-of-the-ai-grids-project-part-of-the-european-commissions-tech-sovereignty-package",
+      "source_urls": [
+        "https://www.inesctec.pt/en/news/inesc-tec-travels-to-brussels-to-sign-the-launch-of-the-ai-grids-project-part-of-the-european-commissions-tech-sovereignty-package"
+      ],
+      "image_path": "data\\final_assets\\post_3496a2ba260638e9a5_b635e1ef.svg",
+      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_3496a2ba260638e9a5_b635e1ef.svg",
+      "published_at": "2026-07-03T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ]
+    },
+    {
       "id": "post_3328530f81e6561e47",
       "title": "Gartner aponta IA Agente e IA Física como tendências para cadeias de abastecimento até 2026",
       "body": "A Gartner identificou a IA Agente e a IA Física como tendências tecnológicas cruciais para a cadeia de abastecimento até 2026. Estas tecnologias, que procuram reforçar a autonomia, especialização e confiança, visam melhorar a eficiência operacional, a segurança e a adaptabilidade nos setores da manufatura, armazenagem e transporte.\n\nO relatório da Gartner sublinha as áreas onde a inteligência artificial terá maior impacto na cadeia de abastecimento, oferecendo <i>insights</i> para empresas e profissionais que procuram otimizar as suas operações. A adoção da IA Agente e da IA Física pode traduzir-se em ganhos significativos de produtividade e resiliência.\n\nO que emerge deste foco da Gartner não é apenas a sofisticação da tecnologia, mas a sua integração profunda em processos antes dependentes de intervenção humana intensiva. A IA Agente, com a sua capacidade de operar de forma autónoma e adaptativa, e a IA Física, que permite a robótica avançada e sistemas ciber-físicos, marcam uma transição. Não se trata apenas de automatizar tarefas, mas de delegar decisões e ações complexas a sistemas inteligentes. O desafio, para os decisores, não é apenas implementar estas ferramentas, mas repensar toda a arquitetura de decisão e controlo, para que a autonomia não se torne um risco, mas uma alavanca de competitividade. A pergunta que se impõe é: como se preparam as equipas para gerir e colaborar com sistemas que pensam e agem com crescente independência?\n\nFonte: <a href=\"https://www.gartner.com/en/newsroom/press-releases/2026-06-30-gartner-identifies-top-supply-chain-technology-trends-for-2026\">Gartner</a>",
@@ -66,6 +97,23 @@
       "section": [
         "Mundo",
         "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "id": "post_b31d2e7fcc7b31f197",
+      "title": "Meituan abre código do LongCat-2.0, treinado em chips chineses",
+      "body": "A Meituan Inc., empresa com sede em Pequim, lançou hoje o seu modelo de linguagem de código aberto de próxima geração, o LongCat-2.0, com 1,6 biliões de parâmetros. A empresa afirmou que o modelo foi treinado exclusivamente em chips e <i>clusters</i> de computação chineses. Este lançamento não é apenas significativo pelo volume do modelo de IA de código aberto, mas também pela sua dependência de <i>hardware</i> doméstico, sublinhando os esforços da China para alcançar a soberania tecnológica em IA.\n\nEsta notícia não é apenas sobre a dimensão de um novo modelo, mas sobre a arquitetura de poder que se desenha por trás dele. A capacidade de treinar um modelo de 1,6 biliões de parâmetros com infraestrutura totalmente doméstica muda a discussão sobre a dependência global de semicondutores e sobre as cadeias de <i>supply chain</i>. A China está a construir uma alternativa viável, e isso tem implicações diretas para a competitividade em IA, especialmente quando pensamos no acesso a esta tecnologia em mercados mais pequenos ou menos prioritários para os grandes <i>players</i> ocidentais.\n\nPara decisores e <i>founders</i> em Portugal, este movimento da Meituan deve ser lido como um sinal de duas coisas: primeiro, a democratização da IA avançada está a acelerar, o que significa mais ferramentas e maior competitividade. Segundo, a diversificação das fontes de tecnologia é uma realidade. Ignorar estas alternativas pode significar perder acesso a soluções robustas e, potencialmente, a custos mais acessíveis no futuro. A questão não é se devemos usar tecnologia chinesa ou ocidental, mas sim como podemos capitalizar esta nova pluralidade para criar valor e reforçar a nossa própria capacidade de inovação.\n\nO desafio para Portugal e para a Europa é claro: como podemos tirar partido desta emergência de ecossistemas de IA alternativos para fortalecer a nossa autonomia tecnológica, em vez de ficarmos presos a uma lógica de dependência única? A abertura de modelos como o LongCat-2.0 oferece uma janela para explorar novas arquiteturas e <i>frameworks</i>, acelerando a nossa própria curva de aprendizagem e, talvez, a nossa capacidade de construir infraestruturas de IA mais resilientes e diversificadas. A questão é se teremos a agilidade e a visão para o fazer.\n\nFonte: https://siliconangle.com/2026/06/30/chinas-meituan-open-sources-massive-longcat-2-0-ai-model-saying-it-was-trained-on-domestic-chips/",
+      "source_urls": [
+        "https://siliconangle.com/2026/06/30/chinas-meituan-open-sources-massive-longcat-2-0-ai-model-saying-it-was-trained-on-domestic-chips/"
+      ],
+      "image_path": "data\\final_assets\\post_c15ac112e756e1c6a3_c9899a8c.svg",
+      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_c15ac112e756e1c6a3_c9899a8c.svg",
+      "published_at": "2026-07-03T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
         "Histórias reais",
         "Previsões Futuras"
       ]
@@ -88,30 +136,15 @@
       ]
     },
     {
-      "id": "post_50ec1d7e0650fec870",
-      "title": "INESC TEC participa no lançamento do projeto europeu AI Grids em Bruxelas",
-      "body": "INESC TEC participa no lançamento do projeto europeu AI Grids em Bruxelas.\n\nFonte: https://www.inesctec.pt/en/news/inesc-tec-travels-to-brussels-to-sign-the-launch-of-the-ai-grids-project-part-of-the-european-commissions-tech-sovereignty-package",
+      "id": "post_b4fa4e9479561098f1",
+      "title": "Sobreviver ao 'Apocalipse do Emprego': A Visão do CEO de IA para a Geração Z e a Relevância das Habilidades Adaptativas",
+      "body": "A discussão sobre o impacto da Inteligência Artificial no mercado de trabalho intensifica-se, e o CEO de uma empresa de IA oferece uma perspetiva concreta sobre como a Geração Z pode navegar neste cenário. A sua análise, publicada no Estadão, foca-se nas competências que se tornam cruciais à medida que a tecnologia redefine funções e cria novas categorias de emprego, um tema que ressoa profundamente com os desafios de competitividade e adoção tecnológica em Portugal.\n\nO cerne da questão não reside na substituição pura de empregos por máquinas, mas antes na reconfiguração das exigências. A narrativa de um “apocalipse do emprego” é, na sua essência, um alarme para a necessidade de uma adaptação acelerada. O que antes eram competências valorizadas, como a execução repetitiva de tarefas, perdem relevância a favor de capacidades que complementam a IA, em vez de competir com ela. A tese central aponta para a valorização de uma literacia digital avançada, não apenas no uso de ferramentas, mas na compreensão dos seus princípios operacionais e limitações. Isto estende-se à capacidade de trabalhar com dados, de interpretar <i>insights</i> gerados por algoritmos e de aplicar o pensamento crítico na resolução de problemas complexos que a IA ainda não consegue abordar de forma autónoma.\n\nPara o contexto português, onde a modernização e a produtividade são imperativos, esta perspetiva é mais do que teórica. A adoção ativa de tecnologia, sobretudo a IA, exige uma força de trabalho que não só a utilize, mas que a molde e a otimize. A sobrevivência profissional da Geração Z, e por extensão, a competitividade do nosso tecido empresarial, dependerá da agilidade em desenvolver estas competências. Não se trata de uma mera requalificação em cursos genéricos, mas sim de um investimento estratégico na literacia de dados, no pensamento computacional e na capacidade de adaptação contínua a novos <i>frameworks</i> e ferramentas. A consequência impulsionadora é clara: as empresas e as instituições de ensino em Portugal devem antecipar estas mudanças, integrando as competências do futuro nos seus currículos e programas de formação, garantindo que os profissionais de amanhã estejam aptos a construir, e não apenas a consumir, o futuro impulsionado pela IA.\n\nFonte: <a href=\"https://www.estadao.com.br/economia/eu-sei-como-a-geracao-z-pode-sobreviver-ao-apocalipse-do-emprego-diz-ceo-de-empresa-de-ia/\" target=\"_blank\">Estadão</a>",
       "source_urls": [
-        "https://www.inesctec.pt/en/news/inesc-tec-travels-to-brussels-to-sign-the-launch-of-the-ai-grids-project-part-of-the-european-commissions-tech-sovereignty-package"
+        "https://www.estadao.com.br/economia/eu-sei-como-a-geracao-z-pode-sobreviver-ao-apocalipse-do-emprego-diz-ceo-de-empresa-de-ia/"
       ],
-      "image_path": "data\\final_assets\\post_3496a2ba260638e9a5_b635e1ef.svg",
-      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_3496a2ba260638e9a5_b635e1ef.svg",
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_47cef2693151b1627a_2e43513f_ChatGPT-Image-1_07_2026-22_02_29.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_21434b969f667f7a7c_site_1600x900.jpg",
       "published_at": "2026-07-02T21:00:00+01:00",
-      "section": [
-        "Portugal",
-        "Regulação"
-      ]
-    },
-    {
-      "id": "post_b31d2e7fcc7b31f197",
-      "title": "Meituan abre código do LongCat-2.0, treinado em chips chineses",
-      "body": "A Meituan Inc., empresa com sede em Pequim, lançou hoje o seu modelo de linguagem de código aberto de próxima geração, o LongCat-2.0, com 1,6 biliões de parâmetros. A empresa afirmou que o modelo foi treinado exclusivamente em chips e <i>clusters</i> de computação chineses. Este lançamento não é apenas significativo pelo volume do modelo de IA de código aberto, mas também pela sua dependência de <i>hardware</i> doméstico, sublinhando os esforços da China para alcançar a soberania tecnológica em IA.\n\nEsta notícia não é apenas sobre a dimensão de um novo modelo, mas sobre a arquitetura de poder que se desenha por trás dele. A capacidade de treinar um modelo de 1,6 biliões de parâmetros com infraestrutura totalmente doméstica muda a discussão sobre a dependência global de semicondutores e sobre as cadeias de <i>supply chain</i>. A China está a construir uma alternativa viável, e isso tem implicações diretas para a competitividade em IA, especialmente quando pensamos no acesso a esta tecnologia em mercados mais pequenos ou menos prioritários para os grandes <i>players</i> ocidentais.\n\nPara decisores e <i>founders</i> em Portugal, este movimento da Meituan deve ser lido como um sinal de duas coisas: primeiro, a democratização da IA avançada está a acelerar, o que significa mais ferramentas e maior competitividade. Segundo, a diversificação das fontes de tecnologia é uma realidade. Ignorar estas alternativas pode significar perder acesso a soluções robustas e, potencialmente, a custos mais acessíveis no futuro. A questão não é se devemos usar tecnologia chinesa ou ocidental, mas sim como podemos capitalizar esta nova pluralidade para criar valor e reforçar a nossa própria capacidade de inovação.\n\nO desafio para Portugal e para a Europa é claro: como podemos tirar partido desta emergência de ecossistemas de IA alternativos para fortalecer a nossa autonomia tecnológica, em vez de ficarmos presos a uma lógica de dependência única? A abertura de modelos como o LongCat-2.0 oferece uma janela para explorar novas arquiteturas e <i>frameworks</i>, acelerando a nossa própria curva de aprendizagem e, talvez, a nossa capacidade de construir infraestruturas de IA mais resilientes e diversificadas. A questão é se teremos a agilidade e a visão para o fazer.\n\nFonte: https://siliconangle.com/2026/06/30/chinas-meituan-open-sources-massive-longcat-2-0-ai-model-saying-it-was-trained-on-domestic-chips/",
-      "source_urls": [
-        "https://siliconangle.com/2026/06/30/chinas-meituan-open-sources-massive-longcat-2-0-ai-model-saying-it-was-trained-on-domestic-chips/"
-      ],
-      "image_path": "data\\final_assets\\post_c15ac112e756e1c6a3_c9899a8c.svg",
-      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_c15ac112e756e1c6a3_c9899a8c.svg",
-      "published_at": "2026-07-02T13:00:00+01:00",
       "section": [
         "Mundo",
         "Builders",
@@ -120,19 +153,53 @@
       ]
     },
     {
-      "id": "post_9f87bf5627a6ba8703",
-      "title": "USD.AI e BSQ Capital Partners: 300M$ para Computação de IA na Ásia-Pacífico",
-      "body": "A USD.AI, uma plataforma de financiamento especializada em ativos de computação de IA, e a BSQ Capital Partners, gestora de ativos alternativos com sede em Singapura, anunciaram a formação de uma <i>joint venture</i>. O objetivo é disponibilizar financiamento sénior garantido por GPUs a operadores de infraestrutura de computação de IA na região Ásia-Pacífico, com um montante inicial de até 300 milhões de dólares, com potencial de expansão para 1 bilião de dólares.\n\nEste movimento não é apenas um sinal de liquidez no mercado de IA. Ao direcionar o financiamento para o elo mais tangível e, por vezes, mais restritivo da cadeia – o hardware de computação –, a <i>joint venture</i> posiciona-se para mitigar um dos maiores gargalos na escalabilidade da inteligência artificial: a disponibilidade de GPUs. Não se trata apenas de injetar capital, mas de desatar um nó estratégico que impede a construção de centros de dados e a implementação de modelos de IA em larga escala.\n\nPara a competitividade de Portugal, esta dinâmica sublinha uma realidade incontornável: o acesso a capacidade de computação não é um luxo, é uma fundação. O financiamento direto de infraestruturas, como o que agora se vê na Ásia-Pacífico, demonstra que o capital já percebeu onde está o valor e o atrito. A questão para os decisores e <i>builders</i> em Portugal não é \"se\" devemos investir em IA, mas \"como\" garantimos que as nossas empresas e a nossa investigação têm acesso prioritário e economicamente viável a esta capacidade.\n\nA verdadeira corrida não é apenas pelo talento em IA ou pelos melhores algoritmos. É, fundamentalmente, pela infraestrutura que os suporta. A capacidade de financiar, construir e operar parques de GPUs torna-se um fator diferenciador crítico. Ignorar esta componente é arriscar que a nossa ambição em IA, por mais inovadora que seja, fique refém de uma dependência externa insustentável. A Ásia-Pacífico mostra o caminho: o investimento tem de ir para a base, para o ferro que faz a IA acontecer.\n\nFonte: https://www.morningstar.com/news/pr-newswire/20260630NY30000/usd-ai-and-bsq-capital-partners-form-joint-venture-to-finance-300m-of-ai-compute-across-asia-pacific",
+      "id": "post_0eb785a66fee69cfec",
+      "title": "Nova Iorque: Google, CEO Council e Urban Assembly moldam futuro da IA na educação",
+      "body": "A Google, o New York Jobs CEO Council e a Urban Assembly organizaram um encontro em Nova Iorque que reuniu 150 líderes da educação e da indústria. O objetivo foi claro: debater e delinear o futuro da inteligência artificial nas salas de aula, procurando pontos de convergência entre as necessidades do setor educativo e as possibilidades tecnológicas.\n\nEste movimento não é apenas um seminário sobre tecnologia; é um sinal de que a discussão sobre a IA na educação está a escalar para um patamar de execução. Quando as grandes empresas de tecnologia se sentam à mesa com decisores de políticas educativas e líderes empresariais, o foco muda do potencial teórico para o <i>roadmap</i> prático. A questão já não é se a IA vai estar presente, mas sim como a vamos integrar de forma eficaz e com que propósito.\n\nA iniciativa revela uma estratégia de <i>bottom-up</i>, onde a base de utilizadores — neste caso, educadores e alunos — é envolvida na construção do futuro. Em Portugal, a lição é direta: a adaptação da IA ao contexto pedagógico não pode ser uma diretiva de cima para baixo. Exige o envolvimento ativo de quem está no terreno, quem compreende as dinâmicas da sala de aula e as reais necessidades de aprendizagem. Ignorar esta interação é arriscar criar sistemas que, embora tecnologicamente avançados, falham na sua adoção e relevância.\n\nO debate em Nova Iorque sublinha que a verdadeira vantagem competitiva na educação não virá apenas da posse de ferramentas de IA, mas da capacidade de as integrar de forma orgânica nos currículos e métodos de ensino. Isto implica repensar a formação de professores, a criação de conteúdos e até a própria arquitetura das escolas. A questão para os decisores portugueses é, portanto, como catalisar este diálogo e transpor as aprendizagens de um encontro como este para um plano de ação nacional que vá além do piloto isolado.\n\nFonte: https://blog.google/products-and-platforms/products/education/nyc-ai-summit",
       "source_urls": [
-        "https://www.morningstar.com/news/pr-newswire/20260630NY30000/usd-ai-and-bsq-capital-partners-form-joint-venture-to-finance-300m-of-ai-compute-across-asia-pacific"
+        "https://blog.google/products-and-platforms/products/education/nyc-ai-summit"
       ],
-      "image_path": "data\\final_assets\\post_5ccc78e04ff2989fbe_7958a035.svg",
-      "image_url": "/asset?path=data%5Cfinal_assets%5Cpost_5ccc78e04ff2989fbe_7958a035.svg",
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_101f7da0ef5a0a1389_4b172f5e_ChatGPT-Image-1_07_2026-21_59_27.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_9083e67157ba3d1736_site_1600x900.jpg",
+      "published_at": "2026-07-02T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "id": "post_dd72eca1f9e9d09062",
+      "title": "Portugal reforça investimento em modelo nacional de IA para soberania tecnológica",
+      "body": "O governo português anunciou um investimento adicional de 1,5 milhões de euros no seu modelo nacional de inteligência artificial, elevando o financiamento total para 7 milhões de euros até 2027. O objetivo é fortalecer a autonomia tecnológica, tanto a nível nacional quanto europeu.\n\nEste reforço de capital não é apenas um aditamento orçamental; é um sinal claro de que a aposta na soberania tecnológica via IA está a ser levada a sério. Não se trata apenas de ter um modelo português, mas de garantir que os dados, a lógica e o controlo sobre as nossas infraestruturas digitais permaneçam sob alçada nacional. Num cenário global onde a dependência de plataformas e modelos externos pode ditar o ritmo da inovação e até a segurança, construir capacidade interna é um imperativo estratégico.\n\nO verdadeiro desafio começa agora. Investir é uma coisa, mas a execução eficaz é outra. A questão fulcral não é apenas o montante, mas como este financiamento se traduzirá em modelos de IA robustos, adaptados às especificidades da língua e cultura portuguesa, e que possam ser integrados em <i>use cases</i> práticos para a administração pública e o tecido empresarial. O valor real deste investimento será medido pela capacidade de criar um ecossistema que atraia e retenha talento, que potencie a investigação e que, acima de tudo, gere valor económico tangível.\n\nUm modelo nacional de IA não é um fim em si mesmo. É uma ferramenta, uma infraestrutura crítica que exige um <i>roadmap</i> claro de desenvolvimento, integração e adoção. Como é que se vai garantir que os 7 milhões de euros não financiam apenas a pesquisa, mas também a ponte para a aplicação prática e a comercialização? A autonomia digital não se constrói apenas com fundos, mas com uma visão pragmática de como a tecnologia pode ser um motor de competitividade e um garante de independência num mundo cada vez mais interligado e, paradoxalmente, fragmentado.\n\nPortugal tem a oportunidade de não só construir a sua própria capacidade, mas de se posicionar como um parceiro relevante na construção da autonomia europeia em IA. Para isso, o investimento tem de ser acompanhado de uma estratégia de colaboração, partilha de conhecimento e abertura para que os resultados desta aposta se transformem em alavancas de crescimento para todos os setores. A verdadeira soberania não reside no isolamento, mas na capacidade de influenciar e competir.\n\nFonte: https://english.news.cn/20260701/2f5bd728daaf4f699dec7267a8d3545b/c.html",
+      "source_urls": [
+        "https://english.news.cn/20260701/2f5bd728daaf4f699dec7267a8d3545b/c.html"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e81c89767594637fd3_e4950379_ChatGPT-Image-1_07_2026-21_53_30.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_c28cae5669f031bb13_site_1600x900.jpg",
+      "published_at": "2026-07-02T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ]
+    },
+    {
+      "id": "post_c02f506270e9191065",
+      "title": "ONU Alerta: Disparidade Global Acentua-se com Crescimento Desigual da IA",
+      "body": "A rápida proliferação da inteligência artificial (IA) ameaça agravar as desigualdades globais, alertou um painel de especialistas das Nações Unidas. À medida que a adoção da IA se expande de forma heterogénea pelo mundo, este grupo propõe um <i>framework</i> partilhado para um desenvolvimento responsável, numa tentativa de mitigar os riscos de uma clivagem tecnológica e económica ainda maior.\n\nO relatório da ONU não é apenas mais um estudo sobre o futuro da IA; é um diagnóstico sobre o presente. A preocupação central não reside na tecnologia em si, mas na sua distribuição e acesso. O verdadeiro risco não está no avanço da IA, mas na forma como esta se está a consolidar em ecossistemas fechados, onde o capital, o talento e a infraestrutura tecnológica já são abundantes. Isto significa que os países e as empresas que já possuem uma vantagem digital estão a ver essa vantagem amplificada exponencialmente, enquanto as regiões com menos recursos ficam ainda mais para trás.\n\nPara Portugal, a leitura é direta: não basta observar a corrida global; é preciso agir sobre a nossa própria capacidade de adoção e integração. O <i>framework</i> proposto pela ONU, embora global, sublinha a urgência de políticas nacionais que promovam não só o investimento em IA, mas também a capacitação e a infraestrutura para a sua implementação generalizada. A questão não é se a IA vai chegar, mas se temos as condições para a usar de forma competitiva, ou se seremos meros consumidores de soluções desenvolvidas noutros mercados. A falha em construir uma base robusta para a IA hoje resultará numa dependência tecnológica ainda maior amanhã, transformando a inovação global em desvantagem local.\n\nFonte: https://www.theguardian.com/technology/2026/jul/01/un-report-ai-inequality",
+      "source_urls": [
+        "https://www.theguardian.com/technology/2026/jul/01/un-report-ai-inequality"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a05ae6ab7493587646_449f98b8_ChatGPT-Image-1_07_2026-21_51_24.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_0468839679f517b085_site_1600x900.jpg",
       "published_at": "2026-07-02T09:00:00+01:00",
       "section": [
         "Mundo",
         "Builders",
-        "Histórias reais"
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
       ]
     },
     {
