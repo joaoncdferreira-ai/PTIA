@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-06-29T11:41:50+00:00",
+  "updated_at": "2026-06-29T20:48:20+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,10 +263,31 @@
   ],
   "recent_articles": [
     {
+      "title": "Gleedot lança assistente de IA para organização de atividades infantis em Portugal",
+      "url": "https://ptia.pt/artigos/gleedot-lanca-assistente-de-ia-para-organizacao-de-atividades-infantis-em-portugal-5deac5c2caf2903507",
+      "published_at": "2026-06-29T21:00:00+01:00",
+      "summary": "A Gleedot lançou em Portugal uma plataforma que integra um <i>AI Family Assistant</i>, desenhada para simplificar a busca e organização de atividades infantis locais. O serviço centraliza fornecedores e opções, prometen...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação"
+      ]
+    },
+    {
+      "title": "Anthropic Acusa Alibaba de Extração Ilegal de Capacidades do Modelo Claude",
+      "url": "https://ptia.pt/artigos/anthropic-acusa-alibaba-de-extracao-ilegal-de-capacidades-do-modelo-claude-bc6d6971056f6d718c",
+      "published_at": "2026-06-29T16:00:00+01:00",
+      "summary": "A Anthropic formalizou uma acusação contra a Alibaba, alegando que a gigante tecnológica chinesa extraiu ilicitamente capacidades e dados do seu modelo de inteligência artificial Claude. A denúncia aponta para a utiliza...",
+      "sections": [
+        "Mundo",
+        "Builders"
+      ]
+    },
+    {
       "title": "Apple e Microsoft sobem preços de hardware com a pressão da IA",
       "url": "https://ptia.pt/artigos/apple-e-microsoft-sobem-precos-de-hardware-com-a-pressao-da-ia-a42ec13e57b539f599",
       "published_at": "2026-06-29T12:00:00+01:00",
-      "summary": "Apple e Microsoft anunciaram aumentos de preços em vários dos seus dispositivos, citando a subida dos custos de memória e armazenamento. A pressão acrescida da procura, impulsionada pelos datacenters de IA, é um...",
+      "summary": "Apple e Microsoft anunciaram aumentos de preços em vários dos seus dispositivos, citando a subida dos custos de memória e armazenamento. A pressão acrescida da procura, impulsionada pelos <i>datacenters</i> de IA, é um...",
       "sections": [
         "Mundo",
         "Builders",
@@ -524,29 +545,6 @@
         "Builders",
         "Histórias reais",
         "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Presidente em Cimeira COTEC sobre IA: Governança Ética no Centro da Agenda",
-      "url": "https://ptia.pt/artigos/presidente-em-cimeira-cotec-sobre-ia-governanca-etica-no-centro-da-agenda-bafee32332a7fab603",
-      "published_at": "2026-06-16T13:00:00+01:00",
-      "summary": "O Presidente português vai participar na cimeira da COTEC sobre Inteligência Artificial em Itália. O evento focar-se-á em estratégias para governar a integração da IA de forma ética, eficaz e sustentável, sinalizando a...",
-      "sections": [
-        "Portugal",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Bloco de Esquerda propõe supervisão humana em despedimentos por IA",
-      "url": "https://ptia.pt/artigos/bloco-de-esquerda-propoe-supervisao-humana-em-despedimentos-por-ia-b9e9fad5b6469bda38",
-      "published_at": "2026-06-16T09:00:00+01:00",
-      "summary": "O Bloco de Esquerda (BE) propôs um conjunto de salvaguardas legais para impedir que, em Portugal, trabalhadores sejam despedidos exclusivamente por sistemas de inteligência artificial. A iniciativa surge como parte de u...",
-      "sections": [
-        "Portugal",
-        "Regulação",
-        "Histórias reais"
       ]
     }
   ],

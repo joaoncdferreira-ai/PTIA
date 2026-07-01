@@ -161,7 +161,13 @@ function isPublishedNow(value) {
 }
 
 function visibleFeedPosts(feed) {
-  return (feed?.posts || []).filter((post) => isPublishedNow(post.published_at));
+  const posts = feed?.posts || [];
+  const visible = posts.filter((post) => isPublishedNow(post.published_at));
+  const newAppleVisible = visible.some((post) => post.id === "post_a42ec13e57b539f599");
+  if (newAppleVisible) {
+    return visible.filter((post) => post.id !== "post_ca28e48d21d880a356");
+  }
+  return visible;
 }
 
 function formatLongDate(date) {
