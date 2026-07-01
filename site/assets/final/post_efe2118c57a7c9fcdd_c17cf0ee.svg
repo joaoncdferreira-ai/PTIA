@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E1C57B"/>
+      <stop offset="50%" stop-color="#D6B56D"/>
+      <stop offset="100%" stop-color="#8D6B2D"/>
+    </linearGradient>
+    <radialGradient id="wash" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#FAF8F1" stop-opacity="1"/>
+    </radialGradient>
+    <pattern id="mesh" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#101820" stroke-width="1" opacity="0.055"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#wash)"/>
+  <rect width="1080" height="1080" fill="url(#mesh)"/>
+  <rect x="72" y="72" width="936" height="936" rx="34" fill="#FFFFFF" opacity="0.62" stroke="#E5DEC9" stroke-width="2"/>
+  <rect x="112" y="112" width="856" height="856" rx="28" fill="none" stroke="url(#gold)" stroke-width="4" opacity="0.85"/>
+  
+  <rect x="165" y="275" width="750" height="530" rx="28" fill="#101820" opacity="0.95"/>
+  <circle cx="222" cy="335" r="13" fill="#D6B56D"/>
+  <circle cx="268" cy="335" r="13" fill="#FAF8F1" opacity="0.8"/>
+  <circle cx="314" cy="335" r="13" fill="#385170"/>
+  <path d="M315 470 L235 540 L315 610" fill="none" stroke="#D6B56D" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M765 470 L845 540 L765 610" fill="none" stroke="#D6B56D" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M590 450 L500 638" fill="none" stroke="#FAF8F1" stroke-width="20" stroke-linecap="round" opacity="0.9"/>
+
+  <circle cx="900" cy="168" r="38" fill="url(#gold)" opacity="0.95"/>
+  <path d="M176 902 H904" stroke="#101820" stroke-width="10" stroke-linecap="round" opacity="0.88"/>
+  <text x="176" y="865" font-size="44" font-weight="800" fill="#101820" font-family="Georgia, serif">PTIA</text>
+</svg>
