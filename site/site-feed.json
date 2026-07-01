@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-01T01:33:46+00:00",
+  "updated_at": "2026-07-01T21:07:31+00:00",
   "posts": [
     {
       "id": "post_40a65072a46b4364f6",
@@ -335,7 +335,7 @@
       ],
       "image_path": "data\\final_assets\\apple-microsoft-hardware-ai-pressure-site-1600x900.jpg",
       "image_url": "/asset?path=data%5Cfinal_assets%5Capple-microsoft-hardware-ai-pressure-site-1600x900.jpg",
-      "published_at": "2026-06-29T12:00:00+01:00",
+      "published_at": "2026-06-29T13:21:10+01:00",
       "section": [
         "Mundo",
         "Builders",
@@ -356,6 +356,23 @@
         "Mundo",
         "Builders",
         "Histórias reais"
+      ]
+    },
+    {
+      "id": "post_ca28e48d21d880a356",
+      "title": "Apple Aumenta Preços em Quase 20% e Xbox Segue Tendência de Custos",
+      "body": "A Apple anunciou aumentos de preços em alguns dos seus produtos, com subidas que chegam a quase 20%. A justificação, segundo a empresa, prende-se com uma escalada sem precedentes nos custos dos componentes. A Xbox, por seu lado, também já sinalizou aumentos no preço das suas consolas, ecoando uma tendência que se observa em vários pontos da cadeia de valor tecnológica.\n\nEsta subida não é um mero ajuste de tabela; é um sintoma da pressão inflacionária global que se manifesta, agora, nas margens de gigantes como a Apple. Quando uma empresa com o seu poder de compra e otimização de cadeia de abastecimento declara que \"nunca viu um aumento de preço de componentes tão significativo e tão rápido\", a mensagem é clara: os custos de produção estão a reconfigurar o panorama do hardware de consumo e empresarial.\n\nPara os decisores e <i>founders</i> em Portugal, esta dinâmica sublinha uma realidade incontornável: a dependência de cadeias de abastecimento globais e a volatilidade dos custos de componentes afetam diretamente a competitividade. Não se trata apenas de absorver um custo, mas de repensar estratégias de aquisição, de desenvolvimento de produto e, sobretudo, de resiliência operacional. A questão deixa de ser se os preços vão subir, e passa a ser como gerir este novo patamar de custo em projetos que dependem de hardware, desde infraestruturas de <i>cloud</i> até dispositivos de <i>edge computing</i>.\n\nA resposta não pode ser passiva. Sim, os custos sobem. E isso exige uma reavaliação dos <i>roadmaps</i> tecnológicos, uma procura ativa por alternativas e a exploração de modelos de negócio que mitiguem a exposição a estas flutuações. Pense-se, por exemplo, na otimização da utilização de recursos existentes, na adoção de arquiteturas mais eficientes que prolonguem a vida útil do hardware ou na aposta em soluções de <i>software</i> que reduzam a necessidade de atualizações constantes de equipamento. Esta é a altura para as empresas portuguesas olharem para a inovação não só como uma fonte de novas receitas, mas como uma ferramenta de gestão de risco e de sustentabilidade financeira a longo prazo.\n\nFonte: https://www.bbc.com/news/articles/c3ryj81ywlro",
+      "source_urls": [
+        "https://www.bbc.com/news/articles/c3ryj81ywlro"
+      ],
+      "image_path": "data\\final_assets\\post_163e331031546313b8_f32c58ec_ChatGPT-Image-28_06_2026-00_09_01.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_64d5df1fb2748d04b3_site_1600x900.jpg",
+      "published_at": "2026-06-28T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
       ]
     },
     {
@@ -529,7 +546,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fcf1b917ec9d973354_d3b3724f_ChatGPT-Image-19_06_2026-13_07_15.png",
       "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_2fd0bf37a1e524a302_site_1600x900.jpg",
-      "published_at": "2026-06-19T14:00:00+01:00",
+      "published_at": "2026-06-19T14:28:00+01:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1004,7 +1021,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_1ed95915a9355435f3_a5ec8143_ChatGPT-Image-10_06_2026-23_44_47.png",
       "image_url": "/asset?path=c%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_e0ded54dd854c2d4f1_site_1600x900.jpg",
-      "published_at": "2026-06-11T21:00:00+01:00",
+      "published_at": "2026-06-12T00:18:00+01:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -1391,6 +1408,23 @@
       ]
     },
     {
+      "id": "post_17cc3d6e7583319d04",
+      "title": "Lisboa recebe gala dos Health AI Innovation Awards em 2026",
+      "body": "Lisboa prepara-se para acolher a gala dos Health AI Innovation Awards em 2026, um evento concebido para celebrar a inovação na inteligência artificial aplicada ao setor da saúde. A iniciativa visa galardoar projetos e empresas que demonstram um contributo significativo para o desenvolvimento de soluções tecnológicas neste domínio, projetando as tendências e os atores que moldarão o futuro da saúde.\n\nMais do que uma simples celebração, a escolha de Lisboa como palco para estes prémios internacionais oferece um barómetro da maturidade do ecossistema português. A capacidade de atrair e projetar eventos desta envergadura sugere uma janela de oportunidade para Portugal consolidar a sua posição como um hub de inovação em Health AI. Não se trata apenas de reconhecer o valor já existente, mas de catalisar o que ainda está por construir: um pipeline robusto de talento e investimento.\n\nEste contexto desafia os decisores e builders em Portugal a verem estes prémios não como um ponto de chegada, mas como um objetivo estratégico para o desenvolvimento de novas soluções e startups. O verdadeiro valor reside na capacidade de transformar o reconhecimento em tração, impulsionando a próxima vaga de projetos que, um dia, possam aspirar a este palco. A questão central passa por como Portugal pode capitalizar esta visibilidade para acelerar a inovação e o investimento, em vez de se limitar a ser um anfitrião.",
+      "source_urls": [
+        "https://healthnews.pt/2026/06/04/lisboa-acolhe-gala-dos-health-ai-innovation-awards-2026/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ad97db04e28b973f4e_d305bf77_ChatGPT-Image-4_06_2026-22_48_48.png",
+      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_ad97db04e28b973f4e_site_1600x900.jpg",
+      "published_at": "2026-06-05T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
       "id": "post_3383a7e8b953fb8cc3",
       "title": "IBM e Google Cloud: Parceria Estratégica para Escalar IA no Segmento Enterprise",
       "body": "A IBM e a Google Cloud anunciaram hoje uma expansão da sua parceria estratégica para ajudar as empresas a adotar e escalar soluções de inteligência artificial generativa. A aliança combina a experiência de entrega da IBM Consulting com a tecnologia de IA da Google Cloud para criar valor prático e integrar capacidades analíticas no dia a dia organizacional.\n\nA verdadeira leitura crítica deste movimento está na distribuição e na fricção de adoção. Ao focar-se na otimização de fluxos de trabalho existentes, a Google Cloud reconhece que a liderança da IA não dependerá apenas da superioridade teórica de modelos proprietários, mas sim de se tornar a camada padrão incorporada nos produtos de produtividade e pesquisa que milhões de utilizadores já dominam. É a captura do hábito como barreira competitiva de entrada.\n\nPara os líderes de tecnologia e inovação em Portugal, a lição é clara: a produtividade real não virá de ferramentas isoladas ou roadmaps avulsos, mas da simbiose com plataformas operacionais preexistentes. Acelerar a adoção organizacional significa reduzir a fricção e alavancar infraestruturas já enraizadas.",
@@ -1405,23 +1439,6 @@
         "Builders",
         "Regulação",
         "Histórias reais"
-      ]
-    },
-    {
-      "id": "post_17cc3d6e7583319d04",
-      "title": "Lisboa recebe gala dos Health AI Innovation Awards em 2026",
-      "body": "Lisboa prepara-se para acolher a gala dos Health AI Innovation Awards em 2026, um evento concebido para celebrar a inovação na inteligência artificial aplicada ao setor da saúde. A iniciativa visa galardoar projetos e empresas que demonstram um contributo significativo para o desenvolvimento de soluções tecnológicas neste domínio, projetando as tendências e os atores que moldarão o futuro da saúde.\n\nMais do que uma simples celebração, a escolha de Lisboa como palco para estes prémios internacionais oferece um barómetro da maturidade do ecossistema português. A capacidade de atrair e projetar eventos desta envergadura sugere uma janela de oportunidade para Portugal consolidar a sua posição como um hub de inovação em Health AI. Não se trata apenas de reconhecer o valor já existente, mas de catalisar o que ainda está por construir: um pipeline robusto de talento e investimento.\n\nEste contexto desafia os decisores e builders em Portugal a verem estes prémios não como um ponto de chegada, mas como um objetivo estratégico para o desenvolvimento de novas soluções e startups. O verdadeiro valor reside na capacidade de transformar o reconhecimento em tração, impulsionando a próxima vaga de projetos que, um dia, possam aspirar a este palco. A questão central passa por como Portugal pode capitalizar esta visibilidade para acelerar a inovação e o investimento, em vez de se limitar a ser um anfitrião.",
-      "source_urls": [
-        "https://healthnews.pt/2026/06/04/lisboa-acolhe-gala-dos-health-ai-innovation-awards-2026/"
-      ],
-      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ad97db04e28b973f4e_d305bf77_ChatGPT-Image-4_06_2026-22_48_48.png",
-      "image_url": "/asset?path=C%3A%5CUsers%5Cjoaon%5Cptia-content-engine%5Cdata%5Cfinal_assets%5Cpost_ad97db04e28b973f4e_site_1600x900.jpg",
-      "published_at": "2026-06-05T13:00:00+01:00",
-      "section": [
-        "Portugal",
-        "Builders",
-        "Histórias reais",
-        "Previsões Futuras"
       ]
     },
     {
