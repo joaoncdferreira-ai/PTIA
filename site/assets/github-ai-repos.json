@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-29T06:17:00.671207+00:00",
+  "updated_at": "2026-07-06T21:43:40.191732+00:00",
   "method": "GitHub Search API: AI/LLM topics, stars, forks and activity in the last 45 days.",
   "repos": [
     {
@@ -7,10 +7,10 @@
       "name": "microsoft/generative-ai-for-beginners",
       "description": "21 Lessons, Get Started Building with Generative AI ",
       "url": "https://github.com/microsoft/generative-ai-for-beginners",
-      "stars": 112374,
-      "forks": 60377,
+      "stars": 112698,
+      "forks": 60539,
       "language": "Jupyter Notebook",
-      "updated_at": "2026-06-29T06:13:39Z",
+      "updated_at": "2026-07-06T21:26:14Z",
       "topics": [
         "ai",
         "azure",
@@ -21,18 +21,18 @@
         "gpt",
         "language-model"
       ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-05-15",
-      "score": 31770.91
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-05-22",
+      "score": 31814.54
     },
     {
       "rank": 2,
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
       "url": "https://github.com/Significant-Gravitas/AutoGPT",
-      "stars": 185202,
-      "forks": 46127,
+      "stars": 185402,
+      "forks": 46123,
       "language": "Python",
-      "updated_at": "2026-06-29T06:11:50Z",
+      "updated_at": "2026-07-06T21:21:56Z",
       "topics": [
         "agentic-ai",
         "agents",
@@ -43,18 +43,18 @@
         "gpt",
         "llama-api"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-15",
-      "score": 29200.86
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-22",
+      "score": 29201.04
     },
     {
       "rank": 3,
       "name": "NousResearch/hermes-agent",
       "description": "The agent that grows with you",
       "url": "https://github.com/NousResearch/hermes-agent",
-      "stars": 205163,
-      "forks": 36999,
+      "stars": 210318,
+      "forks": 38511,
       "language": "Python",
-      "updated_at": "2026-06-29T06:13:07Z",
+      "updated_at": "2026-07-06T21:38:27Z",
       "topics": [
         "ai",
         "ai-agent",
@@ -65,18 +65,18 @@
         "claude-code",
         "clawdbot"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-05-15",
-      "score": 27030.0
+      "source_query": "topic:llm stars:>500 pushed:>=2026-05-22",
+      "score": 27434.94
     },
     {
       "rank": 4,
       "name": "affaan-m/ECC",
       "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "url": "https://github.com/affaan-m/ECC",
-      "stars": 223165,
-      "forks": 34169,
+      "stars": 226646,
+      "forks": 34656,
       "language": "JavaScript",
-      "updated_at": "2026-06-29T06:16:11Z",
+      "updated_at": "2026-07-06T21:40:21Z",
       "topics": [
         "ai-agents",
         "anthropic",
@@ -87,18 +87,18 @@
         "mcp",
         "productivity"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-05-15",
-      "score": 26413.82
+      "source_query": "topic:llm stars:>500 pushed:>=2026-05-22",
+      "score": 26552.37
     },
     {
       "rank": 5,
       "name": "huggingface/transformers",
       "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. ",
       "url": "https://github.com/huggingface/transformers",
-      "stars": 162001,
-      "forks": 33627,
+      "stars": 162310,
+      "forks": 33787,
       "language": "Python",
-      "updated_at": "2026-06-29T05:12:35Z",
+      "updated_at": "2026-07-06T20:45:17Z",
       "topics": [
         "audio",
         "deep-learning",
@@ -109,18 +109,18 @@
         "llm",
         "machine-learning"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-05-15",
-      "score": 25480.54
+      "source_query": "topic:llm stars:>500 pushed:>=2026-05-22",
+      "score": 25522.61
     },
     {
       "rank": 6,
       "name": "langchain-ai/langchain",
       "description": "The agent engineering platform.",
       "url": "https://github.com/langchain-ai/langchain",
-      "stars": 140444,
-      "forks": 23311,
+      "stars": 141109,
+      "forks": 23455,
       "language": "Python",
-      "updated_at": "2026-06-29T06:12:09Z",
+      "updated_at": "2026-07-06T21:42:00Z",
       "topics": [
         "agents",
         "ai",
@@ -131,18 +131,18 @@
         "enterprise",
         "framework"
       ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-05-15",
-      "score": 24096.51
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-05-22",
+      "score": 24137.64
     },
     {
       "rank": 7,
       "name": "langgenius/dify",
       "description": "Production-ready platform for agentic workflow development.",
       "url": "https://github.com/langgenius/dify",
-      "stars": 146904,
-      "forks": 23137,
+      "stars": 147918,
+      "forks": 23296,
       "language": "TypeScript",
-      "updated_at": "2026-06-29T06:05:02Z",
+      "updated_at": "2026-07-06T21:06:09Z",
       "topics": [
         "agent",
         "agentic-ai",
@@ -153,18 +153,18 @@
         "gemini",
         "genai"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-05-15",
-      "score": 23201.83
+      "source_query": "topic:llm stars:>500 pushed:>=2026-05-22",
+      "score": 23249.05
     },
     {
       "rank": 8,
       "name": "FlowiseAI/Flowise",
       "description": "Build AI Agents, Visually",
       "url": "https://github.com/FlowiseAI/Flowise",
-      "stars": 54095,
-      "forks": 24604,
+      "stars": 54342,
+      "forks": 24657,
       "language": "TypeScript",
-      "updated_at": "2026-06-29T05:10:52Z",
+      "updated_at": "2026-07-06T19:41:13Z",
       "topics": [
         "agentic-ai",
         "agentic-workflow",
@@ -175,18 +175,18 @@
         "javascript",
         "langchain"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-15",
-      "score": 22933.89
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-22",
+      "score": 22952.09
     },
     {
       "rank": 9,
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
       "url": "https://github.com/f/prompts.chat",
-      "stars": 164498,
-      "forks": 21289,
+      "stars": 164911,
+      "forks": 21347,
       "language": "HTML",
-      "updated_at": "2026-06-29T05:52:47Z",
+      "updated_at": "2026-07-06T21:35:06Z",
       "topics": [
         "ai",
         "artificial-intelligence",
@@ -197,18 +197,18 @@
         "gemini",
         "gpt"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-15",
-      "score": 22862.65
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-05-22",
+      "score": 22879.87
     },
     {
       "rank": 10,
       "name": "open-webui/open-webui",
       "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
       "url": "https://github.com/open-webui/open-webui",
-      "stars": 143375,
-      "forks": 20663,
+      "stars": 144457,
+      "forks": 20877,
       "language": "Python",
-      "updated_at": "2026-06-29T06:03:53Z",
+      "updated_at": "2026-07-06T21:40:11Z",
       "topics": [
         "ai",
         "llm",
@@ -219,8 +219,8 @@
         "ollama",
         "ollama-webui"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-05-15",
-      "score": 22556.93
+      "source_query": "topic:llm stars:>500 pushed:>=2026-05-22",
+      "score": 22618.6
     }
   ],
   "errors": []
