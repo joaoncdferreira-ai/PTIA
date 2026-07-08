@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
+import threading
+import time
 from pathlib import Path
 from typing import Protocol, TypeVar
 
@@ -60,21 +63,24 @@ def append_jsonl(path: Path, records: list[JSONRecord]) -> None:
 
 def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp_path = path.with_suffix(".tmp")
+    tmp_path = path.with_name(
+        f".{path.name}.{os.getpid()}.{threading.get_ident()}.{time.monotonic_ns()}.tmp"
+    )
     try:
         with tmp_path.open("w", encoding="utf-8") as handle:
             for record in records:
                 handle.write(json.dumps(record.to_record(), ensure_ascii=False) + "\n")
-        import os
-        import time
-        for attempt in range(10):
+        last_error: PermissionError | None = None
+        for attempt in range(40):
             try:
                 os.replace(str(tmp_path), str(path))
+                last_error = None
                 break
             except PermissionError as pe:
-                if attempt == 9:
-                    raise pe
-                time.sleep(0.15)
+                last_error = pe
+                time.sleep(min(0.1 + attempt * 0.05, 1.0))
+        if last_error is not None:
+            raise last_error
         persist_cloud_state_file(path)
     except Exception as e:
         if tmp_path.exists():
@@ -83,8 +89,6 @@ def write_jsonl(path: Path, records: list[JSONRecord]) -> None:
             except Exception:
                 pass
         raise e
-
-
 def load_raw_articles(path: Path) -> list[RawArticle]:
     return load_jsonl(path, RawArticle)
 

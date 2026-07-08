@@ -10,6 +10,7 @@ from ptia_engine.editorial_board import add_final_post, add_radar_signal
 from ptia_engine.models import ContentPerformance
 from ptia_engine.newsletter import (
     generate_weekly_issue,
+    has_suspicious_encoding,
     update_newsletter_delivery,
     update_newsletter_status,
     weekly_candidates,
@@ -95,6 +96,48 @@ class NewsletterTests(unittest.TestCase):
         for score in range(50, 55):
             self.assertIn(f'href="https://example.com/{score}"', issue.html)
         self.assertNotIn('href="https://ptia.pt" style="color:#1B1A17;text-decoration:none;">AI source story', issue.html)
+
+    def test_newsletter_repairs_legacy_question_mark_encoding(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="encoding_topic",
+            channel="site",
+            title="Zhipu AI lan?ou modelo que refor?a competi??o",
+            body="A press?o sobre a??es ligadas ? intelig?ncia artificial mudou a efici?ncia do mercado.",
+            hashtags="#IA",
+            image_prompt="",
+            source_urls=["https://example.com/zhipu"],
+        )
+        performance = [
+            ContentPerformance(
+                performance_id="perf_encoding",
+                draft_id=post.post_id,
+                post_id="https://linkedin.com/posts/encoding",
+                channel="site",
+                published_at=self.today,
+                topic=post.title,
+                section="global",
+                likes=10,
+            )
+        ]
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=[],
+            trend_signals=[],
+            final_posts=load_final_posts(self.root / "final_posts.jsonl"),
+            performance=performance,
+            limit=1,
+        )
+
+        self.assertIn("lan\u00e7ou", issue.html)
+        self.assertIn("refor\u00e7a", issue.html)
+        self.assertIn("competi\u00e7\u00e3o", issue.html)
+        self.assertIn("press\u00e3o", issue.html)
+        self.assertIn("a\u00e7\u00f5es", issue.html)
+        self.assertIn("intelig\u00eancia", issue.html)
+        self.assertFalse(has_suspicious_encoding(issue.html))
+        self.assertFalse(has_suspicious_encoding(issue.text))
 
     def test_generate_weekly_issue_outputs_email_ready_html_and_text(self):
         for index in range(5):
@@ -187,8 +230,8 @@ class NewsletterTests(unittest.TestCase):
             self.root / "final_posts.jsonl",
             topic_id="other_topic",
             channel="site",
-            title="Other AI Story",
-            body="Texto editorial secundario.",
+            title="Quantum Chips Funding",
+            body="Financiamento para chips quanticos.",
             hashtags="",
             image_prompt="",
             source_urls=["https://example.com/original-other"],
@@ -227,7 +270,8 @@ class NewsletterTests(unittest.TestCase):
         )
 
         self.assertIn("lead-image.jpg", issue.html)
-        self.assertNotIn("wrong-image.jpg", issue.html)
+        self.assertIn("wrong-image.jpg", issue.html)
+        self.assertIn("ptia-news-thumb", issue.html)
         self.assertIn("Ler mais", issue.html)
         self.assertIn("https://ptia.pt/artigos/lead-ai-story-", issue.html)
         self.assertNotIn("https://example.com/original-lead", issue.html)

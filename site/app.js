@@ -153,6 +153,59 @@ function linkAttrs(href) {
   return /^https?:\/\//i.test(href || "") ? 'target="_blank" rel="noopener"' : "";
 }
 
+function cleanPublicText(value) {
+  const raw = String(value || "");
+  const withoutMarkdownLinks = raw.replace(/\[([^\]]+)\]\(https?:\/\/[^)]+\)/g, "$1");
+  const tmp = document.createElement("textarea");
+  tmp.innerHTML = withoutMarkdownLinks;
+  const decoded = tmp.value;
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = decoded;
+  return (wrapper.textContent || wrapper.innerText || decoded)
+    .replace(/\u00a0/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function isUrlOnly(value) {
+  return /^(?:https?:\/\/|www\.)\S+\.?$/i.test(String(value || "").trim());
+}
+
+function firstContentParagraph(value) {
+  const lines = cleanPublicText(value).split(/\n+/).map((line) => line.trim());
+  return lines.find((line) => line.length > 40 && !/^fonte(?:\s+original)?\s*:/i.test(line) && !isUrlOnly(line))
+    || "Leitura PTIA com fonte original e contexto para Portugal.";
+}
+
+function readMinutes(value) {
+  const words = cleanPublicText(value).split(/\s+/).filter(Boolean).length;
+  return `${Math.max(2, Math.ceil(words / 210))} min`;
+}
+
+function relativeTime(value) {
+  if (!value) return "hoje";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "hoje";
+  const diffMs = Date.now() - date.getTime();
+  const minute = 60 * 1000;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+  if (diffMs < minute) return "agora";
+  if (diffMs < hour) return `h\u00e1 ${Math.max(1, Math.floor(diffMs / minute))} min`;
+  if (diffMs < day) return `h\u00e1 ${Math.max(1, Math.floor(diffMs / hour))} h`;
+  if (diffMs < 2 * day) return "ontem";
+  return `h\u00e1 ${Math.floor(diffMs / day)} dias`;
+}
+
+function issueLabel(date) {
+  const start = new Date(date.getFullYear(), 0, 1);
+  const day = Math.floor((date - start) / 86400000) + 1;
+  const issue = String(Math.ceil(day / 7)).padStart(3, "0");
+  const month = new Intl.DateTimeFormat("pt-PT", { month: "long" }).format(date);
+  return `Issue ${issue} \u00b7 ${month} ${date.getFullYear()}`;
+}
+
 function isPublishedNow(value) {
   if (!value) return true;
   const date = new Date(value);
@@ -162,12 +215,12 @@ function isPublishedNow(value) {
 
 function visibleFeedPosts(feed) {
   const posts = feed?.posts || [];
-  const visible = posts.filter((post) => isPublishedNow(post.published_at));
+  let visible = posts.filter((post) => isPublishedNow(post.published_at));
   const newAppleVisible = visible.some((post) => post.id === "post_a42ec13e57b539f599");
   if (newAppleVisible) {
-    return visible.filter((post) => post.id !== "post_ca28e48d21d880a356");
+    visible = visible.filter((post) => post.id !== "post_ca28e48d21d880a356");
   }
-  return visible;
+  return visible.sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0));
 }
 
 function formatLongDate(date) {
@@ -183,9 +236,11 @@ function setupDateline() {
   const dateEl = document.getElementById("date-long");
   const clockEl = document.getElementById("clock");
   const yearEl = document.getElementById("year");
+  const issueEl = document.querySelector(".dateline .issue");
   const update = () => {
     const now = new Date();
     if (dateEl) dateEl.textContent = formatLongDate(now);
+    if (issueEl) issueEl.textContent = issueLabel(now);
     if (clockEl) {
       clockEl.textContent = new Intl.DateTimeFormat("pt-PT", {
         hour: "2-digit",
@@ -622,23 +677,26 @@ async function hydrateFromFeedIfAvailable() {
     if (!feed) return;
     const visiblePosts = visibleFeedPosts(feed);
     if (!visiblePosts.length) return;
-    PTIA_DATA.today = visiblePosts.map((post, index) => ({
-      id: post.id || "",
-      n: String(index + 1).padStart(2, "0"),
-      title: post.title || "Entrada PTIA",
-      pt: (post.body || "").split("\n").find((line) => line.length > 40) || "Leitura PTIA com fonte original e contexto para Portugal.",
-      source: post.source_urls?.[0] ? "Fonte original" : "PTIA",
-      tag: post.section || post.channel || "Mundo",
-      time: "publicado",
-      readtime: "4 min",
-      lead: index === 0,
-      url: post.source_urls?.[0] || "#",
-      body: post.body || "",
-      sourceUrls: post.source_urls || [],
-      publishedAt: post.published_at || "",
-      articleUrl: post.article_url || "",
-      imageUrl: post.image_url || ""
-    }));
+    PTIA_DATA.today = visiblePosts.map((post, index) => {
+      const cleanBody = cleanPublicText(post.body || "");
+      return {
+        id: post.id || "",
+        n: String(index + 1).padStart(2, "0"),
+        title: cleanPublicText(post.title || "Entrada PTIA"),
+        pt: firstContentParagraph(cleanBody),
+        source: post.source_urls?.[0] ? "Fonte original" : "PTIA",
+        tag: post.section || post.channel || "Mundo",
+        time: relativeTime(post.published_at),
+        readtime: readMinutes(cleanBody),
+        lead: index === 0,
+        url: post.source_urls?.[0] || "#",
+        body: cleanBody,
+        sourceUrls: post.source_urls || [],
+        publishedAt: post.published_at || "",
+        articleUrl: post.article_url || "",
+        imageUrl: post.image_url || ""
+      };
+    });
     renderBreakingTicker();
     renderFrontPage();
     renderFilters();

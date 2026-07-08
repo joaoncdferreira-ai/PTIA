@@ -28,6 +28,19 @@ class NewsletterSchedulerCLITests(unittest.TestCase):
 
         self.assertEqual(target.isoformat(), "2026-06-12T09:00:00+01:00")
 
+    def test_linkedin_import_flags_are_available(self):
+        args = SCHEDULER.build_parser().parse_args([
+            "--require-linkedin-import",
+            "--linkedin-export-dir",
+            "C:/exports",
+            "--linkedin-export-max-age-days",
+            "7",
+        ])
+
+        self.assertTrue(args.require_linkedin_import)
+        self.assertEqual(args.linkedin_export_dir, "C:/exports")
+        self.assertEqual(args.linkedin_export_max_age_days, 7)
+
 
 if __name__ == "__main__":
     unittest.main()

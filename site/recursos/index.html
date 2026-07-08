@@ -103,12 +103,76 @@
         <div><a href="/glossario/#api">API</a><a href="/glossario/#rag">RAG</a><a href="/glossario/#agi">AGI</a><a href="/glossario/#benchmark">Benchmark</a><a href="/glossario/#geo">GEO</a><a href="/glossario/#agente-ia">Agente de IA</a></div>
       </article>
     </div></section>
+
+    <section id="github-ai-repos" class="github-repos">
+      <div class="wrap github-grid">
+        <header class="github-head reveal">
+          <p class="eyebrow">Builders Radar</p>
+          <h2>Top 10 AI repos no GitHub.</h2>
+          <p>Projetos open-source de IA com forte sinal de comunidade, atividade recente e relev&acirc;ncia para builders. Atualiza&ccedil;&atilde;o autom&aacute;tica semanal.</p>
+          <span id="github-repos-updated" class="source-note">A carregar GitHub...</span>
+        </header>
+        <div id="github-repos-list" class="repo-list" aria-live="polite"></div>
+      </div>
+    </section>
     <section class="knowledge-note"><div class="wrap"><strong>Publicação com memória.</strong><p>Cada edição fica arquivada em dados estruturados. Alterações futuras podem ser explicadas, comparadas e corrigidas.</p><a href="/metodologia-indice/">Ler metodologia</a></div></section>
   </main>
 
   <footer class="knowledge-footer">
     <div class="wrap"><p>PTIA.pt · Inteligência Artificial, lida a partir de Portugal.</p><a href="/metodologia-indice/">Metodologia e correções</a></div>
   </footer>
+
+  <script>
+    function escapeGithubHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+    function formatRepoNumber(value) {
+      return new Intl.NumberFormat("pt-PT", { notation: "compact", maximumFractionDigits: 1 }).format(Number(value || 0));
+    }
+    function formatRepoDate(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "data indispon\u00edvel";
+      return new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "short", year: "numeric" }).format(date);
+    }
+    async function renderResourceGitHubRepos() {
+      const list = document.getElementById("github-repos-list");
+      const updated = document.getElementById("github-repos-updated");
+      if (!list) return;
+      try {
+        const response = await fetch("/assets/github-ai-repos.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("GitHub radar indispon\u00edvel");
+        const payload = await response.json();
+        const repos = Array.isArray(payload.repos) ? payload.repos : [];
+        if (!repos.length) throw new Error("Sem repos para mostrar");
+        if (updated) updated.textContent = `Atualizado ${formatRepoDate(payload.updated_at)} \u00b7 GitHub Search API`;
+        list.innerHTML = repos.map((repo) => `
+          <a class="repo-card" href="${escapeGithubHtml(repo.url)}" target="_blank" rel="noopener">
+            <span class="repo-rank">${String(repo.rank).padStart(2, "0")}</span>
+            <div>
+              <h3>${escapeGithubHtml(repo.name)}</h3>
+              <p>${escapeGithubHtml(repo.description || "Sem descri\u00e7\u00e3o dispon\u00edvel.")}</p>
+              <div class="repo-meta">
+                <span>${escapeGithubHtml(repo.language || "multi")}</span>
+                <span>${formatRepoNumber(repo.stars)} stars</span>
+                <span>${formatRepoNumber(repo.forks)} forks</span>
+                <span>update ${formatRepoDate(repo.updated_at)}</span>
+              </div>
+            </div>
+          </a>
+        `).join("");
+      } catch (error) {
+        if (updated) updated.textContent = "GitHub radar ainda sem dados.";
+        list.innerHTML = `<article class="repo-card unavailable"><span class="repo-rank">--</span><div><h3>Top 10 ainda indispon\u00edvel</h3><p>A automa\u00e7\u00e3o vai preencher esta rubrica assim que conseguir ler a API do GitHub.</p></div></article>`;
+      }
+    }
+    renderResourceGitHubRepos();
+  </script>
   <script src="/assets/knowledge.js?v=20260608-2" defer></script>
   <script src="/analytics.js?v=20260606-1"></script>
 </body>

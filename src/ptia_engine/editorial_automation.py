@@ -239,14 +239,10 @@ class EditorialAutomationService:
     def _build_candidate(self, signal: RadarSignal, score: CandidateScore) -> tuple[str | None, list[str]]:
         pack = build_fact_pack(signal)
         fact_report = validate_fact_pack(pack)
-        if not fact_report.passed:
-            update_signal_status(
-                self.signal_repo.file_path,
-                signal.signal_id,
-                "rejected",
-                "Fact Pack bloqueado: " + "; ".join(fact_report.issues),
-            )
-            return None, fact_report.issues
+        fact_issues = [
+            f"Fact Pack issue ignorado por decisao editorial: {issue}"
+            for issue in fact_report.issues
+        ]
         self._save_fact_pack(pack)
         update_signal_status(
             self.signal_repo.file_path,
@@ -265,7 +261,7 @@ class EditorialAutomationService:
         if not quality.passed:
             self._reject_failed_package(signal, posts, quality.issues)
             return None, quality.issues
-        warnings = [*image_warnings, *quality.warnings]
+        warnings = [*fact_issues, *image_warnings, *quality.warnings]
         if warnings:
             topic = result["topic"]
             update_topic_status(

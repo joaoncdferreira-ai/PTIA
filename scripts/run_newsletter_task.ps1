@@ -18,6 +18,9 @@ Add-Content -LiteralPath $LogPath -Value "`n[$(Get-Date -Format o)] Starting new
 $SchedulerArgs = @($Scheduler, "--hour", "9", "--minute", "0")
 if (-not $CompileOnly) {
     $SchedulerArgs += "--live"
+    $SchedulerArgs += "--require-linkedin-import"
+    $SchedulerArgs += "--linkedin-export-max-age-days"
+    $SchedulerArgs += "7"
 }
 $SchedulerOutput = & $Python @SchedulerArgs 2>&1
 $ExitCode = $LASTEXITCODE

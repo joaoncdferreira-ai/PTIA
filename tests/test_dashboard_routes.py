@@ -43,6 +43,23 @@ class DashboardRoutesTests(unittest.TestCase):
         self.assertIn("counts", calls[0][0])
         self.assertIn("final_posts", calls[0][0])
 
+    def test_final_post_status_approves_entire_package(self):
+        calls = []
+        handler = SimpleNamespace(
+            state=DashboardState(self.root),
+            _send_json=lambda payload, status=HTTPStatus.OK: calls.append((payload, status)),
+        )
+
+        with patch("ptia_engine.dashboard._approve_final_package", return_value=[{"post_id": "p1"}, {"post_id": "p2"}]) as approve:
+            POST_ROUTES["/api/final-post-status"](
+                handler,
+                {"post_id": "p1", "status": "approved_for_schedule"},
+            )
+
+        approve.assert_called_once_with(handler.state, "p1")
+        self.assertEqual(calls[0][0]["ok"], True)
+        self.assertEqual(len(calls[0][0]["posts"]), 2)
+
     def test_post_routes_are_registered_by_domain_modules(self):
         expected = {
             "/api/item-status": "ptia_engine.routes.editorial",

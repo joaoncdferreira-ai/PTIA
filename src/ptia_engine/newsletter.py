@@ -25,8 +25,81 @@ from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_json
 
 
 NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
-NEWSLETTER_GENERATOR_VERSION = "5"
+NEWSLETTER_GENERATOR_VERSION = "6"
 
+
+
+_MOJIBAKE_MARKERS = ("\u00c3", "\u00c2", "\u00e2\u20ac", "\u00e2\u20ac\u0153", "\u00e2\u20ac\u2122")
+_QUESTION_MARK_REPAIR = (
+    ("lan?ou", "lan\u00e7ou"), ("Lan?ou", "Lan\u00e7ou"),
+    ("lan?amento", "lan\u00e7amento"), ("Lan?amento", "Lan\u00e7amento"),
+    ("refor?a", "refor\u00e7a"), ("Refor?a", "Refor\u00e7a"),
+    ("for?a", "for\u00e7a"), ("For?a", "For\u00e7a"),
+    ("avan?ou", "avan\u00e7ou"), ("Avan?ou", "Avan\u00e7ou"),
+    ("avan?o", "avan\u00e7o"), ("Avan?o", "Avan\u00e7o"),
+    ("a??es", "a\u00e7\u00f5es"), ("A??es", "A\u00e7\u00f5es"),
+    ("concentra??o", "concentra\u00e7\u00e3o"), ("Concentra??o", "Concentra\u00e7\u00e3o"),
+    ("competi??o", "competi\u00e7\u00e3o"), ("Competi??o", "Competi\u00e7\u00e3o"),
+    ("press?o", "press\u00e3o"), ("Press?o", "Press\u00e3o"),
+    ("decis?o", "decis\u00e3o"), ("Decis?o", "Decis\u00e3o"),
+    ("regula??o", "regula\u00e7\u00e3o"), ("Regula??o", "Regula\u00e7\u00e3o"),
+    ("subscri??o", "subscri\u00e7\u00e3o"), ("Subscri??o", "Subscri\u00e7\u00e3o"),
+    ("edi??o", "edi\u00e7\u00e3o"), ("Edi??o", "Edi\u00e7\u00e3o"),
+    ("aten??o", "aten\u00e7\u00e3o"), ("Aten??o", "Aten\u00e7\u00e3o"),
+    ("intelig?ncia", "intelig\u00eancia"), ("Intelig?ncia", "Intelig\u00eancia"),
+    ("efici?ncia", "efici\u00eancia"), ("Efici?ncia", "Efici\u00eancia"),
+    ("benef?cio", "benef\u00edcio"), ("Benef?cio", "Benef\u00edcio"),
+    ("pr?tica", "pr\u00e1tica"), ("Pr?tica", "Pr\u00e1tica"),
+    ("m?trica", "m\u00e9trica"), ("M?trica", "M\u00e9trica"),
+    ("m?dia", "m\u00e9dia"), ("M?dia", "M\u00e9dia"),
+    ("ru?do", "ru\u00eddo"), ("Ru?do", "Ru\u00eddo"),
+    ("n?o", "n\u00e3o"), ("N?o", "N\u00e3o"),
+    ("s?o", "s\u00e3o"), ("S?o", "S\u00e3o"),
+    ("est?", "est\u00e1"), ("Est?", "Est\u00e1"),
+    ("j?", "j\u00e1"), ("J?", "J\u00e1"),
+    (" ? intelig", " \u00e0 intelig"),
+    (" ? IA", " \u00e0 IA"),
+    (" ? tecnologia", " \u00e0 tecnologia"),
+)
+
+
+def repair_text_encoding(value: str) -> str:
+    """Repair mojibake and common legacy '?' replacements before email output."""
+    text = str(value or "")
+    if any(marker in text for marker in _MOJIBAKE_MARKERS):
+        try:
+            text = text.encode("latin-1").decode("utf-8")
+        except UnicodeError:
+            pass
+    text = text.replace("\ufffd", "")
+    for broken, fixed in _QUESTION_MARK_REPAIR:
+        text = text.replace(broken, fixed)
+    return text
+
+
+def has_suspicious_encoding(value: str) -> bool:
+    text = repair_text_encoding(value)
+    if any(marker in text for marker in _MOJIBAKE_MARKERS) or "\ufffd" in text:
+        return True
+    text_no_urls = re.sub(r"https?://\S+", "", text)
+    return bool(
+        re.search(r"[A-Za-z\u00c0-\u00ff]\?[A-Za-z\u00c0-\u00ff]", text_no_urls)
+        or re.search(r"\s\?\s", text_no_urls)
+    )
+
+
+def _candidate_has_encoding_issue(candidate) -> bool:
+    return any(
+        has_suspicious_encoding(value)
+        for value in (
+            candidate.title,
+            candidate.source_name,
+            candidate.summary,
+            candidate.why_it_matters,
+            candidate.why_engaged,
+            candidate.portugal_angle,
+        )
+    )
 
 @dataclass(slots=True)
 class NewsletterCandidate:
@@ -70,7 +143,7 @@ def _recent_enough(value: str, days: int) -> bool:
 
 
 def _clean(value: str, fallback: str = "") -> str:
-    text = " ".join((value or "").split())
+    text = repair_text_encoding(" ".join((value or "").split()))
     return text or fallback
 
 
@@ -182,6 +255,8 @@ def _dedupe_newsletter_candidates(candidates: list[NewsletterCandidate], *, limi
     selected: list[NewsletterCandidate] = []
     seen_keys: set[str] = set()
     for candidate in sorted(candidates, key=lambda item: (item.score, item.published_at), reverse=True):
+        if _candidate_has_encoding_issue(candidate):
+            continue
         direct_key = candidate.event_key or stable_hash(f"{candidate.url}:{candidate.title}", 16)
         if direct_key in seen_keys:
             continue
@@ -272,7 +347,7 @@ def _post_candidate(post: FinalPost) -> NewsletterCandidate:
         why_it_matters=_short(post.body, 260),
         why_engaged="Já passou pelo funil editorial PTIA.",
         portugal_angle=_short(_portugal_angle(post.title, post.body), 220),
-        score=70 if post.status == "published" else 55,
+        score=120 if post.status == "published" else 110,
         kind="ptia_post",
         event_key=post.topic_id or stable_hash(f"post:{post.source_urls[0] if post.source_urls else post.title}", 16),
         image_url=public_image_url(post),
@@ -427,6 +502,8 @@ def weekly_candidates(
     for post in final_posts:
         if post.status not in {"scheduled", "published"}:
             continue
+        if post.channel != "site":
+            continue
         if _recent_enough(post.scheduled_time or post.created_at, days):
             candidates.append(_post_candidate(post))
 
@@ -486,16 +563,32 @@ def _issue_html(
         </td></tr>
         """
 
+    def _thumb_cell(item: NewsletterCandidate) -> str:
+        if not item.image_url:
+            return ""
+        article_url = escape(_ptia_article_url(item))
+        image_url = escape(item.image_url)
+        return f"""
+            <td class="ptia-news-thumb" width="132" valign="top" style="padding:4px 0 0 22px;">
+              <a href="{article_url}" style="text-decoration:none;"><img src="{image_url}" width="132" alt="" style="display:block;width:132px;max-width:132px;height:auto;border:1px solid #E2DBCB;"></a>
+            </td>
+        """
+
     signal_rows = "".join(
         f"""
         <tr><td style="padding:32px 0;border-top:1px solid #E2DBCB;">
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr>
             <td valign="baseline" style="padding:0 0 11px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(item.source_name)}</td>
-            <td align="right" valign="baseline" style="padding:0 0 11px;color:#051A3B;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N.º&nbsp;{index:02d}</td>
+            <td align="right" valign="baseline" style="padding:0 0 11px;color:#051A3B;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N.&ordm;&nbsp;{index:02d}</td>
           </tr></table>
-          <h3 style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.008em;line-height:1.22;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;text-decoration:none;">{escape(item.title)}</a></h3>
-          <p style="margin:13px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:16.5px;line-height:1.55;">{escape(item.summary)}</p>
-          <p style="margin:18px 0 0;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #051A3B;padding-bottom:2px;">Ler mais <span style="color:#051A3B;">&rarr;</span></a></p>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr>
+            <td valign="top">
+              <h3 style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.008em;line-height:1.22;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;text-decoration:none;">{escape(item.title)}</a></h3>
+              <p style="margin:13px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:16.5px;line-height:1.55;">{escape(item.summary)}</p>
+              <p style="margin:18px 0 0;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #051A3B;padding-bottom:2px;">Ler mais <span style="color:#051A3B;">&rarr;</span></a></p>
+            </td>
+            {_thumb_cell(item)}
+          </tr></table>
         </td></tr>
         """
         for index, item in enumerate(items[1:], start=2)
@@ -654,15 +747,15 @@ def generate_weekly_issue(
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(
+        html=repair_text_encoding(_issue_html(
             title,
             intro,
             items,
             debates=debates,
             issue_date=issue_date,
             selection_mode=selection_mode,
-        ),
-        text=_issue_text(title, intro, items, debates=debates),
+        )),
+        text=repair_text_encoding(_issue_text(title, intro, items, debates=debates)),
         item_ids=[item.item_id for item in items],
         selection_mode=selection_mode,
         generator_version=NEWSLETTER_GENERATOR_VERSION,
@@ -688,8 +781,8 @@ def generate_sample_issue() -> NewsletterIssue:
         subject=subject,
         preheader=preheader,
         intro=intro,
-        html=_issue_html(title, intro, items, debates=[], selection_mode="performance"),
-        text=_issue_text(title, intro, items, debates=[]),
+        html=repair_text_encoding(_issue_html(title, intro, items, debates=[], selection_mode="performance")),
+        text=repair_text_encoding(_issue_text(title, intro, items, debates=[])),
         item_ids=[item.item_id for item in items],
         selection_mode="performance",
         generator_version=NEWSLETTER_GENERATOR_VERSION,

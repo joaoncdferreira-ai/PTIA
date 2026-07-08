@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 import unicodedata
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from rapidfuzz import fuzz
@@ -34,6 +34,16 @@ class LinkedInImportResult:
     unmatched: int
     records: list[ContentPerformance]
     unmatched_titles: list[str]
+
+
+@dataclass(frozen=True, slots=True)
+class LinkedInAutoImportResult:
+    status: str
+    export_path: str
+    imported: int = 0
+    matched: int = 0
+    unmatched: int = 0
+    message: str = ""
 
 
 def _normalise(value: str) -> str:
@@ -185,3 +195,83 @@ def import_linkedin_export(
         records=records,
         unmatched_titles=unmatched_titles,
     )
+
+
+def _candidate_export_paths(export_dir: Path, *, max_age_days: int = 14) -> list[Path]:
+    if not export_dir.exists() or not export_dir.is_dir():
+        return []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
+    candidates: list[Path] = []
+    for path in export_dir.glob("*.xls"):
+        if not path.is_file():
+            continue
+        try:
+            modified = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc)
+        except OSError:
+            continue
+        if modified < cutoff:
+            continue
+        candidates.append(path)
+    return sorted(candidates, key=lambda item: item.stat().st_mtime, reverse=True)
+
+
+def _is_linkedin_export(path: Path) -> bool:
+    try:
+        _read_linkedin_rows(path)
+    except Exception:
+        return False
+    return True
+
+
+def find_latest_linkedin_export(
+    *,
+    export_path: Path | None = None,
+    export_dir: Path | None = None,
+    max_age_days: int = 14,
+) -> Path | None:
+    if export_path:
+        return export_path if export_path.exists() and export_path.is_file() and _is_linkedin_export(export_path) else None
+    if export_dir is None:
+        export_dir = Path.home() / "Downloads"
+    for candidate in _candidate_export_paths(export_dir, max_age_days=max_age_days):
+        if _is_linkedin_export(candidate):
+            return candidate
+    return None
+
+
+def import_latest_linkedin_export(
+    *,
+    final_posts_path: Path,
+    performance_path: Path,
+    export_path: Path | None = None,
+    export_dir: Path | None = None,
+    max_age_days: int = 14,
+    match_threshold: float = 76.0,
+) -> LinkedInAutoImportResult:
+    selected = find_latest_linkedin_export(
+        export_path=export_path,
+        export_dir=export_dir,
+        max_age_days=max_age_days,
+    )
+    if selected is None:
+        location = str(export_path or export_dir or (Path.home() / "Downloads"))
+        return LinkedInAutoImportResult(
+            status="skipped",
+            export_path="",
+            message=f"No recent LinkedIn analytics .xls export found in {location}.",
+        )
+    result = import_linkedin_export(
+        export_path=selected,
+        final_posts_path=final_posts_path,
+        performance_path=performance_path,
+        match_threshold=match_threshold,
+    )
+    return LinkedInAutoImportResult(
+        status="imported",
+        export_path=str(selected),
+        imported=result.imported,
+        matched=result.matched,
+        unmatched=result.unmatched,
+        message=f"Imported LinkedIn analytics from {selected.name}: {result.matched}/{result.imported} matched.",
+    )
+

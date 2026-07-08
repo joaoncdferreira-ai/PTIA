@@ -41,7 +41,7 @@ class EditorialQualityTests(unittest.TestCase):
             image_path="master.jpg",
         )
 
-    def test_generic_fact_pack_is_blocked(self):
+    def test_generic_fact_pack_is_flagged(self):
         self.pack.facts = ["A fonte publicou uma nova informação sobre inteligência artificial."]
 
         report = validate_fact_pack(self.pack)

@@ -65,6 +65,12 @@ def handle_final_post_status(handler, payload):
     
     if status == "rejected":
         post = _reject_final_post(handler.state, post_id)
+    elif status == "approved_for_schedule":
+        from ptia_engine.dashboard import _approve_final_package
+
+        posts = _approve_final_package(handler.state, post_id)
+        handler._send_json({"ok": True, "posts": [to_dict(post) for post in posts]})
+        return
     else:
         if status in {"approved_for_schedule", "scheduled"}:
             posts = {post.post_id: post for post in load_final_posts(post_path)}

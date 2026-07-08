@@ -9,9 +9,11 @@ from ptia_engine.editorial_board import add_radar_signal
 from ptia_engine.models import NewsletterIssue
 from ptia_engine.newsletter import NEWSLETTER_GENERATOR_VERSION
 from ptia_engine.newsletter_delivery import (
+    NewsletterPreflightError,
     next_friday_send_at,
     ptia_timezone,
     schedule_weekly_newsletter,
+    validate_newsletter_issue,
 )
 from ptia_engine.storage import append_jsonl, load_newsletter_issues
 
@@ -55,6 +57,22 @@ class NewsletterDeliveryTests(unittest.TestCase):
             why_it_matters="Matters.",
             status="verified",
         )
+
+    def test_preflight_rejects_suspicious_encoding_artifacts(self):
+        issue = NewsletterIssue(
+            issue_id="weekly_bad_encoding",
+            title="Bad",
+            subject="PTIA Weekly",
+            preheader="",
+            intro="",
+            html="<html><body>A press?o sobre a??es de l?deres de IA. {{ unsubscribe }}</body></html>",
+            text="A press?o sobre a??es de l?deres de IA.",
+            status="draft",
+            generator_version=NEWSLETTER_GENERATOR_VERSION,
+        )
+
+        with self.assertRaises(NewsletterPreflightError):
+            validate_newsletter_issue(issue)
 
     def test_next_friday_send_at_keeps_today_before_nine(self):
         tz = ptia_timezone()

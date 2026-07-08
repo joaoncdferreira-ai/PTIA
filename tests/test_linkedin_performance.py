@@ -6,6 +6,8 @@ from unittest.mock import patch
 
 from ptia_engine.linkedin_performance import (
     LinkedInExportRow,
+    find_latest_linkedin_export,
+    import_latest_linkedin_export,
     import_linkedin_export,
     match_linkedin_post,
 )
@@ -81,6 +83,44 @@ class LinkedInPerformanceTests(unittest.TestCase):
         self.assertEqual(len(records), 1)
         self.assertEqual(records[0].post_id, self.post.post_id)
         self.assertEqual(records[0].impressions, 120)
+
+    def test_latest_import_skips_when_no_recent_export_exists(self):
+        result = import_latest_linkedin_export(
+            export_dir=self.root / "downloads",
+            final_posts_path=self.root / "final_posts.jsonl",
+            performance_path=self.root / "content_performance.jsonl",
+        )
+
+        self.assertEqual(result.status, "skipped")
+        self.assertEqual(result.imported, 0)
+        self.assertFalse((self.root / "content_performance.jsonl").exists())
+
+    @patch("ptia_engine.linkedin_performance._read_linkedin_rows")
+    def test_finds_latest_valid_linkedin_export(self, read_rows):
+        downloads = self.root / "downloads"
+        downloads.mkdir()
+        old = downloads / "old.xls"
+        latest = downloads / "linkedin-content-export.xls"
+        old.write_text("old", encoding="utf-8")
+        latest.write_text("latest", encoding="utf-8")
+        old.touch()
+        latest.touch()
+        read_rows.return_value = [
+            LinkedInExportRow(
+                title=self.post.title,
+                url=self.post.published_url,
+                published_at="2026-06-12T00:00:00+00:00",
+                impressions=120,
+                clicks=5,
+                likes=4,
+                comments=2,
+                shares=1,
+                followers_gained=1,
+            )
+        ]
+
+        self.assertEqual(find_latest_linkedin_export(export_dir=downloads), latest)
+
 
 
 if __name__ == "__main__":

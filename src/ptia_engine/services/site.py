@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html
 import os
 import re
 import unicodedata
@@ -25,17 +26,48 @@ def article_url_for_site_post(post: FinalPost) -> str:
     return f"artigos/{slug}-{suffix}"
 
 
+_HTML_TAG_RE = re.compile(r"<[^>]+>")
+_MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
+_URL_ONLY_RE = re.compile(r"^(?:https?://|www\.)\S+\.?$", flags=re.IGNORECASE)
+
+
+def clean_public_text(value: str) -> str:
+    """Remove internal/editorial markup before copy reaches public surfaces."""
+    clean = html.unescape(value or "")
+    clean = _MARKDOWN_LINK_RE.sub(r"\1", clean)
+    clean = re.sub(
+        r"<\s*(?:i|em|b|strong)\s*>(.*?)<\s*/\s*(?:i|em|b|strong)\s*>",
+        r"\1",
+        clean,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    clean = _HTML_TAG_RE.sub("", clean)
+    clean = clean.replace("\u00a0", " ")
+    clean = re.sub(r"[ \t]+", " ", clean)
+    clean = re.sub(r"\n{3,}", "\n\n", clean)
+    return clean.strip()
+
+
+def _is_url_only_paragraph(paragraph: str) -> bool:
+    return bool(_URL_ONLY_RE.match(clean_public_text(paragraph).strip()))
+
+
 def clean_article_body(body: str) -> str:
     paragraphs = [
         paragraph.strip()
         for paragraph in re.split(r"\n\s*\n", body or "")
         if paragraph.strip()
     ]
-    return "\n\n".join(
-        paragraph
-        for paragraph in paragraphs
-        if not re.match(r"^fonte(?:\s+original)?\s*:", paragraph, flags=re.IGNORECASE)
-    ).strip()
+    clean_paragraphs = []
+    for paragraph in paragraphs:
+        if re.match(r"^fonte(?:\s+original)?\s*:", paragraph, flags=re.IGNORECASE):
+            continue
+        if _is_url_only_paragraph(paragraph):
+            continue
+        clean = clean_public_text(paragraph)
+        if clean and not _is_url_only_paragraph(clean):
+            clean_paragraphs.append(clean)
+    return "\n\n".join(clean_paragraphs).strip()
 
 
 def excerpt(text: str, *, length: int = 165) -> str:

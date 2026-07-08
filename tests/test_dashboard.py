@@ -21,6 +21,7 @@ from ptia_engine.dashboard import (
 from ptia_engine.editorial_board import add_final_post, add_radar_signal, update_final_post_status
 from ptia_engine.models import ContentDraft, ContentPerformance, ProcessedItem, RadarSignal, RawArticle
 from ptia_engine.source_verifier import VerificationResult
+from ptia_engine.services.site import clean_article_body
 from ptia_engine.storage import append_jsonl, load_radar_signals
 
 
@@ -31,6 +32,50 @@ class DashboardTests(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.root, ignore_errors=True)
+
+    def test_public_article_body_strips_markup_sources_and_url_only_paragraphs(self):
+        body = (
+            "https://example.com/story.\n\n"
+            "The report uses <i>framework</i> language and a [source](https://example.com/source).\n\n"
+            "Fonte: https://example.com/story"
+        )
+
+        clean = clean_article_body(body)
+
+        self.assertNotIn("<i>", clean)
+        self.assertNotIn("https://example.com/story", clean)
+        self.assertIn("framework", clean)
+        self.assertIn("source", clean)
+
+    def test_static_article_pages_do_not_render_literal_editorial_markup(self):
+        published_at = (datetime.now(timezone.utc) - timedelta(minutes=5)).replace(microsecond=0).isoformat()
+        state = DashboardState(self.root / "data")
+        payload = {
+            "brand": "PTIA.pt",
+            "updated_at": published_at,
+            "posts": [
+                {
+                    "id": "post_markup",
+                    "title": "OpenAI discusses governance",
+                    "body": "A report from <i>Financial Times</i> frames the issue as an operational framework.",
+                    "source_urls": ["https://example.com/openai"],
+                    "image_url": "",
+                    "published_at": published_at,
+                    "section": ["Mundo", "Builders"],
+                    "article_url": "artigos/openai-governance-post-markup",
+                }
+            ],
+        }
+
+        _write_static_article_pages(state, payload)
+
+        html = (
+            self.root / "site" / "artigos" / "openai-governance-post-markup" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("&lt;i&gt;", html)
+        self.assertNotIn("<i>", html)
+        self.assertIn("Financial Times", html)
+        self.assertIn("Mundo, Builders", html)
 
     def test_snapshot_contains_funnel_and_learnings(self):
         append_jsonl(

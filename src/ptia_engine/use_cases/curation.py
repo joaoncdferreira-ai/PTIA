@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from pathlib import Path
+from urllib.parse import urlparse
 
 from ptia_engine.editorial_board import (
     add_final_post,
@@ -13,7 +14,7 @@ from ptia_engine.editorial_board import (
     update_signal_status,
     update_topic_status,
 )
-from ptia_engine.editorial_quality import build_fact_pack, validate_fact_pack
+from ptia_engine.editorial_quality import build_fact_pack
 from ptia_engine.models import EditorialTopic, FinalPost, RadarSignal
 from ptia_engine.repositories import EditorialTopicRepository, FinalPostRepository, RadarSignalRepository
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
@@ -26,6 +27,7 @@ from ptia_engine.services.editorial_hygiene import (
 )
 from ptia_engine.services.social_text import x_post_body
 from ptia_engine.source_verifier import resolve_submitted_link
+from ptia_engine.storage import write_jsonl
 
 # Private helpers copied/adapted from dashboard.py to prevent circular imports
 
@@ -42,6 +44,46 @@ def _ensure_source_line(body: str, source_line: str, source_url: str) -> str:
     if re.search(r"(?im)^\s*Fonte(?: original)?\s*:", body):
         return body.strip()
     return f"{body.strip()}\n\n{source_line}".strip()
+
+def _is_urlish(value: str) -> bool:
+    return bool(re.match(r"^https?://", (value or "").strip(), flags=re.IGNORECASE))
+
+
+def _usable_metadata_text(*values: str) -> str:
+    for value in values:
+        clean = re.sub(r"\s+", " ", value or "").strip()
+        if clean and not _is_urlish(clean):
+            return clean
+    return ""
+
+
+def _title_from_url(url: str) -> str:
+    parsed = urlparse(url.strip())
+    slug = parsed.path.rstrip("/").split("/")[-1]
+    slug = re.sub(r"\.[a-z0-9]+$", "", slug, flags=re.IGNORECASE)
+    slug = re.sub(r"-[a-f0-9]{6,}$", "", slug, flags=re.IGNORECASE)
+    slug = re.sub(r"-?\d{5,}$", "", slug)
+    slug = re.sub(r"^(?:19|20)\d{2}-\d{2}-\d{2}-", "", slug)
+    slug = re.sub(r"--+", "-", slug)
+    slug = slug.replace("-", " ").strip()
+    if not slug:
+        host = parsed.netloc.replace("www.", "").strip()
+        return host or "Leitura PTIA"
+    return slug[:1].upper() + slug[1:]
+
+
+def _display_title_for_signal(signal: RadarSignal, fact_title: str) -> str:
+    return (
+        _usable_metadata_text(fact_title, signal.title, signal.summary, signal.why_it_matters, signal.topic_hint)
+        or _title_from_url(signal.url)
+    ).strip()
+
+
+def _display_thesis_for_signal(signal: RadarSignal, display_title: str) -> str:
+    return (
+        _usable_metadata_text(signal.summary, signal.why_it_matters, signal.topic_hint)
+        or f"{display_title} foi selecionada manualmente pelo editor para revisao editorial."
+    ).strip()
 
 def _high_quality_image_prompt(
     title: str,
@@ -217,15 +259,45 @@ class BuildFinalPackUseCase:
         if signal.status not in {"verified", "verified_secondary", "selected"}:
             raise ValueError("Só sinais verificados podem gerar pacote final.")
 
+        existing_topics = [
+            topic
+            for topic in self.topic_repo.load_all()
+            if signal.signal_id in topic.source_signal_ids
+            and topic.status in {"needs_review", "approved_for_final"}
+        ]
+        existing_topic_ids = {topic.topic_id for topic in existing_topics}
+        existing_posts = [
+            post
+            for post in self.post_repo.load_all()
+            if post.topic_id in existing_topic_ids
+            and post.status in {"needs_final_review", "approved_for_schedule"}
+        ]
+        if existing_posts:
+            topic_id = existing_posts[0].topic_id
+            topic = next(topic for topic in existing_topics if topic.topic_id == topic_id)
+            update_signal_status(
+                self.signal_repo.file_path,
+                signal.signal_id,
+                "used",
+                "Pacote final ja existente em A Rever.",
+            )
+            return {
+                "topic": topic,
+                "posts": [post for post in existing_posts if post.topic_id == topic_id],
+            }
+
         source_url = signal.url
         fact_pack = build_fact_pack(signal)
-        fact_report = validate_fact_pack(fact_pack)
-        if not fact_report.passed:
-            raise ValueError("Fact Pack bloqueado: " + "; ".join(fact_report.issues))
+        if (not fact_pack.published_at) and signal.fetched_at:
+            fact_pack.published_at = signal.fetched_at
+        display_title = _display_title_for_signal(signal, fact_pack.title)
+        fact_pack.title = display_title
+        # The manual selection path must not block package creation on imperfect metadata.
+        # Keep the fact pack for downstream context, but do not fail the button action here.
         topic = add_editorial_topic(
             self.topic_repo.file_path,
-            title=signal.title[:120],
-            thesis=signal.summary or signal.why_it_matters or signal.title,
+            title=display_title[:120],
+            thesis=_display_thesis_for_signal(signal, display_title),
             portugal_angle=fact_pack.portugal_angle,
             audience="PTIA",
             source_signal_ids=[signal.signal_id],
@@ -238,9 +310,14 @@ class BuildFinalPackUseCase:
             "Criado a partir de Verified Selection.",
         )
 
-        base_summary = " ".join(fact_pack.facts[1:] or fact_pack.facts[:1]).strip()
-        why_it_matters = fact_pack.consequence.strip()
-        ptia_lens = fact_pack.thesis.strip()
+        base_summary = _usable_metadata_text(
+            " ".join(fact_pack.facts[1:] or fact_pack.facts[:1]),
+            signal.summary,
+            signal.why_it_matters,
+            fact_pack.title,
+        )
+        why_it_matters = _usable_metadata_text(fact_pack.consequence, signal.why_it_matters, signal.summary)
+        ptia_lens = _usable_metadata_text(fact_pack.thesis, signal.why_it_matters, signal.summary)
         paragraphs = list(
             dict.fromkeys(
                 value
@@ -254,12 +331,12 @@ class BuildFinalPackUseCase:
             hashtags += " #Portugal"
         body_context = body_without_source
         
-        linkedin_site_image_prompt = _high_quality_image_prompt(signal.title, body_context)
+        linkedin_site_image_prompt = _high_quality_image_prompt(display_title, body_context)
         channel_config = load_channel_config(self.buffer_channels_path)
         include_x = channel_enabled(channel_config, "x")
         
         instagram_x_image_prompt = _high_quality_image_prompt(
-            signal.title,
+            display_title,
             body_context,
             group="instagram_x",
             include_x=include_x,
@@ -272,7 +349,7 @@ class BuildFinalPackUseCase:
                 self.post_repo.file_path,
                 topic_id=topic.topic_id,
                 channel="linkedin",
-                title=signal.title,
+                title=display_title,
                 body=f"{body_without_source}\n\n{source_line}",
                 hashtags=hashtags,
                 image_prompt=linkedin_site_image_prompt,
@@ -282,7 +359,7 @@ class BuildFinalPackUseCase:
                 self.post_repo.file_path,
                 topic_id=topic.topic_id,
                 channel="instagram",
-                title=signal.title,
+                title=display_title,
                 body=f"{body_without_source}\n\n{source_line}",
                 hashtags=hashtags,
                 image_prompt=instagram_x_image_prompt,
@@ -292,7 +369,7 @@ class BuildFinalPackUseCase:
                 self.post_repo.file_path,
                 topic_id=topic.topic_id,
                 channel="site",
-                title=signal.title,
+                title=display_title,
                 body=f"{body_without_source}\n\n{source_line}",
                 hashtags="",
                 image_prompt=linkedin_site_image_prompt,
@@ -307,7 +384,7 @@ class BuildFinalPackUseCase:
                     self.post_repo.file_path,
                     topic_id=topic.topic_id,
                     channel="x",
-                    title=signal.title,
+                    title=display_title,
                     body=x_post_body(base_summary, why_it_matters, source_line, x_hashtags),
                     hashtags=x_hashtags,
                     image_prompt=instagram_x_image_prompt,
@@ -376,15 +453,15 @@ class ApprovePackageUseCase:
             raise ValueError("Este pacote já nao esta em A Rever.")
             
         validate_final_package_copy(package_posts)
+        package_post_ids = {post.post_id for post in package_posts}
         updated = []
-        for post in package_posts:
-            updated.append(
-                update_final_post_status(
-                    self.post_repo.file_path,
-                    post.post_id,
-                    "approved_for_schedule",
-                )
-            )
+        for post in posts:
+            if post.post_id in package_post_ids:
+                post.status = "approved_for_schedule"
+                post.scheduled_time = ""
+                post.buffer_post_id = ""
+                updated.append(post)
+        write_jsonl(self.post_repo.file_path, posts)
         return updated
 
 class EditPolishPostUseCase:

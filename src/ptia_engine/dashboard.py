@@ -37,6 +37,8 @@ from ptia_engine.editorial_board import (
     update_topic_status,
 )
 from ptia_engine.models import ContentPerformance, FinalPost, Source, utc_now_iso
+from ptia_engine.repositories import EditorialTopicRepository, FinalPostRepository, RadarSignalRepository
+from ptia_engine.use_cases import BuildFinalPackUseCase
 from ptia_engine.newsletter import generate_sample_issue
 from ptia_engine.rss import fetch_source
 from ptia_engine.search_providers import GeminiGroundedSearchProvider
@@ -899,151 +901,17 @@ def _ensure_source_line(body: str, source_line: str, source_url: str) -> str:
 
 
 def _build_final_pack_from_signal(state: DashboardState, signal_id: str) -> dict:
-    signal = _find_signal(state.radar_signals_path, signal_id)
-    if signal.status not in {"verified", "verified_secondary", "selected"}:
-        raise ValueError("Só sinais verificados podem gerar pacote final.")
-
-    source_url = signal.url
-    topic = add_editorial_topic(
-        state.editorial_topics_path,
-        title=signal.title[:120],
-        thesis=signal.summary or signal.why_it_matters or signal.title,
-        portugal_angle=(
-            "Validar o impacto para empresas, profissionais e builders em Portugal "
-            "antes de publicar."
-        ),
-        audience="PTIA",
-        source_signal_ids=[signal.signal_id],
-        urgency_score=max(6, min(10, signal.engagement_score // 10 or 6)),
+    use_case = BuildFinalPackUseCase(
+        signal_repo=RadarSignalRepository(state.radar_signals_path),
+        topic_repo=EditorialTopicRepository(state.editorial_topics_path),
+        post_repo=FinalPostRepository(state.final_posts_path),
+        buffer_channels_path=state.buffer_channels_path,
     )
-    update_topic_status(
-        state.editorial_topics_path,
-        topic.topic_id,
-        "approved_for_final",
-        "Criado a partir de Verified Selection.",
-    )
-
-    base_summary = signal.summary or "A fonte publicou uma nova informação sobre inteligência artificial."
-    why_it_matters = signal.why_it_matters or (
-        _first_sentence(base_summary, signal.title)
-    )
-    ptia_lens, next_action = _specific_editorial_seed(signal.title, base_summary, why_it_matters)
-    hashtags = "#InteligenciaArtificial #IA #Portugal #PTIA"
-    body_context = (
-        f"{base_summary}\n\n{why_it_matters}\n\n{ptia_lens}"
-    )
-    linkedin_site_image_prompt = _high_quality_image_prompt(
-        signal.title,
-        body_context,
-    )
-    include_x = _channel_enabled(state, "x")
-    instagram_x_image_prompt = _high_quality_image_prompt(
-        signal.title,
-        body_context,
-        group="instagram_x",
-        include_x=include_x,
-    )
-    source_line = f"Fonte: {source_url}"
-    x_hashtags = "#IA #PTIA"
-    posts = [
-        add_final_post(
-            state.final_posts_path,
-            topic_id=topic.topic_id,
-            channel="linkedin",
-            title=signal.title,
-            body=(
-                f"{base_summary}\n\n"
-                f"{ptia_lens}\n\n"
-                f"{why_it_matters} {next_action}\n\n"
-                f"{source_line}"
-            ),
-            hashtags=hashtags,
-            image_prompt=linkedin_site_image_prompt,
-            source_urls=[source_url],
-        ),
-        add_final_post(
-            state.final_posts_path,
-            topic_id=topic.topic_id,
-            channel="instagram",
-            title=signal.title,
-            body=(
-                f"{base_summary}\n\n"
-                f"{ptia_lens}\n\n"
-                f"{why_it_matters}\n\n"
-                f"{next_action}\n\n"
-                f"{source_line}"
-            ),
-            hashtags=hashtags,
-            image_prompt=instagram_x_image_prompt,
-            source_urls=[source_url],
-        ),
-        add_final_post(
-            state.final_posts_path,
-            topic_id=topic.topic_id,
-            channel="site",
-            title=signal.title,
-            body=(
-                f"{base_summary}\n\n"
-                f"{ptia_lens}\n\n"
-                f"{why_it_matters}\n\n"
-                f"{next_action}\n\n"
-                f"{source_line}"
-            ),
-            hashtags="",
-            image_prompt=linkedin_site_image_prompt,
-            source_urls=[source_url],
-        ),
-    ]
-    if include_x:
-        posts.insert(
-            2,
-            add_final_post(
-                state.final_posts_path,
-                topic_id=topic.topic_id,
-                channel="x",
-                title=signal.title,
-                body=_x_post_body(base_summary, why_it_matters, source_line, x_hashtags),
-                hashtags=x_hashtags,
-                image_prompt=instagram_x_image_prompt,
-                source_urls=[source_url],
-            ),
-        )
-    polished_posts = []
-    for post in posts:
-        polished = _polish_final_post_copy(
-            channel=post.channel,
-            title=post.title,
-            body=post.body,
-            hashtags=post.hashtags,
-            source_urls=post.source_urls,
-        )
-        polished_hashtags = _normalise_hashtags(polished["hashtags"], post.channel)
-        polished_body = polished["body"]
-        if post.channel == "x":
-            x_seed = re.sub(r"(?im)^\s*(?:\*\*)?Fonte(?:s| original)?(?:\*\*)?\s*:.*$", "", polished_body)
-            x_seed = re.sub(r"https?://\S+", "", x_seed).strip()
-            source_label = signal.source_name or "fonte original"
-            polished_body = _x_post_body(x_seed, "", f"Fonte: {source_label}", polished_hashtags)
-        else:
-            polished_body = _ensure_source_line(polished_body, source_line, source_url)
-        polished_posts.append(
-            update_final_post_copy(
-                state.final_posts_path,
-                post.post_id,
-                title=polished["title"],
-                body=polished_body,
-                hashtags=polished_hashtags,
-                notes=polished["editor_notes"],
-            )
-        )
-    posts = polished_posts
-    update_signal_status(
-        state.radar_signals_path,
-        signal.signal_id,
-        "used",
-        "Pacote final criado para revisão.",
-    )
-    return {"topic": _to_dict(topic), "posts": [_to_dict(post) for post in posts]}
+    result = use_case.execute(signal_id)
+    return {
+        "topic": _to_dict(result["topic"]),
+        "posts": [_to_dict(post) for post in result["posts"]],
+    }
 
 
 def _x_post_body(summary: str, why_it_matters: str, source_line: str, hashtags: str) -> str:
@@ -2227,7 +2095,11 @@ def _reject_final_post(state: DashboardState, post_id: str) -> object:
 def _site_feed(state: DashboardState) -> dict:
     posts = _ensure_image_variants_for_posts(state, load_final_posts(state.final_posts_path))
     site_posts = [
-        post for post in posts if post.channel == "site" and post.status in {"scheduled", "published"}
+        post
+        for post in posts
+        if post.channel == "site"
+        and post.status in {"scheduled", "published"}
+        and _has_public_site_image_quality(post)
     ]
     site_posts.sort(key=lambda post: post.scheduled_time or post.created_at, reverse=True)
     deduped_posts = []
@@ -2245,7 +2117,7 @@ def _site_feed(state: DashboardState) -> dict:
             {
                 "id": post.post_id,
                 "title": post.title,
-                "body": post.body,
+                "body": _clean_article_body(post.body),
                 "source_urls": post.source_urls,
                 "image_path": post.image_path,
                 "image_url": (
@@ -2380,6 +2252,18 @@ def _is_public_site_post(post: dict) -> bool:
     return _service_is_public_site_post(post)
 
 
+def _site_section_label(value) -> str:
+    if isinstance(value, list):
+        return ", ".join(str(item) for item in value if item) or "IA"
+    return str(value or "IA")
+
+
+def _has_public_site_image_quality(post: FinalPost) -> bool:
+    image = str(post.image_variants.get("site") or post.image_path or "").strip().lower()
+    # SVGs here are generated PTIA placeholder cards, not final editorial images.
+    return not image.endswith(".svg")
+
+
 def _static_site_feed_payload(state: DashboardState) -> dict:
     posts = _ensure_image_variants_for_posts(state, load_final_posts(state.final_posts_path))
     new_apple_post = next((p for p in posts if p.post_id == "post_a42ec13e57b539f599"), None)
@@ -2395,6 +2279,8 @@ def _static_site_feed_payload(state: DashboardState) -> dict:
     site_posts = []
     for post in posts:
         if post.channel == "site" and post.status in {"scheduled", "published"}:
+            if not _has_public_site_image_quality(post):
+                continue
             if post.post_id == "post_ca28e48d21d880a356" and hide_old_apple:
                 continue
             site_posts.append(post)
@@ -2414,7 +2300,7 @@ def _static_site_feed_payload(state: DashboardState) -> dict:
             {
                 "id": post.post_id,
                 "title": post.title,
-                "body": post.body,
+                "body": _clean_article_body(post.body),
                 "source_urls": post.source_urls,
                 "image_path": post.image_path,
                 "image_url": _static_site_image_url(state, post),
@@ -2493,7 +2379,7 @@ def _write_static_article_pages(state: DashboardState, payload: dict) -> list[st
         article_dir.mkdir(parents=True, exist_ok=True)
         title = str(post.get("title") or "Leitura PTIA")
         description = _excerpt(str(post.get("body") or ""))
-        section = str(post.get("section") or "IA")
+        section = _site_section_label(post.get("section"))
         body_text = _clean_article_body(str(post.get("body") or ""))
         paragraphs = "".join(
             f"<p>{html.escape(paragraph)}</p>\n"
@@ -4591,7 +4477,7 @@ HTML = r"""<!doctype html>
     }
     async function approveFinalPackage(postId) {
       showToast('A guardar e enviar o pacote para Final OK...');
-      await saveFinalPostCopy(postId, false, false);
+      await saveFinalPackageCopy(postId);
       await api('/api/approve-final-package', {post_id: postId});
       showToast('Pacote enviado para Final OK');
       showTab('schedule');
@@ -4837,9 +4723,9 @@ HTML = r"""<!doctype html>
       if (!post) return;
       navigator.clipboard.writeText(finalPostText(post));
     }
-    async function saveFinalPostCopy(postId, syncPackage = false, showSavedToast = true) {
+    function finalPostCopyPayload(postId, syncPackage = false) {
       stashCurrentImagePrompt(postId);
-      const payload = {
+      return {
         post_id: postId,
         title: val(`edit_title_${postId}`),
         body: val(`edit_body_${postId}`),
@@ -4847,9 +4733,25 @@ HTML = r"""<!doctype html>
         image_prompt: val(`edit_image_prompt_${postId}`),
         sync_topic: syncPackage,
       };
-      await api('/api/update-final-post-copy', payload);
+    }
+    async function saveFinalPostCopy(postId, syncPackage = false, showSavedToast = true) {
+      await api('/api/update-final-post-copy', finalPostCopyPayload(postId, syncPackage));
       if (showSavedToast) showToast(syncPackage ? 'Alterações guardadas e pacote alinhado' : 'Alterações guardadas');
       showTab('final_draft_pack');
+    }
+    async function saveFinalPackageCopy(postId) {
+      const post = findFinalPost(postId);
+      if (!post) {
+        await requestJson('/api/update-final-post-copy', finalPostCopyPayload(postId, false));
+        await loadState();
+        return;
+      }
+      const packagePosts = (state.final_posts || [])
+        .filter(item => item.topic_id === post.topic_id && item.status === post.status);
+      for (const packagePost of packagePosts) {
+        await requestJson('/api/update-final-post-copy', finalPostCopyPayload(packagePost.post_id, false));
+      }
+      await loadState();
     }
     function socialPreviewMarkup(post) {
       if (post.channel === 'site') {

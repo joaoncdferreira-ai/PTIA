@@ -52,6 +52,74 @@ class EditorialFlowIntegrationTests(unittest.TestCase):
         self.gemini_patcher.stop()
         shutil.rmtree(self.root, ignore_errors=True)
 
+    def test_manual_selected_url_title_builds_review_pack(self):
+        from ptia_engine.editorial_board import update_signal_status
+
+        url = "https://www.cisa.gov/news-events/news/five-eyes-cyber-security-agencies-statement"
+        signal = add_radar_signal(
+            self.signals_path,
+            source_type="news",
+            source_name="Unverified",
+            title=url,
+            url=url,
+            published_at="",
+            summary="",
+            topic_hint="",
+            why_it_matters="",
+            notes="Aprovado manualmente pelo editor",
+            require_recent=False,
+        )
+        update_signal_status(self.signals_path, signal.signal_id, "selected")
+
+        build_use_case = BuildFinalPackUseCase(
+            signal_repo=self.signal_repo,
+            topic_repo=self.topic_repo,
+            post_repo=self.post_repo,
+            buffer_channels_path=self.channels_path,
+        )
+        result = build_use_case.execute(signal.signal_id)
+
+        self.assertEqual(result["topic"].status, "approved_for_final")
+        self.assertEqual(result["topic"].title, "Five eyes cyber security agencies statement")
+        self.assertFalse(result["topic"].title.startswith("http"))
+        self.assertFalse(result["topic"].thesis.startswith("http"))
+        self.assertEqual(len(result["posts"]), 4)
+        self.assertTrue(all(post.status == "needs_final_review" for post in result["posts"]))
+        self.assertEqual(self.signal_repo.get_by_id(signal.signal_id).status, "used")
+
+    def test_manual_selected_news_url_strips_date_and_tracking_slug(self):
+        from ptia_engine.editorial_board import update_signal_status
+
+        url = "https://sicnoticias.pt/especiais/inteligencia-artificial/2025-11-12-video-e-se-cada-aluno-tivesse-um-tutor-de-inteligencia-artificial--ideia-foi-lancada-pelo-governo-344f04a8"
+        signal = add_radar_signal(
+            self.signals_path,
+            source_type="news",
+            source_name="SIC Noticias",
+            title=url,
+            url=url,
+            published_at="2025-11-12",
+            summary="",
+            topic_hint="",
+            why_it_matters="",
+            notes="Aprovado manualmente pelo editor",
+            require_recent=False,
+        )
+        update_signal_status(self.signals_path, signal.signal_id, "selected")
+
+        result = BuildFinalPackUseCase(
+            signal_repo=self.signal_repo,
+            topic_repo=self.topic_repo,
+            post_repo=self.post_repo,
+            buffer_channels_path=self.channels_path,
+        ).execute(signal.signal_id)
+
+        self.assertEqual(
+            result["topic"].title,
+            "Video e se cada aluno tivesse um tutor de inteligencia artificial ideia foi lancada pelo governo",
+        )
+        self.assertFalse(result["topic"].thesis.startswith("http"))
+        self.assertTrue(all(not post.title.startswith("http") for post in result["posts"]))
+
     def test_complete_editorial_curation_flow(self):
         # 1. Sinal entra (Radar Signal added)
         signal = add_radar_signal(

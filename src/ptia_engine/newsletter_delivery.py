@@ -17,6 +17,8 @@ from ptia_engine.newsletter import (
     NEWSLETTER_GENERATOR_VERSION,
     _parse_date,
     generate_weekly_issue,
+    has_suspicious_encoding,
+    repair_text_encoding,
     update_newsletter_delivery,
 )
 from ptia_engine.storage import (
@@ -133,6 +135,12 @@ def validate_newsletter_issue(issue: NewsletterIssue) -> None:
         errors.append("HTML is missing the Brevo unsubscribe tag")
     if not issue.text.strip():
         errors.append("plain-text content is empty")
+    subject = repair_text_encoding(issue.subject)
+    preheader = repair_text_encoding(issue.preheader)
+    html = repair_text_encoding(issue.html)
+    plain_text = repair_text_encoding(issue.text)
+    if any(has_suspicious_encoding(value) for value in (subject, preheader, html, plain_text)):
+        errors.append("newsletter contains suspicious encoding artifacts")
     if errors:
         raise NewsletterPreflightError("; ".join(errors))
 
