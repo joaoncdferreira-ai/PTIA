@@ -1,7 +1,76 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-09T17:36:25+00:00",
+  "updated_at": "2026-07-09T21:03:21+00:00",
   "posts": [
+    {
+      "id": "post_5e7dff7c3d72c59b56",
+      "title": "UPTEC recebe sessão sobre IA e supercomputação para startups e PME",
+      "body": "A UPTEC acolhe a 14 de julho o workshop “Fábrica de IA BSC: IA e Supercomputação ao Serviço da Inovação”, uma iniciativa da FCT e do CNCA. Dirigida a startups, PME, investigadores e profissionais de tecnologia, a sessão apresenta recursos nacionais e europeus de computação avançada, incluindo os supercomputadores Deucalion e MareNostrum 5.\n\nO programa inclui uma demonstração do Deucalion e casos de uso da Infinite Foundry e da PPA-LeaderTek, duas startups incubadas na UPTEC. É uma oportunidade para ver como estes recursos podem apoiar a criação e a validação de soluções de IA.\n\nA leitura PTIA é prática: para muitas equipas, o bloqueio já não é saber que modelos existem, mas encontrar capacidade de computação, apoio técnico e vias de acesso compatíveis com uma prova de conceito. Antes de avançar, importa perceber os requisitos do projeto, os dados disponíveis e as condições de acesso.",
+      "source_urls": [
+        "https://noticias.up.pt/2026/07/07/workshop-vai-dar-a-conhecer-a-fabrica-de-inteligencia-artificial-da-uptec/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b502fb6602b3a2a4e4_6c732ae5_ChatGPT-Image-9_07_2026-20_53_20.png",
+      "image_url": "/assets/final/post_bc96386c0969eb6056_site_1600x900.jpg",
+      "published_at": "2026-07-10T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/uptec-recebe-sessao-sobre-ia-e-supercomputacao-para-startups-e-pme-5e7dff7c3d72c59b56"
+    },
+    {
+      "id": "post_5361712e3ba873541e",
+      "title": "Grok 4.5 chega focado em programação e tarefas de agentes",
+      "body": "A SpaceXAI lançou o Grok 4.5, um modelo orientado para programação, tarefas de agentes e trabalho de conhecimento. A empresa anunciou um preço de API de 2 dólares por milhão de tokens de entrada e 6 dólares por milhão de tokens de saída.\n\nO lançamento mostra como a competição entre modelos está a passar do chatbot genérico para ambientes de trabalho completos: modelo, ferramentas de programação e capacidade de executar fluxos com vários passos. As métricas divulgadas pela empresa devem ser lidas como comparações do fornecedor, não como garantia de desempenho num projeto específico.\n\nPara Portugal, há uma condição prática antes de qualquer avaliação: a SpaceXAI indica que o Grok 4.5 ainda não está disponível na União Europeia e prevê disponibilidade em meados de julho. Quando chegar, a comparação útil será feita no repositório, nos dados e nos requisitos de segurança de cada equipa — medindo custo por tarefa concluída, qualidade do código e controlo operacional.",
+      "source_urls": [
+        "https://www.reuters.com/business/media-telecom/spacexai-launches-grok-45-model-coding-agentic-tasks-2026-07-08/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_479afb3e5094c04c8a_c4c01583_ChatGPT-Image-9_07_2026-20_16_26.png",
+      "image_url": "/assets/final/post_05c8d556cd4a75202c_site_1600x900.jpg",
+      "published_at": "2026-07-10T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/grok-4-5-chega-focado-em-programacao-e-tarefas-de-agentes-5361712e3ba873541e"
+    },
+    {
+      "id": "post_b9a755713acb8e65e5",
+      "title": "Portugal coloca IA, produtividade e governação na agenda do FMI e Banco Mundial",
+      "body": "A reunião da constituency de Portugal no FMI e Banco Mundial, realizada em Lisboa a 6 e 7 de julho, incluiu sessões dedicadas à inteligência artificial. Joaquim Miranda Sarmento defendeu a utilização responsável da tecnologia para reforçar produtividade, inovação, competitividade e inclusão. Álvaro Santos Pereira destacou a necessidade de uma governação sólida.\n\nA mensagem é relevante porque junta duas discussões que muitas vezes aparecem separadas: a promessa económica da IA e as regras necessárias para a aplicar com responsabilidade. Mas o comunicado fixa uma direção, não um plano de execução.\n\nPara organizações portuguesas, o trabalho começa nos casos de uso concretos: escolher tarefas onde há tempo a ganhar, medir o efeito no processo, proteger dados e manter responsabilidade humana pelas decisões. É assim que a ambição se traduz em produtividade verificável.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/portugal-defende-papel-da-inteligencia-artificial-no-aumento-da-produtividade-em-reuniao-do-fmi-e-banco-mundial/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b702ac4e870f45fa53_ae7c7b19_ChatGPT-Image-9_07_2026-20_55_48.png",
+      "image_url": "/assets/final/post_af1398ab99e776464d_site_1600x900.jpg",
+      "published_at": "2026-07-10T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/portugal-coloca-ia-produtividade-e-governacao-na-agenda-do-fmi-e-banco-mundial-b9a755713acb8e65e5"
+    },
+    {
+      "id": "post_caf2cd2eaeb100d30c",
+      "title": "AWS propõe GraphRAG para acelerar a investigação farmacêutica",
+      "body": "A AWS apresentou uma arquitetura de referência para investigação farmacêutica que combina GraphRAG, Amazon Neptune Analytics e Amazon Bedrock. A proposta usa um grafo de conhecimento para ligar dados estruturados e texto técnico, permitindo interrogar relações entre compostos, fármacos e evidência em linguagem natural.\n\nSegundo a AWS, a implementação usada como exemplo reduziu o ciclo de investigação de seis meses para três semanas — uma melhoria de 87%. O número é uma alegação do fornecedor e não equivale a validação independente ou a um resultado garantido noutras organizações.\n\nO ponto relevante para Portugal não é adotar GraphRAG por tendência. É perceber se uma equipa tem um problema em que as relações entre dados importam, se consegue manter as fontes rastreáveis e se compara o novo fluxo com o processo atual. Na saúde e na biotecnologia, velocidade sem evidência auditável cria apenas mais risco.",
+      "source_urls": [
+        "https://www.artificialintelligence-news.com/news/aws-graphrag-deployment-cuts-drug-research-cycles-by-87/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_322fab05cfbca2895b_34e1d97a_ChatGPT-Image-9_07_2026-20_54_25.png",
+      "image_url": "/assets/final/post_9919c5f57a98c7e084_site_1600x900.jpg",
+      "published_at": "2026-07-10T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/aws-propoe-graphrag-para-acelerar-a-investigacao-farmaceutica-caf2cd2eaeb100d30c"
+    },
     {
       "id": "post_de90e01d96e1ab30b9",
       "title": "Portugal sob o risco de inação na reforma financeira digital",
