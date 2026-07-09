@@ -124,6 +124,10 @@ def dashboard_do_post(handler):
             return
             
     except Exception as exc:
+        import traceback
+        import sys
+        print(f"Error handling POST {path} with payload: {payload}", file=sys.stderr)
+        traceback.print_exc()
         message = str(exc) or repr(exc) or exc.__class__.__name__
         handler._send_json({"error": message}, HTTPStatus.BAD_REQUEST)
         return

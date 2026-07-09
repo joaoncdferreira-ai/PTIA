@@ -34,18 +34,28 @@ def handle_update_final_post_copy(handler, payload):
     use_case = EditPolishPostUseCase(post_repo)
     post_id = str(payload["post_id"])
     sync_topic = bool(payload.get("sync_topic", False))
-    
+    title = payload.get("title")
+    body = payload.get("body")
+    hashtags = payload.get("hashtags")
+    image_prompt = payload.get("image_prompt")
+
+    # Older dashboard clients bulk-save every channel even though only the active
+    # channel is rendered. Those hidden controls submit empty values; preserving
+    # the stored copy prevents a valid package from being blocked or overwritten.
+    if not str(title or "").strip() and not str(body or "").strip():
+        title = body = hashtags = image_prompt = None
+
     updated = use_case.execute(
         post_id=post_id,
-        title=payload.get("title"),
-        body=payload.get("body"),
-        hashtags=payload.get("hashtags"),
-        image_prompt=payload.get("image_prompt"),
+        title=title,
+        body=body,
+        hashtags=hashtags,
+        image_prompt=image_prompt,
         notes="Editor manual update.",
     )
-    
+
     response = {"ok": True, "post": to_dict(updated)}
-    
+
     if sync_topic:
         from ptia_engine.dashboard import _sync_topic_posts_from_reference
         posts = _sync_topic_posts_from_reference(
@@ -54,9 +64,8 @@ def handle_update_final_post_copy(handler, payload):
             "O editor alterou manualmente este canal. Alinha os restantes canais com a mesma tese, tom e decisão editorial.",
         )
         response["posts"] = [to_dict(p) for p in posts]
-        
-    handler._send_json(response)
 
+    handler._send_json(response)
 def handle_final_post_status(handler, payload):
     from ptia_engine.dashboard import _reject_final_post, _sync_static_site_feed
     status = str(payload["status"])
