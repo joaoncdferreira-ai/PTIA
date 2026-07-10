@@ -71,7 +71,7 @@ from ptia_engine.meta_insights import MetaGraphClient, MetaInsightsError
 from ptia_engine.models import RawArticle, Source
 from ptia_engine.performance_import import import_instagram_insights
 from ptia_engine.rss import fetch_source
-from ptia_engine.search_providers import GeminiGroundedSearchProvider
+from ptia_engine.search_providers import GEMINI_SEARCH_DEFAULT_MODEL, GeminiGroundedSearchProvider
 from ptia_engine.scheduler import (
     NoopScheduleBackend,
     build_schedule_day_plan,
@@ -1407,7 +1407,7 @@ def build_parser() -> argparse.ArgumentParser:
     gemini_scout = subparsers.add_parser("gemini-scout", help="Fetch grounded Gemini AI news candidates.")
     gemini_scout.add_argument("--out", default="data/radar_signals.jsonl")
     gemini_scout.add_argument("--limit", type=int, default=8)
-    gemini_scout.add_argument("--model", default=os.getenv("GEMINI_SEARCH_MODEL", "gemini-2.5-flash"))
+    gemini_scout.add_argument("--model", default=os.getenv("GEMINI_SEARCH_MODEL", GEMINI_SEARCH_DEFAULT_MODEL))
     gemini_scout.add_argument("--engagement-score", type=int, default=55)
     gemini_scout.set_defaults(func=cmd_gemini_scout)
 

@@ -11,6 +11,8 @@ from typing import Any
 
 from ptia_engine.http_client import urlopen_direct
 
+GEMINI_SEARCH_DEFAULT_MODEL = "gemini-flash-latest"
+
 
 @dataclass(slots=True)
 class SearchCandidate:
@@ -209,7 +211,7 @@ class GeminiGroundedSearchProvider:
         timeout_seconds: int | None = None,
     ) -> None:
         self.api_key = api_key or os.getenv("GEMINI_API_KEY", "")
-        self.model = model or os.getenv("GEMINI_SEARCH_MODEL", "gemini-2.5-flash")
+        self.model = model or os.getenv("GEMINI_SEARCH_MODEL", GEMINI_SEARCH_DEFAULT_MODEL)
         self.timeout_seconds = timeout_seconds or int(
             os.getenv("GEMINI_SEARCH_TIMEOUT_SECONDS", "90")
         )
@@ -639,10 +641,6 @@ Responde apenas em JSON válido:
         if not self.available:
             raise RuntimeError("GEMINI_API_KEY não está configurada.")
 
-        url = (
-            f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"{self.model}:generateContent"
-        )
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "tools": [{"google_search": {}}],
@@ -651,25 +649,7 @@ Responde apenas em JSON válido:
                 "thinkingConfig": {"thinkingBudget": 0},
             },
         }
-        request = urllib.request.Request(
-            url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "x-goog-api-key": self.api_key,
-            },
-            method="POST",
-        )
-        try:
-            with urlopen_direct(request, timeout=self.timeout_seconds) as response:
-                response_data = json.loads(response.read().decode("utf-8"))
-        except HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Gemini API HTTP {exc.code}: {body[:800]}") from exc
-        except URLError as exc:
-            raise RuntimeError(f"Gemini API indisponível: {exc.reason}") from exc
-
-        candidates = self._candidates_from_response(response_data, query=query)
+        candidates = self._candidates_from_response(self._post_generate_content(payload), query=query)
         return candidates[:limit]
 
     def _generate_rewrite(self, prompt: str, *, temperature: float = 0.55) -> RewriteResult:
@@ -688,10 +668,6 @@ Responde apenas em JSON válido:
         if not self.available:
             raise RuntimeError("GEMINI_API_KEY não está configurada.")
 
-        url = (
-            f"https://generativelanguage.googleapis.com/v1beta/models/"
-            f"{self.model}:generateContent"
-        )
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
@@ -703,25 +679,41 @@ Responde apenas em JSON válido:
             payload["tools"] = tools
         if response_mime_type:
             payload["generationConfig"]["responseMimeType"] = response_mime_type
-        request = urllib.request.Request(
-            url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Content-Type": "application/json",
-                "x-goog-api-key": self.api_key,
-            },
-            method="POST",
-        )
-        try:
-            with urlopen_direct(request, timeout=self.timeout_seconds) as response:
-                response_data = json.loads(response.read().decode("utf-8"))
-        except HTTPError as exc:
-            body = exc.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Gemini API HTTP {exc.code}: {body[:800]}") from exc
-        except URLError as exc:
-            raise RuntimeError(f"Gemini API indisponível: {exc.reason}") from exc
+        return self._post_generate_content(payload)
 
-        return response_data
+    def _post_generate_content(self, payload: dict[str, Any]) -> dict[str, Any]:
+        for attempt in range(2):
+            url = (
+                f"https://generativelanguage.googleapis.com/v1beta/models/"
+                f"{self.model}:generateContent"
+            )
+            request = urllib.request.Request(
+                url,
+                data=json.dumps(payload).encode("utf-8"),
+                headers={
+                    "Content-Type": "application/json",
+                    "x-goog-api-key": self.api_key,
+                },
+                method="POST",
+            )
+            try:
+                with urlopen_direct(request, timeout=self.timeout_seconds) as response:
+                    return json.loads(response.read().decode("utf-8"))
+            except HTTPError as exc:
+                body = exc.read().decode("utf-8", errors="replace")
+                if attempt == 0 and self._should_retry_with_default_model(exc.code, body):
+                    self.model = GEMINI_SEARCH_DEFAULT_MODEL
+                    continue
+                raise RuntimeError(f"Gemini API HTTP {exc.code}: {body[:800]}") from exc
+            except URLError as exc:
+                raise RuntimeError(f"Gemini API indisponível: {exc.reason}") from exc
+        raise RuntimeError("Gemini API indisponível: tentativa de fallback esgotada.")
+
+    def _should_retry_with_default_model(self, code: int, body: str) -> bool:
+        if code != 404 or self.model == GEMINI_SEARCH_DEFAULT_MODEL:
+            return False
+        normalized = body.casefold()
+        return "no longer available" in normalized or "not_found" in normalized or "not found" in normalized
 
     def _generate_rewrite_from_response(self, response_data: dict[str, Any]) -> RewriteResult:
         candidate = (response_data.get("candidates") or [{}])[0]

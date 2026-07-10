@@ -10,7 +10,7 @@ from ptia_engine.budget import estimate_cost_usd, estimate_tokens
 
 
 OPENAI_DEFAULT_MODEL = "gpt-4.1-mini"
-GEMINI_DEFAULT_MODEL = "gemini-2.5-flash"
+GEMINI_DEFAULT_MODEL = "gemini-flash-latest"
 OLLAMA_DEFAULT_MODEL = "llama3.1"
 OLLAMA_DEFAULT_BASE_URL = "http://127.0.0.1:11434"
 

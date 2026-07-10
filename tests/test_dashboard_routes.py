@@ -7,6 +7,8 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from ptia_engine.dashboard import DashboardHandler, DashboardState
+from ptia_engine.editorial_board import add_final_post
+from ptia_engine.storage import load_final_posts
 from ptia_engine.routes import POST_ROUTES, dashboard_do_get
 
 
@@ -60,6 +62,39 @@ class DashboardRoutesTests(unittest.TestCase):
         self.assertEqual(calls[0][0]["ok"], True)
         self.assertEqual(len(calls[0][0]["posts"]), 2)
 
+    def test_empty_hidden_channel_payload_preserves_stored_copy(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="topic_hidden_channel",
+            channel="instagram",
+            title="Título Instagram",
+            body="Texto Instagram que já estava pronto para revisão.",
+            hashtags="#IA",
+            image_prompt="Prompt existente",
+            source_urls=["https://example.com/source"],
+        )
+        calls = []
+        handler = SimpleNamespace(
+            state=DashboardState(self.root),
+            _send_json=lambda payload, status=HTTPStatus.OK: calls.append((payload, status)),
+        )
+
+        POST_ROUTES["/api/update-final-post-copy"](
+            handler,
+            {
+                "post_id": post.post_id,
+                "title": "",
+                "body": "",
+                "hashtags": "",
+                "image_prompt": "",
+            },
+        )
+
+        stored = load_final_posts(self.root / "final_posts.jsonl")[0]
+        self.assertEqual(stored.title, "Título Instagram")
+        self.assertEqual(stored.body, "Texto Instagram que já estava pronto para revisão.")
+        self.assertEqual(stored.hashtags, "#IA")
+        self.assertEqual(calls[0][0]["ok"], True)
     def test_post_routes_are_registered_by_domain_modules(self):
         expected = {
             "/api/item-status": "ptia_engine.routes.editorial",

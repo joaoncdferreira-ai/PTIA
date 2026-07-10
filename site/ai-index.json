@@ -1,7 +1,7 @@
 {
   "name": "PTIA.pt",
   "url": "https://ptia.pt",
-  "updated_at": "2026-07-08T19:50:45+00:00",
+  "updated_at": "2026-07-09T21:02:17+00:00",
   "language": "pt-PT",
   "country_focus": "Portugal",
   "positioning": "Fonte portuguesa para interpretar inteligencia artificial no contexto de empresas, trabalho, regulacao e builders em Portugal.",
@@ -263,6 +263,67 @@
   ],
   "recent_articles": [
     {
+      "title": "Portugal sob o risco de inação na reforma financeira digital",
+      "url": "https://ptia.pt/artigos/portugal-sob-o-risco-de-inacao-na-reforma-financeira-digital-de90e01d96e1ab30b9",
+      "published_at": "2026-07-09T21:00:00+01:00",
+      "summary": "Diogo Pereira Duarte, sócio da Abreu Advogados, alertou que Portugal corre o risco de ficar para trás na reforma financeira digital. A razão apontada é a ausência de uma estratégia nacional clara e a burocracia excessiv...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "OpenAI Liberta GPT-5.6, Fim das Restrições Governamentais para Modelos de IA",
+      "url": "https://ptia.pt/artigos/openai-liberta-gpt-5-6-fim-das-restricoes-governamentais-para-modelos-de-ia-4de9202876a7ccf9d6",
+      "published_at": "2026-07-09T16:00:00+01:00",
+      "summary": "A OpenAI anunciou a libertação pública do seu modelo GPT-5.6, removendo as restrições governamentais que limitavam a sua distribuição. Este movimento surge num contexto de crescente pressão regulatória e competitiva, co...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Bruxelas avança com avaliação independente de IA na cibersegurança",
+      "url": "https://ptia.pt/artigos/bruxelas-avanca-com-avaliacao-independente-de-ia-na-ciberseguranca-74455d408f4892ddd0",
+      "published_at": "2026-07-09T13:00:00+01:00",
+      "summary": "A Comissão Europeia propõe que os modelos de inteligência artificial operacional sejam submetidos a uma avaliação independente até 2027. A iniciativa prevê ainda a criação de uma plataforma de testes direcionada a setor...",
+      "sections": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ]
+    },
+    {
+      "title": "OpenAI e Walton Foundation investem na formação de professores K-12 em IA",
+      "url": "https://ptia.pt/artigos/openai-e-walton-foundation-investem-na-formacao-de-professores-k-12-em-ia-4ec17e36742bfab714",
+      "published_at": "2026-07-09T09:00:00+01:00",
+      "summary": "A OpenAI Academy e a Walton Family Foundation anunciaram uma parceria para levar os AI Skills Jams a educadores do ensino básico e secundário (K-12). O objetivo é capacitar estes profissionais com competências práticas...",
+      "sections": [
+        "Mundo",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
+      "title": "Arquitetura de IA: O Desafio da Escala para Líderes de IT",
+      "url": "https://ptia.pt/artigos/arquitetura-de-ia-o-desafio-da-escala-para-lideres-de-it-df1d46bf558c9fa93f",
+      "published_at": "2026-07-08T21:00:00+01:00",
+      "summary": "Com a rápida evolução das capacidades da Inteligência Artificial e a transição para sistemas agentic, as organizações estão a expandir os seus use cases à medida que a tecnologia amadurece. Esta constante evolução, cont...",
+      "sections": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ]
+    },
+    {
       "title": "ESM alerta para colapso de IA e risco de recessão na Europa em 2027",
       "url": "https://ptia.pt/artigos/esm-alerta-para-colapso-de-ia-e-risco-de-recessao-na-europa-em-2027-1e094f4e771b4106ab",
       "published_at": "2026-07-08T16:00:00+01:00",
@@ -482,66 +543,6 @@
       "summary": "O governo português anunciou um investimento adicional de 1,5 milhões de euros no seu modelo nacional de inteligência artificial, elevando o financiamento total para 7 milhões de euros até 2027. O objetivo é fortalecer...",
       "sections": [
         "Portugal",
-        "Builders",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "ONU Alerta: Disparidade Global Acentua-se com Crescimento Desigual da IA",
-      "url": "https://ptia.pt/artigos/onu-alerta-disparidade-global-acentua-se-com-crescimento-desigual-da-ia-c02f506270e9191065",
-      "published_at": "2026-07-02T09:00:00+01:00",
-      "summary": "A rápida proliferação da inteligência artificial (IA) ameaça agravar as desigualdades globais, alertou um painel de especialistas das Nações Unidas. À medida que a adoção da IA se expande de forma heterogénea pelo mundo...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Claude Science: Um novo paradigma para a investigação alimentada por IA",
-      "url": "https://ptia.pt/artigos/claude-science-um-novo-paradigma-para-a-investigacao-alimentada-por-ia-3fef512fa5048f93bd",
-      "published_at": "2026-07-01T21:00:00+01:00",
-      "summary": "A Anthropic apresentou o Claude Science, uma aplicação personalizável que visa integrar as ferramentas e pacotes mais utilizados por investigadores. A plataforma promete gerar resultados auditáveis e oferecer acesso fle...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais",
-        "Previsões Futuras"
-      ]
-    },
-    {
-      "title": "Saúde: A Teem Acelera a Adopção de IA no Suporte Remoto ao Paciente",
-      "url": "https://ptia.pt/artigos/saude-a-teem-acelera-a-adopcao-de-ia-no-suporte-remoto-ao-paciente-612e90a9bfd1913ff2",
-      "published_at": "2026-07-01T16:00:00+01:00",
-      "summary": "A Teem, uma empresa especializada em força de trabalho remota para o setor da saúde, integrou ferramentas de inteligência artificial de ponta no workflow das suas equipas. Esta abordagem posiciona a Teem como a primeira...",
-      "sections": [
-        "Mundo",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "FactSet e Google Cloud: A IA 'agentic' Chega à Inteligência Financeira",
-      "url": "https://ptia.pt/artigos/factset-e-google-cloud-a-ia-agentic-chega-a-inteligencia-financeira-3c5970f9ff5eea1509",
-      "published_at": "2026-07-01T13:00:00+01:00",
-      "summary": "A FactSet, um dos fornecedores globais de dados e soluções de inteligência artificial para mercados financeiros, anunciou uma parceria estratégica com o Google Cloud. O objetivo é desenvolver uma nova geração de soluçõe...",
-      "sections": [
-        "Mundo",
-        "Builders",
-        "Regulação",
-        "Histórias reais"
-      ]
-    },
-    {
-      "title": "Investimento em IA e Crescimento do Emprego: Um Estudo da Ramp Economics Lab",
-      "url": "https://ptia.pt/artigos/investimento-em-ia-e-crescimento-do-emprego-um-estudo-da-ramp-economics-lab-bb4990ab0cb7bef1a3",
-      "published_at": "2026-07-01T09:00:00+01:00",
-      "summary": "Uma nova pesquisa da Ramp Economics Lab, plataforma de operações financeiras da Ramp, revela que empresas com investimentos significativos em IA expandiram as suas equipas mais rapidamente do que pares comparáveis. Os d...",
-      "sections": [
-        "Mundo",
         "Builders",
         "Histórias reais"
       ]

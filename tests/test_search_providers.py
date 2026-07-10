@@ -1,9 +1,49 @@
+import io
+import os
 import unittest
+from urllib.error import HTTPError
+from unittest.mock import patch
 
-from ptia_engine.search_providers import GeminiGroundedSearchProvider
+from ptia_engine.search_providers import GEMINI_SEARCH_DEFAULT_MODEL, GeminiGroundedSearchProvider
 
 
 class SearchProvidersTests(unittest.TestCase):
+    def test_default_search_model_uses_current_gemini_flash_alias(self):
+        with patch.dict(os.environ, {}, clear=True):
+            provider = GeminiGroundedSearchProvider(api_key="test")
+
+        self.assertEqual(provider.model, GEMINI_SEARCH_DEFAULT_MODEL)
+        self.assertNotEqual(provider.model, "gemini-2.5-flash")
+
+    def test_retries_deprecated_configured_model_with_default_alias(self):
+        provider = GeminiGroundedSearchProvider(api_key="test", model="gemini-2.5-flash")
+        calls = []
+
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+            def read(self):
+                return b'{"candidates":[{"content":{"parts":[{"text":"{}"}]}}]}'
+
+        def fake_urlopen(request, timeout):
+            calls.append(request.full_url)
+            if len(calls) == 1:
+                body = b'{"error":{"message":"This model models/gemini-2.5-flash is no longer available.","status":"NOT_FOUND"}}'
+                raise HTTPError(request.full_url, 404, "Not Found", {}, io.BytesIO(body))
+            return FakeResponse()
+
+        with patch("ptia_engine.search_providers.urlopen_direct", fake_urlopen):
+            response = provider._post_generate_content({"contents": []})
+
+        self.assertEqual(response["candidates"][0]["content"]["parts"][0]["text"], "{}")
+        self.assertIn("gemini-2.5-flash", calls[0])
+        self.assertIn(GEMINI_SEARCH_DEFAULT_MODEL, calls[1])
+        self.assertEqual(provider.model, GEMINI_SEARCH_DEFAULT_MODEL)
+
     def test_extracts_json_candidates_from_gemini_response(self):
         response = {
             "candidates": [

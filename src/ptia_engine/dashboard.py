@@ -2093,44 +2093,7 @@ def _reject_final_post(state: DashboardState, post_id: str) -> object:
 
 
 def _site_feed(state: DashboardState) -> dict:
-    posts = _ensure_image_variants_for_posts(state, load_final_posts(state.final_posts_path))
-    site_posts = [
-        post
-        for post in posts
-        if post.channel == "site"
-        and post.status in {"scheduled", "published"}
-        and _has_public_site_image_quality(post)
-    ]
-    site_posts.sort(key=lambda post: post.scheduled_time or post.created_at, reverse=True)
-    deduped_posts = []
-    seen_keys = set()
-    for post in site_posts:
-        key = post.source_urls[0] if post.source_urls else post.title.strip().lower()
-        if key in seen_keys:
-            continue
-        seen_keys.add(key)
-        deduped_posts.append(post)
-    return {
-        "brand": "PTIA.pt",
-        "updated_at": utc_now_iso(),
-        "posts": [
-            {
-                "id": post.post_id,
-                "title": post.title,
-                "body": _clean_article_body(post.body),
-                "source_urls": post.source_urls,
-                "image_path": post.image_path,
-                "image_url": (
-                    f"/asset?path={quote(post.image_variants.get('site') or post.image_path)}"
-                    if (post.image_variants.get("site") or post.image_path)
-                    else ""
-                ),
-                "published_at": post.published_url or post.scheduled_time or post.created_at,
-                "section": _site_section_for_post(post),
-            }
-            for post in deduped_posts
-        ],
-    }
+    return _static_site_feed_payload(state)
 
 
 def _site_section_for_post(post: FinalPost) -> list[str]:
@@ -4724,13 +4687,18 @@ HTML = r"""<!doctype html>
       navigator.clipboard.writeText(finalPostText(post));
     }
     function finalPostCopyPayload(postId, syncPackage = false) {
+      const post = findFinalPost(postId);
+      const fieldValue = (field, fallback = '') => {
+        const input = document.getElementById(`${field}_${postId}`);
+        return input ? input.value.trim() : String(fallback || '');
+      };
       stashCurrentImagePrompt(postId);
       return {
         post_id: postId,
-        title: val(`edit_title_${postId}`),
-        body: val(`edit_body_${postId}`),
-        hashtags: val(`edit_hashtags_${postId}`),
-        image_prompt: val(`edit_image_prompt_${postId}`),
+        title: fieldValue('edit_title', post?.title),
+        body: fieldValue('edit_body', post?.body),
+        hashtags: fieldValue('edit_hashtags', post?.hashtags),
+        image_prompt: fieldValue('edit_image_prompt', post?.image_prompt),
         sync_topic: syncPackage,
       };
     }

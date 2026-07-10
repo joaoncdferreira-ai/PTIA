@@ -60,8 +60,8 @@ python -m ptia_engine.cli ai-drafts --provider openai --limit 3 --monthly-budget
 PTIA_LLM_PROVIDER=template
 
 GEMINI_API_KEY=
-GEMINI_MODEL=gemini-2.5-flash
-GEMINI_SEARCH_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-flash-latest
+GEMINI_SEARCH_MODEL=gemini-flash-latest
 
 OLLAMA_BASE_URL=http://127.0.0.1:11434
 OLLAMA_MODEL=llama3.1
