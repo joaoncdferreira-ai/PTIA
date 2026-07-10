@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-09T21:03:21+00:00",
+  "updated_at": "2026-07-10T19:43:08+00:00",
   "posts": [
     {
       "id": "post_5e7dff7c3d72c59b56",
@@ -38,20 +38,22 @@
     },
     {
       "id": "post_b9a755713acb8e65e5",
-      "title": "Portugal coloca IA, produtividade e governação na agenda do FMI e Banco Mundial",
-      "body": "A reunião da constituency de Portugal no FMI e Banco Mundial, realizada em Lisboa a 6 e 7 de julho, incluiu sessões dedicadas à inteligência artificial. Joaquim Miranda Sarmento defendeu a utilização responsável da tecnologia para reforçar produtividade, inovação, competitividade e inclusão. Álvaro Santos Pereira destacou a necessidade de uma governação sólida.\n\nA mensagem é relevante porque junta duas discussões que muitas vezes aparecem separadas: a promessa económica da IA e as regras necessárias para a aplicar com responsabilidade. Mas o comunicado fixa uma direção, não um plano de execução.\n\nPara organizações portuguesas, o trabalho começa nos casos de uso concretos: escolher tarefas onde há tempo a ganhar, medir o efeito no processo, proteger dados e manter responsabilidade humana pelas decisões. É assim que a ambição se traduz em produtividade verificável.",
+      "title": "A IA como alavanca macroeconómica: a nova diplomacia financeira de Portugal",
+      "body": "Durante a reunião da constituency de Portugal no Fundo Monetário Internacional e no Banco Mundial, que decorreu nos dias 6 e 7 de julho na sede do Banco de Portugal, o ministro das Finanças, Joaquim Miranda Sarmento, e o governador do Banco de Portugal, Álvaro Santos Pereira, defenderam formalmente a integração da Inteligência Artificial como motor de produtividade e sustentabilidade das finanças públicas.\n\nEsta tomada de posição traduz uma mudança de agulha na diplomacia económica do país. Ao levar o tema da IA para o coração das duas maiores instituições financeiras multilaterais do mundo, o governo português sinaliza que a tecnologia deixou de ser uma pasta setorial da transição digital para passar a ser tratada como uma variável macroeconómica estrutural. A produtividade nacional, historicamente estagnada, é aqui posicionada não apenas como um desafio de gestão privada, mas como uma métrica diretamente influenciável pela modernização do Estado.\n\nO verdadeiro teste desta visão reside na capacidade de transpor este alinhamento político para a execução prática na máquina pública. Se o Ministério das Finanças conseguir liderar pelo exemplo, aplicando modelos de IA na simplificação fiscal, na previsão de receitas ou na eficiência da despesa, cria-se um precedente de mercado. Esta postura ativa abre caminho para que o ecossistema tecnológico local encontre no próprio Estado um cliente sofisticado e um validador de soluções de escala global.\n\nA consequência imediata deste posicionamento é a aceleração de um roadmap regulatório e de contratação pública mais ágil. Para os decisores e fundadores de tecnologia, isto significa que a discussão sobre IA em Portugal está a perder o pendor puramente defensivo da compliance europeia e a ganhar tração como argumento de competitividade económica real.",
       "source_urls": [
         "https://jornaleconomico.sapo.pt/noticias/portugal-defende-papel-da-inteligencia-artificial-no-aumento-da-produtividade-em-reuniao-do-fmi-e-banco-mundial/"
       ],
-      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b702ac4e870f45fa53_ae7c7b19_ChatGPT-Image-9_07_2026-20_55_48.png",
+      "image_path": "data\\final_assets\\post_af1398ab99e776464d_6b981c2a.svg",
       "image_url": "/assets/final/post_af1398ab99e776464d_site_1600x900.jpg",
       "published_at": "2026-07-10T13:00:00+01:00",
       "section": [
         "Portugal",
+        "Builders",
         "Regulação",
-        "Histórias reais"
+        "Histórias reais",
+        "Previsões Futuras"
       ],
-      "article_url": "artigos/portugal-coloca-ia-produtividade-e-governacao-na-agenda-do-fmi-e-banco-mundial-b9a755713acb8e65e5"
+      "article_url": "artigos/a-ia-como-alavanca-macroeconomica-a-nova-diplomacia-financeira-de-portugal-b9a755713acb8e65e5"
     },
     {
       "id": "post_caf2cd2eaeb100d30c",
