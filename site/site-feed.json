@@ -1,7 +1,76 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-10T20:13:12+00:00",
+  "updated_at": "2026-07-10T20:35:59+00:00",
   "posts": [
+    {
+      "id": "post_b392cbe70c0120bf2e",
+      "title": "Meta lança Muse: a aceleração da geração de imagem foca-se na eficiência do silício",
+      "body": "A Meta apresentou o Muse, um novo modelo de inteligência artificial focado na geração rápida de imagens de alta qualidade com um consumo de recursos computacionais significativamente inferior aos padrões atuais da indústria. O avanço técnico assenta numa arquitetura otimizada que reduz o tempo de processamento por imagem, permitindo que a criação visual aconteça em frações de segundo diretamente nos servidores da tecnológica.\n\nA estratégia da Meta com o Muse revela que a corrida dos modelos gerativos já não se decide apenas pela qualidade estética do resultado final, mas sim pelo custo energético e de infraestrutura por cada imagem gerada. Ao desenhar um modelo altamente otimizado para o seu próprio ecossistema de chips, a empresa consegue escalar a funcionalidade para milhares de milhões de utilizadores sem asfixiar as suas margens operacionais. A eficiência do silício tornou-se o verdadeiro diferenciador comercial.\n\nPara os decisores e criadores que desenham produtos digitais, esta evolução altera a economia da personalização em tempo real. A capacidade de gerar interfaces, ilustrações ou criativos publicitários personalizados instantaneamente deixa de ser um luxo técnico de processamento lento e passa a ser uma funcionalidade integrada no fluxo de navegação do utilizador.\n\nA democratização destas ferramentas de alta velocidade coloca uma pressão direta sobre as plataformas que cobram assinaturas premium por geração de imagem. Se a infraestrutura de distribuição gratuita consegue entregar velocidade e qualidade equivalentes, o valor migra imediatamente da geração isolada para a integração contextual dentro das aplicações onde os utilizadores já passam o seu dia.",
+      "source_urls": [
+        "https://www.nytimes.com/2026/07/07/technology/meta-ai-muse-image.html"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e49288e70fa6e80a8a_93620971_ChatGPT-Image-10_07_2026-21_21_02.png",
+      "image_url": "/assets/final/post_9ced41756309fc3e9c_site_1600x900.jpg",
+      "published_at": "2026-07-11T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/meta-lanca-muse-a-aceleracao-da-geracao-de-imagem-foca-se-na-eficiencia-do-silicio-b392cbe70c0120bf2e"
+    },
+    {
+      "id": "post_ba3db677ed86bd53db",
+      "title": "Central banks warn of financial risks from agentic AI",
+      "body": "Bancos centrais europeus alertaram que sistemas autónomos de IA podem amplificar a volatilidade nos mercados financeiros em momentos de stress, exigindo salvaguardas regulatórias urgentes.",
+      "source_urls": [
+        "https://www.ft.com/content/central-banks-warn-financial-risks-agentic-ai"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_14efd51c87d6b5fdc5_4ecbd0dc_ChatGPT-Image-10_07_2026-21_20_05.png",
+      "image_url": "/assets/final/post_f863d00e7c1a293f3e_site_1600x900.jpg",
+      "published_at": "2026-07-11T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação"
+      ],
+      "article_url": "artigos/central-banks-warn-of-financial-risks-from-agentic-ai-ba3db677ed86bd53db"
+    },
+    {
+      "id": "post_187249f7800ebe68cb",
+      "title": "Finlândia traz radares espaciais para Alverca: o novo nó de defesa e dados que se instala no Tejo",
+      "body": "A fabricante finlandesa de satélites ICEYE vai instalar um centro de excelência em Alverca, assumindo o papel de parceiro tecnológico e de satélites do novo Space Hub da Força Aérea Portuguesa. A nova infraestrutura será dedicada à investigação e desenvolvimento (I&D) em software, integração de sistemas e inteligência artificial aplicados à observação terrestre de alta resolução.\n\nEsta decisão da ICEYE, líder global em tecnologia de radar de abertura sintética (SAR), transfere para o território nacional uma competência rara: o processamento local de dados espaciais que ignoram a cobertura de nuvens e a escuridão. Ao ancorar este centro nas instalações militares de Alverca, a operação cria uma ponte direta entre a soberania de dados do Estado e a agilidade do ecossistema privado de tecnologia.\n\nA chegada de um operador com constelação própria de microssatélites muda a escala do talento nacional. O desafio imediato deixa de ser a capacidade de lançar hardware para o espaço e passa a ser a velocidade com que os engenheiros portugueses conseguem converter fluxos massivos de dados brutos de radar em ferramentas de decisão em terra.\n\nEsta integração vertical de competências em Alverca coloca as equipas locais no centro da cadeia de valor da segurança europeia, onde o software e o pipeline de IA são os verdadeiros diferenciadores competitivos. A capacidade de desenhar algoritmos capazes de detetar alterações milimétricas em infraestruturas críticas a partir do espaço determinará se Portugal se posiciona como um mero utilizador de tecnologia espacial ou como o arquiteto da infraestrutura que a processa.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/07/09/fabricante-finlandesa-de-satelites-abre-centro-de-excelencia-em-lisboa/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c27abd7e7790ca4670_3b671450_ChatGPT-Image-10_07_2026-21_20_34.png",
+      "image_url": "/assets/final/post_2def2668ab7ed2fad7_site_1600x900.jpg",
+      "published_at": "2026-07-11T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/finlandia-traz-radares-espaciais-para-alverca-o-novo-no-de-defesa-e-dados-que-se-instala-no-tejo-187249f7800ebe68cb"
+    },
+    {
+      "id": "post_c610ec96770043fb5d",
+      "title": "Portugal integra fundo europeu de 15 mil milhões para reter unicórnios tecnológicos",
+      "body": "Portugal aderiu a um fundo europeu de 15 mil milhões de euros, desenhado para mitigar a saída de empresas tecnológicas de elevado crescimento – os chamados unicórnios – para mercados como o dos Estados Unidos. A iniciativa visa fortalecer o ecossistema tecnológico e de inovação europeu, incentivando o investimento e a retenção de talento e capital dentro do continente. O governo português não detalhou ainda o montante exato do seu investimento.\n\nEsta adesão é mais do que um gesto de solidariedade; é um movimento estratégico que reconhece a fragilidade do nosso pipeline de inovação quando as empresas mais promissoras procuram capital e escala fora da Europa. O problema não é apenas a fuga de empresas, mas a perda de conhecimento, de massa crítica e, sobretudo, de futuras indústrias que poderiam nascer e escalar a partir de cá. A questão de fundo não é se a Europa consegue gerar unicórnios, mas se consegue financiá-los e retê-los quando atingem um determinado patamar de maturidade.\n\nAo participar neste fundo, Portugal assume uma posição ativa na construção de um ecossistema mais resiliente. O desafio agora passa por garantir que este capital não se limita a financiar empresas já estabelecidas, mas que se torna um catalisador para as startups de IA em fase inicial, que hoje enfrentam o mesmo dilema: crescer rápido e arriscar a relocalização, ou ter um crescimento mais contido e perder a janela de oportunidade. A verdadeira métrica de sucesso não será o número de empresas que o fundo apoia, mas a capacidade de criar um ambiente onde as próximas gerações de inovadores possam sonhar com uma escala global, a partir de Portugal, sem que a falta de capital seja a razão para a sua partida.",
+      "source_urls": [
+        "https://www.portugalresident.com/portugal-joins-e15-billion-european-tech-fund-to-keep-unicorns-from-moving-to-u-s/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9e1e2cb36bfacdc47e_7ffc47c6_ChatGPT-Image-10_07_2026-21_17_39.png",
+      "image_url": "/assets/final/post_2ecf8ace249bd3a8d9_site_1600x900.jpg",
+      "published_at": "2026-07-11T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/portugal-integra-fundo-europeu-de-15-mil-milhoes-para-reter-unicornios-tecnologicos-c610ec96770043fb5d"
+    },
     {
       "id": "post_5e7dff7c3d72c59b56",
       "title": "UPTEC recebe sessão sobre IA e supercomputação para startups e PME",
