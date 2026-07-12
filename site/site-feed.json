@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-11T22:57:12+00:00",
+  "updated_at": "2026-07-12T10:17:43+00:00",
   "posts": [
     {
       "id": "post_2a73065ffcd757dcbc",
@@ -56,7 +56,7 @@
     },
     {
       "id": "post_7d1ddbb64d03328534",
-      "title": "A IA industrial portuguesa entra na escala europeia pelo chão de fábrica",
+      "title": "Brainr capta 1,5 milhões para levar IA portuguesa às fábricas europeias",
       "body": "A startup leiriense Brainr captou um investimento de 1,5 milhões de euros junto da Portugal Ventures. O capital destina-se a acelerar a expansão europeia do seu software de inteligência artificial, desenhado especificamente para otimizar operações e garantir a rastreabilidade em tempo real dentro de grandes unidades de processamento alimentar.\n\nEste movimento expõe uma realidade pragmática no desenvolvimento de tecnologia: a verdadeira utilidade da IA não se decide em modelos genéricos de linguagem, mas na capacidade de traduzir dados complexos em eficiência operacional onde a margem de erro é nula. Ao focar-se na indústria de processamento alimentar — um setor tradicionalmente analógico, altamente regulado e com cadeias de abastecimento críticas —, a Brainr evita o ruído das ferramentas de produtividade de escritório e posiciona-se no núcleo físico da economia. O valor aqui gerado é mensurável em toneladas de desperdício evitado e minutos de paragem de linha poupados.\n\nA tese que este investimento valida é a de que a especialização vertical extrema é o caminho mais rápido para a internacionalização de tecnologia portuguesa. O ecossistema nacional de inovação ganha escala quando deixa de tentar criar plataformas universais e passa a resolver problemas cirúrgicos de indústrias globais maduras. Para as fábricas europeias, a adoção destas ferramentas deixa de ser um projeto experimental de inovação e passa a ser uma necessidade de sobrevivência operacional e de compliance regulatório acelerado.\n\nO desafio imediato para os decisores industriais muda de figura. A questão já não é avaliar se a inteligência artificial está pronta para o chão de fábrica, mas sim determinar a rapidez com que conseguem integrar estes sistemas antes que a concorrência direta fixe um novo padrão de custo marginal na distribuição alimentar europeia.",
       "source_urls": [
         "https://cnnportugal.iol.pt/brainr/tecnologia-portuguesa-com-ia-da-brainr-reforca-investimento-para-conquistar-grandes-fabricas-europeias"
@@ -70,7 +70,7 @@
         "Regulação",
         "Histórias reais"
       ],
-      "article_url": "artigos/a-ia-industrial-portuguesa-entra-na-escala-europeia-pelo-chao-de-fabrica-7d1ddbb64d03328534"
+      "article_url": "artigos/brainr-capta-1-5-milhoes-para-levar-ia-portuguesa-as-fabricas-europeias-7d1ddbb64d03328534"
     },
     {
       "id": "post_b392cbe70c0120bf2e",
@@ -92,7 +92,7 @@
     },
     {
       "id": "post_ba3db677ed86bd53db",
-      "title": "Central banks warn of financial risks from agentic AI",
+      "title": "A liquidez algorítmica e o novo teste de stress dos bancos centrais",
       "body": "Bancos centrais europeus alertaram que sistemas autónomos de IA podem amplificar a volatilidade nos mercados financeiros em momentos de stress, exigindo salvaguardas regulatórias urgentes.",
       "source_urls": [
         "https://www.ft.com/content/central-banks-warn-financial-risks-agentic-ai"
@@ -104,7 +104,7 @@
         "Mundo",
         "Regulação"
       ],
-      "article_url": "artigos/central-banks-warn-of-financial-risks-from-agentic-ai-ba3db677ed86bd53db"
+      "article_url": "artigos/a-liquidez-algoritmica-e-o-novo-teste-de-stress-dos-bancos-centrais-ba3db677ed86bd53db"
     },
     {
       "id": "post_187249f7800ebe68cb",
