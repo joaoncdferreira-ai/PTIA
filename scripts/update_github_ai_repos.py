@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -71,14 +72,15 @@ def _parse_datetime(value: str) -> datetime | None:
 
 def _github_get(path: str, params: dict[str, str]) -> dict:
     url = f"https://api.github.com{path}?{urlencode(params)}"
-    request = Request(
-        url,
-        headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "PTIA-Editorial-Radar",
-            "X-GitHub-Api-Version": "2022-11-28",
-        },
-    )
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "PTIA-Editorial-Radar",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    github_token = os.environ.get("GITHUB_TOKEN")
+    if github_token:
+        headers["Authorization"] = f"Bearer {github_token}"
+    request = Request(url, headers=headers)
     with urlopen(request, timeout=30) as response:
         return json.loads(response.read().decode("utf-8"))
 

@@ -39,15 +39,20 @@ jobs:
       - name: Build weekly edition
         run: python scripts/update_ptia_knowledge.py
 
+      - name: Update open-source radar
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/update_github_ai_repos.py
+
       - name: Commit generated edition
         run: |
-          if git diff --quiet -- config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index; then
+          if git diff --quiet -- config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index site/assets/github-ai-repos.json; then
             echo "No knowledge changes."
             exit 0
           fi
           git config user.name "ptia-automation"
           git config user.email "actions@users.noreply.github.com"
-          git add config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index
+          git add config/ptia_knowledge.json site/assets/quem-e-quem.json data/knowledge_review.jsonl data/knowledge_runs.jsonl site/recursos site/ia-em-portugal site/ferramentas site/prompts site/glossario site/metodologia-indice site/assets/ptia-index site/assets/github-ai-repos.json
           git commit -m "Update PTIA weekly knowledge index"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

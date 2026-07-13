@@ -108,32 +108,34 @@ class KnowledgeAutomationTests(unittest.TestCase):
         proposed[0], proposed[1] = proposed[1], proposed[0]
         run = run_knowledge_automation(
             self.root,
-            provider=FakeProvider([
-                {
-                    "kind": "tool_component_order",
-                    "target": "coding",
-                    "confidence": 0.97,
-                    "reason": "Dois benchmarks recentes colocam o segundo candidato à frente.",
-                    "sources": [
-                        {
-                            "label": "Benchmark A",
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "tool_component_order",
+                        "target": "coding",
+                        "confidence": 0.97,
+                        "reason": "Dois benchmarks recentes colocam o segundo candidato à frente.",
+                        "sources": [
+                            {
+                                "label": "Benchmark A",
+                                "url": "https://vellum.ai/a",
+                                "evidence": "O benchmark coloca este modelo em primeiro lugar.",
+                            },
+                            {
+                                "label": "Benchmark B",
+                                "url": "https://github.com/b",
+                                "evidence": "O segundo benchmark confirma a mesma ordenação.",
+                            },
+                        ],
+                        "payload": {
+                            "component": "capability",
+                            "ranking": proposed,
+                            "label": "Benchmarks combinados",
                             "url": "https://vellum.ai/a",
-                            "evidence": "O benchmark coloca este modelo em primeiro lugar.",
                         },
-                        {
-                            "label": "Benchmark B",
-                            "url": "https://github.com/b",
-                            "evidence": "O segundo benchmark confirma a mesma ordenação.",
-                        },
-                    ],
-                    "payload": {
-                        "component": "capability",
-                        "ranking": proposed,
-                        "label": "Benchmarks combinados",
-                        "url": "https://vellum.ai/a",
-                    },
-                }
-            ]),
+                    }
+                ]
+            ),
         )
 
         self.assertEqual(run["auto_applied"], 1)
@@ -141,38 +143,123 @@ class KnowledgeAutomationTests(unittest.TestCase):
         snapshot = knowledge_review_snapshot(self.root)
         self.assertEqual(snapshot["counts"]["applied"], 1)
 
+    def test_material_entity_status_is_quarantined_automatically(self):
+        run = run_knowledge_automation(
+            self.root,
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "entity_status_update",
+                        "target": "companies",
+                        "confidence": 0.99,
+                        "reason": ("A empresa deixou de ser elegível para o índice ativo."),
+                        "sources": [
+                            {
+                                "label": "Reuters",
+                                "url": "https://reuters.com/technology/example",
+                                "evidence": ("A notícia confirma a liquidação formal da empresa."),
+                            },
+                            {
+                                "label": "Portal público",
+                                "url": "https://gov.pt/empresas/example",
+                                "evidence": ("O registo público confirma o mesmo estado material."),
+                            },
+                        ],
+                        "payload": {
+                            "id": "feedzai",
+                            "status": "liquidated",
+                            "status_reason": (
+                                "Liquidação formal confirmada por notícia e registo público."
+                            ),
+                            "verified_at": "2026-07-13T10:00:00+00:00",
+                        },
+                    }
+                ]
+            ),
+        )
+
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
+        )
+        feedzai = next(item for item in directory["companies"] if item["id"] == "feedzai")
+        self.assertEqual(run["auto_applied"], 1)
+        self.assertEqual(feedzai["status"], "liquidated")
+        self.assertEqual(feedzai["eligibility"], "ineligible")
+        self.assertEqual(len(feedzai["verification"]["sources"]), 2)
+
+    def test_entity_order_change_always_waits_for_editorial_review(self):
+        catalog_path = self.root / "config" / "ptia_knowledge.json"
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        current = list(catalog["entity_baselines"]["companies"])
+        proposed = current.copy()
+        proposed[0], proposed[1] = proposed[1], proposed[0]
+
+        run = run_knowledge_automation(
+            self.root,
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "entity_baseline_order",
+                        "target": "companies",
+                        "confidence": 0.99,
+                        "reason": ("Duas fontes recentes sugerem rever a ordem editorial."),
+                        "sources": [
+                            {
+                                "label": "Reuters",
+                                "url": "https://reuters.com/technology/ranking",
+                                "evidence": ("A notícia documenta impacto empresarial recente."),
+                            },
+                            {
+                                "label": "Portal público",
+                                "url": "https://gov.pt/empresas/ranking",
+                                "evidence": ("O registo confirma atividade empresarial relevante."),
+                            },
+                        ],
+                        "payload": {"ranking": proposed},
+                    }
+                ]
+            ),
+        )
+
+        updated = json.loads(catalog_path.read_text(encoding="utf-8"))
+        self.assertEqual(run["auto_applied"], 0)
+        self.assertEqual(updated["entity_baselines"]["companies"], current)
+        self.assertEqual(knowledge_review_snapshot(self.root)["counts"]["pending"], 1)
+
     def test_large_change_is_held_for_review(self):
         ranking = self._coding_ranking()
         proposed = ranking.copy()
         proposed.insert(0, proposed.pop())
         run_knowledge_automation(
             self.root,
-            provider=FakeProvider([
-                {
-                    "kind": "tool_component_order",
-                    "target": "coding",
-                    "confidence": 0.99,
-                    "reason": "Mudança invulgar.",
-                    "sources": [
-                        {
-                            "label": "A",
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "tool_component_order",
+                        "target": "coding",
+                        "confidence": 0.99,
+                        "reason": "Mudança invulgar.",
+                        "sources": [
+                            {
+                                "label": "A",
+                                "url": "https://vellum.ai/a",
+                                "evidence": "A fonte propõe uma alteração extensa no ranking.",
+                            },
+                            {
+                                "label": "B",
+                                "url": "https://github.com/b",
+                                "evidence": "A segunda fonte confirma a alteração extensa.",
+                            },
+                        ],
+                        "payload": {
+                            "component": "capability",
+                            "ranking": proposed,
+                            "label": "Teste",
                             "url": "https://vellum.ai/a",
-                            "evidence": "A fonte propõe uma alteração extensa no ranking.",
                         },
-                        {
-                            "label": "B",
-                            "url": "https://github.com/b",
-                            "evidence": "A segunda fonte confirma a alteração extensa.",
-                        },
-                    ],
-                    "payload": {
-                        "component": "capability",
-                        "ranking": proposed,
-                        "label": "Teste",
-                        "url": "https://vellum.ai/a",
-                    },
-                }
-            ]),
+                    }
+                ]
+            ),
         )
 
         snapshot = knowledge_review_snapshot(self.root)
@@ -184,36 +271,36 @@ class KnowledgeAutomationTests(unittest.TestCase):
         original = json.loads(
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
-        tool = deepcopy(
-            next(item for item in original["tools"] if item["id"] == "claude-opus-4-8")
-        )
+        tool = deepcopy(next(item for item in original["tools"] if item["id"] == "claude-opus-4-8"))
         tool["categories"] = ["coding"]
         tool["category_positions"] = {
             "coding": {"capability": 1, "popularity": 1, "task_fit": 1, "access": 1}
         }
         run = run_knowledge_automation(
             self.root,
-            provider=FakeProvider([
-                {
-                    "kind": "tool_upsert",
-                    "target": "coding",
-                    "confidence": 0.99,
-                    "reason": "Alteração que invalida a presença noutra categoria.",
-                    "sources": [
-                        {
-                            "label": "A",
-                            "url": "https://vellum.ai/a",
-                            "evidence": "A fonte descreve a ferramenta apenas para coding.",
-                        },
-                        {
-                            "label": "B",
-                            "url": "https://github.com/b",
-                            "evidence": "A segunda fonte repete a classificação para coding.",
-                        },
-                    ],
-                    "payload": tool,
-                }
-            ]),
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "tool_upsert",
+                        "target": "coding",
+                        "confidence": 0.99,
+                        "reason": "Alteração que invalida a presença noutra categoria.",
+                        "sources": [
+                            {
+                                "label": "A",
+                                "url": "https://vellum.ai/a",
+                                "evidence": "A fonte descreve a ferramenta apenas para coding.",
+                            },
+                            {
+                                "label": "B",
+                                "url": "https://github.com/b",
+                                "evidence": "A segunda fonte repete a classificação para coding.",
+                            },
+                        ],
+                        "payload": tool,
+                    }
+                ]
+            ),
         )
 
         updated = json.loads(
@@ -229,9 +316,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
         original = json.loads(
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
-        tool = deepcopy(
-            next(item for item in original["tools"] if item["id"] == "claude-opus-4-8")
-        )
+        tool = deepcopy(next(item for item in original["tools"] if item["id"] == "claude-opus-4-8"))
         tool["categories"] = ["coding"]
         tool["category_positions"] = {
             "coding": {"capability": 1, "popularity": 1, "task_fit": 1, "access": 1}
@@ -282,36 +367,41 @@ class KnowledgeAutomationTests(unittest.TestCase):
         prompt["title"] = "Novo prompt seguro"
         run = run_knowledge_automation(
             self.root,
-            provider=FakeProvider([
-                {
-                    "kind": "prompt_upsert",
-                    "target": "produtividade",
-                    "confidence": 0.99,
-                    "reason": "Duas fontes sugerem este padrão de utilização.",
-                    "sources": [
-                        {
-                            "label": "A",
-                            "url": "https://vellum.ai/a",
-                            "evidence": "A fonte demonstra o padrão num contexto profissional.",
-                        },
-                        {
-                            "label": "B",
-                            "url": "https://github.com/b",
-                            "evidence": "A fonte independente apresenta o mesmo padrão.",
-                        },
-                    ],
-                    "payload": prompt,
-                }
-            ]),
+            provider=FakeProvider(
+                [
+                    {
+                        "kind": "prompt_upsert",
+                        "target": "produtividade",
+                        "confidence": 0.99,
+                        "reason": "Duas fontes sugerem este padrão de utilização.",
+                        "sources": [
+                            {
+                                "label": "A",
+                                "url": "https://vellum.ai/a",
+                                "evidence": "A fonte demonstra o padrão num contexto profissional.",
+                            },
+                            {
+                                "label": "B",
+                                "url": "https://github.com/b",
+                                "evidence": "A fonte independente apresenta o mesmo padrão.",
+                            },
+                        ],
+                        "payload": prompt,
+                    }
+                ]
+            ),
         )
 
         self.assertEqual(run["auto_applied"], 0)
         self.assertEqual(run["pending"], 1)
         self.assertNotIn(
             "novo-prompt-seguro",
-            [item["id"] for item in json.loads(
-                (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
-            )["prompts"]],
+            [
+                item["id"]
+                for item in json.loads(
+                    (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+                )["prompts"]
+            ],
         )
 
     def test_weekly_task_is_capped_to_three_proposals(self):
@@ -354,32 +444,34 @@ class KnowledgeAutomationTests(unittest.TestCase):
         ranking = self._coding_ranking()
         proposed = ranking.copy()
         proposed[0], proposed[1] = proposed[1], proposed[0]
-        provider = FakeProvider([
-            {
-                "kind": "tool_component_order",
-                "target": "coding",
-                "confidence": 0.99,
-                "reason": "Ranking alegadamente suportado.",
-                "sources": [
-                    {
-                        "label": "A",
+        provider = FakeProvider(
+            [
+                {
+                    "kind": "tool_component_order",
+                    "target": "coding",
+                    "confidence": 0.99,
+                    "reason": "Ranking alegadamente suportado.",
+                    "sources": [
+                        {
+                            "label": "A",
+                            "url": "https://vellum.ai/a",
+                            "evidence": "A fonte coloca o segundo candidato à frente.",
+                        },
+                        {
+                            "label": "B",
+                            "url": "https://github.com/b",
+                            "evidence": "A segunda fonte confirma a mesma posição.",
+                        },
+                    ],
+                    "payload": {
+                        "component": "capability",
+                        "ranking": proposed,
+                        "label": "Teste",
                         "url": "https://vellum.ai/a",
-                        "evidence": "A fonte coloca o segundo candidato à frente.",
                     },
-                    {
-                        "label": "B",
-                        "url": "https://github.com/b",
-                        "evidence": "A segunda fonte confirma a mesma posição.",
-                    },
-                ],
-                "payload": {
-                    "component": "capability",
-                    "ranking": proposed,
-                    "label": "Teste",
-                    "url": "https://vellum.ai/a",
-                },
-            }
-        ])
+                }
+            ]
+        )
         provider.grounded_json = lambda prompt, temperature=0.1: {
             "proposals": provider.proposals,
             "_grounding_sources": [
@@ -493,9 +585,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
         directory = json.loads(
-            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
-                encoding="utf-8"
-            )
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
         proposal = {
             "kind": "entity_upsert",
@@ -526,9 +616,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
         directory = json.loads(
-            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
-                encoding="utf-8"
-            )
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
         proposal = {
             "kind": "glossary_upsert",
@@ -554,9 +642,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
                     "Sistemas de inteligência artificial que planeiam e executam "
                     "tarefas com autonomia."
                 ),
-                "example": (
-                    "Um agente pesquisa, compara opções e entrega uma recomendação."
-                ),
+                "example": ("Um agente pesquisa, compara opções e entrega uma recomendação."),
                 "related": ["agente-ia"],
                 "aliases": ["agentes de ia"],
             },
@@ -571,9 +657,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
         directory = json.loads(
-            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
-                encoding="utf-8"
-            )
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
         proposal = {
             "kind": "tool_upsert",
@@ -595,14 +679,9 @@ class KnowledgeAutomationTests(unittest.TestCase):
             "payload": {
                 "id": "example-tool",
                 "name": "Example Tool",
-                "url": (
-                    "https://vertexaisearch.cloud.google.com/"
-                    "grounding-api-redirect/example"
-                ),
+                "url": ("https://vertexaisearch.cloud.google.com/grounding-api-redirect/example"),
                 "categories": ["pesquisa"],
-                "description": (
-                    "Ferramenta de pesquisa assistida por inteligência artificial."
-                ),
+                "description": ("Ferramenta de pesquisa assistida por inteligência artificial."),
                 "best_for": "Pesquisa documental.",
                 "watch_out": "Confirmar fontes.",
                 "baseline_score": 80,
@@ -628,9 +707,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
         directory = json.loads(
-            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
-                encoding="utf-8"
-            )
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
         proposal = {
             "kind": "entity_upsert",
@@ -670,9 +747,7 @@ class KnowledgeAutomationTests(unittest.TestCase):
             (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
         )
         directory = json.loads(
-            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(
-                encoding="utf-8"
-            )
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
         prompt_proposal = {
             "kind": "prompt_upsert",

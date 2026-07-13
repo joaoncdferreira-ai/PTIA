@@ -78,27 +78,49 @@ class KnowledgeTests(unittest.TestCase):
         self.assertIn("Retrieval-Augmented Generation", glossary)
         self.assertIn('"alternateName": "AI agent"', glossary)
         self.assertIn("Inteligência Artificial, sem nevoeiro.", glossary)
+        self.assertEqual(payload["schema_version"], 2)
+        self.assertNotIn("unbabel", {item["id"] for item in payload["companies"]})
+        self.assertEqual(payload["companies"][0]["id"], "feedzai")
+        archived_companies = payload["entity_archive"]["companies"]
+        unbabel = next(item for item in archived_companies if item["id"] == "unbabel")
+        self.assertEqual(unbabel["status"], "liquidated")
+        self.assertEqual(unbabel["eligibility"], "ineligible")
+        self.assertGreaterEqual(len(unbabel["verification"]["sources"]), 2)
+
         resources = (self.root / "site" / "recursos" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("Quem está a construir a IA em Portugal", resources)
-        self.assertIn("A melhor por finalidade", resources)
-        self.assertIn("Quem e o que lidera a IA esta semana.", resources)
+        self.assertIn("O que merece atenção — e porquê.", resources)
+        self.assertIn("A melhor adequação por finalidade", resources)
+        self.assertIn("Retirados do índice ativo", resources)
+        self.assertIn("Unbabel", resources)
+        self.assertIn("Liquidação", resources)
         self.assertIn('class="weekly-leaders"', resources)
-        self.assertIn('weekly-leader-label">Empresa</span>', resources)
-        self.assertIn('weekly-leader-label">Pessoa</span>', resources)
-        self.assertIn('weekly-leader-label">Ferramenta</span>', resources)
-        self.assertIn('weekly-leader-label">Prompt</span>', resources)
+        self.assertIn('weekly-leader-label">Empresa em destaque</span>', resources)
+        self.assertIn('weekly-leader-label">Pessoa em destaque</span>', resources)
+        self.assertIn('weekly-leader-label">Verificação</span>', resources)
+        self.assertIn('weekly-leader-label">Alterações de estado</span>', resources)
         self.assertIn('href="/recursos/">Hub</a>', resources)
-        self.assertEqual(resources.count("<li>"), 24)
-        self.assertIn("<small>PTIA</small>", resources)
         self.assertIn('class="lobby-entity-list"', resources)
-        self.assertNotIn(">Manteve<", resources)
-        portugal = (self.root / "site" / "ia-em-portugal" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('id="radar-open-source"', resources)
+        self.assertIn("Open source para explorar", resources)
+        self.assertIn('fetch("/assets/github-ai-repos.json", { cache: "no-store" })', resources)
+        self.assertIn("N?o altera o ?ndice PTIA", resources)
+        self.assertNotIn("PTIA Score", resources)
+
+        portugal = (self.root / "site" / "ia-em-portugal" / "index.html").read_text(
+            encoding="utf-8"
+        )
         self.assertIn('data-index-tab="companies"', portugal)
         self.assertIn('data-index-panel="people"', portugal)
-        self.assertIn("PTIA Score", portugal)
-        self.assertNotIn(">Manteve<", portugal)
+        self.assertIn("Confiança:", portugal)
+        self.assertIn("Provisório", portugal)
+        self.assertIn("Co-fundador da Unbabel", portugal)
+        self.assertNotIn("CEO, Unbabel", portugal)
+        self.assertNotIn("PTIA Score", portugal)
+
         prompts = (self.root / "site" / "prompts" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("Top 10 prompts PTIA", prompts)
+        self.assertIn("10 prompts escolhidos pela PTIA", prompts)
+        self.assertIn("Curadoria editorial · utilização ainda não medida", prompts)
+        self.assertNotIn("Relevância semanal", prompts)
         self.assertIn("data-prompt-search-input", prompts)
         self.assertIn('data-prompt-category="imagem"', prompts)
         self.assertIn("data-prompt-suggestion-form", prompts)
@@ -106,18 +128,20 @@ class KnowledgeTests(unittest.TestCase):
             prompts.index("data-prompt-suggestion-form"),
             prompts.index('class="prompt-grid"'),
         )
-        self.assertNotIn("· Manteve", prompts)
-
         repeated = build_knowledge_site(root=self.root, now=self.now)
         self.assertTrue(all(item["movement"] is None for item in repeated["companies"]))
         self.assertTrue(all(item["movement"] is None for item in repeated["people"]))
 
     def test_future_articles_do_not_affect_signals(self):
         signals = load_article_signals(self.root / "site" / "site-feed.json", now=self.now)
-        self.assertEqual([signal.title for signal in signals], ["Defined.ai e Unbabel reforçam IA em Portugal"])
+        self.assertEqual(
+            [signal.title for signal in signals], ["Defined.ai e Unbabel reforçam IA em Portugal"]
+        )
 
     def test_rankings_are_stable_and_include_evidence(self):
-        catalog = json.loads((self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8"))
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
         directory = json.loads(
             (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
@@ -135,15 +159,35 @@ class KnowledgeTests(unittest.TestCase):
         self.assertTrue(defined["evidence"])
         self.assertFalse(observador["evidence"])
         self.assertTrue(codex["evidence"])
-        self.assertEqual(sorted(item["rank"] for item in payload["prompts"]), list(range(1, 26)))
+        self.assertEqual(
+            codex["score"],
+            round(
+                sum(codex["category_scores"].values()) / len(codex["category_scores"]),
+                1,
+            ),
+        )
+        self.assertEqual(payload["schema_version"], 2)
+        self.assertEqual(
+            payload["verification_summary"]["excluded"],
+            len(payload["entity_archive"]["companies"]) + len(payload["entity_archive"]["people"]),
+        )
+        self.assertTrue(
+            all(
+                prompt["selection_kind"] == "curadoria editorial"
+                and prompt["usage_evidence"] == "ainda não medido"
+                for prompt in payload["prompts"]
+            )
+        )
+        self.assertEqual(
+            sorted(item["rank"] for item in payload["prompts"]),
+            list(range(1, 26)),
+        )
         agent = next(item for item in payload["glossary"] if item["id"] == "agente-ia")
         self.assertEqual(agent["english_term"], "AI agent")
 
         winners = {}
         for category in catalog["tool_category_evidence"]:
-            eligible = [
-                item for item in payload["tools"] if category in item["category_ranks"]
-            ]
+            eligible = [item for item in payload["tools"] if category in item["category_ranks"]]
             winners[category] = min(
                 eligible,
                 key=lambda item: item["category_ranks"][category],
@@ -157,8 +201,40 @@ class KnowledgeTests(unittest.TestCase):
         self.assertEqual(winners["marketing"], "canva")
         self.assertEqual(winners["automacoes"], "n8n")
 
+    def test_future_verification_date_does_not_grant_eligibility(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
+        )
+        feedzai = next(item for item in directory["companies"] if item["id"] == "feedzai")
+        feedzai.update(
+            status="active",
+            eligibility="eligible",
+            verification={
+                "verified_at": "2026-06-08T12:00:00+00:00",
+                "sources": [
+                    {"label": "A", "url": "https://example.com/feedzai"},
+                    {"label": "B", "url": "https://example.org/feedzai"},
+                ],
+            },
+        )
+
+        payload = build_knowledge_payload(
+            catalog=catalog,
+            directory=directory,
+            signals=[],
+            now=self.now,
+        )
+        ranked_feedzai = next(item for item in payload["companies"] if item["id"] == "feedzai")
+
+        self.assertEqual(ranked_feedzai["eligibility"], "provisional")
+
     def test_weekly_movements_cover_entered_up_down_and_category_changes(self):
-        catalog = json.loads((self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8"))
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
         directory = json.loads(
             (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )
@@ -203,7 +279,9 @@ class KnowledgeTests(unittest.TestCase):
         )
 
     def test_validation_blocks_incomplete_catalog_before_writes(self):
-        catalog = json.loads((self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8"))
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
         directory = json.loads(
             (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
         )

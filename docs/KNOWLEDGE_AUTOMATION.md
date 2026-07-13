@@ -8,14 +8,14 @@ requiring editorial intervention for normal, well-supported changes.
 ## Flow
 
 1. Apply proposals previously approved in the dashboard.
-2. Run four isolated Gemini research tasks for entities, tools, prompts and
-   glossary terms.
+2. Run four isolated Gemini research tasks. The entities task checks acquisition,
+   insolvency, liquidation, closure and inactivity before ranking changes.
 3. Separate grounded web research from schema generation. The structured pass
    can only use URLs returned by Google Search grounding.
 4. Validate every proposal deterministically and transactionally.
-5. Apply ranking changes automatically only when confidence is at least 92%,
-   there are two independent grounded HTTPS sources, at least one reference
-   source, and movement limits are respected.
+5. Apply material entity status updates and bounded ranking changes automatically
+   only when confidence is at least 92%, there are two independent grounded
+   HTTPS sources, at least one reference source, and all validation rules pass.
 6. Treat new or materially changed records as exceptional and hold them for
    editorial approval.
 7. Rebuild the Resources pages, archive the weekly edition, commit and push.
@@ -26,9 +26,11 @@ future events.
 
 ## Safety Rules
 
+- A material non-active entity status bypasses gradual movement and moves the
+  record to the public archive with reason, date and sources.
 - Tool rankings may not introduce unknown IDs.
 - Automatic tool movements are limited to three places per component.
-- Automatic people/company movements are limited to two places.
+- People/company ordering changes are limited to two places and always held for editorial review.
 - New records must satisfy the complete catalog schema.
 - New entities without a verifiable official LinkedIn URL are held as explicit
   exceptions.

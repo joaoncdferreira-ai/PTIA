@@ -3,15 +3,31 @@
     {
       "id": "unbabel",
       "name": "Unbabel",
-      "tagline": "Tradução autónoma e IA linguística empresarial",
-      "description": "Líder em tradução baseada em IA que combina grandes modelos de linguagem (incluindo o EuroLLM) com curadoria humana para fornecer canais de atendimento multilingues em tempo real.",
+      "tagline": "Pioneira portuguesa de IA linguística — entidade em liquidação",
+      "description": "A tecnologia e a equipa da Unbabel foram adquiridas pela TransPerfect em agosto de 2025. A Unbabel, Lda. foi declarada insolvente em março de 2026 e os credores aprovaram o encerramento e a liquidação em julho de 2026.",
       "linkedin": "https://www.linkedin.com/company/unbabel",
-      "category": "Scaleup / Tecnologia",
+      "category": "Arquivo / Tecnologia",
       "tags": [
         "Tradução",
         "LLMs",
         "Apoio ao Cliente"
-      ]
+      ],
+      "status": "liquidated",
+      "eligibility": "ineligible",
+      "status_reason": "Entidade retirada do índice ativo após declaração de insolvência e aprovação da liquidação.",
+      "verification": {
+        "verified_at": "2026-07-02T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "TransPerfect — aquisição da Unbabel",
+            "url": "https://www.transperfect.com/about/press/transperfect-solidifies-leadership-position-language-ai-acquiring-unbabel"
+          },
+          {
+            "label": "Lusa — credores aprovam encerramento e liquidação",
+            "url": "https://aman-alliance.org/Home/ContentDetail/104707"
+          }
+        ]
+      }
     },
     {
       "id": "definedai",
@@ -383,8 +399,8 @@
     {
       "id": "vascopedro-in",
       "name": "Vasco Pedro",
-      "role": "Co-founder & CEO, Unbabel",
-      "bio": "Doutorado pela CMU e pioneiro em tradução automática de IA. Lidera o EuroLLM e tem sido a voz chave no ecossistema de inteligência artificial soberana para a Europa.",
+      "role": "Co-fundador da Unbabel",
+      "bio": "Doutorado pela CMU e ligado ao desenvolvimento da tradução automática com IA. A referência à Unbabel é histórica; a posição atual permanece provisória até nova verificação.",
       "linkedin": "https://www.linkedin.com/in/vascopedro",
       "category": "Founder / Cientista",
       "tags": [

@@ -16,7 +16,10 @@ from ptia_engine.search_providers import GeminiGroundedSearchProvider
 
 
 AUTO_CONFIDENCE = 0.92
-AUTO_APPLY_KINDS = {"tool_component_order", "entity_baseline_order"}
+AUTO_APPLY_KINDS = {
+    "tool_component_order",
+    "entity_status_update",
+}
 MAX_PROPOSALS_PER_TASK = 3
 REVIEW_STATUSES = {"pending", "approved", "rejected", "applied", "failed"}
 TRUSTED_SOURCE_SUFFIXES = (
@@ -38,8 +41,9 @@ TRUSTED_SOURCE_SUFFIXES = (
 DISCOVERY_TASKS = (
     (
         "entities",
-        "Analisa apenas pessoas e empresas com impacto verificável em IA em Portugal. "
-        "Usa apenas entity_baseline_order ou entity_upsert.",
+        "Analisa primeiro insolvência, liquidação, encerramento, aquisição ou inatividade; "
+        "depois pessoas e empresas com impacto verificável em IA em Portugal. Usa apenas "
+        "entity_status_update, entity_baseline_order ou entity_upsert.",
     ),
     (
         "tools",
@@ -48,8 +52,7 @@ DISCOVERY_TASKS = (
     ),
     (
         "prompts",
-        "Analisa apenas prompts úteis, concretos e reutilizáveis. "
-        "Usa apenas prompt_upsert.",
+        "Analisa apenas prompts úteis, concretos e reutilizáveis. Usa apenas prompt_upsert.",
     ),
     (
         "glossary",
@@ -58,7 +61,7 @@ DISCOVERY_TASKS = (
     ),
 )
 TASK_KINDS = {
-    "entities": {"entity_baseline_order", "entity_upsert"},
+    "entities": {"entity_status_update", "entity_baseline_order", "entity_upsert"},
     "tools": {"tool_component_order", "tool_upsert"},
     "prompts": {"prompt_upsert"},
     "glossary": {"glossary_upsert"},
@@ -86,7 +89,7 @@ Analisa:
 
 Responde apenas em JSON válido:
 {"proposals":[{
-  "kind":"tool_component_order|tool_upsert|entity_baseline_order|entity_upsert|prompt_upsert|glossary_upsert",
+  "kind":"tool_component_order|tool_upsert|entity_status_update|entity_baseline_order|entity_upsert|prompt_upsert|glossary_upsert",
   "target":"categoria ou companies/people",
   "confidence":0.0,
   "reason":"explicação factual curta",
@@ -99,6 +102,9 @@ Payloads:
   {"component":"capability|popularity|task_fit|access","ranking":["tool-id"],
    "label":"nome da medição","url":"https://..."}
 - entity_baseline_order: {"ranking":["entity-id"]}
+- entity_status_update:
+  {"id":"entity-id","status":"acquired|insolvent|liquidated|inactive",
+   "status_reason":"facto verificável","verified_at":"ISO-8601"}
 - entity_upsert:
   target companies:
   {"id":"slug","name":"...","tagline":"...","description":"...","linkedin":"https://...",
@@ -121,6 +127,9 @@ Payloads:
 Regras:
 - Para rankings usa exclusivamente os IDs fornecidos no contexto.
 - Rankings contêm exatamente os mesmos IDs atuais, apenas reordenados.
+- Procura sempre alterações de estado antes de reordenar entidades. Uma insolvência,
+  liquidação, aquisição ou encerramento deve gerar entity_status_update e retirar a
+  entidade do índice ativo; nunca tentes apenas descê-la gradualmente.
 - Cada proposta precisa de pelo menos duas fontes independentes HTTPS.
 - Em cada fonte inclui um campo "evidence" com a afirmação concreta sustentada.
 - Novas entidades têm de ser pessoas ou organizações identificadas pelo nome real,
@@ -157,9 +166,7 @@ def _load_jsonl(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
     return [
-        json.loads(line)
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
+        json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()
     ]
 
 
@@ -308,6 +315,9 @@ def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, A
                     "name": item.get("name"),
                     "tagline": item.get("tagline"),
                     "category": item.get("category"),
+                    "status": item.get("status", "active"),
+                    "eligibility": item.get("eligibility", "provisional"),
+                    "verification": item.get("verification", {}),
                 }
                 for item in directory.get("companies") or []
             ],
@@ -316,6 +326,9 @@ def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, A
                     "id": item.get("id"),
                     "name": item.get("name"),
                     "role": item.get("role"),
+                    "status": item.get("status", "active"),
+                    "eligibility": item.get("eligibility", "provisional"),
+                    "verification": item.get("verification", {}),
                 }
                 for item in directory.get("people") or []
             ],
@@ -333,8 +346,7 @@ def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, A
             ],
             "rankings": {
                 category: {
-                    component: data["ranking"]
-                    for component, data in evidence["components"].items()
+                    component: data["ranking"] for component, data in evidence["components"].items()
                 }
                 for category, evidence in (catalog.get("tool_category_evidence") or {}).items()
             },
@@ -388,10 +400,7 @@ def proposal_issues(
     evidence_text = " ".join(
         [
             str(proposal.get("reason") or ""),
-            *[
-                str(source.get("evidence") or "")
-                for source in proposal.get("sources") or []
-            ],
+            *[str(source.get("evidence") or "") for source in proposal.get("sources") or []],
         ]
     )
     if _contains_stale_future_claim(evidence_text):
@@ -413,6 +422,23 @@ def proposal_issues(
             issues.append("ranking não preserva os candidatos atuais")
         elif _max_movement(list(current), proposed) > 3:
             issues.append("movimento superior a três posições")
+    elif kind == "entity_status_update":
+        target = str(proposal.get("target") or "")
+        entity_id = str(payload.get("id") or "")
+        status = str(payload.get("status") or "")
+        available = {str(item["id"]) for item in directory.get(target) or []}
+        if target not in {"companies", "people"}:
+            issues.append("tipo de entidade inválido")
+        if entity_id not in available:
+            issues.append("entidade desconhecida")
+        if status not in {"acquired", "insolvent", "liquidated", "inactive"}:
+            issues.append("estado material inválido")
+        if len(str(payload.get("status_reason") or "").strip()) < 20:
+            issues.append("motivo de estado insuficiente")
+        try:
+            datetime.fromisoformat(str(payload.get("verified_at") or "").replace("Z", "+00:00"))
+        except ValueError:
+            issues.append("data de verificação inválida")
     elif kind == "entity_baseline_order":
         target = str(proposal.get("target") or "")
         current = list((catalog.get("entity_baselines") or {}).get(target) or [])
@@ -428,9 +454,7 @@ def proposal_issues(
         target = str(proposal.get("target") or "")
         common = {"id", "name", "linkedin", "tags", "aliases"}
         required = common | (
-            {"tagline", "description", "category"}
-            if target == "companies"
-            else {"role", "bio"}
+            {"tagline", "description", "category"} if target == "companies" else {"role", "bio"}
         )
         if target not in {"companies", "people"}:
             issues.append("tipo de entidade inválido")
@@ -442,8 +466,17 @@ def proposal_issues(
             issues.append("LinkedIn inválido")
     elif kind == "tool_upsert":
         required = {
-            "id", "name", "url", "categories", "description", "best_for",
-            "watch_out", "baseline_score", "aliases", "sources", "category_positions",
+            "id",
+            "name",
+            "url",
+            "categories",
+            "description",
+            "best_for",
+            "watch_out",
+            "baseline_score",
+            "aliases",
+            "sources",
+            "category_positions",
         }
         if not required <= set(payload):
             issues.append("ferramenta incompleta")
@@ -465,18 +498,21 @@ def proposal_issues(
         for category in categories:
             components = positions.get(category) if isinstance(positions, dict) else {}
             if not isinstance(components, dict) or set(components) != {
-                "capability", "popularity", "task_fit", "access",
+                "capability",
+                "popularity",
+                "task_fit",
+                "access",
             }:
                 issues.append(f"posições incompletas em {category}")
                 continue
-            maximum = max(
-                len(data["ranking"])
-                for data in catalog["tool_category_evidence"][category]["components"].values()
-            ) + 1
-            if any(
-                not _integer_in_range(position, 1, maximum)
-                for position in components.values()
-            ):
+            maximum = (
+                max(
+                    len(data["ranking"])
+                    for data in catalog["tool_category_evidence"][category]["components"].values()
+                )
+                + 1
+            )
+            if any(not _integer_in_range(position, 1, maximum) for position in components.values()):
                 issues.append(f"posição inválida em {category}")
     elif kind == "prompt_upsert":
         required = {"id", "title", "category", "purpose", "template", "keywords", "baseline_score"}
@@ -534,10 +570,46 @@ def apply_proposal(proposal: dict[str, Any], catalog: dict, directory: dict) -> 
         component["ranking"] = list(payload["ranking"])
         component["label"] = str(payload.get("label") or component["label"])
         component["url"] = str(payload.get("url") or component["url"])
+    elif kind == "entity_status_update":
+        target = str(proposal["target"])
+        for record in directory[target]:
+            if str(record.get("id")) != str(payload["id"]):
+                continue
+            record.update(
+                status=str(payload["status"]),
+                eligibility="ineligible",
+                status_reason=str(payload["status_reason"]),
+                verification={
+                    "verified_at": str(payload["verified_at"]),
+                    "sources": [
+                        {
+                            "label": str(source.get("label") or ""),
+                            "url": str(source.get("url") or ""),
+                        }
+                        for source in proposal.get("sources") or []
+                    ],
+                },
+            )
+            break
     elif kind == "entity_baseline_order":
         catalog["entity_baselines"][proposal["target"]] = list(payload["ranking"])
     elif kind == "entity_upsert":
         target = proposal["target"]
+        payload.setdefault("status", "active")
+        payload.setdefault("eligibility", "eligible")
+        payload.setdefault(
+            "verification",
+            {
+                "verified_at": _now(),
+                "sources": [
+                    {
+                        "label": str(source.get("label") or ""),
+                        "url": str(source.get("url") or ""),
+                    }
+                    for source in proposal.get("sources") or []
+                ],
+            },
+        )
         _upsert(directory[target], payload)
         baseline = catalog["entity_baselines"][target]
         if str(payload["id"]) not in baseline:
@@ -615,16 +687,12 @@ def run_knowledge_automation(
     catalog = _read_json(catalog_path)
     directory = _read_json(directory_path)
     current_date = datetime.now(timezone.utc).date().isoformat()
-    existing = {
-        record.get("proposal_id"): record for record in _load_jsonl(review_path)
-    }
+    existing = {record.get("proposal_id"): record for record in _load_jsonl(review_path)}
 
     provider_error = ""
     if provider.available:
         tasks = (
-            DISCOVERY_TASKS
-            if getattr(provider, "partitioned_research", False)
-            else (("all", ""),)
+            DISCOVERY_TASKS if getattr(provider, "partitioned_research", False) else (("all", ""),)
         )
         raw_proposals = []
         task_errors: list[str] = []
@@ -679,16 +747,18 @@ def run_knowledge_automation(
             if response is None:
                 detail = " | ".join(errors)
                 task_errors.append(f"{task_name}: {detail}")
-                raw_proposals.append({
-                    "kind": "system_alert",
-                    "target": f"external_discovery:{task_name}",
-                    "confidence": 0,
-                    "reason": (
-                        f"Pesquisa de {task_name} falhou sem bloquear as restantes: {detail}"
-                    ),
-                    "sources": [],
-                    "payload": {},
-                })
+                raw_proposals.append(
+                    {
+                        "kind": "system_alert",
+                        "target": f"external_discovery:{task_name}",
+                        "confidence": 0,
+                        "reason": (
+                            f"Pesquisa de {task_name} falhou sem bloquear as restantes: {detail}"
+                        ),
+                        "sources": [],
+                        "payload": {},
+                    }
+                )
                 continue
             task_grounding = [
                 source
@@ -696,9 +766,7 @@ def run_knowledge_automation(
                 if isinstance(source, dict)
             ]
             task_proposals = [
-                raw
-                for raw in response.get("proposals") or []
-                if isinstance(raw, dict)
+                raw for raw in response.get("proposals") or [] if isinstance(raw, dict)
             ]
             task_proposals.sort(key=_raw_confidence, reverse=True)
             for raw in task_proposals[:MAX_PROPOSALS_PER_TASK]:
@@ -710,14 +778,16 @@ def run_knowledge_automation(
         grounding_sources = []
     else:
         grounding_sources = []
-        raw_proposals = [{
-            "kind": "system_alert",
-            "target": "external_discovery",
-            "confidence": 0,
-            "reason": "GEMINI_API_KEY não está disponível no executor semanal.",
-            "sources": [],
-            "payload": {},
-        }]
+        raw_proposals = [
+            {
+                "kind": "system_alert",
+                "target": "external_discovery",
+                "confidence": 0,
+                "reason": "GEMINI_API_KEY não está disponível no executor semanal.",
+                "sources": [],
+                "payload": {},
+            }
+        ]
 
     staged_catalog = copy.deepcopy(catalog)
     staged_directory = copy.deepcopy(directory)
@@ -734,14 +804,16 @@ def run_knowledge_automation(
         try:
             proposal = _normalise(raw)
         except (TypeError, ValueError) as exc:
-            proposal = _normalise({
-                "kind": "system_alert",
-                "target": "invalid_external_proposal",
-                "confidence": 0,
-                "reason": f"Proposta externa inválida: {str(exc)[:300]}",
-                "sources": [],
-                "payload": {},
-            })
+            proposal = _normalise(
+                {
+                    "kind": "system_alert",
+                    "target": "invalid_external_proposal",
+                    "confidence": 0,
+                    "reason": f"Proposta externa inválida: {str(exc)[:300]}",
+                    "sources": [],
+                    "payload": {},
+                }
+            )
         previous = existing.get(proposal["proposal_id"])
         if previous and previous.get("status") in {"approved", "rejected", "applied"}:
             proposal["status"] = previous["status"]
@@ -857,21 +929,14 @@ def update_review_status_remote(
     if status not in {"approved", "rejected", "pending"}:
         raise ValueError("Estado de revisão inválido.")
     remote_text, _ = read_remote_text("data/knowledge_review.jsonl")
-    records = [
-        json.loads(line)
-        for line in remote_text.splitlines()
-        if line.strip()
-    ]
+    records = [json.loads(line) for line in remote_text.splitlines() if line.strip()]
     if not records:
         records = _load_jsonl(root / "data" / "knowledge_review.jsonl")
     for record in records:
         if record.get("proposal_id") != proposal_id:
             continue
         record.update(status=status, notes=notes, updated_at=_now())
-        text = "".join(
-            json.dumps(item, ensure_ascii=False) + "\n"
-            for item in records
-        )
+        text = "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in records)
         publish_review_state(root, text)
         return record
     raise ValueError("Proposta de Recursos não encontrada no estado remoto.")

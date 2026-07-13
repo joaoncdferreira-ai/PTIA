@@ -68,6 +68,7 @@ def main() -> int:
                     "body": post.body,
                     "image_prompt": post.image_prompt,
                     "visual_brief": post.visual_brief,
+                    "source_urls": list(post.source_urls),
                 }
                 for post in posts
             ],
