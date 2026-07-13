@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "edition": "2026-W29",
-  "updated_at": "2026-07-13T11:03:06+00:00",
+  "updated_at": "2026-07-13T13:51:15+00:00",
   "signal_window_days": 84,
-  "signal_articles": 171,
+  "signal_articles": 170,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
-  "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. O estado da entidade é verificado antes da avaliação; registos sem duas fontes recentes ficam identificados como provisórios e entidades inativas saem do índice ativo.",
+  "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. O estado da entidade é verificado antes da avaliação; registos sem duas fontes independentes e recentes ficam na watchlist, sem posição publicada, e entidades inativas passam para o arquivo.",
   "companies": [
     {
       "id": "feedzai",
@@ -40,13 +40,13 @@
       ],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 1,
       "previous_rank": 2,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -87,13 +87,13 @@
       ],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 2,
       "previous_rank": 1,
-      "movement": -1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -129,13 +129,13 @@
       ],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 3,
       "previous_rank": 3,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -165,13 +165,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 4,
       "previous_rank": 5,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -201,13 +201,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 5,
       "previous_rank": 6,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -237,13 +237,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 6,
       "previous_rank": 7,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -273,13 +273,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 7,
       "previous_rank": 8,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -309,13 +309,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 8,
       "previous_rank": 9,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -345,13 +345,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 9,
       "previous_rank": 10,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -381,13 +381,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 10,
       "previous_rank": 12,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "entered",
+        "kind": "verification_pending",
         "delta": null,
-        "label": "Entrou no Top"
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -417,13 +417,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 11,
       "previous_rank": 13,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -453,13 +453,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 12,
       "previous_rank": 14,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -489,13 +489,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 13,
       "previous_rank": 15,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -525,13 +525,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 14,
       "previous_rank": 16,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -561,13 +561,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 15,
       "previous_rank": 17,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -597,13 +597,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 16,
       "previous_rank": 18,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -633,13 +633,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 17,
       "previous_rank": 19,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -669,13 +669,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 18,
       "previous_rank": 20,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -705,13 +705,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 19,
       "previous_rank": 21,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -741,13 +741,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 20,
       "previous_rank": 22,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -781,13 +781,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 21,
       "previous_rank": 23,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -819,13 +819,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 22,
       "previous_rank": 24,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -856,13 +856,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 23,
       "previous_rank": 25,
-      "movement": 2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 2,
-        "label": "Subiu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -917,13 +917,13 @@
       ],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 24,
       "previous_rank": 11,
-      "movement": -13,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "down",
-        "delta": -13,
-        "label": "Desceu 13"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -955,13 +955,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 25,
       "previous_rank": 26,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -992,13 +992,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 26,
       "previous_rank": 27,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     }
   ],
@@ -1030,13 +1030,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 1,
       "previous_rank": 1,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1066,13 +1066,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 2,
       "previous_rank": 2,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1102,13 +1102,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 3,
       "previous_rank": 3,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1138,13 +1138,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 4,
       "previous_rank": 4,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1174,13 +1174,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 5,
       "previous_rank": 5,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1210,13 +1210,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 6,
       "previous_rank": 6,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1246,13 +1246,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 7,
       "previous_rank": 7,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1282,13 +1282,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 8,
       "previous_rank": 8,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1318,13 +1318,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 9,
       "previous_rank": 9,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1354,13 +1354,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 10,
       "previous_rank": 10,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1390,13 +1390,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 11,
       "previous_rank": 11,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1426,13 +1426,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 12,
       "previous_rank": 12,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1462,13 +1462,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 13,
       "previous_rank": 13,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1498,13 +1498,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 14,
       "previous_rank": 14,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1534,13 +1534,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 15,
       "previous_rank": 16,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1570,13 +1570,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 16,
       "previous_rank": 17,
-      "movement": 1,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "up",
-        "delta": 1,
-        "label": "Subiu 1"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1612,13 +1612,13 @@
       ],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 17,
       "previous_rank": 15,
-      "movement": -2,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "down",
-        "delta": -2,
-        "label": "Desceu 2"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1648,13 +1648,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 18,
       "previous_rank": 18,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1684,13 +1684,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 19,
       "previous_rank": 19,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1720,13 +1720,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 20,
       "previous_rank": 20,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     },
     {
@@ -1756,13 +1756,13 @@
       "evidence": [],
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "rank": 21,
       "previous_rank": 21,
-      "movement": 0,
+      "rank": null,
+      "movement": null,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "verification_pending",
+        "delta": null,
+        "label": "Fora do ranking at? cumprir o gate de fontes"
       }
     }
   ],
@@ -1848,11 +1848,6 @@
       "score": 93.0,
       "evidence": [
         {
-          "title": "Amália fora do palco dos chatbots: o verdadeiro teste do LLM português joga-se nos bastidores",
-          "url": "/artigos/amalia-fora-do-palco-dos-chatbots-o-verdadeiro-teste-do-llm-portugues-joga-se-nos-bastidores-6342ff4e4782ce6ebc",
-          "published_at": "2026-07-13"
-        },
-        {
           "title": "Samsung integra IA generativa em todas as funções de negócio",
           "url": "/artigos/samsung-integra-ia-generativa-em-todas-as-funcoes-de-negocio-9eed210097c04d8166",
           "published_at": "2026-06-14"
@@ -1866,6 +1861,11 @@
           "title": "OpenAI pondera corte drástico nos preços do ChatGPT",
           "url": "/artigos/openai-pondera-corte-drastico-nos-precos-do-chatgpt-21470082b3f76715e0",
           "published_at": "2026-06-12"
+        },
+        {
+          "title": "OpenAI quer transformar ChatGPT em 'superapp' antes de IPO",
+          "url": "/artigos/openai-quer-transformar-chatgpt-em-superapp-antes-de-ipo-7c77f47bc8e2e0753e",
+          "published_at": "2026-06-09"
         }
       ],
       "category_ranks": {
@@ -2060,6 +2060,20 @@
         "imagem": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1,
+        "produtividade": 2,
+        "imagem": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist",
+        "produtividade": "ranked",
+        "imagem": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 1,
       "previous_rank": 1,
@@ -2092,6 +2106,8 @@
       "category_sources": {},
       "category_movements": {},
       "category_confidence": {},
+      "category_external_source_count": {},
+      "category_publication_status": {},
       "score_basis": "avaliação relativa por finalidade",
       "rank": 2,
       "previous_rank": 8,
@@ -2177,6 +2193,12 @@
       },
       "category_confidence": {
         "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 3,
@@ -2288,6 +2310,14 @@
       "category_confidence": {
         "estudo": "média",
         "pesquisa": "editorial"
+      },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 4,
@@ -2476,6 +2506,18 @@
         "imagem": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "video": 2,
+        "imagem": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "video": "ranked",
+        "imagem": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 5,
       "previous_rank": 2,
@@ -2555,6 +2597,12 @@
       },
       "category_confidence": {
         "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 6,
@@ -2705,6 +2753,16 @@
         "pesquisa": "editorial",
         "produtividade": "média"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1,
+        "produtividade": 2
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist",
+        "produtividade": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 7,
       "previous_rank": 4,
@@ -2780,6 +2838,12 @@
       },
       "category_confidence": {
         "automacoes": "editorial"
+      },
+      "category_external_source_count": {
+        "automacoes": 0
+      },
+      "category_publication_status": {
+        "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 8,
@@ -3019,6 +3083,20 @@
         "imagem": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1,
+        "produtividade": 2,
+        "imagem": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist",
+        "produtividade": "ranked",
+        "imagem": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 9,
       "previous_rank": 11,
@@ -3130,6 +3208,14 @@
       "category_confidence": {
         "produtividade": "média",
         "automacoes": "editorial"
+      },
+      "category_external_source_count": {
+        "produtividade": 2,
+        "automacoes": 0
+      },
+      "category_publication_status": {
+        "produtividade": "ranked",
+        "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 10,
@@ -3338,6 +3424,18 @@
         "produtividade": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1,
+        "produtividade": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist",
+        "produtividade": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 11,
       "previous_rank": 7,
@@ -3449,6 +3547,14 @@
         "design": "média",
         "imagem": "média"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "imagem": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 12,
       "previous_rank": 18,
@@ -3523,6 +3629,12 @@
       },
       "category_confidence": {
         "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 13,
@@ -3673,6 +3785,16 @@
         "video": "média",
         "imagem": "média"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "video": 2,
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "video": "ranked",
+        "imagem": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 14,
       "previous_rank": 6,
@@ -3747,6 +3869,12 @@
       },
       "category_confidence": {
         "video": "média"
+      },
+      "category_external_source_count": {
+        "video": 2
+      },
+      "category_publication_status": {
+        "video": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 15,
@@ -3859,6 +3987,14 @@
         "estudo": "média",
         "pesquisa": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 16,
       "previous_rank": 13,
@@ -3933,6 +4069,12 @@
       },
       "category_confidence": {
         "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 17,
@@ -4083,6 +4225,16 @@
         "imagem": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "imagem": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "imagem": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 18,
       "previous_rank": 3,
@@ -4232,6 +4384,16 @@
         "video": "média",
         "imagem": "média"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "video": 2,
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "video": "ranked",
+        "imagem": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 19,
       "previous_rank": 19,
@@ -4317,6 +4479,12 @@
       "category_confidence": {
         "video": "média"
       },
+      "category_external_source_count": {
+        "video": 2
+      },
+      "category_publication_status": {
+        "video": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 20,
       "previous_rank": 28,
@@ -4392,6 +4560,12 @@
       "category_confidence": {
         "video": "média"
       },
+      "category_external_source_count": {
+        "video": 2
+      },
+      "category_publication_status": {
+        "video": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 21,
       "previous_rank": 29,
@@ -4466,6 +4640,12 @@
       },
       "category_confidence": {
         "automacoes": "editorial"
+      },
+      "category_external_source_count": {
+        "automacoes": 0
+      },
+      "category_publication_status": {
+        "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 22,
@@ -4579,6 +4759,14 @@
       "category_confidence": {
         "video": "média",
         "imagem": "média"
+      },
+      "category_external_source_count": {
+        "video": 2,
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "video": "ranked",
+        "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 23,
@@ -4729,6 +4917,16 @@
         "produtividade": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "produtividade": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "produtividade": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 24,
       "previous_rank": 20,
@@ -4802,6 +5000,12 @@
       },
       "category_confidence": {
         "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 25,
@@ -4925,6 +5129,14 @@
         "coding": "média",
         "pesquisa": "editorial"
       },
+      "category_external_source_count": {
+        "coding": 2,
+        "pesquisa": 1
+      },
+      "category_publication_status": {
+        "coding": "ranked",
+        "pesquisa": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 26,
       "previous_rank": 9,
@@ -5036,6 +5248,14 @@
         "estudo": "média",
         "pesquisa": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 27,
       "previous_rank": 27,
@@ -5110,6 +5330,12 @@
       },
       "category_confidence": {
         "design": "média"
+      },
+      "category_external_source_count": {
+        "design": 2
+      },
+      "category_publication_status": {
+        "design": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 28,
@@ -5260,6 +5486,16 @@
         "design": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "produtividade": 2,
+        "design": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "produtividade": "ranked",
+        "design": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 29,
       "previous_rank": 22,
@@ -5408,6 +5644,16 @@
         "marketing": "editorial",
         "automacoes": "editorial"
       },
+      "category_external_source_count": {
+        "produtividade": 2,
+        "marketing": 1,
+        "automacoes": 0
+      },
+      "category_publication_status": {
+        "produtividade": "ranked",
+        "marketing": "watchlist",
+        "automacoes": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 30,
       "previous_rank": 24,
@@ -5518,6 +5764,14 @@
       "category_confidence": {
         "design": "média",
         "imagem": "média"
+      },
+      "category_external_source_count": {
+        "design": 2,
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 31,
@@ -5630,6 +5884,14 @@
         "estudo": "média",
         "pesquisa": "editorial"
       },
+      "category_external_source_count": {
+        "estudo": 2,
+        "pesquisa": 1
+      },
+      "category_publication_status": {
+        "estudo": "ranked",
+        "pesquisa": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 32,
       "previous_rank": 31,
@@ -5705,6 +5967,12 @@
       "category_confidence": {
         "coding": "média"
       },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 33,
       "previous_rank": 37,
@@ -5779,6 +6047,12 @@
       },
       "category_confidence": {
         "imagem": "média"
+      },
+      "category_external_source_count": {
+        "imagem": 2
+      },
+      "category_publication_status": {
+        "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 34,
@@ -5891,6 +6165,14 @@
       "category_confidence": {
         "coding": "média",
         "design": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2,
+        "design": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked",
+        "design": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 35,
@@ -6084,6 +6366,18 @@
         "marketing": "editorial",
         "automacoes": "editorial"
       },
+      "category_external_source_count": {
+        "pesquisa": 1,
+        "produtividade": 2,
+        "marketing": 1,
+        "automacoes": 0
+      },
+      "category_publication_status": {
+        "pesquisa": "watchlist",
+        "produtividade": "ranked",
+        "marketing": "watchlist",
+        "automacoes": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 36,
       "previous_rank": 16,
@@ -6194,6 +6488,14 @@
       "category_confidence": {
         "coding": "média",
         "estudo": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2,
+        "estudo": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked",
+        "estudo": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 37,
@@ -6307,6 +6609,14 @@
         "design": "média",
         "marketing": "editorial"
       },
+      "category_external_source_count": {
+        "design": 2,
+        "marketing": 1
+      },
+      "category_publication_status": {
+        "design": "ranked",
+        "marketing": "watchlist"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 38,
       "previous_rank": 34,
@@ -6418,6 +6728,14 @@
         "produtividade": "média",
         "video": "média"
       },
+      "category_external_source_count": {
+        "produtividade": 2,
+        "video": 2
+      },
+      "category_publication_status": {
+        "produtividade": "ranked",
+        "video": "ranked"
+      },
       "score_basis": "avaliação relativa por finalidade",
       "rank": 39,
       "previous_rank": 39,
@@ -6470,7 +6788,7 @@
       ],
       "baseline_score": 95,
       "score": 95.0,
-      "topical_articles": 130,
+      "topical_articles": 129,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 2,
@@ -6652,7 +6970,7 @@
       ],
       "baseline_score": 91,
       "score": 91.0,
-      "topical_articles": 74,
+      "topical_articles": 73,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 9,
@@ -6678,7 +6996,7 @@
       ],
       "baseline_score": 91,
       "score": 91.0,
-      "topical_articles": 135,
+      "topical_articles": 134,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 10,
@@ -6757,7 +7075,7 @@
       ],
       "baseline_score": 90,
       "score": 90.0,
-      "topical_articles": 36,
+      "topical_articles": 35,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 13,
@@ -6810,7 +7128,7 @@
       ],
       "baseline_score": 90,
       "score": 90.0,
-      "topical_articles": 97,
+      "topical_articles": 96,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 15,
@@ -6863,7 +7181,7 @@
       ],
       "baseline_score": 90,
       "score": 90.0,
-      "topical_articles": 63,
+      "topical_articles": 62,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 17,
@@ -7098,7 +7416,7 @@
         "api"
       ],
       "english_term": "Application Programming Interface",
-      "mentions_12w": 55
+      "mentions_12w": 54
     },
     {
       "id": "agi",
@@ -7166,22 +7484,6 @@
       "mentions_12w": 12
     },
     {
-      "id": "alinhamento",
-      "term": "Alinhamento",
-      "definition": "Área que procura fazer com que o comportamento de um sistema de IA corresponda às intenções, regras e valores definidos pelos seus operadores e pela sociedade.",
-      "example": "Um modelo alinhado deve recusar ações perigosas mesmo quando a instrução parece tecnicamente executável.",
-      "related": [
-        "segurança de IA",
-        "RLHF"
-      ],
-      "aliases": [
-        "alinhamento",
-        "alignment"
-      ],
-      "english_term": "Alignment",
-      "mentions_12w": 8
-    },
-    {
       "id": "agente-ia",
       "term": "Agente de IA",
       "definition": "Sistema que usa um modelo de IA para escolher e executar passos, utilizar ferramentas e verificar resultados com algum grau de autonomia.",
@@ -7197,6 +7499,22 @@
         "ai agent"
       ],
       "english_term": "AI agent",
+      "mentions_12w": 7
+    },
+    {
+      "id": "alinhamento",
+      "term": "Alinhamento",
+      "definition": "Área que procura fazer com que o comportamento de um sistema de IA corresponda às intenções, regras e valores definidos pelos seus operadores e pela sociedade.",
+      "example": "Um modelo alinhado deve recusar ações perigosas mesmo quando a instrução parece tecnicamente executável.",
+      "related": [
+        "segurança de IA",
+        "RLHF"
+      ],
+      "aliases": [
+        "alinhamento",
+        "alignment"
+      ],
+      "english_term": "Alignment",
       "mentions_12w": 7
     },
     {
@@ -7233,24 +7551,6 @@
       "mentions_12w": 3
     },
     {
-      "id": "llm",
-      "term": "LLM",
-      "definition": "Grande modelo de linguagem treinado para prever e gerar sequências de texto, podendo também trabalhar com código, imagens ou ferramentas.",
-      "example": "Um LLM pode resumir um contrato, mas o resultado deve ser revisto.",
-      "related": [
-        "transformer",
-        "token",
-        "modelo de fundação"
-      ],
-      "aliases": [
-        "llm",
-        "large language model",
-        "grande modelo de linguagem"
-      ],
-      "english_term": "Large Language Model",
-      "mentions_12w": 2
-    },
-    {
       "id": "token",
       "term": "Token",
       "definition": "Unidade em que um modelo divide texto ou outros dados para os processar; uma palavra pode corresponder a um ou mais tokens.",
@@ -7280,6 +7580,24 @@
         "destilação"
       ],
       "english_term": "Distillation",
+      "mentions_12w": 1
+    },
+    {
+      "id": "llm",
+      "term": "LLM",
+      "definition": "Grande modelo de linguagem treinado para prever e gerar sequências de texto, podendo também trabalhar com código, imagens ou ferramentas.",
+      "example": "Um LLM pode resumir um contrato, mas o resultado deve ser revisto.",
+      "related": [
+        "transformer",
+        "token",
+        "modelo de fundação"
+      ],
+      "aliases": [
+        "llm",
+        "large language model",
+        "grande modelo de linguagem"
+      ],
+      "english_term": "Large Language Model",
       "mentions_12w": 1
     },
     {

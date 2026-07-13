@@ -530,13 +530,24 @@ def rank_entities(
             item["name"],
         )
     )
-    for rank, item in enumerate(ranked, 1):
-        item["rank"] = rank
+    published_rank = 0
+    for item in ranked:
         previous_rank = previous_ranks.get(item["id"])
         item["previous_rank"] = previous_rank
-        item["movement"] = _movement(rank, previous_rank)
+        if item["eligibility"] != "eligible":
+            item["rank"] = None
+            item["movement"] = None
+            item["ranking_change"] = {
+                "kind": "verification_pending",
+                "delta": None,
+                "label": "Fora do ranking at? cumprir o gate de fontes",
+            }
+            continue
+        published_rank += 1
+        item["rank"] = published_rank
+        item["movement"] = _movement(published_rank, previous_rank)
         item["ranking_change"] = _ranking_change(
-            rank,
+            published_rank,
             previous_rank,
             comparison_available=bool(previous_ranks),
         )
@@ -565,6 +576,8 @@ def rank_tools(
             "category_sources": {},
             "category_movements": {},
             "category_confidence": {},
+            "category_external_source_count": {},
+            "category_publication_status": {},
             "score_basis": "avaliação relativa por finalidade",
         }
 
@@ -602,6 +615,10 @@ def rank_tools(
                 source
                 for source in components.values()
                 if not str(source["url"]).startswith("https://ptia.pt/")
+            )
+            item["category_external_source_count"][category] = len(external_hosts)
+            item["category_publication_status"][category] = (
+                "ranked" if len(external_hosts) >= 2 else "watchlist"
             )
             item["category_confidence"][category] = (
                 "alta"
@@ -732,7 +749,8 @@ def build_knowledge_payload(
         "disclaimer": (
             "Índice editorial PTIA, não uma medição absoluta de influência. "
             "O estado da entidade é verificado antes da avaliação; registos sem duas fontes "
-            "recentes ficam identificados como provisórios e entidades inativas saem do índice ativo."
+            "independentes e recentes ficam na watchlist, sem posição publicada, e entidades "
+            "inativas passam para o arquivo."
         ),
         "companies": companies,
         "people": people,
@@ -805,6 +823,7 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
   <link rel="stylesheet" href="/assets/knowledge.css?v=20260713-1">
+  <link rel="stylesheet" href="/assets/resources.css?v=20260713-2">
   <script>
     try {{ document.documentElement.dataset.theme = localStorage.getItem("ptia-theme") === "dark" ? "dark" : "light"; }} catch (_) {{}}
   </script>
@@ -830,7 +849,8 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
     <div class="wrap"><p>PTIA.pt · Inteligência Artificial, lida a partir de Portugal.</p><a href="/metodologia-indice/">Metodologia e correções</a></div>
   </footer>
   <script src="/assets/knowledge.js?v=20260608-2" defer></script>
-  <script src="/analytics.js?v=20260606-1"></script>
+  <script src="/assets/resources.js?v=20260713-2" defer></script>
+  <script src="/analytics.js?v=20260713-2"></script>
 </body>
 </html>
 """
@@ -864,7 +884,9 @@ def _rank_list(items: list[dict], *, kind: str) -> str:
         description = item.get("description") if kind == "company" else item.get("bio")
         evidence = item.get("evidence") or []
         verification_sources = (item.get("verification") or {}).get("sources") or []
-        change_badge = _change_badge(item.get("ranking_change"))
+        verified_sources = min(2, len(_source_hosts(verification_sources)))
+        eligible = item.get("eligibility") == "eligible" and item.get("rank")
+        change_badge = _change_badge(item.get("ranking_change")) if eligible else ""
         source_items = [
             (source.get("label") or "Fonte", source.get("url"))
             for source in verification_sources[:2]
@@ -876,23 +898,33 @@ def _rank_list(items: list[dict], *, kind: str) -> str:
             f'<a href="{html.escape(url)}" rel="noopener">{html.escape(str(label))}</a>'
             for label, url in source_items
         )
-        evidence_markup = evidence_markup or "<span>Verificação pendente</span>"
-        eligibility = html.escape(str(item.get("eligibility") or "provisional"))
-        eligibility_label = "Verificado" if eligibility == "eligible" else "Provisório"
+        evidence_markup = evidence_markup or "<span>Sem fontes independentes validadas</span>"
+        position = f'{int(item["rank"]):02d}' if eligible else "—"
+        state_label = "No ranking" if eligible else "Watchlist · sem posição"
+        signal = (
+            html.escape(str(item.get("score_band") or "Posição publicada"))
+            if eligible
+            else f"{verified_sources}/2 fontes"
+        )
+        signal_note = (
+            "Gate cumprido · posição comparável"
+            if eligible
+            else "Entra no ranking quando cumprir o gate"
+        )
         cards.append(
             f"""
-        <article class="rank-row rank-{eligibility}">
-          <div class="rank-number">{item["rank"]:02d}</div>
+        <article class="rank-row rank-{"eligible" if eligible else "watchlist"}">
+          <div class="rank-number">{position}</div>
           <div class="rank-copy">
-            <p class="rank-meta">{html.escape(str(item.get("category") or ""))} <span class="status-pill status-{eligibility}">{eligibility_label}</span></p>
+            <p class="rank-meta">{html.escape(str(item.get("category") or ""))} <span class="status-pill status-{"eligible" if eligible else "watchlist"}">{state_label}</span></p>
             <h3>{html.escape(item["name"])}</h3>
             <p class="rank-subtitle">{html.escape(str(subtitle or ""))}</p>
             <p>{html.escape(str(description or ""))}</p>
             <p class="rank-explanation">{html.escape(str(item.get("explanation") or ""))}</p>
           </div>
           <div class="rank-signal">
-            <strong>{html.escape(str(item.get("score_band") or "A acompanhar"))}</strong>
-            <span>Confiança: {html.escape(str(item.get("confidence") or "provisória"))}</span>{change_badge}
+            <strong>{signal}</strong>
+            <span>{signal_note}</span>{change_badge}
             <span class="source-links">{evidence_markup}</span>
           </div>
         </article>
@@ -902,58 +934,88 @@ def _rank_list(items: list[dict], *, kind: str) -> str:
 
 
 def render_portugal_page(payload: dict) -> str:
+    eligible_companies = [
+        item for item in payload["companies"] if item.get("eligibility") == "eligible"
+    ]
+    eligible_people = [
+        item for item in payload["people"] if item.get("eligibility") == "eligible"
+    ]
     body = _hero(
         "Índice PTIA · Portugal",
         "Quem está a construir a IA em Portugal.",
-        "Uma leitura editorial com estado, critérios, confiança e fontes visíveis. Registos ainda sem verificação recente são marcados como provisórios.",
+        "Posições só para perfis com duas fontes independentes e recentes. Os restantes permanecem numa watchlist sem número até cumprirem esse gate.",
         payload,
+    )
+    company_title = (
+        "Top de impacto empresarial"
+        if eligible_companies
+        else "Watchlist empresarial · ainda sem posições"
+    )
+    people_title = (
+        "Top de impacto público"
+        if eligible_people
+        else "Watchlist de pessoas · ainda sem posições"
     )
     body += f"""
     <section class="knowledge-section">
       <div class="wrap">
+        <div class="index-gate-note">
+          <strong>{len(eligible_companies) + len(eligible_people)} perfis no ranking</strong>
+          <span>O número publicado exige estado ativo + 2 fontes independentes + verificação nos últimos {VERIFICATION_MAX_AGE_DAYS} dias.</span>
+          <a href="/metodologia-indice/">Ver o gate →</a>
+        </div>
         <div class="segmented-control" role="tablist" aria-label="Tipo de índice">
           <button class="active" type="button" role="tab" aria-selected="true" data-index-tab="companies">Empresas</button>
           <button type="button" role="tab" aria-selected="false" data-index-tab="people">Pessoas</button>
         </div>
         <div data-index-panel="companies">
-          <header class="knowledge-section-head"><div><p>Empresas</p><h2>Índice de impacto empresarial</h2></div><p>Impacto 30% · momentum 25% · inovação 20% · relevância Portugal 15% · ecossistema 10%.</p></header>
+          <header class="knowledge-section-head"><div><p>Empresas</p><h2>{company_title}</h2></div><p>Impacto 30% · momentum 25% · inovação 20% · relevância Portugal 15% · ecossistema 10%.</p></header>
           <div class="rank-list">{_rank_list(payload["companies"], kind="company")}</div>
         </div>
         <div data-index-panel="people" hidden>
-          <header class="knowledge-section-head"><div><p>Pessoas</p><h2>Índice de impacto público</h2></div><p>Trabalho publicado 35% · reconhecimento 25% · ecossistema 20% · atualidade 10% · Portugal 10%.</p></header>
+          <header class="knowledge-section-head"><div><p>Pessoas</p><h2>{people_title}</h2></div><p>Trabalho publicado 35% · reconhecimento 25% · ecossistema 20% · atualidade 10% · Portugal 10%.</p></header>
           <div class="rank-list">{_rank_list(payload["people"], kind="person")}</div>
         </div>
       </div>
     </section>
-    <section class="knowledge-note"><div class="wrap"><strong>Não é um concurso de popularidade.</strong><p>{html.escape(payload["disclaimer"])}</p><a href="/quem-e-quem">Consultar o diretório completo</a></div></section>
+    <section class="knowledge-note"><div class="wrap"><strong>Sem fontes, não há pódio.</strong><p>{html.escape(payload["disclaimer"])}</p><a href="/quem-e-quem">Consultar o diretório completo</a></div></section>
   </main>
 """
-    schema = {
-        "@context": "https://schema.org",
-        "@graph": [
+    item_lists = []
+    if eligible_companies:
+        item_lists.append(
             {
                 "@type": "ItemList",
                 "name": "Índice PTIA de empresas com impacto na IA em Portugal",
                 "dateModified": payload["updated_at"],
                 "itemListElement": [
                     {"@type": "ListItem", "position": item["rank"], "name": item["name"]}
-                    for item in payload["companies"][:10]
+                    for item in eligible_companies[:10]
                 ],
-            },
+            }
+        )
+    if eligible_people:
+        item_lists.append(
             {
                 "@type": "ItemList",
                 "name": "Índice PTIA de pessoas com impacto público na IA em Portugal",
                 "dateModified": payload["updated_at"],
                 "itemListElement": [
                     {"@type": "ListItem", "position": item["rank"], "name": item["name"]}
-                    for item in payload["people"][:10]
+                    for item in eligible_people[:10]
                 ],
-            },
-        ],
+            }
+        )
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Índice PTIA de IA em Portugal",
+        "dateModified": payload["updated_at"],
+        "mainEntity": item_lists,
     }
     return _page_shell(
         "Índice PTIA de IA em Portugal",
-        "Empresas e pessoas com impacto público na inteligência artificial em Portugal, com estado, confiança, fontes e metodologia.",
+        "Empresas e pessoas com impacto público na inteligência artificial em Portugal, com um gate objetivo de fontes antes de qualquer posição.",
         "https://ptia.pt/ia-em-portugal/",
         body,
         schema,
@@ -969,41 +1031,117 @@ def render_tools_page(payload: dict) -> str:
         for index, (key, label) in enumerate(CATEGORY_LABELS.items())
     )
     panels = []
+    published_lists = []
     for panel_index, (category, label) in enumerate(CATEGORY_LABELS.items()):
-        category_tools = sorted(
+        ranked_tools = sorted(
             (tool for tool in payload["tools"] if category in tool.get("category_ranks", {})),
             key=lambda tool: tool["category_ranks"][category],
+        )
+        published = (
+            ranked_tools[0]
+            .get("category_publication_status", {})
+            .get(category)
+            == "ranked"
+        )
+        category_tools = (
+            ranked_tools
+            if published
+            else sorted(ranked_tools, key=lambda tool: _fold(tool["name"]))
         )
         rows = []
         for tool in category_tools:
             sources = tool["category_sources"][category]
+            external_sources = len(
+                _source_hosts(
+                    source
+                    for source in sources
+                    if not str(source.get("url") or "").startswith("https://ptia.pt/")
+                )
+            )
             source_markup = " · ".join(
                 f'<a href="{html.escape(source["url"])}" rel="noopener">{html.escape(source["label"])}</a>'
-                for source in sources[:2]
+                for source in sources
             )
             breakdown = tool["category_breakdowns"][category]
-            category_change = tool["category_movements"][category]
+            category_change = (
+                tool["category_movements"][category] if published else None
+            )
+            score = int(round(float(tool["category_scores"][category])))
+            position = (
+                f'{int(tool["category_ranks"][category]):02d}' if published else "—"
+            )
+            signal_value = str(score) if published else f"{external_sources}/2"
+            signal_label = (
+                "Índice relativo em 100"
+                if published
+                else "Fontes externas · sem posição publicada"
+            )
+            movement = _change_badge(category_change) if published else ""
             rows.append(
                 f"""
             <article class="tool-row">
-              <div class="rank-number">{tool["category_ranks"][category]:02d}</div>
+              <div class="rank-number">{position}</div>
               <div>
                 <p class="rank-meta">{html.escape(label)}</p>
                 <h2>{html.escape(tool["name"])}</h2>
                 <p>{html.escape(tool["description"])}</p>
                 <dl class="tool-details"><div><dt>Melhor para</dt><dd>{html.escape(tool["best_for"])}</dd></div><div><dt>Atenção</dt><dd>{html.escape(tool["watch_out"])}</dd></div></dl>
-                <div class="score-breakdown" aria-label="Componentes da pontuação"><span>Capacidade <strong>{breakdown["capability"]}</strong></span><span>Popularidade <strong>{breakdown["popularity"]}</strong></span><span>Adequação <strong>{breakdown["task_fit"]}</strong></span><span>Acesso <strong>{breakdown["access"]}</strong></span></div>
+                <div class="score-breakdown" aria-label="Componentes da avaliação"><span>Capacidade <strong>{int(round(float(breakdown["capability"])))}</strong></span><span>Adoção <strong>{int(round(float(breakdown["popularity"])))}</strong></span><span>Adequação <strong>{int(round(float(breakdown["task_fit"])))}</strong></span><span>Acesso <strong>{int(round(float(breakdown["access"])))}</strong></span></div>
               </div>
-              <div class="rank-signal"><strong>{html.escape(str(tool["category_confidence"][category]).title())}</strong><span>Confiança da evidência · índice relativo {tool["category_scores"][category]}</span>{_change_badge(category_change)}<span class="source-links">{source_markup}</span><a href="{html.escape(tool["url"])}" rel="noopener">Site oficial</a></div>
+              <div class="rank-signal"><strong>{signal_value}</strong><span>{signal_label}</span><span>{external_sources} fonte{"s" if external_sources != 1 else ""} externa{"s" if external_sources != 1 else ""} · 4 critérios</span>{movement}<span class="source-links">{source_markup}</span><a href="{html.escape(tool["url"])}" rel="noopener">Site oficial</a></div>
             </article>
 """
             )
-        winner = category_tools[0]
+        evidence_count = int(
+            ranked_tools[0]
+            .get("category_external_source_count", {})
+            .get(category)
+            or 0
+        )
+        if published:
+            winner = ranked_tools[0]
+            winner_score = int(round(float(winner["category_scores"][category])))
+            feature_label = f"#01 para {label}"
+            feature_name = winner["name"]
+            feature_note = (
+                f"{winner['best_for']} · índice {winner_score}/100 · "
+                f"{evidence_count} fontes externas"
+            )
+            summary_text = (
+                f"{len(ranked_tools)} ferramentas ordenadas especificamente "
+                f"para {label.lower()}"
+            )
+            published_lists.append(
+                {
+                    "@type": "ItemList",
+                    "name": f"Top de ferramentas de IA para {label}",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": tool["category_ranks"][category],
+                            "name": tool["name"],
+                            "url": tool["url"],
+                        }
+                        for tool in ranked_tools
+                    ],
+                }
+            )
+        else:
+            feature_label = f"Shortlist para {label}"
+            feature_name = "Posições ainda fechadas"
+            feature_note = (
+                f"{evidence_count}/2 fontes externas necessárias para publicar "
+                "o ranking."
+            )
+            summary_text = (
+                f"{len(category_tools)} ferramentas listadas alfabeticamente; "
+                "a ordem interna não é publicada."
+            )
         panels.append(
             f"""
-        <div data-tool-panel="{category}"{" hidden" if panel_index else ""}>
-          <div class="category-winner"><span>Melhor adequação observada para {html.escape(label)}</span><strong>{html.escape(winner["name"])}</strong><p>{html.escape(winner["best_for"])} · confiança {html.escape(str(winner["category_confidence"][category]))}</p></div>
-          <p class="filter-summary">{len(category_tools)} ferramentas ordenadas especificamente para {html.escape(label.lower())}</p>
+        <div id="top-{category}" data-tool-panel="{category}"{" hidden" if panel_index else ""}>
+          <div class="category-winner"><span>{html.escape(feature_label)}</span><strong>{html.escape(feature_name)}</strong><p>{html.escape(feature_note)}</p></div>
+          <p class="filter-summary">{html.escape(summary_text)}</p>
           <div class="tool-list">{"".join(rows)}</div>
         </div>
 """
@@ -1011,15 +1149,15 @@ def render_tools_page(payload: dict) -> str:
     body = _hero(
         "Ferramentas · PTIA",
         "A ferramenta certa depende do trabalho.",
-        "Comparações independentes por finalidade. A confiança e as fontes são visíveis; não existe um vencedor universal.",
+        "Comparações por finalidade com quatro critérios e fontes abertas. Quando faltam duas referências externas, mostramos uma shortlist sem posições.",
         payload,
     )
     body += f"""
     <section class="knowledge-section">
       <div class="wrap">
         <div class="criteria-strip">
-          <span><strong>01</strong> benchmarks e capacidade</span>
-          <span><strong>02</strong> utilização e popularidade</span>
+          <span><strong>01</strong> capacidade</span>
+          <span><strong>02</strong> adoção observável</span>
           <span><strong>03</strong> adequação ao trabalho</span>
           <span><strong>04</strong> acesso e valor</span>
         </div>
@@ -1031,22 +1169,14 @@ def render_tools_page(payload: dict) -> str:
 """
     schema = {
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Ferramentas de IA recomendadas pela PTIA",
+        "@type": "CollectionPage",
+        "name": "Ferramentas de IA comparadas pela PTIA",
         "dateModified": payload["updated_at"],
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": item["rank"],
-                "name": item["name"],
-                "url": item["url"],
-            }
-            for item in payload["tools"]
-        ],
+        "mainEntity": published_lists,
     }
     return _page_shell(
         "Ferramentas de IA por caso de uso",
-        "Ferramentas de IA para coding, estudo, pesquisa, produtividade, design, vídeo e imagem, avaliadas pela PTIA.",
+        "Ferramentas de IA por finalidade, com rankings publicados apenas quando existem critérios comuns e duas fontes externas.",
         "https://ptia.pt/ferramentas/",
         body,
         schema,
@@ -1218,11 +1348,11 @@ def _open_source_radar_markup() -> str:
     <section class="knowledge-section knowledge-section-alt open-source-radar" id="radar-open-source">
       <div class="wrap">
         <article class="lobby-panel lobby-panel-wide">
-          <header><div><span>Radar separado</span><h2>Open source para explorar</h2></div><a href="#radar-open-source-nota">Crit?rios ?</a></header>
-          <p class="panel-intro" id="radar-open-source-nota">Dez projetos com sinal p?blico de comunidade e atividade recente. N?o altera o ?ndice PTIA nem equivale a uma recomenda??o, avalia??o de qualidade ou valida??o de seguran?a.</p>
-          <p class="radar-status" id="github-repos-updated" aria-live="polite">A carregar dados p?blicos do GitHub?</p>
+          <header><div><span>Radar separado</span><h2>Open source para explorar</h2></div><a href="#radar-open-source-nota">Critérios ↓</a></header>
+          <p class="panel-intro" id="radar-open-source-nota">Dez projetos com sinal público de comunidade e atividade recente. Não altera o índice PTIA nem equivale a uma recomendação, avaliação de qualidade ou validação de segurança.</p>
+          <p class="radar-status" id="github-repos-updated" aria-live="polite">A carregar dados públicos do GitHub…</p>
           <ol class="lobby-ranked open-source-list" id="github-repos-list" aria-live="polite">
-            <li class="radar-loading"><span>?</span><strong>A carregar o radar open source</strong><small>Atualiza??o semanal</small></li>
+            <li class="radar-loading"><span>—</span><strong>A carregar o radar open source</strong><small>Atualização semanal</small></li>
           </ol>
         </article>
       </div>
@@ -1236,7 +1366,7 @@ def _open_source_radar_markup() -> str:
         const compactNumber = (value) => new Intl.NumberFormat("pt-PT", { notation: "compact", maximumFractionDigits: 1 }).format(Number(value || 0));
         const formatDate = (value) => {
           const date = new Date(value);
-          return Number.isNaN(date.getTime()) ? "data indispon?vel" : new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "short", year: "numeric" }).format(date);
+          return Number.isNaN(date.getTime()) ? "data indisponível" : new Intl.DateTimeFormat("pt-PT", { day: "numeric", month: "short", year: "numeric" }).format(date);
         };
         const githubUrl = (value) => {
           try {
@@ -1250,20 +1380,20 @@ def _open_source_radar_markup() -> str:
           const url = githubUrl(repo.url);
           if (!url) return "";
           const rank = String(Number(repo.rank) || index + 1).padStart(2, "0");
-          return '<li class="open-source-row"><span class="open-source-rank">' + rank + '</span><div class="open-source-copy"><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(repo.name || "Reposit?rio GitHub") + '</a><p>' + escapeHtml(repo.description || "Descri??o indispon?vel.") + '</p></div><div class="open-source-meta"><span>' + escapeHtml(repo.language || "multi") + '</span><span>' + compactNumber(repo.stars) + ' stars</span><span>Atualizado ' + formatDate(repo.updated_at) + '</span></div></li>';
+          return '<li class="open-source-row"><span class="open-source-rank">' + rank + '</span><div class="open-source-copy"><a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(repo.name || "Repositório GitHub") + '</a><p>' + escapeHtml(repo.description || "Descrição indisponível.") + '</p></div><div class="open-source-meta"><span>' + escapeHtml(repo.language || "multi") + '</span><span>' + compactNumber(repo.stars) + ' stars</span><span>Atualizado ' + formatDate(repo.updated_at) + '</span></div></li>';
         };
-        const unavailable = () => '<li class="radar-loading"><span>?</span><strong>Radar temporariamente indispon?vel</strong><small>Voltar? a tentar na pr?xima atualiza??o semanal.</small></li>';
+        const unavailable = () => '<li class="radar-loading"><span>—</span><strong>Radar temporariamente indisponível</strong><small>Voltará a tentar na próxima atualização semanal.</small></li>';
         const loadRadar = async () => {
           try {
             const response = await fetch("/assets/github-ai-repos.json", { cache: "no-store" });
-            if (!response.ok) throw new Error("GitHub radar indispon?vel");
+            if (!response.ok) throw new Error("GitHub radar indisponível");
             const payload = await response.json();
             const rows = (Array.isArray(payload.repos) ? payload.repos : []).map(repositoryRow).filter(Boolean);
-            if (!rows.length) throw new Error("Sem reposit?rios v?lidos");
+            if (!rows.length) throw new Error("Sem repositórios válidos");
             list.innerHTML = rows.join("");
-            updated.textContent = "Atualizado " + formatDate(payload.updated_at) + " ? GitHub Search API ? atividade nos ?ltimos 45 dias";
+            updated.textContent = "Atualizado " + formatDate(payload.updated_at) + " · GitHub Search API · atividade nos últimos 45 dias";
           } catch (_) {
-            updated.textContent = "Dados do GitHub indispon?veis nesta edi??o.";
+            updated.textContent = "Dados do GitHub indisponíveis nesta edição.";
             list.innerHTML = unavailable();
           }
         };
@@ -1274,167 +1404,368 @@ def _open_source_radar_markup() -> str:
 
 
 def render_resources_page(payload: dict) -> str:
-    leading_company = payload["companies"][0]
-    leading_person = payload["people"][0]
     summary = payload.get("verification_summary") or {}
     archived_entities = [
         *payload.get("entity_archive", {}).get("companies", []),
         *payload.get("entity_archive", {}).get("people", []),
     ]
-    category_winners = []
+    categories: list[tuple[str, str, list[dict]]] = []
     for category, label in CATEGORY_LABELS.items():
-        category_tools = [
-            tool for tool in payload["tools"] if category in tool.get("category_ranks", {})
-        ]
-        if not category_tools:
-            continue
-        winner = min(category_tools, key=lambda tool: tool["category_ranks"][category])
-        category_winners.append((category, label, winner))
+        tools = sorted(
+            (
+                tool
+                for tool in payload["tools"]
+                if category in tool.get("category_ranks", {})
+            ),
+            key=lambda tool: tool["category_ranks"][category],
+        )
+        if tools:
+            categories.append((category, label, tools))
+    published_category_count = sum(
+        tools[0].get("category_publication_status", {}).get(category) == "ranked"
+        for category, _, tools in categories
+    )
 
-    def leader(*, label: str, name: str, note: str, href: str, action: str) -> str:
+    def source_count(sources: Iterable[dict]) -> int:
+        return len(
+            _source_hosts(
+                source
+                for source in sources
+                if not str(source.get("url") or "").startswith("https://ptia.pt/")
+            )
+        )
+
+    def tool_card(
+        tool: dict, category: str, label: str, *, published: bool
+    ) -> str:
+        rank = int(tool["category_ranks"][category])
+        score = int(round(float(tool["category_scores"][category])))
+        breakdown = tool["category_breakdowns"][category]
+        sources = tool["category_sources"][category]
+        external_sources = source_count(sources)
+        position_label = f"#{rank:02d}" if published else "Sem posição"
+        card_class = f"resources-rank-{rank}" if published else "resources-rank-watchlist"
+        score_value = score if published else external_sources
+        score_caption = (
+            "índice relativo<br>em 100"
+            if published
+            else "fontes externas<br>em 2"
+        )
+        source_links = " · ".join(
+            f'<a href="{html.escape(str(source["url"]))}" rel="noopener" data-resource-action="source_opened">{html.escape(str(source["label"]))}</a>'
+            for source in sources
+        )
+        bars = "".join(
+            f'<span><i>{html.escape(name)}</i><b><em style="--value:{int(round(float(breakdown[key])))}%"></em></b><strong>{int(round(float(breakdown[key])))}</strong></span>'
+            for key, name in (
+                ("capability", "Capacidade"),
+                ("popularity", "Adoção"),
+                ("task_fit", "Adequação"),
+                ("access", "Acesso"),
+            )
+        )
+        movement = (
+            _change_badge(tool["category_movements"][category]) if published else ""
+        )
         return f"""
-          <a class="weekly-leader" href="{href}">
-            <span class="weekly-leader-label">{html.escape(label)}</span>
-            <strong>{html.escape(name)}</strong>
-            <span class="weekly-leader-score">{html.escape(note)}</span>
-            <span class="weekly-leader-action">{html.escape(action)} →</span>
-          </a>
+          <article class="resources-rank-card {card_class}" data-resource-item="{html.escape(tool["id"])}">
+            <div class="resources-rank-topline">
+              <span class="resources-rank-number">{position_label}</span>{movement}
+            </div>
+            <p class="resources-rank-category">{html.escape(label)}</p>
+            <h3>{html.escape(tool["name"])}</h3>
+            <p class="resources-rank-fit">{html.escape(tool["best_for"])}</p>
+            <div class="resources-rank-score">
+              <strong>{score_value}</strong>
+              <span>{score_caption}</span>
+            </div>
+            <details data-resource-explanation data-resource-label="{html.escape(tool["name"])}">
+              <summary>Porque está aqui <span>+</span></summary>
+              <div class="resources-rank-evidence">
+                <p><b>Melhor para</b>{html.escape(tool["best_for"])}</p>
+                <p><b>Atenção</b>{html.escape(tool["watch_out"])}</p>
+                <div class="resources-score-bars" aria-label="Quatro componentes da avaliação">{bars}</div>
+                <p class="resources-source-count">{external_sources} fonte{"s" if external_sources != 1 else ""} externa{"s" if external_sources != 1 else ""} · 4 critérios</p>
+                <p class="resources-source-links">{source_links}</p>
+              </div>
+            </details>
+          </article>
 """
 
-    leaders = "".join(
-        (
-            leader(
-                label="Empresa em destaque",
-                name=leading_company["name"],
-                note=f"{leading_company['score_band']} · confiança {leading_company['confidence']}",
-                href="/ia-em-portugal/",
-                action="Ver critérios e fontes",
-            ),
-            leader(
-                label="Pessoa em destaque",
-                name=leading_person["name"],
-                note=f"{leading_person['score_band']} · confiança {leading_person['confidence']}",
-                href="/ia-em-portugal/",
-                action="Ver critérios e fontes",
-            ),
-            leader(
-                label="Verificação",
-                name=f"{summary.get('eligible', 0)} verificados · {summary.get('provisional', 0)} provisórios",
-                note="Duas fontes independentes para elegibilidade plena",
-                href="/metodologia-indice/",
-                action="Perceber o gate",
-            ),
-            leader(
-                label="Alterações de estado",
-                name=f"{summary.get('excluded', 0)} fora do índice ativo",
-                note="Aquisição, insolvência, liquidação ou inatividade",
-                href="#arquivo-entidades",
-                action="Ver o que mudou",
-            ),
+    category_buttons = "".join(
+        f'<button type="button" role="tab" aria-selected="{"true" if index == 0 else "false"}" class="{"active" if index == 0 else ""}" data-resource-category="{html.escape(category)}">{html.escape(label)}</button>'
+        for index, (category, label, _) in enumerate(categories)
+    )
+    category_panels = []
+    for index, (category, label, tools) in enumerate(categories):
+        published = (
+            tools[0].get("category_publication_status", {}).get(category) == "ranked"
         )
-    )
-    company_rows = "".join(
-        f'<li><b><small>{html.escape(item["score_band"])}</small></b><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong><span class="status-pill status-{html.escape(item["eligibility"])}">{"Verificado" if item["eligibility"] == "eligible" else "Provisório"}</span></li>'
-        for item in payload["companies"][:3]
-    )
-    people_rows = "".join(
-        f'<li><b><small>{html.escape(item["score_band"])}</small></b><span>{item["rank"]:02d}</span><strong>{html.escape(item["name"])}</strong><span class="status-pill status-{html.escape(item["eligibility"])}">{"Verificado" if item["eligibility"] == "eligible" else "Provisório"}</span></li>'
-        for item in payload["people"][:3]
-    )
-    winners = "".join(
-        f"<li><b><small>{html.escape(str(winner['category_confidence'][category]).title())}</small></b><span>{html.escape(label)}</span><strong>{html.escape(winner['name'])}</strong></li>"
-        for category, label, winner in category_winners
-    )
-    prompt_rows = "".join(
-        f"<li><span>{item['rank']:02d}</span><strong>{html.escape(item['title'])}</strong><small>{html.escape(item['category'])}</small></li>"
-        for item in payload["prompts"][:6]
-    )
-    glossary_rows = "".join(
-        f'<a href="/glossario/#{html.escape(item["id"])}">{html.escape(item["term"])}</a>'
-        for item in payload["glossary"][:6]
-    )
-    archive_rows = []
-    status_labels = {
-        "acquired": "Adquirida",
-        "insolvent": "Insolvente",
-        "liquidated": "Liquidação",
-        "inactive": "Inativa",
-    }
-    for item in archived_entities:
-        source_links = " · ".join(
-            f'<a href="{html.escape(source["url"])}" rel="noopener">{html.escape(str(source.get("label") or "Fonte"))}</a>'
-            for source in (item.get("verification") or {}).get("sources", [])[:3]
+        displayed_tools = (
+            tools[:3]
+            if published
+            else sorted(tools[:3], key=lambda tool: _fold(tool["name"]))
+        )
+        cards = "".join(
+            tool_card(tool, category, label, published=published)
+            for tool in displayed_tools
+        )
+        if published:
+            panel_title = f"Top 3 para {label.lower()}"
+            panel_note = (
+                "Posições calculadas com capacidade, adoção, adequação à tarefa e acesso."
+            )
+            share_button = (
+                f'<button type="button" class="resources-share-button" '
+                f'data-resource-share data-share-title="Top 3 de IA para '
+                f'{html.escape(label)} · PTIA" data-share-content="tools-'
+                f'{html.escape(category)}">Partilhar este top</button>'
+            )
+        else:
+            evidence_count = int(
+                tools[0].get("category_external_source_count", {}).get(category) or 0
+            )
+            panel_title = f"Shortlist para {label.lower()}"
+            panel_note = (
+                f"Sem posições publicadas: {evidence_count}/2 fontes externas "
+                "necessárias para abrir o ranking."
+            )
+            share_button = ""
+        category_panels.append(
+            f"""
+        <div class="resources-ranking-panel" role="tabpanel" data-resource-category-panel="{html.escape(category)}"{" hidden" if index else ""}>
+          <div class="resources-ranking-toolbar">
+            <p><strong>{html.escape(panel_title)}</strong><span>{html.escape(panel_note)}</span></p>
+            <div>{share_button}<a href="/ferramentas/#top-{html.escape(category)}" data-resource-action="full_comparison_opened">Abrir análise completa →</a></div>
+          </div>
+          <div class="resources-podium">{"".join(cards)}</div>
+        </div>
+"""
+        )
+
+    entity_pool = [
+        ("Empresa", item)
+        for item in payload["companies"]
+        if item.get("eligibility") == "eligible"
+    ] + [
+        ("Pessoa", item)
+        for item in payload["people"]
+        if item.get("eligibility") == "eligible"
+    ]
+    has_published_portugal_ranking = bool(entity_pool)
+    if not entity_pool:
+        entity_pool = [
+            *[("Empresa", item) for item in payload["companies"][:3]],
+            *[("Pessoa", item) for item in payload["people"][:3]],
+        ]
+
+    entity_cards = []
+    for kind, item in entity_pool[:6]:
+        sources = list((item.get("verification") or {}).get("sources") or [])
+        verified_sources = min(2, len(_source_hosts(sources)))
+        is_ranked = item.get("eligibility") == "eligible" and item.get("rank")
+        position = f'#{int(item["rank"]):02d}' if is_ranked else "Sem posição"
+        gate_label = "Gate cumprido" if verified_sources >= 2 else f"{verified_sources}/2 fontes recentes"
+        subtitle = item.get("tagline") if kind == "Empresa" else item.get("role")
+        entity_cards.append(
+            f"""
+          <article class="resources-watch-card">
+            <div><span>{html.escape(kind)}</span><b>{html.escape(position)}</b></div>
+            <h3>{html.escape(item["name"])}</h3>
+            <p>{html.escape(str(subtitle or item.get("category") or ""))}</p>
+            <footer>
+              <span class="resources-source-meter" style="--verified:{verified_sources}"><i></i><i></i></span>
+              <strong>{html.escape(gate_label)}</strong>
+            </footer>
+          </article>
+"""
+        )
+
+    if has_published_portugal_ranking:
+        portugal_title = "Portugal, com posições que conseguimos defender."
+        portugal_intro = (
+            f"{summary.get('eligible', 0)} perfis cumprem o gate de duas fontes independentes "
+            "e recentes. Só esses recebem uma posição."
+        )
+    else:
+        portugal_title = "O próximo Top Portugal está a ser provado."
+        portugal_intro = (
+            f"{summary.get('provisional', 0)} perfis estão no radar, mas nenhum cumpre ainda "
+            "o gate de duas fontes independentes e recentes. Até lá, há watchlist — não há pódio."
+        )
+
+    archive = archived_entities[0] if archived_entities else None
+    if archive:
+        archive_sources = " · ".join(
+            f'<a href="{html.escape(str(source["url"]))}" rel="noopener" data-resource-action="correction_source_opened">{html.escape(str(source.get("label") or "Fonte"))}</a>'
+            for source in (archive.get("verification") or {}).get("sources", [])[:3]
             if source.get("url")
         )
-        archive_rows.append(
-            f"""
-            <li>
-              <div><span class="status-pill status-ineligible">{html.escape(status_labels.get(str(item.get("status") or ""), "Inativa"))}</span><strong>{html.escape(item["name"])}</strong></div>
-              <p>{html.escape(str(item.get("status_reason") or "Retirado do índice ativo após revisão editorial."))}</p>
-              <p class="source-links">{source_links or "Fontes em revisão"}</p>
-            </li>
+        archive_markup = f"""
+          <p class="resources-card-kicker">Correção verificável</p>
+          <h3>{html.escape(archive["name"])} saiu do índice ativo.</h3>
+          <p>{html.escape(str(archive.get("status_reason") or "O estado da entidade mudou e foi verificado."))}</p>
+          <div class="resources-correction-sources">{archive_sources or "Fontes em revisão"}</div>
+          <a href="/recursos/#arquivo-entidades" data-resource-action="archive_opened">Ver arquivo e decisão →</a>
 """
-        )
-    archive_markup = "".join(archive_rows) or (
-        "<li><p>Não há entidades retiradas nesta edição.</p></li>"
+    else:
+        archive_markup = """
+          <p class="resources-card-kicker">Memória editorial</p>
+          <h3>Sem alterações de estado nesta edição.</h3>
+          <p>Quando uma entidade é adquirida, encerrada ou fica inativa, a mudança fica registada com fontes.</p>
+          <a href="/metodologia-indice/" data-resource-action="methodology_opened">Ver regra editorial →</a>
+"""
+
+    prompt_cards = "".join(
+        f"""
+          <a class="resources-prompt-card" href="/prompts/#prompt-{html.escape(prompt["id"])}" data-resource-action="prompt_opened">
+            <span>{prompt["rank"]:02d}</span>
+            <div><small>{html.escape(prompt["category"])}</small><strong>{html.escape(prompt["title"])}</strong></div>
+            <b>Usar →</b>
+          </a>
+"""
+        for prompt in payload["prompts"][:3]
     )
+    glossary_links = "".join(
+        f'<a href="/glossario/#{html.escape(item["id"])}" data-resource-action="glossary_opened">{html.escape(item["term"])}</a>'
+        for item in payload["glossary"][:8]
+    )
+
+    first_category, first_label, first_tools = categories[0]
+    first_tool = first_tools[0]
+    first_score = int(round(float(first_tool["category_scores"][first_category])))
     body = f"""
-  <main id="conteudo">
-    <section class="resources-hero">
-      <div class="wrap">
-        <div class="resources-hero-meta" aria-label="Dados da edição">
-          <span>Edição <strong>{html.escape(payload["edition"])}</strong></span>
-          <span><strong>{payload["signal_articles"]}</strong> artigos analisados</span>
-          <span>Janela <strong>{payload["signal_window_days"]} dias</strong></span>
-          <span>Atualizado <strong>{payload["updated_at"][:10]}</strong></span>
-        </div>
-        <div class="resources-hero-intro">
-          <div>
-            <p class="knowledge-kicker">Radar verificado · PTIA</p>
-            <h1>O que merece atenção — e porquê.</h1>
+  <main id="conteudo" class="resources-v2">
+    <section class="resources-v2-hero">
+      <div class="wrap resources-v2-hero-grid">
+        <div class="resources-v2-hero-copy">
+          <p class="resources-v2-eyebrow"><span>Radar PTIA</span> Edição {html.escape(payload["edition"])} · atualização semanal</p>
+          <h1>Os sinais de IA que valem o teu tempo.</h1>
+          <p>Rankings por tarefa, mudanças verificadas e uma watchlist portuguesa sem falsos pódios.</p>
+          <div class="resources-v2-actions">
+            <a href="#top-ferramentas" class="resources-primary-action" data-resource-action="ranking_started">Explorar os tops</a>
+            <button type="button" data-resource-share data-share-title="Radar PTIA · {html.escape(payload["edition"])}" data-share-content="weekly-edition">Partilhar edição</button>
           </div>
-          <p>Um índice com estado, critérios e fontes visíveis. O destaque só é tão forte quanto a evidência; o que deixa de estar ativo passa para arquivo com explicação.</p>
         </div>
-        <div class="weekly-leaders" aria-label="Resumo da edição">{leaders}</div>
+        <aside class="resources-week-card" aria-label="Escolha da semana">
+          <div class="resources-week-card-head"><span>Escolha da semana</span><b>{html.escape(first_label)}</b></div>
+          <p class="resources-week-rank">#01</p>
+          <h2>{html.escape(first_tool["name"])}</h2>
+          <p>{html.escape(first_tool["best_for"])}</p>
+          <div class="resources-week-score"><strong>{first_score}</strong><span>índice relativo<br>em 100</span></div>
+          <a href="#top-ferramentas" data-resource-action="featured_ranking_opened">Ver porque lidera →</a>
+        </aside>
+      </div>
+      <div class="wrap resources-v2-proof">
+        <span><strong>{published_category_count}</strong> tops publicados</span>
+        <span><strong>{len(categories) - published_category_count}</strong> shortlists em validação</span>
+        <span><strong>{summary.get("eligible", 0)}</strong> perfis Portugal no ranking</span>
+        <span><strong>{summary.get("excluded", 0)}</strong> alteração de estado auditável</span>
       </div>
     </section>
-    <section class="knowledge-section"><div class="wrap lobby-grid">
-      <article class="lobby-panel lobby-panel-wide">
-        <header><div><span>Índice Portugal</span><h2>Pessoas e empresas a acompanhar</h2></div><a href="/ia-em-portugal/">Ver critérios e fontes →</a></header>
-        <div class="lobby-split"><div><h3>Empresas</h3><ol class="lobby-entity-list">{company_rows}</ol></div><div><h3>Pessoas</h3><ol class="lobby-entity-list">{people_rows}</ol></div></div>
-      </article>
-      <article class="lobby-panel">
-        <header><div><span>Ferramentas</span><h2>A melhor adequação por finalidade</h2></div><a href="/ferramentas/">Comparar →</a></header>
-        <ul class="winner-list">{winners}</ul>
-      </article>
-      <article class="lobby-panel">
-        <header><div><span>Prompts</span><h2>Seleção editorial útil</h2></div><a href="/prompts/">Abrir biblioteca →</a></header>
-        <ol class="lobby-ranked">{prompt_rows}</ol>
-      </article>
-      <article class="lobby-panel lobby-panel-wide archive-panel" id="arquivo-entidades">
-        <header><div><span>Memória e correções</span><h2>Retirados do índice ativo</h2></div><a href="/metodologia-indice/">Como decidimos →</a></header>
-        <p class="panel-intro">Aquisição, insolvência, liquidação ou inatividade são verificadas antes de qualquer pontuação. Mantemos o registo para que a alteração seja auditável.</p>
-        <ul class="archive-list">{archive_markup}</ul>
-      </article>
-      <article class="lobby-panel lobby-panel-wide glossary-preview">
-        <header><div><span>Glossário</span><h2>IA explicada sem nevoeiro</h2></div><a href="/glossario/">Ver {len(payload["glossary"])} termos →</a></header>
-        <div>{glossary_rows}</div>
-      </article>
-    </div></section>
+
+    <nav class="resources-jump-nav" aria-label="Navegação nesta página">
+      <div class="wrap">
+        <a href="#top-ferramentas">Ferramentas</a>
+        <a href="#top-portugal">Portugal</a>
+        <a href="#escolhas-editoriais">Prompts</a>
+        <a href="#radar-open-source">Open source</a>
+        <a href="/metodologia-indice/" data-resource-action="methodology_opened">Metodologia ↗</a>
+      </div>
+    </nav>
+
+    <section class="resources-ranking-section" id="top-ferramentas">
+      <div class="wrap">
+        <header class="resources-v2-section-head">
+          <div><p>Rankings comparáveis</p><h2>Escolhe o trabalho.<br>Nós mostramos o top.</h2></div>
+          <p>Não existe “a melhor IA” em abstrato. Cada lista usa o mesmo quadro de quatro critérios e muda quando a evidência muda.</p>
+        </header>
+        <div class="resources-category-tabs" role="tablist" aria-label="Escolher finalidade">{category_buttons}</div>
+{"".join(category_panels)}
+        <div class="resources-method-strip">
+          <p><span>01</span><strong>Capacidade</strong><small>Benchmarks e funções</small></p>
+          <p><span>02</span><strong>Adoção</strong><small>Uso observável</small></p>
+          <p><span>03</span><strong>Adequação</strong><small>Fit com a tarefa</small></p>
+          <p><span>04</span><strong>Acesso</strong><small>Disponibilidade e valor</small></p>
+          <a href="/metodologia-indice/" data-resource-action="methodology_opened">Ver pesos e fontes →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-portugal-section" id="top-portugal">
+      <div class="wrap">
+        <header class="resources-v2-section-head resources-v2-section-head-light">
+          <div><p>Watchlist Portugal</p><h2>{html.escape(portugal_title)}</h2></div>
+          <p>{html.escape(portugal_intro)}</p>
+        </header>
+        <div class="resources-watch-grid">{"".join(entity_cards)}</div>
+        <div class="resources-portugal-footer">
+          <p><strong>Como ler isto:</strong> x/2 é o número de fontes independentes e recentes já validadas. Não é uma nota nem uma confiança subjetiva.</p>
+          <a href="/ia-em-portugal/" data-resource-action="portugal_watchlist_opened">Abrir watchlist e critérios →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-editorial-section" id="escolhas-editoriais">
+      <div class="wrap resources-editorial-grid">
+        <article class="resources-editorial-card">
+          <header><div><p class="resources-card-kicker">Seleção editorial</p><h2>3 prompts para fazer melhor trabalho.</h2></div><a href="/prompts/" data-resource-action="prompt_library_opened">Ver biblioteca →</a></header>
+          <p class="resources-editorial-note">Ordenados por clareza, reutilização e utilidade — não por uma popularidade que ainda não medimos.</p>
+          <div class="resources-prompt-list">{prompt_cards}</div>
+        </article>
+        <article class="resources-correction-card" id="arquivo-entidades">{archive_markup}</article>
+      </div>
+    </section>
+
+    <section class="resources-glossary-strip">
+      <div class="wrap">
+        <div><p>Sem nevoeiro</p><h2>IA em palavras normais.</h2></div>
+        <div class="resources-glossary-links">{glossary_links}</div>
+        <a href="/glossario/" data-resource-action="glossary_library_opened">Ver {len(payload["glossary"])} termos →</a>
+      </div>
+    </section>
+
     {_open_source_radar_markup().strip()}
-    <section class="knowledge-note"><div class="wrap"><strong>Publicação com memória.</strong><p>Cada edição fica arquivada. Mudanças de posição e de estado podem ser explicadas, comparadas e corrigidas.</p><a href="/metodologia-indice/">Ler metodologia</a></div></section>
+
+    <section class="resources-v2-closing">
+      <div class="wrap">
+        <p>Uma posição sem explicação é só opinião.</p>
+        <div><strong>Cada edição fica arquivada.</strong><span>Se um nome muda de estado, a página muda com ele — e mostra porquê.</span></div>
+        <a href="/metodologia-indice/" data-resource-action="methodology_opened">Ler metodologia e correções →</a>
+      </div>
+    </section>
   </main>
 """
+    item_lists = []
+    for category, label, tools in categories:
+        if tools[0].get("category_publication_status", {}).get(category) != "ranked":
+            continue
+        item_lists.append(
+            {
+                "@type": "ItemList",
+                "name": f"Top de ferramentas de IA para {label}",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": tool["category_ranks"][category],
+                        "name": tool["name"],
+                        "url": tool["url"],
+                    }
+                    for tool in tools
+                ],
+            }
+        )
     schema = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "Recursos PTIA",
+        "name": "Rankings e recursos de Inteligência Artificial · PTIA",
         "url": "https://ptia.pt/recursos/",
         "dateModified": payload["updated_at"],
+        "mainEntity": item_lists,
     }
     return _page_shell(
-        "Recursos de Inteligência Artificial",
-        "Radar português de IA com estado, critérios, confiança, fontes, ferramentas por finalidade, prompts e glossário.",
+        "Rankings e recursos de Inteligência Artificial",
+        "Rankings de ferramentas por tarefa, watchlist portuguesa com fontes, prompts úteis e radar open source, atualizados semanalmente.",
         "https://ptia.pt/recursos/",
         body,
         schema,

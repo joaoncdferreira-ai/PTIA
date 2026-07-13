@@ -88,22 +88,28 @@ class KnowledgeTests(unittest.TestCase):
         self.assertGreaterEqual(len(unbabel["verification"]["sources"]), 2)
 
         resources = (self.root / "site" / "recursos" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("O que merece atenção — e porquê.", resources)
-        self.assertIn("A melhor adequação por finalidade", resources)
-        self.assertIn("Retirados do índice ativo", resources)
-        self.assertIn("Unbabel", resources)
-        self.assertIn("Liquidação", resources)
-        self.assertIn('class="weekly-leaders"', resources)
-        self.assertIn('weekly-leader-label">Empresa em destaque</span>', resources)
-        self.assertIn('weekly-leader-label">Pessoa em destaque</span>', resources)
-        self.assertIn('weekly-leader-label">Verificação</span>', resources)
-        self.assertIn('weekly-leader-label">Alterações de estado</span>', resources)
+        self.assertIn("Os sinais de IA que valem o teu tempo.", resources)
+        self.assertIn("Escolhe o trabalho.", resources)
+        self.assertIn('class="resources-podium"', resources)
+        self.assertIn('class="resources-watch-grid"', resources)
+        self.assertIn("6</strong> tops publicados", resources)
+        self.assertIn("3</strong> shortlists em validação", resources)
+        self.assertIn("Shortlist para pesquisa", resources)
+        self.assertIn("Sem posições publicadas: 1/2 fontes externas", resources)
+        self.assertIn("0/2 fontes recentes", resources)
+        self.assertIn("Correção verificável", resources)
+        self.assertIn("Unbabel saiu do índice ativo", resources)
+        self.assertIn("liquidação", resources)
         self.assertIn('href="/recursos/">Hub</a>', resources)
-        self.assertIn('class="lobby-entity-list"', resources)
         self.assertIn('id="radar-open-source"', resources)
         self.assertIn("Open source para explorar", resources)
         self.assertIn('fetch("/assets/github-ai-repos.json", { cache: "no-store" })', resources)
-        self.assertIn("N?o altera o ?ndice PTIA", resources)
+        self.assertIn("Não altera o índice PTIA", resources)
+        self.assertIn('/assets/resources.css?v=', resources)
+        self.assertIn('/assets/resources.js?v=', resources)
+        self.assertNotIn('status-provisional', resources)
+        self.assertNotIn(">Provisório<", resources)
+        self.assertNotIn("A acompanhar", resources)
         self.assertNotIn("PTIA Score", resources)
 
         portugal = (self.root / "site" / "ia-em-portugal" / "index.html").read_text(
@@ -111,10 +117,14 @@ class KnowledgeTests(unittest.TestCase):
         )
         self.assertIn('data-index-tab="companies"', portugal)
         self.assertIn('data-index-panel="people"', portugal)
-        self.assertIn("Confiança:", portugal)
-        self.assertIn("Provisório", portugal)
+        self.assertIn("Watchlist empresarial · ainda sem posições", portugal)
+        self.assertIn("0/2 fontes", portugal)
+        self.assertIn("Entra no ranking quando cumprir o gate", portugal)
         self.assertIn("Co-fundador da Unbabel", portugal)
         self.assertNotIn("CEO, Unbabel", portugal)
+        self.assertNotIn("Confiança:", portugal)
+        self.assertNotIn("Provisório", portugal)
+        self.assertNotIn("A acompanhar", portugal)
         self.assertNotIn("PTIA Score", portugal)
 
         prompts = (self.root / "site" / "prompts" / "index.html").read_text(encoding="utf-8")
@@ -200,6 +210,24 @@ class KnowledgeTests(unittest.TestCase):
         self.assertEqual(winners["produtividade"], "chatgpt")
         self.assertEqual(winners["marketing"], "canva")
         self.assertEqual(winners["automacoes"], "n8n")
+        coding_winner = next(
+            item for item in payload["tools"] if item["id"] == winners["coding"]
+        )
+        research_winner = next(
+            item for item in payload["tools"] if item["id"] == winners["pesquisa"]
+        )
+        automation_winner = next(
+            item for item in payload["tools"] if item["id"] == winners["automacoes"]
+        )
+        self.assertEqual(
+            coding_winner["category_publication_status"]["coding"], "ranked"
+        )
+        self.assertEqual(
+            research_winner["category_publication_status"]["pesquisa"], "watchlist"
+        )
+        self.assertEqual(
+            automation_winner["category_external_source_count"]["automacoes"], 0
+        )
 
     def test_future_verification_date_does_not_grant_eligibility(self):
         catalog = json.loads(

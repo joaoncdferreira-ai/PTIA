@@ -19,8 +19,8 @@ DEFAULT_HASHTAGS = "#InteligenciaArtificial #Portugal #PTIA #RadarIA"
 SERIES_KIND = "saturday_resources"
 SOCIAL_TOOL_CATEGORIES = (
     ("coding", "Código"),
-    ("pesquisa", "Pesquisa"),
-    ("automacoes", "Automações"),
+    ("produtividade", "Produtividade"),
+    ("design", "Design"),
 )
 
 
@@ -110,71 +110,83 @@ def upsert_saturday_resource_posts(
 
 
 def _radar_post(index: dict[str, Any], edition: str) -> SaturdayResourcePost:
-    companies = _top_items(index, "companies", "name", limit=3)
-    people = _top_items(index, "people", "name", limit=3)
     prompts = _top_items(index, "prompts", "title", limit=1)
     archived = [
         *index.get("entity_archive", {}).get("companies", []),
         *index.get("entity_archive", {}).get("people", []),
     ]
+    summary = index.get("verification_summary") or {}
+    eligible = int(summary.get("eligible") or 0)
+    provisional = int(summary.get("provisional") or 0)
+    profile_total = eligible + provisional
     tool_winners = _tool_winners(index)
     change = archived[0] if archived else None
     change_line = (
-        f"{change['name']} sai do índice ativo: "
+        f"{change['name']} saiu do índice ativo: "
         f"{change.get('status_reason') or 'o estado da entidade mudou e foi verificado.'}"
         if change
-        else "Nesta edição não há novas entidades retiradas do índice ativo."
+        else "Nesta edição não há novas alterações de estado."
     )
-    company = companies[0] if companies else {"label": "Em verificação", "band": "Provisório"}
-    person = people[0] if people else {"label": "Em verificação", "band": "Provisório"}
+    gate_line = (
+        f"{eligible}/{profile_total} perfis cumprem o gate de duas fontes recentes. "
+        f"Os restantes {provisional} ficam na watchlist, sem posição."
+        if profile_total
+        else "A watchlist Portugal está em atualização; não há posições sem fontes."
+    )
     prompt = prompts[0]["label"] if prompts else "Biblioteca PTIA"
     tool_lines = (
         "\n".join(
-            f"• {label}: {tool['name']} — confiança {tool['confidence']}"
+            f"• {label} — #1 {tool['name']} (índice {tool['score']}/100). "
+            f"Melhor para: {tool['best_for']}"
             for label, tool in tool_winners
         )
         or "• Comparações por finalidade em atualização"
     )
 
-    body = f"""Um ranking só é útil se também souber retirar nomes.
+    body = f"""O melhor top não é o que tem mais nomes. É o que consegue explicar cada posição.
 
-No Radar PTIA desta semana:
-• Empresa em destaque: {company["label"]} — {company["band"]}
-• Pessoa em destaque: {person["label"]} — {person["band"]}
+Três escolhas de IA por trabalho nesta edição:
 {tool_lines}
-• Prompt selecionado: {prompt}
 
-A mudança que importa:
+A correção que também conta:
 {change_line}
 
-É por isto que o novo índice começa pelo estado da entidade — ativa, adquirida, insolvente, liquidada ou inativa — e só depois calcula impacto.
+E o Top Portugal?
+{gate_line}
 
-Duas fontes independentes dão elegibilidade plena. Sem verificação recente, a entrada aparece como provisória. As ferramentas são comparadas por caso de uso. Os prompts são curadoria editorial, não uma falsa tendência semanal.
+Cada top de ferramentas usa os mesmos quatro critérios: capacidade, adoção observável, adequação à tarefa e acesso. O índice é relativo à categoria — não é uma nota universal.
 
-O que devemos verificar na próxima edição?
+Prompt editorial da semana:
+{prompt}
 
-Metodologia e fontes: {METHODOLOGY_SOURCE_URL}
-Radar completo: {RESOURCE_SOURCE_URL}"""
+Qual destes comparativos queres ver aberto na próxima edição?
 
+Top completo: {RESOURCE_SOURCE_URL}
+Método, pesos e fontes: {METHODOLOGY_SOURCE_URL}"""
+
+    top_slides = [
+        f"Slide {index + 3}: {label} · #1 {tool['name']} · índice {tool['score']}/100 · {tool['best_for']}"
+        for index, (label, tool) in enumerate(tool_winners)
+    ]
     visual = "\n".join(
         [
-            "Slide 1: Radar PTIA — o que mudou e porquê",
-            "Slide 2: Antes do score vem o estado — ativa, adquirida, insolvente, liquidada ou inativa",
-            f"Slide 3: Empresa em destaque — {company['label']} · {company['band']}",
-            f"Slide 4: Pessoa em destaque — {person['label']} · {person['band']}",
-            "Slide 5: Ferramentas por finalidade — "
-            + "; ".join(f"{label}: {tool['name']}" for label, tool in tool_winners),
-            f"Slide 6: Retirado do índice ativo — {change_line}",
-            "Slide 7: Critérios + fontes visíveis · O que devemos verificar a seguir?",
+            "Slide 1: 3 escolhas de IA por trabalho — não existe um vencedor universal",
+            "Slide 2: Como ler — capacidade · adoção · adequação · acesso",
+            *top_slides,
+            f"Slide 6: A correção que conta — {change_line}",
+            f"Slide 7: Portugal sem falsos pódios — {gate_line}",
+            "Slide 8: Qual comparativo devemos abrir a seguir? · ptia.pt/recursos",
         ]
     )
     return SaturdayResourcePost(
         slot="radar",
-        title="Radar PTIA — o que mudou e porquê",
+        title="Radar PTIA — 3 escolhas de IA por trabalho",
         body=body,
-        image_prompt=_image_prompt("Radar PTIA — o que mudou e porquê", visual, edition),
+        image_prompt=_image_prompt(
+            "Radar PTIA — 3 escolhas de IA por trabalho", visual, edition
+        ),
         visual_brief=visual,
-        source_urls=_source_urls(archived),
+        source_urls=_source_urls(archived, tool_winners),
     )
 
 
@@ -192,13 +204,12 @@ def _top_items(
                 item.get(label_key) or item.get("name") or item.get("title") or ""
             ).strip(),
             "band": str(item.get("score_band") or "Seleção editorial"),
-            "confidence": str(item.get("confidence") or "provisória"),
         }
         for position, item in enumerate(items[:limit], 1)
     ]
 
 
-def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, str]]]:
+def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
     winners = []
     for category, label in SOCIAL_TOOL_CATEGORIES:
         candidates = [
@@ -209,22 +220,46 @@ def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, str]]]:
         if not candidates:
             continue
         winner = min(candidates, key=lambda tool: tool["category_ranks"][category])
+        if (
+            (winner.get("category_publication_status") or {}).get(category)
+            != "ranked"
+        ):
+            continue
+        sources = list((winner.get("category_sources") or {}).get(category) or [])
         winners.append(
             (
                 label,
                 {
                     "name": str(winner.get("name") or ""),
-                    "confidence": str(
-                        (winner.get("category_confidence") or {}).get(category) or "editorial"
+                    "score": int(
+                        round(
+                            float(
+                                (winner.get("category_scores") or {}).get(category)
+                                or 0
+                            )
+                        )
                     ),
+                    "best_for": str(winner.get("best_for") or ""),
+                    "source_urls": [
+                        str(source.get("url") or "")
+                        for source in sources
+                        if str(source.get("url") or "").startswith("https://")
+                    ],
                 },
             )
         )
     return winners
 
 
-def _source_urls(archived: list[dict[str, Any]]) -> tuple[str, ...]:
+def _source_urls(
+    archived: list[dict[str, Any]],
+    tool_winners: list[tuple[str, dict[str, Any]]],
+) -> tuple[str, ...]:
     urls = [RESOURCE_SOURCE_URL, METHODOLOGY_SOURCE_URL]
+    for _, tool in tool_winners:
+        for url in tool.get("source_urls") or []:
+            if url not in urls:
+                urls.append(url)
     for item in archived:
         for source in (item.get("verification") or {}).get("sources", []):
             url = str(source.get("url") or "")
@@ -234,17 +269,24 @@ def _source_urls(archived: list[dict[str, Any]]) -> tuple[str, ...]:
 
 
 def _image_prompt(title: str, visual_brief: str, edition: str) -> str:
-    return f"""Cria um documento/carrossel editorial premium para LinkedIn sobre: "{title}".
+    return f"""Cria um documento editorial premium para LinkedIn sobre: "{title}".
 
-Objetivo: gerar conversa a partir de uma mudança verificável, com critérios e fontes visíveis.
-Formato: carrossel nativo LinkedIn, 1080x1080 por slide, fundo creme PTIA, azul PTIA #051A3B, tipografia editorial, composição limpa, muito espaço branco, hierarquia forte, sem laranja.
+Objetivo: parar o scroll com uma ideia clara e levar o leitor a deslizar para perceber a razão de cada posição.
+Formato: documento PDF nativo LinkedIn, 1080x1350 por página (4:5), oito páginas, composição desenhada primeiro para leitura em telemóvel.
 
 Texto visual a aplicar exatamente:
 {visual_brief}
 
-Estilo: editorial português, sofisticado e legível em mobile. Usar o wordmark PTIA oficial quando houver marca. Não usar robôs azuis, circuitos neon, hologramas, dashboards stock, pontuações com casas decimais ou pseudo-tipografia ilegível.
+Sistema visual:
+- capa azul PTIA #071A33, tipografia editorial grande e uma única promessa;
+- páginas interiores marfim #F5F1E8, azul PTIA e dourado #D0AD67 apenas para posição e dados-chave;
+- uma mensagem por página, números grandes, hierarquia evidente e bastante espaço negativo;
+- grelha consistente, wordmark PTIA discreto e rodapé com edição;
+- sem mosaico de cartões, sem etiquetas vagas, sem fotografias stock, robôs, circuitos, neon, 3D ou dashboards genéricos;
+- não inventar logos, scores, citações, fontes ou texto;
+- todas as páginas devem ser legíveis a 360 px de largura.
 
-Edição: {edition}. Incluir no último slide ptia.pt/recursos e a indicação "fontes na publicação". Resultado pronto para revisão antes de ir para Buffer."""
+Edição: {edition}. No último slide incluir ptia.pt/recursos e "método e fontes no link". Resultado pronto para revisão antes de publicação."""
 
 
 def _post_id(target_date: date, slot: str) -> str:

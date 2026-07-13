@@ -35,24 +35,59 @@ class SaturdayResourcesPostsTests(unittest.TestCase):
                     "confidence": "provisória",
                 }
             ],
+            "verification_summary": {
+                "eligible": 0,
+                "provisional": 2,
+                "excluded": 1,
+            },
             "tools": [
                 {
                     "rank": 1,
                     "name": "Claude",
+                    "best_for": "Revisão e implementação de código complexo.",
                     "category_ranks": {"coding": 1},
-                    "category_confidence": {"coding": "alta"},
+                    "category_scores": {"coding": 92.4},
+                    "category_publication_status": {"coding": "ranked"},
+                    "category_sources": {
+                        "coding": [
+                            {
+                                "label": "Benchmark coding",
+                                "url": "https://example.com/coding",
+                            }
+                        ]
+                    },
                 },
                 {
                     "rank": 2,
-                    "name": "Perplexity",
-                    "category_ranks": {"pesquisa": 1},
-                    "category_confidence": {"pesquisa": "média"},
+                    "name": "ChatGPT",
+                    "best_for": "Produtividade generalista.",
+                    "category_ranks": {"produtividade": 1},
+                    "category_scores": {"produtividade": 89.1},
+                    "category_publication_status": {"produtividade": "ranked"},
+                    "category_sources": {
+                        "produtividade": [
+                            {
+                                "label": "Benchmark produtividade",
+                                "url": "https://example.org/productivity",
+                            }
+                        ]
+                    },
                 },
                 {
                     "rank": 3,
-                    "name": "n8n",
-                    "category_ranks": {"automacoes": 1},
-                    "category_confidence": {"automacoes": "editorial"},
+                    "name": "Figma AI",
+                    "best_for": "Design de produto em equipa.",
+                    "category_ranks": {"design": 1},
+                    "category_scores": {"design": 91.8},
+                    "category_publication_status": {"design": "ranked"},
+                    "category_sources": {
+                        "design": [
+                            {
+                                "label": "Benchmark design",
+                                "url": "https://example.net/design",
+                            }
+                        ]
+                    },
                 },
             ],
             "prompts": [
@@ -95,18 +130,23 @@ class SaturdayResourcesPostsTests(unittest.TestCase):
 
         self.assertEqual([post.slot for post in posts], ["radar"])
         post = posts[0]
-        self.assertIn("Um ranking só é útil se também souber retirar nomes.", post.body)
-        self.assertIn("Feedzai", post.body)
-        self.assertIn("Daniela Braga", post.body)
-        self.assertIn("Unbabel sai do índice ativo", post.body)
-        self.assertIn("Código: Claude", post.body)
+        self.assertIn(
+            "O melhor top não é o que tem mais nomes.", post.body
+        )
+        self.assertNotIn("Feedzai", post.body)
+        self.assertNotIn("Daniela Braga", post.body)
+        self.assertIn("Unbabel saiu do índice ativo", post.body)
+        self.assertIn("Código — #1 Claude", post.body)
+        self.assertIn("0/2 perfis cumprem o gate", post.body)
         self.assertIn("Verificar uma alegação", post.body)
-        self.assertIn("Slide 7", post.visual_brief)
-        self.assertIn("#051A3B", post.image_prompt)
-        self.assertIn("sem laranja", post.image_prompt)
+        self.assertIn("Slide 8", post.visual_brief)
+        self.assertIn("#071A33", post.image_prompt)
+        self.assertIn("sem etiquetas vagas", post.image_prompt)
+        self.assertIn("1080x1350", post.image_prompt)
         self.assertIn("Texto visual a aplicar exatamente", post.image_prompt)
         self.assertIn(RESOURCE_SOURCE_URL, post.source_urls)
         self.assertIn(METHODOLOGY_SOURCE_URL, post.source_urls)
+        self.assertIn("https://example.com/coding", post.source_urls)
         self.assertIn(
             "https://aman-alliance.org/Home/ContentDetail/example",
             post.source_urls,
