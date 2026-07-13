@@ -64,9 +64,11 @@
       },
       "components": {
         "capability": {
-          "label": "Vellum, SWE-bench e Terminal-Bench",
-          "url": "https://www.vellum.ai/llm-leaderboard",
+          "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+          "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex",
           "ranking": [
+            "gpt-5-6-sol",
+            "claude-fable-5",
             "claude-opus-4-8",
             "codex",
             "antigravity",
@@ -86,6 +88,8 @@
             "cursor",
             "replit",
             "claude-opus-4-8",
+            "gpt-5-6-sol",
+            "claude-fable-5",
             "codex",
             "windsurf",
             "gemini-code-assist",
@@ -97,6 +101,8 @@
           "label": "Cobertura do workflow de engenharia",
           "url": "https://ptia.pt/metodologia-indice/",
           "ranking": [
+            "gpt-5-6-sol",
+            "claude-fable-5",
             "codex",
             "claude-opus-4-8",
             "antigravity",
@@ -116,8 +122,10 @@
             "gemini-code-assist",
             "replit",
             "cursor",
+            "gpt-5-6-sol",
             "codex",
             "claude-opus-4-8",
+            "claude-fable-5",
             "windsurf",
             "v0",
             "antigravity"
@@ -1372,6 +1380,61 @@
       "baseline_score": 84,
       "aliases": [
         "gamma"
+      ]
+    },
+    {
+      "id": "gpt-5-6-sol",
+      "name": "GPT-5.6 Sol",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "released_at": "2026-07-09",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo de fronteira da OpenAI para coding agentic, engenharia de software e trabalho técnico de elevada complexidade.",
+      "best_for": "Coding agentic exigente, implementação ponta a ponta, terminal e refactoring de sistemas complexos.",
+      "watch_out": "Lançamento recente e com custo premium; validar qualidade, latência e consumo de tokens no repositório real.",
+      "baseline_score": 99,
+      "aliases": [
+        "gpt 5.6 sol",
+        "gpt-5.6",
+        "gpt 5.6"
+      ],
+      "sources": [
+        {
+          "label": "OpenAI — lançamento GPT-5.6",
+          "url": "https://openai.com/index/gpt-5-6/"
+        },
+        {
+          "label": "Artificial Analysis — Coding Agent Index",
+          "url": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+        }
+      ]
+    },
+    {
+      "id": "claude-fable-5",
+      "name": "Claude Fable 5",
+      "url": "https://www.anthropic.com/claude/fable",
+      "released_at": "2026-07-01",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo de fronteira da Anthropic para projetos longos, agentes autónomos e coding de elevada complexidade.",
+      "best_for": "Migrações extensas, codebases grandes e tarefas multi-etapa que exigem planeamento e validação prolongados.",
+      "watch_out": "Preço elevado e fallback de segurança para Opus 4.8 em algumas tarefas; comparar custo e tempo por resultado.",
+      "baseline_score": 98,
+      "aliases": [
+        "claude fable 5",
+        "fable 5"
+      ],
+      "sources": [
+        {
+          "label": "Anthropic — Claude Fable 5",
+          "url": "https://www.anthropic.com/claude/fable"
+        },
+        {
+          "label": "Artificial Analysis — Fable 5",
+          "url": "https://artificialanalysis.ai/articles/claude-fable-5-mythos-intelligence-index"
+        }
       ]
     }
   ],

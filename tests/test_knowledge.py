@@ -26,21 +26,21 @@ class KnowledgeTests(unittest.TestCase):
             self.repo / "site" / "assets" / "quem-e-quem.json",
             self.root / "site" / "assets",
         )
-        self.now = datetime(2026, 6, 7, 12, tzinfo=timezone.utc)
+        self.now = datetime(2026, 7, 13, 12, tzinfo=timezone.utc)
         feed = {
             "posts": [
                 {
                     "id": "one",
-                    "title": "Defined.ai e Unbabel reforçam IA em Portugal",
+                    "title": "Defined.ai, Sword Health e Unbabel reforçam IA em Portugal",
                     "body": "Claude Code, Codex e RAG estão no centro da adoção.\n\nFonte: https://observador.pt/openai",
-                    "published_at": "2026-06-06T12:00:00+00:00",
+                    "published_at": "2026-07-12T12:00:00+00:00",
                     "article_url": "artigos/teste",
                 },
                 {
                     "id": "future",
                     "title": "Artigo futuro",
                     "body": "Não deve contar.",
-                    "published_at": "2026-06-08T12:00:00+00:00",
+                    "published_at": "2026-07-14T12:00:00+00:00",
                     "article_url": "artigos/futuro",
                 },
             ]
@@ -56,7 +56,7 @@ class KnowledgeTests(unittest.TestCase):
     def test_builds_all_pages_and_versioned_payload(self):
         payload = build_knowledge_site(root=self.root, now=self.now)
 
-        self.assertEqual(payload["edition"], "2026-W23")
+        self.assertEqual(payload["edition"], "2026-W29")
         self.assertEqual(payload["signal_articles"], 1)
         self.assertEqual(len(payload["prompts"]), 25)
         self.assertGreaterEqual(len(payload["glossary"]), 35)
@@ -68,7 +68,7 @@ class KnowledgeTests(unittest.TestCase):
             "glossario/index.html",
             "metodologia-indice/index.html",
             "assets/ptia-index/latest.json",
-            "assets/ptia-index/archive/2026-W23.json",
+            "assets/ptia-index/archive/2026-W29.json",
         ):
             self.assertTrue((self.root / "site" / path).exists(), path)
         glossary = (self.root / "site" / "glossario" / "index.html").read_text(encoding="utf-8")
@@ -80,7 +80,7 @@ class KnowledgeTests(unittest.TestCase):
         self.assertIn("Inteligência Artificial, sem nevoeiro.", glossary)
         self.assertEqual(payload["schema_version"], 2)
         self.assertNotIn("unbabel", {item["id"] for item in payload["companies"]})
-        self.assertEqual(payload["companies"][0]["id"], "feedzai")
+        self.assertEqual(payload["companies"][0]["id"], "swordhealth")
         archived_companies = payload["entity_archive"]["companies"]
         unbabel = next(item for item in archived_companies if item["id"] == "unbabel")
         self.assertEqual(unbabel["status"], "liquidated")
@@ -91,12 +91,17 @@ class KnowledgeTests(unittest.TestCase):
         self.assertIn("Os sinais de IA que valem o teu tempo.", resources)
         self.assertIn("Escolhe o trabalho.", resources)
         self.assertIn('class="resources-podium"', resources)
-        self.assertIn('class="resources-watch-grid"', resources)
+        self.assertIn('class="resources-leader-grid"', resources)
+        self.assertIn("Sword Health", resources)
+        self.assertIn("Virgílio Bento", resources)
+        self.assertLess(
+            resources.index('id="top-portugal"'), resources.index('id="top-ferramentas"')
+        )
         self.assertIn("6</strong> tops publicados", resources)
         self.assertIn("3</strong> shortlists em validação", resources)
         self.assertIn("Shortlist para pesquisa", resources)
         self.assertIn("Sem posições publicadas: 1/2 fontes externas", resources)
-        self.assertIn("0/2 fontes recentes", resources)
+        self.assertIn("nunca validam sozinhas um perfil", resources)
         self.assertIn("Correção verificável", resources)
         self.assertIn("Unbabel saiu do índice ativo", resources)
         self.assertIn("liquidação", resources)
@@ -105,9 +110,9 @@ class KnowledgeTests(unittest.TestCase):
         self.assertIn("Open source para explorar", resources)
         self.assertIn('fetch("/assets/github-ai-repos.json", { cache: "no-store" })', resources)
         self.assertIn("Não altera o índice PTIA", resources)
-        self.assertIn('/assets/resources.css?v=', resources)
-        self.assertIn('/assets/resources.js?v=', resources)
-        self.assertNotIn('status-provisional', resources)
+        self.assertIn("/assets/resources.css?v=", resources)
+        self.assertIn("/assets/resources.js?v=", resources)
+        self.assertNotIn("status-provisional", resources)
         self.assertNotIn(">Provisório<", resources)
         self.assertNotIn("A acompanhar", resources)
         self.assertNotIn("PTIA Score", resources)
@@ -117,8 +122,8 @@ class KnowledgeTests(unittest.TestCase):
         )
         self.assertIn('data-index-tab="companies"', portugal)
         self.assertIn('data-index-panel="people"', portugal)
-        self.assertIn("Watchlist empresarial · ainda sem posições", portugal)
-        self.assertIn("0/2 fontes", portugal)
+        self.assertIn("Top de impacto empresarial", portugal)
+        self.assertIn("6 perfis no ranking", portugal)
         self.assertIn("Entra no ranking quando cumprir o gate", portugal)
         self.assertIn("Co-fundador da Unbabel", portugal)
         self.assertNotIn("CEO, Unbabel", portugal)
@@ -145,7 +150,8 @@ class KnowledgeTests(unittest.TestCase):
     def test_future_articles_do_not_affect_signals(self):
         signals = load_article_signals(self.root / "site" / "site-feed.json", now=self.now)
         self.assertEqual(
-            [signal.title for signal in signals], ["Defined.ai e Unbabel reforçam IA em Portugal"]
+            [signal.title for signal in signals],
+            ["Defined.ai, Sword Health e Unbabel reforçam IA em Portugal"],
         )
 
     def test_rankings_are_stable_and_include_evidence(self):
@@ -202,7 +208,7 @@ class KnowledgeTests(unittest.TestCase):
                 eligible,
                 key=lambda item: item["category_ranks"][category],
             )["id"]
-        self.assertEqual(winners["coding"], "claude-opus-4-8")
+        self.assertEqual(winners["coding"], "gpt-5-6-sol")
         self.assertEqual(winners["estudo"], "notebooklm")
         self.assertEqual(winners["video"], "higgsfield")
         self.assertEqual(winners["design"], "figma-ai")
@@ -210,24 +216,23 @@ class KnowledgeTests(unittest.TestCase):
         self.assertEqual(winners["produtividade"], "chatgpt")
         self.assertEqual(winners["marketing"], "canva")
         self.assertEqual(winners["automacoes"], "n8n")
-        coding_winner = next(
-            item for item in payload["tools"] if item["id"] == winners["coding"]
-        )
+        coding_winner = next(item for item in payload["tools"] if item["id"] == winners["coding"])
         research_winner = next(
             item for item in payload["tools"] if item["id"] == winners["pesquisa"]
         )
         automation_winner = next(
             item for item in payload["tools"] if item["id"] == winners["automacoes"]
         )
-        self.assertEqual(
-            coding_winner["category_publication_status"]["coding"], "ranked"
-        )
-        self.assertEqual(
-            research_winner["category_publication_status"]["pesquisa"], "watchlist"
-        )
-        self.assertEqual(
-            automation_winner["category_external_source_count"]["automacoes"], 0
-        )
+        self.assertEqual(coding_winner["category_publication_status"]["coding"], "ranked")
+        coding_release_sources = {
+            source["url"]
+            for source in coding_winner["category_sources"]["coding"]
+            if source.get("component") == "release"
+        }
+        self.assertIn("https://openai.com/index/gpt-5-6/", coding_release_sources)
+        self.assertNotIn("https://www.anthropic.com/claude/fable", coding_release_sources)
+        self.assertEqual(research_winner["category_publication_status"]["pesquisa"], "watchlist")
+        self.assertEqual(automation_winner["category_external_source_count"]["automacoes"], 0)
 
     def test_future_verification_date_does_not_grant_eligibility(self):
         catalog = json.loads(
@@ -241,7 +246,7 @@ class KnowledgeTests(unittest.TestCase):
             status="active",
             eligibility="eligible",
             verification={
-                "verified_at": "2026-06-08T12:00:00+00:00",
+                "verified_at": "2026-07-14T12:00:00+00:00",
                 "sources": [
                     {"label": "A", "url": "https://example.com/feedzai"},
                     {"label": "B", "url": "https://example.org/feedzai"},

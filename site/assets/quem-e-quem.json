@@ -40,7 +40,29 @@
         "Dados de Treino",
         "Ethical AI",
         "Modelos"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 84,
+        "innovation": 89,
+        "portugal_relevance": 92,
+        "ecosystem_contribution": 88
+      },
+      "assessment_reason": "Crescimento operacional, marketplace global de dados licenciados e liderança portuguesa em dados responsáveis sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Defined.ai — resultados de 2025",
+            "url": "https://defined.ai/press-room/defined-ai-reports-sixty-five-percent-revenue-growth"
+          },
+          {
+            "label": "U.Porto — percurso e atividade de Daniela Braga",
+            "url": "https://noticias.up.pt/2026/03/09/daniela-braga-junta-se-ao-conselho-de-curadores-da-u-porto/"
+          }
+        ]
+      }
     },
     {
       "id": "feedzai",
@@ -53,7 +75,29 @@
         "Fintech",
         "Prevenção de Fraude",
         "Real-Time AI"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 96,
+        "innovation": 97,
+        "portugal_relevance": 96,
+        "ecosystem_contribution": 90
+      },
+      "assessment_reason": "A seleção para o euro digital, a escala global de fraude e o lançamento do RiskFM sustentam liderança em IA financeira.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Reuters — Feedzai escolhida para o euro digital",
+            "url": "https://economia.uol.com.br/noticias/reuters/2025/10/02/bce-escolhe-startup-de-ia-para-evitar-fraudes-em-euro-digital.htm"
+          },
+          {
+            "label": "Feedzai — lançamento do RiskFM",
+            "url": "https://www.feedzai.com/pressrelease/riskfm-ai-risk-model/"
+          }
+        ]
+      }
     },
     {
       "id": "ydataai",
@@ -248,7 +292,33 @@
         "Cuidados Clínicos",
         "Healthcare",
         "Unicórnio"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 98,
+        "innovation": 96,
+        "portugal_relevance": 98,
+        "ecosystem_contribution": 92
+      },
+      "assessment_reason": "Escala internacional, aquisição de 285 milhões de dólares e acesso nacional via SNS sustentam impacto e momentum excecionais.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "STAT — acordo da Sword com o SNS",
+            "url": "https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/"
+          },
+          {
+            "label": "Bloomberg — aquisição da Kaia Health",
+            "url": "https://www.bloomberg.com/news/articles/2026-01-28/sword-buys-kaia-health-plans-fresh-500-million-funding-round"
+          },
+          {
+            "label": "Sword — acesso através do SNS",
+            "url": "https://swordhealth.com/en-pt/services/ai-supported-physiotherapy"
+          }
+        ]
+      }
     },
     {
       "id": "talkdesk",
@@ -387,14 +457,36 @@
       "id": "danielabraga-in",
       "name": "Daniela Braga",
       "role": "Founder & CEO, Defined.ai",
-      "bio": "Uma das maiores vozes mundiais na governança de dados éticos para IA. Pertence ao conselho de assessoria de IA da Casa Branca e é a principal defensora da liderança tecnológica lusa.",
+      "bio": "Fundadora e CEO da Defined.ai, lidera uma plataforma global de dados licenciados para IA e participa ativamente no debate sobre governação, talento e adoção responsável.",
       "linkedin": "https://www.linkedin.com/in/danielabraga",
       "category": "Founder / Decisor",
       "tags": [
         "Dados de IA",
         "Governança",
         "Startup"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 91,
+        "recognition": 94,
+        "ecosystem_contribution": 92,
+        "portugal_relevance": 97
+      },
+      "assessment_reason": "Liderança empresarial continuada, reconhecimento público e contribuição para governação e talento em IA sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "U.Porto — Daniela Braga no Conselho de Curadores",
+            "url": "https://noticias.up.pt/2026/03/09/daniela-braga-junta-se-ao-conselho-de-curadores-da-u-porto/"
+          },
+          {
+            "label": "Região de Leiria — Daniela Braga sobre trabalho na era da IA",
+            "url": "https://www.regiaodeleiria.pt/2026/06/filosofia-pode-valer-mais-do-que-programacao-na-erada-inteligencia-artificial-afirma-daniela-braga/"
+          }
+        ]
+      }
     },
     {
       "id": "vascopedro-in",
@@ -420,7 +512,29 @@
         "Fintech",
         "Business Angel",
         "Estratégia"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 95,
+        "recognition": 94,
+        "ecosystem_contribution": 94,
+        "portugal_relevance": 97
+      },
+      "assessment_reason": "A liderança da Feedzai no euro digital e o investimento ativo no ecossistema português sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Reuters — Feedzai e o euro digital",
+            "url": "https://economia.uol.com.br/noticias/reuters/2025/10/02/bce-escolhe-startup-de-ia-para-evitar-fraudes-em-euro-digital.htm"
+          },
+          {
+            "label": "Jornal Económico — investimento na Augusta Labs",
+            "url": "https://jornaleconomico.sapo.pt/noticias/augusta-labs-avaliada-em-50-milhoes-de-euros-atrai-fundadores-de-unicornios-nacionais/"
+          }
+        ]
+      }
     },
     {
       "id": "arlindooliveira-in",
@@ -615,7 +729,33 @@
         "Digital Health",
         "Unicórnio",
         "Disrupção"
-      ]
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 98,
+        "recognition": 96,
+        "ecosystem_contribution": 94,
+        "portugal_relevance": 98
+      },
+      "assessment_reason": "A expansão da Sword, o acordo nacional com o SNS e reconhecimento EY colocam-no na liderança desta edição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "EY — World Entrepreneur Of The Year 2026",
+            "url": "https://www.ey.com/pt_br/weoy/class-of-2026/portugal"
+          },
+          {
+            "label": "STAT — Sword e o SNS português",
+            "url": "https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/"
+          },
+          {
+            "label": "Bloomberg — expansão da Sword",
+            "url": "https://www.bloomberg.com/news/articles/2026-01-28/sword-buys-kaia-health-plans-fresh-500-million-funding-round"
+          }
+        ]
+      }
     },
     {
       "id": "marcocosta-in",

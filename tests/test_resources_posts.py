@@ -1,6 +1,7 @@
 import shutil
 import unittest
 import uuid
+from copy import deepcopy
 from datetime import date
 from pathlib import Path
 
@@ -130,9 +131,7 @@ class SaturdayResourcesPostsTests(unittest.TestCase):
 
         self.assertEqual([post.slot for post in posts], ["radar"])
         post = posts[0]
-        self.assertIn(
-            "O melhor top não é o que tem mais nomes.", post.body
-        )
+        self.assertIn("O melhor top não é o que tem mais nomes.", post.body)
         self.assertNotIn("Feedzai", post.body)
         self.assertNotIn("Daniela Braga", post.body)
         self.assertIn("Unbabel saiu do índice ativo", post.body)
@@ -151,6 +150,43 @@ class SaturdayResourcesPostsTests(unittest.TestCase):
             "https://aman-alliance.org/Home/ContentDetail/example",
             post.source_urls,
         )
+
+    def test_radar_promotes_only_eligible_entity_leaders(self):
+        index = deepcopy(self.index)
+        index["companies"][0].update(
+            eligibility="eligible",
+            score=84.2,
+            verification={
+                "sources": [
+                    {"label": "Fonte empresa", "url": "https://company.example/evidence"},
+                    {"label": "Fonte empresa 2", "url": "https://company-news.example/evidence"},
+                ]
+            },
+        )
+        index["people"][0].update(
+            eligibility="eligible",
+            score=87.6,
+            verification={
+                "sources": [
+                    {"label": "Fonte pessoa", "url": "https://person.example/evidence"},
+                    {"label": "Fonte pessoa 2", "url": "https://person-news.example/evidence"},
+                ]
+            },
+        )
+        index["verification_summary"] = {
+            "eligible": 2,
+            "provisional": 0,
+            "excluded": 1,
+        }
+
+        post = build_saturday_resource_posts(index, target_date=date(2026, 6, 27))[0]
+
+        self.assertIn("Empresa — #1 Feedzai (índice 84/100)", post.body)
+        self.assertIn("Pessoa — #1 Daniela Braga (índice 88/100)", post.body)
+        self.assertIn("Slide 4: Empresa #1 · Feedzai", post.visual_brief)
+        self.assertIn("Slide 5: Pessoa #1 · Daniela Braga", post.visual_brief)
+        self.assertIn("https://company.example/evidence", post.source_urls)
+        self.assertIn("https://person.example/evidence", post.source_urls)
 
     def test_upsert_creates_one_review_post_and_is_idempotent(self):
         posts_path = self.root / "final_posts.jsonl"

@@ -120,6 +120,8 @@ def _radar_post(index: dict[str, Any], edition: str) -> SaturdayResourcePost:
     provisional = int(summary.get("provisional") or 0)
     profile_total = eligible + provisional
     tool_winners = _tool_winners(index)
+    entity_leaders = _entity_leaders(index)
+    leaders_by_kind = {kind: item for kind, item in entity_leaders}
     change = archived[0] if archived else None
     change_line = (
         f"{change['name']} saiu do índice ativo: "
@@ -142,11 +144,22 @@ def _radar_post(index: dict[str, Any], edition: str) -> SaturdayResourcePost:
         )
         or "• Comparações por finalidade em atualização"
     )
+    leader_lines = (
+        "\n".join(
+            f"• {label} — #1 {item['name']} (índice {item['score']}/100)."
+            for label, item in entity_leaders
+        )
+        if entity_leaders
+        else gate_line
+    )
 
     body = f"""O melhor top não é o que tem mais nomes. É o que consegue explicar cada posição.
 
 Três escolhas de IA por trabalho nesta edição:
 {tool_lines}
+
+Top Portugal nesta edição:
+{leader_lines}
 
 A correção que também conta:
 {change_line}
@@ -164,29 +177,44 @@ Qual destes comparativos queres ver aberto na próxima edição?
 Top completo: {RESOURCE_SOURCE_URL}
 Método, pesos e fontes: {METHODOLOGY_SOURCE_URL}"""
 
-    top_slides = [
-        f"Slide {index + 3}: {label} · #1 {tool['name']} · índice {tool['score']}/100 · {tool['best_for']}"
-        for index, (label, tool) in enumerate(tool_winners)
-    ]
+    featured_tool = tool_winners[0] if tool_winners else None
+    tool_slide = (
+        f"Slide 3: {featured_tool[0]} · #1 {featured_tool[1]['name']} · "
+        f"índice {featured_tool[1]['score']}/100 · {featured_tool[1]['best_for']}"
+        if featured_tool
+        else "Slide 3: Ferramentas · ranking em atualização"
+    )
+    company = leaders_by_kind.get("Empresa")
+    person = leaders_by_kind.get("Pessoa")
+    company_slide = (
+        f"Slide 4: Empresa #1 · {company['name']} · índice {company['score']}/100"
+        if company
+        else "Slide 4: Empresas · posição só depois de duas fontes recentes"
+    )
+    person_slide = (
+        f"Slide 5: Pessoa #1 · {person['name']} · índice {person['score']}/100"
+        if person
+        else "Slide 5: Pessoas · posição só depois de duas fontes recentes"
+    )
     visual = "\n".join(
         [
-            "Slide 1: 3 escolhas de IA por trabalho — não existe um vencedor universal",
-            "Slide 2: Como ler — capacidade · adoção · adequação · acesso",
-            *top_slides,
+            "Slide 1: Quem lidera a IA esta semana — e porque merece a posição",
+            "Slide 2: Duas regras — critérios comparáveis · fontes abertas",
+            tool_slide,
+            company_slide,
+            person_slide,
             f"Slide 6: A correção que conta — {change_line}",
-            f"Slide 7: Portugal sem falsos pódios — {gate_line}",
+            f"Slide 7: O gate do ranking — {gate_line}",
             "Slide 8: Qual comparativo devemos abrir a seguir? · ptia.pt/recursos",
         ]
     )
     return SaturdayResourcePost(
         slot="radar",
-        title="Radar PTIA — 3 escolhas de IA por trabalho",
+        title="Radar PTIA — quem lidera a IA esta semana",
         body=body,
-        image_prompt=_image_prompt(
-            "Radar PTIA — 3 escolhas de IA por trabalho", visual, edition
-        ),
+        image_prompt=_image_prompt("Radar PTIA — quem lidera a IA esta semana", visual, edition),
         visual_brief=visual,
-        source_urls=_source_urls(archived, tool_winners),
+        source_urls=_source_urls(archived, tool_winners, entity_leaders),
     )
 
 
@@ -220,10 +248,7 @@ def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
         if not candidates:
             continue
         winner = min(candidates, key=lambda tool: tool["category_ranks"][category])
-        if (
-            (winner.get("category_publication_status") or {}).get(category)
-            != "ranked"
-        ):
+        if (winner.get("category_publication_status") or {}).get(category) != "ranked":
             continue
         sources = list((winner.get("category_sources") or {}).get(category) or [])
         winners.append(
@@ -232,12 +257,7 @@ def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
                 {
                     "name": str(winner.get("name") or ""),
                     "score": int(
-                        round(
-                            float(
-                                (winner.get("category_scores") or {}).get(category)
-                                or 0
-                            )
-                        )
+                        round(float((winner.get("category_scores") or {}).get(category) or 0))
                     ),
                     "best_for": str(winner.get("best_for") or ""),
                     "source_urls": [
@@ -251,13 +271,47 @@ def _tool_winners(index: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
     return winners
 
 
+def _entity_leaders(index: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    leaders = []
+    for key, label in (("companies", "Empresa"), ("people", "Pessoa")):
+        candidates = [
+            item
+            for item in index.get(key, []) or []
+            if item.get("eligibility") == "eligible" and item.get("rank")
+        ]
+        if not candidates:
+            continue
+        winner = min(candidates, key=lambda item: int(item["rank"]))
+        sources = list((winner.get("verification") or {}).get("sources") or [])
+        leaders.append(
+            (
+                label,
+                {
+                    "name": str(winner.get("name") or ""),
+                    "score": int(round(float(winner.get("score") or 0))),
+                    "source_urls": [
+                        str(source.get("url") or "")
+                        for source in sources
+                        if str(source.get("url") or "").startswith("https://")
+                    ],
+                },
+            )
+        )
+    return leaders
+
+
 def _source_urls(
     archived: list[dict[str, Any]],
     tool_winners: list[tuple[str, dict[str, Any]]],
+    entity_leaders: list[tuple[str, dict[str, Any]]] | None = None,
 ) -> tuple[str, ...]:
     urls = [RESOURCE_SOURCE_URL, METHODOLOGY_SOURCE_URL]
     for _, tool in tool_winners:
         for url in tool.get("source_urls") or []:
+            if url not in urls:
+                urls.append(url)
+    for _, leader in entity_leaders or []:
+        for url in leader.get("source_urls") or []:
             if url not in urls:
                 urls.append(url)
     for item in archived:

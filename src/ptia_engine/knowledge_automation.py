@@ -4,7 +4,8 @@ import copy
 import hashlib
 import json
 import re
-from datetime import datetime, timezone
+import unicodedata
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -16,26 +17,48 @@ from ptia_engine.search_providers import GeminiGroundedSearchProvider
 
 
 AUTO_CONFIDENCE = 0.92
+AUTO_CONFIDENCE_BY_KIND = {
+    "entity_evidence_update": 0.95,
+    "tool_upsert": 0.97,
+}
 AUTO_APPLY_KINDS = {
     "tool_component_order",
     "entity_status_update",
+    "entity_evidence_update",
+    "tool_upsert",
 }
 MAX_PROPOSALS_PER_TASK = 3
+MAX_PROPOSALS_BY_TASK = {"entities": 8, "tools": 6}
 REVIEW_STATUSES = {"pending", "approved", "rejected", "applied", "failed"}
+OFFICIAL_TOOL_SOURCE_SUFFIXES = (
+    "anthropic.com",
+    "deepmind.google",
+    "developers.googleblog.com",
+    "mistral.ai",
+    "moonshot.ai",
+    "openai.com",
+    "x.ai",
+    "z.ai",
+)
 TRUSTED_SOURCE_SUFFIXES = (
     "a16z.com",
     "arxiv.org",
     "artificialanalysis.ai",
     "bloomberg.com",
     "europa.eu",
+    "ey.com",
     "ft.com",
     "github.com",
     "gov.pt",
     "huggingface.co",
+    "jornaleconomico.sapo.pt",
     "lmarena.ai",
+    "noticias.up.pt",
     "reuters.com",
     "similarweb.com",
+    "statnews.com",
     "swebench.com",
+    "techcrunch.com",
     "vellum.ai",
 )
 DISCOVERY_TASKS = (
@@ -43,12 +66,15 @@ DISCOVERY_TASKS = (
         "entities",
         "Analisa primeiro insolvência, liquidação, encerramento, aquisição ou inatividade; "
         "depois pessoas e empresas com impacto verificável em IA em Portugal. Usa apenas "
-        "entity_status_update, entity_baseline_order ou entity_upsert.",
+        "entity_status_update, entity_evidence_update, entity_baseline_order ou entity_upsert. "
+        "Os sinais editoriais PTIA medem momentum, mas nunca substituem fontes públicas.",
     ),
     (
         "tools",
-        "Analisa apenas ferramentas e os rankings por finalidade. "
-        "Usa apenas tool_component_order ou tool_upsert.",
+        "Analisa ferramentas e modelos lançados ou materialmente atualizados nos últimos "
+        "30 dias, começando pelos release notes oficiais e confirmando desempenho numa "
+        "avaliação independente. Usa apenas tool_component_order ou tool_upsert. "
+        "Um lançamento de fronteira ausente do contexto é uma alteração material.",
     ),
     (
         "prompts",
@@ -61,7 +87,12 @@ DISCOVERY_TASKS = (
     ),
 )
 TASK_KINDS = {
-    "entities": {"entity_status_update", "entity_baseline_order", "entity_upsert"},
+    "entities": {
+        "entity_status_update",
+        "entity_evidence_update",
+        "entity_baseline_order",
+        "entity_upsert",
+    },
     "tools": {"tool_component_order", "tool_upsert"},
     "prompts": {"prompt_upsert"},
     "glossary": {"glossary_upsert"},
@@ -73,6 +104,9 @@ Cada constatação deve ser sustentada pelas fontes citadas pelo Google Search.
 Não inventes rankings, métricas, datas, pessoas, empresas ou produtos.
 Não repitas informação estável já presente no contexto atual.
 Procura apenas entradas realmente novas ou mudanças materiais desde a edição atual.
+Para ferramentas, procura explicitamente release notes oficiais dos últimos 30 dias e
+uma avaliação independente recente. Para entidades, usa os sinais PTIA apenas como
+momentum e confirma elegibilidade, atividade e impacto com fontes públicas.
 Se não houver alteração material e recente, diz explicitamente que não há.
 """.strip()
 
@@ -89,7 +123,7 @@ Analisa:
 
 Responde apenas em JSON válido:
 {"proposals":[{
-  "kind":"tool_component_order|tool_upsert|entity_status_update|entity_baseline_order|entity_upsert|prompt_upsert|glossary_upsert",
+  "kind":"tool_component_order|tool_upsert|entity_status_update|entity_evidence_update|entity_baseline_order|entity_upsert|prompt_upsert|glossary_upsert",
   "target":"categoria ou companies/people",
   "confidence":0.0,
   "reason":"explicação factual curta",
@@ -105,6 +139,12 @@ Payloads:
 - entity_status_update:
   {"id":"entity-id","status":"acquired|insolvent|liquidated|inactive",
    "status_reason":"facto verificável","verified_at":"ISO-8601"}
+- entity_evidence_update:
+  target companies: {"id":"entity-id","verified_at":"ISO-8601",
+   "assessment":{"impact":1,"innovation":1,"portugal_relevance":1,"ecosystem_contribution":1}}
+  target people: {"id":"entity-id","verified_at":"ISO-8601",
+   "assessment":{"work_output":1,"recognition":1,"ecosystem_contribution":1,
+   "portugal_relevance":1}}
 - entity_upsert:
   target companies:
   {"id":"slug","name":"...","tagline":"...","description":"...","linkedin":"https://...",
@@ -114,8 +154,8 @@ Payloads:
    "tags":["..."],"aliases":["..."]}
 - tool_upsert:
   {"id":"slug","name":"...","url":"https://...","categories":["coding"],
-   "description":"...","best_for":"...","watch_out":"...","baseline_score":75,
-   "aliases":["..."],"sources":[{"label":"...","url":"https://..."}],
+   "released_at":"YYYY-MM-DD","description":"...","best_for":"...","watch_out":"...",
+   "baseline_score":75,"aliases":["..."],"sources":[{"label":"...","url":"https://..."}],
    "category_positions":{"coding":{"capability":3,"popularity":4,"task_fit":2,"access":5}}}
 - prompt_upsert:
   {"id":"slug","title":"...","category":"...","purpose":"...",
@@ -132,12 +172,17 @@ Regras:
   entidade do índice ativo; nunca tentes apenas descê-la gradualmente.
 - Cada proposta precisa de pelo menos duas fontes independentes HTTPS.
 - Em cada fonte inclui um campo "evidence" com a afirmação concreta sustentada.
+- entity_evidence_update só pode usar IDs existentes; as notas de assessment são inteiros
+  de 1 a 100 e têm de ser justificadas pelas fontes e pelos sinais PTIA apresentados.
 - Novas entidades têm de ser pessoas ou organizações identificadas pelo nome real,
   com URL oficial do LinkedIn; nunca uses nomes genéricos ou placeholders.
 - URLs de ferramentas apontam diretamente para o produto oficial.
+- tool_upsert exige release oficial dos últimos 90 dias e uma avaliação independente
+  recente; não uses apenas páginas do fabricante nem apenas posts sociais.
 - baseline_score e todas as posições são inteiros entre 1 e 100 ou entre 1 e o
   limite indicado pelo contexto, respetivamente. Nunca uses zero como placeholder.
-- Devolve no máximo três propostas, ordenadas por relevância material.
+- Devolve no máximo oito propostas para entidades, seis para ferramentas e três para
+  os restantes focos, sempre ordenadas por relevância material.
 - Não propor alterações sem evidência nova e material.
 - Confiança acima de 0.92 apenas quando as fontes concordam claramente.
 """.strip()
@@ -260,11 +305,35 @@ def _sources_are_grounded(
 
 
 def _has_trusted_source(proposal: dict[str, Any]) -> bool:
+    return _has_source_suffix(proposal, TRUSTED_SOURCE_SUFFIXES)
+
+
+def _has_source_suffix(proposal: dict[str, Any], suffixes: tuple[str, ...]) -> bool:
     return any(
         identity == suffix or identity.endswith("." + suffix)
         for identity in _source_identities(proposal)
-        for suffix in TRUSTED_SOURCE_SUFFIXES
+        for suffix in suffixes
     )
+
+
+def _tool_release_has_source_gate(proposal: dict[str, Any]) -> bool:
+    return _has_source_suffix(proposal, OFFICIAL_TOOL_SOURCE_SUFFIXES) and _has_trusted_source(
+        proposal
+    )
+
+
+def _recent_release_date(value: Any, *, max_age_days: int = 90) -> bool:
+    try:
+        released = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        try:
+            released = datetime.fromisoformat(str(value)[:10]).replace(tzinfo=timezone.utc)
+        except ValueError:
+            return False
+    if released.tzinfo is None:
+        released = released.replace(tzinfo=timezone.utc)
+    age = datetime.now(timezone.utc) - released.astimezone(timezone.utc)
+    return -timedelta(days=1) <= age <= timedelta(days=max_age_days)
 
 
 def _ranking_valid(current: list[str], proposed: list[str]) -> bool:
@@ -306,7 +375,68 @@ def _contains_stale_future_claim(text: str) -> bool:
     return False
 
 
-def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, Any]:
+def _fold_text(value: Any) -> str:
+    return "".join(
+        character
+        for character in unicodedata.normalize("NFKD", str(value).casefold())
+        if not unicodedata.combining(character)
+    )
+
+
+def _ptia_entity_signals(directory: dict, site_feed: dict, *, now: datetime) -> dict[str, dict]:
+    posts = [post for post in site_feed.get("posts") or [] if isinstance(post, dict)]
+    signals: dict[str, dict] = {}
+    for target in ("companies", "people"):
+        for entity in directory.get(target) or []:
+            aliases = [entity.get("name"), *(entity.get("aliases") or [])]
+            aliases = [_fold_text(alias) for alias in aliases if len(str(alias or "")) >= 4]
+            matches = []
+            for post in posts:
+                try:
+                    published = datetime.fromisoformat(
+                        str(post.get("published_at") or "").replace("Z", "+00:00")
+                    )
+                except ValueError:
+                    continue
+                if published.tzinfo is None:
+                    published = published.replace(tzinfo=timezone.utc)
+                if (
+                    not timedelta(0)
+                    <= now - published.astimezone(timezone.utc)
+                    <= timedelta(days=180)
+                ):
+                    continue
+                title = _fold_text(post.get("title") or "")
+                body = _fold_text(post.get("body") or "")
+                if not any(alias in f"{title} {body}" for alias in aliases):
+                    continue
+                matches.append(
+                    {
+                        "title": str(post.get("title") or ""),
+                        "published_at": str(post.get("published_at") or ""),
+                        "title_mention": any(alias in title for alias in aliases),
+                        "article_url": str(post.get("article_url") or ""),
+                        "source_urls": list(post.get("source_urls") or [])[:3],
+                    }
+                )
+            if matches:
+                matches.sort(key=lambda item: item["published_at"], reverse=True)
+                signals[str(entity["id"])] = {
+                    "mentions_180d": len(matches),
+                    "title_mentions_180d": sum(bool(item["title_mention"]) for item in matches),
+                    "latest_at": matches[0]["published_at"],
+                    "recent_articles": matches[:3],
+                }
+    return signals
+
+
+def _task_context(
+    task_name: str,
+    catalog: dict,
+    directory: dict,
+    *,
+    ptia_signals: dict[str, dict] | None = None,
+) -> dict[str, Any]:
     if task_name == "entities":
         return {
             "companies": [
@@ -332,6 +462,7 @@ def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, A
                 }
                 for item in directory.get("people") or []
             ],
+            "ptia_signals_180d": ptia_signals or {},
             "baselines": catalog.get("entity_baselines") or {},
         }
     if task_name == "tools":
@@ -341,6 +472,9 @@ def _task_context(task_name: str, catalog: dict, directory: dict) -> dict[str, A
                     "id": item.get("id"),
                     "name": item.get("name"),
                     "categories": item.get("categories"),
+                    "url": item.get("url"),
+                    "released_at": item.get("released_at"),
+                    "sources": item.get("sources"),
                 }
                 for item in catalog.get("tools") or []
             ],
@@ -406,7 +540,7 @@ def proposal_issues(
     if _contains_stale_future_claim(evidence_text):
         issues.append("alegação futura baseada num ano já passado")
     if proposal.get("kind") in AUTO_APPLY_KINDS and not _has_trusted_source(proposal):
-        issues.append("sem fonte independente de referência para auto-publicação")
+        issues.append("sem fonte independente de referência para atualização automática")
     if not proposal.get("reason"):
         issues.append("sem justificação")
 
@@ -439,6 +573,39 @@ def proposal_issues(
             datetime.fromisoformat(str(payload.get("verified_at") or "").replace("Z", "+00:00"))
         except ValueError:
             issues.append("data de verificação inválida")
+    elif kind == "entity_evidence_update":
+        target = str(proposal.get("target") or "")
+        entity_id = str(payload.get("id") or "")
+        available = {
+            str(item["id"]): item for item in directory.get(target) or [] if isinstance(item, dict)
+        }
+        if target not in {"companies", "people"}:
+            issues.append("tipo de entidade inválido")
+        elif entity_id not in available:
+            issues.append("entidade desconhecida")
+        elif str(available[entity_id].get("status") or "active") != "active":
+            issues.append("entidade não está ativa")
+        expected = (
+            {"impact", "innovation", "portugal_relevance", "ecosystem_contribution"}
+            if target == "companies"
+            else {"work_output", "recognition", "ecosystem_contribution", "portugal_relevance"}
+        )
+        assessment = payload.get("assessment") or {}
+        if not isinstance(assessment, dict) or set(assessment) != expected:
+            issues.append("assessment de entidade incompleto")
+        elif any(not _integer_in_range(value, 1, 100) for value in assessment.values()):
+            issues.append("assessment de entidade inválido")
+        try:
+            verified_at = datetime.fromisoformat(
+                str(payload.get("verified_at") or "").replace("Z", "+00:00")
+            )
+            if verified_at.tzinfo is None:
+                verified_at = verified_at.replace(tzinfo=timezone.utc)
+            age = datetime.now(timezone.utc) - verified_at.astimezone(timezone.utc)
+            if not -timedelta(days=1) <= age <= timedelta(days=30):
+                issues.append("verificação de entidade fora da janela recente")
+        except ValueError:
+            issues.append("data de verificação inválida")
     elif kind == "entity_baseline_order":
         target = str(proposal.get("target") or "")
         current = list((catalog.get("entity_baselines") or {}).get(target) or [])
@@ -469,6 +636,7 @@ def proposal_issues(
             "id",
             "name",
             "url",
+            "released_at",
             "categories",
             "description",
             "best_for",
@@ -485,6 +653,10 @@ def proposal_issues(
         product_host = (urlparse(str(payload.get("url") or "")).hostname or "").casefold()
         if product_host == "vertexaisearch.cloud.google.com":
             issues.append("ferramenta sem URL direta do produto")
+        if not _recent_release_date(payload.get("released_at")):
+            issues.append("lançamento sem data válida nos últimos 90 dias")
+        if not _tool_release_has_source_gate(proposal):
+            issues.append("lançamento sem fonte oficial e avaliação independente")
         valid_categories = set(catalog.get("tool_category_evidence") or {})
         categories = set(payload.get("categories") or [])
         if not categories or not categories <= valid_categories:
@@ -579,6 +751,28 @@ def apply_proposal(proposal: dict[str, Any], catalog: dict, directory: dict) -> 
                 status=str(payload["status"]),
                 eligibility="ineligible",
                 status_reason=str(payload["status_reason"]),
+                verification={
+                    "verified_at": str(payload["verified_at"]),
+                    "sources": [
+                        {
+                            "label": str(source.get("label") or ""),
+                            "url": str(source.get("url") or ""),
+                        }
+                        for source in proposal.get("sources") or []
+                    ],
+                },
+            )
+            break
+    elif kind == "entity_evidence_update":
+        target = str(proposal["target"])
+        for record in directory[target]:
+            if str(record.get("id")) != str(payload["id"]):
+                continue
+            record.update(
+                status="active",
+                eligibility="eligible",
+                assessment=copy.deepcopy(payload["assessment"]),
+                assessment_reason=str(proposal.get("reason") or ""),
                 verification={
                     "verified_at": str(payload["verified_at"]),
                     "sources": [
@@ -686,7 +880,11 @@ def run_knowledge_automation(
     directory_path = root / "site" / "assets" / "quem-e-quem.json"
     catalog = _read_json(catalog_path)
     directory = _read_json(directory_path)
-    current_date = datetime.now(timezone.utc).date().isoformat()
+    feed_path = root / "site" / "site-feed.json"
+    site_feed = _read_json(feed_path) if feed_path.exists() else {"posts": []}
+    research_now = datetime.now(timezone.utc)
+    ptia_signals = _ptia_entity_signals(directory, site_feed, now=research_now)
+    current_date = research_now.date().isoformat()
     existing = {record.get("proposal_id"): record for record in _load_jsonl(review_path)}
 
     provider_error = ""
@@ -697,7 +895,7 @@ def run_knowledge_automation(
         raw_proposals = []
         task_errors: list[str] = []
         for task_name, task_instruction in tasks:
-            context = _task_context(task_name, catalog, directory)
+            context = _task_context(task_name, catalog, directory, ptia_signals=ptia_signals)
             response = None
             errors: list[str] = []
             for _ in range(2):
@@ -769,7 +967,8 @@ def run_knowledge_automation(
                 raw for raw in response.get("proposals") or [] if isinstance(raw, dict)
             ]
             task_proposals.sort(key=_raw_confidence, reverse=True)
-            for raw in task_proposals[:MAX_PROPOSALS_PER_TASK]:
+            proposal_limit = MAX_PROPOSALS_BY_TASK.get(task_name, MAX_PROPOSALS_PER_TASK)
+            for raw in task_proposals[:proposal_limit]:
                 raw = dict(raw)
                 raw["_grounding_sources"] = task_grounding
                 raw["_task_name"] = task_name
@@ -835,9 +1034,10 @@ def run_knowledge_automation(
         if task_name in TASK_KINDS and proposal["kind"] not in TASK_KINDS[task_name]:
             issues.append(f"tipo incompatível com a pesquisa de {task_name}")
         proposal["issues"] = issues
+        confidence_gate = AUTO_CONFIDENCE_BY_KIND.get(proposal["kind"], AUTO_CONFIDENCE)
         if (
             proposal["kind"] in AUTO_APPLY_KINDS
-            and proposal["confidence"] >= AUTO_CONFIDENCE
+            and proposal["confidence"] >= confidence_gate
             and not issues
         ):
             try:

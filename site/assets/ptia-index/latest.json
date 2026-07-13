@@ -1,54 +1,12 @@
 {
   "schema_version": 2,
   "edition": "2026-W29",
-  "updated_at": "2026-07-13T13:51:15+00:00",
+  "updated_at": "2026-07-13T15:21:57+00:00",
   "signal_window_days": 84,
   "signal_articles": 170,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. O estado da entidade é verificado antes da avaliação; registos sem duas fontes independentes e recentes ficam na watchlist, sem posição publicada, e entidades inativas passam para o arquivo.",
   "companies": [
-    {
-      "id": "feedzai",
-      "name": "Feedzai",
-      "tagline": "Prevenção de crime financeiro e fraudes com IA",
-      "description": "Líder de mercado na proteção de transações financeiras mundiais através de motores de machine learning em tempo real que gerem e analisam riscos em frações de segundo.",
-      "linkedin": "https://www.linkedin.com/company/feedzai",
-      "category": "Enterprise / Fintech",
-      "tags": [
-        "Fintech",
-        "Prevenção de Fraude",
-        "Real-Time AI"
-      ],
-      "status": "active",
-      "eligibility": "provisional",
-      "baseline_position": 1,
-      "score": 45.2,
-      "score_band": "A acompanhar",
-      "score_breakdown": {
-        "impact": 50.0,
-        "momentum": 18.8,
-        "innovation": 50.0,
-        "portugal_relevance": 70.0,
-        "ecosystem_contribution": 50.0
-      },
-      "evidence": [
-        {
-          "title": "Augusta Labs capta mais de 5 milhões de euros em ronda apoiada por fundadores de unicórnios portugueses",
-          "url": "/artigos/augusta-labs-capta-mais-de-5-milhoes-de-euros-em-ronda-apoiada-por-fundadores-de-unicornios-portugueses-c5e746dd2ea846b605",
-          "published_at": "2026-06-17"
-        }
-      ],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "previous_rank": 2,
-      "rank": null,
-      "movement": null,
-      "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
-      }
-    },
     {
       "id": "swordhealth",
       "name": "Sword Health",
@@ -62,16 +20,40 @@
         "Unicórnio"
       ],
       "status": "active",
-      "eligibility": "provisional",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 98,
+        "innovation": 96,
+        "portugal_relevance": 98,
+        "ecosystem_contribution": 92
+      },
+      "assessment_reason": "Escala internacional, aquisição de 285 milhões de dólares e acesso nacional via SNS sustentam impacto e momentum excecionais.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "STAT — acordo da Sword com o SNS",
+            "url": "https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/"
+          },
+          {
+            "label": "Bloomberg — aquisição da Kaia Health",
+            "url": "https://www.bloomberg.com/news/articles/2026-01-28/sword-buys-kaia-health-plans-fresh-500-million-funding-round"
+          },
+          {
+            "label": "Sword — acesso através do SNS",
+            "url": "https://swordhealth.com/en-pt/services/ai-supported-physiotherapy"
+          }
+        ]
+      },
       "baseline_position": 3,
-      "score": 51.6,
-      "score_band": "A acompanhar",
+      "score": 83.6,
+      "score_band": "Líder verificado",
       "score_breakdown": {
-        "impact": 50.0,
+        "impact": 98.0,
         "momentum": 44.5,
-        "innovation": 50.0,
-        "portugal_relevance": 70.0,
-        "ecosystem_contribution": 50.0
+        "innovation": 96.0,
+        "portugal_relevance": 98.0,
+        "ecosystem_contribution": 92.0
       },
       "evidence": [
         {
@@ -85,15 +67,77 @@
           "published_at": "2026-06-17"
         }
       ],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
+      "confidence": "alta",
+      "explanation": "2 sinais editoriais recentes; elegibilidade confirmada externamente.",
       "previous_rank": 1,
-      "rank": null,
-      "movement": null,
+      "rank": 1,
+      "movement": 0,
       "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
+      }
+    },
+    {
+      "id": "feedzai",
+      "name": "Feedzai",
+      "tagline": "Prevenção de crime financeiro e fraudes com IA",
+      "description": "Líder de mercado na proteção de transações financeiras mundiais através de motores de machine learning em tempo real que gerem e analisam riscos em frações de segundo.",
+      "linkedin": "https://www.linkedin.com/company/feedzai",
+      "category": "Enterprise / Fintech",
+      "tags": [
+        "Fintech",
+        "Prevenção de Fraude",
+        "Real-Time AI"
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 96,
+        "innovation": 97,
+        "portugal_relevance": 96,
+        "ecosystem_contribution": 90
+      },
+      "assessment_reason": "A seleção para o euro digital, a escala global de fraude e o lançamento do RiskFM sustentam liderança em IA financeira.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Reuters — Feedzai escolhida para o euro digital",
+            "url": "https://economia.uol.com.br/noticias/reuters/2025/10/02/bce-escolhe-startup-de-ia-para-evitar-fraudes-em-euro-digital.htm"
+          },
+          {
+            "label": "Feedzai — lançamento do RiskFM",
+            "url": "https://www.feedzai.com/pressrelease/riskfm-ai-risk-model/"
+          }
+        ]
+      },
+      "baseline_position": 1,
+      "score": 76.3,
+      "score_band": "Líder verificado",
+      "score_breakdown": {
+        "impact": 96.0,
+        "momentum": 18.8,
+        "innovation": 97.0,
+        "portugal_relevance": 96.0,
+        "ecosystem_contribution": 90.0
+      },
+      "evidence": [
+        {
+          "title": "Augusta Labs capta mais de 5 milhões de euros em ronda apoiada por fundadores de unicórnios portugueses",
+          "url": "/artigos/augusta-labs-capta-mais-de-5-milhoes-de-euros-em-ronda-apoiada-por-fundadores-de-unicornios-portugueses-c5e746dd2ea846b605",
+          "published_at": "2026-06-17"
+        }
+      ],
+      "confidence": "média",
+      "explanation": "1 sinais editoriais recentes; elegibilidade confirmada externamente.",
+      "previous_rank": 2,
+      "rank": 2,
+      "movement": 0,
+      "ranking_change": {
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -109,16 +153,36 @@
         "Modelos"
       ],
       "status": "active",
-      "eligibility": "provisional",
+      "eligibility": "eligible",
+      "assessment": {
+        "impact": 84,
+        "innovation": 89,
+        "portugal_relevance": 92,
+        "ecosystem_contribution": 88
+      },
+      "assessment_reason": "Crescimento operacional, marketplace global de dados licenciados e liderança portuguesa em dados responsáveis sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Defined.ai — resultados de 2025",
+            "url": "https://defined.ai/press-room/defined-ai-reports-sixty-five-percent-revenue-growth"
+          },
+          {
+            "label": "U.Porto — percurso e atividade de Daniela Braga",
+            "url": "https://noticias.up.pt/2026/03/09/daniela-braga-junta-se-ao-conselho-de-curadores-da-u-porto/"
+          }
+        ]
+      },
       "baseline_position": 4,
-      "score": 43.2,
-      "score_band": "A acompanhar",
+      "score": 68.3,
+      "score_band": "Destaque",
       "score_breakdown": {
-        "impact": 50.0,
+        "impact": 84.0,
         "momentum": 10.9,
-        "innovation": 50.0,
-        "portugal_relevance": 70.0,
-        "ecosystem_contribution": 50.0
+        "innovation": 89.0,
+        "portugal_relevance": 92.0,
+        "ecosystem_contribution": 88.0
       },
       "evidence": [
         {
@@ -127,15 +191,15 @@
           "published_at": "2026-05-25"
         }
       ],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
+      "confidence": "média",
+      "explanation": "1 sinais editoriais recentes; elegibilidade confirmada externamente.",
       "previous_rank": 3,
-      "rank": null,
-      "movement": null,
+      "rank": 3,
+      "movement": 0,
       "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
+        "kind": "same",
+        "delta": 0,
+        "label": "Manteve"
       }
     },
     {
@@ -1004,10 +1068,126 @@
   ],
   "people": [
     {
+      "id": "virgiliobento-in",
+      "name": "Virgílio Bento",
+      "role": "Founder & CEO, Sword Health",
+      "bio": "Doutorado em Engenharia Eletrotécnica que fundou o unicórnio Sword Health. Lidera a disrupção digital nos tratamentos clínicos terapêuticos através de agentes de IA.",
+      "linkedin": "https://www.linkedin.com/in/virgiliobento",
+      "category": "Founder / Decisor",
+      "tags": [
+        "Digital Health",
+        "Unicórnio",
+        "Disrupção"
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 98,
+        "recognition": 96,
+        "ecosystem_contribution": 94,
+        "portugal_relevance": 98
+      },
+      "assessment_reason": "A expansão da Sword, o acordo nacional com o SNS e reconhecimento EY colocam-no na liderança desta edição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "EY — World Entrepreneur Of The Year 2026",
+            "url": "https://www.ey.com/pt_br/weoy/class-of-2026/portugal"
+          },
+          {
+            "label": "STAT — Sword e o SNS português",
+            "url": "https://www.statnews.com/2026/06/29/sword-health-portugal-deal-ai-supported-physical-therapy/"
+          },
+          {
+            "label": "Bloomberg — expansão da Sword",
+            "url": "https://www.bloomberg.com/news/articles/2026-01-28/sword-buys-kaia-health-plans-fresh-500-million-funding-round"
+          }
+        ]
+      },
+      "baseline_position": 9,
+      "score": 86.9,
+      "score_band": "Líder verificado",
+      "score_breakdown": {
+        "work_output": 98.0,
+        "recognition": 96.0,
+        "ecosystem_contribution": 94.0,
+        "recency": 0.0,
+        "portugal_relevance": 98.0
+      },
+      "evidence": [],
+      "confidence": "alta",
+      "explanation": "Elegibilidade confirmada; sem novo sinal editorial na janela atual.",
+      "previous_rank": 9,
+      "rank": 1,
+      "movement": 8,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 8,
+        "label": "Subiu 8"
+      }
+    },
+    {
+      "id": "nunosebastiao-in",
+      "name": "Nuno Sebastião",
+      "role": "Co-founder & CEO, Feedzai",
+      "bio": "Engenheiro aeroespacial pela ESA que fundou a maior scaleup de prevenção de fraude financeira com IA. Investidor ativo e mentor de startups tecnológicas nacionais.",
+      "linkedin": "https://www.linkedin.com/in/nunosebastiao",
+      "category": "Founder / Investidor",
+      "tags": [
+        "Fintech",
+        "Business Angel",
+        "Estratégia"
+      ],
+      "status": "active",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 95,
+        "recognition": 94,
+        "ecosystem_contribution": 94,
+        "portugal_relevance": 97
+      },
+      "assessment_reason": "A liderança da Feedzai no euro digital e o investimento ativo no ecossistema português sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "Reuters — Feedzai e o euro digital",
+            "url": "https://economia.uol.com.br/noticias/reuters/2025/10/02/bce-escolhe-startup-de-ia-para-evitar-fraudes-em-euro-digital.htm"
+          },
+          {
+            "label": "Jornal Económico — investimento na Augusta Labs",
+            "url": "https://jornaleconomico.sapo.pt/noticias/augusta-labs-avaliada-em-50-milhoes-de-euros-atrai-fundadores-de-unicornios-nacionais/"
+          }
+        ]
+      },
+      "baseline_position": 3,
+      "score": 85.2,
+      "score_band": "Líder verificado",
+      "score_breakdown": {
+        "work_output": 95.0,
+        "recognition": 94.0,
+        "ecosystem_contribution": 94.0,
+        "recency": 0.0,
+        "portugal_relevance": 97.0
+      },
+      "evidence": [],
+      "confidence": "média",
+      "explanation": "Elegibilidade confirmada; sem novo sinal editorial na janela atual.",
+      "previous_rank": 3,
+      "rank": 2,
+      "movement": 1,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 1,
+        "label": "Subiu 1"
+      }
+    },
+    {
       "id": "danielabraga-in",
       "name": "Daniela Braga",
       "role": "Founder & CEO, Defined.ai",
-      "bio": "Uma das maiores vozes mundiais na governança de dados éticos para IA. Pertence ao conselho de assessoria de IA da Casa Branca e é a principal defensora da liderança tecnológica lusa.",
+      "bio": "Fundadora e CEO da Defined.ai, lidera uma plataforma global de dados licenciados para IA e participa ativamente no debate sobre governação, talento e adoção responsável.",
       "linkedin": "https://www.linkedin.com/in/danielabraga",
       "category": "Founder / Decisor",
       "tags": [
@@ -1016,27 +1196,47 @@
         "Startup"
       ],
       "status": "active",
-      "eligibility": "provisional",
+      "eligibility": "eligible",
+      "assessment": {
+        "work_output": 91,
+        "recognition": 94,
+        "ecosystem_contribution": 92,
+        "portugal_relevance": 97
+      },
+      "assessment_reason": "Liderança empresarial continuada, reconhecimento público e contribuição para governação e talento em IA sustentam a posição.",
+      "verification": {
+        "verified_at": "2026-07-13T12:00:00+00:00",
+        "sources": [
+          {
+            "label": "U.Porto — Daniela Braga no Conselho de Curadores",
+            "url": "https://noticias.up.pt/2026/03/09/daniela-braga-junta-se-ao-conselho-de-curadores-da-u-porto/"
+          },
+          {
+            "label": "Região de Leiria — Daniela Braga sobre trabalho na era da IA",
+            "url": "https://www.regiaodeleiria.pt/2026/06/filosofia-pode-valer-mais-do-que-programacao-na-erada-inteligencia-artificial-afirma-daniela-braga/"
+          }
+        ]
+      },
       "baseline_position": 1,
-      "score": 47.0,
-      "score_band": "A acompanhar",
+      "score": 83.5,
+      "score_band": "Líder verificado",
       "score_breakdown": {
-        "work_output": 50.0,
-        "recognition": 50.0,
-        "ecosystem_contribution": 50.0,
+        "work_output": 91.0,
+        "recognition": 94.0,
+        "ecosystem_contribution": 92.0,
         "recency": 0.0,
-        "portugal_relevance": 70.0
+        "portugal_relevance": 97.0
       },
       "evidence": [],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
+      "confidence": "média",
+      "explanation": "Elegibilidade confirmada; sem novo sinal editorial na janela atual.",
       "previous_rank": 1,
-      "rank": null,
-      "movement": null,
+      "rank": 3,
+      "movement": -2,
       "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
+        "kind": "down",
+        "delta": -2,
+        "label": "Desceu 2"
       }
     },
     {
@@ -1067,42 +1267,6 @@
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
       "previous_rank": 2,
-      "rank": null,
-      "movement": null,
-      "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
-      }
-    },
-    {
-      "id": "nunosebastiao-in",
-      "name": "Nuno Sebastião",
-      "role": "Co-founder & CEO, Feedzai",
-      "bio": "Engenheiro aeroespacial pela ESA que fundou a maior scaleup de prevenção de fraude financeira com IA. Investidor ativo e mentor de startups tecnológicas nacionais.",
-      "linkedin": "https://www.linkedin.com/in/nunosebastiao",
-      "category": "Founder / Investidor",
-      "tags": [
-        "Fintech",
-        "Business Angel",
-        "Estratégia"
-      ],
-      "status": "active",
-      "eligibility": "provisional",
-      "baseline_position": 3,
-      "score": 47.0,
-      "score_band": "A acompanhar",
-      "score_breakdown": {
-        "work_output": 50.0,
-        "recognition": 50.0,
-        "ecosystem_contribution": 50.0,
-        "recency": 0.0,
-        "portugal_relevance": 70.0
-      },
-      "evidence": [],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "previous_rank": 3,
       "rank": null,
       "movement": null,
       "ranking_change": {
@@ -1283,42 +1447,6 @@
       "confidence": "provisória",
       "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
       "previous_rank": 8,
-      "rank": null,
-      "movement": null,
-      "ranking_change": {
-        "kind": "verification_pending",
-        "delta": null,
-        "label": "Fora do ranking at? cumprir o gate de fontes"
-      }
-    },
-    {
-      "id": "virgiliobento-in",
-      "name": "Virgílio Bento",
-      "role": "Founder & CEO, Sword Health",
-      "bio": "Doutorado em Engenharia Eletrotécnica que fundou o unicórnio Sword Health. Lidera a disrupção digital nos tratamentos clínicos terapêuticos através de agentes de IA.",
-      "linkedin": "https://www.linkedin.com/in/virgiliobento",
-      "category": "Founder / Decisor",
-      "tags": [
-        "Digital Health",
-        "Unicórnio",
-        "Disrupção"
-      ],
-      "status": "active",
-      "eligibility": "provisional",
-      "baseline_position": 9,
-      "score": 47.0,
-      "score_band": "A acompanhar",
-      "score_breakdown": {
-        "work_output": 50.0,
-        "recognition": 50.0,
-        "ecosystem_contribution": 50.0,
-        "recency": 0.0,
-        "portugal_relevance": 70.0
-      },
-      "evidence": [],
-      "confidence": "provisória",
-      "explanation": "Posição provisória: aguarda duas fontes externas e verificação recente.",
-      "previous_rank": 9,
       "rank": null,
       "movement": null,
       "ranking_change": {
@@ -1822,11 +1950,115 @@
     "people": []
   },
   "verification_summary": {
-    "eligible": 0,
-    "provisional": 47,
+    "eligible": 6,
+    "provisional": 41,
     "excluded": 1
   },
   "tools": [
+    {
+      "id": "gpt-5-6-sol",
+      "name": "GPT-5.6 Sol",
+      "url": "https://openai.com/index/gpt-5-6/",
+      "released_at": "2026-07-09",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo de fronteira da OpenAI para coding agentic, engenharia de software e trabalho técnico de elevada complexidade.",
+      "best_for": "Coding agentic exigente, implementação ponta a ponta, terminal e refactoring de sistemas complexos.",
+      "watch_out": "Lançamento recente e com custo premium; validar qualidade, latência e consumo de tokens no repositório real.",
+      "baseline_score": 99,
+      "aliases": [
+        "gpt 5.6 sol",
+        "gpt-5.6",
+        "gpt 5.6"
+      ],
+      "sources": [
+        {
+          "label": "OpenAI — lançamento GPT-5.6",
+          "url": "https://openai.com/index/gpt-5-6/"
+        },
+        {
+          "label": "Artificial Analysis — Coding Agent Index",
+          "url": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+        }
+      ],
+      "score": 94.6,
+      "evidence": [
+        {
+          "title": "OpenAI Liberta GPT-5.6, Fim das Restrições Governamentais para Modelos de IA",
+          "url": "/artigos/openai-liberta-gpt-5-6-fim-das-restricoes-governamentais-para-modelos-de-ia-4de9202876a7ccf9d6",
+          "published_at": "2026-07-09"
+        }
+      ],
+      "category_ranks": {
+        "coding": 1
+      },
+      "category_scores": {
+        "coding": 94.6
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 100.0,
+          "popularity": 82.0,
+          "task_fit": 100.0,
+          "access": 82.0
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          },
+          {
+            "component": "release",
+            "label": "OpenAI — lançamento GPT-5.6",
+            "url": "https://openai.com/index/gpt-5-6/"
+          },
+          {
+            "component": "release",
+            "label": "Artificial Analysis — Coding Agent Index",
+            "url": "https://artificialanalysis.ai/articles/gpt-5-6-has-landed"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "entered",
+          "delta": null,
+          "label": "Entrou no Top"
+        }
+      },
+      "category_confidence": {
+        "coding": "alta"
+      },
+      "category_external_source_count": {
+        "coding": 3
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 1,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Entrou no Top"
+      }
+    },
     {
       "id": "chatgpt",
       "name": "ChatGPT",
@@ -1930,11 +2162,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -1947,16 +2174,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -1973,11 +2190,6 @@
           {
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -1996,11 +2208,6 @@
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -2013,16 +2220,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -2075,13 +2272,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 1,
+      "rank": 2,
       "previous_rank": 1,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -2109,105 +2306,13 @@
       "category_external_source_count": {},
       "category_publication_status": {},
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 2,
+      "rank": 3,
       "previous_rank": 8,
-      "movement": 6,
+      "movement": 5,
       "ranking_change": {
         "kind": "up",
-        "delta": 6,
-        "label": "Subiu 6"
-      }
-    },
-    {
-      "id": "codex",
-      "name": "OpenAI Codex",
-      "url": "https://openai.com/codex/",
-      "categories": [
-        "coding"
-      ],
-      "description": "Agente de engenharia de software para compreender, alterar e validar bases de código.",
-      "best_for": "Tarefas de desenvolvimento executadas sobre um repositório real.",
-      "watch_out": "Rever alterações, permissões e testes antes de integrar código em produção.",
-      "baseline_score": 94,
-      "aliases": [
-        "codex",
-        "openai codex"
-      ],
-      "score": 90.7,
-      "evidence": [
-        {
-          "title": "OpenAI automatiza impostos com Codex",
-          "url": "/artigos/openai-automatiza-impostos-com-codex-e908774d0555e83828",
-          "published_at": "2026-05-28"
-        },
-        {
-          "title": "OpenAI leva Codex para a app ChatGPT: gestão de IA em mobilidade",
-          "url": "/artigos/openai-leva-codex-para-a-app-chatgpt-gestao-de-ia-em-mobilidade-5f1ccfc6623ad0fdf0",
-          "published_at": "2026-05-21"
-        }
-      ],
-      "category_ranks": {
-        "coding": 2
-      },
-      "category_scores": {
-        "coding": 90.7
-      },
-      "category_breakdowns": {
-        "coding": {
-          "capability": 94.4,
-          "popularity": 77.5,
-          "task_fit": 100.0,
-          "access": 77.5
-        }
-      },
-      "category_sources": {
-        "coding": [
-          {
-            "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
-          },
-          {
-            "component": "popularity",
-            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
-            "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ]
-      },
-      "category_movements": {
-        "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        }
-      },
-      "category_confidence": {
-        "coding": "média"
-      },
-      "category_external_source_count": {
-        "coding": 2
-      },
-      "category_publication_status": {
-        "coding": "ranked"
-      },
-      "score_basis": "avaliação relativa por finalidade",
-      "rank": 3,
-      "previous_rank": 12,
-      "movement": 9,
-      "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Entrou no Top"
+        "delta": 5,
+        "label": "Subiu 5"
       }
     },
     {
@@ -2265,11 +2370,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -2282,16 +2382,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -2327,6 +2417,119 @@
         "kind": "up",
         "delta": 1,
         "label": "Subiu 1"
+      }
+    },
+    {
+      "id": "claude-fable-5",
+      "name": "Claude Fable 5",
+      "url": "https://www.anthropic.com/claude/fable",
+      "released_at": "2026-07-01",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo de fronteira da Anthropic para projetos longos, agentes autónomos e coding de elevada complexidade.",
+      "best_for": "Migrações extensas, codebases grandes e tarefas multi-etapa que exigem planeamento e validação prolongados.",
+      "watch_out": "Preço elevado e fallback de segurança para Opus 4.8 em algumas tarefas; comparar custo e tempo por resultado.",
+      "baseline_score": 98,
+      "aliases": [
+        "claude fable 5",
+        "fable 5"
+      ],
+      "sources": [
+        {
+          "label": "Anthropic — Claude Fable 5",
+          "url": "https://www.anthropic.com/claude/fable"
+        },
+        {
+          "label": "Artificial Analysis — Fable 5",
+          "url": "https://artificialanalysis.ai/articles/claude-fable-5-mythos-intelligence-index"
+        }
+      ],
+      "score": 89.2,
+      "evidence": [
+        {
+          "title": "EUA preparam-se para autorizar Anthropic a restaurar modelo Fable 5",
+          "url": "/artigos/eua-preparam-se-para-autorizar-anthropic-a-restaurar-modelo-fable-5-796c56f4bddc2a9d8c",
+          "published_at": "2026-06-28"
+        },
+        {
+          "title": "Suspensão do Claude Fable 5: Segurança trava corrida aos modelos",
+          "url": "/artigos/suspensao-do-claude-fable-5-seguranca-trava-corrida-aos-modelos-945ea3a2f6779b851d",
+          "published_at": "2026-06-13"
+        },
+        {
+          "title": "Claude Fable 5: A nova aposta da Anthropic no segmento 'Mythos-class'",
+          "url": "/artigos/claude-fable-5-a-nova-aposta-da-anthropic-no-segmento-mythos-class-db9ea6b4c6d25a3e99",
+          "published_at": "2026-06-10"
+        }
+      ],
+      "category_ranks": {
+        "coding": 2
+      },
+      "category_scores": {
+        "coding": 89.2
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 95.5,
+          "popularity": 77.5,
+          "task_fit": 95.5,
+          "access": 68.5
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          },
+          {
+            "component": "release",
+            "label": "Anthropic — Claude Fable 5",
+            "url": "https://www.anthropic.com/claude/fable"
+          },
+          {
+            "component": "release",
+            "label": "Artificial Analysis — Fable 5",
+            "url": "https://artificialanalysis.ai/articles/claude-fable-5-mythos-intelligence-index"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "entered",
+          "delta": null,
+          "label": "Entrou no Top"
+        }
+      },
+      "category_confidence": {
+        "coding": "alta"
+      },
+      "category_external_source_count": {
+        "coding": 3
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 5,
+      "previous_rank": null,
+      "movement": null,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Entrou no Top"
       }
     },
     {
@@ -2404,11 +2607,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "video": [
@@ -2425,11 +2623,6 @@
           {
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -2448,11 +2641,6 @@
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -2465,16 +2653,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -2519,99 +2697,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 5,
+      "rank": 6,
       "previous_rank": 2,
-      "movement": -3,
+      "movement": -4,
       "ranking_change": {
         "kind": "down",
-        "delta": -3,
-        "label": "Desceu 3"
-      }
-    },
-    {
-      "id": "cursor",
-      "name": "Cursor",
-      "url": "https://www.cursor.com/",
-      "categories": [
-        "coding"
-      ],
-      "description": "Editor de código orientado para colaboração com modelos e agentes de IA.",
-      "best_for": "Desenvolvimento assistido dentro de uma experiência próxima de IDE.",
-      "watch_out": "Avaliar regras de privacidade e retenção antes de usar código sensível.",
-      "baseline_score": 90,
-      "aliases": [
-        "cursor"
-      ],
-      "score": 85.4,
-      "evidence": [
-        {
-          "title": "SpaceX compra a Anysphere por 60 mil milhões de dólares numa aposta massiva em desenvolvimento com IA",
-          "url": "/artigos/spacex-compra-a-anysphere-por-60-mil-milhoes-de-dolares-numa-aposta-massiva-em-desenvolvimento-com-ia-62c756de1ea6801cb8",
-          "published_at": "2026-06-17"
-        }
-      ],
-      "category_ranks": {
-        "coding": 3
-      },
-      "category_scores": {
-        "coding": 85.4
-      },
-      "category_breakdowns": {
-        "coding": {
-          "capability": 83.1,
-          "popularity": 94.4,
-          "task_fit": 83.1,
-          "access": 83.1
-        }
-      },
-      "category_sources": {
-        "coding": [
-          {
-            "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
-          },
-          {
-            "component": "popularity",
-            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
-            "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ]
-      },
-      "category_movements": {
-        "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        }
-      },
-      "category_confidence": {
-        "coding": "média"
-      },
-      "category_external_source_count": {
-        "coding": 2
-      },
-      "category_publication_status": {
-        "coding": "ranked"
-      },
-      "score_basis": "avaliação relativa por finalidade",
-      "rank": 6,
-      "previous_rank": 15,
-      "movement": 9,
-      "ranking_change": {
-        "kind": "entered",
-        "delta": null,
-        "label": "Entrou no Top"
+        "delta": -4,
+        "label": "Desceu 4"
       }
     },
     {
@@ -2679,11 +2771,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -2696,16 +2783,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -2722,11 +2799,6 @@
           {
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -2811,21 +2883,6 @@
             "component": "capability",
             "label": "Orquestração, agentes e controlo de workflows",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Adoção pública e ecossistema de integrações",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Flexibilidade, observabilidade e execução autónoma",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Facilidade de entrada, alojamento e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -2849,6 +2906,93 @@
       "rank": 8,
       "previous_rank": 17,
       "movement": 9,
+      "ranking_change": {
+        "kind": "entered",
+        "delta": null,
+        "label": "Entrou no Top"
+      }
+    },
+    {
+      "id": "codex",
+      "name": "OpenAI Codex",
+      "url": "https://openai.com/codex/",
+      "categories": [
+        "coding"
+      ],
+      "description": "Agente de engenharia de software para compreender, alterar e validar bases de código.",
+      "best_for": "Tarefas de desenvolvimento executadas sobre um repositório real.",
+      "watch_out": "Rever alterações, permissões e testes antes de integrar código em produção.",
+      "baseline_score": 94,
+      "aliases": [
+        "codex",
+        "openai codex"
+      ],
+      "score": 84.0,
+      "evidence": [
+        {
+          "title": "OpenAI automatiza impostos com Codex",
+          "url": "/artigos/openai-automatiza-impostos-com-codex-e908774d0555e83828",
+          "published_at": "2026-05-28"
+        },
+        {
+          "title": "OpenAI leva Codex para a app ChatGPT: gestão de IA em mobilidade",
+          "url": "/artigos/openai-leva-codex-para-a-app-chatgpt-gestao-de-ia-em-mobilidade-5f1ccfc6623ad0fdf0",
+          "published_at": "2026-05-21"
+        }
+      ],
+      "category_ranks": {
+        "coding": 4
+      },
+      "category_scores": {
+        "coding": 84.0
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 86.5,
+          "popularity": 73.0,
+          "task_fit": 91.0,
+          "access": 77.5
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
+        }
+      },
+      "category_confidence": {
+        "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 9,
+      "previous_rank": 12,
+      "movement": 3,
       "ranking_change": {
         "kind": "entered",
         "delta": null,
@@ -2953,11 +3097,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -2970,16 +3109,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -2996,11 +3125,6 @@
           {
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -3019,11 +3143,6 @@
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -3036,16 +3155,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -3098,9 +3207,9 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 9,
+      "rank": 10,
       "previous_rank": 11,
-      "movement": 2,
+      "movement": 1,
       "ranking_change": {
         "kind": "entered",
         "delta": null,
@@ -3163,32 +3272,12 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "automacoes": [
           {
             "component": "capability",
             "label": "Orquestração, agentes e controlo de workflows",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Adoção pública e ecossistema de integrações",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Flexibilidade, observabilidade e execução autónoma",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Facilidade de entrada, alojamento e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -3218,13 +3307,13 @@
         "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 10,
+      "rank": 11,
       "previous_rank": 10,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -3322,11 +3411,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -3339,16 +3423,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -3366,11 +3440,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -3383,16 +3452,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -3437,13 +3496,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 11,
+      "rank": 12,
       "previous_rank": 7,
-      "movement": -4,
+      "movement": -5,
       "ranking_change": {
         "kind": "down",
-        "delta": -4,
-        "label": "Desceu 4"
+        "delta": -5,
+        "label": "Desceu 5"
       }
     },
     {
@@ -3501,11 +3560,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -3522,11 +3576,6 @@
           {
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -3556,52 +3605,57 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 12,
+      "rank": 13,
       "previous_rank": 18,
-      "movement": 6,
+      "movement": 5,
       "ranking_change": {
         "kind": "up",
-        "delta": 6,
-        "label": "Subiu 6"
+        "delta": 5,
+        "label": "Subiu 5"
       }
     },
     {
-      "id": "github-copilot",
-      "name": "GitHub Copilot",
-      "url": "https://github.com/features/copilot",
+      "id": "cursor",
+      "name": "Cursor",
+      "url": "https://www.cursor.com/",
       "categories": [
         "coding"
       ],
-      "description": "Assistente de programação integrado em IDEs e fluxos GitHub.",
-      "best_for": "Acelerar implementação e revisão no fluxo normal de desenvolvimento.",
-      "watch_out": "Não substitui revisão de segurança, arquitetura nem testes.",
-      "baseline_score": 91,
+      "description": "Editor de código orientado para colaboração com modelos e agentes de IA.",
+      "best_for": "Desenvolvimento assistido dentro de uma experiência próxima de IDE.",
+      "watch_out": "Avaliar regras de privacidade e retenção antes de usar código sensível.",
+      "baseline_score": 90,
       "aliases": [
-        "github copilot",
-        "copilot"
+        "cursor"
       ],
-      "score": 81.7,
-      "evidence": [],
+      "score": 82.0,
+      "evidence": [
+        {
+          "title": "SpaceX compra a Anysphere por 60 mil milhões de dólares numa aposta massiva em desenvolvimento com IA",
+          "url": "/artigos/spacex-compra-a-anysphere-por-60-mil-milhoes-de-dolares-numa-aposta-massiva-em-desenvolvimento-com-ia-62c756de1ea6801cb8",
+          "published_at": "2026-06-17"
+        }
+      ],
       "category_ranks": {
-        "coding": 4
+        "coding": 5
       },
       "category_scores": {
-        "coding": 81.7
+        "coding": 82.0
       },
       "category_breakdowns": {
         "coding": {
-          "capability": 71.9,
-          "popularity": 100.0,
+          "capability": 77.5,
+          "popularity": 95.5,
           "task_fit": 77.5,
-          "access": 100.0
+          "access": 86.5
         }
       },
       "category_sources": {
         "coding": [
           {
             "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
           },
           {
             "component": "popularity",
@@ -3612,19 +3666,14 @@
             "component": "task_fit",
             "label": "Cobertura do workflow de engenharia",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
       "category_movements": {
         "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
         }
       },
       "category_confidence": {
@@ -3637,13 +3686,13 @@
         "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 13,
-      "previous_rank": 21,
-      "movement": 8,
+      "rank": 14,
+      "previous_rank": 15,
+      "movement": 1,
       "ranking_change": {
         "kind": "up",
-        "delta": 8,
-        "label": "Subiu 8"
+        "delta": 1,
+        "label": "Subiu 1"
       }
     },
     {
@@ -3711,11 +3760,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "video": [
@@ -3733,11 +3777,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -3754,11 +3793,6 @@
           {
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -3796,13 +3830,13 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 14,
+      "rank": 15,
       "previous_rank": 6,
-      "movement": -8,
+      "movement": -9,
       "ranking_change": {
         "kind": "down",
-        "delta": -8,
-        "label": "Desceu 8"
+        "delta": -9,
+        "label": "Desceu 9"
       }
     },
     {
@@ -3852,11 +3886,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -3877,13 +3906,13 @@
         "video": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 15,
+      "rank": 16,
       "previous_rank": 23,
-      "movement": 8,
+      "movement": 7,
       "ranking_change": {
         "kind": "up",
-        "delta": 8,
-        "label": "Subiu 8"
+        "delta": 7,
+        "label": "Subiu 7"
       }
     },
     {
@@ -3941,11 +3970,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -3958,16 +3982,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -3996,52 +4010,52 @@
         "pesquisa": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 16,
+      "rank": 17,
       "previous_rank": 13,
-      "movement": -3,
+      "movement": -4,
       "ranking_change": {
         "kind": "down",
-        "delta": -3,
-        "label": "Desceu 3"
+        "delta": -4,
+        "label": "Desceu 4"
       }
     },
     {
-      "id": "antigravity",
-      "name": "Google Antigravity",
-      "url": "https://antigravity.google/",
+      "id": "github-copilot",
+      "name": "GitHub Copilot",
+      "url": "https://github.com/features/copilot",
       "categories": [
         "coding"
       ],
-      "description": "Ambiente de desenvolvimento com agentes da Google orientado para execução autónoma e trabalho multimodal.",
-      "best_for": "Desenvolvimento assistido por agentes, prototipagem e tarefas longas dentro de um projeto.",
-      "watch_out": "Validar disponibilidade, limites do produto e todas as alterações antes de integrar.",
-      "baseline_score": 93,
+      "description": "Assistente de programação integrado em IDEs e fluxos GitHub.",
+      "best_for": "Acelerar implementação e revisão no fluxo normal de desenvolvimento.",
+      "watch_out": "Não substitui revisão de segurança, arquitetura nem testes.",
+      "baseline_score": 91,
       "aliases": [
-        "antigravity",
-        "google antigravity"
+        "github copilot",
+        "copilot"
       ],
-      "score": 79.8,
+      "score": 79.1,
       "evidence": [],
       "category_ranks": {
-        "coding": 5
+        "coding": 6
       },
       "category_scores": {
-        "coding": 79.8
+        "coding": 79.1
       },
       "category_breakdowns": {
         "coding": {
-          "capability": 88.8,
-          "popularity": 60.6,
-          "task_fit": 88.8,
-          "access": 55.0
+          "capability": 68.5,
+          "popularity": 100.0,
+          "task_fit": 73.0,
+          "access": 100.0
         }
       },
       "category_sources": {
         "coding": [
           {
             "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
           },
           {
             "component": "popularity",
@@ -4052,19 +4066,14 @@
             "component": "task_fit",
             "label": "Cobertura do workflow de engenharia",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
       "category_movements": {
         "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
         }
       },
       "category_confidence": {
@@ -4077,13 +4086,13 @@
         "coding": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 17,
-      "previous_rank": 26,
-      "movement": 9,
+      "rank": 18,
+      "previous_rank": 21,
+      "movement": 3,
       "ranking_change": {
         "kind": "up",
-        "delta": 9,
-        "label": "Subiu 9"
+        "delta": 3,
+        "label": "Subiu 3"
       }
     },
     {
@@ -4151,11 +4160,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -4173,11 +4177,6 @@
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -4190,16 +4189,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -4236,13 +4225,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 18,
+      "rank": 19,
       "previous_rank": 3,
-      "movement": -15,
+      "movement": -16,
       "ranking_change": {
         "kind": "down",
-        "delta": -15,
-        "label": "Desceu 15"
+        "delta": -16,
+        "label": "Desceu 16"
       }
     },
     {
@@ -4310,11 +4299,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "video": [
@@ -4332,11 +4316,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -4353,11 +4332,6 @@
           {
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -4395,13 +4369,13 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 19,
+      "rank": 20,
       "previous_rank": 19,
-      "movement": 0,
+      "movement": -1,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -4461,11 +4435,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -4486,13 +4455,13 @@
         "video": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 20,
+      "rank": 21,
       "previous_rank": 28,
-      "movement": 8,
+      "movement": 7,
       "ranking_change": {
         "kind": "up",
-        "delta": 8,
-        "label": "Subiu 8"
+        "delta": 7,
+        "label": "Subiu 7"
       }
     },
     {
@@ -4542,11 +4511,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -4567,13 +4531,13 @@
         "video": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 21,
+      "rank": 22,
       "previous_rank": 29,
-      "movement": 8,
+      "movement": 7,
       "ranking_change": {
         "kind": "up",
-        "delta": 8,
-        "label": "Subiu 8"
+        "delta": 7,
+        "label": "Subiu 7"
       }
     },
     {
@@ -4613,21 +4577,6 @@
             "component": "capability",
             "label": "Orquestração, agentes e controlo de workflows",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Adoção pública e ecossistema de integrações",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Flexibilidade, observabilidade e execução autónoma",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Facilidade de entrada, alojamento e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -4648,13 +4597,89 @@
         "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 22,
+      "rank": 23,
       "previous_rank": 30,
-      "movement": 8,
+      "movement": 7,
       "ranking_change": {
         "kind": "up",
-        "delta": 8,
-        "label": "Subiu 8"
+        "delta": 7,
+        "label": "Subiu 7"
+      }
+    },
+    {
+      "id": "antigravity",
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/",
+      "categories": [
+        "coding"
+      ],
+      "description": "Ambiente de desenvolvimento com agentes da Google orientado para execução autónoma e trabalho multimodal.",
+      "best_for": "Desenvolvimento assistido por agentes, prototipagem e tarefas longas dentro de um projeto.",
+      "watch_out": "Validar disponibilidade, limites do produto e todas as alterações antes de integrar.",
+      "baseline_score": 93,
+      "aliases": [
+        "antigravity",
+        "google antigravity"
+      ],
+      "score": 74.8,
+      "evidence": [],
+      "category_ranks": {
+        "coding": 7
+      },
+      "category_scores": {
+        "coding": 74.8
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 82.0,
+          "popularity": 59.5,
+          "task_fit": 82.0,
+          "access": 55.0
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
+        }
+      },
+      "category_confidence": {
+        "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 24,
+      "previous_rank": 26,
+      "movement": 2,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 2,
+        "label": "Subiu 2"
       }
     },
     {
@@ -4714,11 +4739,6 @@
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -4735,11 +4755,6 @@
           {
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -4769,13 +4784,13 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 23,
+      "rank": 25,
       "previous_rank": 14,
-      "movement": -9,
+      "movement": -11,
       "ranking_change": {
         "kind": "down",
-        "delta": -9,
-        "label": "Desceu 9"
+        "delta": -11,
+        "label": "Desceu 11"
       }
     },
     {
@@ -4843,11 +4858,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -4865,11 +4875,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -4882,16 +4887,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -4928,223 +4923,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 24,
-      "previous_rank": 20,
-      "movement": -4,
-      "ranking_change": {
-        "kind": "down",
-        "delta": -4,
-        "label": "Desceu 4"
-      }
-    },
-    {
-      "id": "gemini-code-assist",
-      "name": "Gemini Code Assist",
-      "url": "https://codeassist.google/",
-      "categories": [
-        "coding"
-      ],
-      "description": "Assistência de programação da Google para IDEs e equipas de desenvolvimento.",
-      "best_for": "Sugestões, explicações e tarefas de código em ecossistemas Google Cloud.",
-      "watch_out": "Confirmar suporte e políticas aplicáveis ao plano utilizado.",
-      "baseline_score": 84,
-      "aliases": [
-        "gemini code assist"
-      ],
-      "score": 74.1,
-      "evidence": [],
-      "category_ranks": {
-        "coding": 6
-      },
-      "category_scores": {
-        "coding": 74.1
-      },
-      "category_breakdowns": {
-        "coding": {
-          "capability": 77.5,
-          "popularity": 66.2,
-          "task_fit": 66.2,
-          "access": 94.4
-        }
-      },
-      "category_sources": {
-        "coding": [
-          {
-            "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
-          },
-          {
-            "component": "popularity",
-            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
-            "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ]
-      },
-      "category_movements": {
-        "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        }
-      },
-      "category_confidence": {
-        "coding": "média"
-      },
-      "category_external_source_count": {
-        "coding": 2
-      },
-      "category_publication_status": {
-        "coding": "ranked"
-      },
-      "score_basis": "avaliação relativa por finalidade",
-      "rank": 25,
-      "previous_rank": 32,
-      "movement": 7,
-      "ranking_change": {
-        "kind": "up",
-        "delta": 7,
-        "label": "Subiu 7"
-      }
-    },
-    {
-      "id": "claude-opus-4-8",
-      "name": "Claude Opus 4.8",
-      "url": "https://www.anthropic.com/claude",
-      "categories": [
-        "coding",
-        "pesquisa"
-      ],
-      "description": "Modelo de fronteira da Anthropic com desempenho de referência em tarefas de engenharia de software.",
-      "best_for": "Problemas complexos de coding, revisão arquitetural e investigação técnica exigente.",
-      "watch_out": "O melhor benchmark não garante o melhor resultado em todos os repositórios, custos ou latências.",
-      "baseline_score": 98,
-      "aliases": [
-        "claude opus 4.8",
-        "opus 4.8"
-      ],
-      "sources": [
-        {
-          "label": "Vellum LLM Leaderboard",
-          "url": "https://www.vellum.ai/llm-leaderboard"
-        },
-        {
-          "label": "SWE-bench",
-          "url": "https://www.swebench.com/"
-        }
-      ],
-      "score": 73.7,
-      "evidence": [],
-      "category_ranks": {
-        "coding": 1,
-        "pesquisa": 10
-      },
-      "category_scores": {
-        "coding": 92.4,
-        "pesquisa": 55.0
-      },
-      "category_breakdowns": {
-        "coding": {
-          "capability": 100.0,
-          "popularity": 83.1,
-          "task_fit": 94.4,
-          "access": 71.9
-        },
-        "pesquisa": {
-          "capability": 55.0,
-          "popularity": 55.0,
-          "task_fit": 55.0,
-          "access": 55.0
-        }
-      },
-      "category_sources": {
-        "coding": [
-          {
-            "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
-          },
-          {
-            "component": "popularity",
-            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
-            "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ],
-        "pesquisa": [
-          {
-            "component": "capability",
-            "label": "Pesquisa com fontes e literatura",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Similarweb, utilização global em agosto de 2025",
-            "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ]
-      },
-      "category_movements": {
-        "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        },
-        "pesquisa": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        }
-      },
-      "category_confidence": {
-        "coding": "média",
-        "pesquisa": "editorial"
-      },
-      "category_external_source_count": {
-        "coding": 2,
-        "pesquisa": 1
-      },
-      "category_publication_status": {
-        "coding": "ranked",
-        "pesquisa": "watchlist"
-      },
-      "score_basis": "avaliação relativa por finalidade",
       "rank": 26,
-      "previous_rank": 9,
-      "movement": -17,
+      "previous_rank": 20,
+      "movement": -6,
       "ranking_change": {
         "kind": "down",
-        "delta": -17,
-        "label": "Desceu 17"
+        "delta": -6,
+        "label": "Desceu 6"
       }
     },
     {
@@ -5202,11 +4987,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -5219,16 +4999,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -5312,11 +5082,6 @@
           {
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -5412,11 +5177,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "design": [
@@ -5434,11 +5194,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -5451,16 +5206,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -5504,6 +5249,216 @@
         "kind": "down",
         "delta": -7,
         "label": "Desceu 7"
+      }
+    },
+    {
+      "id": "gemini-code-assist",
+      "name": "Gemini Code Assist",
+      "url": "https://codeassist.google/",
+      "categories": [
+        "coding"
+      ],
+      "description": "Assistência de programação da Google para IDEs e equipas de desenvolvimento.",
+      "best_for": "Sugestões, explicações e tarefas de código em ecossistemas Google Cloud.",
+      "watch_out": "Confirmar suporte e políticas aplicáveis ao plano utilizado.",
+      "baseline_score": 84,
+      "aliases": [
+        "gemini code assist"
+      ],
+      "score": 71.2,
+      "evidence": [],
+      "category_ranks": {
+        "coding": 8
+      },
+      "category_scores": {
+        "coding": 71.2
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 73.0,
+          "popularity": 64.0,
+          "task_fit": 64.0,
+          "access": 95.5
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
+        }
+      },
+      "category_confidence": {
+        "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 30,
+      "previous_rank": 32,
+      "movement": 2,
+      "ranking_change": {
+        "kind": "up",
+        "delta": 2,
+        "label": "Subiu 2"
+      }
+    },
+    {
+      "id": "claude-opus-4-8",
+      "name": "Claude Opus 4.8",
+      "url": "https://www.anthropic.com/claude",
+      "categories": [
+        "coding",
+        "pesquisa"
+      ],
+      "description": "Modelo de fronteira da Anthropic com desempenho de referência em tarefas de engenharia de software.",
+      "best_for": "Problemas complexos de coding, revisão arquitetural e investigação técnica exigente.",
+      "watch_out": "O melhor benchmark não garante o melhor resultado em todos os repositórios, custos ou latências.",
+      "baseline_score": 98,
+      "aliases": [
+        "claude opus 4.8",
+        "opus 4.8"
+      ],
+      "sources": [
+        {
+          "label": "Vellum LLM Leaderboard",
+          "url": "https://www.vellum.ai/llm-leaderboard"
+        },
+        {
+          "label": "SWE-bench",
+          "url": "https://www.swebench.com/"
+        }
+      ],
+      "score": 71.1,
+      "evidence": [],
+      "category_ranks": {
+        "coding": 3,
+        "pesquisa": 10
+      },
+      "category_scores": {
+        "coding": 87.2,
+        "pesquisa": 55.0
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 91.0,
+          "popularity": 86.5,
+          "task_fit": 86.5,
+          "access": 73.0
+        },
+        "pesquisa": {
+          "capability": 55.0,
+          "popularity": 55.0,
+          "task_fit": 55.0,
+          "access": 55.0
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          },
+          {
+            "component": "release",
+            "label": "Vellum LLM Leaderboard",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "component": "release",
+            "label": "SWE-bench",
+            "url": "https://www.swebench.com/"
+          }
+        ],
+        "pesquisa": [
+          {
+            "component": "capability",
+            "label": "Pesquisa com fontes e literatura",
+            "url": "https://ptia.pt/metodologia-indice/"
+          },
+          {
+            "component": "popularity",
+            "label": "Similarweb, utilização global em agosto de 2025",
+            "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
+          },
+          {
+            "component": "release",
+            "label": "Vellum LLM Leaderboard",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "component": "release",
+            "label": "SWE-bench",
+            "url": "https://www.swebench.com/"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
+        },
+        "pesquisa": {
+          "kind": "same",
+          "delta": 0,
+          "label": "Manteve"
+        }
+      },
+      "category_confidence": {
+        "coding": "alta",
+        "pesquisa": "alta"
+      },
+      "category_external_source_count": {
+        "coding": 4,
+        "pesquisa": 3
+      },
+      "category_publication_status": {
+        "coding": "ranked",
+        "pesquisa": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 31,
+      "previous_rank": 9,
+      "movement": -22,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -22,
+        "label": "Desceu 22"
       }
     },
     {
@@ -5570,11 +5525,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -5587,37 +5537,12 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "automacoes": [
           {
             "component": "capability",
             "label": "Orquestração, agentes e controlo de workflows",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Adoção pública e ecossistema de integrações",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Flexibilidade, observabilidade e execução autónoma",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Facilidade de entrada, alojamento e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -5655,13 +5580,13 @@
         "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 30,
+      "rank": 32,
       "previous_rank": 24,
-      "movement": -6,
+      "movement": -8,
       "ranking_change": {
         "kind": "down",
-        "delta": -6,
-        "label": "Desceu 6"
+        "delta": -8,
+        "label": "Desceu 8"
       }
     },
     {
@@ -5719,11 +5644,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "imagem": [
@@ -5740,11 +5660,6 @@
           {
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -5774,13 +5689,13 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 31,
+      "rank": 33,
       "previous_rank": 35,
-      "movement": 4,
+      "movement": 2,
       "ranking_change": {
         "kind": "up",
-        "delta": 4,
-        "label": "Subiu 4"
+        "delta": 2,
+        "label": "Subiu 2"
       }
     },
     {
@@ -5838,11 +5753,6 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "pesquisa": [
@@ -5855,16 +5765,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -5893,94 +5793,13 @@
         "pesquisa": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 32,
+      "rank": 34,
       "previous_rank": 31,
-      "movement": -1,
+      "movement": -3,
       "ranking_change": {
         "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
-      }
-    },
-    {
-      "id": "windsurf",
-      "name": "Windsurf",
-      "url": "https://windsurf.com/",
-      "categories": [
-        "coding"
-      ],
-      "description": "Ambiente de desenvolvimento com assistência e execução agentic integrada.",
-      "best_for": "Edição e execução de tarefas de software com contexto do projeto.",
-      "watch_out": "Validar sempre mudanças multi-ficheiro e dependências introduzidas.",
-      "baseline_score": 86,
-      "aliases": [
-        "windsurf",
-        "codeium"
-      ],
-      "score": 68.8,
-      "evidence": [],
-      "category_ranks": {
-        "coding": 8
-      },
-      "category_scores": {
-        "coding": 68.8
-      },
-      "category_breakdowns": {
-        "coding": {
-          "capability": 66.2,
-          "popularity": 71.9,
-          "task_fit": 71.9,
-          "access": 66.2
-        }
-      },
-      "category_sources": {
-        "coding": [
-          {
-            "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
-          },
-          {
-            "component": "popularity",
-            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
-            "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
-          }
-        ]
-      },
-      "category_movements": {
-        "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
-        }
-      },
-      "category_confidence": {
-        "coding": "média"
-      },
-      "category_external_source_count": {
-        "coding": 2
-      },
-      "category_publication_status": {
-        "coding": "ranked"
-      },
-      "score_basis": "avaliação relativa por finalidade",
-      "rank": 33,
-      "previous_rank": 37,
-      "movement": 4,
-      "ranking_change": {
-        "kind": "up",
-        "delta": 4,
-        "label": "Subiu 4"
+        "delta": -3,
+        "label": "Desceu 3"
       }
     },
     {
@@ -6030,11 +5849,6 @@
             "component": "task_fit",
             "label": "Qualidade, edição e controlo",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -6055,13 +5869,13 @@
         "imagem": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 34,
+      "rank": 35,
       "previous_rank": 38,
-      "movement": 4,
+      "movement": 3,
       "ranking_change": {
         "kind": "up",
-        "delta": 4,
-        "label": "Subiu 4"
+        "delta": 3,
+        "label": "Subiu 3"
       }
     },
     {
@@ -6083,11 +5897,11 @@
       "score": 67.8,
       "evidence": [],
       "category_ranks": {
-        "coding": 9,
+        "coding": 11,
         "design": 5
       },
       "category_scores": {
-        "coding": 55.6,
+        "coding": 55.5,
         "design": 80.0
       },
       "category_breakdowns": {
@@ -6095,7 +5909,7 @@
           "capability": 55.0,
           "popularity": 55.0,
           "task_fit": 55.0,
-          "access": 60.6
+          "access": 59.5
         },
         "design": {
           "capability": 75.0,
@@ -6108,8 +5922,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
           },
           {
             "component": "popularity",
@@ -6119,11 +5933,6 @@
           {
             "component": "task_fit",
             "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -6142,19 +5951,14 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
       "category_movements": {
         "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
         },
         "design": {
           "kind": "same",
@@ -6175,13 +5979,13 @@
         "design": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 35,
+      "rank": 36,
       "previous_rank": 25,
-      "movement": -10,
+      "movement": -11,
       "ranking_change": {
         "kind": "down",
-        "delta": -10,
-        "label": "Desceu 10"
+        "delta": -11,
+        "label": "Desceu 11"
       }
     },
     {
@@ -6259,16 +6063,6 @@
             "component": "popularity",
             "label": "Similarweb, utilização global em agosto de 2025",
             "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Citações, rastreabilidade e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e exportação",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "produtividade": [
@@ -6286,11 +6080,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -6303,37 +6092,12 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "automacoes": [
           {
             "component": "capability",
             "label": "Orquestração, agentes e controlo de workflows",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "popularity",
-            "label": "Adoção pública e ecossistema de integrações",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Flexibilidade, observabilidade e execução autónoma",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Facilidade de entrada, alojamento e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -6379,13 +6143,89 @@
         "automacoes": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 36,
+      "rank": 37,
       "previous_rank": 16,
-      "movement": -20,
+      "movement": -21,
       "ranking_change": {
         "kind": "down",
-        "delta": -20,
-        "label": "Desceu 20"
+        "delta": -21,
+        "label": "Desceu 21"
+      }
+    },
+    {
+      "id": "windsurf",
+      "name": "Windsurf",
+      "url": "https://windsurf.com/",
+      "categories": [
+        "coding"
+      ],
+      "description": "Ambiente de desenvolvimento com assistência e execução agentic integrada.",
+      "best_for": "Edição e execução de tarefas de software com contexto do projeto.",
+      "watch_out": "Validar sempre mudanças multi-ficheiro e dependências introduzidas.",
+      "baseline_score": 86,
+      "aliases": [
+        "windsurf",
+        "codeium"
+      ],
+      "score": 66.0,
+      "evidence": [],
+      "category_ranks": {
+        "coding": 10
+      },
+      "category_scores": {
+        "coding": 66.0
+      },
+      "category_breakdowns": {
+        "coding": {
+          "capability": 64.0,
+          "popularity": 68.5,
+          "task_fit": 68.5,
+          "access": 64.0
+        }
+      },
+      "category_sources": {
+        "coding": [
+          {
+            "component": "capability",
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+          },
+          {
+            "component": "popularity",
+            "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+            "url": "https://a16z.com/100-gen-ai-apps-6/"
+          },
+          {
+            "component": "task_fit",
+            "label": "Cobertura do workflow de engenharia",
+            "url": "https://ptia.pt/metodologia-indice/"
+          }
+        ]
+      },
+      "category_movements": {
+        "coding": {
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
+        }
+      },
+      "category_confidence": {
+        "coding": "média"
+      },
+      "category_external_source_count": {
+        "coding": 2
+      },
+      "category_publication_status": {
+        "coding": "ranked"
+      },
+      "score_basis": "avaliação relativa por finalidade",
+      "rank": 38,
+      "previous_rank": 37,
+      "movement": -1,
+      "ranking_change": {
+        "kind": "down",
+        "delta": -1,
+        "label": "Desceu 1"
       }
     },
     {
@@ -6403,22 +6243,22 @@
       "aliases": [
         "replit"
       ],
-      "score": 64.3,
+      "score": 64.2,
       "evidence": [],
       "category_ranks": {
-        "coding": 7,
+        "coding": 9,
         "estudo": 10
       },
       "category_scores": {
-        "coding": 69.1,
+        "coding": 69.0,
         "estudo": 59.5
       },
       "category_breakdowns": {
         "coding": {
-          "capability": 60.6,
-          "popularity": 88.8,
-          "task_fit": 60.6,
-          "access": 88.8
+          "capability": 59.5,
+          "popularity": 91.0,
+          "task_fit": 59.5,
+          "access": 91.0
         },
         "estudo": {
           "capability": 55.0,
@@ -6431,8 +6271,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Vellum, SWE-bench e Terminal-Bench",
-            "url": "https://www.vellum.ai/llm-leaderboard"
+            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
+            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
           },
           {
             "component": "popularity",
@@ -6442,11 +6282,6 @@
           {
             "component": "task_fit",
             "label": "Cobertura do workflow de engenharia",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -6465,19 +6300,14 @@
             "component": "task_fit",
             "label": "Leitura, estudo e rastreabilidade das fontes",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso gratuito e facilidade de utilização",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
       "category_movements": {
         "coding": {
-          "kind": "same",
-          "delta": 0,
-          "label": "Manteve"
+          "kind": "down",
+          "delta": -2,
+          "label": "Desceu 2"
         },
         "estudo": {
           "kind": "same",
@@ -6498,13 +6328,13 @@
         "estudo": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 37,
+      "rank": 39,
       "previous_rank": 36,
-      "movement": -1,
+      "movement": -3,
       "ranking_change": {
         "kind": "down",
-        "delta": -1,
-        "label": "Desceu 1"
+        "delta": -3,
+        "label": "Desceu 3"
       }
     },
     {
@@ -6563,11 +6393,6 @@
             "component": "task_fit",
             "label": "Workflow de design e colaboração",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, aprendizagem e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "marketing": [
@@ -6580,16 +6405,6 @@
             "component": "popularity",
             "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
             "url": "https://a16z.com/100-gen-ai-apps-6/"
-          },
-          {
-            "component": "task_fit",
-            "label": "Branding, conteúdo, canais e automação",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integração e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
       },
@@ -6618,13 +6433,13 @@
         "marketing": "watchlist"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 38,
+      "rank": 40,
       "previous_rank": 34,
-      "movement": -4,
+      "movement": -6,
       "ranking_change": {
         "kind": "down",
-        "delta": -4,
-        "label": "Desceu 4"
+        "delta": -6,
+        "label": "Desceu 6"
       }
     },
     {
@@ -6682,11 +6497,6 @@
             "component": "task_fit",
             "label": "Amplitude e conclusão de tarefas",
             "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, integrações e valor",
-            "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
         "video": [
@@ -6703,11 +6513,6 @@
           {
             "component": "task_fit",
             "label": "Modelos disponíveis, controlo e workflow",
-            "url": "https://ptia.pt/metodologia-indice/"
-          },
-          {
-            "component": "access",
-            "label": "Acesso, custo e facilidade",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -6737,13 +6542,13 @@
         "video": "ranked"
       },
       "score_basis": "avaliação relativa por finalidade",
-      "rank": 39,
+      "rank": 41,
       "previous_rank": 39,
-      "movement": 0,
+      "movement": -2,
       "ranking_change": {
-        "kind": "same",
-        "delta": 0,
-        "label": "Manteve"
+        "kind": "down",
+        "delta": -2,
+        "label": "Desceu 2"
       }
     }
   ],

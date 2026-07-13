@@ -560,6 +560,24 @@ class KnowledgeAutomationTests(unittest.TestCase):
 
     def test_partitioned_research_receives_current_catalog_context(self):
         provider = PartitionedProvider()
+        published_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+        (self.root / "site" / "site-feed.json").write_text(
+            json.dumps(
+                {
+                    "posts": [
+                        {
+                            "id": "feedzai-euro-digital",
+                            "title": "Feedzai escolhida para proteger o euro digital",
+                            "body": "O projeto reforça o impacto internacional da empresa portuguesa.",
+                            "published_at": published_at,
+                            "article_url": "feedzai-euro-digital/",
+                        }
+                    ]
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
 
         run = run_knowledge_automation(self.root, provider=provider)
 
@@ -568,6 +586,8 @@ class KnowledgeAutomationTests(unittest.TestCase):
         self.assertEqual(len(provider.research_prompts), 4)
         self.assertTrue(any("Feedzai" in prompt for prompt in provider.research_prompts))
         self.assertTrue(any("Claude Opus 4.8" in prompt for prompt in provider.research_prompts))
+        self.assertTrue(any("ptia_signals_180d" in prompt for prompt in provider.research_prompts))
+        self.assertTrue(any("Feedzai escolhida" in prompt for prompt in provider.research_prompts))
         self.assertTrue(
             any("Transformar informação" in prompt for prompt in provider.research_prompts)
         )
@@ -579,6 +599,148 @@ class KnowledgeAutomationTests(unittest.TestCase):
         self.assertTrue(
             all(f"Data atual: {current_date}" in prompt for prompt in provider.structured_prompts)
         )
+
+    def test_recent_frontier_tool_is_auto_applied_with_official_and_independent_sources(self):
+        released_at = datetime.now(timezone.utc).date().isoformat()
+        sources = [
+            {
+                "label": "OpenAI release",
+                "url": "https://openai.com/index/test-frontier-model/",
+                "evidence": "A página oficial confirma a disponibilização pública do novo modelo.",
+            },
+            {
+                "label": "Artificial Analysis",
+                "url": "https://artificialanalysis.ai/articles/test-frontier-model",
+                "evidence": "A avaliação independente mede o modelo em tarefas recentes de coding.",
+            },
+        ]
+        proposal = {
+            "kind": "tool_upsert",
+            "target": "coding",
+            "confidence": 0.99,
+            "reason": "Lançamento de fronteira confirmado oficialmente e avaliado de forma independente.",
+            "sources": sources,
+            "payload": {
+                "id": "test-frontier-model",
+                "name": "Test Frontier Model",
+                "url": "https://openai.com/index/test-frontier-model/",
+                "released_at": released_at,
+                "categories": ["coding"],
+                "description": "Modelo recente orientado para desenvolvimento de software complexo.",
+                "best_for": "Implementação e revisão de código.",
+                "watch_out": "Validar resultados no contexto do projeto.",
+                "baseline_score": 91,
+                "aliases": [],
+                "sources": [{"label": source["label"], "url": source["url"]} for source in sources],
+                "category_positions": {
+                    "coding": {
+                        "capability": 1,
+                        "popularity": 1,
+                        "task_fit": 1,
+                        "access": 1,
+                    }
+                },
+            },
+        }
+
+        run = run_knowledge_automation(self.root, provider=FakeProvider([proposal]))
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+
+        self.assertEqual(run["auto_applied"], 1)
+        self.assertTrue(any(item["id"] == "test-frontier-model" for item in catalog["tools"]))
+        self.assertEqual(
+            catalog["tool_category_evidence"]["coding"]["components"]["capability"]["ranking"][0],
+            "test-frontier-model",
+        )
+
+    def test_tool_release_without_independent_evaluation_is_held(self):
+        catalog = json.loads(
+            (self.root / "config" / "ptia_knowledge.json").read_text(encoding="utf-8")
+        )
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
+        )
+        proposal = {
+            "kind": "tool_upsert",
+            "target": "coding",
+            "confidence": 0.99,
+            "reason": "O fabricante publicou o lançamento, sem avaliação externa disponível.",
+            "sources": [
+                {
+                    "label": "OpenAI",
+                    "url": "https://openai.com/index/vendor-only-release/",
+                    "evidence": "A página oficial anuncia a disponibilização do modelo para coding.",
+                },
+                {
+                    "label": "OpenAI Help",
+                    "url": "https://help.openai.com/en/articles/vendor-only-release",
+                    "evidence": "A documentação oficial explica o acesso ao mesmo modelo anunciado.",
+                },
+            ],
+            "payload": {
+                "id": "vendor-only-release",
+                "name": "Vendor Only Release",
+                "url": "https://openai.com/index/vendor-only-release/",
+                "released_at": datetime.now(timezone.utc).date().isoformat(),
+                "categories": ["coding"],
+                "description": "Modelo anunciado pelo fabricante para tarefas de programação.",
+                "best_for": "Programação assistida.",
+                "watch_out": "Sem benchmark independente.",
+                "baseline_score": 80,
+                "aliases": [],
+                "sources": [],
+                "category_positions": {
+                    "coding": {"capability": 1, "popularity": 1, "task_fit": 1, "access": 1}
+                },
+            },
+        }
+
+        issues = proposal_issues(proposal, catalog, directory)
+
+        self.assertIn("lançamento sem fonte oficial e avaliação independente", issues)
+
+    def test_verified_entity_evidence_is_auto_applied(self):
+        proposal = {
+            "kind": "entity_evidence_update",
+            "target": "companies",
+            "confidence": 0.98,
+            "reason": "Duas fontes recentes confirmam atividade, impacto e inovação da empresa.",
+            "sources": [
+                {
+                    "label": "STAT",
+                    "url": "https://www.statnews.com/example-feedzai",
+                    "evidence": "A notícia confirma uma operação internacional recente e material.",
+                },
+                {
+                    "label": "Bloomberg",
+                    "url": "https://www.bloomberg.com/example-feedzai",
+                    "evidence": "A segunda fonte confirma atividade e impacto económico recente.",
+                },
+            ],
+            "payload": {
+                "id": "feedzai",
+                "verified_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+                "assessment": {
+                    "impact": 97,
+                    "innovation": 96,
+                    "portugal_relevance": 95,
+                    "ecosystem_contribution": 93,
+                },
+            },
+        }
+
+        run = run_knowledge_automation(self.root, provider=FakeProvider([proposal]))
+        directory = json.loads(
+            (self.root / "site" / "assets" / "quem-e-quem.json").read_text(encoding="utf-8")
+        )
+        feedzai = next(item for item in directory["companies"] if item["id"] == "feedzai")
+
+        self.assertEqual(run["auto_applied"], 1)
+        self.assertEqual(feedzai["eligibility"], "eligible")
+        self.assertEqual(feedzai["assessment"]["impact"], 97)
+        self.assertEqual(len(feedzai["verification"]["sources"]), 2)
 
     def test_stale_future_claim_is_flagged(self):
         catalog = json.loads(
