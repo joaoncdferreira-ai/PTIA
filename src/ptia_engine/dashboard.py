@@ -1037,6 +1037,22 @@ def _can_auto_deploy_site(state: DashboardState) -> bool:
     return (state.site_dir / ".vercel" / "project.json").exists()
 
 
+def _validate_site_release_for_deploy(state: DashboardState) -> None:
+    """Prevent an old generated Resources hub from replacing production."""
+    resources_page = state.site_dir / "recursos" / "index.html"
+    release_marker = 'data-resources-engine="verified-weekly-v3"'
+    try:
+        resources_html = resources_page.read_text(encoding="utf-8")
+    except OSError as exc:
+        raise ValueError(
+            "Deploy bloqueado: falta a pagina Recursos da engine semanal verificada."
+        ) from exc
+    if release_marker not in resources_html:
+        raise ValueError(
+            "Deploy bloqueado: Recursos esta numa versao antiga. Regenera a engine semanal antes de publicar."
+        )
+
+
 def _public_url_available(url: str) -> bool:
     if not url:
         return False
@@ -1067,6 +1083,7 @@ def _wait_for_public_images(state: DashboardState, posts: list, attempts: int = 
 def _deploy_site_assets_to_vercel(state: DashboardState) -> None:
     if not _can_auto_deploy_site(state):
         return
+    _validate_site_release_for_deploy(state)
     vercel_cmd = shutil.which("vercel.cmd") or shutil.which("vercel")
     if not vercel_cmd:
         raise ValueError("Vercel CLI nao encontrado. Instala/entra no Vercel CLI para publicar imagens antes do Buffer.")

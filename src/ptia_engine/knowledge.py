@@ -1685,7 +1685,7 @@ def render_resources_page(payload: dict) -> str:
     first_tool = first_tools[0]
     first_score = int(round(float(first_tool["category_scores"][first_category])))
     body = f"""
-  <main id="conteudo" class="resources-v2">
+  <main id="conteudo" class="resources-v2" data-resources-engine="verified-weekly-v3">
     <section class="resources-v2-hero">
       <div class="wrap resources-v2-hero-grid">
         <div class="resources-v2-hero-copy">

@@ -11,6 +11,7 @@ from unittest.mock import patch
 from ptia_engine.dashboard import (
     DashboardState,
     _ensure_public_images_for_buffer,
+    _validate_site_release_for_deploy,
     _x_post_validation_issues,
     _fit_x_post_text,
     _reverify_verifying_signals,
@@ -32,6 +33,21 @@ class DashboardTests(unittest.TestCase):
 
     def tearDown(self):
         shutil.rmtree(self.root, ignore_errors=True)
+
+    def test_deploy_guard_rejects_stale_resources_page(self):
+        state = DashboardState(self.root / "data")
+        resources_page = state.site_dir / "recursos" / "index.html"
+        resources_page.parent.mkdir(parents=True, exist_ok=True)
+        resources_page.write_text("<main>versao antiga</main>", encoding="utf-8")
+
+        with self.assertRaisesRegex(ValueError, "Recursos esta numa versao antiga"):
+            _validate_site_release_for_deploy(state)
+
+        resources_page.write_text(
+            '<main data-resources-engine="verified-weekly-v3"></main>',
+            encoding="utf-8",
+        )
+        _validate_site_release_for_deploy(state)
 
     def test_public_article_body_strips_markup_sources_and_url_only_paragraphs(self):
         body = (

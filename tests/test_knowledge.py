@@ -89,6 +89,7 @@ class KnowledgeTests(unittest.TestCase):
 
         resources = (self.root / "site" / "recursos" / "index.html").read_text(encoding="utf-8")
         self.assertIn("Os sinais de IA que valem o teu tempo.", resources)
+        self.assertIn('data-resources-engine="verified-weekly-v3"', resources)
         self.assertIn("Escolhe o trabalho.", resources)
         self.assertIn('class="resources-podium"', resources)
         self.assertIn('class="resources-leader-grid"', resources)
