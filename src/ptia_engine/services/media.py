@@ -11,9 +11,9 @@ from ptia_engine.models import FinalPost
 DEFAULT_PUBLIC_ASSET_BASE_URL = "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site"
 
 
-def image_path_for_channel(post: FinalPost) -> str:
+def image_path_for_channel(post: FinalPost, channel: str = "") -> str:
     variants = post.image_variants or {}
-    return str(variants.get(post.channel) or post.image_path or "")
+    return str(variants.get(channel or post.channel) or post.image_path or "")
 
 
 def _env_file_value(repo_root: Path, keys: set[str]) -> str:
@@ -39,14 +39,23 @@ def public_asset_base_url(repo_root: Path | None = None) -> str:
     return (configured or DEFAULT_PUBLIC_ASSET_BASE_URL).rstrip("/")
 
 
-def public_image_url(post: FinalPost, repo_root: Path | None = None, base_url: str = "") -> str:
-    image_path = image_path_for_channel(post)
+def public_image_url(
+    post: FinalPost,
+    repo_root: Path | None = None,
+    base_url: str = "",
+    channel: str = "",
+) -> str:
+    image_path = image_path_for_channel(post, channel=channel)
     if not image_path:
         return ""
     if image_path.startswith(("https://", "http://")):
         return image_path
     resolved_base_url = (base_url or public_asset_base_url(repo_root)).rstrip("/")
-    return f"{resolved_base_url}/assets/final/{quote(Path(image_path).name)}"
+    # Newsletter compilation also runs on Linux in Firebase. ``Path`` on Linux
+    # does not treat backslashes from Windows-authored data as separators, which
+    # previously produced URLs containing the complete ``C:\...`` path.
+    filename = Path(image_path.replace("\\", "/")).name
+    return f"{resolved_base_url}/assets/final/{quote(filename)}"
 
 
 def copy_image_to_public_site_assets(site_dir: Path, post: FinalPost) -> str:

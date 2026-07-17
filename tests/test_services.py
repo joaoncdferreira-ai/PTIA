@@ -101,6 +101,26 @@ class ServiceTests(unittest.TestCase):
             "https://raw.githubusercontent.com/joaoncdferreira-ai/PTIA/main/site/assets/final/image.jpg",
         )
 
+    def test_public_image_url_handles_windows_path_when_compiled_on_linux(self):
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="topic_windows_image",
+            channel="site",
+            title="Windows image path",
+            body="Body",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/story"],
+            image_variants={
+                "site": r"C:\Users\editor\ptia\data\final_assets\story-site.jpg"
+            },
+        )
+
+        self.assertEqual(
+            public_image_url(post, base_url="https://ptia.pt", channel="site"),
+            "https://ptia.pt/assets/final/story-site.jpg",
+        )
+
     def test_channel_service_maps_buffer_ids_and_disabled_schedule_channels(self):
         config = {
             "channels": {"linkedin_page": "li_1", "twitter": "x_1"},

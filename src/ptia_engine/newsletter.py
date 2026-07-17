@@ -25,7 +25,7 @@ from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_json
 
 
 NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
-NEWSLETTER_GENERATOR_VERSION = "6"
+NEWSLETTER_GENERATOR_VERSION = "7"
 
 
 
@@ -143,7 +143,9 @@ def _recent_enough(value: str, days: int) -> bool:
 
 
 def _clean(value: str, fallback: str = "") -> str:
-    text = repair_text_encoding(" ".join((value or "").split()))
+    text = re.sub(r"<[^>]+>", " ", value or "")
+    text = re.sub(r"\s*Fonte:\s*https?://\S+", "", text, flags=re.IGNORECASE)
+    text = repair_text_encoding(" ".join(text.split()))
     return text or fallback
 
 
@@ -336,6 +338,10 @@ def _trend_candidate(signal: TrendSignal) -> NewsletterCandidate:
     )
 
 
+def _newsletter_image_url(post: FinalPost) -> str:
+    return public_image_url(post, base_url=site_public_base_url(), channel="site")
+
+
 def _post_candidate(post: FinalPost) -> NewsletterCandidate:
     return NewsletterCandidate(
         item_id=post.post_id,
@@ -350,7 +356,7 @@ def _post_candidate(post: FinalPost) -> NewsletterCandidate:
         score=120 if post.status == "published" else 110,
         kind="ptia_post",
         event_key=post.topic_id or stable_hash(f"post:{post.source_urls[0] if post.source_urls else post.title}", 16),
-        image_url=public_image_url(post),
+        image_url=_newsletter_image_url(post),
     )
 
 
@@ -397,7 +403,7 @@ def _performance_candidate(perf: ContentPerformance, final_posts: dict[str, Fina
         score=_performance_score(perf),
         kind="owned_post",
         event_key=(post.topic_id if post else stable_hash(f"performance:{url or title}", 16)),
-        image_url=public_image_url(post) if post else "",
+        image_url=_newsletter_image_url(post) if post else "",
     )
 
 
@@ -507,6 +513,33 @@ def weekly_candidates(
         if _recent_enough(post.scheduled_time or post.created_at, days):
             candidates.append(_post_candidate(post))
 
+    site_posts = [
+        post
+        for post in final_posts
+        if post.channel == "site" and post.status in {"scheduled", "published"}
+    ]
+    source_url_to_site_post = {
+        source_url.rstrip("/"): post
+        for post in site_posts
+        for source_url in post.source_urls
+        if source_url
+    }
+    for candidate in candidates:
+        site_post = source_url_to_site_post.get(candidate.url.rstrip("/"))
+        if site_post is None:
+            site_post = next(
+                (
+                    post
+                    for post in site_posts
+                    if _same_news_event(candidate, _post_candidate(post))
+                ),
+                None,
+            )
+        if site_post:
+            candidate.url = _ptia_post_url(site_post)
+            candidate.image_url = _newsletter_image_url(site_post)
+            candidate.event_key = site_post.topic_id or candidate.event_key
+
     return _dedupe_newsletter_candidates(candidates, limit=limit)
 
 
@@ -554,40 +587,34 @@ def _issue_html(
         """
         for index, item in enumerate(items, start=1)
     )
-    hero_html = ""
-    if lead.image_url:
-        hero_html = f"""
+    def _story_image(item: NewsletterCandidate, *, lead_image: bool = False) -> str:
+        if not item.image_url:
+            return ""
+        width = 554 if lead_image else 510
+        return f"""
         <tr><td colspan="2" style="padding:0 0 22px;">
-          <img src="{escape(lead.image_url)}" width="554" alt="" style="display:block;width:100%;max-width:554px;height:auto;border:1px solid #E2DBCB;">
-          <div style="margin-top:8px;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;">Imagem · {escape(lead.source_name)}</div>
+          <a href="{escape(_ptia_article_url(item))}" style="text-decoration:none;"><img class="ptia-story-image" src="{escape(item.image_url)}" width="{width}" alt="{escape(item.title)}" style="display:block;width:100%;max-width:{width}px;height:auto;border:1px solid #E2DBCB;"></a>
+          <div style="margin-top:8px;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;">Imagem · PTIA</div>
         </td></tr>
         """
 
-    def _thumb_cell(item: NewsletterCandidate) -> str:
-        if not item.image_url:
-            return ""
-        article_url = escape(_ptia_article_url(item))
-        image_url = escape(item.image_url)
-        return f"""
-            <td class="ptia-news-thumb" width="132" valign="top" style="padding:4px 0 0 22px;">
-              <a href="{article_url}" style="text-decoration:none;"><img src="{image_url}" width="132" alt="" style="display:block;width:132px;max-width:132px;height:auto;border:1px solid #E2DBCB;"></a>
-            </td>
-        """
-
+    hero_html = _story_image(lead, lead_image=True)
     signal_rows = "".join(
         f"""
         <tr><td style="padding:32px 0;border-top:1px solid #E2DBCB;">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+            <tr>
             <td valign="baseline" style="padding:0 0 11px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(item.source_name)}</td>
             <td align="right" valign="baseline" style="padding:0 0 11px;color:#051A3B;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N.&ordm;&nbsp;{index:02d}</td>
           </tr></table>
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr>
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+            {_story_image(item)}
+            <tr>
             <td valign="top">
               <h3 style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:22px;font-weight:500;letter-spacing:-.008em;line-height:1.22;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;text-decoration:none;">{escape(item.title)}</a></h3>
               <p style="margin:13px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:16.5px;line-height:1.55;">{escape(item.summary)}</p>
               <p style="margin:18px 0 0;"><a href="{escape(_ptia_article_url(item))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #051A3B;padding-bottom:2px;">Ler mais <span style="color:#051A3B;">&rarr;</span></a></p>
             </td>
-            {_thumb_cell(item)}
           </tr></table>
         </td></tr>
         """
@@ -603,7 +630,7 @@ def _issue_html(
           <meta name="viewport" content="width=device-width,initial-scale=1">
           <meta name="color-scheme" content="light only">
           <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-          <style>.preheader{{display:none!important;visibility:hidden;opacity:0;color:transparent;height:0;width:0;overflow:hidden;mso-hide:all}}@media only screen and (max-width:680px){{.ptia-shell{{width:100%!important}}.ptia-pad{{padding-left:24px!important;padding-right:24px!important}}.ptia-h1{{font-size:31px!important}}.ptia-lead-title{{font-size:28px!important}}}}</style>
+          <style>.preheader{{display:none!important;visibility:hidden;opacity:0;color:transparent;height:0;width:0;overflow:hidden;mso-hide:all}}.ptia-story-image{{aspect-ratio:16/9;object-fit:cover}}@media only screen and (max-width:680px){{.ptia-shell{{width:100%!important}}.ptia-pad{{padding-left:24px!important;padding-right:24px!important}}.ptia-h1{{font-size:31px!important}}.ptia-lead-title{{font-size:28px!important}}.ptia-story-image{{width:100%!important;max-width:100%!important;height:auto!important}}}}</style>
         </head>
         <body style="margin:0;background:#E7E2D6;padding:0;-webkit-font-smoothing:antialiased;">
           <div class="preheader">{escape(intro)}</div>
@@ -617,7 +644,7 @@ def _issue_html(
               <tr><td class="ptia-pad" style="padding:30px 52px 36px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td valign="baseline" style="padding:0 0 16px;color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;">{escape(lead.source_name)}</td><td align="right" valign="baseline" style="padding:0 0 16px;color:#051A3B;font-family:Newsreader,Georgia,serif;font-size:15px;font-weight:500;letter-spacing:.04em;">N.º&nbsp;01</td></tr>{hero_html}<tr><td colspan="2"><h3 class="ptia-lead-title" style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:30px;font-weight:500;letter-spacing:-.012em;line-height:1.16;"><a href="{escape(_ptia_article_url(lead))}" style="color:#1B1A17;text-decoration:none;">{escape(lead.title)}</a></h3><p style="margin:16px 0 0;color:#3A3833;font-family:Newsreader,Georgia,serif;font-size:18px;line-height:1.58;">{escape(lead.summary)}</p><p style="margin:20px 0 0;"><a href="{escape(_ptia_article_url(lead))}" style="color:#1B1A17;font-family:'IBM Plex Mono',Consolas,monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid #051A3B;padding-bottom:2px;">Ler mais <span style="color:#051A3B;">&rarr;</span></a></p></td></tr></table></td></tr>
               <tr><td class="ptia-pad" style="padding:0 52px 8px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0">{signal_rows}</table></td></tr>
               <tr><td class="ptia-pad" style="padding:30px 52px 44px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-top:1px solid #1B1A17;"><tr><td style="padding-top:30px;"><p style="margin:0;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:27px;font-style:italic;font-weight:400;letter-spacing:-.01em;line-height:1.28;">&ldquo;A newsletter não é uma segunda timeline. É a camada que transforma sinais dispersos em leitura editorial.&rdquo;</p><p style="margin:18px 0 0;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;">Sinal vs. ruído</p></td></tr></table></td></tr>
-              <tr><td class="ptia-pad" style="padding:0 52px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#1B1A17;"><tr><td style="padding:36px 34px;"><p style="margin:0;color:#051A3B;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Método · Câmara PTIA</p><h3 style="margin:14px 0 0;color:#F6F3EB;font-family:Newsreader,Georgia,serif;font-size:23px;font-weight:500;letter-spacing:-.008em;line-height:1.25;">O que o radar editorial considera prioritário</h3><p style="margin:15px 0 0;color:#B7B2A7;font-family:Newsreader,Georgia,serif;font-size:16px;line-height:1.6;">{escape(method_body)}</p></td></tr></table></td></tr>
+              <tr><td class="ptia-pad" style="padding:0 52px;background:#F6F3EB;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#1B1A17;"><tr><td style="padding:36px 34px;"><p style="margin:0;color:#D8D1C3;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Método · Câmara PTIA</p><h3 style="margin:14px 0 0;color:#F6F3EB;font-family:Newsreader,Georgia,serif;font-size:23px;font-weight:500;letter-spacing:-.008em;line-height:1.25;">O que o radar editorial considera prioritário</h3><p style="margin:15px 0 0;color:#B7B2A7;font-family:Newsreader,Georgia,serif;font-size:16px;line-height:1.6;">{escape(method_body)}</p></td></tr></table></td></tr>
               <tr><td align="center" class="ptia-pad" style="padding:40px 52px 44px;background:#F6F3EB;"><p style="margin:0;color:#051A3B;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;">Continua no PTIA.pt</p><p style="margin:14px auto 22px;max-width:380px;color:#1B1A17;font-family:Newsreader,Georgia,serif;font-size:19px;line-height:1.42;">Lê a edição completa e guarda os sinais que interessam à tua equipa.</p><a href="https://ptia.pt" style="display:inline-block;background:#1B1A17;color:#F6F3EB;font-family:'IBM Plex Mono',Consolas,monospace;font-size:12px;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;padding:14px 26px;">Abrir PTIA.pt &rarr;</a></td></tr>
               <tr><td class="ptia-pad" style="padding:30px 52px 40px;background:#F6F3EB;border-top:1px solid #1B1A17;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td valign="top"><img src="{logo_url}" width="112" alt="PTIA" style="display:block;width:112px;max-width:112px;height:auto;border:0;"><div style="margin-top:10px;color:#6E6A62;font-family:Newsreader,Georgia,serif;font-size:14px;font-style:italic;line-height:1.4;">Curadoria portuguesa de Inteligência Artificial.</div></td><td align="right" valign="top" style="color:#6E6A62;font-family:'IBM Plex Mono',Consolas,monospace;font-size:10px;letter-spacing:.12em;line-height:1.9;text-transform:uppercase;"><a href="https://ptia.pt" style="color:#6E6A62;text-decoration:none;">PTIA.pt</a><br><a href="https://ptia.pt/#newsletter" style="color:#6E6A62;text-decoration:none;">Weekly</a><br><a href="https://www.linkedin.com/company/116070074" style="color:#6E6A62;text-decoration:none;">LinkedIn</a></td></tr></table><p style="margin:26px 0 0;max-width:460px;color:#9E988C;font-family:Newsreader,Georgia,serif;font-size:12px;line-height:1.6;">Recebes este email porque subscreveste a PTIA Weekly. Podes <a href="{{{{ unsubscribe }}}}" style="color:#1B1A17;text-decoration:underline;">cancelar a subscrição</a> ou gerir as tuas preferências a qualquer momento.</p><p style="margin:16px 0 0;color:#9E988C;font-family:'IBM Plex Mono',Consolas,monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;">PTIA.pt · Lisboa, Portugal · 2026</p></td></tr>
             </table>

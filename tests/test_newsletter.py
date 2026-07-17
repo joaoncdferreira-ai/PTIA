@@ -271,11 +271,40 @@ class NewsletterTests(unittest.TestCase):
 
         self.assertIn("lead-image.jpg", issue.html)
         self.assertIn("wrong-image.jpg", issue.html)
-        self.assertIn("ptia-news-thumb", issue.html)
+        self.assertEqual(issue.html.count('class="ptia-story-image"'), 2)
         self.assertIn("Ler mais", issue.html)
         self.assertIn("https://ptia.pt/artigos/lead-ai-story-", issue.html)
         self.assertNotIn("https://example.com/original-lead", issue.html)
         self.assertNotIn("Fonte original", issue.html)
+
+    def test_radar_story_uses_matching_site_article_and_landscape_image(self):
+        signal = self._signal("AI story with a site article", 500)
+        site_post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="site_story_topic",
+            channel="site",
+            title="AI story with a site article",
+            body="Leitura editorial PTIA.",
+            hashtags="",
+            image_prompt="",
+            source_urls=[signal.url],
+            image_path=str(self.root / "original.png"),
+            image_variants={"site": str(self.root / "story-site-1600x900.jpg")},
+        )
+        site_post.status = "published"
+
+        issue = generate_weekly_issue(
+            self.root / "newsletter_issues.jsonl",
+            radar_signals=[signal],
+            trend_signals=[],
+            final_posts=[site_post],
+            limit=1,
+        )
+
+        self.assertIn("story-site-1600x900.jpg", issue.html)
+        self.assertIn("ptia-story-image", issue.html)
+        self.assertIn("https://ptia.pt/artigos/ai-story-with-a-site-article-", issue.html)
+        self.assertNotIn(signal.url, issue.html)
 
     def test_weekly_owned_post_candidates_rank_by_tracking(self):
         posts = []

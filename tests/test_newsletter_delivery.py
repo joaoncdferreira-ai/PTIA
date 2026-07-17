@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from ptia_engine.editorial_board import add_radar_signal
+from ptia_engine.editorial_board import add_final_post, add_radar_signal, update_final_post_status
 from ptia_engine.models import NewsletterIssue
 from ptia_engine.newsletter import NEWSLETTER_GENERATOR_VERSION
 from ptia_engine.newsletter_delivery import (
@@ -45,7 +45,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
 
     def _add_signal(self):
         today = datetime.now(timezone.utc).date().isoformat()
-        return add_radar_signal(
+        signal = add_radar_signal(
             self.root / "radar_signals.jsonl",
             source_type="news",
             source_name="Reuters",
@@ -57,7 +57,24 @@ class NewsletterDeliveryTests(unittest.TestCase):
             why_it_matters="Matters.",
             status="verified",
         )
-
+        post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="ai_story_topic",
+            channel="site",
+            title="AI story",
+            body="Summary.",
+            hashtags="",
+            image_prompt="",
+            source_urls=[signal.url],
+            image_variants={"site": str(self.root / "ai-story-site-1600x900.jpg")},
+        )
+        update_final_post_status(
+            self.root / "final_posts.jsonl",
+            post.post_id,
+            "published",
+            scheduled_time=today,
+        )
+        return signal
     def test_preflight_rejects_suspicious_encoding_artifacts(self):
         issue = NewsletterIssue(
             issue_id="weekly_bad_encoding",
@@ -233,7 +250,7 @@ class NewsletterDeliveryTests(unittest.TestCase):
                     subject="Retry",
                     preheader="",
                     intro="",
-                    html="<html>{{ unsubscribe }}</html>",
+                    html='<html><img class="ptia-story-image" src="https://ptia.pt/assets/final/retry.jpg">{{ unsubscribe }}</html>',
                     text="Retry",
                     item_ids=["item_1"],
                     generator_version=NEWSLETTER_GENERATOR_VERSION,

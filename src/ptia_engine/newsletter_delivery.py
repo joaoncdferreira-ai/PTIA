@@ -131,6 +131,11 @@ def validate_newsletter_issue(issue: NewsletterIssue) -> None:
         errors.append("no editorial items were selected")
     if not issue.html.strip():
         errors.append("HTML content is empty")
+    story_image_count = issue.html.count('class="ptia-story-image"')
+    if issue.item_ids and story_image_count != len(issue.item_ids):
+        errors.append(
+            f"expected {len(issue.item_ids)} editorial images, found {story_image_count}"
+        )
     if "{{ unsubscribe }}" not in issue.html:
         errors.append("HTML is missing the Brevo unsubscribe tag")
     if not issue.text.strip():
