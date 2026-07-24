@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from ptia_engine.brevo import BrevoClient, BrevoConfig  # noqa: E402
+from ptia_engine.cloud_state import CloudStateConfig, hydrate_cloud_state  # noqa: E402
 from ptia_engine.newsletter_delivery import (  # noqa: E402
     PTIA_TIMEZONE,
     next_friday_send_at,
@@ -32,6 +33,7 @@ REQUIRED_DATASETS = {
 
 PREPARE_SCHEDULE = "35 18 * * 4"
 RECOVERY_SCHEDULE = "5 2 * * 5"
+CLOUD_STATE_ENABLED_VALUES = frozenset({"1", "true", "yes", "on"})
 
 
 def scheduled_window_is_open(now: datetime, scheduled_cron: str) -> bool:
@@ -62,6 +64,21 @@ def ensure_runner_datasets(data_dir: Path) -> None:
         path = data_dir / filename
         if not path.exists():
             path.write_text("", encoding="utf-8")
+
+
+def prepare_runner_state(data_dir: Path) -> None:
+    ensure_runner_datasets(data_dir)
+    is_cloud_state_enabled = (
+        os.environ.get("PTIA_CLOUD_STATE_ENABLED", "").strip().lower()
+        in CLOUD_STATE_ENABLED_VALUES
+    )
+    if not is_cloud_state_enabled:
+        return
+    if CloudStateConfig.from_env() is None:
+        raise RuntimeError(
+            "Cloud state is enabled but PTIA_STATE_TOKEN is missing or invalid."
+        )
+    hydrate_cloud_state(data_dir)
 
 
 def append_step_summary(lines: list[str]) -> None:
@@ -120,7 +137,7 @@ def main(argv: list[str] | None = None, *, now: datetime | None = None) -> int:
         )
         return 0
 
-    ensure_runner_datasets(args.data_dir)
+    prepare_runner_state(args.data_dir)
     send_at = resolve_send_at(args.send_at, local_now)
     client = None
     recipient_count = None
