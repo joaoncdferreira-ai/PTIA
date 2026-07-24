@@ -4,6 +4,8 @@ import urllib.error
 
 from datetime import datetime, timedelta, timezone
 
+from ptia_engine.http_client import requests_open_direct
+
 from ptia_engine.brevo import (
     BrevoAPIError,
     BrevoClient,
@@ -104,6 +106,11 @@ class BrevoTests(unittest.TestCase):
         self.assertIn("{{ unsubscribe }}", payload["htmlContent"])
         self.assertEqual(payload["scheduledAt"], "2026-06-12T09:00:00+01:00")
         self.assertNotIn("tag", payload)
+
+    def test_client_uses_requests_transport_by_default(self):
+        client = BrevoClient(self._config())
+
+        self.assertIs(client.transport, requests_open_direct)
 
     def test_brevo_html_converts_legacy_mailerlite_tags(self):
         converted = brevo_html("{$unsubscribe} {$url} MailerLite")

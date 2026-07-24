@@ -36,6 +36,7 @@ jobs:
       PTIA_NEWSLETTER_FROM_EMAIL: ${{ secrets.PTIA_NEWSLETTER_FROM_EMAIL }}
       PTIA_NEWSLETTER_FROM_NAME: "PTIA"
       PTIA_NEWSLETTER_REPLY_TO: ${{ secrets.PTIA_NEWSLETTER_REPLY_TO }}
+      PTIA_PUBLIC_SITE_FEED_URL: "https://ptia.pt/site-feed.json"
 
     steps:
       - name: Checkout current editorial state
