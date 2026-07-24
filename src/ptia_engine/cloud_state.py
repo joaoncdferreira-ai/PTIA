@@ -59,7 +59,7 @@ class CloudStateConfig:
         enabled = values.get("PTIA_CLOUD_STATE_ENABLED", "").strip().lower()
         if enabled not in {"1", "true", "yes", "on"}:
             return None
-        token = values.get("PTIA_STATE_TOKEN", "").strip()
+        token = values.get("PTIA_STATE_TOKEN", "").strip().lstrip("\ufeff").strip()
         api_url = values.get("PTIA_STATE_API_URL", "").strip()
         if not api_url:
             api_url = DEFAULT_STATE_API_URL

@@ -66,6 +66,17 @@ class CloudStateTests(unittest.TestCase):
         self.assertIsNotNone(config)
         self.assertEqual(config.api_url, "https://state")
 
+    def test_config_strips_utf8_bom_from_token(self):
+        config = CloudStateConfig.from_env(
+            {
+                "PTIA_STATE_TOKEN": "\ufefftoken",
+                "PTIA_CLOUD_STATE_ENABLED": "true",
+            }
+        )
+
+        self.assertIsNotNone(config)
+        self.assertEqual(config.token, "token")
+
     def test_client_sends_bearer_token_and_expected_version(self):
         seen = []
 
