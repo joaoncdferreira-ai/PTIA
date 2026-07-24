@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Callable
 
-from ptia_engine.http_client import urlopen_direct
+from ptia_engine.http_client import requests_open_direct
 from ptia_engine.models import NewsletterIssue
 
 
@@ -155,7 +155,7 @@ class BrevoClient:
         self,
         config: BrevoConfig,
         *,
-        transport: Transport = urlopen_direct,
+        transport: Transport = requests_open_direct,
         timeout: int | float = 30,
     ) -> None:
         self.config = config
@@ -359,6 +359,7 @@ class BrevoClient:
                 "api-key": self.config.api_key,
                 "Accept": "application/json",
                 "Content-Type": "application/json",
+                "User-Agent": "PTIA-Newsletter/1.0 (+https://ptia.pt)",
             },
         )
         try:
