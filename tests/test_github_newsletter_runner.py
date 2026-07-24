@@ -5,7 +5,7 @@ import sys
 import unittest
 import uuid
 
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -132,6 +132,134 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
             posts[0].image_variants["site"],
             "https://ptia.pt/assets/final/post_1.jpg",
         )
+
+    def test_hydration_replaces_stale_site_posts_and_preserves_other_channels(self):
+        stale_site = RUNNER.FinalPost(
+            post_id="stale_site",
+            topic_id="stale",
+            channel="site",
+            title="Stale",
+            body="Stale",
+            hashtags="",
+            image_prompt="",
+        )
+        social_post = RUNNER.FinalPost(
+            post_id="social_post",
+            topic_id="social",
+            channel="linkedin",
+            title="Social",
+            body="Social",
+            hashtags="",
+            image_prompt="",
+        )
+        RUNNER.write_jsonl(self.root / "final_posts.jsonl", [stale_site, social_post])
+        payload = {
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "posts": [
+                {
+                    "id": "current_site",
+                    "title": "Current",
+                    "body": "Current",
+                    "published_at": "2026-07-24T08:00:00+01:00",
+                    "image_url": "/assets/final/current.jpg",
+                    "article_url": "artigos/current",
+                    "source_urls": ["https://source.example/current"],
+                }
+            ],
+        }
+
+        class FeedResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self):
+                return RUNNER.json.dumps(payload).encode("utf-8")
+
+        with patch.object(RUNNER, "urlopen_direct", return_value=FeedResponse()):
+            RUNNER.hydrate_public_site_feed(
+                self.root,
+                "https://ptia.pt/site-feed.json",
+            )
+
+        posts = RUNNER.load_final_posts(self.root / "final_posts.jsonl")
+        self.assertEqual(
+            {post.post_id for post in posts},
+            {"social_post", "current_site"},
+        )
+
+    def test_hydration_rejects_stale_public_feed(self):
+        payload = {
+            "updated_at": "2026-01-01T00:00:00+00:00",
+            "posts": [
+                {
+                    "id": "stale_site",
+                    "title": "Stale",
+                    "body": "Stale",
+                    "published_at": "2026-01-01T00:00:00+00:00",
+                    "image_url": "/assets/final/stale.jpg",
+                    "article_url": "artigos/stale",
+                    "source_urls": ["https://source.example/stale"],
+                }
+            ],
+        }
+
+        class FeedResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self):
+                return RUNNER.json.dumps(payload).encode("utf-8")
+
+        with (
+            patch.object(RUNNER, "urlopen_direct", return_value=FeedResponse()),
+            self.assertRaisesRegex(RuntimeError, "feed is stale"),
+        ):
+            RUNNER.hydrate_public_site_feed(
+                self.root,
+                "https://ptia.pt/site-feed.json",
+            )
+
+    def test_public_feed_validation_rejects_wrong_story_image(self):
+        post = RUNNER.FinalPost(
+            post_id="current_site",
+            topic_id="current",
+            channel="site",
+            title="Notícia atual",
+            body="Atual",
+            hashtags="",
+            image_prompt="",
+            image_path="https://ptia.pt/assets/final/current.jpg",
+            image_variants={"site": "https://ptia.pt/assets/final/current.jpg"},
+            status="published",
+        )
+        RUNNER.write_jsonl(self.root / "final_posts.jsonl", [post])
+        issue = NewsletterIssue(
+            issue_id="weekly_wrong_image",
+            title="Weekly",
+            subject="Weekly",
+            preheader="",
+            intro="",
+            html=(
+                '<img class="ptia-story-image" '
+                'src="https://ptia.pt/assets/final/stale.jpg" '
+                'alt="Notícia atual">'
+            ),
+            text="Weekly",
+            item_ids=[post.post_id],
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "image URL mismatch"):
+            RUNNER.validate_public_feed_issue(
+                issue,
+                self.root,
+                "https://ptia.pt/site-feed.json",
+            )
 
     def test_runner_rejects_enabled_cloud_state_without_credentials(self):
         with (

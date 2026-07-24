@@ -306,6 +306,42 @@ class NewsletterTests(unittest.TestCase):
         self.assertIn("https://ptia.pt/artigos/ai-story-with-a-site-article-", issue.html)
         self.assertNotIn(signal.url, issue.html)
 
+    def test_ptia_post_keeps_its_own_image_when_history_has_same_title(self):
+        stale_post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="stale_topic",
+            channel="site",
+            title="Universidade investe em data centers para IA",
+            body="Registo histórico.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/stale"],
+            image_variants={"site": "https://ptia.pt/assets/final/stale.jpg"},
+        )
+        stale_post.status = "published"
+        stale_post.scheduled_time = f"{self.today}T08:00:00+00:00"
+        current_post = add_final_post(
+            self.root / "final_posts.jsonl",
+            topic_id="current_topic",
+            channel="site",
+            title="Universidade investe em data centers para IA",
+            body="Notícia atual.",
+            hashtags="",
+            image_prompt="",
+            source_urls=["https://example.com/current"],
+            image_variants={"site": "https://ptia.pt/assets/final/current.jpg"},
+        )
+        current_post.status = "published"
+        current_post.scheduled_time = f"{self.today}T09:00:00+00:00"
+
+        candidates = weekly_candidates([], [], [stale_post, current_post], limit=1)
+
+        self.assertEqual(candidates[0].item_id, current_post.post_id)
+        self.assertEqual(
+            candidates[0].image_url,
+            "https://ptia.pt/assets/final/current.jpg",
+        )
+
     def test_weekly_owned_post_candidates_rank_by_tracking(self):
         posts = []
         performance = []

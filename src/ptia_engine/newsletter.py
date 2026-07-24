@@ -25,7 +25,7 @@ from ptia_engine.storage import append_jsonl, load_newsletter_issues, write_json
 
 
 NEWSLETTER_STATUSES = {"draft", "approved", "scheduled", "sent", "rejected", "failed"}
-NEWSLETTER_GENERATOR_VERSION = "7"
+NEWSLETTER_GENERATOR_VERSION = "8"
 
 
 
@@ -525,6 +525,8 @@ def weekly_candidates(
         if source_url
     }
     for candidate in candidates:
+        if candidate.kind == "ptia_post":
+            continue
         site_post = source_url_to_site_post.get(candidate.url.rstrip("/"))
         if site_post is None:
             site_post = next(
