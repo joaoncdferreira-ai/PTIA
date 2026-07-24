@@ -107,6 +107,32 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
             all((self.root / filename).exists() for filename in RUNNER.REQUIRED_DATASETS)
         )
 
+    def test_public_site_feed_maps_posts_to_newsletter_records(self):
+        posts = RUNNER._site_feed_posts(
+            {
+                "posts": [
+                    {
+                        "id": "post_1",
+                        "title": "Notícia PTIA",
+                        "body": "Resumo editorial.",
+                        "published_at": "2026-07-24T08:00:00+01:00",
+                        "image_url": "/assets/final/post_1.jpg",
+                        "article_url": "artigos/noticia-ptia",
+                        "source_urls": ["https://source.example/news"],
+                    }
+                ]
+            },
+            "https://ptia.pt/site-feed.json",
+        )
+
+        self.assertEqual(len(posts), 1)
+        self.assertEqual(posts[0].status, "published")
+        self.assertEqual(posts[0].published_url, "https://ptia.pt/artigos/noticia-ptia")
+        self.assertEqual(
+            posts[0].image_variants["site"],
+            "https://ptia.pt/assets/final/post_1.jpg",
+        )
+
     def test_runner_rejects_enabled_cloud_state_without_credentials(self):
         with (
             patch.dict(os.environ, {"PTIA_CLOUD_STATE_ENABLED": "true"}),
@@ -194,8 +220,11 @@ class GitHubNewsletterRunnerTests(unittest.TestCase):
         self.assertIn('--scheduled-cron "${{ github.event.schedule }}"', workflow)
         self.assertIn("PTIA_SEND_AT: ${{ inputs.send_at }}", workflow)
         self.assertIn('--send-at "$PTIA_SEND_AT"', workflow)
-        self.assertIn('PTIA_CLOUD_STATE_ENABLED: "true"', workflow)
-        self.assertIn("PTIA_STATE_TOKEN: ${{ secrets.PTIA_STATE_TOKEN }}", workflow)
+        self.assertIn(
+            'PTIA_PUBLIC_SITE_FEED_URL: "https://ptia.pt/site-feed.json"',
+            workflow,
+        )
+        self.assertNotIn("PTIA_STATE_TOKEN: ${{ secrets.PTIA_STATE_TOKEN }}", workflow)
         self.assertNotIn("firebase", workflow.casefold())
 
 

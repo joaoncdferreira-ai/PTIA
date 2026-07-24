@@ -7,6 +7,8 @@ import sys
 
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urljoin
+from urllib.request import Request
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,12 +16,15 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ptia_engine.brevo import BrevoClient, BrevoConfig  # noqa: E402
 from ptia_engine.cloud_state import CloudStateConfig, hydrate_cloud_state  # noqa: E402
+from ptia_engine.http_client import urlopen_direct  # noqa: E402
+from ptia_engine.models import FinalPost  # noqa: E402
 from ptia_engine.newsletter_delivery import (  # noqa: E402
     PTIA_TIMEZONE,
     next_friday_send_at,
     ptia_timezone,
     schedule_weekly_newsletter,
 )
+from ptia_engine.storage import load_final_posts, write_jsonl  # noqa: E402
 
 
 REQUIRED_DATASETS = {
@@ -66,20 +71,80 @@ def ensure_runner_datasets(data_dir: Path) -> None:
             path.write_text("", encoding="utf-8")
 
 
+def _site_feed_posts(payload: object, feed_url: str) -> list[FinalPost]:
+    if not isinstance(payload, dict) or not isinstance(payload.get("posts"), list):
+        raise RuntimeError("PTIA public site feed must contain a posts list.")
+    posts = []
+    for index, record in enumerate(payload["posts"]):
+        if not isinstance(record, dict):
+            raise RuntimeError(f"PTIA public site feed post {index} must be an object.")
+        required = ("id", "title", "body", "published_at", "image_url", "article_url")
+        missing = [key for key in required if not str(record.get(key, "")).strip()]
+        if missing:
+            raise RuntimeError(
+                f"PTIA public site feed post {index} is missing: {', '.join(missing)}."
+            )
+        source_urls = record.get("source_urls", [])
+        if not isinstance(source_urls, list):
+            raise RuntimeError(f"PTIA public site feed post {index} has invalid source_urls.")
+        post_id = str(record["id"]).strip()
+        published_at = str(record["published_at"]).strip()
+        image_url = urljoin(feed_url, str(record["image_url"]).strip())
+        posts.append(
+            FinalPost(
+                post_id=post_id,
+                topic_id=post_id,
+                channel="site",
+                title=str(record["title"]).strip(),
+                body=str(record["body"]).strip(),
+                hashtags="",
+                image_prompt="",
+                source_urls=[str(value) for value in source_urls if str(value).strip()],
+                image_path=image_url,
+                image_variants={"site": image_url},
+                image_status="approved",
+                status="published",
+                scheduled_time=published_at,
+                published_url=urljoin(feed_url, str(record["article_url"]).strip()),
+                created_at=published_at,
+            )
+        )
+    if not posts:
+        raise RuntimeError("PTIA public site feed does not contain any posts.")
+    return posts
+
+
+def hydrate_public_site_feed(data_dir: Path, feed_url: str) -> None:
+    request = Request(
+        feed_url,
+        headers={"Accept": "application/json", "User-Agent": "PTIA-Newsletter/1.0"},
+    )
+    with urlopen_direct(request, timeout=30) as response:
+        payload = json.loads(response.read().decode("utf-8"))
+    current_posts = load_final_posts(data_dir / "final_posts.jsonl")
+    posts_by_id = {post.post_id: post for post in current_posts}
+    posts_by_id.update(
+        {post.post_id: post for post in _site_feed_posts(payload, feed_url)}
+    )
+    write_jsonl(data_dir / "final_posts.jsonl", list(posts_by_id.values()))
+
+
 def prepare_runner_state(data_dir: Path) -> None:
     ensure_runner_datasets(data_dir)
     is_cloud_state_enabled = (
         os.environ.get("PTIA_CLOUD_STATE_ENABLED", "").strip().lower()
         in CLOUD_STATE_ENABLED_VALUES
     )
-    if not is_cloud_state_enabled:
-        return
-    if CloudStateConfig.from_env() is None:
-        raise RuntimeError(
-            "Cloud state is enabled but PTIA_STATE_TOKEN is missing or invalid."
-        )
-    hydrate_cloud_state(data_dir)
+    if is_cloud_state_enabled:
+        if CloudStateConfig.from_env() is None:
+            raise RuntimeError(
+                "Cloud state is enabled but PTIA_STATE_TOKEN is missing or invalid."
+            )
+        hydrate_cloud_state(data_dir)
 
+    feed_url = os.environ.get("PTIA_PUBLIC_SITE_FEED_URL", "").strip()
+    if feed_url:
+        hydrate_public_site_feed(data_dir, feed_url)
 
 def append_step_summary(lines: list[str]) -> None:
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
