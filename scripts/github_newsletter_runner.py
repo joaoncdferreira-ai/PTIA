@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import os
+import re
 import sys
 
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urljoin
 from urllib.request import Request
@@ -17,13 +19,14 @@ sys.path.insert(0, str(ROOT / "src"))
 from ptia_engine.brevo import BrevoClient, BrevoConfig  # noqa: E402
 from ptia_engine.cloud_state import CloudStateConfig, hydrate_cloud_state  # noqa: E402
 from ptia_engine.http_client import urlopen_direct  # noqa: E402
-from ptia_engine.models import FinalPost  # noqa: E402
+from ptia_engine.models import FinalPost, NewsletterIssue  # noqa: E402
 from ptia_engine.newsletter_delivery import (  # noqa: E402
     PTIA_TIMEZONE,
     next_friday_send_at,
     ptia_timezone,
     schedule_weekly_newsletter,
 )
+from ptia_engine.services.media import public_image_url  # noqa: E402
 from ptia_engine.storage import load_final_posts, write_jsonl  # noqa: E402
 
 
@@ -39,6 +42,7 @@ REQUIRED_DATASETS = {
 PREPARE_SCHEDULE = "35 18 * * 4"
 RECOVERY_SCHEDULE = "5 2 * * 5"
 CLOUD_STATE_ENABLED_VALUES = frozenset({"1", "true", "yes", "on"})
+MAX_PUBLIC_FEED_AGE = timedelta(days=8)
 
 
 def scheduled_window_is_open(now: datetime, scheduled_cron: str) -> bool:
@@ -115,18 +119,73 @@ def _site_feed_posts(payload: object, feed_url: str) -> list[FinalPost]:
 
 
 def hydrate_public_site_feed(data_dir: Path, feed_url: str) -> None:
+    separator = "&" if "?" in feed_url else "?"
     request = Request(
-        feed_url,
+        f"{feed_url}{separator}_ptia_newsletter={int(datetime.now().timestamp())}",
         headers={"Accept": "application/json", "User-Agent": "PTIA-Newsletter/1.0"},
     )
     with urlopen_direct(request, timeout=30) as response:
         payload = json.loads(response.read().decode("utf-8"))
+    updated_at = str(payload.get("updated_at", "")).strip()
+    try:
+        feed_updated_at = datetime.fromisoformat(updated_at.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise RuntimeError("PTIA public site feed has an invalid updated_at value.") from exc
+    if feed_updated_at.tzinfo is None:
+        feed_updated_at = feed_updated_at.replace(tzinfo=timezone.utc)
+    feed_age = datetime.now(timezone.utc) - feed_updated_at.astimezone(timezone.utc)
+    if feed_age > MAX_PUBLIC_FEED_AGE:
+        raise RuntimeError("PTIA public site feed is stale; newsletter creation was blocked.")
+
     current_posts = load_final_posts(data_dir / "final_posts.jsonl")
-    posts_by_id = {post.post_id: post for post in current_posts}
-    posts_by_id.update(
-        {post.post_id: post for post in _site_feed_posts(payload, feed_url)}
-    )
+    posts_by_id = {
+        post.post_id: post for post in current_posts if post.channel != "site"
+    }
+    posts_by_id.update({post.post_id: post for post in _site_feed_posts(payload, feed_url)})
     write_jsonl(data_dir / "final_posts.jsonl", list(posts_by_id.values()))
+
+
+def validate_public_feed_issue(
+    issue: NewsletterIssue,
+    data_dir: Path,
+    feed_url: str,
+) -> None:
+    site_posts = {
+        post.post_id: post
+        for post in load_final_posts(data_dir / "final_posts.jsonl")
+        if post.channel == "site"
+    }
+    missing_ids = [item_id for item_id in issue.item_ids if item_id not in site_posts]
+    if missing_ids:
+        raise RuntimeError(
+            "Newsletter selected items outside the current PTIA site feed: "
+            + ", ".join(missing_ids)
+        )
+
+    image_tags = re.findall(
+        r'<img[^>]*class="ptia-story-image"[^>]*>',
+        issue.html,
+        flags=re.IGNORECASE,
+    )
+    if len(image_tags) != len(issue.item_ids):
+        raise RuntimeError("Newsletter story image count does not match selected items.")
+
+    public_base_url = urljoin(feed_url, "/")
+    for item_id, image_tag in zip(issue.item_ids, image_tags, strict=True):
+        attributes = {
+            key.casefold(): html.unescape(value)
+            for key, value in re.findall(r'([a-zA-Z:-]+)="([^"]*)"', image_tag)
+        }
+        post = site_posts[item_id]
+        expected_image_url = public_image_url(
+            post,
+            base_url=public_base_url,
+            channel="site",
+        )
+        if attributes.get("alt") != post.title:
+            raise RuntimeError(f"Newsletter image title mismatch for {item_id}.")
+        if attributes.get("src") != expected_image_url:
+            raise RuntimeError(f"Newsletter image URL mismatch for {item_id}.")
 
 
 def prepare_runner_state(data_dir: Path) -> None:
@@ -145,6 +204,7 @@ def prepare_runner_state(data_dir: Path) -> None:
     feed_url = os.environ.get("PTIA_PUBLIC_SITE_FEED_URL", "").strip()
     if feed_url:
         hydrate_public_site_feed(data_dir, feed_url)
+
 
 def append_step_summary(lines: list[str]) -> None:
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY", "").strip()
@@ -204,19 +264,26 @@ def main(argv: list[str] | None = None, *, now: datetime | None = None) -> int:
 
     prepare_runner_state(args.data_dir)
     send_at = resolve_send_at(args.send_at, local_now)
+    preflight_result = schedule_weekly_newsletter(
+        args.data_dir,
+        send_at=send_at,
+        dry_run=True,
+    )
+    feed_url = os.environ.get("PTIA_PUBLIC_SITE_FEED_URL", "").strip()
+    if feed_url:
+        validate_public_feed_issue(preflight_result.issue, args.data_dir, feed_url)
+
     client = None
     recipient_count = None
-    if args.live:
+    if not args.live:
+        result = preflight_result
+    else:
         client = BrevoClient(BrevoConfig.from_env())
         client.validate_lists()
         client.validate_sender()
         recipient_count = client.validate_capacity()
         if recipient_count == 0:
-            result = schedule_weekly_newsletter(
-                args.data_dir,
-                send_at=send_at,
-                dry_run=True,
-            )
+            result = preflight_result
             payload = {
                 "action": "skipped_no_recipients",
                 "campaign_id": "",
@@ -239,12 +306,12 @@ def main(argv: list[str] | None = None, *, now: datetime | None = None) -> int:
                 ]
             )
             return 0
-    result = schedule_weekly_newsletter(
-        args.data_dir,
-        send_at=send_at,
-        dry_run=not args.live,
-        client=client,
-    )
+        result = schedule_weekly_newsletter(
+            args.data_dir,
+            send_at=send_at,
+            dry_run=False,
+            client=client,
+        )
     payload = {
         "action": result.action,
         "campaign_id": result.campaign_id,
