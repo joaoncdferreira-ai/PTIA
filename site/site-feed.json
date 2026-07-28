@@ -1,7 +1,77 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-27T21:17:18+00:00",
+  "updated_at": "2026-07-28T22:52:33+00:00",
   "posts": [
+    {
+      "id": "post_cce73f7701c0a6a70c",
+      "title": "Moonshot AI lança pesos abertos do Kimi K3 e transfere capacidade de fronteira para a infraestrutura privada",
+      "body": "A startup chinesa Moonshot AI disponibilizou publicamente os pesos abertos do seu modelo Kimi K3, com 2,8 biliões de parâmetros e uma janela de contexto de 1 milhão de tokens. A decisão torna o Kimi K3 o maior modelo de classe de fronteira com pesos abertos disponível para descarregamento e alojamento próprio.\n\nA disponibilização permite que empresas e equipas de engenharia executem o modelo em infraestrutura privada, reduzindo custos operacionais de inferência e contornando a dependência de APIs proprietárias ocidentais.\n\nA relevância do anúncio excede o volume de parâmetros. Ao colocar um modelo de topo em regime de pesos abertos, a Moonshot AI altera a equação comercial do setor: a vantagem dos ecossistemas proprietários deixa de assentar no acesso exclusivo à capacidade computacional e passa a depender estritamente da conveniência de integração e segurança de dados.\n\nPara os decisores de tecnologia, a existência de alternativas abertas deste calibre elimina a necessidade de escolher entre desempenho de ponta e controlo sobre os dados. O desafio crítico desloca-se da faturação de APIs para a capacidade interna de dimensionar e otimizar infraestrutura de cálculo.",
+      "source_urls": [
+        "https://qz.com/moonshot-ai-kimi-k3-open-weight-model-download-1851590432"
+      ],
+      "image_path": "data\\final_assets\\post_17833aa32d8da01d74_3757a926_ChatGPT-Image-28_07_2026-23_40_55.png",
+      "image_url": "/assets/final/post_e9b5ebe873f0ea8795_site_1600x900.jpg",
+      "published_at": "2026-07-29T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/moonshot-ai-lanca-pesos-abertos-do-kimi-k3-e-transfere-capacidade-de-fronteira-para-a-infraestrutura-privada-cce73f7701c0a6a70c"
+    },
+    {
+      "id": "post_f7e29811dada59d1d2",
+      "title": "Portugal lidera ganhos de eficiência com IA em quatro mercados europeus",
+      "body": "Portugal surge na dianteira do impacto direto da inteligência artificial no negócio entre quatro mercados europeus analisados. O retrato citado aponta para redução de custos e melhoria dos serviços, mas também para uma base digital ainda frágil.\n\nOs ganhos de eficiência são um sinal positivo, mas só se tornam duradouros quando os processos, os dados e as equipas acompanham a adoção.\n\nO desafio português é transformar ganhos pontuais em capacidade operacional repetível, com dados fiáveis e competências internas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
+      "source_urls": [
+        "https://www.imagensdemarca.pt/artigo/portugal-lidera-ganhos-de-eficiencia-com-recurso-a-ia-em-quatro-mercados-europeus/"
+      ],
+      "image_path": "data\\final_assets\\post_0cff8d0e067bffb6b7_dafcacba_ChatGPT-Image-28_07_2026-23_42_50.png",
+      "image_url": "/assets/final/post_df0c49f815841e51a0_site_1600x900.jpg",
+      "published_at": "2026-07-29T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/portugal-lidera-ganhos-de-eficiencia-com-ia-em-quatro-mercados-europeus-f7e29811dada59d1d2"
+    },
+    {
+      "id": "post_e15462c3696b05b34c",
+      "title": "Os direitos com a IA mudam este domingo em Portugal",
+      "body": "A partir de 2 de agosto, entram em aplicação obrigações de transparência do artigo 50.º do Regulamento da IA. Entre as regras está a necessidade de deixar claro quando uma pessoa interage com um sistema de IA, salvo exceções previstas.\n\nTransparência não é um detalhe de interface: é uma obrigação de produto, comunicação e governação.\n\nEmpresas e organismos públicos em Portugal devem identificar onde usam IA, rever avisos ao utilizador e documentar responsabilidades antes da aplicação das regras.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
+      "source_urls": [
+        "https://4gnews.pt/os-teus-direitos-com-a-ia-mudam-este-domingo-em-portugal/",
+        "https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-certain-ai-systems"
+      ],
+      "image_path": "data\\final_assets\\post_e236012da0866cb86b_7bded906_ChatGPT-Image-28_07_2026-23_41_37.png",
+      "image_url": "/assets/final/post_19b70f7b17e3af9f49_site_1600x900.jpg",
+      "published_at": "2026-07-29T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/os-direitos-com-a-ia-mudam-este-domingo-em-portugal-e15462c3696b05b34c"
+    },
+    {
+      "id": "post_adf06407a66707b479",
+      "title": "Milhões de portugueses dão permissões à IA sem pensar nas consequências",
+      "body": "Cada vez mais pessoas ligam contas a ferramentas de IA para automatizar tarefas. O artigo alerta para o risco de conceder acessos sem confirmar que dados, serviços e ações ficam efetivamente ao alcance da ferramenta.\n\nA conveniência da automação não substitui a gestão de acessos: uma permissão excessiva pode transformar um atalho num risco.\n\nPara particulares e empresas portuguesas, o ponto de partida é simples: conceder apenas o acesso necessário, rever integrações e retirar permissões que já não são usadas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
+      "source_urls": [
+        "https://4gnews.pt/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias/"
+      ],
+      "image_path": "data\\final_assets\\post_485f4ff3b1353e098c_45983104_ChatGPT-Image-28_07_2026-23_38_23.png",
+      "image_url": "/assets/final/post_d43c86d883544dc1b1_site_1600x900.jpg",
+      "published_at": "2026-07-29T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias-adf06407a66707b479"
+    },
     {
       "id": "post_3d84f1c57f8e8be761",
       "title": "Nera e Universidade do Algarve testam robótica e IA agrícola em dois living labs",
