@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import subprocess
+import tempfile
 import time
 import unicodedata
 from collections import Counter, defaultdict
@@ -1119,39 +1120,78 @@ def _publish_site_assets_to_git(state: DashboardState, asset_paths: list[str] | 
     for key in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "GIT_HTTP_PROXY", "GIT_HTTPS_PROXY"):
         env[key] = ""
 
-    add_targets = asset_paths or [str(state.site_dir / "assets" / "final")]
-    commands = [
-        [git_cmd, "add", *add_targets],
-        [git_cmd, "diff", "--cached", "--quiet"],
-    ]
-    subprocess.run(commands[0], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
-    diff = subprocess.run(commands[1], cwd=repo_root, env=env, capture_output=True, text=True, timeout=60, check=False)
-    if diff.returncode == 0:
-        return
-    commit = subprocess.run(
-        [git_cmd, "commit", "-m", "Publish scheduled media assets"],
-        cwd=repo_root,
+    source_root = repo_root.resolve()
+    source_paths = [Path(path).resolve() for path in (asset_paths or [state.site_dir / "assets" / "final"])]
+    relative_paths = []
+    for source_path in source_paths:
+        try:
+            relative_path = source_path.relative_to(source_root)
+        except ValueError as exc:
+            raise ValueError(f"Ficheiro fora do repositorio PTIA: {source_path}") from exc
+        if not source_path.exists():
+            raise ValueError(f"Falta ficheiro publico para publicar: {source_path}")
+        relative_paths.append(relative_path)
+
+    remote = subprocess.run(
+        [git_cmd, "config", "--get", "remote.origin.url"],
+        cwd=source_root,
         env=env,
         capture_output=True,
         text=True,
-        timeout=120,
+        timeout=30,
         check=False,
     )
-    if commit.returncode != 0:
-        output = "\n".join(part for part in [commit.stdout, commit.stderr] if part).strip()
-        raise ValueError(f"Falhou commit das imagens publicas antes do Buffer: {output[-1000:]}")
-    push = subprocess.run(
-        [git_cmd, "push"],
-        cwd=repo_root,
-        env=env,
-        capture_output=True,
-        text=True,
-        timeout=180,
-        check=False,
-    )
-    if push.returncode != 0:
-        output = "\n".join(part for part in [push.stdout, push.stderr] if part).strip()
-        raise ValueError(f"Falhou push das imagens publicas antes do Buffer: {output[-1000:]}")
+    remote_url = remote.stdout.strip()
+    if remote.returncode != 0 or not remote_url:
+        raise ValueError("Nao foi possivel identificar o repositorio remoto PTIA.")
+
+    def run_git(args: list[str], cwd: Path, timeout: int = 120) -> subprocess.CompletedProcess[str]:
+        result = subprocess.run(
+            [git_cmd, *args],
+            cwd=cwd,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+        if result.returncode != 0:
+            output = "\n".join(part for part in [result.stdout, result.stderr] if part).strip()
+            raise ValueError(f"Falhou publicacao do site no Git: {output[-1000:]}")
+        return result
+
+    with tempfile.TemporaryDirectory(prefix="ptia-site-publish-") as temp_dir:
+        publish_root = Path(temp_dir) / "repository"
+        run_git(["clone", "--depth", "1", "--branch", "main", remote_url, str(publish_root)], source_root, timeout=180)
+        for source_path, relative_path in zip(source_paths, relative_paths, strict=True):
+            destination = publish_root / relative_path
+            if source_path.is_dir():
+                shutil.copytree(source_path, destination, dirs_exist_ok=True)
+            else:
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source_path, destination)
+
+        target_args = [str(path) for path in relative_paths]
+        run_git(["add", "--", *target_args], publish_root, timeout=60)
+        diff = subprocess.run(
+            [git_cmd, "diff", "--cached", "--quiet"],
+            cwd=publish_root,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=60,
+            check=False,
+        )
+        if diff.returncode == 0:
+            return
+        if diff.returncode != 1:
+            output = "\n".join(part for part in [diff.stdout, diff.stderr] if part).strip()
+            raise ValueError(f"Falhou validar os ficheiros publicos do site: {output[-1000:]}")
+        run_git(["config", "user.name", "PTIA Publisher"], publish_root, timeout=30)
+        run_git(["config", "user.email", "ptia-publisher@ptia.pt"], publish_root, timeout=30)
+        run_git(["commit", "-m", "Publish scheduled PTIA site content"], publish_root, timeout=120)
+        run_git(["pull", "--rebase", "origin", "main"], publish_root, timeout=180)
+        run_git(["push", "origin", "HEAD:main"], publish_root, timeout=180)
 
 
 def _ensure_public_images_for_buffer(state: DashboardState, posts: list) -> None:
@@ -1264,7 +1304,11 @@ def _schedule_post_in_buffer(state: DashboardState, post_id: str, scheduled_time
             "scheduled",
             scheduled_time=scheduled_time,
         )
-        _sync_static_site_feed(state)
+        _sync_static_site_feed(
+            state,
+            git_push="raw.githubusercontent.com" in _public_asset_base_url(state),
+            article_posts=[updated],
+        )
         return updated
     _validate_final_post_copy(post)
     image_url = _public_image_url_for_buffer(post, state)
@@ -2273,23 +2317,46 @@ def _static_site_feed_payload(state: DashboardState) -> dict:
             continue
         seen_keys.add(key)
         deduped_posts.append(post)
+    generated_posts = [
+        {
+            "id": post.post_id,
+            "title": post.title,
+            "body": _clean_article_body(post.body),
+            "source_urls": post.source_urls,
+            "image_path": post.image_path,
+            "image_url": _static_site_image_url(state, post),
+            "published_at": post.published_url or post.scheduled_time or post.created_at,
+            "section": _site_section_for_post(post),
+            "article_url": _article_url_for_site_post(post),
+        }
+        for post in deduped_posts
+    ]
+    existing_posts = []
+    feed_path = state.site_dir / "site-feed.json"
+    try:
+        existing_payload = json.loads(feed_path.read_text(encoding="utf-8"))
+        existing_posts = list(existing_payload.get("posts") or [])
+    except (OSError, ValueError, json.JSONDecodeError):
+        existing_posts = []
+
+    generated_ids = {str(post.get("id") or "") for post in generated_posts}
+    generated_keys = {
+        (post.get("source_urls") or [post.get("title", "")])[0]
+        for post in generated_posts
+    }
+    historical_posts = [
+        post
+        for post in existing_posts
+        if _is_public_site_post(post)
+        and str(post.get("id") or "") not in generated_ids
+        and (post.get("source_urls") or [post.get("title", "")])[0] not in generated_keys
+    ]
+    merged_posts = [*generated_posts, *historical_posts]
+    merged_posts.sort(key=lambda post: str(post.get("published_at") or ""), reverse=True)
     return {
         "brand": "PTIA.pt",
         "updated_at": utc_now_iso(),
-        "posts": [
-            {
-                "id": post.post_id,
-                "title": post.title,
-                "body": _clean_article_body(post.body),
-                "source_urls": post.source_urls,
-                "image_path": post.image_path,
-                "image_url": _static_site_image_url(state, post),
-                "published_at": post.published_url or post.scheduled_time or post.created_at,
-                "section": _site_section_for_post(post),
-                "article_url": _article_url_for_site_post(post),
-            }
-            for post in deduped_posts
-        ],
+        "posts": merged_posts,
     }
 
 
@@ -3188,19 +3255,21 @@ def _write_static_site_feed(state: DashboardState) -> dict:
     return payload
 
 
-def _sync_static_site_feed(state: DashboardState, *, deploy: bool = True, git_push: bool = False) -> None:
+def _sync_static_site_feed(
+    state: DashboardState,
+    *,
+    deploy: bool = True,
+    git_push: bool = False,
+    article_posts: list[FinalPost] | None = None,
+) -> None:
     _write_static_site_feed(state)
     if git_push:
-        try:
-            _publish_site_assets_to_git(state, [
-                str(state.site_dir / "site-feed.json"),
-                str(state.site_dir / "sitemap.xml"),
-                str(state.site_dir / "news-sitemap.xml"),
-                str(state.site_dir / "rss.xml")
-            ])
-            print("-> Ficheiros de sitemaps e feed sincronizados com sucesso no Git!")
-        except Exception as e:
-            print(f"-> [AVISO] Falhou publicacao de sitemaps/feed para o Git: {e}")
+        public_paths = [state.site_dir / "site-feed.json"]
+        for post in article_posts or []:
+            article_path = state.site_dir / _article_url_for_site_post(post)
+            if article_path.exists():
+                public_paths.append(article_path)
+        _publish_site_assets_to_git(state, [str(path) for path in public_paths])
     if deploy:
         _deploy_site_assets_to_vercel(state)
 

@@ -1,24 +1,218 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-07-29T22:30:28+00:00",
+  "updated_at": "2026-08-01T21:38:34+00:00",
   "posts": [
     {
-      "id": "post_3c576ad9b32e2cec32",
-      "title": "União Europeia alivia prazos do AI Omnibus mas impõe transparência imediata no Artigo 50.º",
-      "body": "A Comissão Europeia confirmou a entrada em vigor do AI Omnibus a 27 de julho de 2026, estendendo os prazos de conformidade para sistemas de inteligência artificial de alto risco e simplificando exigências para pequenas e médias empresas. Em simultâneo, o executivo comunitário relembrou que as regras do Artigo 50.º do AI Act entram em aplicação a 2 de agosto, tornando obrigatória a identificação explícita de assistentes virtuais e a marcação de conteúdos sintéticos.\n\nEsta sobreposição de prazos define uma prioridade clara no regulamento comunitário. Enquanto a Europa concede margem de manobra ao desenvolvimento de modelos complexos de alto risco, recusa qualquer tolerância na relação direta com o utilizador final.\n\nA urgência de conformidade desloca-se assim do desenvolvimento interno para a interface. Equipas de produto e tecnologia têm de auditar de imediato as suas ferramentas de atendimento automático e aplicar marcações legíveis por máquina em conteúdos gerados por IA, garantindo que a natureza sintética da interação é percetível antes do prazo fixado.\n\nO alívio técnico do AI Omnibus dá margem às empresas para ajustarem processos mais exigentes, mas o primeiro teste de mercado acontece já na transparência da camada de contacto.",
+      "id": "post_6ebf3d021c02ef8007",
+      "title": "CyberX abre escritório em Doha e integra programa de incubação no Qatar",
+      "body": "A portuguesa CyberX, especializada em segurança ofensiva, abriu um escritório em Doha e vai integrar o programa de incubação do Qatar dedicado ao desenvolvimento de novas tecnologias de cibersegurança.\n\nA expansão posiciona a empresa no ecossistema do Golfo, numa altura em que o investimento estatal em tecnologia de defesa e infraestruturas críticas regista um crescimento acelerado na região.\n\nPara empresas focadas em segurança ofensiva, a escala e o desenvolvimento de produto exigem mercados com elevada densidade de capital e forte apetite por soberania tecnológica. A entrada no ecossistema do Qatar responde a essa necessidade, permitindo testar e validar tecnologia de simulação de ameaças num ambiente corporativo e governamental com margens e orçamentos superiores aos do mercado europeu.\n\nO sucesso desta expansão vai depender da capacidade de transformar a presença física e o apoio do programa de incubação em propriedade intelectual proprietária e contratos de longo prazo, evitando o risco de diluir a operação em prestação de serviços pontuais.",
       "source_urls": [
-        "https://shaping-europe.digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force"
+        "https://eco.sapo.pt/2026/07/31/portuguesa-cyberx-expande-para-o-qatar-com-novo-escritorio/"
       ],
-      "image_path": "data\\final_assets\\post_c5b359584b5e39a5ab_8ed3dd9e_ChatGPT-Image-29_07_2026-22_52_56.png",
-      "image_url": "/assets/final/post_8a2b0e4e1e76b27d09_site_1600x900.jpg",
-      "published_at": "2026-07-30T09:00:00+01:00",
+      "image_path": "data\\final_assets\\post_2d9ac99713b3552733_a2004905_ChatGPT-Image-1_08_2026-22_13_16.png",
+      "image_url": "/assets/final/post_d095beb03119df6c68_site_1600x900.jpg",
+      "published_at": "2026-08-02T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/cyberx-abre-escritorio-em-doha-e-integra-programa-de-incubacao-no-qatar-6ebf3d021c02ef8007"
+    },
+    {
+      "id": "post_74a5a39f8d8aacc654",
+      "title": "Modelos de cobrança para agentes de IA geram impasse entre fornecedores e departamentos de TI",
+      "body": "Uma análise publicada na Morningstar pela Dow Jones revela uma rutura de consenso entre fornecedores de tecnologia e clientes corporativos na definição de preços para agentes de IA autónomos. A transição das tradicionais licenças por utilizador para modelos assentes no consumo ou em resultados resolvidos está a provocar instabilidade orçamental e a forçar a renegociação de contratos empresariais.\n\nO impasse nasce de uma incompatibilidade estrutural. O modelo histórico de software como serviço cobra pelo acesso de pessoas a uma ferramenta. Quando o agente autónomo assume o trabalho executivo, a quantidade de licenças humanas necessárias diminui, fragilizando a métrica tradicional de faturação dos vendedores de tecnologia. Para compensar, as empresas de software tentam tarifar por volume de processamento ou por tarefa concluída.\n\nDo lado do comprador, esta alteração elimina a previsibilidade. Os departamentos de TI deixam de gerir um custo fixo anual e passam a lidar com orçamentos variáveis, difíceis de antecipar e auditáveis apenas após a execução. A fricção é também concetual. Determinar contratualmente o que constitui um resultado resolvido exige métricas de desempenho que a maioria das organizações ainda não utiliza na gestão de software.\n\nEnquanto os modelos de faturação por consumo não estabilizarem em padrões de mercado claros, a integração de agentes autónomos em escala continuará dependente de limites máximos negociados contrato a contrato.",
+      "source_urls": [
+        "https://www.morningstar.com/news/marketwatch/202608011030/how-much-should-an-ai-agent-cost-no-one-can-agree-and-its-creating-chaos"
+      ],
+      "image_path": "data\\final_assets\\post_d01f01f303674b488f_d0a3994a_ChatGPT-Image-1_08_2026-22_09_29.png",
+      "image_url": "/assets/final/post_268d20a385023714b9_site_1600x900.jpg",
+      "published_at": "2026-08-02T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/modelos-de-cobranca-para-agentes-de-ia-geram-impasse-entre-fornecedores-e-departamentos-de-ti-74a5a39f8d8aacc654"
+    },
+    {
+      "id": "post_c85d91eb7f210c955c",
+      "title": "OpenAI projeta queda dos custos de computação e mudança no modelo económico da IA",
+      "body": "A OpenAI publicou um documento estratégico focado na evolução dos custos de computação e na eficiência da infraestrutura de inteligência artificial. O texto detalha como a descida sustentada do custo por unidade de processamento e o ganho de desempenho dos modelos estão a alterar a economia da tecnologia.\n\nA margem económica do software baseado em inteligência artificial deixa de estar confinada ao preço por token. Quando o custo do processamento cai a um ritmo superior ao aumento do desempenho, a computação deixa de ser o gargalo financeiro das operações. A capacidade de processamento passa a comportar-se como uma utilidade abundante, deslocando a diferenciação do mero acesso ao modelo para a eficácia com que a tecnologia é integrada em sistemas existentes.\n\nPara quem desenvolve produto, esta alteração de custos viabiliza arquiteturas complexas antes impraticáveis. Aplicações que exigem múltiplas chamadas a modelos, raciocínio em cadeia ou validação contínua em segundo plano deixam de ter custos operacionais proibitivos. O desafio técnico transita da gestão rígida do consumo de infraestrutura para a conceção de sistemas que aproveitam este excesso de capacidade sem gerar latência ou ruído.\n\nA abundância de computação elimina a margem de quem apenas comercializa acesso a modelos genéricos. A vantagem de mercado passa a depender da capacidade de ligar capacidade computacional de baixo custo a processos operacionais específicos, dados próprios e interfaces integradas nas rotinas de trabalho.",
+      "source_urls": [
+        "https://openai.com/index/building-abundant-intelligence/"
+      ],
+      "image_path": "data\\final_assets\\post_db48716a2be98adeec_b656f173_ChatGPT-Image-1_08_2026-22_09_42.png",
+      "image_url": "/assets/final/post_c28d1d087c8cfb22ca_site_1600x900.jpg",
+      "published_at": "2026-08-02T13:00:00+01:00",
       "section": [
         "Mundo",
         "Builders",
         "Regulação",
         "Histórias reais"
       ],
-      "article_url": "artigos/uniao-europeia-alivia-prazos-do-ai-omnibus-mas-impoe-transparencia-imediata-no-artigo-50-o-3c576ad9b32e2cec32"
+      "article_url": "artigos/openai-projeta-queda-dos-custos-de-computacao-e-mudanca-no-modelo-economico-da-ia-c85d91eb7f210c955c"
+    },
+    {
+      "id": "post_61edeed58330a9d576",
+      "title": "Google Omni: DeepMind junta edição conversacional de vídeo, rastreabilidade e silício próprio",
+      "body": "David Sharon, Group Product Lead da Google DeepMind, detalhou ao Diário de Notícias a arquitetura do Google Omni, um sistema de edição conversacional de vídeo desenhado para manter a consistência visual dos sujeitos ao longo das alterações instruídas por texto ou voz. Na entrevista, o responsável destacou a integração de marcas de água digitais SynthID para combater a desinformação e sublinhou a importância dos processadores TPU da Google na escalabilidade computacional do modelo.\n\nA edição generativa de vídeo esbarrava até agora num obstáculo prático: alterar um elemento num fotograma tendia a desconfigurar a identidade do sujeito nos fotogramas seguintes. Ao focar a arquitetura na consistência temporal através de instruções diretas, o modelo aproxima esta tecnologia da produção audiovisual profissional, onde a precisão de continuidade é mais determinante do que a simples geração de imagens isoladas do zero.\n\nO detalhe relevante reside na combinação de infraestrutura e verificação. A inclusão nativa do SynthID e a dependência de TPUs próprias mostram que a viabilidade do vídeo generativo em escala empresarial não se mede apenas pela fidelidade visual, mas pela capacidade de rastrear a origem do material e gerir a eficiência dos custos computacionais associados.\n\nPara produtoras, agências e equipas de conteúdos, a evolução deste tipo de arquitetura altera o critério de escolha de ferramentas. A edição sintética deixa de ser um ecossistema de demonstrações isoladas e passa a ser avaliada pela capacidade de resposta previsível e pela facilidade de integração no processo de pós-produção habitual.",
+      "source_urls": [
+        "https://www.dn.pt/dinheiro-vivo/david-sharon-na-inteligencia-artificial-temos-uma-mudanca-de-paradigma-uma-vez-por-mes-17983421.html"
+      ],
+      "image_path": "data\\final_assets\\post_1e6642a8f8f666aeed_9d6ed769_ChatGPT-Image-1_08_2026-22_09_37.png",
+      "image_url": "/assets/final/post_8c24f34764192ced41_site_1600x900.jpg",
+      "published_at": "2026-08-02T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/google-omni-deepmind-junta-edicao-conversacional-de-video-rastreabilidade-e-silicio-proprio-61edeed58330a9d576"
+    },
+    {
+      "id": "post_099cb3c739891635fe",
+      "title": "Claude Mythos descobre falhas no algoritmo pós-quântico HAWK e aperfeiçoa ataques ao AES",
+      "body": "A Anthropic revelou que o seu modelo experimental Claude Mythos Preview identificou fragilidades matemáticas estruturais no esquema de criptografia pós-quântica HAWK, além de ter otimizado ataques conhecidos ao padrão AES. As conclusões foram validadas de forma independente por investigadores da Universidade Johns Hopkins.\n\nO avanço demonstra a capacidade de modelos de linguagem avançados executarem criptanálise e auditoria matemática profunda em sistemas concebidos para proteger infraestruturas de segurança crítica. O algoritmo HAWK integra a nova vaga de esquemas desenvolvidos para resistir à capacidade de cálculo da futura computação quântica.\n\nA transição para a criptografia pós-quântica assentava numa premissa de calendário: substituir a infraestrutura de encriptação antes que os computadores quânticos se tornassem operacionais. A demonstração da Anthropic altera essa equação. A vulnerabilidade dos novos padrões de segurança deixa de ser uma ameaça remota associada ao hardware do futuro e passa a ser uma realidade impulsionada pela capacidade de análise automatizada da inteligência artificial disponível hoje.\n\nSe os modelos de IA conseguem automatizar a deteção de falhas estruturais em algoritmos complexos, a validação de novos padrões criptográficos deixa de poder depender exclusivamente de revisões humanas prolongadas. A própria auditoria de segurança terá de integrar estas ferramentas para testar qualquer protocolo antes da sua adoção em larga escala.\n\nA substituição de algoritmos deixa de ser apenas um plano de migração técnica a prazo. Torna-se um processo contínuo em que a validação de código e de matemática financeira tem de ser feita à mesma velocidade com que a IA descobre novos atalhos para quebrar encriptação.",
+      "source_urls": [
+        "https://www.anthropic.com/news"
+      ],
+      "image_path": "data\\final_assets\\post_8099ae3ddbae905068_54e55197_ChatGPT-Image-31_07_2026-21_44_52.png",
+      "image_url": "/assets/final/post_f559b6f8c9e418851d_site_1600x900.jpg",
+      "published_at": "2026-08-01T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/claude-mythos-descobre-falhas-no-algoritmo-pos-quantico-hawk-e-aperfeicoa-ataques-ao-aes-099cb3c739891635fe"
+    },
+    {
+      "id": "post_eb802902b3e03411d9",
+      "title": "China define capacidade de combate real como métrica central para a aceleração de IA militar",
+      "body": "O Presidente chinês, Xi Jinping, instou o Exército de Libertação Popular a intensificar a integração de inteligência artificial, redes de informação e sistemas não tripulados. Numa sessão do Politburo, Xi estabeleceu a capacidade de combate real como o critério central para a modernização militar da China.\n\nAo fixar a eficácia operacional direta como métrica principal, Pequim acelera a transição da inteligência artificial de vetor de investigação estratégica para requisito imediato de comando e frota. A validação tecnológica deixa de medir-se pelo potencial concetual dos modelos e passa a depender da capacidade de integração em sistemas autónomos e redes de dados no terreno.\n\nEsta orientação consolida o software avançado e o hardware de alto desempenho como o eixo central da competição entre superpotências. A consequência direta reflete-se no aperto dos controlos de exportação sobre semicondutores e no aumento da pressão sobre a cibersegurança de infraestruturas críticas a nível global.\n\nPara as empresas que constroem e operam tecnologias de duplo uso, a aceleração militar de sistemas autónomos força a uma revisão da resiliência da cadeia de abastecimento. A segurança de redes, a proveniência de componentes e a adaptação a mercados crescentemente fragmentados deixam de ser meras exigências de conformidade para passarem a definir a viabilidade das próprias arquiteturas tecnológicas.",
+      "source_urls": [
+        "https://observador.pt/2026/07/31/china-quer-acelerar-uso-militar-da-inteligencia-artificial/"
+      ],
+      "image_path": "data\\final_assets\\post_9630e9f03bdc0c5e53_7cd5a9b5_ChatGPT-Image-31_07_2026-21_44_11.png",
+      "image_url": "/assets/final/post_666272c6ff1a4b00d7_site_1600x900.jpg",
+      "published_at": "2026-08-01T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/china-define-capacidade-de-combate-real-como-metrica-central-para-a-aceleracao-de-ia-militar-eb802902b3e03411d9"
+    },
+    {
+      "id": "post_7660478acfe17a682f",
+      "title": "Governo aprova 6,88 milhões de euros para o Centro de IA e Economia Digital no Técnico",
+      "body": "O Conselho de Ministros autorizou a realização de despesa até 6,88 milhões de euros para a empreitada de reabilitação e construção do edifício AIDE, que acolherá o Centro para a Inteligência Artificial e Economia Digital no Polo da Alameda do Instituto Superior Técnico.\n\nA verba assegura o financiamento público da infraestrutura académica e científica, reforçando os meios de investigação instalados numa das principais escolas de engenharia do país.\n\nAo canalizar investimento direto para a infraestrutura física do IST, o financiamento cria uma âncora material para a investigação em inteligência artificial. A centralização de recursos computacionais e laboratoriais no polo da Alameda reduz a fragmentação de equipas e oferece aos investigadores espaço dedicado dentro da própria universidade.\n\nO retorno deste investimento de 6,88 milhões de euros dependerá agora da velocidade com que o novo centro passe da obra física à operação real. A utilidade do espaço medirá pelo número de protótipos, patentes e projetos aplicados que dali saírem para o tecido produtivo.",
+      "source_urls": [
+        "https://www.portugal.gov.pt/pt/gc25/governo/comunicados?i=634"
+      ],
+      "image_path": "data\\final_assets\\post_5c61ef0832e3edfa96_60599c42_ChatGPT-Image-31_07_2026-21_46_18.png",
+      "image_url": "/assets/final/post_cd40635b519ec08690_site_1600x900.jpg",
+      "published_at": "2026-08-01T09:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/governo-aprova-6-88-milhoes-de-euros-para-o-centro-de-ia-e-economia-digital-no-tecnico-7660478acfe17a682f"
+    },
+    {
+      "id": "post_ef1af3b87a97bf3ca0",
+      "title": "Anthropic recusa assinar manifesto da indústria em defesa de modelos de IA abertos",
+      "body": "A Anthropic tornou-se o único grande laboratório de inteligência artificial de topo a recusar a assinatura de um manifesto conjunto da indústria em defesa do desenvolvimento de modelos de pesos abertos (open-weights) perante propostas de restrição regulatória em Washington. A decisão gerou críticas no ecossistema tecnológico, enquanto o CEO Dario Amodei justificou a recusa com a necessidade de impor testes de capacidade obrigatórios antes da distribuição de novos modelos.\n\nA posição isolada da Anthropic explicita uma rutura estratégica na indústria. Enquanto concorrentes como a Meta promovem o ecossistema aberto para acelerar a distribuição e enfraquecer o controlo dos líderes de modelos fechados, a Anthropic opta por alinhar a sua posição comercial com exigências estatais de segurança e validação prévia.\n\nQuando a segurança de modelos é convertida em obrigação regulatória de auditoria, a discussão deixa de ser filosófica e passa a moldar a concorrência. Testes de capacidade obrigatórios protegem os operadores com capital suficiente para suportar processos longos de certificação, tornando mais dispendioso o desenvolvimento e a manutenção de alternativas de código aberto por startups e investigadores.\n\nPara as empresas e equipas que constroem sobre IA, este braço de ferro sinaliza o modelo de adoção futuro. A escolha entre sistemas abertos ou proprietários deixará de ser apenas uma equação de custo e desempenho para passar a depender do nível de conformidade e auditoria exigido para colocar código em produção.",
+      "source_urls": [
+        "https://www.businessinsider.com/anthropic-open-source-ai-weights-criticism-dario-amodei-2026-7"
+      ],
+      "image_path": "data\\final_assets\\post_923006df833db73487_23b7cb79_ChatGPT-Image-31_07_2026-01_25_43.png",
+      "image_url": "/assets/final/post_f8b5d787b6281fa418_site_1600x900.jpg",
+      "published_at": "2026-07-31T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/anthropic-recusa-assinar-manifesto-da-industria-em-defesa-de-modelos-de-ia-abertos-ef1af3b87a97bf3ca0"
+    },
+    {
+      "id": "post_1cae8a2346a3e3b428",
+      "title": "Comissão Europeia mobiliza 30 mil milhões de euros para Gigafábricas de IA",
+      "body": "A Comissão Europeia abriu o concurso para a instalação de até sete Gigafábricas de IA no espaço comunitário, mobilizando 10 mil milhões de euros em fundos públicos e prevendo a atração de 20 mil milhões de euros em investimento privado. O projeto conta com a adesão de 18 Estados-Membros para expandir a capacidade de supercomputação da União Europeia, garantindo a empresas, startups e investigadores acesso a supercomputadores avançados e chips de última geração.\n\nA iniciativa ataca a barreira mais pesada do setor: o custo de capital necessário para treinar modelos de grande escala. Ao partilhar a fatura de infraestrutura entre o orçamento comunitário, os Estados-Membros e os privados, a Europa tenta construir uma alternativa de soberania tecnológica frente à capacidade instalada nos EUA e na China.\n\nO valor desta intervenção depende, contudo, da arquitetura de acesso. Garantir poder de cálculo a custos comportáveis resolve a fase inicial de desenvolvimento, mas cria um teste de retenção. Sem mercados capazes de consumir estas soluções e sem capital de fase adiantada para absorver essa escala, a infraestrutura pública corre o risco de financiar a fase mais dispendiosa do treino para modelos que acabam comercializados noutras geografias.\n\nA eficácia do concurso medir-se-á pela agilidade na atribuição do tempo de cálculo e pela capacidade de atrair os 20 mil milhões de euros do setor privado. A infraestrutura atrai o treino dos modelos; a capacidade de fixar a exploração comercial determinará o retorno real do investimento público.",
+      "source_urls": [
+        "https://digital-strategy.ec.europa.eu/en/news/aigf-call"
+      ],
+      "image_path": "data\\final_assets\\post_115f27042d1a4c0d52_534f10c9_ChatGPT-Image-31_07_2026-01_25_07.png",
+      "image_url": "/assets/final/post_ef9d50b2a9efab745b_site_1600x900.jpg",
+      "published_at": "2026-07-31T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/comissao-europeia-mobiliza-30-mil-milhoes-de-euros-para-gigafabricas-de-ia-1cae8a2346a3e3b428"
+    },
+    {
+      "id": "post_78bd60934a5dd56e6b",
+      "title": "Leidos e CoreWeave criam nuvem de IA soberana para a defesa dos EUA",
+      "body": "A Leidos firmou uma aliança com a CoreWeave para fornecer capacidade de processamento de inteligência artificial em nuvem dedicada e soberana ao Departamento de Defesa dos Estados Unidos e às agências de informação do país. A integração junta os sistemas militares e de segurança nacional da Leidos à infraestrutura computacional especializada em GPU da CoreWeave.\n\nA operação acelera a migração de cargas de trabalho críticas do setor público e militar para ambientes de IA nativos, afastando estas missões do modelo tradicional de nuvem pública partilhada.\n\nEsta decisão reflete uma mudança estrutural na contratação tecnológica da defesa. A adoção de inteligência artificial em missões de segurança nacional já não procura a flexibilidade genérica dos grandes fornecedores de nuvem, exigindo em alternativa arquiteturas dedicadas que garantam isolamento estrito e desempenho computacional sem interrupções.\n\nAo associar um integrador histórico do setor militar a um especialista em infraestrutura de alto desempenho, a Leidos evita a construção de centros de dados próprios sem abdicar da soberania dos sistemas. O valor do acordo reside nessa junção: garantir escala para modelos pesados sem expor operações críticas à arquitetura e aos riscos da nuvem comercial genérica.\n\nO movimento indica que a soberania computacional no setor da defesa deixou de ser uma exigência burocrática de conformidade. Passou a ditar a escolha do hardware, a arquitetura de rede e o modelo de parceria entre integradores e especialistas em infraestrutura.",
+      "source_urls": [
+        "https://www.prnewswire.com/news-releases/leidos-and-coreweave-collaborate-to-accelerate-delivery-of-ai-capabilities-for-defense-national-security-and-intelligence-missions-302210100.html"
+      ],
+      "image_path": "data\\final_assets\\post_ab730991c9241653b1_fe66810a_ChatGPT-Image-31_07_2026-01_19_55.png",
+      "image_url": "/assets/final/post_3b34f6247220c93d9b_site_1600x900.jpg",
+      "published_at": "2026-07-31T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/leidos-e-coreweave-criam-nuvem-de-ia-soberana-para-a-defesa-dos-eua-78bd60934a5dd56e6b"
+    },
+    {
+      "id": "post_3ed92ad4a4fd149ad0",
+      "title": "Model Context Protocol passa a stateless e ganha suporte nativo a Kubernetes",
+      "body": "A Agentic AI Foundation lançou a maior revisão arquitetural do Model Context Protocol (MCP) desde a sua criação, convertendo o padrão para uma estrutura totalmente stateless. A atualização introduz um modelo de autenticação reforçado e suporte direto a balanceadores de carga em Kubernetes para escalar redes de agentes de IA em infraestruturas empresariais.\n\nAté agora, a retenção de estado na camada de protocolo criava estrangulamentos severos na passagem de protótipos para produção. Ao migrar para uma arquitetura stateless, a comunicação entre modelos, dados e ferramentas passa a comportar-se como um serviço web tradicional, no qual o tráfego pode ser redistribuído sem depender de sessões presas à memória de um servidor específico.\n\nAo entregar a gestão de carga aos balanceadores de Kubernetes e reforçar a autenticação, o MCP deixa de exigir arquiteturas paralelas e dedicadas. Os sistemas de agentes passam a ser tratados como workloads cloud-native normais, reaproveitando as ferramentas de monitorização, escalamento e segurança que as equipas de engenharia já operam na cloud.\n\nA simplificação do transporte altera o ponto de pressão na engenharia de software: a dificuldade deixa de estar na ligação técnica entre componentes para passar à governação das permissões e ao controlo do consumo de recursos entre agentes interconectados.",
+      "source_urls": [
+        "https://venturebeat.com/orchestration/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents/"
+      ],
+      "image_path": "data\\final_assets\\post_52fd4edc4d7d30a645_4d0b3663_ChatGPT-Image-29_07_2026-23_03_48.png",
+      "image_url": "/assets/final/post_427b23ee6227ae09c9_site_1600x900.jpg",
+      "published_at": "2026-07-30T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/model-context-protocol-passa-a-stateless-e-ganha-suporte-nativo-a-kubernetes-3ed92ad4a4fd149ad0"
+    },
+    {
+      "id": "post_5da67d18767d063bdc",
+      "title": "A expansão europeia da Hi Human assenta na automação operacional do setor musical",
+      "body": "A startup portuguesa de inteligência artificial Hi Human está a preparar a expansão para o mercado europeu, após concluir um projeto internacional no setor da música que reduziu em cerca de 70% o tempo necessário para criar e atualizar catálogos musicais. Além da consolidação na indústria da música, o plano de crescimento inclui a entrada em novos setores industriais.\n\nO fator determinante nesta transição não é a especulação sobre capacidades genéricas de inteligência artificial, mas a aplicação da tecnologia a processos administrativos pesados e repetitivos. Na indústria da música, a gestão de metadados, direitos e catálogos consome recursos significativos sem acrescentar valor criativo direto. Ao automatizar essa camada de trabalho com ganhos de tempo mensuráveis, a empresa constrói uma proposta comercial objetiva para os clientes europeus, onde a redução de custos operacionais é simples de auditar.\n\nAlargar este modelo à indústria transformadora exige a mesma disciplina de execução. Se no setor musical o ganho resulta da estruturação de catálogos, noutras áreas industriais a oportunidade reside na padronização de documentação técnica, inventários e fluxos de dados heterogéneos. O sucesso da internacionalização dependerá de provar que a metodologia aplicada a um ecossistema específico mantém a eficácia quando adaptada a ambientes operacionais mais rígidos.\n\nA consolidação no mercado europeu será medida pela capacidade de replicar estes ganhos de eficiência em organizações com diferentes requisitos regulatórios e técnicos.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/hi-human-prepara-expansao-europeia-com-ia-para-musica-e-industria/"
+      ],
+      "image_path": "data\\final_assets\\post_a6be8182669b1a1acc_27f5fbbb_ChatGPT-Image-29_07_2026-22_57_42.png",
+      "image_url": "/assets/final/post_48bbc2cc1a47a8a8b4_site_1600x900.jpg",
+      "published_at": "2026-07-30T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/a-expansao-europeia-da-hi-human-assenta-na-automacao-operacional-do-setor-musical-5da67d18767d063bdc"
     },
     {
       "id": "post_6249e878d2337f0744",
@@ -39,72 +233,39 @@
       "article_url": "artigos/apple-atinge-5-bilioes-de-dolares-e-mercado-penaliza-despesa-em-ia-6249e878d2337f0744"
     },
     {
-      "id": "post_5da67d18767d063bdc",
-      "title": "A expansão europeia da Hi Human assenta na automação operacional do setor musical",
-      "body": "A startup portuguesa de inteligência artificial Hi Human está a preparar a expansão para o mercado europeu, após concluir um projeto internacional no setor da música que reduziu em cerca de 70% o tempo necessário para criar e atualizar catálogos musicais. Além da consolidação na indústria da música, o plano de crescimento inclui a entrada em novos setores industriais.\n\nO fator determinante nesta transição não é a especulação sobre capacidades genéricas de inteligência artificial, mas a aplicação da tecnologia a processos administrativos pesados e repetitivos. Na indústria da música, a gestão de metadados, direitos e catálogos consome recursos significativos sem acrescentar valor criativo direto. Ao automatizar essa camada de trabalho com ganhos de tempo mensuráveis, a empresa constrói uma proposta comercial objetiva para os clientes europeus, onde a redução de custos operacionais é simples de auditar.\n\nAlargar este modelo à indústria transformadora exige a mesma disciplina de execução. Se no setor musical o ganho resulta da estruturação de catálogos, noutras áreas industriais a oportunidade reside na padronização de documentação técnica, inventários e fluxos de dados heterogéneos. O sucesso da internacionalização dependerá de provar que a metodologia aplicada a um ecossistema específico mantém a eficácia quando adaptada a ambientes operacionais mais rígidos.\n\nA consolidação no mercado europeu será medida pela capacidade de replicar estes ganhos de eficiência em organizações com diferentes requisitos regulatórios e técnicos.",
+      "id": "post_3c576ad9b32e2cec32",
+      "title": "União Europeia alivia prazos do AI Omnibus mas impõe transparência imediata no Artigo 50.º",
+      "body": "A Comissão Europeia confirmou a entrada em vigor do AI Omnibus a 27 de julho de 2026, estendendo os prazos de conformidade para sistemas de inteligência artificial de alto risco e simplificando exigências para pequenas e médias empresas. Em simultâneo, o executivo comunitário relembrou que as regras do Artigo 50.º do AI Act entram em aplicação a 2 de agosto, tornando obrigatória a identificação explícita de assistentes virtuais e a marcação de conteúdos sintéticos.\n\nEsta sobreposição de prazos define uma prioridade clara no regulamento comunitário. Enquanto a Europa concede margem de manobra ao desenvolvimento de modelos complexos de alto risco, recusa qualquer tolerância na relação direta com o utilizador final.\n\nA urgência de conformidade desloca-se assim do desenvolvimento interno para a interface. Equipas de produto e tecnologia têm de auditar de imediato as suas ferramentas de atendimento automático e aplicar marcações legíveis por máquina em conteúdos gerados por IA, garantindo que a natureza sintética da interação é percetível antes do prazo fixado.\n\nO alívio técnico do AI Omnibus dá margem às empresas para ajustarem processos mais exigentes, mas o primeiro teste de mercado acontece já na transparência da camada de contacto.",
       "source_urls": [
-        "https://jornaleconomico.sapo.pt/noticias/hi-human-prepara-expansao-europeia-com-ia-para-musica-e-industria/"
+        "https://shaping-europe.digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force"
       ],
-      "image_path": "data\\final_assets\\post_a6be8182669b1a1acc_27f5fbbb_ChatGPT-Image-29_07_2026-22_57_42.png",
-      "image_url": "/assets/final/post_48bbc2cc1a47a8a8b4_site_1600x900.jpg",
-      "published_at": "2026-07-30T16:00:00+01:00",
+      "image_path": "data\\final_assets\\post_c5b359584b5e39a5ab_8ed3dd9e_ChatGPT-Image-29_07_2026-22_52_56.png",
+      "image_url": "/assets/final/post_8a2b0e4e1e76b27d09_site_1600x900.jpg",
+      "published_at": "2026-07-30T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/uniao-europeia-alivia-prazos-do-ai-omnibus-mas-impoe-transparencia-imediata-no-artigo-50-o-3c576ad9b32e2cec32"
+    },
+    {
+      "id": "post_adf06407a66707b479",
+      "title": "Milhões de portugueses dão permissões à IA sem pensar nas consequências",
+      "body": "Cada vez mais pessoas ligam contas a ferramentas de IA para automatizar tarefas. O artigo alerta para o risco de conceder acessos sem confirmar que dados, serviços e ações ficam efetivamente ao alcance da ferramenta.\n\nA conveniência da automação não substitui a gestão de acessos: uma permissão excessiva pode transformar um atalho num risco.\n\nPara particulares e empresas portuguesas, o ponto de partida é simples: conceder apenas o acesso necessário, rever integrações e retirar permissões que já não são usadas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
+      "source_urls": [
+        "https://4gnews.pt/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias/"
+      ],
+      "image_path": "data\\final_assets\\post_485f4ff3b1353e098c_45983104_ChatGPT-Image-28_07_2026-23_38_23.png",
+      "image_url": "/assets/final/post_d43c86d883544dc1b1_site_1600x900.jpg",
+      "published_at": "2026-07-29T21:00:00+01:00",
       "section": [
         "Portugal",
         "Regulação",
         "Histórias reais"
       ],
-      "article_url": "artigos/a-expansao-europeia-da-hi-human-assenta-na-automacao-operacional-do-setor-musical-5da67d18767d063bdc"
-    },
-    {
-      "id": "post_3ed92ad4a4fd149ad0",
-      "title": "Model Context Protocol passa a stateless e ganha suporte nativo a Kubernetes",
-      "body": "A Agentic AI Foundation lançou a maior revisão arquitetural do Model Context Protocol (MCP) desde a sua criação, convertendo o padrão para uma estrutura totalmente stateless. A atualização introduz um modelo de autenticação reforçado e suporte direto a balanceadores de carga em Kubernetes para escalar redes de agentes de IA em infraestruturas empresariais.\n\nAté agora, a retenção de estado na camada de protocolo criava estrangulamentos severos na passagem de protótipos para produção. Ao migrar para uma arquitetura stateless, a comunicação entre modelos, dados e ferramentas passa a comportar-se como um serviço web tradicional, no qual o tráfego pode ser redistribuído sem depender de sessões presas à memória de um servidor específico.\n\nAo entregar a gestão de carga aos balanceadores de Kubernetes e reforçar a autenticação, o MCP deixa de exigir arquiteturas paralelas e dedicadas. Os sistemas de agentes passam a ser tratados como workloads cloud-native normais, reaproveitando as ferramentas de monitorização, escalamento e segurança que as equipas de engenharia já operam na cloud.\n\nA simplificação do transporte altera o ponto de pressão na engenharia de software: a dificuldade deixa de estar na ligação técnica entre componentes para passar à governação das permissões e ao controlo do consumo de recursos entre agentes interconectados.",
-      "source_urls": [
-        "https://venturebeat.com/orchestration/mcp-just-got-its-biggest-update-ever-heres-what-changes-for-ai-agents/"
-      ],
-      "image_path": "data\\final_assets\\post_52fd4edc4d7d30a645_4d0b3663_ChatGPT-Image-29_07_2026-23_03_48.png",
-      "image_url": "/assets/final/post_427b23ee6227ae09c9_site_1600x900.jpg",
-      "published_at": "2026-07-30T21:00:00+01:00",
-      "section": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ],
-      "article_url": "artigos/model-context-protocol-passa-a-stateless-e-ganha-suporte-nativo-a-kubernetes-3ed92ad4a4fd149ad0"
-    },
-    {
-      "id": "post_cce73f7701c0a6a70c",
-      "title": "Moonshot AI lança pesos abertos do Kimi K3 e transfere capacidade de fronteira para a infraestrutura privada",
-      "body": "A startup chinesa Moonshot AI disponibilizou publicamente os pesos abertos do seu modelo Kimi K3, com 2,8 biliões de parâmetros e uma janela de contexto de 1 milhão de tokens. A decisão torna o Kimi K3 o maior modelo de classe de fronteira com pesos abertos disponível para descarregamento e alojamento próprio.\n\nA disponibilização permite que empresas e equipas de engenharia executem o modelo em infraestrutura privada, reduzindo custos operacionais de inferência e contornando a dependência de APIs proprietárias ocidentais.\n\nA relevância do anúncio excede o volume de parâmetros. Ao colocar um modelo de topo em regime de pesos abertos, a Moonshot AI altera a equação comercial do setor: a vantagem dos ecossistemas proprietários deixa de assentar no acesso exclusivo à capacidade computacional e passa a depender estritamente da conveniência de integração e segurança de dados.\n\nPara os decisores de tecnologia, a existência de alternativas abertas deste calibre elimina a necessidade de escolher entre desempenho de ponta e controlo sobre os dados. O desafio crítico desloca-se da faturação de APIs para a capacidade interna de dimensionar e otimizar infraestrutura de cálculo.",
-      "source_urls": [
-        "https://qz.com/moonshot-ai-kimi-k3-open-weight-model-download-1851590432"
-      ],
-      "image_path": "data\\final_assets\\post_17833aa32d8da01d74_3757a926_ChatGPT-Image-28_07_2026-23_40_55.png",
-      "image_url": "/assets/final/post_e9b5ebe873f0ea8795_site_1600x900.jpg",
-      "published_at": "2026-07-29T09:00:00+01:00",
-      "section": [
-        "Mundo",
-        "Builders",
-        "Histórias reais"
-      ],
-      "article_url": "artigos/moonshot-ai-lanca-pesos-abertos-do-kimi-k3-e-transfere-capacidade-de-fronteira-para-a-infraestrutura-privada-cce73f7701c0a6a70c"
-    },
-    {
-      "id": "post_f7e29811dada59d1d2",
-      "title": "Portugal lidera ganhos de eficiência com IA em quatro mercados europeus",
-      "body": "Portugal surge na dianteira do impacto direto da inteligência artificial no negócio entre quatro mercados europeus analisados. O retrato citado aponta para redução de custos e melhoria dos serviços, mas também para uma base digital ainda frágil.\n\nOs ganhos de eficiência são um sinal positivo, mas só se tornam duradouros quando os processos, os dados e as equipas acompanham a adoção.\n\nO desafio português é transformar ganhos pontuais em capacidade operacional repetível, com dados fiáveis e competências internas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
-      "source_urls": [
-        "https://www.imagensdemarca.pt/artigo/portugal-lidera-ganhos-de-eficiencia-com-recurso-a-ia-em-quatro-mercados-europeus/"
-      ],
-      "image_path": "data\\final_assets\\post_0cff8d0e067bffb6b7_dafcacba_ChatGPT-Image-28_07_2026-23_42_50.png",
-      "image_url": "/assets/final/post_df0c49f815841e51a0_site_1600x900.jpg",
-      "published_at": "2026-07-29T13:00:00+01:00",
-      "section": [
-        "Portugal",
-        "Regulação",
-        "Histórias reais"
-      ],
-      "article_url": "artigos/portugal-lidera-ganhos-de-eficiencia-com-ia-em-quatro-mercados-europeus-f7e29811dada59d1d2"
+      "article_url": "artigos/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias-adf06407a66707b479"
     },
     {
       "id": "post_e15462c3696b05b34c",
@@ -126,21 +287,38 @@
       "article_url": "artigos/os-direitos-com-a-ia-mudam-este-domingo-em-portugal-e15462c3696b05b34c"
     },
     {
-      "id": "post_adf06407a66707b479",
-      "title": "Milhões de portugueses dão permissões à IA sem pensar nas consequências",
-      "body": "Cada vez mais pessoas ligam contas a ferramentas de IA para automatizar tarefas. O artigo alerta para o risco de conceder acessos sem confirmar que dados, serviços e ações ficam efetivamente ao alcance da ferramenta.\n\nA conveniência da automação não substitui a gestão de acessos: uma permissão excessiva pode transformar um atalho num risco.\n\nPara particulares e empresas portuguesas, o ponto de partida é simples: conceder apenas o acesso necessário, rever integrações e retirar permissões que já não são usadas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
+      "id": "post_f7e29811dada59d1d2",
+      "title": "Portugal lidera ganhos de eficiência com IA em quatro mercados europeus",
+      "body": "Portugal surge na dianteira do impacto direto da inteligência artificial no negócio entre quatro mercados europeus analisados. O retrato citado aponta para redução de custos e melhoria dos serviços, mas também para uma base digital ainda frágil.\n\nOs ganhos de eficiência são um sinal positivo, mas só se tornam duradouros quando os processos, os dados e as equipas acompanham a adoção.\n\nO desafio português é transformar ganhos pontuais em capacidade operacional repetível, com dados fiáveis e competências internas.\n\nA decisão útil não é apenas adotar a ferramenta. É definir que problema resolve, que dados pode usar, quem responde pelo resultado e como se revê o processo quando algo falha.",
       "source_urls": [
-        "https://4gnews.pt/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias/"
+        "https://www.imagensdemarca.pt/artigo/portugal-lidera-ganhos-de-eficiencia-com-recurso-a-ia-em-quatro-mercados-europeus/"
       ],
-      "image_path": "data\\final_assets\\post_485f4ff3b1353e098c_45983104_ChatGPT-Image-28_07_2026-23_38_23.png",
-      "image_url": "/assets/final/post_d43c86d883544dc1b1_site_1600x900.jpg",
-      "published_at": "2026-07-29T21:00:00+01:00",
+      "image_path": "data\\final_assets\\post_0cff8d0e067bffb6b7_dafcacba_ChatGPT-Image-28_07_2026-23_42_50.png",
+      "image_url": "/assets/final/post_df0c49f815841e51a0_site_1600x900.jpg",
+      "published_at": "2026-07-29T13:00:00+01:00",
       "section": [
         "Portugal",
         "Regulação",
         "Histórias reais"
       ],
-      "article_url": "artigos/milhoes-de-portugueses-dao-permissoes-a-ia-sem-pensar-nas-consequencias-adf06407a66707b479"
+      "article_url": "artigos/portugal-lidera-ganhos-de-eficiencia-com-ia-em-quatro-mercados-europeus-f7e29811dada59d1d2"
+    },
+    {
+      "id": "post_cce73f7701c0a6a70c",
+      "title": "Moonshot AI lança pesos abertos do Kimi K3 e transfere capacidade de fronteira para a infraestrutura privada",
+      "body": "A startup chinesa Moonshot AI disponibilizou publicamente os pesos abertos do seu modelo Kimi K3, com 2,8 biliões de parâmetros e uma janela de contexto de 1 milhão de tokens. A decisão torna o Kimi K3 o maior modelo de classe de fronteira com pesos abertos disponível para descarregamento e alojamento próprio.\n\nA disponibilização permite que empresas e equipas de engenharia executem o modelo em infraestrutura privada, reduzindo custos operacionais de inferência e contornando a dependência de APIs proprietárias ocidentais.\n\nA relevância do anúncio excede o volume de parâmetros. Ao colocar um modelo de topo em regime de pesos abertos, a Moonshot AI altera a equação comercial do setor: a vantagem dos ecossistemas proprietários deixa de assentar no acesso exclusivo à capacidade computacional e passa a depender estritamente da conveniência de integração e segurança de dados.\n\nPara os decisores de tecnologia, a existência de alternativas abertas deste calibre elimina a necessidade de escolher entre desempenho de ponta e controlo sobre os dados. O desafio crítico desloca-se da faturação de APIs para a capacidade interna de dimensionar e otimizar infraestrutura de cálculo.",
+      "source_urls": [
+        "https://qz.com/moonshot-ai-kimi-k3-open-weight-model-download-1851590432"
+      ],
+      "image_path": "data\\final_assets\\post_17833aa32d8da01d74_3757a926_ChatGPT-Image-28_07_2026-23_40_55.png",
+      "image_url": "/assets/final/post_e9b5ebe873f0ea8795_site_1600x900.jpg",
+      "published_at": "2026-07-29T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/moonshot-ai-lanca-pesos-abertos-do-kimi-k3-e-transfere-capacidade-de-fronteira-para-a-infraestrutura-privada-cce73f7701c0a6a70c"
     },
     {
       "id": "post_3d84f1c57f8e8be761",
