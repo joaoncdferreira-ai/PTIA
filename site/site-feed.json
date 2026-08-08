@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T01:25:25+00:00",
+  "updated_at": "2026-08-08T01:28:22+00:00",
   "posts": [
+    {
+      "id": "post_60617b5b128a5f0344",
+      "title": "DoorDash recorre a apoio humano para manter robôs autónomos em operação",
+      "body": "A DoorDash registou dificuldades operacionais e logísticas ao tentar escalar a frota dos seus robôs autónomos de entrega Dot. Para assegurar o fluxo nos pontos de recolha, a empresa passou a utilizar operadores humanos para carregar os veículos e gerir as frotas nos locais de saída.\n\nO obstáculo expõe a principal fricção na automação da logística urbana: a navegação autónoma no passeio está resolvida na teoria, mas a interface física no ponto de contacto continua dependente de intervenção. Mover um robô entre dois pontos exige sensores e mapeamento; integrar esse mesmo robô na rotina de um restaurante exige uma padronização física que a restauração tradicional ainda não tem.\n\nQuando a operação exige presença humana contínua na recolha, a equação económica da autonomia altera-se. O custo do trabalho não desaparece, deslocando-se da condução no trajeto para a preparação e suporte da frota na origem. A capacidade de escalar este modelo deixará de depender do software de navegação e passará a medir-se pela adaptação do espaço comercial ao veículo.\n\nO gargalo das entregas autónomas mudou de sítio. Já não está no percurso pela cidade, mas na transição física do produto do balcão para o robô.",
+      "source_urls": [
+        "https://www.businessinsider.com"
+      ],
+      "image_path": "data\\final_assets\\post_595690d5897566f8ae_c47b55e6_ChatGPT-Image-8_08_2026-00_36_55.png",
+      "image_url": "/assets/final/post_fd00f16d25f3a34eab_site_1600x900.jpg",
+      "published_at": "2026-08-08T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/doordash-recorre-a-apoio-humano-para-manter-robos-autonomos-em-operacao-60617b5b128a5f0344"
+    },
     {
       "id": "post_acaeae3a679ba561a7",
       "title": "O Orçamento de IA na Cadeia de Abastecimento Cresce Mais Depressa do Que a Medição de ROI",
