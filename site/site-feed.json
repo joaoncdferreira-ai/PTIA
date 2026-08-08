@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T22:52:25+00:00",
+  "updated_at": "2026-08-08T22:53:52+00:00",
   "posts": [
+    {
+      "id": "post_4d286af9a2b1841f1b",
+      "title": "Confiança seletiva em IA: a imunidade total ao contexto invalida a utilidade do modelo",
+      "body": "Um novo trabalho de investigação publicado no arXiv aborda o impacto dos sinais externos no desempenho dos modelos de linguagem. A pesquisa demonstra que a solução óbvia para evitar que uma informação falsa induza o modelo em erro, treiná-lo para resistir a esses sinais, cria um problema oposto: ao ignorar o contexto para parecer robusto, o sistema perde a utilidade quando recebe dados externos legítimos. Para avaliar o equilíbrio entre a utilidade e a vulnerabilidade, os investigadores apresentaram o MIST, um benchmark anotado por humanos que testa itens de raciocínio sob quatro condições de contexto, acompanhado pela métrica SC2W, que mede com que frequência um sinal enganador altera uma resposta originalmente correta.\n\nA tentação habitual nas equipas de engenharia é procurar a imunidade absoluta a ruído ou injeções de dados falsos. Contudo, ensinar um modelo a rejeitar o contexto externo para evitar falhas transforma o sistema num motor rígido que ignora bases de conhecimento atualizadas. A utilidade comercial de uma arquitetura baseada em dados externos não está na capacidade de isolar o modelo do ambiente, mas na capacidade de discriminar quando a informação recebida deve alterar a resposta.\n\nAo transformar o problema de segurança numa questão de confiança seletiva, a métrica SC2W evidencia a fragilidade real das soluções atuais. Se a adição de contexto empresarial faz o modelo falhar respostas que acertava em vácuo, o custo de integração anula o ganho da automação.\n\nNas decisões de implementação de IA, a avaliação de desempenho precisa de mudar de métrica. O critério de escolha de um modelo deixa de ser a taxa de acerto isolada e passa a ser a capacidade de incorporar contexto útil sem estragar o raciocínio base.",
+      "source_urls": [
+        "https://arxiv.org/abs/2608.06377v1"
+      ],
+      "image_path": "data\\final_assets\\post_75971cb5bf91f4827f_c34c6409_ChatGPT-Image-8_08_2026-23_36_47.png",
+      "image_url": "/assets/final/post_74ea514e3ebb407be6_site_1600x900.jpg",
+      "published_at": "2026-08-09T18:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/confianca-seletiva-em-ia-a-imunidade-total-ao-contexto-invalida-a-utilidade-do-modelo-4d286af9a2b1841f1b"
+    },
     {
       "id": "post_ad26cd10c868ef1093",
       "title": "OpenAI trava desenvolvimento do modelo Astra após detetar exploração autónoma de vulnerabilidades",
