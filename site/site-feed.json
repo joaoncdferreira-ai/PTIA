@@ -1,7 +1,26 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T01:28:22+00:00",
+  "updated_at": "2026-08-08T01:31:00+00:00",
   "posts": [
+    {
+      "id": "post_70fbe75738468aad82",
+      "title": "Estudo revela que apps de comércio eletrónico na Nigéria escondem o uso de IA dos utilizadores",
+      "body": "Uma investigação académica analisou aplicações móveis de comércio eletrónico na Nigéria para perceber como a inteligência artificial está a ser implementada e que informação chega aos utilizadores sobre o seu funcionamento. Através de análise forense do código de aplicações Android combinada com avaliação da documentação pública, o estudo confirma que a IA está amplamente presente nestas plataformas, a decidir recomendações, preços e filtragem de conteúdo, mas as práticas de divulgação e transparência para o utilizador final são praticamente inexistentes.\n\nA investigação usa a transparência da plataforma como indicador central de soberania digital: não basta que a tecnologia esteja disponível localmente, é preciso que o utilizador saiba quando está a interagir com um sistema automatizado e tenha alguma capacidade de o questionar. No mercado analisado, essa ausência de sinalização tem um custo concreto: associa-se ao aumento de fraude e à perda de controlo dos utilizadores sobre os próprios dados, num setor em rápida expansão em toda a África Ocidental.\n\nO caso nigeriano funciona como aviso para qualquer mercado onde o comércio eletrónico móvel cresce mais depressa do que a regulação consegue acompanhar, Portugal incluído. Para plataformas e reguladores, o problema não é a automação em si, mas a opacidade: exigir divulgação clara do uso de IA e mecanismos de auditoria torna-se tão relevante como qualquer regra sobre localização de dados.",
+      "source_urls": [
+        "https://arxiv.org/abs/2608.06364v1"
+      ],
+      "image_path": "data\\final_assets\\post_07df02799d1a087bfc_53bb694d_ChatGPT-Image-8_08_2026-00_33_35.png",
+      "image_url": "/assets/final/post_874d0c51e9b1827dca_site_1600x900.jpg",
+      "published_at": "2026-08-08T18:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/estudo-revela-que-apps-de-comercio-eletronico-na-nigeria-escondem-o-uso-de-ia-dos-utilizadores-70fbe75738468aad82"
+    },
     {
       "id": "post_60617b5b128a5f0344",
       "title": "DoorDash recorre a apoio humano para manter robôs autónomos em operação",
