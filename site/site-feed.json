@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T01:31:00+00:00",
+  "updated_at": "2026-08-08T01:33:42+00:00",
   "posts": [
+    {
+      "id": "post_669cd793f8c851d012",
+      "title": "Inteligência artificial projeta vírus para combater bactérias e força revisão da biossegurança",
+      "body": "Modelos de inteligência artificial foram utilizados para conceber vírus capazes de destruir bactérias específicas, num avanço que abre novas perspetivas para a biologia sintética e para o desenvolvimento de terapias médicas direcionadas. A descoberta acelera a resposta à resistência a antibióticos, ao mesmo tempo que intensifica a exigência de regulação em biossegurança.\n\nA aplicação de IA ao desenho biomolecular altera a velocidade da investigação médica. Onde o desenvolvimento tradicional de bacteriófagos exigia anos de isolamento de estirpes e ensaios laboratoriais, o cálculo computacional permite desenhar estruturas genéticas funcionais em tempo reduzido, transformando um processo experimental lento numa disciplina de engenharia mais previsível.\n\nEsta transição desloca o ponto de pressão da regulação. Quando a capacidade de conceber agentes biológicos passa a depender de modelos computacionais, o controlo de biossegurança deixa de poder assentar exclusivamente na vigilância de laboratórios físicos e amostras biológicas. A proteção passa a exigir a verificação rigorosa dos serviços de síntese genética e a auditoria dos modelos antes da sua disponibilização.\n\nO impacto real desta inovação na medicina dependerá da capacidade de alinhar a rapidez do software com a exigência dos ensaios clínicos. O desafio imediato para reguladores e investigadores não é travar a computação, mas garantir que a validação em ambiente real acompanha o ritmo do desenho digital.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/inteligencia-artificial-usada-para-projetar-virus-que-destroem-bacterias/"
+      ],
+      "image_path": "data\\final_assets\\post_c7674eeb59c1673c2b_3d7f6d24_ChatGPT-Image-8_08_2026-00_35_46.png",
+      "image_url": "/assets/final/post_2fa20ffaf410ff7de7_site_1600x900.jpg",
+      "published_at": "2026-08-08T21:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/inteligencia-artificial-projeta-virus-para-combater-bacterias-e-forca-revisao-da-biosseguranca-669cd793f8c851d012"
+    },
     {
       "id": "post_70fbe75738468aad82",
       "title": "Estudo revela que apps de comércio eletrónico na Nigéria escondem o uso de IA dos utilizadores",
