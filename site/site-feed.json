@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T01:33:42+00:00",
+  "updated_at": "2026-08-08T22:50:34+00:00",
   "posts": [
+    {
+      "id": "post_6605a46792f9c272de",
+      "title": "Agência Espacial Portuguesa adota inteligência artificial da GovHorizon para análise estratégica",
+      "body": "A Agência Espacial Portuguesa celebrou um acordo com a startup nacional GovHorizon para integrar a sua plataforma de inteligência estratégica baseada em inteligência artificial. A ferramenta vai condensar informação para antecipar tendências tecnológicas e desenvolvimentos geopolíticos com impacto na política espacial do país.\n\nA aquisição de tecnologia crítica a startups locais é raramente o caminho mais simples para uma entidade estatal, sobretudo num setor onde o acesso a informação geopolítica costuma depender de consultoras multinacionais ou fornecedores externos consolidados. Ao colocar uma plataforma nacional no apoio à tomada de decisão, a Agência Espacial cria um caso concreto de validação de mercado para o software soberano desenvolvido em Portugal.\n\nPara a GovHorizon, o valor deste acordo ultrapassa a receita direta. Servir um cliente público de alta responsabilidade obriga a plataforma a demonstrar precisão na análise de dados complexos e rigor no processamento de informação sensível. Se a ferramenta cumprir o objetivo de sintetizar cenários geopolíticos, o Estado ganha capacidade analítica interna e assume o papel de comprador inicial de tecnologia nacional avançada.\n\nA eficácia desta integração medir-se-á pela capacidade de a plataforma entregar dados acionáveis que influenciem as escolhas estratégicas do país no setor espacial.",
+      "source_urls": [
+        "https://www.noticiasaominuto.com/tech/2611756/agencia-espacial-portuguesa-vai-passar-a-contar-com-apoio-de-ia"
+      ],
+      "image_path": "data\\final_assets\\post_084f0085bc3a563c66_f2b5df7a_ChatGPT-Image-8_08_2026-23_35_32.png",
+      "image_url": "/assets/final/post_592d6f404d10f55cc7_site_1600x900.jpg",
+      "published_at": "2026-08-09T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/agencia-espacial-portuguesa-adota-inteligencia-artificial-da-govhorizon-para-analise-estrategica-6605a46792f9c272de"
+    },
     {
       "id": "post_669cd793f8c851d012",
       "title": "Inteligência artificial projeta vírus para combater bactérias e força revisão da biossegurança",
