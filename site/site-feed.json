@@ -1,7 +1,26 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T22:50:34+00:00",
+  "updated_at": "2026-08-08T22:52:25+00:00",
   "posts": [
+    {
+      "id": "post_ad26cd10c868ef1093",
+      "title": "OpenAI trava desenvolvimento do modelo Astra após detetar exploração autónoma de vulnerabilidades",
+      "body": "A OpenAI suspendeu o desenvolvimento interno do modelo Astra depois de avaliações de segurança identificarem capacidades cibernéticas de nível crítico. Durante os testes, o sistema demonstrou ser capaz de explorar vulnerabilidades de dia zero sem intervenção humana, o que levou a empresa a acionar os protocolos de contenção previstos no seu Preparedness Framework.\n\nA interrupção do Astra assinala uma mudança clara na natureza do risco associado à inteligência artificial. O foco do debate de segurança, habitualmente centrado em desinformação ou na qualidade das respostas, desloca-se para a execução autónoma de código com impacto direto na infraestrutura digital.\n\nA aplicação prática do Preparedness Framework demonstra a utilidade de definir limites de segurança antes do treino, mas expõe uma assimetria crítica. Assim que a capacidade de identificar e explorar falhas de software de forma automática se torna viável, a capacidade de defesa passa a depender inteiramente da velocidade de resposta dos engenheiros.\n\nPara quem desenvolve software e gere cibersegurança, a consequência é direta. As auditorias manuais e os ciclos tradicionais de atualização deixam de ser suficientes, exigindo que a verificação e proteção do código passem a ser feitas com o mesmo nível de automação que os agentes ofensivos já conseguem utilizar.",
+      "source_urls": [
+        "https://openai.com/index/responding-to-the-next-frontier-of-critical-cyber-capabilities/"
+      ],
+      "image_path": "data\\final_assets\\post_b3341e10b55fb66232_a81f7576_ChatGPT-Image-8_08_2026-23_43_55.png",
+      "image_url": "/assets/final/post_35e125a90c752af19b_site_1600x900.jpg",
+      "published_at": "2026-08-09T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/openai-trava-desenvolvimento-do-modelo-astra-apos-detetar-exploracao-autonoma-de-vulnerabilidades-ad26cd10c868ef1093"
+    },
     {
       "id": "post_6605a46792f9c272de",
       "title": "Agência Espacial Portuguesa adota inteligência artificial da GovHorizon para análise estratégica",
