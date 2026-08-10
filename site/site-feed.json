@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-10T16:30:02+00:00",
+  "updated_at": "2026-08-10T16:31:06+00:00",
   "posts": [
+    {
+      "id": "post_4ab74bfc301b54b36e",
+      "title": "Moody's alerta para a dependência sistémica da banca em relação aos fornecedores de IA",
+      "body": "A agência de notação financeira Moody's alertou que a aceleração na integração de inteligência artificial pelo setor bancário está a criar uma dependência concentrada num pequeno número de fornecedores de tecnologia e de computação em nuvem.\n\nO aviso redefine o enquadramento de conformidade e a gestão de risco operacional no setor financeiro europeu. A concentração dos modelos mais avançados e da infraestrutura de cálculo em poucas empresas tecnológicas expõe o sistema a falhas em cascata, nas quais um incidente num único fornecedor pode afetar múltiplos bancos em simultâneo.\n\nA questão central ultrapassa o acesso à tecnologia: reside na perda gradual de soberania operacional. Ao adotarem modelos proprietários integrados nas nuvens públicas dominantes, as instituições financeiras ganham velocidade no curto prazo, mas reduzem a margem de manobra estratégica e a capacidade de auditoria direta sobre os seus processos core.\n\nPara os supervisores europeus, esta concentração exige que a resiliência tecnológica deixe de ser tratada como um departamento de TI e passe a figurar como risco prudencial. A capacidade de diversificar fornecedores de IA, garantir a portabilidade de workloads e manter contingências autónomas torna-se, assim, um requisito direto de capital e conformidade.",
+      "source_urls": [
+        "https://www.theguardian.com/business/2026/aug/09/ai-push-is-putting-banks-at-mercy-of-tech-firms-warns-moodys"
+      ],
+      "image_path": "data\\final_assets\\post_eae38595a0e80fb282_0c654b05_ChatGPT-Image-9_08_2026-23_43_19.png",
+      "image_url": "/assets/final/post_1f7f3c7056c5635f0e_site_1600x900.jpg",
+      "published_at": "2026-08-10T22:30:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/moody-s-alerta-para-a-dependencia-sistemica-da-banca-em-relacao-aos-fornecedores-de-ia-4ab74bfc301b54b36e"
+    },
     {
       "id": "post_76c8c0afa847e6ba35",
       "title": "Fraude com IA nas escolas: Dinamarca responde com defesas orais e restrições técnicas no secundário",
