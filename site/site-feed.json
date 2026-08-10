@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-10T16:27:42+00:00",
+  "updated_at": "2026-08-10T16:28:58+00:00",
   "posts": [
+    {
+      "id": "post_8b25472a041c3faca7",
+      "title": "Google Maps passa a executar transações e reservas diretamente no mapa",
+      "body": "A Google atualizou o Google Maps com uma nova representação visual em 3D generativo e um agente virtual capaz de efetuar reservas e pedidos de forma autónoma. Durante a navegação, os utilizadores podem instruir o assistente a transacionar serviços e encomendar produtos sem sair da aplicação.\n\nA atualização altera a função do mapa, que deixa de ser uma ferramenta passiva de orientação geográfica para passar a funcionar como uma plataforma de comércio intermediada por inteligência artificial. Ao delegar no agente a execução da compra, a Google passa a controlar a camada final da transação, contornando a necessidade de o utilizador visitar o site ou a aplicação própria do comerciante.\n\nPara o tecido empresarial local, a interface com o consumidor deixa de estar centrada no design da loja online ou na navegação em formulários de reserva. A conversão passa a depender da visibilidade da empresa junto do agente e da existência de integrações diretas que permitam ao sistema concluir a transação em segundo plano.\n\nA concorrência no comércio físico e de serviços desloca-se, assim, da otimização tradicional para motores de busca humanos para a prontidão técnica perante agentes autónomos. Quem controla a rota de navegação passa a controlar também o ponto final de venda.",
+      "source_urls": [
+        "https://techcrunch.com/2026/08/08/google-maps-3d-generative-ai-agent-ordering-update/"
+      ],
+      "image_path": "data\\final_assets\\post_11cb804aa311f9f887_41e40119_ChatGPT-Image-9_08_2026-23_36_54.png",
+      "image_url": "/assets/final/post_1b3fc664dbe0c2cedc_site_1600x900.jpg",
+      "published_at": "2026-08-10T19:30:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-maps-passa-a-executar-transacoes-e-reservas-diretamente-no-mapa-8b25472a041c3faca7"
+    },
     {
       "id": "post_84a47cfb633475bc8d",
       "title": "Uso de IA nas escolas reduz notas em 20%, indica estudo com 25 mil estudantes",
