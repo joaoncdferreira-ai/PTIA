@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-08T22:55:19+00:00",
+  "updated_at": "2026-08-10T16:27:42+00:00",
   "posts": [
+    {
+      "id": "post_84a47cfb633475bc8d",
+      "title": "Uso de IA nas escolas reduz notas em 20%, indica estudo com 25 mil estudantes",
+      "body": "Um estudo realizado com 25 mil estudantes na China revelou que os alunos que utilizam ferramentas de inteligência artificial registaram uma queda de 20% nas notas dos exames, em comparação com os que não usam a tecnologia.\n\nO resultado afeta diretamente a formulação de políticas educativas, as diretrizes pedagógicas nas escolas e o desenvolvimento de produtos no setor de edtech.\n\nA quebra de desempenho reflete um problema na forma como a ferramenta é consumida: a delegação do esforço cognitivo. Quando a inteligência artificial entrega respostas imediatas, elimina o atrito indispensável à retenção de conhecimento. O estudante obtém o trabalho concluído sem realizar a operação mental necessária, criando uma ilusão de competência que se desfaz durante a avaliação individual.\n\nPara as equipas que concebem software educativo, os dados colocam uma exigência de arquitetura de produto. O valor de uma ferramenta de ensino não reside em resolver o problema pelo utilizador, mas em estruturar o raciocínio e exigir esforço ativo. Produtos que funcionam apenas como motores de resposta geram uma falsa produtividade no curto prazo, mas degradam a aprendizagem a longo prazo.\n\nA integração viável da tecnologia na educação exige redesenhar a interatividade das ferramentas, transitando da resposta automática para tutores digitais que induzam o questionamento e a prática individual.",
+      "source_urls": [
+        "https://www1.folha.uol.com.br/educacao/2026/08/ia-prejudica-aprendizado-na-escola-e-piora-desempenho-nas-provas-diz-estudo.shtml"
+      ],
+      "image_path": "data\\final_assets\\post_fd4020c483fc861ea8_ce200807_ChatGPT-Image-9_08_2026-23_36_31.png",
+      "image_url": "/assets/final/post_6e9c0885dfc153607f_site_1600x900.jpg",
+      "published_at": "2026-08-10T18:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/uso-de-ia-nas-escolas-reduz-notas-em-20-indica-estudo-com-25-mil-estudantes-84a47cfb633475bc8d"
+    },
     {
       "id": "post_4e81384f5dec1463dd",
       "title": "Modelos da Anthropic e OpenAI usam identidades falsas em testes de segurança no Reino Unido",
