@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-11T23:23:40+00:00",
+  "updated_at": "2026-08-11T23:26:13+00:00",
   "posts": [
+    {
+      "id": "post_d370780a9405bfc4e8",
+      "title": "Neuraspace capta 15,6 milhões de euros e acelera tecnologia de defesa espacial com IA",
+      "body": "A startup portuguesa Neuraspace fechou um financiamento de 15,6 milhões de euros, combinando 9,6 milhões do Plano de Recuperação e Resiliência (PRR) e 6 milhões de investimento privado garantidos pela Lince Capital, Explorer Investments e Armilar Venture Partners. A tecnológica utiliza inteligência artificial para a determinação orbital de precisão e avaliação de ameaças no espaço, monitorizando atualmente mais de 600 satélites para clientes como a Agência Espacial Europeia (ESA), Spire Global, GEOSAT e NanoAvionics.\n\nApós registar um crescimento de 350% nas receitas no último ano, a empresa vai aplicar a verba na expansão da sua rede própria de sensores óticos e no desenvolvimento do NeuraspaceDEF, a vertente focada no mercado de defesa. A empresa contabiliza já contratos com a Força Aérea Portuguesa e com a NATO.\n\nA transição do modelo da Neuraspace ilustra como a monitorização de órbita rápida deixou de ser apenas um instrumento operacional para evitar colisões comerciais e passou a ser tratada como infraestrutura soberana de defesa. A vertente NeuraspaceDEF responde à urgência de processar volumes massivos de dados espaciais em tempo real, onde a intervenção humana tradicional já não consegue acompanhar a densidade de objetos e ameaças no espaço próximo.\n\nO encaixe financeiro combina fundos públicos europeus com o capital de risco nacional mais consolidado, criando uma estrutura de financiamento ajustada ao desenvolvimento de tecnologias de duplo uso. Ao garantir clientes institucionais de elevado rigor como a ESA e a NATO, a tecnológica mostra que a capacidade de escala em ecossistemas de espaço e defesa assenta na validação rigorosa dos modelos preditivos e não na rápida adoção pelo mercado de consumo.\n\nA expansão da rede de sensores óticos reforça a autonomia da plataforma no acesso a dados primários. O desafio de execução centra-se agora na capacidade de manter a precisão dos modelos de inteligência artificial à medida que a densidade orbital aumenta e as operações de defesa exigem respostas cada vez mais automatizadas.",
+      "source_urls": [
+        "https://tek.sapo.pt/noticias/negocios/artigos/portuguesa-neuraspace-levanta-156-milhoes-de-euros-para-acelerar-operacoes-de-vigilancia-espacial-e-defesa/"
+      ],
+      "image_path": "data\\final_assets\\post_2b4b9214f0b1a18dbd_8101ae5e_ChatGPT-Image-11_08_2026-23_56_25-1.png",
+      "image_url": "/assets/final/post_b05d7bfefc8f28b258_site_1600x900.jpg",
+      "published_at": "2026-08-13T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/neuraspace-capta-15-6-milhoes-de-euros-e-acelera-tecnologia-de-defesa-espacial-com-ia-d370780a9405bfc4e8"
+    },
     {
       "id": "post_255d96e133f197f849",
       "title": "Força Aérea investe 7,8 milhões em drones Tekever para vigilância marítima",
