@@ -5225,7 +5225,7 @@ HTML = r"""<!doctype html>
     }
     function renderSchedule() {
       const approved = state.final_ready_to_schedule || [];
-      const slots = ['13:00', '16:00'];
+      const slots = ['13:00', '17:00'];
       const selectedDate = scheduleDate();
       const bufferState = state.buffer_available
         ? `Buffer API detectada. LinkedIn${xEnabled() ? ' e X' : ''} vão para Buffer. Instagram precisa de imagem/media validada; Site fica marcado localmente até ligarmos CMS.`
@@ -5233,7 +5233,7 @@ HTML = r"""<!doctype html>
       document.getElementById('schedule').innerHTML = `
         <div class="panel">
           <h2>Final OK: plano a 4 dias</h2>
-          <p class="notice">Escolhe o dia, depois dá OK nos slots 13:00 e 16:00. Estes são os horários com melhor alcance medido no LinkedIn (mediana 24 e 41 impressões, contra 9 às 09:00). O Buffer recebe a data/hora PT correta.</p>
+          <p class="notice">Escolhe o dia, depois dá OK nos slots 13:00 e 17:00. O Buffer recebe a data/hora PT correta.</p>
         </div>
         <div class="schedule-toolbar">
           <button onclick="discoverBuffer()">Atualizar Buffer</button>
@@ -5426,7 +5426,7 @@ HTML = r"""<!doctype html>
     }
     function renderScheduled() {
       const scheduled = state.final_scheduled_posts || [];
-      const slots = ['13:00', '16:00'];
+      const slots = ['13:00', '17:00'];
       const selectedDate = scheduleDate();
       const dayCount = scheduled.filter(post => (post.scheduled_time || '').slice(0, 10) === selectedDate).length;
       document.getElementById('scheduled_tab').innerHTML = `
