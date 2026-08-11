@@ -1,7 +1,93 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-10T16:31:06+00:00",
+  "updated_at": "2026-08-11T23:23:40+00:00",
   "posts": [
+    {
+      "id": "post_255d96e133f197f849",
+      "title": "Força Aérea investe 7,8 milhões em drones Tekever para vigilância marítima",
+      "body": "A Força Aérea Portuguesa celebrou um contrato de 7,8 milhões de euros com a Tekever para a aquisição de dois sistemas aéreos não tripulados AR5, uma estação de controlo em terra, o sistema de missão ATLAS e a formação de operadores militares. O investimento, financiado pela Lei de Programação Militar, prevê a entrega dos equipamentos em setembro de 2026 e o arranque da formação em outubro, direcionado para missões de vigilância marítima na Zona Económica Exclusiva, segurança costeira e apoio à deteção de incêndios.\n\nO AR5 é um drone de asa fixa de média altitude e longa autonomia (MALE), com capacidade para voar até 20 horas consecutivas, carregar até 50 quilos de carga útil e comunicar por satélite. A integração do sistema ATLAS permite processar dados de sensores em tempo real e distribuir a informação de missão diretamente para os centros de decisão.\n\nO valor central deste contrato não reside na simples aquisição de equipamento, mas na consolidação da contratação pública como instrumento de capacidade soberana. Quando o Estado assume a posição de cliente exigente perante a indústria tecnológica nacional, substitui a dependência de fornecedores externos por validação operacional feita em território próprio.\n\nHoras de voo em missões militares reais valem mais do que qualquer programa de subvenção ao desenvolvimento. Ao converter verbas da Lei de Programação Militar em contratos com requisitos operacionais estritos, Portugal constrói uma referência de execução para sistemas não tripulados que reforça simultaneamente a vigilância do mar e a maturidade comercial do setor.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/11/forca-aerea-portuguesa-fecha-com-tekever-para-missoes-de-vigilancia-maritima/"
+      ],
+      "image_path": "data\\final_assets\\post_fba9292c4842674d92_45ac53be_ChatGPT-Image-11_08_2026-23_56_32.png",
+      "image_url": "/assets/final/post_b5ff16f109f14b3c8a_site_1600x900.jpg",
+      "published_at": "2026-08-13T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ],
+      "article_url": "artigos/forca-aerea-investe-7-8-milhoes-em-drones-tekever-para-vigilancia-maritima-255d96e133f197f849"
+    },
+    {
+      "id": "post_0a0db816a7ecdc1a52",
+      "title": "Investimento global em IaaS para IA vai crescer 96% em 2026, prevê a Gartner",
+      "body": "A consultora Gartner prevê que o investimento mundial em Infraestrutura como Serviço (IaaS) otimizada para Inteligência Artificial cresça 96% durante o ano de 2026. Segundo a análise, esta aceleração decorre da migração em massa de cargas de trabalho empresariais para treino e inferência de modelos gerativos.\n\nO número indica uma mudança clara na afetação de recursos: a IA está a transitar de testes isolados para a infraestrutura base das empresas. O orçamento deixa de ser canalizado apenas para licenciamento de software e passa a financiar a capacidade computacional subjacente necessária para manter os modelos operacionais.\n\nCom a passagem da fase de experimentação para a utilização diária em produção, a despesa em computação transforma-se num encargo fixo de escala. A eficiência no consumo e na gestão desta infraestrutura passa a determinar se os ganhos operacionais da IA compensam, na prática, o custo de a manter a funcionar.",
+      "source_urls": [
+        "https://www.gartner.com/en/newsroom/press-releases/2026-08-10-gartner-forecasts-worldwide-ai-optimized-iaas-spending-to-grow-96-percent-in-2026"
+      ],
+      "image_path": "data\\final_assets\\post_b29d9084a2589b49ee_fcb9865d_ChatGPT-Image-11_08_2026-00_16_56.png",
+      "image_url": "/assets/final/post_a98ce4175330b9c10d_site_1600x900.jpg",
+      "published_at": "2026-08-11T21:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/investimento-global-em-iaas-para-ia-vai-crescer-96-em-2026-preve-a-gartner-0a0db816a7ecdc1a52"
+    },
+    {
+      "id": "post_8a7891afba112f411c",
+      "title": "Qantas e Accenture avaliam reestruturação de 1.000 funções de back-office com apoio de IA",
+      "body": "A companhia aérea australiana Qantas iniciou negociações com a Accenture no âmbito do projeto interno 'Project iQ', que prevê a automação e eventual deslocalização de até 1.000 funções corporativas. A reestruturação abrange equipas de finanças, recursos humanos e marketing, com o objetivo de substituir e reorganizar processos operacionais através de ferramentas de inteligência artificial.\n\nA decisão da Qantas ilustra uma mudança clara no tratamento da tecnologia nas grandes empresas: a inteligência artificial deixa de ser encarada apenas como um teste isolado de produtividade e passa a servir de justificação para reestruturações operacionais de fundo. Ao associar a automação a uma consultora global, o projeto funde a adoção de software com o modelo tradicional de externalização de serviços (BPO).\n\nEm departamentos como finanças ou recursos humanos, o ganho de eficiência raramente resulta do algoritmo isolado. A redução de custos consolida-se quando a tecnologia obriga à padronização de tarefas repetitivas, permitindo concentrar a operação remanescente em estruturas externas ou equipas mais reduzidas.\n\nO resultado final deste tipo de transição mede-se na capacidade de retenção do conhecimento do negócio. Quando o back-office é automatizado e transferido para parceiros externos a esta escala, o risco principal desvia-se da tecnologia para a gestão da mudança e para a dependência operacional do ecossistema de fornecedores.",
+      "source_urls": [
+        "https://www.afr.com/work-and-careers/workplace/qantas-explores-outsourcing-up-to-1-000-jobs-in-ai-overhaul"
+      ],
+      "image_path": "data\\final_assets\\post_027a0449a141f4a885_30b55514_ChatGPT-Image-11_08_2026-00_16_33.png",
+      "image_url": "/assets/final/post_0a9adbc7ea85ae575a_site_1600x900.jpg",
+      "published_at": "2026-08-11T16:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/qantas-e-accenture-avaliam-reestruturacao-de-1-000-funcoes-de-back-office-com-apoio-de-ia-8a7891afba112f411c"
+    },
+    {
+      "id": "post_21e688f44810ddaad6",
+      "title": "Meta lança modelo aberto Muse Glimmer e Zuckerberg intensifica pressão contra regulação da IA",
+      "body": "A Meta disponibilizou o Muse Glimmer, um modelo de inteligência artificial com 30 mil milhões de parâmetros sob licença Apache 2.0, concebido para correr agentes autónomos localmente em computadores pessoais. A acompanhar o lançamento, o CEO Mark Zuckerberg publicou um ensaio de 14 páginas a defender o código aberto e a pedir uma menor regulação governamental nos Estados Unidos.\n\nA tecnologia permite a empresas e programadores executar tarefas complexas de agentes sem dependência de infraestrutura em nuvem, sem pagamentos recorrentes por token e sem transferência de dados privados para servidores externos.\n\nO lançamento simultâneo do modelo e do ensaio político mostra uma tentativa deliberada de alterar o modelo económico do setor. Ao viabilizar a execução local sob uma licença permissiva, a Meta procura esvaziar o controlo dos fornecedores de infraestrutura centralizada e neutralizar propostas regulatórias desenhadas para monitorizar grandes centros de dados.\n\nSe o processamento local de agentes se consolidar como alternativa viável, o foco da engenharia de software desloca-se da gestão de custos de APIs na nuvem para a otimização de recursos na máquina do utilizador, redefinindo a forma como as empresas constroem a sua arquitetura tecnológica.",
+      "source_urls": [
+        "https://venturebeat.com/ai/meta-returns-to-open-source-with-muse-glimmer-an-apache-2-0-licensed-30b-parameter-ai-model-optimized-for-agents-available-now/"
+      ],
+      "image_path": "data\\final_assets\\post_9ed0961559a8322d90_63e2efae_ChatGPT-Image-11_08_2026-00_15_41.png",
+      "image_url": "/assets/final/post_a19a79e1bf7b856b1b_site_1600x900.jpg",
+      "published_at": "2026-08-11T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/meta-lanca-modelo-aberto-muse-glimmer-e-zuckerberg-intensifica-pressao-contra-regulacao-da-ia-21e688f44810ddaad6"
+    },
+    {
+      "id": "post_e0e5785b6c9838ef02",
+      "title": "Plano europeu para a IA industrial foca financiamento em dados e modelos especializados",
+      "body": "A Comissão Europeia apresentou o Plano de Ação Continental para a IA, desenhado para alavancar dados de qualidade e modelos especializados com o objetivo de acelerar a adoção de inteligência artificial na indústria, na saúde e na ciência. A iniciativa alinha as prioridades de financiamento comunitário direcionado a pequenas e médias empresas, universidades e startups tecnológicas em Portugal.\n\nA transição do debate genérico sobre IA para o desenvolvimento de modelos industriais de domínio específico altera a prioridade do investimento europeu. A capacidade técnica deixa de medir-se apenas pela escala do modelo e passa a depender do acesso a dados operacionais de alta qualidade, retidos em processos fabris, diagnósticos clínicos ou laboratórios de investigação.\n\nEste alinhamento dos fundos comunitários cria um incentivo claro para a modernização do tecido empresarial, mas impõe uma condição de execução. As subvenções europeias financiam a criação de modelos e infraestrutura, mas não resolvem a falta de digitalização de base. As organizações com dados estruturados e processos integrados estão posicionadas para converter estes fundos em ativos proprietários; as restantes limitar-se-ão a usar os subsídios para adquirir licenças de software a terceiros.",
+      "source_urls": [
+        "https://ec.europa.eu"
+      ],
+      "image_path": "data\\final_assets\\post_3bd59614772070c01e_a94bfbc5_ChatGPT-Image-11_08_2026-00_14_37.png",
+      "image_url": "/assets/final/post_e528f08d085f047009_site_1600x900.jpg",
+      "published_at": "2026-08-11T09:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/plano-europeu-para-a-ia-industrial-foca-financiamento-em-dados-e-modelos-especializados-e0e5785b6c9838ef02"
+    },
     {
       "id": "post_4ab74bfc301b54b36e",
       "title": "Moody's alerta para a dependência sistémica da banca em relação aos fornecedores de IA",
