@@ -16,12 +16,51 @@ PORTUGAL_TERMS = {
     "porto",
     "coimbra",
     "braga",
+    "aveiro",
+    "leiria",
+    "guimarães",
+    "matosinhos",
+    "sines",
+    "governo português",
+    "república portuguesa",
+    # Empresas e centros de investigação com ADN português. Esta lista é o
+    # principal sinal de relevância local: conteúdo sobre o ecossistema
+    # nacional gera muito mais engagement por impressão do que noticia
+    # internacional generica.
     "feedzai",
     "unbabel",
     "defined.ai",
     "definedcrowd",
     "luz saúde",
-    "governo português",
+    "sword health",
+    "outsystems",
+    "talkdesk",
+    "neuraspace",
+    "tekever",
+    "priberam",
+    "critical software",
+    "augusta labs",
+    "brainr",
+    "cascade",
+    "starkdata",
+    "neuralshift",
+    "aptoide",
+    "bloq.it",
+    "indie campers",
+    "greenvolt",
+    "farfetch",
+    "veniam",
+    "codacy",
+    "inesc",
+    "inesc tec",
+    "champalimaud",
+    "instituto superior técnico",
+    "universidade de lisboa",
+    "universidade do porto",
+    "startup portugal",
+    "banco de fomento",
+    "força aérea portuguesa",
+    "agência espacial portuguesa",
 }
 
 CATEGORY_TERMS = {
@@ -142,23 +181,27 @@ def score_signal(signal: RadarSignal, learning_weights: dict | None = None) -> C
     has_summary = len((signal.summary or "").strip()) >= 45
     has_consequence = len((signal.why_it_matters or "").strip()) >= 30
 
+    # Peso local reforçado: a performance medida no LinkedIn mostra que conteúdo
+    # sobre o ecossistema português gera cerca de 2,2% de likes por impressão
+    # contra 0,89% do internacional genérico, e todos os posts com alcance
+    # acima de 300 impressões foram histórias portuguesas.
     editorial_value = min(
         100.0,
         specificity * 0.45
         + (22 if has_summary else 0)
         + (18 if has_consequence else 0)
-        + (15 if local else 0),
+        + (26 if local else 0),
     )
     learning_adjustment = _learned_adjustment(signal, learning_weights)
     engagement_probability = min(
         100.0,
         max(0.0, float(signal.engagement_score)) * 0.55
-        + (18 if local else 0)
+        + (30 if local else 0)
         + (10 if has_consequence else 0),
     )
     engagement_probability = max(0.0, min(100.0, engagement_probability + learning_adjustment))
     freshness = _freshness_score(signal.published_at)
-    portfolio_fit = 80.0 if local else 62.0
+    portfolio_fit = 92.0 if local else 55.0
     risk_penalty = 0.0
     explanation: list[str] = []
 
@@ -242,7 +285,10 @@ def select_portfolio(
             continue
         if score.total < 30:
             continue
-        if category_counts.get(score.category, 0) >= 2:
+        # O ecossistema português é o foco editorial, por isso admite mais
+        # histórias nacionais na mesma fila do que qualquer outra categoria.
+        category_cap = 3 if score.category == "portugal" else 2
+        if category_counts.get(score.category, 0) >= category_cap:
             continue
         if source_counts.get(signal.source_name, 0) >= 2:
             continue

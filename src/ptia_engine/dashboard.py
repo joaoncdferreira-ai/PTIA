@@ -2514,6 +2514,7 @@ def _write_static_article_pages(state: DashboardState, payload: dict) -> list[st
         </div>
       </div>
     </article>
+    {_article_newsletter_block()}
   </main>
   <script type="application/ld+json">{schema_json}</script>
 """
@@ -2684,6 +2685,46 @@ def _related_links_markup(links: list[dict[str, str]]) -> str:
         for link in links
     )
     return f'<section class="article-source-block"><p>Continuar leitura PTIA</p>{related_links}</section>'
+
+
+PTIA_NEWSLETTER_ACTION = (
+    "https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066"
+    "PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxo"
+    "j8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
+)
+
+
+def _article_newsletter_block() -> str:
+    """Email capture at the end of every article page.
+
+    Social posts link straight to article pages, so this is the only place where
+    an interested reader can be converted into an owned channel. Rendered as
+    static markup, without the ``reveal`` animation class, so it stays visible
+    even though article pages do not run the homepage intersection observer.
+    """
+    return f"""<section id="newsletter" class="newsletter inline">
+      <div class="wrap newsletter-grid">
+        <div class="newsletter-copy">
+          <p class="eyebrow">PTIA Weekly</p>
+          <h2>Leste até ao fim. A próxima chega por email.</h2>
+          <p>Sexta-feira, 9h00. Os sinais de IA que importam para quem decide, constrói e trabalha em Portugal, com contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
+        </div>
+        <div class="signup-card">
+          <div class="signup-top"><span>Pré-visualização</span><span>sexta · 9h00</span></div>
+          <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
+          <form id="ptia-newsletter-form" class="newsletter-form" action="{PTIA_NEWSLETTER_ACTION}" method="post" target="ptia-newsletter-frame">
+            <label><span>Email</span><input type="email" name="EMAIL" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required></label>
+            <label><span>Nome</span><input type="text" name="FIRSTNAME" placeholder="Nome" autocomplete="given-name"></label>
+            <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
+            <input type="hidden" name="locale" value="pt">
+            <button type="submit">Subscrever</button>
+            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+          </form>
+          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
+          <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
+        </div>
+      </div>
+    </section>"""
 
 
 def _public_posts(payload: dict) -> list[dict]:
@@ -5184,7 +5225,7 @@ HTML = r"""<!doctype html>
     }
     function renderSchedule() {
       const approved = state.final_ready_to_schedule || [];
-      const slots = ['09:00', '13:00', '16:00', '21:00'];
+      const slots = ['13:00', '16:00'];
       const selectedDate = scheduleDate();
       const bufferState = state.buffer_available
         ? `Buffer API detectada. LinkedIn${xEnabled() ? ' e X' : ''} vão para Buffer. Instagram precisa de imagem/media validada; Site fica marcado localmente até ligarmos CMS.`
@@ -5192,7 +5233,7 @@ HTML = r"""<!doctype html>
       document.getElementById('schedule').innerHTML = `
         <div class="panel">
           <h2>Final OK: plano a 4 dias</h2>
-          <p class="notice">Escolhe o dia, depois dá OK nos slots 09:00, 13:00, 16:00, 21:00. O Buffer recebe a data/hora PT correta.</p>
+          <p class="notice">Escolhe o dia, depois dá OK nos slots 13:00 e 16:00. Estes são os horários com melhor alcance medido no LinkedIn (mediana 24 e 41 impressões, contra 9 às 09:00). O Buffer recebe a data/hora PT correta.</p>
         </div>
         <div class="schedule-toolbar">
           <button onclick="discoverBuffer()">Atualizar Buffer</button>
@@ -5385,7 +5426,7 @@ HTML = r"""<!doctype html>
     }
     function renderScheduled() {
       const scheduled = state.final_scheduled_posts || [];
-      const slots = ['09:00', '13:00', '16:00', '21:00'];
+      const slots = ['13:00', '16:00'];
       const selectedDate = scheduleDate();
       const dayCount = scheduled.filter(post => (post.scheduled_time || '').slice(0, 10) === selectedDate).length;
       document.getElementById('scheduled_tab').innerHTML = `

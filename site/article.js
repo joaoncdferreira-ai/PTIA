@@ -80,6 +80,12 @@ function sourceLabel(url) {
   }
 }
 
+function sectionLabels(value) {
+  const labels = Array.isArray(value) ? value : String(value || "").split(",");
+  const normalized = labels.map((label) => String(label).trim()).filter(Boolean);
+  return normalized.length ? normalized : ["Mundo"];
+}
+
 function readingMinutes(text) {
   const words = String(text || "").trim().split(/\s+/).filter(Boolean).length;
   return `${Math.max(2, Math.ceil(words / 210))} min`;
@@ -252,24 +258,25 @@ function renderArticle(post, qeqData) {
   const sourceUrls = Array.isArray(post.source_urls) ? post.source_urls.filter(Boolean) : [];
   const paragraphs = cleanedParagraphs(post.body);
   const firstSource = sourceUrls[0] || "";
-  const section = post.section || "Mundo";
+  const sections = sectionLabels(post.section);
+  const section = sections[0];
+  const publishedAt = String(post.published_at || "");
+  const sourceFact = firstSource
+    ? `<a href="${escapeHtml(firstSource)}" target="_blank" rel="noopener">${escapeHtml(sourceLabel(firstSource))}</a>`
+    : "PTIA";
   updateArticleMeta(post, section, sourceUrls);
 
   detail.innerHTML = `
-    <div class="wrap article-shell">
-      <aside class="article-side">
-        <a class="article-back" href="./">Voltar ao radar</a>
-        <dl>
-          <div><dt>Seccao</dt><dd>${escapeHtml(section)}</dd></div>
-          <div><dt>Leitura</dt><dd>${escapeHtml(readingMinutes(post.body))}</dd></div>
-          <div><dt>Publicado</dt><dd>${escapeHtml(formatDate(post.published_at))}</dd></div>
-          <div><dt>Fonte</dt><dd>${escapeHtml(firstSource ? sourceLabel(firstSource) : "PTIA")}</dd></div>
-        </dl>
-      </aside>
+    <div class="wrap article-shell article-shell--news">
       <div class="article-story">
         <header class="article-hero">
           <p class="article-kicker">${escapeHtml(section)} · Angulo PTIA</p>
           <h1>${escapeHtml(post.title || "Entrada PTIA")}</h1>
+          <dl class="article-facts" aria-label="Detalhes da publica&#231;&#227;o">
+            <div><dt>Leitura</dt><dd>${escapeHtml(readingMinutes(post.body))}</dd></div>
+            <div><dt>Publicado</dt><dd><time datetime="${escapeHtml(publishedAt)}">${escapeHtml(formatDate(post.published_at))}</time></dd></div>
+            <div><dt>Fonte</dt><dd>${sourceFact}</dd></div>
+          </dl>
           ${articleVisual(post)}
         </header>
         <section class="article-body">
@@ -319,4 +326,21 @@ async function initArticle() {
   }
 }
 
+function setupNewsletterForm() {
+  const form = document.getElementById("ptia-newsletter-form");
+  const status = document.getElementById("newsletter-status");
+  if (!form || !status) return;
+  form.addEventListener("submit", () => {
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    status.textContent = "A enviar. Se o email for válido, vais receber a confirmação de subscrição.";
+    window.setTimeout(() => {
+      status.textContent = "Quase lá: confirma o email para receberes a PTIA Weekly.";
+      form.reset();
+      button.disabled = false;
+    }, 1800);
+  });
+}
+
 initArticle();
+setupNewsletterForm();

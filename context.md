@@ -179,3 +179,32 @@ Para que as integrações externas operem com estabilidade, garanta que as segui
 * **Estado canónico remoto**: fila e histórico passam a ser ficheiros Git versionados. O dashboard sincroniza com GitHub, grava decisões remotamente e dispara o workflow de produção.
 * **Alertas recorrentes**: falhas recebem identidade semanal e rejeições anteriores não ocultam incidentes de semanas posteriores.
 * **CI**: o workflow semanal executa a suite completa antes de pesquisar ou publicar.
+
+### Reorientação Editorial por Dados de Performance (11 de Agosto de 2026)
+
+Importados 305 registos reais do LinkedIn (19 mai – 9 ago) via `linkedin-insights`. As decisões abaixo são consequência directa desses números, não de boas práticas genéricas.
+
+**Diagnóstico medido**
+* **Mediana de 19 impressões por post.** A média (59) é enganadora: os 10 melhores posts em 305 valem 51% de todo o alcance.
+* **Queda de ~90% em 6 semanas** com volume constante (~28 posts/semana): W26 224 impressões médias → W32 21,5. Mais volume não comprou alcance; julho teve mais posts do que junho e um terço do alcance.
+* **Portugal engaja muito mais**: 2,20% likes/impressão contra 0,89% do internacional genérico, e 2,06% vs 0,95% de cliques. A mediana é igual (19 vs 19) — conteúdo português não é distribuído mais, mas quem o vê reage 2 a 4 vezes mais. Todos os posts acima de 300 impressões foram histórias do ecossistema nacional.
+* **O pico de junho foi ciclo noticioso, não estratégia**: Unbabel, Amélia e Sword Health na mesma semana. Nada reteve as ~5.000 impressões geradas.
+
+**Cadência: 4 → 2 tópicos por dia**
+* `daily-editorial.yml` passou o limite da fila `A Rever` de 6 para 3 pacotes, dando margem de escolha sem excesso de produção.
+* Melhores horários segundo os dados próprios (n=30, cruzando `content_performance.jsonl` com `scheduled_time`): **16h é o melhor** (mediana 41,5), **13h em segundo** (24,0), **21h fraco** (19,0) e **9h claramente o pior** (mediana 9,0). Recomendação: **13h e 16h-17h**. Evidência fraca pela amostra pequena e possível confundimento (o tipo de conteúdo variava com a hora) — tratar como hipótese a testar, não como facto assente.
+
+**Prioridade a Portugal no scoring** (`editorial_scoring.py`)
+* `PORTUGAL_TERMS` passou de 15 para ~50 termos. Faltavam quase todas as empresas cujas histórias rebentaram: Sword Health, OutSystems, Talkdesk, Tekever, Neuraspace, Priberam, BRAINR, Critical Software, INESC, IST, Força Aérea Portuguesa.
+* Bónus local reforçado: `portfolio_fit` 80→92 (não-local 62→55), engagement 18→30, editorial 15→26.
+* A categoria `portugal` admite até 3 histórias por fila; as restantes mantêm o limite de 2.
+* Efeito medido: notícia portuguesa passa de ~75 para **90,04 pontos**; internacional equivalente fica em 67,54.
+
+**Captura de email nas páginas de artigo** — a correcção com melhor rácio esforço/impacto
+* **O problema**: os posts sociais ligam sempre para `/artigos/<slug>/`, e essa era a única página do site sem qualquer campo de email. O formulário existia apenas em `index.html`. Em junho, ~180 pessoas clicaram e aterraram numa página que não lhes pedia nada.
+* **A correcção**: novo `_article_newsletter_block()` em `dashboard.py`, injectado no gerador de páginas estáticas; **227 páginas de artigo regeneradas** (as 91 restantes são órfãs, nenhuma consta do feed público). O `article.html` do SPA e o handler em `article.js` também foram actualizados.
+* **Detalhe que evita uma armadilha**: o bloco não usa a classe `reveal`. Essa classe começa com `opacity: 0` e depende de um IntersectionObserver que só existe em `app.js` — nas páginas de artigo, que não carregam JavaScript nenhum, o formulário ficaria permanentemente invisível.
+* **Degradação limpa**: as páginas geradas só carregam CSS. O formulário submete nativamente para a Brevo através do iframe-alvo; sem JS perde-se apenas a mensagem de estado, não a subscrição.
+* **Verificado em browser**: formulário presente e visível (opacity 1, altura 730px), iframe correctamente escondido pelo CSS existente (1x1px, opacity 0), e sem overflow horizontal a 375px.
+
+**Validação**: suite completa com **281 testes OK**.

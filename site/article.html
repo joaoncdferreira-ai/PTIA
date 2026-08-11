@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=20260720-article-1">
 </head>
 <body class="article-page">
   <a class="skip-link" href="#article">Saltar para o artigo</a>
@@ -65,7 +65,46 @@
       <p class="eyebrow">PTIA</p>
       <h1>A carregar leitura...</h1>
     </section>
-    <article class="article-detail hidden" id="article-detail"></article>
+    <article class="article-detail news-article hidden" id="article-detail"></article>
+
+    <section id="newsletter" class="newsletter inline">
+      <div class="wrap newsletter-grid">
+        <div class="newsletter-copy">
+          <p class="eyebrow">PTIA Weekly</p>
+          <h2>Leste até ao fim. A próxima chega por email.</h2>
+          <p>Sexta-feira, 9h00. Os sinais de IA que importam para quem decide, constrói e trabalha em Portugal, com contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
+        </div>
+        <div class="signup-card">
+          <div class="signup-top">
+            <span>Pré-visualização</span>
+            <span>sexta · 9h00</span>
+          </div>
+          <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
+          <form
+            id="ptia-newsletter-form"
+            class="newsletter-form"
+            action="https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxoj8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
+            method="post"
+            target="ptia-newsletter-frame"
+          >
+            <label>
+              <span>Email</span>
+              <input type="email" name="EMAIL" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
+            </label>
+            <label>
+              <span>Nome</span>
+              <input type="text" name="FIRSTNAME" placeholder="Nome" autocomplete="given-name">
+            </label>
+            <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
+            <input type="hidden" name="locale" value="pt">
+            <button type="submit">Subscrever</button>
+            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+          </form>
+          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
+          <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="arquivo" class="footer">
@@ -77,7 +116,7 @@
     </div>
   </footer>
 
-  <script src="/article.js?v=20260609-1"></script>
+  <script src="/article.js?v=20260720-1"></script>
   <script src="/analytics.js?v=20260606-1"></script>
 </body>
 </html>

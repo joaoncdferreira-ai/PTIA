@@ -9,7 +9,7 @@ on:
       limit:
         description: "Maximum number of packages waiting in A Rever"
         required: true
-        default: "6"
+        default: "3"
         type: string
       scout:
         description: "Discover and verify new stories before selection"
@@ -68,7 +68,7 @@ jobs:
         if: github.event_name == 'schedule' || inputs.scout == true
         shell: bash
         run: |
-          limit="${{ github.event_name == 'workflow_dispatch' && inputs.limit || '6' }}"
+          limit="${{ github.event_name == 'workflow_dispatch' && inputs.limit || '3' }}"
           for attempt in 1 2 3; do
             echo "Editorial discovery attempt ${attempt}/3"
             python -m ptia_engine.cli editorial-auto --limit "$limit"
