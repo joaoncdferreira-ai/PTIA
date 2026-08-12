@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-12T23:02:27+00:00",
+  "updated_at": "2026-08-12T23:04:28+00:00",
   "posts": [
+    {
+      "id": "post_ccf298b44a49c25187",
+      "title": "Defined.ai reduz 30% da equipa e transfere centro de gravidade para os EUA",
+      "body": "A Defined.ai vai cortar 30% da sua força de trabalho a nível global, com o maior impacto focado no centro de investigação e desenvolvimento em Portugal, que emprega cerca de 120 pessoas. A reestruturação é acompanhada pelas saídas da diretora de operações, Manel Marco, e da diretora financeira, Teresa Andrade, alterações que a empresa refere terem sido planeadas antes do processo de corte. O foco operacional passa para os Estados Unidos, onde reside a maior parte da carteira de clientes, mantendo-se contudo a participação da empresa no consórcio da gigafábrica de IA portuguesa.\n\nA decisão de concentrar recursos onde o mercado pagador está reflete a pressão direta sobre o setor dos dados para treino de modelos de linguagem. À medida que o mercado de IA amadurece, a capacidade de gerar receita no mercado norte-americano sobrepõe-se à eficiência de custos do desenvolvimento na Europa, forçando reestruturações nas operações distantes do cliente final.\n\nA permanência no consórcio da gigafábrica de IA em Portugal expõe um duplo movimento típico das scaleups nacionais. Por um lado, mantém-se o acesso à infraestrutura e ao ecossistema institucional europeu; por outro, transfere-se a liderança comercial e a tomada de decisão para o ecossistema que dita as tabelas de preços do setor.\n\nPara as tecnológicas fundadas em Portugal, a reestruturação da Defined.ai demonstra que manter o núcleo de engenharia no país exige uma tração comercial acelerada no estrangeiro. Quando o ritmo de vendas abranda, a distância física entre a equipa técnica e quem compra os produtos torna-se o primeiro alvo de ajuste.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/07/defined-ai-mexe-na-lideranca-executiva-com-duas-saidas/"
+      ],
+      "image_path": "data\\final_assets\\post_57bbd8e734b2c9a3d9_e173d0e4_ChatGPT-Image-12_08_2026-23_58_26.png",
+      "image_url": "/assets/final/post_6955c9a4a2f53a8b1f_site_1600x900.jpg",
+      "published_at": "2026-08-13T17:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/defined-ai-reduz-30-da-equipa-e-transfere-centro-de-gravidade-para-os-eua-ccf298b44a49c25187"
+    },
     {
       "id": "post_7e81bb2f12b0ac4394",
       "title": "Infraestrutura de IA: o crescimento dos data centers em Portugal e a atração pela física do país",
