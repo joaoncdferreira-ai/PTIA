@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-12T23:04:28+00:00",
+  "updated_at": "2026-08-13T22:00:49+00:00",
   "posts": [
+    {
+      "id": "post_0ca361f0f67c0755da",
+      "title": "Ryanair fecha acordo de cinco anos com a Google Cloud para gerir operações com agentes de IA",
+      "body": "A Ryanair assinou uma parceria de cinco anos com a Google Cloud para integrar o Gemini Enterprise na gestão operacional de 35 mil funcionários e suportar o plano de atingir 300 milhões de passageiros anuais até 2034. A companhia aérea, líder de tráfego em Portugal e na Europa, vai aplicar modelos de IA generativa e agentes autónomos na logística diária de tripulações e na resposta a perturbações de voo, mantendo uma arquitetura dual-cloud para assegurar a continuidade do serviço.\n\nA transição da IA de ferramentas de apoio ao cliente para o núcleo das operações críticas muda a natureza do risco técnico na aviação comercial. Escalar tripulações e aeronaves sob restrições regulamentares estritas exige fiabilidade absoluta; delegar parte dessa orquestração a agentes algorítmicos transfere a pressão da velocidade de resposta para a robustez da validação das decisões.\n\nPara a Google Cloud, o contrato consolida a utilidade do Gemini Enterprise em cenários de alta complexidade logística em tempo real. A adoção de uma estratégia dual-cloud pela Ryanair reflete a necessidade de mitigar dependências operacionais exclusivas num setor onde qualquer paragem de sistemas gera custos imediatos e cancelamentos em cadeia.",
+      "source_urls": [
+        "https://executivedigest.sapo.pt/ryanair-integra-ia-do-google-cloud-para-otimizar-tomada-de-decisoes-operacionais/"
+      ],
+      "image_path": "data\\final_assets\\post_b918b3fb1a9af0bfbb_bdb1ab84_ChatGPT-Image-13_08_2026-22_56_51.png",
+      "image_url": "/assets/final/post_c9f88eb04afd35e5c6_site_1600x900.jpg",
+      "published_at": "2026-08-14T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/ryanair-fecha-acordo-de-cinco-anos-com-a-google-cloud-para-gerir-operacoes-com-agentes-de-ia-0ca361f0f67c0755da"
+    },
     {
       "id": "post_ccf298b44a49c25187",
       "title": "Defined.ai reduz 30% da equipa e transfere centro de gravidade para os EUA",
