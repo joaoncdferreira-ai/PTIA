@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-13T22:00:49+00:00",
+  "updated_at": "2026-08-13T22:02:27+00:00",
   "posts": [
+    {
+      "id": "post_a024403e5c4be06bfc",
+      "title": "Investidores da Anthropic apontam a IPO de 2 biliões de dólares em outubro",
+      "body": "Os investidores da Anthropic preveem que a empresa entre em bolsa já em outubro com uma avaliação igual ou superior a 2 biliões de dólares. Se a operação avançar nestes moldes, será a maior IPO da história, superando os 1,77 biliões de dólares registados pela SpaceX em junho.\n\nA meta baseia-se na expectativa de que a receita anualizada da tecnológica alcance entre 100 e 120 mil milhões de dólares até ao final de 2026, o que representaria multiplicar a faturação por mais de dez vezes face ao ano anterior. Ao longo de 2026, a criadora do Claude captou perto de 100 mil milhões de dólares em financiamento privado. A própria Anthropic não fixou publicamente qualquer objetivo de avaliação, tratando-se de estimativas avançadas pelo seu sindicato de investidores.\n\nMais do que um recorde nominal em Wall Street, estes números mostram que o capital privado procura uma via rápida de liquidez para a despesa de capital sem precedentes em infraestrutura de IA. A avaliação implícita exige que o mercado público valide múltiplos que só fazem sentido se o crescimento das receitas de software continuar a acelerar ao ritmo do consumo computacional.\n\nPara o ecossistema tecnológico, a fasquia deixa de ser a demonstração técnica e passa a ser a disciplina de margens. Quando o mercado acionista for chamado a absorver uma cotação desta dimensão, a pressão competitiva transferir-se-á diretamente para o retorno comercial exigido a cada camada de serviço assente nestes modelos.",
+      "source_urls": [
+        "https://fortune.com/2026/08/13/anthropic-ipo-2-trillion-october-largest-ever-spacex/"
+      ],
+      "image_path": "data\\final_assets\\post_c1004405c623d0c563_764df937_ChatGPT-Image-13_08_2026-22_57_56.png",
+      "image_url": "/assets/final/post_44d6a182f519694b78_site_1600x900.jpg",
+      "published_at": "2026-08-14T17:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/investidores-da-anthropic-apontam-a-ipo-de-2-bilioes-de-dolares-em-outubro-a024403e5c4be06bfc"
+    },
     {
       "id": "post_0ca361f0f67c0755da",
       "title": "Ryanair fecha acordo de cinco anos com a Google Cloud para gerir operações com agentes de IA",
