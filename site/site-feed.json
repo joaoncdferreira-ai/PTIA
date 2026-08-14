@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-13T22:02:27+00:00",
+  "updated_at": "2026-08-14T23:01:34+00:00",
   "posts": [
+    {
+      "id": "post_6ffd4fcf8f0ed0745b",
+      "title": "Ataque com agentes autónomos de IA atinge governo e infraestruturas críticas em Taiwan",
+      "body": "O Ministério dos Assuntos Digitais de Taiwan confirmou que atacantes utilizaram agentes autónomos de inteligência artificial de código aberto para invadir 85 contas governamentais e aceder a mais de 2.500 registos de funcionários públicos. A ofensiva visou também a agência de segurança nuclear e empresas do setor energético do território, naquela que é descrita como uma das primeiras operações ofensivas híbridas em larga escala com recurso a agentes de IA.\n\nO detalhe decisivo desta operação não reside apenas no volume de contas comprometidas, mas no recurso a modelos de código aberto para orquestrar e acelerar a intrusão. Ferramentas que estão acessíveis a qualquer equipa técnica de desenvolvimento foram convertidas em operadores ofensivos capazes de varrer sistemas, identificar vulnerabilidades e coordenar acessos com intervenção humana reduzida.\n\nA transição de ameaças automatizadas simples para sistemas com capacidade de decisão autónoma altera a assimetria da cibersegurança. Quando os vetores de ataque operam à velocidade de agentes autónomos, os modelos de resposta que dependem de triagem manual e validação por analistas humanos chegam tarde ao incidente.\n\nPara as entidades públicas e operadores de infraestruturas críticas, a lição imediata passa por equipar a defesa com o mesmo nível de autonomia. A monitorização de acessos e a contenção de privilégios deixam de ser apenas processos de auditoria periódica e passam a exigir barreiras automatizadas em tempo real.",
+      "source_urls": [
+        "https://www.rtp.pt/noticias/mundo/ataque-informatico-com-agentes-de-ia-visou-agencias-governamentais-de-taiwan_n1676652"
+      ],
+      "image_path": "data\\final_assets\\post_af190605d0a3de10bf_f7657b08_ChatGPT-Image-14_08_2026-23_56_47.png",
+      "image_url": "/assets/final/post_dde2757d2998d321c1_site_1600x900.jpg",
+      "published_at": "2026-08-15T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/ataque-com-agentes-autonomos-de-ia-atinge-governo-e-infraestruturas-criticas-em-taiwan-6ffd4fcf8f0ed0745b"
+    },
     {
       "id": "post_a024403e5c4be06bfc",
       "title": "Investidores da Anthropic apontam a IPO de 2 biliões de dólares em outubro",
