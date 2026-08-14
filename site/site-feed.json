@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-14T23:01:34+00:00",
+  "updated_at": "2026-08-14T23:04:58+00:00",
   "posts": [
+    {
+      "id": "post_4b5a2011a95a8a3d20",
+      "title": "Mindata lança metodologia de inteligência organizacional para detetar o que os dados de RH não mostram",
+      "body": "A portuguesa Mindata, cofundada pelo psicólogo Fábio Silva e por Aquiles Vasconcelos (operações e controlo analítico), lançou uma metodologia que cruza dados comportamentais, indicadores psicológicos e métricas de performance para revelar dinâmicas de equipa invisíveis aos sistemas de RH tradicionais. Funciona em três fases; diagnóstico, transformação, otimização. Segundo Silva, 'as empresas têm dados sobre quase tudo, mas continuam sem acesso ao que realmente condiciona os resultados: o estado real das pessoas'. Contexto: 29% dos trabalhadores europeus reportam stress, depressão ou ansiedade (OSH Pulse Survey 2025) e cerca de 80% mostram sinais de desengajamento.\n\nÉ uma startup portuguesa a tentar resolver com dados um problema que a maioria das empresas só mede depois de já ter custado produtividade; relevante para quem lidera equipas.",
+      "source_urls": [
+        "https://hrportugal.sapo.pt/empresa-portuguesa-lanca-nova-metodologia-que-integra-dados-comportamentais-e-de-performance-para-gestao-organizacional/"
+      ],
+      "image_path": "data\\final_assets\\post_b1c76d36ab3a60253a_1e10156b_ChatGPT-Image-14_08_2026-23_54_34.png",
+      "image_url": "/assets/final/post_e37dfa9faa840e214d_site_1600x900.jpg",
+      "published_at": "2026-08-15T17:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/mindata-lanca-metodologia-de-inteligencia-organizacional-para-detetar-o-que-os-dados-de-rh-nao-mostram-4b5a2011a95a8a3d20"
+    },
     {
       "id": "post_6ffd4fcf8f0ed0745b",
       "title": "Ataque com agentes autónomos de IA atinge governo e infraestruturas críticas em Taiwan",
