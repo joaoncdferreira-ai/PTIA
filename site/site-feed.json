@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-14T23:04:58+00:00",
+  "updated_at": "2026-08-16T00:56:31+00:00",
   "posts": [
+    {
+      "id": "post_1fc9ffb49efa5b9676",
+      "title": "EUA vão exigir a 35 países que escolham lado na corrida da IA entre Washington e Pequim",
+      "body": "Uma carta do Departamento de Estado dos EUA, obtida em exclusivo pela Reuters, avisa os 35 signatários da 'Pax Silica Declaration' (aliança de IA liderada pelos EUA) de que a assinatura 'não é uma subscrição, é um compromisso' que não pode coexistir com a organização rival chinesa 'World Artificial Intelligence Cooperation Organization', lançada por Xi Jinping em julho. O Cazaquistão é o único país conhecido a ter aderido a ambas, o que soou o alarme em Washington. A carta ainda não tem data de envio confirmada.\n\nMostra que a infraestrutura de IA está a virar bloco geopolítico, com países obrigados a escolher fornecedor tecnológico como quem escolhe alianças militares; relevante para quem pensa em cadeias de fornecimento e risco regulatório internacional.",
+      "source_urls": [
+        "https://www.usnews.com/news/top-news/articles/2026-08-14/exclusive-us-to-tell-partners-they-must-pick-sides-in-ai-race-with-china"
+      ],
+      "image_path": "data\\final_assets\\post_eaaaf802be7b72f635_a8b2deb0_ChatGPT-Image-16_08_2026-01_52_18.png",
+      "image_url": "/assets/final/post_35fbd81bb29d76491d_site_1600x900.jpg",
+      "published_at": "2026-08-16T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação"
+      ],
+      "article_url": "artigos/eua-vao-exigir-a-35-paises-que-escolham-lado-na-corrida-da-ia-entre-washington-e-pequim-1fc9ffb49efa5b9676"
+    },
     {
       "id": "post_4b5a2011a95a8a3d20",
       "title": "Mindata lança metodologia de inteligência organizacional para detetar o que os dados de RH não mostram",
