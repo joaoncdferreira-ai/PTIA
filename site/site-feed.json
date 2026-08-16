@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-16T00:57:49+00:00",
+  "updated_at": "2026-08-16T22:09:53+00:00",
   "posts": [
+    {
+      "id": "post_573b20d0d535eb506f",
+      "title": "TensorOps é a primeira empresa portuguesa na rede de parceiros da OpenAI",
+      "body": "A TensorOps, portuguesa fundada por Cláudio Lemos, tornou-se a primeira empresa nacional a entrar na rede de parceiros da OpenAI; acesso antecipado à plataforma, formação e especialistas da OpenAI a trabalhar diretamente em projetos complexos com a equipa. A empresa transforma ideias de IA em aplicações reais para clientes como ServiceNow, Notion e JFrog, entre Fortune 500 e Nasdaq 100. Números: crescimento de 65% ao ano, mais de 200 milhões de utilizadores mensais alcançados através das implementações que constrói, rentável desde o primeiro dia. Segundo Lemos: 'A distância entre uma ideia de IA e ter essa IA a funcionar de verdade, todos os dias, para milhões de utilizadores, é enorme. Somos a equipa que fecha essa distância.'\n\nÉ a primeira validação direta da OpenAI a uma empresa portuguesa, com clientes Fortune 500 reais e números concretos; prova de que Portugal já exporta a camada de implementação da IA, não só ferramentas de consumo.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/tensorops-primeira-empresa-portuguesa-na-rede-da-openai/"
+      ],
+      "image_path": "data\\final_assets\\post_c76f8a1ca9078e526d_85da4aaf_ChatGPT-Image-16_08_2026-22_50_21.png",
+      "image_url": "/assets/final/post_886124f6b77c2dcc7c_site_1600x900.jpg",
+      "published_at": "2026-08-17T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/tensorops-e-a-primeira-empresa-portuguesa-na-rede-de-parceiros-da-openai-573b20d0d535eb506f"
+    },
     {
       "id": "post_261b389be3c05ce986",
       "title": "300 jornais franceses acusam a Google de cortar 38% do tráfego com resumos de IA sem pagar pelo conteúdo",
