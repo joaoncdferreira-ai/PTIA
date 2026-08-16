@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-16T22:09:53+00:00",
+  "updated_at": "2026-08-16T22:12:09+00:00",
   "posts": [
+    {
+      "id": "post_2aeaf55bb0c876b7ea",
+      "title": "Zuckerberg publica manifesto de 6.500 palavras a defender uma 'superinteligência pessoal' para todos",
+      "body": "Mark Zuckerberg publicou o ensaio 'The Future Is for Everyone', argumentando que o risco central da IA não é a tecnologia em si, mas a concentração de controlo em poucos laboratórios, empresas ou governos. A resposta da Meta chama-se 'superinteligência pessoal': assistentes de IA à medida de cada utilizador, controlados por essa pessoa, em educação, saúde, trabalho e decisões pessoais. Vem acompanhado de dois lançamentos de modelos, um fundo comunitário de 1.000 milhões de dólares, um programa de formação profissional e um modo privado em que nem a Meta acede aos dados. A receção foi muito dividida; críticos dizem que é longo em linguagem utópica e curto em detalhes concretos.\n\nÉ a visão mais ambiciosa (e mais contestada) de como a IA deveria distribuir-se pela sociedade, vinda de quem tem escala para a impor; vale a pena perceber os dois lados do argumento antes de o produto chegar.",
+      "source_urls": [
+        "https://techcrunch.com/2026/08/10/mark-zuckerbergs-ai-manifesto-is-exactly-why-people-dont-like-ai/"
+      ],
+      "image_path": "data\\final_assets\\post_bdd958881e45dc1793_ab33db4c_ChatGPT-Image-16_08_2026-23_05_07.png",
+      "image_url": "/assets/final/post_b0df9bfb02f9880d56_site_1600x900.jpg",
+      "published_at": "2026-08-17T17:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/zuckerberg-publica-manifesto-de-6-500-palavras-a-defender-uma-superinteligencia-pessoal-para-todos-2aeaf55bb0c876b7ea"
+    },
     {
       "id": "post_573b20d0d535eb506f",
       "title": "TensorOps é a primeira empresa portuguesa na rede de parceiros da OpenAI",
