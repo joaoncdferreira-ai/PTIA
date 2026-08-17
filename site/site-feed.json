@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-17T23:35:33+00:00",
+  "updated_at": "2026-08-17T23:36:52+00:00",
   "posts": [
+    {
+      "id": "post_054dd6d70a972fedab",
+      "title": "Carlão e Bárbara Tinoco cantam sobre IA nas escolas em campanha portuguesa de regresso às aulas",
+      "body": "A Staples lançou a campanha de regresso às aulas 'IA, vamos conversar?', com os artistas portugueses Carlão e Bárbara Tinoco num tema musical original e videoclip sobre o uso da inteligência artificial no contexto escolar. O objetivo é promover um uso consciente e responsável da tecnologia, defendendo a IA como aliada do pensamento crítico e da criatividade dos alunos, não substituto. Direção criativa de Filipe Monteiro, produção da SN Films, imagem gerada por IA a cargo da Falamusa.\n\nMostra como marcas portuguesas já usam nomes grandes da música para moldar a conversa pública sobre IA na educação, mesmo quando os dados (como o estudo chinês desta semana) mostram efeitos mistos; vale a pena ver que mensagem está a chegar aos alunos.",
+      "source_urls": [
+        "https://marketeer.sapo.pt/staples-poe-carlao-e-barbara-tinoco-a-conversar-sobre-ia-nas-escolas/"
+      ],
+      "image_path": "data\\final_assets\\post_c988d50b4505982cb9_8c6b9c2d_ChatGPT-Image-18_08_2026-00_32_25.png",
+      "image_url": "/assets/final/post_82851b525e8c8cca83_site_1600x900.jpg",
+      "published_at": "2026-08-18T17:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/carlao-e-barbara-tinoco-cantam-sobre-ia-nas-escolas-em-campanha-portuguesa-de-regresso-as-aulas-054dd6d70a972fedab"
+    },
     {
       "id": "post_c87b0762ee88108df7",
       "title": "Apple negoceia pagar a jornais para alimentar a Siri com notícias, ao contrário da Google",
