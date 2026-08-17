@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-16T22:12:09+00:00",
+  "updated_at": "2026-08-17T23:35:33+00:00",
   "posts": [
+    {
+      "id": "post_c87b0762ee88108df7",
+      "title": "Apple negoceia pagar a jornais para alimentar a Siri com notícias, ao contrário da Google",
+      "body": "A Apple está a negociar acordos plurianuais com editoras de notícias para usar o seu conteúdo na Siri redesenhada, com um modelo de remuneração variável: paga aos publishers sempre que o conteúdo é efetivamente usado numa resposta. Fala-se de um orçamento de nove dígitos. Ao contrário de laboratórios como a OpenAI, que normalmente oferecem taxas fixas garantidas por acesso alargado, a Apple aposta em pagamento por uso real. A Siri com IA chega com o iOS 27, ainda este ano.\n\nÉ o contraponto direto à queixa dos jornais franceses contra a Google desta semana: duas Big Tech, duas respostas opostas ao mesmo problema; pagar pelo conteúdo que a IA usa. Relevante para qualquer publisher, incluindo o PTIA.",
+      "source_urls": [
+        "https://www.engadget.com/2236317/apple-is-reportedly-turning-to-publishers-for-help-with-siri-ai/"
+      ],
+      "image_path": "data\\final_assets\\post_8398ecfbdee8f76ed1_1fa71a53_ChatGPT-Image-18_08_2026-00_31_25.png",
+      "image_url": "/assets/final/post_0828d04faaadcbdbc2_site_1600x900.jpg",
+      "published_at": "2026-08-18T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/apple-negoceia-pagar-a-jornais-para-alimentar-a-siri-com-noticias-ao-contrario-da-google-c87b0762ee88108df7"
+    },
     {
       "id": "post_2aeaf55bb0c876b7ea",
       "title": "Zuckerberg publica manifesto de 6.500 palavras a defender uma 'superinteligência pessoal' para todos",
