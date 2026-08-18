@@ -249,7 +249,23 @@ async function scrapeSearch(keywords) {
   }
 }
 
-async function postComment(postUrl, commentText, isDraft = false) {
+// O LinkedIn usa classes CSS ofuscadas/atómicas (ex.: "f7e7719c b3b3b999 ..."), geradas
+// por build, que mudam sem aviso - não são fiáveis como seletor. O único botão
+// type="submit" da página é um placeholder desativado ("Enviar") que nunca fica ativo;
+// o botão real que publica o comentário é type="button", com texto exato "Comentar"/
+// "Comment", e distingue-se do botão homónimo da barra de interação do post (Gostar/
+// Comentar/Compartilhar) por não conter nenhum <svg> filho (aquele tem ícone, este não).
+function findSubmitButton(scope) {
+  return scope
+    .locator("button:not(:has(svg))")
+    .filter({ hasText: /^(Comentar|Comment)$/i })
+    .first();
+}
+
+async function postComment(postUrl, commentText, mode = null) {
+  // mode: null/undefined = publica a sério; "draft" = só screenshot; "verify" = screenshot
+  // + confirma que o botão de Publicar fica ativo, sem clicar (teste seguro do fix do botão).
+  const isDraft = mode === "draft" || mode === "verify";
   // Headless false is safer for posting to ensure mouse interactions work and bypass bot detection!
   const context = await chromium.launchPersistentContext(userDataDir, {
     headless: false,
@@ -307,9 +323,23 @@ async function postComment(postUrl, commentText, isDraft = false) {
       }
     }
     
-    await page.waitForSelector(commentBoxSelector, { timeout: 15000 });
-    
-    const editor = page.locator(commentBoxSelector).first();
+    // LinkedIn abre a caixa de comentários dentro de um <dialog> quando se parte de um
+    // permalink de post. Um seletor de página inteira apanha também o composer global
+    // "Começar publicação" que existe escondido no feed por trás do dialog, o que fazia
+    // o clique cair no backdrop do dialog em vez do editor real — esta é a causa raiz de
+    // todas as falhas "dialog intercepts pointer events" desde 6 de junho. Quando há um
+    // dialog aberto, restringe a pesquisa só a esse dialog.
+    let scope = page;
+    const openDialog = page.locator("dialog[open]").first();
+    if (await openDialog.count() > 0 && await openDialog.isVisible().catch(() => false)) {
+      console.error("-> Dialog aberto detetado. A limitar a caixa de comentários a esse dialog.");
+      scope = openDialog;
+    }
+
+    await scope.locator(commentBoxSelector).first().waitFor({ state: "visible", timeout: 15000 });
+
+    const editor = scope.locator(commentBoxSelector).first();
+    await editor.scrollIntoViewIfNeeded();
     await editor.click();
     await page.waitForTimeout(1000);
     
@@ -407,16 +437,14 @@ async function postComment(postUrl, commentText, isDraft = false) {
     await editor.click();
     await page.waitForTimeout(1000);
     
-    // Simulate typing and dispatch events to trigger React/Quill validation
-    console.error("-> A preencher o comentário de forma robusta...");
-    await editor.fill(commentText);
-    await editor.dispatchEvent("input", { bubbles: true });
-    await editor.dispatchEvent("change", { bubbles: true });
-    
-    // Press a safe key (like Space and Backspace) to ensure virtual DOM updates
-    await page.keyboard.press("Space");
-    await page.keyboard.press("Backspace");
-    
+    // A caixa de comentários do LinkedIn migrou de Quill para um editor Tiptap/ProseMirror.
+    // .fill() escreve o valor diretamente na DOM e não dispara a sequência real de
+    // keydown/input/keyup por caractere que o ProseMirror escuta para atualizar o seu
+    // estado interno — o botão de Publicar ficava sempre "disabled" mesmo com texto visível.
+    // A escrita simulada carácter-a-carácter resolve isto por disparar eventos de teclado genuínos.
+    console.error("-> A preencher o comentário com escrita simulada...");
+    await page.keyboard.type(commentText, { delay: 10 });
+
     await page.waitForTimeout(1500);
     
     if (isDraft) {
@@ -430,17 +458,31 @@ async function postComment(postUrl, commentText, isDraft = false) {
       const screenshotPath = path.join(tmpDir, `comment-draft-${Date.now()}.png`);
       await page.screenshot({ path: screenshotPath });
       console.error(`-> Screenshot de rascunho gravado em: ${screenshotPath}`);
-      
+
+      if (mode === "verify") {
+        // Confirma se o botão real (ativo) aparece, sem lhe tocar - não publica nada.
+        console.error("-> [Verify Mode] A confirmar se o botão de Publicar fica ativo...");
+        let submitButtonReady = false;
+        try {
+          await findSubmitButton(scope).waitFor({ state: "visible", timeout: 8000 });
+          submitButtonReady = true;
+        } catch (err) {
+          submitButtonReady = false;
+        }
+        console.error(`-> Botão de Publicar ativo? ${submitButtonReady}`);
+        console.log(JSON.stringify({ ok: true, screenshot: screenshotPath, submitButtonReady }));
+        return;
+      }
+
       console.log(JSON.stringify({ ok: true, screenshot: screenshotPath }));
       return;
     }
     
-    // Find public button (Publicar)
+    // Find publish button - mesmo scoping ao dialog aberto, pela mesma razão. Ver
+    // findSubmitButton() para a explicação de por que não se usa type=submit nem classes.
     console.error("-> Procurar botão de Publicar...");
-    const submitBtnSelector = "button.comments-comment-box__submit-button, button.comments-comment-box__submit-btn-container, button[type='submit']";
-    await page.waitForSelector(submitBtnSelector, { timeout: 5000 });
-    
-    const submitBtn = page.locator(submitBtnSelector).first();
+    const submitBtn = findSubmitButton(scope);
+    await submitBtn.waitFor({ state: "visible", timeout: 8000 });
     await submitBtn.click();
     
     console.error("-> Comentário submetido!");
@@ -496,12 +538,12 @@ if (command === "scrape-profile") {
 } else if (command === "post-comment") {
   const postUrl = args[1];
   const commentText = args[2];
-  const isDraft = args[3] === "draft";
+  const mode = args[3];
   if (!postUrl || !commentText) {
     console.log(JSON.stringify({ ok: false, error: "Falta URL do post ou texto do comentário" }));
     process.exit(1);
   }
-  postComment(postUrl, commentText, isDraft);
+  postComment(postUrl, commentText, mode);
 } else {
   console.log(JSON.stringify({ ok: false, error: "Comando desconhecido" }));
   process.exit(1);
