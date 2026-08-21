@@ -1,7 +1,90 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-17T23:36:52+00:00",
+  "updated_at": "2026-08-21T23:32:51+00:00",
   "posts": [
+    {
+      "id": "post_0679227f65bb88a5b4",
+      "title": "Programa europeu de IA abre candidaturas no Porto com acesso grátis ao supercomputador MareNostrum 5",
+      "body": "O programa de incubação da BSC AI Factory, consórcio europeu liderado pelo Barcelona Supercomputing Center, implementado em Portugal pela FCT/AI² e pelo Centro Nacional de Computação Avançada, abriu candidaturas até 15 de setembro para startups e PME portuguesas com projetos de IA já em curso. Dá acesso gratuito a horas de computação no supercomputador MareNostrum 5, acompanhamento técnico especializado, mentoria, formação e serviços de dados. Elegibilidade: empresas com sede fiscal em Portugal, menos de 20 colaboradores, até 10 anos de atividade. O programa decorre de 5 de outubro de 2026 a 30 de março de 2027 no UPTEC Asprela II, no Porto, com presença obrigatória no coworking três vezes por semana. Setores prioritários: saúde, biotecnologia, agricultura, energia, jurídico/financeiro, media e setor público.\n\nÉ acesso gratuito e concreto a computação de topo (MareNostrum 5) que normalmente custaria muito caro a uma startup portuguesa; reduz uma das maiores barreiras reais para PME de IA em Portugal, com prazo de candidatura definido e critérios claros.",
+      "source_urls": [
+        "https://executivedigest.sapo.pt/programa-europeu-abre-candidaturas-no-porto-para-apoiar-startups-e-pme-com-projetos-de-inteligencia-artificial/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_efe9127405b6d0e36b_ab571ef5_ChatGPT-Image-19_08_2026-23_21_56.png",
+      "image_url": "/assets/final/post_84b134dc8f5cf446d2_site_1600x900.jpg",
+      "published_at": "https://ptia.pt/artigos/programa-europeu-de-ia-abre-candidaturas-no-porto-com-acesso-gratis-ao-supercomputador-marenostrum-5-0679227f65bb88a5b4",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/programa-europeu-de-ia-abre-candidaturas-no-porto-com-acesso-gratis-ao-supercomputador-marenostrum-5-0679227f65bb88a5b4"
+    },
+    {
+      "id": "post_91a879800a2650e56d",
+      "title": "Libax integra IA nos sistemas tecnológicos dos mediadores de seguros",
+      "body": "A Libax, empresa portuguesa de software fundada em 2010 para mediadores de seguros, integrou o ChatGPT e o Claude via Model Context Protocol (MCP) no seu sistema de gestão. Em vez de navegar manualmente pela aplicação, os mediadores passam a poder fazer perguntas em linguagem natural sobre clientes; por exemplo, identificar clientes que fazem anos numa semana específica, verificar consentimentos RGPD, identificar valores em atraso ou gerar comunicações personalizadas. A integração também permite cruzar dados da Libax com documentos internos, procedimentos, Excel, email e calendário. O CEO Hugo Gonçalves confirma cerca de 600 sistemas em utilização e 7.500 utilizadores diários; a empresa faturou mais de 450 mil euros em 2025, em modelo SaaS puro (sem aquisição de servidor, pago por plano/funcionalidades). Atualizações semanais estão previstas para expandir as funcionalidades da versão inicial, que acede sobretudo a informação de perfil de cliente.\n\nÉ um caso real e mensurável de IA aplicada (via MCP, o mesmo protocolo por trás das integrações mais faladas do setor) num setor tradicional português, seguros, com números concretos de escala (600 sistemas, 7.500 utilizadores diários) em vez da promessa habitual sem clientes reais.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/19/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6756f631fba695641c_dc311715_ChatGPT-Image-20_08_2026-00_05_39.png",
+      "image_url": "/assets/final/post_e2865d0cf5c0d77388_site_1600x900.jpg",
+      "published_at": "https://ptia.pt/artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d",
+      "section": [
+        "Portugal",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+    },
+    {
+      "id": "post_401dab9f531e0fb65a",
+      "title": "Brasil anuncia pacote de 375 milhões de euros para desenvolver Inteligência Artificial e supercomputador",
+      "body": "O governo brasileiro anunciou um pacote imediato de 2,2 mil milhões de reais (375,7 milhões de euros) para reforçar a infraestrutura nacional de IA, dentro do Plano Brasileiro de Inteligência Artificial (PBIA), que prevê 23 mil milhões de reais (4,62 mil milhões de euros) até 2028. A principal iniciativa é um supercomputador de cerca de mil milhões de reais (165 milhões de euros) com 7.200 petaflops; entre os dez mais potentes do mundo em processamento de IA;, a instalar no Parque Tecnológico Augusto Severo, junto à Universidade Federal do Rio Grande do Norte, com lançamento previsto para o final de 2027. Há ainda 1,276 mil milhões de reais (210,66 milhões de euros) para um centro de supercomputação no Rio de Janeiro ao longo de cinco anos, e uma 'Nuvem Brasileira' em parceria público-privada. O Presidente Lula da Silva disse que o objetivo é 'colocar o Brasil na disputa global do mercado de inteligência artificial', afirmando que 'nem chinês nem americano é melhor do que nós'.\n\nÉ o maior país lusófono a investir de forma concreta e mensurável em soberania tecnológica de IA; reduzir dependência de infraestrutura estrangeira;, o que dá um contraponto direto e relevante para Portugal pensar a sua própria estratégia de infraestrutura de IA (Gigafábrica, MareNostrum 5) à escala de um país lusófono muito maior.",
+      "source_urls": [
+        "https://observador.pt/2026/08/21/brasil-anuncia-pacote-de-375-milhoes-de-euros-para-desenvolver-inteligencia-artificial-e-supercomputador/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4df1a8ff9b4e39d5eb_923e9f34_ChatGPT-Image-22_08_2026-00_23_08.png",
+      "image_url": "/assets/final/post_951a5db29f650ab547_site_1600x900.jpg",
+      "published_at": "2026-08-22T13:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/brasil-anuncia-pacote-de-375-milhoes-de-euros-para-desenvolver-inteligencia-artificial-e-supercomputador-401dab9f531e0fb65a"
+    },
+    {
+      "id": "post_f23d48db90be9fcfaf",
+      "title": "Leis escritas por IA estão a sobrecarregar o gabinete jurídico do Congresso dos EUA",
+      "body": "Segundo a Politico, o House Office of Legislative Counsel, o gabinete que escreve as leis dos EUA, está sobrecarregado porque cada vez mais gabinetes de deputados e grupos externos usam Claude e ChatGPT para rascunhar legislação. Oito responsáveis atuais e antigos dizem que o gabinete gasta mais tempo a corrigir texto gerado por IA do que gastaria a escrevê-lo de raiz: a IA falha nuances legais (ex.: não distingue um crédito fiscal de uma dedução ou de um subsídio) e produz erros que podem travar a aprovação de leis ou gerar processos judiciais por citações incorretas. Em junho, o gabinete da deputada Anna Paulina Luna publicou um resumo de emenda que ainda continha a frase 'Claude responded' por editar.\n\nÉ um caso concreto e verificável dos limites de usar IA generativa sem revisão humana em contexto de alto risco; mesmo ao mais alto nível de governo dos EUA. Bom contraponto ao entusiasmo genérico com produtividade de IA: mostra que delegar sem rever pode custar mais tempo do que poupa.",
+      "source_urls": [
+        "https://www.engadget.com/2238945/ai-generated-bills-causing-problems-in-the-capitol/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6f0e64e8206df5c207_2e7d536c_ChatGPT-Image-19_08_2026-01_21_35.png",
+      "image_url": "/assets/final/post_a80b8596736dfb5097_site_1600x900.jpg",
+      "published_at": "2026-08-19T17:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/leis-escritas-por-ia-estao-a-sobrecarregar-o-gabinete-juridico-do-congresso-dos-eua-f23d48db90be9fcfaf"
+    },
+    {
+      "id": "post_94593fbb11f629c6a5",
+      "title": "OpenAI vai mostrar anúncios no ChatGPT gratuito na Europa já este mês",
+      "body": "A OpenAI notificou a 15 de agosto os utilizadores dos planos Free e Go no Espaço Económico Europeu e na Suíça de que vão começar a ver anúncios no ChatGPT ainda este mês, sem indicar data exata. Os anúncios arrancam sem personalização, usando apenas o tópico da conversa e sinais contextuais limitados (localização geral, tipo de dispositivo); histórico e memórias ficam de fora no arranque. Planos Plus, Pro, Enterprise, Business e Education mantêm-se sem anúncios. Publicidade de saúde, saúde mental e política fica proibida perto de conteúdo sensível. O teste já tinha arrancado nos EUA a 9 de fevereiro e chegado ao Reino Unido a 6 de junho.\n\nÉ a primeira vez que utilizadores portugueses (Portugal está no EEE) vão ver anúncios dentro do ChatGPT gratuito; muda o modelo de negócio da ferramenta de IA mais usada por empresas e consumidores em Portugal, e sinaliza que a OpenAI está a acelerar a monetização publicitária apesar das perdas anuais reportadas.",
+      "source_urls": [
+        "https://ppc.land/chatgpt-free-and-go-users-in-europe-face-ads-from-later-this-month/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_36b9345979a87866f1_e89a428f_ChatGPT-Image-19_08_2026-01_22_37.png",
+      "image_url": "/assets/final/post_f1cd23c5c65aef2c09_site_1600x900.jpg",
+      "published_at": "2026-08-19T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-vai-mostrar-anuncios-no-chatgpt-gratuito-na-europa-ja-este-mes-94593fbb11f629c6a5"
+    },
     {
       "id": "post_054dd6d70a972fedab",
       "title": "Carlão e Bárbara Tinoco cantam sobre IA nas escolas em campanha portuguesa de regresso às aulas",
