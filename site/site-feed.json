@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-21T23:32:51+00:00",
+  "updated_at": "2026-08-21T23:34:54+00:00",
   "posts": [
     {
       "id": "post_0679227f65bb88a5b4",
@@ -34,6 +34,23 @@
         "Previsões Futuras"
       ],
       "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+    },
+    {
+      "id": "post_4d090c6d46045a36d9",
+      "title": "BCE alerta que modelo de crescimento europeu está \"corroído\" e pede aposta na IA",
+      "body": "Christine Lagarde, presidente do Banco Central Europeu, alertou num evento do Fórum Económico Mundial em Genebra que o modelo de crescimento europeu 'está a ser corroído'. Recordou que a Europa ficou em grande medida à margem da primeira revolução digital, com os benefícios comerciais da difusão das tecnologias de informação e comunicação aplicados de forma desproporcional por outros países, e avisou: 'Não podemos dar-nos ao luxo de repetir essa experiência com a IA, a segunda revolução digital'. Para Lagarde, o desafio é transformar a resiliência interna europeia numa fonte de crescimento mais duradouro, o que exige reduzir a fragmentação do mercado interno da UE, facilitar o crescimento de empresas europeias e tornar o investimento mais eficiente para impulsionar inovação e produção.\n\nÉ a presidente do BCE, não um comentador qualquer, a admitir publicamente que a Europa já perdeu a primeira revolução digital e a avisar que pode repetir o erro com a IA; dá peso institucional máximo à urgência de Portugal e da UE investirem a sério em IA em vez de apenas regular.",
+      "source_urls": [
+        "https://observador.pt/2026/08/19/bce-alerta-que-modelo-de-crescimento-europeu-esta-corroido-e-pede-aposta-na-ia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_10249fef4433c7042a_d26f0e71_ChatGPT-Image-22_08_2026-00_24_23.png",
+      "image_url": "/assets/final/post_882e77f78481aaadd5_site_1600x900.jpg",
+      "published_at": "2026-08-22T17:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/bce-alerta-que-modelo-de-crescimento-europeu-esta-corroido-e-pede-aposta-na-ia-4d090c6d46045a36d9"
     },
     {
       "id": "post_401dab9f531e0fb65a",
