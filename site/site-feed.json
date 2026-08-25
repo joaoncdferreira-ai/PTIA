@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-21T23:34:54+00:00",
+  "updated_at": "2026-08-25T14:50:30+00:00",
   "posts": [
     {
       "id": "post_0679227f65bb88a5b4",
@@ -34,6 +34,59 @@
         "Previsões Futuras"
       ],
       "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+    },
+    {
+      "id": "post_aafa95f42161655660",
+      "title": "Startup de contabilidade com IA Rillet torna-se unicórnio em 48 horas, sem sequer estar à procura de capital",
+      "body": "A Rillet, startup que usa IA para ajudar equipas financeiras a gerir a contabilidade de empresas, angariou uma ronda Série C de 100 milhões de dólares a uma avaliação de mil milhões, liderada pela Iconiq; fechada em menos de 48 horas. A empresa nem sequer estava à procura de capital: após uma reunião de conselho, seguiram-se mensagens de texto e chamadas, e dois dias depois a Rillet era unicórnio. O que despoletou o interesse repentino dos investidores foram métricas de crescimento fortes: a receita anualizada duplicou só no último trimestre, a empresa somou novos clientes (muitos já cotados em bolsa) e fechou uma parceria com a EY para levar ferramentas de IA à auditoria. A Rillet, que saiu do modo 'stealth' em 2024, conta hoje mais de 600 empresas clientes e mira diretamente o território da Oracle e da SAP.\n\nÉ um exemplo muito concreto de como a IA aplicada a um setor 'aborrecido' como a contabilidade pode crescer tão depressa que os próprios investidores correm atrás do dinheiro em vez do contrário; e mostra a IA a desafiar diretamente gigantes estabelecidos como Oracle e SAP.",
+      "source_urls": [
+        "https://techcrunch.com/2026/08/21/how-ai-accounting-startup-rillet-raised-100m-and-became-a-unicorn-in-48-hours/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_655d5a5d53394efc24_ce7338f9_ChatGPT-Image-23_08_2026-22_25_17.png",
+      "image_url": "/assets/final/post_24b5718227b9589d2a_site_1600x900.jpg",
+      "published_at": "2026-08-24T17:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/startup-de-contabilidade-com-ia-rillet-torna-se-unicornio-em-48-horas-sem-sequer-estar-a-procura-de-capital-aafa95f42161655660"
+    },
+    {
+      "id": "post_1206aa528480679ae8",
+      "title": "Singapura prepara salvaguardas estatais para mitigar riscos de agentes autónomos de IA",
+      "body": "Durante o discurso do National Day Rally, o Primeiro-Ministro de Singapura, Lawrence Wong, anunciou que o governo vai introduzir salvaguardas adicionais para conter comportamentos imprevisíveis de sistemas autónomos de inteligência artificial. O governante sustentou que a velocidade da evolução tecnológica exige supervisão pública ativa para evitar incidentes fora do controlo humano.\n\nA tomada de posição de Singapura reflete uma mudança de foco na governação tecnológica global: o debate regulatório está a transitar da moderação de conteúdos gerados por modelos de linguagem para a contenção operacional de agentes de software com autonomia de ação.\n\nQuando os sistemas passam a executar tarefas encadeadas e a interagir diretamente com infraestruturas críticas sem validação humana a cada passo, o risco de falha técnica deixa de ser apenas reputacional e passa a ser sistémico. Ao intervir neste estágio, o executivo de Singapura procura definir balizas de contenção antes que a integração destes agentes no setor financeiro e nos serviços públicos crie dependências difíceis de auditar.\n\nPara centros tecnológicos e economias abertas, este movimento sinaliza que a viabilidade comercial dos agentes autónomos dependerá da capacidade técnica de provar previsibilidade e controlo de execução em ambientes de produção.",
+      "source_urls": [
+        "https://www.channelnewsasia.com/singapore/ndr-2026-pm-lawrence-wong-ai-risks-safeguards-social-media-4563211"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_be0a0ad3c8c2890c1c_ef9caabd_ChatGPT-Image-23_08_2026-22_42_10.png",
+      "image_url": "/assets/final/post_731ace5f9d0e6733e5_site_1600x900.jpg",
+      "published_at": "2026-08-24T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/singapura-prepara-salvaguardas-estatais-para-mitigar-riscos-de-agentes-autonomos-de-ia-1206aa528480679ae8"
+    },
+    {
+      "id": "post_f3f3aab7af8ef36b20",
+      "title": "OpenAI lança ChatGPT para adolescentes (13-17 anos) com bloqueios de segurança reforçados",
+      "body": "A OpenAI lançou a 18 de agosto o 'ChatGPT for Teens', uma versão para utilizadores entre os 13 e os 17 anos com restrições de conteúdo mais fortes: bloqueia conversas sobre suicídio, autolesão, violência, distúrbios alimentares e conteúdo sexual ou romântico, e o próprio chatbot é impedido de incentivar dependência emocional, fazer roleplay romântico/sexualizado ou alegar ter sentimentos ou consciência. O modo ativa-se automaticamente quando o utilizador diz ter entre 13 e 17 anos ou quando a OpenAI estima que é menor de 18. Inclui apoio ao estudo pensado para ajudar a aprender em vez de gerar trabalhos escolares prontos, lembretes de pausa ao fim de 90 minutos de uso, e controlos parentais que permitem ligar contas, definir 'Horas de Silêncio' e receber alertas de segurança em situações de alto risco.\n\nÉ a maior tentativa até agora de uma grande empresa de IA endereçar de forma estruturada o uso por menores; com regras concretas, não apenas promessas;, num tema que já gerou processos judiciais e escrutínio regulatório sério sobre chatbots e adolescentes.",
+      "source_urls": [
+        "https://www.euronews.com/next/2026/08/18/openai-launches-chatgpt-for-teens-with-new-safety-guardrails"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4cec16709a3c163d36_647d9ba3_ChatGPT-Image-22_08_2026-23_41_51.png",
+      "image_url": "/assets/final/post_8727b5d7e30d3a8706_site_1600x900.jpg",
+      "published_at": "2026-08-23T13:00:00+01:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-lanca-chatgpt-para-adolescentes-13-17-anos-com-bloqueios-de-seguranca-reforcados-f3f3aab7af8ef36b20"
     },
     {
       "id": "post_4d090c6d46045a36d9",
