@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-25T14:50:30+00:00",
+  "updated_at": "2026-08-25T14:50:43+00:00",
   "posts": [
     {
       "id": "post_0679227f65bb88a5b4",
@@ -34,6 +34,23 @@
         "Previsões Futuras"
       ],
       "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+    },
+    {
+      "id": "post_7dda9162b5b5634224",
+      "title": "Plot lança ferramenta para avaliar como as marcas são vistas pela IA",
+      "body": "A empresa portuguesa Plot lançou a Top of mAInd, uma ferramenta que mede e compara a forma como as marcas são citadas e recomendadas pelos principais modelos de linguagem. Num teste ao setor dos seguros automóveis em Portugal, analisou 40 prompts, 10 marcas e cinco plataformas; a marca líder apareceu em 68% das respostas, enquanto a maioria não passou os 35%.\n\nA descoberta de marcas está a passar dos motores de busca para respostas de IA. Medir visibilidade e força das recomendações em LLMs cria uma nova camada de estratégia digital para empresas portuguesas.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/24/plot-lanca-ferramenta-que-avalia-como-as-marcas-sao-vistas-pela-ia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0be1fc610f3cb5898e_bde923b1_ChatGPT-Image-24_08_2026-22_59_32.png",
+      "image_url": "/assets/final/post_1a27af7011bf5e6cf7_site_1600x900.jpg",
+      "published_at": "2026-08-25T16:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/plot-lanca-ferramenta-para-avaliar-como-as-marcas-sao-vistas-pela-ia-7dda9162b5b5634224"
     },
     {
       "id": "post_aafa95f42161655660",
