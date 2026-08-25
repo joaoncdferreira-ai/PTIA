@@ -1,6 +1,6 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-25T14:50:43+00:00",
+  "updated_at": "2026-08-25T14:50:56+00:00",
   "posts": [
     {
       "id": "post_0679227f65bb88a5b4",
@@ -34,6 +34,22 @@
         "Previsões Futuras"
       ],
       "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+    },
+    {
+      "id": "post_3224f7eaed626c2cf6",
+      "title": "Soberania digital tem várias camadas - e o talento é uma delas",
+      "body": "Rui Gonçalves, responsável de tecnologia da KPMG Portugal, defende que a soberania digital inclui chips, capacidade de computação, modelos, dados, aplicações e talento. Portugal dificilmente será independente no hardware de fronteira, mas pode ganhar autonomia através de aplicações, hubs de operações e retenção de valor e competências.\n\nColoca a soberania de IA num terreno concreto para Portugal: reter talento, criar capacidade de aplicação e capturar valor, mesmo onde a Europa depende de chips e computação externos.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/23/soberania-digital-tem-varias-camadas-e-talento-e-uma-delas/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_974a5d5198dd7b84a1_b1744e7e_ChatGPT-Image-24_08_2026-23_04_11.png",
+      "image_url": "/assets/final/post_14e10033f34a25b208_site_1600x900.jpg",
+      "published_at": "2026-08-25T19:00:00+01:00",
+      "section": [
+        "Portugal",
+        "Builders"
+      ],
+      "article_url": "artigos/soberania-digital-tem-varias-camadas-e-o-talento-e-uma-delas-3224f7eaed626c2cf6"
     },
     {
       "id": "post_7dda9162b5b5634224",
