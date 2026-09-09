@@ -1,39 +1,540 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-08-25T14:50:56+00:00",
+  "updated_at": "2026-09-09T23:58:49+00:00",
   "posts": [
     {
-      "id": "post_0679227f65bb88a5b4",
-      "title": "Programa europeu de IA abre candidaturas no Porto com acesso grátis ao supercomputador MareNostrum 5",
-      "body": "O programa de incubação da BSC AI Factory, consórcio europeu liderado pelo Barcelona Supercomputing Center, implementado em Portugal pela FCT/AI² e pelo Centro Nacional de Computação Avançada, abriu candidaturas até 15 de setembro para startups e PME portuguesas com projetos de IA já em curso. Dá acesso gratuito a horas de computação no supercomputador MareNostrum 5, acompanhamento técnico especializado, mentoria, formação e serviços de dados. Elegibilidade: empresas com sede fiscal em Portugal, menos de 20 colaboradores, até 10 anos de atividade. O programa decorre de 5 de outubro de 2026 a 30 de março de 2027 no UPTEC Asprela II, no Porto, com presença obrigatória no coworking três vezes por semana. Setores prioritários: saúde, biotecnologia, agricultura, energia, jurídico/financeiro, media e setor público.\n\nÉ acesso gratuito e concreto a computação de topo (MareNostrum 5) que normalmente custaria muito caro a uma startup portuguesa; reduz uma das maiores barreiras reais para PME de IA em Portugal, com prazo de candidatura definido e critérios claros.",
+      "id": "post_30603b45b403cb555f",
+      "title": "Demissão na Anthropic expõe tensão interna e alerta para riscos de superinteligência",
+      "body": "O investigador de pré-treino Jacob Coxon demitiu-se da Anthropic acusando os principais laboratórios do setor de avançarem de forma irresponsável no desenvolvimento de superinteligência autoaperfeiçoável. Na manhã de 9 de setembro, o líder de alinhamento da empresa, Evan Hubinger, validou publicamente estas preocupações e calculou em mais de 10% a probabilidade de catástrofe ou extinção humana provocada por inteligência artificial na próxima década, caso não exista um plano eficaz de mitigação.\n\nQuando a validação do risco não vem de ativistas externos, mas diretamente da liderança técnica responsável por garantir a segurança dos modelos, o debate sobre alinhamento deixa de ser um exercício teórico e passa a ser uma questão direta de governança corporativa.\n\nPara as empresas que lideram a corrida à IA de fronteira, esta admissão pública altera as regras do jogo antes de eventuais rondas de financiamento ou processos de cotação em bolsa. Os investidores institucionais e os reguladores passam a ter um número concreto, assumido por quadros seniores, para exigir auditorias técnicas independentes e compromissos vinculativos de segurança.\n\nO resultado prático é uma aceleração do escrutínio sobre o ritmo de lançamento de novos modelos. Laboratórios que até aqui geriam os compromissos éticos à porta fechada terão de demonstrar métricas auditáveis de contenção se quiserem manter a confiança do mercado de capitais.",
       "source_urls": [
-        "https://executivedigest.sapo.pt/programa-europeu-abre-candidaturas-no-porto-para-apoiar-startups-e-pme-com-projetos-de-inteligencia-artificial/"
+        "https://apnews.com/article/anthropic-ai-safety-jacob-coxon-2ed549e07f2f941600a135070487d83d"
       ],
-      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_efe9127405b6d0e36b_ab571ef5_ChatGPT-Image-19_08_2026-23_21_56.png",
-      "image_url": "/assets/final/post_84b134dc8f5cf446d2_site_1600x900.jpg",
-      "published_at": "https://ptia.pt/artigos/programa-europeu-de-ia-abre-candidaturas-no-porto-com-acesso-gratis-ao-supercomputador-marenostrum-5-0679227f65bb88a5b4",
+      "image_path": "data\\final_assets\\post_919e5bb1107a6a015f_2449af77_Imagem-Codex-10_09_2026-00_45_42.png",
+      "image_url": "/assets/final/post_5fe172893ee200f1e4_site_1600x900.jpg",
+      "published_at": "2026-09-10T09:00:00+00:00",
       "section": [
-        "Portugal",
-        "Histórias reais"
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
       ],
-      "article_url": "artigos/programa-europeu-de-ia-abre-candidaturas-no-porto-com-acesso-gratis-ao-supercomputador-marenostrum-5-0679227f65bb88a5b4"
+      "article_url": "artigos/demissao-na-anthropic-expoe-tensao-interna-e-alerta-para-riscos-de-superinteligencia-30603b45b403cb555f"
     },
     {
-      "id": "post_91a879800a2650e56d",
-      "title": "Libax integra IA nos sistemas tecnológicos dos mediadores de seguros",
-      "body": "A Libax, empresa portuguesa de software fundada em 2010 para mediadores de seguros, integrou o ChatGPT e o Claude via Model Context Protocol (MCP) no seu sistema de gestão. Em vez de navegar manualmente pela aplicação, os mediadores passam a poder fazer perguntas em linguagem natural sobre clientes; por exemplo, identificar clientes que fazem anos numa semana específica, verificar consentimentos RGPD, identificar valores em atraso ou gerar comunicações personalizadas. A integração também permite cruzar dados da Libax com documentos internos, procedimentos, Excel, email e calendário. O CEO Hugo Gonçalves confirma cerca de 600 sistemas em utilização e 7.500 utilizadores diários; a empresa faturou mais de 450 mil euros em 2025, em modelo SaaS puro (sem aquisição de servidor, pago por plano/funcionalidades). Atualizações semanais estão previstas para expandir as funcionalidades da versão inicial, que acede sobretudo a informação de perfil de cliente.\n\nÉ um caso real e mensurável de IA aplicada (via MCP, o mesmo protocolo por trás das integrações mais faladas do setor) num setor tradicional português, seguros, com números concretos de escala (600 sistemas, 7.500 utilizadores diários) em vez da promessa habitual sem clientes reais.",
+      "id": "post_4921322a6dc8dda729",
+      "title": "OpenAI apresenta prova em Lean para o problema de Navier-Stokes",
+      "body": "A OpenAI publicou uma proposta de solução para o problema de existência e regularidade das equações de Navier-Stokes, um dos Millennium Prize Problems do Clay Mathematics Institute. O trabalho foi gerado por um sistema interno de agentes de IA e formalizado inteiramente em Lean, uma linguagem de verificação formal. A tecnológica declarou de imediato que não tenciona reclamar o prémio de um milhão de dólares associado e remeteu a validação final para o escrutínio da comunidade matemática.\n\nA decisão de codificar a totalidade do argumento em Lean muda o patamar da discussão científica em torno da IA generativa. Até agora, a aplicação destes modelos a investigação de ponta esbarrava na fragilidade das alucinações: um texto matemático plausível pode esconder falhas lógicas graves e difíceis de detetar. Ao recorrer a um assistente de prova formal, a OpenAI substitui a persuasão textual pela verificação algorítmica de cada passo dedutivo.\n\nRenunciar ao prémio monetário é também um movimento estratégico pragmático. Ao retirar o incentivo financeiro do centro da conversa, o laboratório reduz o atrito com o meio académico tradicional e coloca a ênfase no método de trabalho, forçando os pares a avaliarem o código em vez de descartarem o anúncio como mero exercício de relações públicas.\n\nAinda que a comunidade matemática encontre lacunas na tradução das premissas ou na modelação das equações para o ambiente formal, o precedente fica estabelecido para a investigação científica e de engenharia crítica. A combinação entre geração autónoma de hipóteses e verificação computacional rigorosa aponta para uma redução substancial no tempo necessário para auditar teses complexas, transferindo o esforço humano da conferência manual de contas para o desenho e arbitragem de problemas estruturais.",
       "source_urls": [
-        "https://eco.sapo.pt/2026/08/19/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores/"
+        "https://openai.com/index/navier-stokes-solution/"
       ],
-      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6756f631fba695641c_dc311715_ChatGPT-Image-20_08_2026-00_05_39.png",
-      "image_url": "/assets/final/post_e2865d0cf5c0d77388_site_1600x900.jpg",
-      "published_at": "https://ptia.pt/artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d",
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ac3b1b4ed0905d1de0_3735b861_ChatGPT-Image-8_09_2026-21_02_25.png",
+      "image_url": "/assets/final/post_e1b41b3fa947faa50d_site_1600x900.jpg",
+      "published_at": "2026-09-09T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/openai-apresenta-prova-em-lean-para-o-problema-de-navier-stokes-4921322a6dc8dda729"
+    },
+    {
+      "id": "post_b45a82a8e7c7f7779e",
+      "title": "Amália recebe 1,8 milhões de euros do PRR para avançar na multimodalidade",
+      "body": "O modelo de inteligência artificial em português Amália vai receber 1,8 milhões de euros através do Plano de Recuperação e Resiliência (PRR). A nova fase do projeto alarga o âmbito do sistema ao processamento de voz e imagem, além de texto, com vista à integração de ferramentas operacionais na administração pública.\n\nA expansão técnica assenta no acesso e avaliação de acervos da Biblioteca Nacional, da Cinemateca Portuguesa, de arquivos e museus nacionais, prevendo também canais de articulação com os órgãos de comunicação social.\n\nO valor deste investimento não reside em tentar rivalizar com modelos fundacionais globais em capacidade bruta de computação. A utilidade do Amália mede-se pela custódia e contextualização de património documental em português que os gigantes tecnológicos não indexam nem licenciam com o mesmo nível de profundidade.\n\nAo ligar o treino do modelo a acervos institucionais e arquivos de imprensa, o projeto enfrenta o teste mais complexo da IA aplicada: clarificar direitos de autor, governação de dados públicos e limites de reprodução antes de os sistemas entrarem em produção nos balcões do Estado.\n\nSe o processo conseguir estabelecer um padrão transparente de licenciamento e tratamento de dados institucionais, o Amália deixa de ser apenas uma experiência tecnológica financiada por fundos comunitários e passa a funcionar como infraestrutura de referência para qualquer entidade que precise de trabalhar documentação administrativa em português.",
+      "source_urls": [
+        "https://recuperarportugal.gov.pt/2026/09/08/amalia-reforca-capacidades-de-inteligencia-artificial-com-apoio-do-prr/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6d441e07ea871296c6_49b3978e_exec-8c58e52f-980f-477b-a334-b8dedc5acdd2.png",
+      "image_url": "/assets/final/post_18b208bb220644f3f9_site_1600x900.jpg",
+      "published_at": "2026-09-09T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/amalia-recebe-1-8-milhoes-de-euros-do-prr-para-avancar-na-multimodalidade-b45a82a8e7c7f7779e"
+    },
+    {
+      "id": "post_5b609e5c7ff8eb28a1",
+      "title": "Uso de IA no estudo sobe para 48% enquanto resultados do PISA recuam",
+      "body": "Quase metade dos alunos portugueses (48%) utiliza chatbots para apoiar os estudos pelo menos uma vez por semana, um valor acima da média da OCDE. O dado surge a par dos resultados do PISA 2025, que registaram uma nova quebra de desempenho em Matemática e Leitura em Portugal, recuando para níveis inferiores aos do início dos anos 2000. O contraste levou Álvaro Santos Pereira, governador do Banco de Portugal, a alertar para os efeitos da inteligência artificial nas salas de aula.\n\nA correlação direta entre o uso de software e a perda de competências básicas exige cautela estatística, mas expõe uma fratura operacional no sistema de ensino. Ter metade dos estudantes a recorrer a modelos de linguagem sem qualquer enquadramento curricular significa que a tecnologia entrou pelo atalho da resolução de tarefas, não pela consolidação de raciocínio.\n\nQuando um aluno recorre a um chatbot para obter respostas imediatas sem passar pelo atrito cognitivo do cálculo ou da interpretação de texto, a ferramenta substitui a aprendizagem em vez de a acelerar. O problema não reside no acesso à tecnologia, reside na incapacidade do modelo pedagógico em avaliar o processo em detrimento do produto final entregue.\n\nSe o ensino continuar a medir o sucesso através de trabalhos suscetíveis de automatização passiva, o fosso entre a facilidade aparente e a capacidade analítica real vai continuar a alargar-se. O desafio imediato das políticas educativas passa por redesenhar os critérios de avaliação: penalizar a delegação cega e incorporar a verificação crítica da ferramenta antes que o défice de competências básicas comprometa a futura base produtiva do país.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/08/santos-pereira-alerta-para-impacto-da-ia-no-ensino-apos-alunos-voltarem-a-piorar-no-pisa/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5907a14e7ee45bc999_41e5f6bc_ChatGPT-Image-8_09_2026-21_03_43.png",
+      "image_url": "/assets/final/post_85d4f71be6561a771b_site_1600x900.jpg",
+      "published_at": "2026-09-09T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/uso-de-ia-no-estudo-sobe-para-48-enquanto-resultados-do-pisa-recuam-5b609e5c7ff8eb28a1"
+    },
+    {
+      "id": "post_25b589283a376f0302",
+      "title": "Disputa pelo acordo de mil milhões da Anthropic expõe a fragilidade dos contratos editoriais",
+      "body": "Vários autores estão a contestar as tentativas de editoras e agentes literários de ficarem com parte das indemnizações do acordo de 1,5 mil milhões de dólares com a Anthropic, desenhado para compensar a utilização de livros no treino de modelos sem autorização prévia.\n\nO litígio revela que o obstáculo principal à remuneração de propriedade intelectual na inteligência artificial não se esgota na condenação ou no acordo financeiro das empresas tecnológicas. O impasse passa agora para a cadeia de valor tradicional dos media, onde contratos redigidos antes do aparecimento dos grandes modelos de linguagem deixam em aberto quem detém, afinal, os direitos sobre dados de treino.\n\nAs editoras sustentam que a gestão de direitos secundários lhes confere legitimidade para reter uma percentagem da verba; os criadores respondem que a violação de direitos de autor incidiu diretamente sobre o texto e a autoria, sem que a exploração em modelos generativos estivesse alguma vez prevista nas cedências contratuais.\n\nEsta colisão expõe uma realidade crua para qualquer setor criativo: enquanto os tribunais começam a quantificar o valor do treino de modelos, as receitas arriscam-se a ficar presas em disputas de intermediação interna em vez de chegarem a quem produziu o trabalho original.\n\nA consequência imediata é a necessidade urgente de revisão contratual para criadores e produtores de conteúdos. O licenciamento para treino de inteligência artificial tem de ser explicitamente catalogado como uma categoria autónoma de direitos, sob pena de qualquer futuro acordo coletivo alimentar litígios internos em vez de criar um mercado transparente e sustentável.",
+      "source_urls": [
+        "https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c330311b5a14dd6821_9b17a9c2_ChatGPT-Image-7_09_2026-22_34_46.png",
+      "image_url": "/assets/final/post_75fd6a1d869988e21c_site_1600x900.jpg",
+      "published_at": "2026-09-08T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/disputa-pelo-acordo-de-mil-milhoes-da-anthropic-expoe-a-fragilidade-dos-contratos-editoriais-25b589283a376f0302"
+    },
+    {
+      "id": "post_323a25d1334dc65c8b",
+      "title": "OpenAI admite falta de soluções para alinhar modelos que operam computadores",
+      "body": "Num ensaio intitulado \"An Alien Mind\", Jakub Pachocki, cientista-chefe da OpenAI, descreve a chegada rápida de sistemas capazes de usar computadores de forma autónoma e conduzir investigação científica. No mesmo texto, o responsável técnico reconhece que nenhum laboratório resolveu ainda os problemas fundamentais de alinhamento e monitorização para modelos deste nível.\n\nA admissão ganha peso pelo emissor e pelo momento. Não parte de reguladores externos nem de vozes periféricas da indústria, mas de quem lidera o desenvolvimento técnico na empresa que dita o ritmo da corrida comercial.\n\nDurante os últimos anos, a indústria tratou a segurança como um processo a jusante, aplicável através de filtros e treino por reforço depois de o modelo base estar concluído. Quando a tecnologia passa de gerar texto para executar tarefas encadeadas num sistema operativo, essa abordagem perde eficácia: monitorizar ações complexas em tempo real exige uma visibilidade técnica que hoje não existe.\n\nA contradição está nos incentivos. A OpenAI assume publicamente que a capacidade de controlo não acompanha a capacidade técnica, mas continua a acelerar os ciclos de lançamento para manter a liderança de mercado.\n\nPara quem desenvolve ou integra estes sistemas em software crítico, o aviso delimita o risco operacional imediato. A fronteira técnica já não falha por incapacidade de executar, falha pela impossibilidade de garantir comportamento previsível fora de ambientes controlados.",
+      "source_urls": [
+        "https://openai.com/index/an-alien-mind/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_40da718cb5960b8dfa_8069a623_ChatGPT-Image-7_09_2026-22_34_52.png",
+      "image_url": "/assets/final/post_0d07f311416e4626fd_site_1600x900.jpg",
+      "published_at": "2026-09-08T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/openai-admite-falta-de-solucoes-para-alinhar-modelos-que-operam-computadores-323a25d1334dc65c8b"
+    },
+    {
+      "id": "post_d2228913966de44dc0",
+      "title": "Google DeepMind apoia 16 projetos de IA dedicados ao ambiente na Ásia-Pacífico",
+      "body": "O primeiro acelerador AI for the Planet, promovido pela Google DeepMind, selecionou 16 organizações na região Ásia-Pacífico, entre startups, entidades sem fins lucrativos e equipas académicas. O grupo vai receber modelos fundacionais, capacidade computacional e mentoria técnica para desenvolver soluções aplicadas à biodiversidade, agricultura sustentável e resiliência climática.\n\nO desenho do programa aponta para uma mudança pragmática no ecossistema de inteligência artificial: o valor deixa de estar na demonstração de capacidade genérica e passa para a resolução de constrangimentos físicos no terreno. Ao colocar recursos de computação pesada ao serviço de equipas locais, a DeepMind valida a ideia de que modelos avançados só geram retorno mensurável quando ancorados em dados de campo e desafios operacionais específicos.\n\nPara quem desenvolve ou financia tecnologia climática, o incentivo fica claro. O gargalo já não é a falta de arquiteturas de IA, mas sim o acesso a capacidade de cálculo suficiente para processar variáveis ecológicas complexas sem inviabilizar os orçamentos de investigação.\n\nQuando grandes laboratórios começam a transferir infraestrutura para resolver métricas ambientais verificadas, estabelecem uma bitola exigente: a relevância da IA mede-se cada vez menos pelos parâmetros do modelo e mais pela viabilidade económica e ecológica das decisões que ele permite antecipar.",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/ai-planet-accelerator-apac"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a6b27e9d15ddae2691_a89bc886_ChatGPT-Image-7_09_2026-22_35_02.png",
+      "image_url": "/assets/final/post_17b1c3076c258309c9_site_1600x900.jpg",
+      "published_at": "2026-09-08T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-deepmind-apoia-16-projetos-de-ia-dedicados-ao-ambiente-na-asia-pacifico-d2228913966de44dc0"
+    },
+    {
+      "id": "post_1317ff8c7a37b6fe3b",
+      "title": "CMVM alerta para fraudes de investimento com recurso a deepfakes e inteligência artificial",
+      "body": "A Comissão do Mercado de Valores Mobiliários (CMVM) emitiu um alerta público para o aumento de fraudes financeiras no mercado de capitais que recorrem a ferramentas de inteligência artificial. O regulador identifica, em particular, a circulação de falsas entrevistas e vídeos deepfake com figuras públicas em redes sociais e canais de mensagens privadas para captar capitais de investidores de retalho.\n\nO alerta assinala uma mudança prática na economia da burla financeira: a IA generativa reduziu a quase zero o custo de produção de campanhas de engenharia social que antes exigiam equipas dedicadas ou sofisticação técnica excecional. O problema deixou de ser apenas a promessa de rentabilidade irrealista e passou a ser a falsificação verosímil da prova social e da autoridade institucional.\n\nPara o ecossistema financeiro e tecnológico nacional, este cenário desloca a exigência da literacia financeira clássica para a literacia de autenticação. Enquanto os canais de distribuição digitais continuarem a monetizar alcance sem validação rigorosa de identidade na origem dos anúncios, a responsabilidade de conferência recai inteiramente sobre os intermediários autorizados e sobre o utilizador final.\n\nA eficácia da regulação e da supervisão passa a depender menos de listas estáticas de entidades não autorizadas e mais da rapidez com que reguladores, plataformas de distribuição e bancos colaboram para interromper o ciclo de conversão destes esquemas antes de o capital sair do circuito formal.",
+      "source_urls": [
+        "https://www.rtp.pt/noticias/economia/cmvm-alerta-para-aumento-de-fraudes-em-supostos-investimentos-no-mercado-de-capitais_n1596789"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_3138a9c47189e7db14_461330f4_ChatGPT-Image-6_09_2026-23_07_46.png",
+      "image_url": "/assets/final/post_6d349243dff28fc475_site_1600x900.jpg",
+      "published_at": "2026-09-07T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/cmvm-alerta-para-fraudes-de-investimento-com-recurso-a-deepfakes-e-inteligencia-artificial-1317ff8c7a37b6fe3b"
+    },
+    {
+      "id": "post_23873db019ad9adff6",
+      "title": "Governo vai abrir negociações com os media para treinar o modelo Amália",
+      "body": "O Governo vai iniciar conversações com as empresas de comunicação social portuguesas para utilizar os seus arquivos de texto e conteúdos editoriais no treino da próxima fase do Amália, o modelo de linguagem pública nacional.\n\nA iniciativa tenta contornar pela via negocial o litígio que tem oposto a indústria dos media aos criadores de modelos de fundação à escala global. Ao chamar as redações para a mesa antes de raspar arquivos ou recorrer a dados sintéticos desfasados do contexto cultural local, o executivo procura garantir acervo linguístico de qualidade comprovada e vocabulário contemporâneo.\n\nA cedência de propriedade intelectual editorial a um projeto financiado por fundos públicos exige, contudo, uma fórmula económica mensurável. As empresas de media não podem ser tratadas como simples fornecedoras de matéria-prima gratuita a pretexto do interesse público, sob pena de esvaziarem o próprio modelo de negócio que mantém essas redações a produzir informação fiável.\n\nSe o processo resultar num quadro estável de licenciamento, cria-se um precedente regulatório e comercial que pode ser replicado por outras iniciativas tecnológicas em Portugal. O sucesso da negociação depende de transformar o arquivo jornalístico num ativo remunerado a longo prazo, e não numa cedência pontual sem retorno direto para quem produz os dados.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/04/governo-diz-que-vai-iniciar-dialogo-com-comunicacao-social-para-treinar-a-proxima-fase-do-modelo-de-ia-amalia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c5f207a4b1af42869f_f21fadd7_ChatGPT-Image-6_09_2026-23_07_38.png",
+      "image_url": "/assets/final/post_b5ff9252ed95863c72_site_1600x900.jpg",
+      "published_at": "2026-09-07T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/governo-vai-abrir-negociacoes-com-os-media-para-treinar-o-modelo-amalia-23873db019ad9adff6"
+    },
+    {
+      "id": "post_6266a88890fa152219",
+      "title": "WalkMe introduz criação conversacional e análise de ROI para acelerar a adoção digital",
+      "body": "A WalkMe atualizou a sua plataforma de Digital Adoption com novas capacidades de IA conversacional focadas em duas frentes: a criação no-code de fluxos de apoio ao utilizador (AI Authoring) e a medição do retorno do investimento em software empresarial (AI Insights).\n\nA movimentação ataca um dos principais estrangulamentos na gestão de software: o tempo que as equipas de operações gastam a desenhar tutoriais manuais e a opacidade sobre se as novas ferramentas estão realmente a ser utilizadas. Ao transformar a criação de guias num diálogo em linguagem natural, a plataforma reduz a barreira técnica para quem desenha processos internos.\n\nO ponto crítico desta transição está na camada analítica. À medida que as empresas acumulam licenças de ferramentas de IA e SaaS, a justificação orçamental deixa de depender de métricas de adesão superficial e passa a exigir dados claros sobre fluidez de trabalho e redução de erros.\n\nIntegrar assistência conversacional diretamente sobre os sistemas onde o trabalho acontece sinaliza uma mudança de paradigma: o valor deixa de estar na complexidade da interface original e passa para a camada de orquestração que guia o utilizador.\n\nPara as organizações, a eficácia desta abordagem mede-se na capacidade de auditar se as orientações geradas por IA mantêm a conformidade operacional sem criar novas dependências técnicas nas equipas de suporte.",
+      "source_urls": [
+        "https://futurumgroup.com/insights/walkme-turns-digital-adoption-into-a-conversational-ai-workflow-with-ai-authoring-and-ai-insights/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_653cdccab4b34a8c86_acda14c3_ChatGPT-Image-6_09_2026-23_13_32.png",
+      "image_url": "/assets/final/post_145be17a9720703f71_site_1600x900.jpg",
+      "published_at": "2026-09-07T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/walkme-introduz-criacao-conversacional-e-analise-de-roi-para-acelerar-a-adocao-digital-6266a88890fa152219"
+    },
+    {
+      "id": "post_42f9f0de544c994a52",
+      "title": "ChatGPT passa a ligar registos clínicos da Epic e fontes públicas de saúde",
+      "body": "A OpenAI anunciou a integração do ChatGPT com registos de saúde através da Epic e com fontes públicas de informação médica, com o objetivo de apoiar a pesquisa e a organização de dados clínicos.\n\nA ligação ao ecossistema da Epic, líder no software de registos clínicos eletrónicos nos Estados Unidos, retira o modelo do papel de enciclopédia teórica e coloca-o diretamente no fluxo de dados dos doentes. Ao cruzar históricos individuais com documentação médica externa, a ferramenta deixa de ser um mero motor de busca semântica para funcionar como uma camada de síntese sobre dados estruturados de saúde.\n\nEsta mudança altera a responsabilidade operacional dos prestadores de cuidados. O desafio técnico de ligar sistemas através de API é relativamente simples; a barreira crítica reside no consentimento informado, na governação do tráfego destes dados e na validação clínica das respostas geradas. Um modelo que resume diagnósticos antigos ou exames recentes não pode alucinar dosagens nem inferir antecedentes que o processo não documenta.\n\nPara as instituições de saúde e tecnológicas do setor, o anúncio estabelece um padrão de interoperabilidade: o valor não está em desenvolver modelos de linguagem proprietários de raiz, mas na capacidade de integrar agentes com os sistemas de registo clínico já existentes, mantendo fronteiras contratuais e técnicas de privacidade rigorosas.",
+      "source_urls": [
+        "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_898eb8ad559e1db0ac_c61c41be_ChatGPT-Image-5_09_2026-23_17_35.png",
+      "image_url": "/assets/final/post_e658da3c7d4106c7cd_site_1600x900.jpg",
+      "published_at": "2026-09-06T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/chatgpt-passa-a-ligar-registos-clinicos-da-epic-e-fontes-publicas-de-saude-42f9f0de544c994a52"
+    },
+    {
+      "id": "post_c1d283aa7f7607a86f",
+      "title": "Continente testa publicidade no ChatGPT em pesquisas para a casa",
+      "body": "O Continente iniciou a veiculação de anúncios no ChatGPT em Portugal, associando campanhas a pesquisas de utilizadores por soluções para o lar.\n\nA movimentação marca a transição da inteligência artificial de espaço de consulta para montra de conversão no retalho nacional. Quando um assistente conversacional sugere produtos no momento exato em que o utilizador resolve um problema doméstico, a fronteira entre recomendação neutra e espaço pago torna-se o novo terreno de disputa comercial.\n\nPara as marcas de grande consumo, o inventário tradicional de motores de busca assentava em palavras-chave previsíveis e páginas de resultados estáticas. No modelo conversacional, a publicidade compete diretamente com a resposta gerada, o que obriga a calibrar a pertinência da mensagem para não quebrar a utilidade percebida do diálogo.\n\nA experiência do Continente abre assim uma frente prática de validação para as equipas de marketing: medir se a intenção de compra captada numa conversa fluida converte com custos de aquisição competitivos face ao retalho digital habitual.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/04/continente-aposta-em-publicidade-no-chatgpt/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7643bf25fd7555a214_a3292508_ChatGPT-Image-5_09_2026-23_20_16.png",
+      "image_url": "/assets/final/post_cf71dc152474284bdf_site_1600x900.jpg",
+      "published_at": "2026-09-06T12:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais",
         "Previsões Futuras"
       ],
-      "article_url": "artigos/libax-integra-ia-nos-sistemas-tecnologicos-dos-mediadores-de-seguros-91a879800a2650e56d"
+      "article_url": "artigos/continente-testa-publicidade-no-chatgpt-em-pesquisas-para-a-casa-c1d283aa7f7607a86f"
+    },
+    {
+      "id": "post_50f82f9c5f700896ee",
+      "title": "Google abre programa Fairwind para levar capacidades Gemini à ciberdefesa de governos e parceiros",
+      "body": "A Google lançou o programa Fairwind, uma iniciativa concebida para disponibilizar acesso controlado a capacidades avançadas dos modelos Gemini a governos, clientes Google Cloud e parceiros de cibersegurança, com o objetivo de identificar e corrigir vulnerabilidades de software.\n\nA cedência de modelos de fronteira para operações de segurança levanta sempre um dilema de contenção: as mesmas capacidades que automatizam a análise estática de código ou geram patches podem ser instrumentalizadas para mapear superfícies de ataque e acelerar a exploração de falhas. Ao estruturar a distribuição em torno de um programa fechado, a Google assume que a utilidade real da IA na segurança depende de um enquadramento rigoroso de auditoria, controlo de acessos e reporte responsável, e não da simples disponibilização de interfaces de conversação sem restrições operacionais.\n\nPara as equipas de defesa que enfrentam assimetrias crónicas de tempo e recursos, a transição relevante não passa pela introdução de mais telemetria ou alertas nos painéis de controlo. O ganho prático mede-se na capacidade de delegar tarefas morosas de triagem e reescrita de código defensivo a agentes com contexto alargado, libertando os analistas para a tomada de decisão sobre remediação em infraestruturas críticas.\n\nA eficácia do Fairwind vai ditar como a indústria equilibra o acesso privilegiado a investigação ofensiva e a blindagem de sistemas públicos. O teste determinante não será a sofisticação técnica das correções sugeridas pelos modelos, mas a garantia de que a aceleração defensiva chega aos operadores de infraestruturas essenciais antes que os mesmos vetores automatizados sejam replicados por adversários externos.",
+      "source_urls": [
+        "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b459878b1805f7268a_eff71085_ChatGPT-Image-5_09_2026-23_20_22.png",
+      "image_url": "/assets/final/post_2fe0b7a51659b7399e_site_1600x900.jpg",
+      "published_at": "2026-09-06T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/google-abre-programa-fairwind-para-levar-capacidades-gemini-a-ciberdefesa-de-governos-e-parceiros-50f82f9c5f700896ee"
+    },
+    {
+      "id": "post_b05e52f6fbbc25a4be",
+      "title": "Nova Iorque decreta moratória de um ano na IA generativa para alunos até ao 8.º ano",
+      "body": "As escolas públicas de Nova Iorque vão aplicar uma moratória de um ano ao uso de IA generativa direcionado aos alunos do 2K ao 8.º ano, mantendo pilotos limitados e literacia crítica no secundário.\n\nA maior rede escolar dos Estados Unidos separa proteção dos mais novos de experimentação supervisionada nos mais velhos, uma distinção útil para escolas e reguladores portugueses.",
+      "source_urls": [
+        "https://www.nyc.gov/mayors-office/news/2026/09/mayor-mamdani-and-chancellor-samuels-put-students-first-with-nat"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f10658633059f09018_985d5439_ChatGPT-Image-4_09_2026-23_45_36.png",
+      "image_url": "/assets/final/post_c72414be909951b5b6_site_1600x900.jpg",
+      "published_at": "2026-09-05T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Regulação"
+      ],
+      "article_url": "artigos/nova-iorque-decreta-moratoria-de-um-ano-na-ia-generativa-para-alunos-ate-ao-8-o-ano-b05e52f6fbbc25a4be"
+    },
+    {
+      "id": "post_1fd78a709d545e359e",
+      "title": "Startup britânica do programa Apollo do Técnico capta 1,2 milhões de dólares",
+      "body": "A London Quantum Group, participante no programa Apollo da Junitec no Instituto Superior Técnico, fechou uma ronda pré-seed de 1,2 milhões de dólares para infraestrutura de dados clínicos que preserva a privacidade.\n\nA empresa é britânica, mas o caso mostra como programas universitários portugueses podem ligar equipas de deep tech a mentores, investidores e casos de uso internacionais em saúde.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/01/startup-britanica-incubada-no-tecnico-capta-mais-de-12-milhoes-de-dolares/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_878602611a52059fe4_323df1eb_ChatGPT-Image-4_09_2026-23_45_42.png",
+      "image_url": "/assets/final/post_da835dd8272991a478_site_1600x900.jpg",
+      "published_at": "2026-09-05T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/startup-britanica-do-programa-apollo-do-tecnico-capta-1-2-milhoes-de-dolares-1fd78a709d545e359e"
+    },
+    {
+      "id": "post_8362b9353427c05c1f",
+      "title": "OpenAI, Anthropic, Meta e Google concentram lançamentos no código e na autonomia de agentes",
+      "body": "Num intervalo de poucos dias, OpenAI, Anthropic, Meta e Google colocaram novas iterações dos seus modelos no mercado. Por detrás da sobreposição de anúncios, as quatro tecnológicas alinharam prioridades no mesmo eixo funcional: geração e revisão de código, raciocínio em tarefas com múltiplos passos e suporte a fluxos agentivos.\n\nA cadência simultânea revela que o benchmark da indústria já não premeia apenas a fluência de texto ou a amplitude de contexto. A disputa técnica transferiu-se para a fiabilidade com que um modelo executa instruções complexas sem supervisão humana contínua a cada etapa.\n\nQuando os principais fornecedores convergem nas mesmas valências ao mesmo tempo, o risco para as organizações não reside em escolher o modelo errado, mas em desenhar arquiteturas rígidas em torno de um único fornecedor. Com ciclos de atualização semanais, a capacidade técnica passa a ser uma comodidade intercambiável.\n\nPara quem constrói e integra software, o valor duradouro desloca-se para o controlo dos dados proprietários, a robustez das salvaguardas operacionais e a facilidade em trocar de modelo sem reescrever a lógica do produto.",
+      "source_urls": [
+        "https://www.cnet.com/tech/services-and-software/gpt-6-stole-the-show-but-anthropic-meta-and-google-also-had-new-ai-models-this-week/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b717180c2779a71f46_14372606_ChatGPT-Image-4_09_2026-23_45_54.png",
+      "image_url": "/assets/final/post_473c5e5793bb53e312_site_1600x900.jpg",
+      "published_at": "2026-09-05T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/openai-anthropic-meta-e-google-concentram-lancamentos-no-codigo-e-na-autonomia-de-agentes-8362b9353427c05c1f"
+    },
+    {
+      "id": "post_7481b36326ba7b9711",
+      "title": "Uber e Wayve lançam em Londres as primeiras viagens autónomas supervisionadas do Reino Unido",
+      "body": "A Uber e a Wayve passaram a disponibilizar em Londres viagens autónomas supervisionadas, com operador humano a bordo, em veículos elétricos Ford Mustang Mach-E equipados com o Wayve AI Driver.\n\nÉ uma transição da demonstração para o serviço ao público numa grande cidade europeia, mostrando que a adoção de IA física depende tanto de operação e licença como do modelo.",
+      "source_urls": [
+        "https://investor.uber.com/news-events/news/press-release-details/2026/Wayve-and-Uber-Launch-First-Ever-Autonomous-Rides-in-the-UK-2026-VoFQI1WbQi/default.aspx"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c1afa5bc11ca544b5e_12244669_ChatGPT-Image-3_09_2026-22_49_07.png",
+      "image_url": "/assets/final/post_76cad09cd2d42b308d_site_1600x900.jpg",
+      "published_at": "2026-09-04T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/uber-e-wayve-lancam-em-londres-as-primeiras-viagens-autonomas-supervisionadas-do-reino-unido-7481b36326ba7b9711"
+    },
+    {
+      "id": "post_2165a280535a4cc613",
+      "title": "Clientes pedem honorários mais baixos às consultoras devido aos ganhos de produtividade da IA",
+      "body": "Empresas estão a pressionar Big Four e consultoras tecnológicas a refletir nos honorários os ganhos de produtividade da IA, ao mesmo tempo que internalizam trabalho e usam menos integração externa.\n\nA adoção de IA deixa de ser apenas uma questão de eficiência interna e passa a alterar a forma como os compradores exigem valor, preço e competências aos seus fornecedores.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/01/empresas-pedem-honorarios-mais-baixos-aos-consultores-devido-a-ia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_349ea449fe4f658eb3_d1a31f41_ChatGPT-Image-3_09_2026-22_48_57.png",
+      "image_url": "/assets/final/post_e7eca2a17f6decb785_site_1600x900.jpg",
+      "published_at": "2026-09-04T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/clientes-pedem-honorarios-mais-baixos-as-consultoras-devido-aos-ganhos-de-produtividade-da-ia-2165a280535a4cc613"
+    },
+    {
+      "id": "post_a03fad1396e0b211b2",
+      "title": "Revolut lança assistente de IA na Europa e testa o modelo de agentes em operações bancárias",
+      "body": "A Revolut lançou na Europa o seu assistente de inteligência artificial, batizado de AIR. A ferramenta permite aos utilizadores consultar detalhes de despesas diárias, acompanhar carteiras de investimento, gerir subscrições ativas e executar ações diretas sobre a conta, como o bloqueio imediato de cartões perdidos.\n\nA integração de agentes com permissões de escrita e execução direta marca uma mudança prática no retalho financeiro. Até aqui, a aplicação de modelos de linguagem na banca europeia manteve-se quase sempre confinada a bots de apoio ao cliente ou a resumos passivos de extratos. Ao permitir que a IA execute ordens operacionais sobre meios de pagamento, a plataforma transforma a interface conversacional num canal transacional primário.\n\nPara o setor financeiro e fintech a operar em Portugal, a pressão deixa de ser a criação de assistentes informativos e passa a ser a governação de ações autónomas: garantir limites de segurança rigorosos, tempos de resposta sem atrito e rastreabilidade total das ordens dadas por texto ou voz.\n\nA transição para interfaces orientadas a agentes só ganha escala se a conveniência não criar vulnerabilidades operacionais. Quem conseguir provar segurança em comandos críticos vai definir a nova fasquia de retenção de clientes no digital.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/revolut-lanca-assistente-de-inteligencia-artificial-air-na-europa/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a5f2a8ccf24319c516_3aeb5b39_ChatGPT-Image-3_09_2026-22_53_48-1.png",
+      "image_url": "/assets/final/post_4703cc94d33faa4ea5_site_1600x900.jpg",
+      "published_at": "2026-09-04T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders"
+      ],
+      "article_url": "artigos/revolut-lanca-assistente-de-ia-na-europa-e-testa-o-modelo-de-agentes-em-operacoes-bancarias-a03fad1396e0b211b2"
+    },
+    {
+      "id": "post_978e13d9b31ba91d69",
+      "title": "Musk defende centros de dados e critica a regulamentação europeia no G20",
+      "body": "No G20 nos Estados Unidos, Elon Musk defendeu mais capacidade de centros de dados e criticou a abordagem regulatória europeia à IA, que considera mais lenta para a inovação.\n\nPara Portugal, o debate cruza a ambição de atrair capacidade computacional com energia, licenciamento e regras que permitam inovar sem perder exigência e confiança.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/01/musk-defende-centros-de-dados-e-critica-regulamentacao-europeia-em-reuniao-do-g20/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_214823776a86c77b01_2d0854e7_ChatGPT-Image-3_09_2026-00_51_23.png",
+      "image_url": "/assets/final/post_62c9921fcc05dfef03_site_1600x900.jpg",
+      "published_at": "2026-09-03T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação"
+      ],
+      "article_url": "artigos/musk-defende-centros-de-dados-e-critica-a-regulamentacao-europeia-no-g20-978e13d9b31ba91d69"
+    },
+    {
+      "id": "post_a5b3d0f5a39a7d0be6",
+      "title": "OpenAI, Anthropic e gigantes tecnológicas pedem defesa urgente contra ciberataques autónomos",
+      "body": "Uma coligação com mais de cem organizações, incluindo OpenAI, Anthropic, Google e Microsoft, publicou uma declaração conjunta onde alerta para uma janela de oportunidade de poucos meses antes de ciberataques automatizados por inteligência artificial ganharem sofisticação sem precedentes. O documento apela à priorização executiva na defesa de infraestruturas críticas e ao financiamento direto de equipas de cibersegurança.\n\nO alerta conjunto reflete um ponto de viragem operacional. Quando os criadores dos principais modelos de fundação admitem que a assimetria ofensiva pode superar as defesas tradicionais a curto prazo, a cibersegurança deixa de ser uma função técnica de suporte e passa a ser uma restrição central de arquitetura de software.\n\nPara as entidades gestoras de infraestruturas críticas e empresas que operam na União Europeia, esta pressão antecipa exigências operacionais mais rigorosas e responsabilização regulatória direta sobre a integridade das plataformas digitais.\n\nA transição para agentes de defesa autónomos exigirá mais do que reforço orçamental. Obriga a rever a dependência de processos manuais de resposta a incidentes, acelerando a automação defensiva antes que as ferramentas ofensivas tornem a deteção humana obsoleta.",
+      "source_urls": [
+        "https://openai.com/index/a-call-for-collective-action-on-cyber-defense/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_bf880c6f14db8acf76_afb6f099_ChatGPT-Image-3_09_2026-00_51_07.png",
+      "image_url": "/assets/final/post_fe9b0fbd820932220e_site_1600x900.jpg",
+      "published_at": "2026-09-03T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-anthropic-e-gigantes-tecnologicas-pedem-defesa-urgente-contra-ciberataques-autonomos-a5b3d0f5a39a7d0be6"
+    },
+    {
+      "id": "post_350b7ea1d11dec5b74",
+      "title": "MC Sonae investe 500 mil euros na formação de quatro mil trabalhadores em IA",
+      "body": "A MC Sonae vai investir 500 mil euros na capacitação de quatro mil colaboradores em inteligência artificial. O programa foca-se na integração prática de ferramentas em operações diárias como reuniões, síntese documental, automatização de pesquisas e validação de inventários no retalho.\n\nTrata-se de um dos maiores investimentos corporativos diretos em literacia e engenharia de IA aplicada anunciados no tecido empresarial em Portugal. O objetivo declarado pela empresa passa por libertar tempo operacional para tarefas que exigem conhecimento especializado e julgamento humano.\n\nO valor do anúncio reside no custo por posto de trabalho: 125 euros por colaborador. O montante afasta a ideia de que a adoção de IA exige investimentos milionários em software à medida, mostrando que o gargalo imediato nas grandes organizações está na literacia de quem já opera o negócio.\n\nAo colocar o foco em processos rotineiros e inventário, a MC assume a IA como competência de base e não como projeto isolado de inovação. A utilidade deste movimento mede-se agora pela rapidez com que estes quatro mil trabalhadores convertem horas poupadas em processos logísticos mais ágeis.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/mc-sonae-investe-500-mil-euros-para-capacitar-quatro-mil-trabalhadores-em-ia/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7c980dabc2ae2c106b_c5444faf_ChatGPT-Image-3_09_2026-00_51_16.png",
+      "image_url": "/assets/final/post_2a9f8ba5ad17e06146_site_1600x900.jpg",
+      "published_at": "2026-09-03T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/mc-sonae-investe-500-mil-euros-na-formacao-de-quatro-mil-trabalhadores-em-ia-350b7ea1d11dec5b74"
+    },
+    {
+      "id": "post_c70e43c84818068dc1",
+      "title": "Comissão Europeia destaca serviços públicos digitais portugueses, mas aponta atraso empresarial em IA e cloud",
+      "body": "O relatório Digital Decade 2026 da Comissão Europeia coloca Portugal numa posição de destaque nos serviços públicos digitais, mas identifica um atraso face à média da União Europeia na adoção empresarial de computação na cloud e inteligência artificial.\n\nO contraste expõe uma assimetria estrutural no ecossistema nacional. O Estado português construiu infraestrutura e digitalizou pontos de contacto com o cidadão, mas esse avanço administrativo não gerou contágio direto no tecido produtivo privado, onde a modernização técnica continua lenta.\n\nA maturidade nos serviços públicos prova que existe competência de engenharia e capacidade de entrega quando os projetos têm escala e mandato claro. Contudo, enquanto as empresas tratarem cloud e IA como despesa acessória e não como base operacional, o país continuará a ter uma administração pública moderna a interagir com uma economia de baixa intensidade tecnológica.\n\nO desafio imediato das lideranças empresariais não passa por desenhar projetos de montra, mas por transferir essa mesma exigência de modernização para os processos centrais do negócio.",
+      "source_urls": [
+        "https://digital-strategy.ec.europa.eu/en/factpages/portugals-2026-digital-decade-country-report"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b213ad5a42edd2100f_e6542219_ChatGPT-Image-1_09_2026-21_15_03.png",
+      "image_url": "/assets/final/post_4d742bc09f76a738f1_site_1600x900.jpg",
+      "published_at": "2026-09-02T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/comissao-europeia-destaca-servicos-publicos-digitais-portugueses-mas-aponta-atraso-empresarial-em-ia-e-cloud-c70e43c84818068dc1"
+    },
+    {
+      "id": "post_0233ee30825507cb0d",
+      "title": "Adoção de IA em Portugal avança pela base enquanto a gestão fica para trás",
+      "body": "Um estudo da Cegid, conduzido pela OpinionWay junto de 502 trabalhadores de escritório em Portugal, revela que 84% já utilizam ferramentas de inteligência artificial no dia a dia profissional. O dado central do inquérito, contudo, não é a adesão individual, mas o fosso operacional: apenas 6% dos inquiridos trabalham em organizações com integração total da tecnologia, enquanto 69% recorrem a soluções externas sem conhecimento da empresa.\n\nEste desfasamento expõe o fenómeno do shadow IT aplicado à IA generativa em escala alargada. Quando mais de dois terços da equipa utilizam contas pessoais e plataformas públicas para resolver tarefas de trabalho, a adoção tecnológica deixa de ser uma decisão estratégica de topo e passa a ser uma resposta improvisada de quem procura produtividade imediata.\n\nPara as lideranças, este cenário traz um risco concreto de fuga de dados e perda de controlo de processos, mas sinaliza sobretudo uma oportunidade de alinhamento. A resistência à mudança, habitualmente apontada como o principal travão à modernização dos negócios em Portugal, não existe na base; a fricção reside na lentidão com que as organizações formalizam ferramentas, definem acessos e estabelecem regras claras de utilização.\n\nO desafio imediato para as empresas portuguesas não é convencer as equipas a adotar inteligência artificial, mas transformar um hábito individual clandestino em infraestrutura corporativa segura e partilhada.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/26/84-dos-portugueses-ja-usam-inteligencia-artificial-no-trabalho/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4cd72bd69a85ca780a_f1075287_ChatGPT-Image-1_09_2026-21_17_53.png",
+      "image_url": "/assets/final/post_a928144d3da3906736_site_1600x900.jpg",
+      "published_at": "2026-09-02T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/adocao-de-ia-em-portugal-avanca-pela-base-enquanto-a-gestao-fica-para-tras-0233ee30825507cb0d"
+    },
+    {
+      "id": "post_b477414f582369a4a8",
+      "title": "Anthropic aperta contenção em testes após modelos acederem à Internet",
+      "body": "A Anthropic reviu os protocolos de contenção, monitorização e avaliação de modelos depois de incidentes em ambientes de teste geridos por terceiros, onde sistemas com capacidade de executar ferramentas obtiveram acesso à Internet real.\n\nO incidente expõe um ponto cego frequente nos testes de segurança: avaliar agentes autónomos num ambiente isolado já não depende apenas de um sandbox com regras de rede estáticas. Quando os modelos têm permissões para encadear ferramentas e interpretar respostas dinâmicas, qualquer falha de configuração transforma uma simulação num risco operacional imediato.\n\nEsta mudança de postura demonstra que a separação entre testes de segurança (red teaming) e segurança de infraestrutura deixou de existir. A observabilidade exigida para auditar agentes precisa de ser tão granular quanto a de um sistema crítico em produção, com telemetria contínua sobre chamadas de API, resolução de domínios e execução de código.\n\nPara quem constrói e integra agentes com acesso a ferramentas externas, o aviso é prático: a capacidade do modelo não pode ultrapassar os limites físicos da infraestrutura onde corre. Confinamento em ambientes de teste passa a ser uma disciplina de engenharia de redes e privilégios mínimos, não uma premissa teórica.",
+      "source_urls": [
+        "https://www.anthropic.com/news/improving-alignment-security-efforts"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_969c698435f84f3c3d_83be2687_ChatGPT-Image-1_09_2026-21_19_36.png",
+      "image_url": "/assets/final/post_0c0c4b4fbaa5642945_site_1600x900.jpg",
+      "published_at": "2026-09-02T10:30:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/anthropic-aperta-contencao-em-testes-apos-modelos-acederem-a-internet-b477414f582369a4a8"
+    },
+    {
+      "id": "post_5d0d74e65443b17c4d",
+      "title": "DigestAID negoceia entrada comercial na Arábia Saudita para IA clínica",
+      "body": "A DigestAID, spin-off da Universidade do Porto focada em inteligência artificial para gastroenterologia, prepara um acordo com investidores da Arábia Saudita para representação e comercialização no mercado local e expansão na região do Golfo.\n\nO movimento surge na sequência da validação regulatória obtida junto da FDA nos Estados Unidos, que abriu a porta à exploração de novos canais de distribuição internacional para a tecnologia desenvolvida em Portugal.\n\nA transição entre a validação clínica e a implementação em ambiente hospitalar costuma falhar nos canais de venda. Ao procurar parceiros de capital locais para assumir a representação, a empresa reduz o atrito comercial num mercado com forte investimento em modernização médica, mas de acesso complexo para operadores externos.\n\nPara a tecnologia médica desenvolvida na academia nacional, o desafio seguinte deixa de ser a precisão do algoritmo e passa a ser a capacidade de assegurar contratos de utilização contínua em redes clínicas internacionais.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/27/quatro-empresas-portuguesas-assinam-acordos-com-arabia-saudita-ia-do-porto-e-clinica-estetica-vao-entrar-em-riade/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f0d3cb6e5ad083bb7a_a0752e02_ChatGPT-Image-1_09_2026-11_36_02.png",
+      "image_url": "/assets/final/post_82130b8f3dde6ba9a5_site_1600x900.jpg",
+      "published_at": "2026-09-01T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/digestaid-negoceia-entrada-comercial-na-arabia-saudita-para-ia-clinica-5d0d74e65443b17c4d"
+    },
+    {
+      "id": "post_1f3d375a988b9781b8",
+      "title": "OpenAI instala escritório em São Paulo para acelerar negócio com empresas e setor público",
+      "body": "A OpenAI iniciou operações comerciais diretas em São Paulo. O objetivo é trabalhar de perto com empresas, programadores, investigadores e instituições públicas no mercado brasileiro, apoiando a integração dos seus modelos em fluxos de trabalho institucionais e produtos digitais.\n\nA movimentação marca uma transição estratégica clara: o Brasil deixa de ser apenas uma das maiores bases de utilizadores individuais da tecnologia e passa a acolher uma estrutura formal de implementação e suporte local.\n\nPara o mercado empresarial e para a administração pública, a presença física de fornecedores de modelos fundacionais altera a dinâmica de contratação. Ter equipas no mesmo fuso horário, a falar a mesma língua e integradas no ecossistema local reduz o atrito em projetos de grande escala, onde exigências de conformidade regulatória, suporte técnico dedicado e adaptação cultural costumam travar a adoção.\n\nHá também uma consequência direta para a evolução do processamento de linguagem natural em português. A proximidade a centros de investigação e a grandes volumes de dados empresariais locais tende a acelerar o ajuste fino dos modelos a contextos linguísticos e de negócio reais, reduzindo a dependência de dados genéricos traduzidos do inglês.\n\nPara as organizações que constroem soluções sobre estas APIs no espaço lusófono, o movimento reforça que o canal de distribuição e o suporte corporativo estão a consolidar-se regionalmente, aproximando o fornecedor do terreno onde os contratos de maior valor são decididos.",
+      "source_urls": [
+        "https://openai.com/index/expanding-our-presence-in-brazil/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_12d1a33a98fa33ec74_92c4ab4f_ChatGPT-Image-1_09_2026-11_37_55.png",
+      "image_url": "/assets/final/post_d057e25078e5fd5f4b_site_1600x900.jpg",
+      "published_at": "2026-09-01T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-instala-escritorio-em-sao-paulo-para-acelerar-negocio-com-empresas-e-setor-publico-1f3d375a988b9781b8"
+    },
+    {
+      "id": "post_1f41f7d90f699fd4fe",
+      "title": "84% dos trabalhadores portugueses já usam IA no trabalho",
+      "body": "Um estudo da Cegid, conduzido pela OpinionWay, indica que 84% dos trabalhadores portugueses já usam ferramentas de IA no trabalho, mais 19 pontos percentuais do que em 2025.\n\nA utilização individual está a avançar mais depressa do que a integração nas organizações: 69% usam ferramentas externas sem informar o empregador e apenas 6% dizem ter integração total.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/portugal-acelera-na-adocao-da-ia-84-dos-trabalhadores-ja-recorrem-a-tecnologia-no-emprego/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c26a8649624785ff71_a3650831_ChatGPT-Image-28_08_2026-01_10_54.png",
+      "image_url": "/assets/final/post_a3d97511bf1c520d3f_site_1600x900.jpg",
+      "published_at": "2026-08-29T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/84-dos-trabalhadores-portugueses-ja-usam-ia-no-trabalho-1f41f7d90f699fd4fe"
+    },
+    {
+      "id": "post_0b8daf045be6c87673",
+      "title": "Google DeepMind testa avaliação duplamente cega para modelos de IA",
+      "body": "A Google DeepMind anunciou um piloto em que avaliadores externos testam um modelo de fronteira dentro de um ambiente criptograficamente isolado, sem acesso prévio às perguntas.\n\nO método procura reduzir a contaminação de benchmarks e tornar as comparações entre modelos mais credíveis, uma condição importante para decisões sobre sistemas de fronteira.",
+      "source_urls": [
+        "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c3a9452e2f070f5d7d_1dd44da2_ChatGPT-Image-28_08_2026-01_08_07.png",
+      "image_url": "/assets/final/post_08be16f5aa39a64bf3_site_1600x900.jpg",
+      "published_at": "2026-08-29T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/google-deepmind-testa-avaliacao-duplamente-cega-para-modelos-de-ia-0b8daf045be6c87673"
+    },
+    {
+      "id": "post_2f5b6a26a2ddd2f279",
+      "title": "Robô humanoide chinês bate recorde de Usain Bolt nos 100 metros",
+      "body": "O robô humanoide Lightning, desenvolvido pela fabricante chinesa de smartphones Honor, correu 100 metros em 9,32 segundos num evento de teste em Pequim. A máquina atingiu uma velocidade máxima de 14,5 metros por segundo, abaixo do recorde humano de Usain Bolt de 9,58 segundos. A demonstração acontece enquanto a China aposta nos robôs humanoides para a indústria, logística e aplicações de consumo.\n\nA corrida é um sinal visível de que a IA está a sair do ecrã e a ganhar corpo, combinando perceção, controlo e hardware. O verdadeiro impacto para Portugal não está no recorde isolado, mas na velocidade com que a robótica pode chegar a fábricas, armazéns e serviços.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/08/22/robo-humanoide-chines-bate-recorde-de-usain-bolt-nos-100-metros/"
+      ],
+      "image_path": "data\\final_assets\\post_6b814eb4aea60bdfe3_253d78d2_ChatGPT-Image-27_08_2026-00_58_56.png",
+      "image_url": "/assets/final/post_4c2e95404bd194a58c_site_1600x900.jpg",
+      "published_at": "2026-08-27T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/robo-humanoide-chines-bate-recorde-de-usain-bolt-nos-100-metros-2f5b6a26a2ddd2f279"
+    },
+    {
+      "id": "post_32fcdca58fee9fed94",
+      "title": "Google entra na automação jurídica com o Gemini Enterprise for Legal",
+      "body": "A Google lançou o Gemini Enterprise for Legal, uma oferta integrada de agentes e capacidades de inteligência artificial desenhada para sociedades de advogados e departamentos jurídicos corporativos. O sistema liga-se diretamente às bases de dados e repositórios internos das organizações para automatizar tarefas de revisão documental e análise contratual complexa, entrando na disputa direta com soluções suportadas pela OpenAI e pela Anthropic.\n\nA movimentação da Google desloca o foco da inteligência artificial jurídica dos assistentes pontuais para a integração profunda com os dados proprietários dos clientes. No setor legal, a barreira de entrada nunca foi apenas a capacidade de resumir texto, mas a precisão sobre arquivos contratuais históricos, minutas e jurisprudência interna, mantendo garantias estritas de confidencialidade.\n\nAo embutir fluxos de agentes nas infraestruturas empresariais que muitas organizações já utilizam, a Google pressiona o mercado a rever a viabilidade das ferramentas isoladas. Para as estruturas jurídicas, o incentivo comercial deixa de ser a experimentação de modelos e passa a ser a integração direta com os fluxos de trabalho existentes.\n\nEsta transição tem um efeito direto na estrutura de custos e receitas do setor. À medida que a triagem, a comparação de cláusulas e a primeira versão de minutas passam a demorar minutos em vez de horas faturáveis, o modelo tradicional de cobrança horária perde sustentação técnica face a esquemas de valor fixo ou subscrição de serviços.",
+      "source_urls": [
+        "https://africa.businessinsider.com/news/google-is-taking-on-anthropic-and-openai-in-the-legal-ai-race/h5w2s3e"
+      ],
+      "image_path": "data\\final_assets\\post_c1ae0f29d4efd2169d_98dcaf10_ChatGPT-Image-27_08_2026-01_01_57.png",
+      "image_url": "/assets/final/post_a57b428bda6bcaa60e_site_1600x900.jpg",
+      "published_at": "2026-08-27T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-entra-na-automacao-juridica-com-o-gemini-enterprise-for-legal-32fcdca58fee9fed94"
     },
     {
       "id": "post_3224f7eaed626c2cf6",
@@ -44,7 +545,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_974a5d5198dd7b84a1_b1744e7e_ChatGPT-Image-24_08_2026-23_04_11.png",
       "image_url": "/assets/final/post_14e10033f34a25b208_site_1600x900.jpg",
-      "published_at": "2026-08-25T19:00:00+01:00",
+      "published_at": "2026-08-25T18:00:00+00:00",
       "section": [
         "Portugal",
         "Builders"
@@ -60,7 +561,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0be1fc610f3cb5898e_bde923b1_ChatGPT-Image-24_08_2026-22_59_32.png",
       "image_url": "/assets/final/post_1a27af7011bf5e6cf7_site_1600x900.jpg",
-      "published_at": "2026-08-25T16:00:00+01:00",
+      "published_at": "2026-08-25T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -77,7 +578,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_655d5a5d53394efc24_ce7338f9_ChatGPT-Image-23_08_2026-22_25_17.png",
       "image_url": "/assets/final/post_24b5718227b9589d2a_site_1600x900.jpg",
-      "published_at": "2026-08-24T17:00:00+01:00",
+      "published_at": "2026-08-24T16:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -94,7 +595,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_be0a0ad3c8c2890c1c_ef9caabd_ChatGPT-Image-23_08_2026-22_42_10.png",
       "image_url": "/assets/final/post_731ace5f9d0e6733e5_site_1600x900.jpg",
-      "published_at": "2026-08-24T13:00:00+01:00",
+      "published_at": "2026-08-24T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -113,7 +614,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4cec16709a3c163d36_647d9ba3_ChatGPT-Image-22_08_2026-23_41_51.png",
       "image_url": "/assets/final/post_8727b5d7e30d3a8706_site_1600x900.jpg",
-      "published_at": "2026-08-23T13:00:00+01:00",
+      "published_at": "2026-08-23T12:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -130,7 +631,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_10249fef4433c7042a_d26f0e71_ChatGPT-Image-22_08_2026-00_24_23.png",
       "image_url": "/assets/final/post_882e77f78481aaadd5_site_1600x900.jpg",
-      "published_at": "2026-08-22T17:00:00+01:00",
+      "published_at": "2026-08-22T16:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -147,7 +648,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4df1a8ff9b4e39d5eb_923e9f34_ChatGPT-Image-22_08_2026-00_23_08.png",
       "image_url": "/assets/final/post_951a5db29f650ab547_site_1600x900.jpg",
-      "published_at": "2026-08-22T13:00:00+01:00",
+      "published_at": "2026-08-22T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -164,7 +665,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6f0e64e8206df5c207_2e7d536c_ChatGPT-Image-19_08_2026-01_21_35.png",
       "image_url": "/assets/final/post_a80b8596736dfb5097_site_1600x900.jpg",
-      "published_at": "2026-08-19T17:00:00+01:00",
+      "published_at": "2026-08-19T16:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -181,7 +682,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_36b9345979a87866f1_e89a428f_ChatGPT-Image-19_08_2026-01_22_37.png",
       "image_url": "/assets/final/post_f1cd23c5c65aef2c09_site_1600x900.jpg",
-      "published_at": "2026-08-19T13:00:00+01:00",
+      "published_at": "2026-08-19T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -197,7 +698,7 @@
       ],
       "image_path": "data\\final_assets\\post_c988d50b4505982cb9_8c6b9c2d_ChatGPT-Image-18_08_2026-00_32_25.png",
       "image_url": "/assets/final/post_82851b525e8c8cca83_site_1600x900.jpg",
-      "published_at": "2026-08-18T17:00:00+01:00",
+      "published_at": "2026-08-18T16:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -213,7 +714,7 @@
       ],
       "image_path": "data\\final_assets\\post_8398ecfbdee8f76ed1_1fa71a53_ChatGPT-Image-18_08_2026-00_31_25.png",
       "image_url": "/assets/final/post_0828d04faaadcbdbc2_site_1600x900.jpg",
-      "published_at": "2026-08-18T13:00:00+01:00",
+      "published_at": "2026-08-18T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -229,7 +730,7 @@
       ],
       "image_path": "data\\final_assets\\post_bdd958881e45dc1793_ab33db4c_ChatGPT-Image-16_08_2026-23_05_07.png",
       "image_url": "/assets/final/post_b0df9bfb02f9880d56_site_1600x900.jpg",
-      "published_at": "2026-08-17T17:00:00+01:00",
+      "published_at": "2026-08-17T16:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -246,7 +747,7 @@
       ],
       "image_path": "data\\final_assets\\post_c76f8a1ca9078e526d_85da4aaf_ChatGPT-Image-16_08_2026-22_50_21.png",
       "image_url": "/assets/final/post_886124f6b77c2dcc7c_site_1600x900.jpg",
-      "published_at": "2026-08-17T13:00:00+01:00",
+      "published_at": "2026-08-17T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -262,7 +763,7 @@
       ],
       "image_path": "data\\final_assets\\post_8c3afd6ccf02b98fa4_62f49588_ChatGPT-Image-16_08_2026-01_53_20.png",
       "image_url": "/assets/final/post_48d4a0a54721358d35_site_1600x900.jpg",
-      "published_at": "2026-08-16T17:00:00+01:00",
+      "published_at": "2026-08-16T16:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -278,7 +779,7 @@
       ],
       "image_path": "data\\final_assets\\post_eaaaf802be7b72f635_a8b2deb0_ChatGPT-Image-16_08_2026-01_52_18.png",
       "image_url": "/assets/final/post_35fbd81bb29d76491d_site_1600x900.jpg",
-      "published_at": "2026-08-16T13:00:00+01:00",
+      "published_at": "2026-08-16T12:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -294,7 +795,7 @@
       ],
       "image_path": "data\\final_assets\\post_b1c76d36ab3a60253a_1e10156b_ChatGPT-Image-14_08_2026-23_54_34.png",
       "image_url": "/assets/final/post_e37dfa9faa840e214d_site_1600x900.jpg",
-      "published_at": "2026-08-15T17:00:00+01:00",
+      "published_at": "2026-08-15T16:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -310,7 +811,7 @@
       ],
       "image_path": "data\\final_assets\\post_af190605d0a3de10bf_f7657b08_ChatGPT-Image-14_08_2026-23_56_47.png",
       "image_url": "/assets/final/post_dde2757d2998d321c1_site_1600x900.jpg",
-      "published_at": "2026-08-15T13:00:00+01:00",
+      "published_at": "2026-08-15T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -328,7 +829,7 @@
       ],
       "image_path": "data\\final_assets\\post_c1004405c623d0c563_764df937_ChatGPT-Image-13_08_2026-22_57_56.png",
       "image_url": "/assets/final/post_44d6a182f519694b78_site_1600x900.jpg",
-      "published_at": "2026-08-14T17:00:00+01:00",
+      "published_at": "2026-08-14T16:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -345,7 +846,7 @@
       ],
       "image_path": "data\\final_assets\\post_b918b3fb1a9af0bfbb_bdb1ab84_ChatGPT-Image-13_08_2026-22_56_51.png",
       "image_url": "/assets/final/post_c9f88eb04afd35e5c6_site_1600x900.jpg",
-      "published_at": "2026-08-14T13:00:00+01:00",
+      "published_at": "2026-08-14T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -363,7 +864,7 @@
       ],
       "image_path": "data\\final_assets\\post_57bbd8e734b2c9a3d9_e173d0e4_ChatGPT-Image-12_08_2026-23_58_26.png",
       "image_url": "/assets/final/post_6955c9a4a2f53a8b1f_site_1600x900.jpg",
-      "published_at": "2026-08-13T17:00:00+01:00",
+      "published_at": "2026-08-13T16:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -381,7 +882,7 @@
       ],
       "image_path": "data\\final_assets\\post_27795747dd1b68a7f5_540dd6f6_ChatGPT-Image-12_08_2026-23_58_14.png",
       "image_url": "/assets/final/post_6358b750ff6c76b83d_site_1600x900.jpg",
-      "published_at": "2026-08-13T13:00:00+01:00",
+      "published_at": "2026-08-13T12:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -397,7 +898,7 @@
       ],
       "image_path": "data\\final_assets\\post_2b4b9214f0b1a18dbd_8101ae5e_ChatGPT-Image-11_08_2026-23_56_25-1.png",
       "image_url": "/assets/final/post_b05d7bfefc8f28b258_site_1600x900.jpg",
-      "published_at": "2026-08-12T17:00:00+01:00",
+      "published_at": "2026-08-12T16:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -414,7 +915,7 @@
       ],
       "image_path": "data\\final_assets\\post_fba9292c4842674d92_45ac53be_ChatGPT-Image-11_08_2026-23_56_32.png",
       "image_url": "/assets/final/post_b5ff16f109f14b3c8a_site_1600x900.jpg",
-      "published_at": "2026-08-12T13:00:00+01:00",
+      "published_at": "2026-08-12T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação"
@@ -430,7 +931,7 @@
       ],
       "image_path": "data\\final_assets\\post_b29d9084a2589b49ee_fcb9865d_ChatGPT-Image-11_08_2026-00_16_56.png",
       "image_url": "/assets/final/post_a98ce4175330b9c10d_site_1600x900.jpg",
-      "published_at": "2026-08-11T21:00:00+01:00",
+      "published_at": "2026-08-11T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -447,7 +948,7 @@
       ],
       "image_path": "data\\final_assets\\post_027a0449a141f4a885_30b55514_ChatGPT-Image-11_08_2026-00_16_33.png",
       "image_url": "/assets/final/post_0a9adbc7ea85ae575a_site_1600x900.jpg",
-      "published_at": "2026-08-11T16:00:00+01:00",
+      "published_at": "2026-08-11T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -464,7 +965,7 @@
       ],
       "image_path": "data\\final_assets\\post_9ed0961559a8322d90_63e2efae_ChatGPT-Image-11_08_2026-00_15_41.png",
       "image_url": "/assets/final/post_a19a79e1bf7b856b1b_site_1600x900.jpg",
-      "published_at": "2026-08-11T13:00:00+01:00",
+      "published_at": "2026-08-11T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -482,7 +983,7 @@
       ],
       "image_path": "data\\final_assets\\post_3bd59614772070c01e_a94bfbc5_ChatGPT-Image-11_08_2026-00_14_37.png",
       "image_url": "/assets/final/post_e528f08d085f047009_site_1600x900.jpg",
-      "published_at": "2026-08-11T09:00:00+01:00",
+      "published_at": "2026-08-11T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -500,7 +1001,7 @@
       ],
       "image_path": "data\\final_assets\\post_eae38595a0e80fb282_0c654b05_ChatGPT-Image-9_08_2026-23_43_19.png",
       "image_url": "/assets/final/post_1f7f3c7056c5635f0e_site_1600x900.jpg",
-      "published_at": "2026-08-10T22:30:00+01:00",
+      "published_at": "2026-08-10T21:30:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -518,7 +1019,7 @@
       ],
       "image_path": "data\\final_assets\\post_3aae238868dd5324d2_f0a82796_ChatGPT-Image-9_08_2026-23_37_27.png",
       "image_url": "/assets/final/post_3bf0c769bd0ec5933c_site_1600x900.jpg",
-      "published_at": "2026-08-10T21:00:00+01:00",
+      "published_at": "2026-08-10T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -536,7 +1037,7 @@
       ],
       "image_path": "data\\final_assets\\post_11cb804aa311f9f887_41e40119_ChatGPT-Image-9_08_2026-23_36_54.png",
       "image_url": "/assets/final/post_1b3fc664dbe0c2cedc_site_1600x900.jpg",
-      "published_at": "2026-08-10T19:30:00+01:00",
+      "published_at": "2026-08-10T18:30:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -552,7 +1053,7 @@
       ],
       "image_path": "data\\final_assets\\post_fd4020c483fc861ea8_ce200807_ChatGPT-Image-9_08_2026-23_36_31.png",
       "image_url": "/assets/final/post_6e9c0885dfc153607f_site_1600x900.jpg",
-      "published_at": "2026-08-10T18:00:00+01:00",
+      "published_at": "2026-08-10T17:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais",
@@ -569,7 +1070,7 @@
       ],
       "image_path": "data\\final_assets\\post_e5d2422a83b16ecca5_4daa675f_ChatGPT-Image-8_08_2026-23_40_11.png",
       "image_url": "/assets/final/post_2517bc3c51ebdb4f29_site_1600x900.jpg",
-      "published_at": "2026-08-09T21:00:00+01:00",
+      "published_at": "2026-08-09T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -587,7 +1088,7 @@
       ],
       "image_path": "data\\final_assets\\post_75971cb5bf91f4827f_c34c6409_ChatGPT-Image-8_08_2026-23_36_47.png",
       "image_url": "/assets/final/post_74ea514e3ebb407be6_site_1600x900.jpg",
-      "published_at": "2026-08-09T18:00:00+01:00",
+      "published_at": "2026-08-09T17:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -605,7 +1106,7 @@
       ],
       "image_path": "data\\final_assets\\post_b3341e10b55fb66232_a81f7576_ChatGPT-Image-8_08_2026-23_43_55.png",
       "image_url": "/assets/final/post_35e125a90c752af19b_site_1600x900.jpg",
-      "published_at": "2026-08-09T13:00:00+01:00",
+      "published_at": "2026-08-09T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -624,7 +1125,7 @@
       ],
       "image_path": "data\\final_assets\\post_084f0085bc3a563c66_f2b5df7a_ChatGPT-Image-8_08_2026-23_35_32.png",
       "image_url": "/assets/final/post_592d6f404d10f55cc7_site_1600x900.jpg",
-      "published_at": "2026-08-09T09:00:00+01:00",
+      "published_at": "2026-08-09T08:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais",
@@ -641,7 +1142,7 @@
       ],
       "image_path": "data\\final_assets\\post_c7674eeb59c1673c2b_3d7f6d24_ChatGPT-Image-8_08_2026-00_35_46.png",
       "image_url": "/assets/final/post_2fa20ffaf410ff7de7_site_1600x900.jpg",
-      "published_at": "2026-08-08T21:00:00+01:00",
+      "published_at": "2026-08-08T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -659,7 +1160,7 @@
       ],
       "image_path": "data\\final_assets\\post_07df02799d1a087bfc_53bb694d_ChatGPT-Image-8_08_2026-00_33_35.png",
       "image_url": "/assets/final/post_874d0c51e9b1827dca_site_1600x900.jpg",
-      "published_at": "2026-08-08T18:00:00+01:00",
+      "published_at": "2026-08-08T17:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -678,7 +1179,7 @@
       ],
       "image_path": "data\\final_assets\\post_595690d5897566f8ae_c47b55e6_ChatGPT-Image-8_08_2026-00_36_55.png",
       "image_url": "/assets/final/post_fd00f16d25f3a34eab_site_1600x900.jpg",
-      "published_at": "2026-08-08T13:00:00+01:00",
+      "published_at": "2026-08-08T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -694,7 +1195,7 @@
       ],
       "image_path": "data\\final_assets\\post_f3cace527d513022d2_6794fc7d_ChatGPT-Image-8_08_2026-00_33_29.png",
       "image_url": "/assets/final/post_50f95d5cb48e1f3d52_site_1600x900.jpg",
-      "published_at": "2026-08-08T09:00:00+01:00",
+      "published_at": "2026-08-08T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -713,7 +1214,7 @@
       ],
       "image_path": "data\\final_assets\\post_ac25882069dd0728da_2d45a8b2_ChatGPT-Image-5_08_2026-22_13_57.png",
       "image_url": "/assets/final/post_a17f00d27a0b553f57_site_1600x900.jpg",
-      "published_at": "2026-08-06T21:00:00+01:00",
+      "published_at": "2026-08-06T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -730,7 +1231,7 @@
       ],
       "image_path": "data\\final_assets\\post_17f637d1fb602949ec_0101e57a_ChatGPT-Image-5_08_2026-22_14_10.png",
       "image_url": "/assets/final/post_810c2d3728efb5084e_site_1600x900.jpg",
-      "published_at": "2026-08-06T16:00:00+01:00",
+      "published_at": "2026-08-06T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -748,7 +1249,7 @@
       ],
       "image_path": "data\\final_assets\\post_4fc7a58fc3b9e074a1_f816a1c6_ChatGPT-Image-5_08_2026-21_37_07.png",
       "image_url": "/assets/final/post_9d13722fbbc1d79b5b_site_1600x900.jpg",
-      "published_at": "2026-08-06T13:00:00+01:00",
+      "published_at": "2026-08-06T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -767,7 +1268,7 @@
       ],
       "image_path": "data\\final_assets\\post_d42f924890c2276079_da348e48_ChatGPT-Image-5_08_2026-21_37_11.png",
       "image_url": "/assets/final/post_a5cf1386cf90285ea7_site_1600x900.jpg",
-      "published_at": "2026-08-06T09:00:00+01:00",
+      "published_at": "2026-08-06T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -785,7 +1286,7 @@
       ],
       "image_path": "data\\final_assets\\post_af63b3ec0d325ad55d_5580d82b_ChatGPT-Image-4_08_2026-21_30_54.png",
       "image_url": "/assets/final/post_eab6f9402641de3ef1_site_1600x900.jpg",
-      "published_at": "2026-08-05T21:00:00+01:00",
+      "published_at": "2026-08-05T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -802,7 +1303,7 @@
       ],
       "image_path": "data\\final_assets\\post_496fcfabf60d3175b2_b64a7b8a_ChatGPT-Image-4_08_2026-21_31_24.png",
       "image_url": "/assets/final/post_8c630b9baf47813d0f_site_1600x900.jpg",
-      "published_at": "2026-08-05T16:00:00+01:00",
+      "published_at": "2026-08-05T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -820,7 +1321,7 @@
       ],
       "image_path": "data\\final_assets\\post_2c2ebfb62f68bdee8d_7945176f_ChatGPT-Image-4_08_2026-21_27_33.png",
       "image_url": "/assets/final/post_f2716e4c18dbd91d02_site_1600x900.jpg",
-      "published_at": "2026-08-05T13:00:00+01:00",
+      "published_at": "2026-08-05T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -837,7 +1338,7 @@
       ],
       "image_path": "data\\final_assets\\post_84d44cd2c48aea4c07_8f8f1a92_ChatGPT-Image-4_08_2026-21_26_17.png",
       "image_url": "/assets/final/post_a87f37de0fc8c5247f_site_1600x900.jpg",
-      "published_at": "2026-08-05T09:00:00+01:00",
+      "published_at": "2026-08-05T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -854,7 +1355,7 @@
       ],
       "image_path": "data\\final_assets\\post_6985d1021d5e2bd289_6143ed32_ChatGPT-Image-3_08_2026-23_28_28.png",
       "image_url": "/assets/final/post_4468705162ef7cc6b6_site_1600x900.jpg",
-      "published_at": "2026-08-04T21:00:00+01:00",
+      "published_at": "2026-08-04T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -872,7 +1373,7 @@
       ],
       "image_path": "data\\final_assets\\post_54b95285550d2b3ecd_1317fd49_ChatGPT-Image-3_08_2026-23_24_32.png",
       "image_url": "/assets/final/post_d1be8b3aab38c2cf65_site_1600x900.jpg",
-      "published_at": "2026-08-04T16:00:00+01:00",
+      "published_at": "2026-08-04T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -890,7 +1391,7 @@
       ],
       "image_path": "data\\final_assets\\post_c3ef929420a832b294_bc69a7a3_ChatGPT-Image-3_08_2026-23_23_43.png",
       "image_url": "/assets/final/post_2d15ba37f6a0f40007_site_1600x900.jpg",
-      "published_at": "2026-08-04T13:00:00+01:00",
+      "published_at": "2026-08-04T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -908,7 +1409,7 @@
       ],
       "image_path": "data\\final_assets\\post_f71b5178a3f5bf76cf_b9129834_ChatGPT-Image-3_08_2026-23_23_38.png",
       "image_url": "/assets/final/post_375aea74b2ceb3ca17_site_1600x900.jpg",
-      "published_at": "2026-08-04T09:00:00+01:00",
+      "published_at": "2026-08-04T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -925,7 +1426,7 @@
       ],
       "image_path": "data\\final_assets\\post_549f7396ebca8d6192_08ac067d_ChatGPT-Image-2_08_2026-22_14_24.png",
       "image_url": "/assets/final/post_3b253af597131fc918_site_1600x900.jpg",
-      "published_at": "2026-08-03T21:00:00+01:00",
+      "published_at": "2026-08-03T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -942,7 +1443,7 @@
       ],
       "image_path": "data\\final_assets\\post_7eace6624d76758f7c_591a0aae_ChatGPT-Image-2_08_2026-22_13_14.png",
       "image_url": "/assets/final/post_169451d237708c9e3d_site_1600x900.jpg",
-      "published_at": "2026-08-03T16:00:00+01:00",
+      "published_at": "2026-08-03T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -959,7 +1460,7 @@
       ],
       "image_path": "data\\final_assets\\post_63cada31601e607302_8c2d018d_ChatGPT-Image-2_08_2026-22_13_50.png",
       "image_url": "/assets/final/post_905c7489f74412f7d3_site_1600x900.jpg",
-      "published_at": "2026-08-03T13:00:00+01:00",
+      "published_at": "2026-08-03T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -978,7 +1479,7 @@
       ],
       "image_path": "data\\final_assets\\post_5e2745f1f26db62414_868d1312_ChatGPT-Image-2_08_2026-22_15_03.png",
       "image_url": "/assets/final/post_13797f25ae36ba5f36_site_1600x900.jpg",
-      "published_at": "2026-08-03T09:00:00+01:00",
+      "published_at": "2026-08-03T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -996,7 +1497,7 @@
       ],
       "image_path": "data\\final_assets\\post_2d9ac99713b3552733_a2004905_ChatGPT-Image-1_08_2026-22_13_16.png",
       "image_url": "/assets/final/post_d095beb03119df6c68_site_1600x900.jpg",
-      "published_at": "2026-08-02T21:00:00+01:00",
+      "published_at": "2026-08-02T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1014,7 +1515,7 @@
       ],
       "image_path": "data\\final_assets\\post_d01f01f303674b488f_d0a3994a_ChatGPT-Image-1_08_2026-22_09_29.png",
       "image_url": "/assets/final/post_268d20a385023714b9_site_1600x900.jpg",
-      "published_at": "2026-08-02T16:00:00+01:00",
+      "published_at": "2026-08-02T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1032,7 +1533,7 @@
       ],
       "image_path": "data\\final_assets\\post_db48716a2be98adeec_b656f173_ChatGPT-Image-1_08_2026-22_09_42.png",
       "image_url": "/assets/final/post_c28d1d087c8cfb22ca_site_1600x900.jpg",
-      "published_at": "2026-08-02T13:00:00+01:00",
+      "published_at": "2026-08-02T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1050,7 +1551,7 @@
       ],
       "image_path": "data\\final_assets\\post_1e6642a8f8f666aeed_9d6ed769_ChatGPT-Image-1_08_2026-22_09_37.png",
       "image_url": "/assets/final/post_8c24f34764192ced41_site_1600x900.jpg",
-      "published_at": "2026-08-02T09:00:00+01:00",
+      "published_at": "2026-08-02T08:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -1068,7 +1569,7 @@
       ],
       "image_path": "data\\final_assets\\post_8099ae3ddbae905068_54e55197_ChatGPT-Image-31_07_2026-21_44_52.png",
       "image_url": "/assets/final/post_f559b6f8c9e418851d_site_1600x900.jpg",
-      "published_at": "2026-08-01T16:00:00+01:00",
+      "published_at": "2026-08-01T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1086,7 +1587,7 @@
       ],
       "image_path": "data\\final_assets\\post_9630e9f03bdc0c5e53_7cd5a9b5_ChatGPT-Image-31_07_2026-21_44_11.png",
       "image_url": "/assets/final/post_666272c6ff1a4b00d7_site_1600x900.jpg",
-      "published_at": "2026-08-01T13:00:00+01:00",
+      "published_at": "2026-08-01T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1103,7 +1604,7 @@
       ],
       "image_path": "data\\final_assets\\post_923006df833db73487_23b7cb79_ChatGPT-Image-31_07_2026-01_25_43.png",
       "image_url": "/assets/final/post_f8b5d787b6281fa418_site_1600x900.jpg",
-      "published_at": "2026-07-31T21:00:00+01:00",
+      "published_at": "2026-07-31T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1122,7 +1623,7 @@
       ],
       "image_path": "data\\final_assets\\post_115f27042d1a4c0d52_534f10c9_ChatGPT-Image-31_07_2026-01_25_07.png",
       "image_url": "/assets/final/post_ef9d50b2a9efab745b_site_1600x900.jpg",
-      "published_at": "2026-07-31T16:00:00+01:00",
+      "published_at": "2026-07-31T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1140,7 +1641,7 @@
       ],
       "image_path": "data\\final_assets\\post_ab730991c9241653b1_fe66810a_ChatGPT-Image-31_07_2026-01_19_55.png",
       "image_url": "/assets/final/post_3b34f6247220c93d9b_site_1600x900.jpg",
-      "published_at": "2026-07-31T13:00:00+01:00",
+      "published_at": "2026-07-31T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1158,7 +1659,7 @@
       ],
       "image_path": "data\\final_assets\\post_52fd4edc4d7d30a645_4d0b3663_ChatGPT-Image-29_07_2026-23_03_48.png",
       "image_url": "/assets/final/post_427b23ee6227ae09c9_site_1600x900.jpg",
-      "published_at": "2026-07-30T21:00:00+01:00",
+      "published_at": "2026-07-30T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1175,7 +1676,7 @@
       ],
       "image_path": "data\\final_assets\\post_a6be8182669b1a1acc_27f5fbbb_ChatGPT-Image-29_07_2026-22_57_42.png",
       "image_url": "/assets/final/post_48bbc2cc1a47a8a8b4_site_1600x900.jpg",
-      "published_at": "2026-07-30T16:00:00+01:00",
+      "published_at": "2026-07-30T15:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1192,7 +1693,7 @@
       ],
       "image_path": "data\\final_assets\\post_85da0f9e437c5e98db_f22cfe9b_ChatGPT-Image-29_07_2026-22_57_52.png",
       "image_url": "/assets/final/post_85da0f9e437c5e98db_site_1600x900.jpg",
-      "published_at": "2026-07-30T13:00:00+01:00",
+      "published_at": "2026-07-30T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1210,7 +1711,7 @@
       ],
       "image_path": "data\\final_assets\\post_c5b359584b5e39a5ab_8ed3dd9e_ChatGPT-Image-29_07_2026-22_52_56.png",
       "image_url": "/assets/final/post_8a2b0e4e1e76b27d09_site_1600x900.jpg",
-      "published_at": "2026-07-30T09:00:00+01:00",
+      "published_at": "2026-07-30T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1228,7 +1729,7 @@
       ],
       "image_path": "data\\final_assets\\post_485f4ff3b1353e098c_45983104_ChatGPT-Image-28_07_2026-23_38_23.png",
       "image_url": "/assets/final/post_d43c86d883544dc1b1_site_1600x900.jpg",
-      "published_at": "2026-07-29T21:00:00+01:00",
+      "published_at": "2026-07-29T20:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1246,7 +1747,7 @@
       ],
       "image_path": "data\\final_assets\\post_e236012da0866cb86b_7bded906_ChatGPT-Image-28_07_2026-23_41_37.png",
       "image_url": "/assets/final/post_19b70f7b17e3af9f49_site_1600x900.jpg",
-      "published_at": "2026-07-29T16:00:00+01:00",
+      "published_at": "2026-07-29T15:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1264,7 +1765,7 @@
       ],
       "image_path": "data\\final_assets\\post_0cff8d0e067bffb6b7_dafcacba_ChatGPT-Image-28_07_2026-23_42_50.png",
       "image_url": "/assets/final/post_df0c49f815841e51a0_site_1600x900.jpg",
-      "published_at": "2026-07-29T13:00:00+01:00",
+      "published_at": "2026-07-29T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1281,7 +1782,7 @@
       ],
       "image_path": "data\\final_assets\\post_17833aa32d8da01d74_3757a926_ChatGPT-Image-28_07_2026-23_40_55.png",
       "image_url": "/assets/final/post_e9b5ebe873f0ea8795_site_1600x900.jpg",
-      "published_at": "2026-07-29T09:00:00+01:00",
+      "published_at": "2026-07-29T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1298,7 +1799,7 @@
       ],
       "image_path": "data\\final_assets\\post_95a6622b72707b67df_cc1bcd7f_ChatGPT-Image-27_07_2026-22_03_32.png",
       "image_url": "/assets/final/post_840b3032c9a15df676_site_1600x900.jpg",
-      "published_at": "2026-07-28T21:00:00+01:00",
+      "published_at": "2026-07-28T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1315,7 +1816,7 @@
       ],
       "image_path": "data\\final_assets\\post_c30e6bbd407a048650_520b5b5b_ChatGPT-Image-27_07_2026-22_05_58.png",
       "image_url": "/assets/final/post_8610170884ac63d3ab_site_1600x900.jpg",
-      "published_at": "2026-07-28T16:00:00+01:00",
+      "published_at": "2026-07-28T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1333,7 +1834,7 @@
       ],
       "image_path": "data\\final_assets\\post_5efb2e9f56c6217710_1171c95c_ChatGPT-Image-27_07_2026-22_02_00.png",
       "image_url": "/assets/final/post_6c964b5d87e21c2a95_site_1600x900.jpg",
-      "published_at": "2026-07-28T13:00:00+01:00",
+      "published_at": "2026-07-28T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1350,7 +1851,7 @@
       ],
       "image_path": "data\\final_assets\\post_d07bf13c12be66b3e3_b2dca000_ChatGPT-Image-27_07_2026-22_05_06.png",
       "image_url": "/assets/final/post_a3e960ccc3d0473305_site_1600x900.jpg",
-      "published_at": "2026-07-28T09:00:00+01:00",
+      "published_at": "2026-07-28T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1369,7 +1870,7 @@
       ],
       "image_path": "data\\final_assets\\post_8b313b5706f125579b_29729870_ChatGPT-Image-27_07_2026-00_05_10.png",
       "image_url": "/assets/final/post_cf7b0ff0e7d4c09063_site_1600x900.jpg",
-      "published_at": "2026-07-27T21:00:00+01:00",
+      "published_at": "2026-07-27T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1386,7 +1887,7 @@
       ],
       "image_path": "data\\final_assets\\post_65daf97528c5df0387_0b3e01f0_ChatGPT-Image-26_07_2026-23_59_23.png",
       "image_url": "/assets/final/post_6819bd989b52b755ab_site_1600x900.jpg",
-      "published_at": "2026-07-27T16:00:00+01:00",
+      "published_at": "2026-07-27T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1404,7 +1905,7 @@
       ],
       "image_path": "data\\final_assets\\post_9ce223f96e16213f8f_3487303b_ChatGPT-Image-26_07_2026-23_58_28.png",
       "image_url": "/assets/final/post_bcc69756f53fd6637b_site_1600x900.jpg",
-      "published_at": "2026-07-27T13:00:00+01:00",
+      "published_at": "2026-07-27T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1422,7 +1923,7 @@
       ],
       "image_path": "data\\final_assets\\post_d6a16dbe2055f7ecf8_229154f6_ChatGPT-Image-26_07_2026-23_53_45.png",
       "image_url": "/assets/final/post_2647415c21c1af5c5d_site_1600x900.jpg",
-      "published_at": "2026-07-27T09:00:00+01:00",
+      "published_at": "2026-07-27T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1440,7 +1941,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7d65acf76428f91f5d_fb0f6ea3_ChatGPT-Image-11_07_2026-23_20_31.png",
       "image_url": "/assets/final/post_726ef7a85ef51f684e_site_1600x900.jpg",
-      "published_at": "2026-07-12T21:00:00+01:00",
+      "published_at": "2026-07-12T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1457,7 +1958,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_21912a5b40095fe092_5c6bed36_ChatGPT-Image-11_07_2026-23_20_23.png",
       "image_url": "/assets/final/post_dd88f07a1a5bb1ccca_site_1600x900.jpg",
-      "published_at": "2026-07-12T16:00:00+01:00",
+      "published_at": "2026-07-12T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1474,7 +1975,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_72c909c22b86ace608_77420e92_ChatGPT-Image-11_07_2026-23_23_00.png",
       "image_url": "/assets/final/post_de036ac7d83911138c_site_1600x900.jpg",
-      "published_at": "2026-07-12T13:00:00+01:00",
+      "published_at": "2026-07-12T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1492,7 +1993,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_3d499ec3b5df158744_613554fa_ChatGPT-Image-11_07_2026-23_41_20.png",
       "image_url": "/assets/final/post_06482c37d197d26f4a_site_1600x900.jpg",
-      "published_at": "2026-07-12T09:00:00+01:00",
+      "published_at": "2026-07-12T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1510,7 +2011,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e49288e70fa6e80a8a_93620971_ChatGPT-Image-10_07_2026-21_21_02.png",
       "image_url": "/assets/final/post_9ced41756309fc3e9c_site_1600x900.jpg",
-      "published_at": "2026-07-11T21:00:00+01:00",
+      "published_at": "2026-07-11T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1528,7 +2029,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_14efd51c87d6b5fdc5_4ecbd0dc_ChatGPT-Image-10_07_2026-21_20_05.png",
       "image_url": "/assets/final/post_f863d00e7c1a293f3e_site_1600x900.jpg",
-      "published_at": "2026-07-11T16:00:00+01:00",
+      "published_at": "2026-07-11T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -1544,7 +2045,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c27abd7e7790ca4670_3b671450_ChatGPT-Image-10_07_2026-21_20_34.png",
       "image_url": "/assets/final/post_2def2668ab7ed2fad7_site_1600x900.jpg",
-      "published_at": "2026-07-11T13:00:00+01:00",
+      "published_at": "2026-07-11T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1561,7 +2062,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9e1e2cb36bfacdc47e_7ffc47c6_ChatGPT-Image-10_07_2026-21_17_39.png",
       "image_url": "/assets/final/post_2ecf8ace249bd3a8d9_site_1600x900.jpg",
-      "published_at": "2026-07-11T09:00:00+01:00",
+      "published_at": "2026-07-11T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1579,7 +2080,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b502fb6602b3a2a4e4_6c732ae5_ChatGPT-Image-9_07_2026-20_53_20.png",
       "image_url": "/assets/final/post_bc96386c0969eb6056_site_1600x900.jpg",
-      "published_at": "2026-07-10T21:00:00+01:00",
+      "published_at": "2026-07-10T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1596,7 +2097,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_479afb3e5094c04c8a_c4c01583_ChatGPT-Image-9_07_2026-20_16_26.png",
       "image_url": "/assets/final/post_05c8d556cd4a75202c_site_1600x900.jpg",
-      "published_at": "2026-07-10T16:00:00+01:00",
+      "published_at": "2026-07-10T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1613,7 +2114,7 @@
       ],
       "image_path": "data\\final_assets\\post_af1398ab99e776464d_6b981c2a.svg",
       "image_url": "/assets/final/post_af1398ab99e776464d_site_1600x900.jpg",
-      "published_at": "2026-07-10T13:00:00+01:00",
+      "published_at": "2026-07-10T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1632,7 +2133,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_322fab05cfbca2895b_34e1d97a_ChatGPT-Image-9_07_2026-20_54_25.png",
       "image_url": "/assets/final/post_9919c5f57a98c7e084_site_1600x900.jpg",
-      "published_at": "2026-07-10T09:00:00+01:00",
+      "published_at": "2026-07-10T08:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -1650,7 +2151,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_6f65fc23727b749cf9_ef45c4d3_ChatGPT-Image-8_07_2026-20_17_22.png",
       "image_url": "/assets/final/post_69c66af94a2fd6fea9_site_1600x900.jpg",
-      "published_at": "2026-07-09T21:00:00+01:00",
+      "published_at": "2026-07-09T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1669,7 +2170,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7ec9cf7500d890dacb_67625ac9_ChatGPT-Image-8_07_2026-20_15_22.png",
       "image_url": "/assets/final/post_e4a79bf749f7700c03_site_1600x900.jpg",
-      "published_at": "2026-07-09T16:00:00+01:00",
+      "published_at": "2026-07-09T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1688,7 +2189,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e211a17e91e1e338a0_ccacc524_ChatGPT-Image-8_07_2026-20_15_55.png",
       "image_url": "/assets/final/post_8919b067682c80aa9d_site_1600x900.jpg",
-      "published_at": "2026-07-09T13:00:00+01:00",
+      "published_at": "2026-07-09T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1706,7 +2207,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f69589ad69c52a5c6d_e683122f_ChatGPT-Image-8_07_2026-20_14_37.png",
       "image_url": "/assets/final/post_584b37dc92186f9e12_site_1600x900.jpg",
-      "published_at": "2026-07-09T09:00:00+01:00",
+      "published_at": "2026-07-09T08:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais",
@@ -1723,7 +2224,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_3fe21562e3fe11a94b_ad9d0317_ChatGPT-Image-8_07_2026-09_26_09.png",
       "image_url": "/assets/final/post_f46dc228e418f8f716_site_1600x900.jpg",
-      "published_at": "2026-07-08T21:00:00+01:00",
+      "published_at": "2026-07-08T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1741,7 +2242,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2e4d4f3dd111bf5e92_cf3d9cf5_ChatGPT-Image-8_07_2026-09_08_22.png",
       "image_url": "/assets/final/post_119ff13a0a463fe574_site_1600x900.jpg",
-      "published_at": "2026-07-08T16:00:00+01:00",
+      "published_at": "2026-07-08T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1759,7 +2260,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_887116d2d564092d8d_df882367_ChatGPT-Image-8_07_2026-09_23_33.png",
       "image_url": "/assets/final/post_c9f9456b19b3097102_site_1600x900.jpg",
-      "published_at": "2026-07-08T13:00:00+01:00",
+      "published_at": "2026-07-08T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1776,7 +2277,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d49bcef7df8942d479_567bd0c9_ChatGPT-Image-8_07_2026-09_27_05.png",
       "image_url": "/assets/final/post_98d333074511eb3969_site_1600x900.jpg",
-      "published_at": "2026-07-08T09:45:00+01:00",
+      "published_at": "2026-07-08T08:45:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1793,7 +2294,7 @@
       ],
       "image_path": "data\\final_assets\\post_acfe0091a1ae044dc1_3c94d98e_ChatGPT-Image-6_07_2026-22_59_15.png",
       "image_url": "/assets/final/post_2cc53be9f8d4a22721_site_1600x900.jpg",
-      "published_at": "2026-07-07T13:00:00+01:00",
+      "published_at": "2026-07-07T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1810,7 +2311,7 @@
       ],
       "image_path": "data\\final_assets\\post_dbf26089f9205d0057_17ffce64_ChatGPT-Image-6_07_2026-22_59_49.png",
       "image_url": "/assets/final/post_53efeb00409552ef11_site_1600x900.jpg",
-      "published_at": "2026-07-07T09:00:00+01:00",
+      "published_at": "2026-07-07T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1827,7 +2328,7 @@
       ],
       "image_path": "data\\final_assets\\post_0cec6ae9844bead77a_tutor_editor_image_1600x900.png",
       "image_url": "/assets/final/post_1e500cb0785b2006d7_site_1600x900.jpg",
-      "published_at": "2026-07-06T21:00:00+01:00",
+      "published_at": "2026-07-06T20:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -1843,7 +2344,7 @@
       ],
       "image_path": "data\\final_assets\\post_e19327d0e11f112ed5_bc7aba49_ChatGPT-Image-6_07_2026-00_28_02.png",
       "image_url": "/assets/final/post_2b698d18b7dac1de69_site_1600x900.jpg",
-      "published_at": "2026-07-06T16:00:00+01:00",
+      "published_at": "2026-07-06T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -1859,7 +2360,7 @@
       ],
       "image_path": "data\\final_assets\\post_ae71930e095e61bbc9_188bd147_ChatGPT-Image-6_07_2026-00_27_36.png",
       "image_url": "/assets/final/post_98c7f58147dcc7049a_site_1600x900.jpg",
-      "published_at": "2026-07-06T13:00:00+01:00",
+      "published_at": "2026-07-06T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -1878,7 +2379,7 @@
       ],
       "image_path": "data\\final_assets\\post_a75e6e47715c3bae26_nvidia_bionemo_clean_1600x900.png",
       "image_url": "/assets/final/post_c9b5785e9f9dffa0f6_site_1600x900.jpg",
-      "published_at": "2026-07-06T09:00:00+01:00",
+      "published_at": "2026-07-06T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -1894,7 +2395,7 @@
       ],
       "image_path": "data\\final_assets\\post_c345ac44a440725bd4_609340ed_ChatGPT-Image-4_07_2026-23_00_36.png",
       "image_url": "/assets/final/post_b9cd4e456995b4bf63_site_1600x900.jpg",
-      "published_at": "2026-07-05T21:00:00+01:00",
+      "published_at": "2026-07-05T20:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -1911,7 +2412,7 @@
       ],
       "image_path": "data\\final_assets\\post_9e28c34a4b006b25c5_cb6f93f3_ChatGPT-Image-4_07_2026-22_58_49.png",
       "image_url": "/assets/final/post_9fbe84a550c779102c_site_1600x900.jpg",
-      "published_at": "2026-07-05T16:00:00+01:00",
+      "published_at": "2026-07-05T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1929,7 +2430,7 @@
       ],
       "image_path": "data\\final_assets\\post_cfc885ff37bfd43416_bfc325c9_ChatGPT-Image-4_07_2026-22_06_46.png",
       "image_url": "/assets/final/post_a57e121c064c9e3340_site_1600x900.jpg",
-      "published_at": "2026-07-05T13:00:00+01:00",
+      "published_at": "2026-07-05T12:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -1945,7 +2446,7 @@
       ],
       "image_path": "data\\final_assets\\post_5e4068130e44c0b150_843b6fcc_ChatGPT-Image-4_07_2026-21_54_45.png",
       "image_url": "/assets/final/post_1ce3ae28562a8b15d5_site_1600x900.jpg",
-      "published_at": "2026-07-05T09:00:00+01:00",
+      "published_at": "2026-07-05T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1964,7 +2465,7 @@
       ],
       "image_path": "data\\final_assets\\post_e9d3baa858a15b14cf_555e13a7_ChatGPT-Image-3_07_2026-23_22_11.png",
       "image_url": "/assets/final/post_95334238ff4178f5e0_site_1600x900.jpg",
-      "published_at": "2026-07-04T21:00:00+01:00",
+      "published_at": "2026-07-04T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -1983,7 +2484,7 @@
       ],
       "image_path": "data\\final_assets\\post_f3da05835639064777_d17b0903_ChatGPT-Image-3_07_2026-23_41_46.png",
       "image_url": "/assets/final/post_497fe4d6201e6d25a7_site_1600x900.jpg",
-      "published_at": "2026-07-04T16:00:00+01:00",
+      "published_at": "2026-07-04T15:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais",
@@ -2000,7 +2501,7 @@
       ],
       "image_path": "data\\final_assets\\post_e6e9ee000919fe0a3a_a856567e_ChatGPT-Image-3_07_2026-23_45_00.png",
       "image_url": "/assets/final/post_0f030f9a5a830c4b6b_site_1600x900.jpg",
-      "published_at": "2026-07-04T13:00:00+01:00",
+      "published_at": "2026-07-04T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -2017,7 +2518,7 @@
       ],
       "image_path": "data\\final_assets\\post_16c9966c70558a89fa_44a69ba9_ChatGPT-Image-3_07_2026-23_40_23.png",
       "image_url": "/assets/final/post_3c2dc04eb4d5c0937a_site_1600x900.jpg",
-      "published_at": "2026-07-04T10:10:00+01:00",
+      "published_at": "2026-07-04T09:10:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -2033,7 +2534,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_47cef2693151b1627a_2e43513f_ChatGPT-Image-1_07_2026-22_02_29.png",
       "image_url": "/assets/final/post_21434b969f667f7a7c_site_1600x900.jpg",
-      "published_at": "2026-07-02T21:00:00+01:00",
+      "published_at": "2026-07-02T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2051,7 +2552,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_101f7da0ef5a0a1389_4b172f5e_ChatGPT-Image-1_07_2026-21_59_27.png",
       "image_url": "/assets/final/post_9083e67157ba3d1736_site_1600x900.jpg",
-      "published_at": "2026-07-02T16:00:00+01:00",
+      "published_at": "2026-07-02T15:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais",
@@ -2068,7 +2569,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e81c89767594637fd3_e4950379_ChatGPT-Image-1_07_2026-21_53_30.png",
       "image_url": "/assets/final/post_c28cae5669f031bb13_site_1600x900.jpg",
-      "published_at": "2026-07-02T13:00:00+01:00",
+      "published_at": "2026-07-02T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2085,7 +2586,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a05ae6ab7493587646_449f98b8_ChatGPT-Image-1_07_2026-21_51_24.png",
       "image_url": "/assets/final/post_0468839679f517b085_site_1600x900.jpg",
-      "published_at": "2026-07-02T09:00:00+01:00",
+      "published_at": "2026-07-02T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2104,7 +2605,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_80b82611d936eccff2_38a50e06_ChatGPT-Image-1_07_2026-02_13_49.png",
       "image_url": "/assets/final/post_8da513b604b613550a_site_1600x900.jpg",
-      "published_at": "2026-07-01T21:00:00+01:00",
+      "published_at": "2026-07-01T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2123,7 +2624,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_8e8c75073a7c7136b8_bee4dccf_ChatGPT-Image-1_07_2026-01_52_33.png",
       "image_url": "/assets/final/post_85a09b34198f21dd1d_site_1600x900.jpg",
-      "published_at": "2026-07-01T16:00:00+01:00",
+      "published_at": "2026-07-01T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -2140,7 +2641,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ba71dedb88a43e69e2_c59c5d3d_ChatGPT-Image-1_07_2026-01_51_01.png",
       "image_url": "/assets/final/post_8324a19c948ec6d778_site_1600x900.jpg",
-      "published_at": "2026-07-01T13:00:00+01:00",
+      "published_at": "2026-07-01T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2158,7 +2659,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_023fd611d26c9a8c93_53a4e16b_ChatGPT-Image-1_07_2026-02_15_27.png",
       "image_url": "/assets/final/post_41ac71a02c1334f414_site_1600x900.jpg",
-      "published_at": "2026-07-01T09:00:00+01:00",
+      "published_at": "2026-07-01T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2175,7 +2676,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_93d5831175127320c9_47ab6ad1_ChatGPT-Image-29_06_2026-21_34_22.png",
       "image_url": "/assets/final/post_ef9da84b3afeeac4d2_site_1600x900.jpg",
-      "published_at": "2026-06-30T21:00:00+01:00",
+      "published_at": "2026-06-30T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders"
@@ -2191,7 +2692,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_26cce27f09f0bf8a2c_ace09488_ChatGPT-Image-29_06_2026-21_24_47.png",
       "image_url": "/assets/final/post_8a13d6a7b86b2ebcb8_site_1600x900.jpg",
-      "published_at": "2026-06-30T16:00:00+01:00",
+      "published_at": "2026-06-30T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -2207,7 +2708,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f1c5d7235368e23dba_40f982c5_ChatGPT-Image-29_06_2026-21_24_40.png",
       "image_url": "/assets/final/post_1c686f5d5bc681184e_site_1600x900.jpg",
-      "published_at": "2026-06-30T13:00:00+01:00",
+      "published_at": "2026-06-30T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -2223,7 +2724,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_47fa867a7dcc96371e_ad375325_ChatGPT-Image-29_06_2026-21_28_50.png",
       "image_url": "/assets/final/post_6513cdbe174501b97e_site_1600x900.jpg",
-      "published_at": "2026-06-30T09:00:00+01:00",
+      "published_at": "2026-06-30T08:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -2239,7 +2740,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_3730f86e08c6507633_b4fb8ccf_ChatGPT-Image-29_06_2026-00_07_32.png",
       "image_url": "/assets/final/post_0ad078bcc6ddc6ce96_site_1600x900.jpg",
-      "published_at": "2026-06-29T21:00:00+01:00",
+      "published_at": "2026-06-29T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2256,7 +2757,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_452dd5015c0edea6fd_dff7afca_ChatGPT-Image-29_06_2026-00_09_22.png",
       "image_url": "/assets/final/post_8a96d18472194c568b_site_1600x900.jpg",
-      "published_at": "2026-06-29T16:00:00+01:00",
+      "published_at": "2026-06-29T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -2272,7 +2773,7 @@
       ],
       "image_path": "data\\final_assets\\apple-microsoft-hardware-ai-pressure-site-1600x900.jpg",
       "image_url": "/assets/final/apple-microsoft-hardware-ai-pressure-site-1600x900.jpg",
-      "published_at": "2026-06-29T13:21:10+01:00",
+      "published_at": "2026-06-29T12:21:10+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2289,7 +2790,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c95ee9edfe67a39155_8e3cc43e_ChatGPT-Image-28_06_2026-23_45_12.png",
       "image_url": "/assets/final/post_35397e82ed71b35b68_site_1600x900.jpg",
-      "published_at": "2026-06-29T09:00:00+01:00",
+      "published_at": "2026-06-29T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2306,7 +2807,7 @@
       ],
       "image_path": "data\\final_assets\\post_99a861d58b51754ee7_322bc7f8_ChatGPT-Image-27_06_2026-22_56_01.png",
       "image_url": "/assets/final/post_2a8ac05ea5b45be12c_site_1600x900.jpg",
-      "published_at": "2026-06-28T16:00:00+01:00",
+      "published_at": "2026-06-28T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2324,7 +2825,7 @@
       ],
       "image_path": "data\\final_assets\\post_edf93b7749544f83e1_3ce3b2cd_ChatGPT-Image-28_06_2026-00_07_22.png",
       "image_url": "/assets/final/post_fa8883fd4fd91ad016_site_1600x900.jpg",
-      "published_at": "2026-06-28T13:00:00+01:00",
+      "published_at": "2026-06-28T12:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -2342,7 +2843,7 @@
       ],
       "image_path": "data\\final_assets\\post_92ab0cdd12aa35e606_db548f4a_ChatGPT-Image-27_06_2026-21_54_06.png",
       "image_url": "/assets/final/post_126b9892585056a05a_site_1600x900.jpg",
-      "published_at": "2026-06-28T09:00:00+01:00",
+      "published_at": "2026-06-28T08:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -2360,7 +2861,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9cf9893470840f6ae8_f6bf5590_ChatGPT-Image-22_06_2026-21_41_06.png",
       "image_url": "/assets/final/post_4708f2dbb3d6a00b7f_site_1600x900.jpg",
-      "published_at": "2026-06-23T21:00:00+01:00",
+      "published_at": "2026-06-23T20:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -2376,7 +2877,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_38cf889229faebe977_4f7370e9_ChatGPT-Image-22_06_2026-21_37_37.png",
       "image_url": "/assets/final/post_fb7c6b726d335265fb_site_1600x900.jpg",
-      "published_at": "2026-06-23T16:00:00+01:00",
+      "published_at": "2026-06-23T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2395,7 +2896,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_bac06755ef006c6fcf_0540ea93_ChatGPT-Image-22_06_2026-21_35_33.png",
       "image_url": "/assets/final/post_c331756ae4dc9c82d7_site_1600x900.jpg",
-      "published_at": "2026-06-23T13:00:00+01:00",
+      "published_at": "2026-06-23T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -2411,7 +2912,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_90a8acc013568cc731_0b7e6e00_ChatGPT-Image-22_06_2026-21_34_03.png",
       "image_url": "/assets/final/post_c4d319242d14f0ce8b_site_1600x900.jpg",
-      "published_at": "2026-06-23T09:00:00+01:00",
+      "published_at": "2026-06-23T08:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -2427,7 +2928,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_e18c31c185103e34bb_2891592e_ChatGPT-Image-19_06_2026-13_14_05.png",
       "image_url": "/assets/final/post_a168187e0b5bf9b2e8_site_1600x900.jpg",
-      "published_at": "2026-06-19T21:00:00+01:00",
+      "published_at": "2026-06-19T20:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -2445,7 +2946,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_61efde9d47d7fd4449_65c79806_ChatGPT-Image-19_06_2026-13_10_03.png",
       "image_url": "/assets/final/post_ae1a0c044e681519d5_site_1600x900.jpg",
-      "published_at": "2026-06-19T18:00:00+01:00",
+      "published_at": "2026-06-19T17:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação"
@@ -2461,7 +2962,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_7b27e62e5000fc9cdd_bfc1e099_ChatGPT-Image-19_06_2026-13_08_55.png",
       "image_url": "/assets/final/post_3ccc626698cc6e2745_site_1600x900.jpg",
-      "published_at": "2026-06-19T16:00:00+01:00",
+      "published_at": "2026-06-19T15:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -2478,7 +2979,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fcf1b917ec9d973354_d3b3724f_ChatGPT-Image-19_06_2026-13_07_15.png",
       "image_url": "/assets/final/post_2fd0bf37a1e524a302_site_1600x900.jpg",
-      "published_at": "2026-06-19T14:28:00+01:00",
+      "published_at": "2026-06-19T13:28:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2496,7 +2997,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_92f2acfa7bfbe762c4_6f4c845d_ChatGPT-Image-17_06_2026-21_59_21.png",
       "image_url": "/assets/final/post_497f46ccaa03780d29_site_1600x900.jpg",
-      "published_at": "2026-06-18T21:00:00+01:00",
+      "published_at": "2026-06-18T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2513,7 +3014,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a56cbd6d9417b70f25_667fa69c_ChatGPT-Image-17_06_2026-21_37_59.png",
       "image_url": "/assets/final/post_80a87dfdb23ff70bb9_site_1600x900.jpg",
-      "published_at": "2026-06-18T16:00:00+01:00",
+      "published_at": "2026-06-18T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2531,7 +3032,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c327f3ea7840bc9971_24348609_ChatGPT-Image-17_06_2026-21_36_52.png",
       "image_url": "/assets/final/post_14086076353596330c_site_1600x900.jpg",
-      "published_at": "2026-06-18T13:00:00+01:00",
+      "published_at": "2026-06-18T12:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais",
@@ -2548,7 +3049,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_68a40f96646af4da92_ca2c99fe_ChatGPT-Image-17_06_2026-21_34_34.png",
       "image_url": "/assets/final/post_b9c6292b4104c88a44_site_1600x900.jpg",
-      "published_at": "2026-06-18T09:00:00+01:00",
+      "published_at": "2026-06-18T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2567,7 +3068,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_8814fce7c7620b1e66_1b40f490_ChatGPT-Image-16_06_2026-23_13_29.png",
       "image_url": "/assets/final/post_c065c13dcf425ab076_site_1600x900.jpg",
-      "published_at": "2026-06-17T21:00:00+01:00",
+      "published_at": "2026-06-17T20:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -2585,7 +3086,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_04238a599cb4127acf_2e3861d9_ChatGPT-Image-16_06_2026-23_49_14.png",
       "image_url": "/assets/final/post_9d425d6aae5a574821_site_1600x900.jpg",
-      "published_at": "2026-06-17T16:00:00+01:00",
+      "published_at": "2026-06-17T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2603,7 +3104,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4b2e479386aefac817_a0341416_ChatGPT-Image-16_06_2026-23_47_34.png",
       "image_url": "/assets/final/post_409f7114ffb6bc04e5_site_1600x900.jpg",
-      "published_at": "2026-06-17T13:00:00+01:00",
+      "published_at": "2026-06-17T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2621,7 +3122,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_66387b044c719a3b2d_ee4c7dcb_ChatGPT-Image-16_06_2026-23_09_28.png",
       "image_url": "/assets/final/post_1bed7139e09314af15_site_1600x900.jpg",
-      "published_at": "2026-06-17T09:00:00+01:00",
+      "published_at": "2026-06-17T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2639,7 +3140,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_427c33fbc60e136a54_ea776ca5_ChatGPT-Image-15_06_2026-22_57_29.png",
       "image_url": "/assets/final/post_324779fe7e8d968b76_site_1600x900.jpg",
-      "published_at": "2026-06-16T21:00:00+01:00",
+      "published_at": "2026-06-16T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2656,7 +3157,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_66c8d677e3c5db0021_1153edc5_ChatGPT-Image-15_06_2026-22_52_27.png",
       "image_url": "/assets/final/post_43e3f4f8c879ac4a76_site_1600x900.jpg",
-      "published_at": "2026-06-16T16:00:00+01:00",
+      "published_at": "2026-06-16T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2674,7 +3175,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fef29d465cf5737a2e_cdd1feca_ChatGPT-Image-15_06_2026-22_50_59.png",
       "image_url": "/assets/final/post_226d2963edbfcacb29_site_1600x900.jpg",
-      "published_at": "2026-06-16T13:00:00+01:00",
+      "published_at": "2026-06-16T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2692,7 +3193,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_43c315cb2672f1d5a7_66289871_ChatGPT-Image-15_06_2026-22_19_40.png",
       "image_url": "/assets/final/post_e5eb1ad4b4314d618b_site_1600x900.jpg",
-      "published_at": "2026-06-16T09:00:00+01:00",
+      "published_at": "2026-06-16T08:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -2709,7 +3210,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f9dd6a0ccfbceddafe_551f8fc4_ChatGPT-Image-15_06_2026-11_22_25.png",
       "image_url": "/assets/final/post_bd41ce45cd2f1312c4_site_1600x900.jpg",
-      "published_at": "2026-06-15T21:00:00+01:00",
+      "published_at": "2026-06-15T20:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -2727,7 +3228,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_aed51851b55bbfd076_f326866f_ChatGPT-Image-15_06_2026-00_12_04.png",
       "image_url": "/assets/final/post_0fad2a9f0f76bde56d_site_1600x900.jpg",
-      "published_at": "2026-06-15T16:00:00+01:00",
+      "published_at": "2026-06-15T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2745,7 +3246,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_919ad1df3a1ea29bb3_e5937e59_ChatGPT-Image-15_06_2026-00_16_08.png",
       "image_url": "/assets/final/post_c03d7a1af34991026b_site_1600x900.jpg",
-      "published_at": "2026-06-15T13:00:00+01:00",
+      "published_at": "2026-06-15T12:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação"
@@ -2761,7 +3262,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9d33bdc8f9419ca859_284f5f43_ChatGPT-Image-15_06_2026-00_04_10.png",
       "image_url": "/assets/final/post_f21f49ab0536e96c6c_site_1600x900.jpg",
-      "published_at": "2026-06-15T10:00:00+01:00",
+      "published_at": "2026-06-15T09:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -2777,7 +3278,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_316aa3bf2f2de12799_153a9648_ChatGPT-Image-13_06_2026-21_37_19.png",
       "image_url": "/assets/final/post_15a03361e52226f422_site_1600x900.jpg",
-      "published_at": "2026-06-14T21:00:00+01:00",
+      "published_at": "2026-06-14T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2795,7 +3296,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_74caa834da1aa66202_05af20d6_ChatGPT-Image-13_06_2026-21_29_04.png",
       "image_url": "/assets/final/post_a70b4e11d52fcd5f7a_site_1600x900.jpg",
-      "published_at": "2026-06-14T16:00:00+01:00",
+      "published_at": "2026-06-14T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2813,7 +3314,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4f9fc6bff297793cba_56a6d69e_ChatGPT-Image-13_06_2026-21_28_05.png",
       "image_url": "/assets/final/post_0bea12cc29457fe724_site_1600x900.jpg",
-      "published_at": "2026-06-14T13:00:00+01:00",
+      "published_at": "2026-06-14T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2830,7 +3331,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_cdb06bdbb55452c302_725f1939_ChatGPT-Image-13_06_2026-21_25_48.png",
       "image_url": "/assets/final/post_8171706bc2950ea042_site_1600x900.jpg",
-      "published_at": "2026-06-14T09:00:00+01:00",
+      "published_at": "2026-06-14T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2849,7 +3350,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_aeac836349bfdb5f05_b9050210_ChatGPT-Image-13_06_2026-00_55_45.png",
       "image_url": "/assets/final/post_2770072f32603e4689_site_1600x900.jpg",
-      "published_at": "2026-06-13T21:00:00+01:00",
+      "published_at": "2026-06-13T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2866,7 +3367,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_bba7b4414179d7f3d6_13056f58_ChatGPT-Image-13_06_2026-00_48_05.png",
       "image_url": "/assets/final/post_fa48950bf3ce54a867_site_1600x900.jpg",
-      "published_at": "2026-06-13T16:00:00+01:00",
+      "published_at": "2026-06-13T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -2882,7 +3383,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_43d259c5c85d52ca87_29127ebd_ChatGPT-Image-13_06_2026-09_32_56.png",
       "image_url": "/assets/final/post_062f27ef30d00bb072_site_1600x900.jpg",
-      "published_at": "2026-06-13T13:00:00+01:00",
+      "published_at": "2026-06-13T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2900,7 +3401,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_44658bfa03fb64cf0a_2c4122ca_ChatGPT-Image-13_06_2026-00_52_50.png",
       "image_url": "/assets/final/post_22c85ebe6d1b7f3ab9_site_1600x900.jpg",
-      "published_at": "2026-06-13T09:00:00+01:00",
+      "published_at": "2026-06-13T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -2917,7 +3418,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_c51b292ef9bfd53132_ca73bc0f_ChatGPT-Image-11_06_2026-23_52_10.png",
       "image_url": "/assets/final/post_d16672f5f60c4507c1_site_1600x900.jpg",
-      "published_at": "2026-06-12T21:00:00+01:00",
+      "published_at": "2026-06-12T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -2933,7 +3434,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_383d2f54851e1c9243_36edc57c_ChatGPT-Image-11_06_2026-23_03_23.png",
       "image_url": "/assets/final/post_910ece3d7a2a4157db_site_1600x900.jpg",
-      "published_at": "2026-06-12T16:00:00+01:00",
+      "published_at": "2026-06-12T15:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -2949,7 +3450,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_947f26055f54189f46_39ed5ecb_ChatGPT-Image-11_06_2026-23_00_38.png",
       "image_url": "/assets/final/post_b5daa346bd5c39d6b4_site_1600x900.jpg",
-      "published_at": "2026-06-12T13:00:00+01:00",
+      "published_at": "2026-06-12T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -2966,7 +3467,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_8106b8713bd20f8376_c0bc6228_ChatGPT-Image-11_06_2026-23_02_13.png",
       "image_url": "/assets/final/post_cf41ee1c6b7930df6a_site_1600x900.jpg",
-      "published_at": "2026-06-12T09:00:00+01:00",
+      "published_at": "2026-06-12T08:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação"
@@ -2982,7 +3483,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_1ed95915a9355435f3_a5ec8143_ChatGPT-Image-10_06_2026-23_44_47.png",
       "image_url": "/assets/final/post_e0ded54dd854c2d4f1_site_1600x900.jpg",
-      "published_at": "2026-06-12T00:18:00+01:00",
+      "published_at": "2026-06-11T23:18:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -2998,7 +3499,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5d127644e03e307b3b_df9f12eb_ChatGPT-Image-10_06_2026-23_36_57.png",
       "image_url": "/assets/final/post_ecdcfcc50219eb802e_site_1600x900.jpg",
-      "published_at": "2026-06-11T16:00:00+01:00",
+      "published_at": "2026-06-11T15:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -3014,7 +3515,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_643b3b1e87fb9b24ef_a92a571d_ChatGPT-Image-10_06_2026-23_31_11.png",
       "image_url": "/assets/final/post_6a2dfcf0ea1d094656_site_1600x900.jpg",
-      "published_at": "2026-06-11T13:00:00+01:00",
+      "published_at": "2026-06-11T12:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -3031,7 +3532,7 @@
       ],
       "image_path": "data/final_assets/post_c38262fe28ece80db3_church_ai_cover.png",
       "image_url": "/assets/final/post_c38262fe28ece80db3_site_1600x900.jpg",
-      "published_at": "2026-06-11T09:00:00+01:00",
+      "published_at": "2026-06-11T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3050,7 +3551,7 @@
       ],
       "image_path": "data\\final_assets\\post_cc7f2957fa85dd8441_f0608f46_ChatGPT-Image-10_06_2026-00_23_03.png",
       "image_url": "/assets/final/post_197a17174b6ca4813c_site_1600x900.jpg",
-      "published_at": "2026-06-10T21:00:00+01:00",
+      "published_at": "2026-06-10T20:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -3066,7 +3567,7 @@
       ],
       "image_path": "data\\final_assets\\post_7ca632f5119a44269a_818b7b29_ChatGPT-Image-10_06_2026-00_23_38.png",
       "image_url": "/assets/final/post_6f34123aab03d87268_site_1600x900.jpg",
-      "published_at": "2026-06-10T18:00:00+01:00",
+      "published_at": "2026-06-10T17:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3083,7 +3584,7 @@
       ],
       "image_path": "data\\final_assets\\post_46b2168a438ca425f7_c10140f8_ChatGPT-Image-10_06_2026-00_17_39.png",
       "image_url": "/assets/final/post_ffcd8eca89930f443a_site_1600x900.jpg",
-      "published_at": "2026-06-10T13:00:00+01:00",
+      "published_at": "2026-06-10T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3102,7 +3603,7 @@
       ],
       "image_path": "data\\final_assets\\post_3c12014b907ef116ec_a35492d1_ChatGPT-Image-10_06_2026-00_15_20.png",
       "image_url": "/assets/final/post_c7ea3f5457582268fa_site_1600x900.jpg",
-      "published_at": "2026-06-10T09:00:00+01:00",
+      "published_at": "2026-06-10T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3120,7 +3621,7 @@
       ],
       "image_path": "data\\final_assets\\post_ea3e33e8c945881755_8d33743d_ChatGPT-Image-8_06_2026-18_57_50.png",
       "image_url": "/assets/final/post_a050a430289b939744_site_1600x900.jpg",
-      "published_at": "2026-06-09T21:00:00+01:00",
+      "published_at": "2026-06-09T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3137,7 +3638,7 @@
       ],
       "image_path": "data\\final_assets\\post_110f8de4eea4e1b54e_12cdc393_ChatGPT-Image-8_06_2026-18_55_43.png",
       "image_url": "/assets/final/post_679d16dc2e6531f5e4_site_1600x900.jpg",
-      "published_at": "2026-06-09T16:00:00+01:00",
+      "published_at": "2026-06-09T15:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -3153,7 +3654,7 @@
       ],
       "image_path": "data\\final_assets\\post_781e963b1eae920f30_e98c2a0c_ChatGPT-Image-8_06_2026-18_50_24.png",
       "image_url": "/assets/final/post_48720f66c33845bc31_site_1600x900.jpg",
-      "published_at": "2026-06-09T13:00:00+01:00",
+      "published_at": "2026-06-09T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3170,7 +3671,7 @@
       ],
       "image_path": "data\\final_assets\\post_0c11bb678fc19f1575_809e89e8_ChatGPT-Image-8_06_2026-18_48_14.png",
       "image_url": "/assets/final/post_28d301964ffd9c3fe8_site_1600x900.jpg",
-      "published_at": "2026-06-09T09:00:00+01:00",
+      "published_at": "2026-06-09T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3189,7 +3690,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_5fa223a1a0f6c9c8a5_72bef983_ChatGPT-Image-7_06_2026-22_02_40.png",
       "image_url": "/assets/final/post_5eb8f715bec888cb8d_site_1600x900.jpg",
-      "published_at": "2026-06-08T21:00:00+01:00",
+      "published_at": "2026-06-08T20:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -3207,7 +3708,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_46b73fb30a55f13cd1_252b5062_ChatGPT-Image-7_06_2026-22_06_59.png",
       "image_url": "/assets/final/post_02d20b0f5e7c52bf98_site_1600x900.jpg",
-      "published_at": "2026-06-08T16:00:00+01:00",
+      "published_at": "2026-06-08T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3224,7 +3725,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2dd46e681744362e53_cb7ff6b9_ChatGPT-Image-7_06_2026-21_53_24.png",
       "image_url": "/assets/final/post_e317cd3975bf569f17_site_1600x900.jpg",
-      "published_at": "2026-06-08T13:00:00+01:00",
+      "published_at": "2026-06-08T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3242,7 +3743,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d86030d2d777f0c2a3_499dc079_ChatGPT-Image-7_06_2026-21_45_14.png",
       "image_url": "/assets/final/post_4f7c54afe11be6f3d8_site_1600x900.jpg",
-      "published_at": "2026-06-08T09:00:00+01:00",
+      "published_at": "2026-06-08T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3259,7 +3760,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_1515c5854c2937bf6a_a198e84c_ChatGPT-Image-6_06_2026-22_21_41.png",
       "image_url": "/assets/final/post_1d2e9fe18417f254a9_site_1600x900.jpg",
-      "published_at": "2026-06-07T21:00:00+01:00",
+      "published_at": "2026-06-07T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3277,7 +3778,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2edf89a11d3c514e5f_7ff2b935_ChatGPT-Image-6_06_2026-22_18_59.png",
       "image_url": "/assets/final/post_ac55ee8bae3b43fa94_site_1600x900.jpg",
-      "published_at": "2026-06-07T16:00:00+01:00",
+      "published_at": "2026-06-07T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3295,7 +3796,7 @@
       ],
       "image_path": "c:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0357526a44045c199d_anthropic_gender_gap_ai.png",
       "image_url": "/assets/final/post_77ae0b8b14feb7bb60_site_1600x900.jpg",
-      "published_at": "2026-06-07T13:00:00+01:00",
+      "published_at": "2026-06-07T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3313,7 +3814,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_66574ac183fd4dd6e5_03942e8b_ChatGPT-Image-6_06_2026-21_49_33.png",
       "image_url": "/assets/final/post_2054178f1c30eb2bd7_site_1600x900.jpg",
-      "published_at": "2026-06-07T09:00:00+01:00",
+      "published_at": "2026-06-07T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3331,7 +3832,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_d9d5912a1ef2e25a24_b91eeb2a_ChatGPT-Image-5_06_2026-23_07_56.png",
       "image_url": "/assets/final/post_c2cba4801d60e0baab_site_1600x900.jpg",
-      "published_at": "2026-06-06T21:00:00+01:00",
+      "published_at": "2026-06-06T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3349,7 +3850,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f40d5bf832b98e8717_5d90ccd8_ChatGPT-Image-5_06_2026-23_35_29.png",
       "image_url": "/assets/final/post_b3d2e82ee3c62a8552_site_1600x900.jpg",
-      "published_at": "2026-06-06T16:00:00+01:00",
+      "published_at": "2026-06-06T15:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -3365,7 +3866,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_453db7b0e48021dc69_976899e6_ChatGPT-Image-5_06_2026-23_05_16.png",
       "image_url": "/assets/final/post_30c5d78117a2da867e_site_1600x900.jpg",
-      "published_at": "2026-06-06T13:00:00+01:00",
+      "published_at": "2026-06-06T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3383,7 +3884,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a0b83d463f3cb751c1_989c1f24_ChatGPT-Image-5_06_2026-22_26_05.png",
       "image_url": "/assets/final/post_6fe50eda1cb72fa485_site_1600x900.jpg",
-      "published_at": "2026-06-06T09:00:00+01:00",
+      "published_at": "2026-06-06T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3401,7 +3902,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_ad97db04e28b973f4e_d305bf77_ChatGPT-Image-4_06_2026-22_48_48.png",
       "image_url": "/assets/final/post_ad97db04e28b973f4e_site_1600x900.jpg",
-      "published_at": "2026-06-05T21:00:00+01:00",
+      "published_at": "2026-06-05T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3419,7 +3920,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fa38b8cdb5e677747c_fda5cd0b_ChatGPT-Image-4_06_2026-23_16_59.png",
       "image_url": "/assets/final/post_fa38b8cdb5e677747c_site_1600x900.jpg",
-      "published_at": "2026-06-05T21:00:00+01:00",
+      "published_at": "2026-06-05T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3437,7 +3938,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_840895800dbba7b271_05aca28a_ChatGPT-Image-4_06_2026-22_42_41.png",
       "image_url": "/assets/final/post_08b5044299a41ece58_site_1600x900.jpg",
-      "published_at": "2026-06-05T09:00:00+01:00",
+      "published_at": "2026-06-05T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3456,7 +3957,7 @@
       ],
       "image_path": "data\\final_assets\\post_23206e30772fdf7270_f8e889b3_ChatGPT-Image-3_06_2026-18_43_00.png",
       "image_url": "/assets/final/post_fc332917a65e003e4c_site_1600x900.jpg",
-      "published_at": "2026-06-04T21:00:00+01:00",
+      "published_at": "2026-06-04T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3473,7 +3974,7 @@
       ],
       "image_path": "data\\final_assets\\post_634af459900dff9d1f_20bf0fed_ChatGPT-Image-3_06_2026-18_39_03.png",
       "image_url": "/assets/final/post_aa4a51ddc82267b979_site_1600x900.jpg",
-      "published_at": "2026-06-04T16:00:00+01:00",
+      "published_at": "2026-06-04T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3491,7 +3992,7 @@
       ],
       "image_path": "data\\final_assets\\post_6eb4bbff5ea63deb12_bb8e33ea_ChatGPT-Image-3_06_2026-18_34_41.png",
       "image_url": "/assets/final/post_bf266c3d4dc6a20cd5_site_1600x900.jpg",
-      "published_at": "2026-06-04T13:00:00+01:00",
+      "published_at": "2026-06-04T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3509,7 +4010,7 @@
       ],
       "image_path": "data\\final_assets\\post_fed0a7a5ac83010c1b_652be16c_ChatGPT-Image-3_06_2026-18_31_11.png",
       "image_url": "/assets/final/post_589f0cb4a7d030c42b_site_1600x900.jpg",
-      "published_at": "2026-06-04T09:00:00+01:00",
+      "published_at": "2026-06-04T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3527,7 +4028,7 @@
       ],
       "image_path": "data\\final_assets\\post_4d9e816d132579b8fe_2cf28208_ChatGPT-Image-2_06_2026-22_54_06.png",
       "image_url": "/assets/final/post_db16a2b55a581478ed_site_1600x900.jpg",
-      "published_at": "2026-06-03T21:00:00+01:00",
+      "published_at": "2026-06-03T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3546,7 +4047,7 @@
       ],
       "image_path": "data\\final_assets\\post_b49782ee3afa4b0335_340b0590_ChatGPT-Image-2_06_2026-22_52_00.png",
       "image_url": "/assets/final/post_aad9183a95eff3e7a2_site_1600x900.jpg",
-      "published_at": "2026-06-03T16:00:00+01:00",
+      "published_at": "2026-06-03T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3565,7 +4066,7 @@
       ],
       "image_path": "data\\final_assets\\post_32a5ded3b2938adac2_b330f6df_ChatGPT-Image-2_06_2026-22_47_09.png",
       "image_url": "/assets/final/post_ca2c25481fa626bbab_site_1600x900.jpg",
-      "published_at": "2026-06-03T13:00:00+01:00",
+      "published_at": "2026-06-03T12:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3583,7 +4084,7 @@
       ],
       "image_path": "data\\final_assets\\post_ecd2c7db03a1bea68a_f261a856_ChatGPT-Image-2_06_2026-22_44_48.png",
       "image_url": "/assets/final/post_519ad245b30cdac5d2_site_1600x900.jpg",
-      "published_at": "2026-06-03T09:00:00+01:00",
+      "published_at": "2026-06-03T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3600,7 +4101,7 @@
       ],
       "image_path": "data\\final_assets\\post_b283d7abfb43195112_5321c278_ChatGPT-Image-2_06_2026-15_11_34.png",
       "image_url": "/assets/final/post_472c98db4b359f4cfc_site_1600x900.jpg",
-      "published_at": "2026-06-02T21:00:00+01:00",
+      "published_at": "2026-06-02T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3618,7 +4119,7 @@
       ],
       "image_path": "data\\final_assets\\post_85ef07c5efea6372b4_2d6c481b_ChatGPT-Image-2_06_2026-15_01_34.png",
       "image_url": "/assets/final/post_15331982b1d6e29fa5_site_1600x900.jpg",
-      "published_at": "2026-06-02T16:00:00+01:00",
+      "published_at": "2026-06-02T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3635,7 +4136,7 @@
       ],
       "image_path": "data\\final_assets\\post_e7c43644dbae65cbfd_62f36e2a_ChatGPT-Image-2_06_2026-10_21_29.png",
       "image_url": "/assets/final/post_e06e79995518dbf18e_site_1600x900.jpg",
-      "published_at": "2026-06-02T12:00:00+01:00",
+      "published_at": "2026-06-02T11:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3652,7 +4153,7 @@
       ],
       "image_path": "data\\final_assets\\post_bb91ea5f5c12e59c64_49b78f12_ChatGPT-Image-31_05_2026-23_13_15.png",
       "image_url": "/assets/final/post_a81af6593646cb95ca_site_1600x900.jpg",
-      "published_at": "2026-06-01T21:00:00+01:00",
+      "published_at": "2026-06-01T20:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3670,7 +4171,7 @@
       ],
       "image_path": "data\\final_assets\\post_2e3dd52597f4c8c896_1635f11e_ChatGPT-Image-31_05_2026-23_08_57.png",
       "image_url": "/assets/final/post_318940a76ec4104e0f_site_1600x900.jpg",
-      "published_at": "2026-06-01T16:00:00+01:00",
+      "published_at": "2026-06-01T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3688,7 +4189,7 @@
       ],
       "image_path": "data\\final_assets\\post_afa3dfe1ae9260d53a_7130c705_ChatGPT-Image-31_05_2026-22_57_18.png",
       "image_url": "/assets/final/post_8ebfa34cb28950136e_site_1600x900.jpg",
-      "published_at": "2026-06-01T13:00:00+01:00",
+      "published_at": "2026-06-01T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3707,7 +4208,7 @@
       ],
       "image_path": "data\\final_assets\\post_85075ba72b779aad39_838d50f4_ChatGPT-Image-31_05_2026-22_42_33.png",
       "image_url": "/assets/final/post_a7ed601d82a41409aa_site_1600x900.jpg",
-      "published_at": "2026-06-01T09:00:00+01:00",
+      "published_at": "2026-06-01T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3724,7 +4225,7 @@
       ],
       "image_path": "data\\final_assets\\post_76599bbb1c68ec0373_71fe426d_ChatGPT-Image-30_05_2026-23_42_17.png",
       "image_url": "/assets/final/post_8be4ab55f26cc29c36_site_1600x900.jpg",
-      "published_at": "2026-05-31T16:00:00+01:00",
+      "published_at": "2026-05-31T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3743,7 +4244,7 @@
       ],
       "image_path": "data\\final_assets\\post_d375c4af43443ac5cf_f003fabd_ChatGPT-Image-30_05_2026-23_27_30.png",
       "image_url": "/assets/final/post_11581e445245af9615_site_1600x900.jpg",
-      "published_at": "2026-05-31T13:00:00+01:00",
+      "published_at": "2026-05-31T12:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais",
@@ -3760,7 +4261,7 @@
       ],
       "image_path": "data\\final_assets\\post_34b08d24c2df857035_7d9db390_ChatGPT-Image-30_05_2026-23_25_08.png",
       "image_url": "/assets/final/post_d7b87cf8518f953413_site_1600x900.jpg",
-      "published_at": "2026-05-31T09:00:00+01:00",
+      "published_at": "2026-05-31T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3779,7 +4280,7 @@
       ],
       "image_path": "data\\final_assets\\post_2afb76414dd65e4235_f1f1d911_ChatGPT-Image-30_05_2026-01_19_58.png",
       "image_url": "/assets/final/post_9b3fc80431a87cb2ae_site_1600x900.jpg",
-      "published_at": "2026-05-30T21:00:00+01:00",
+      "published_at": "2026-05-30T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3796,7 +4297,7 @@
       ],
       "image_path": "data\\final_assets\\post_0232748f3e65e4fd26_c983c3e4_ChatGPT-Image-30_05_2026-01_06_37.png",
       "image_url": "/assets/final/post_f93578e6d2b1a5e801_site_1600x900.jpg",
-      "published_at": "2026-05-30T16:00:00+01:00",
+      "published_at": "2026-05-30T15:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -3813,7 +4314,7 @@
       ],
       "image_path": "data\\final_assets\\post_9a3fdba20d8d006de2_56e4664c_ChatGPT-Image-30_05_2026-01_24_29.png",
       "image_url": "/assets/final/post_d3e0f923e3c26fce9c_site_1600x900.jpg",
-      "published_at": "2026-05-30T13:00:00+01:00",
+      "published_at": "2026-05-30T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3831,7 +4332,7 @@
       ],
       "image_path": "data\\final_assets\\post_be18ad5d07901b8d1d_285a6bd4_ChatGPT-Image-30_05_2026-00_57_32.png",
       "image_url": "/assets/final/post_9dee92cf6662256f9e_site_1600x900.jpg",
-      "published_at": "2026-05-30T09:00:00+01:00",
+      "published_at": "2026-05-30T08:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -3848,7 +4349,7 @@
       ],
       "image_path": "data\\final_assets\\post_6c1246f3eb910e91e2_98b35f22_ChatGPT-Image-28_05_2026-22_14_34.png",
       "image_url": "/assets/final/post_27e1670dbd33dcb400_site_1600x900.jpg",
-      "published_at": "2026-05-29T21:00:00+01:00",
+      "published_at": "2026-05-29T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3866,7 +4367,7 @@
       ],
       "image_path": "data\\final_assets\\post_57ed8bb092dd3cffc8_6bf41cb3_ChatGPT-Image-28_05_2026-22_09_33.png",
       "image_url": "/assets/final/post_4632c1a88789c74c6b_site_1600x900.jpg",
-      "published_at": "2026-05-29T16:00:00+01:00",
+      "published_at": "2026-05-29T15:00:00+00:00",
       "section": [
         "Portugal",
         "Builders",
@@ -3883,7 +4384,7 @@
       ],
       "image_path": "data\\final_assets\\post_68ae10d56e964670b2_5879033b_ChatGPT-Image-28_05_2026-21_42_44.png",
       "image_url": "/assets/final/post_777aa69ee085f5b59f_site_1600x900.jpg",
-      "published_at": "2026-05-29T13:00:00+01:00",
+      "published_at": "2026-05-29T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -3899,7 +4400,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_fcd664bccf2ed39284_77c5fe33_ChatGPT-Image-27_05_2026-19_08_07.png",
       "image_url": "/assets/final/post_f27293bfded89d7866_site_1600x900.jpg",
-      "published_at": "2026-05-28T21:00:00+01:00",
+      "published_at": "2026-05-28T20:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -3916,7 +4417,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_672fb0ae2d168eac39_0e5072b6_ChatGPT-Image-27_05_2026-18_52_11.png",
       "image_url": "/assets/final/post_1acbdb6c181cac740c_site_1600x900.jpg",
-      "published_at": "2026-05-28T16:00:00+01:00",
+      "published_at": "2026-05-28T15:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -3932,7 +4433,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_a77935c4e8a3e6118d_898bc0fa_ChatGPT-Image-27_05_2026-18_50_05.png",
       "image_url": "/assets/final/post_acd8c4eb1f0977025b_site_1600x900.jpg",
-      "published_at": "2026-05-28T13:00:00+01:00",
+      "published_at": "2026-05-28T12:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -3948,7 +4449,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_539ca86e4d9800d0eb_04c0bb99_ChatGPT-Image-27_05_2026-18_47_16.png",
       "image_url": "/assets/final/post_b6251636e7f6536c29_site_1600x900.jpg",
-      "published_at": "2026-05-28T09:00:00+01:00",
+      "published_at": "2026-05-28T08:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -3964,7 +4465,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_36012da7e4f5b36559_2bfdc493_ChatGPT-Image-26_05_2026-23_49_09.png",
       "image_url": "/assets/final/post_0a04335c22928a3747_site_1600x900.jpg",
-      "published_at": "2026-05-27T21:00:00+01:00",
+      "published_at": "2026-05-27T20:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -3981,7 +4482,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_92c1926ec1dbcffe42_b56c6eb8_ChatGPT-Image-26_05_2026-23_44_01.png",
       "image_url": "/assets/final/post_088d04f60e8cc6c9a9_site_1600x900.jpg",
-      "published_at": "2026-05-27T16:00:00+01:00",
+      "published_at": "2026-05-27T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -3997,7 +4498,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_86ba49249cbc2af15e_d13fd551_ChatGPT-Image-26_05_2026-21_34_11.png",
       "image_url": "/assets/final/post_0a186acc502ff54c29_site_1600x900.jpg",
-      "published_at": "2026-05-27T13:00:00+01:00",
+      "published_at": "2026-05-27T12:00:00+00:00",
       "section": [
         "Mundo",
         "Builders",
@@ -4014,7 +4515,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_f2dbef5f8b3ee91cb0_e78420b7_ChatGPT-Image-26_05_2026-23_39_42.png",
       "image_url": "/assets/final/post_f2dbef5f8b3ee91cb0_site_1600x900.jpg",
-      "published_at": "2026-05-27T09:00:00+01:00",
+      "published_at": "2026-05-27T08:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -4030,7 +4531,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_4ee7c05ad2977bbf4d_026589a0_ChatGPT-Image-25_05_2026-16_16_56.png",
       "image_url": "/assets/final/post_dcc1d8534a49bc3233_site_1600x900.jpg",
-      "published_at": "2026-05-26T21:00:00+01:00",
+      "published_at": "2026-05-26T20:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -4046,7 +4547,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_b49ac327cd8d1b9843_1c3abe8f_ChatGPT-Image-25_05_2026-16_15_46.png",
       "image_url": "/assets/final/post_18fbea83933572b6eb_site_1600x900.jpg",
-      "published_at": "2026-05-26T16:00:00+01:00",
+      "published_at": "2026-05-26T15:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação"
@@ -4062,7 +4563,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_310f7004049043e4e4_9b3ea4e1_ChatGPT-Image-25_05_2026-16_13_47.png",
       "image_url": "/assets/final/post_4adee8a9694b416307_site_1600x900.jpg",
-      "published_at": "2026-05-26T13:00:00+01:00",
+      "published_at": "2026-05-26T12:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras",
@@ -4079,7 +4580,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0027ca7eb8240b36c0_c5787f2e_ChatGPT-Image-25_05_2026-16_11_09.png",
       "image_url": "/assets/final/post_e784ee9d944efc8761_site_1600x900.jpg",
-      "published_at": "2026-05-26T09:00:00+01:00",
+      "published_at": "2026-05-26T08:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -4095,7 +4596,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_0a3981334485030c2c_f8a8a14e_ChatGPT-Image-24_05_2026-21_18_10.png",
       "image_url": "/assets/final/post_342380d0013415ccfe_site_1600x900.jpg",
-      "published_at": "2026-05-25T21:00:00+01:00",
+      "published_at": "2026-05-25T20:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras",
@@ -4112,7 +4613,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_398263b1ec97eabae0_0adb67e8_ChatGPT-Image-24_05_2026-21_14_32.png",
       "image_url": "/assets/final/post_4a8cfddd2cd51343e0_site_1600x900.jpg",
-      "published_at": "2026-05-25T16:00:00+01:00",
+      "published_at": "2026-05-25T15:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação",
@@ -4129,7 +4630,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_131f3e7bfbeb658acb_18dd938c_ChatGPT-Image-24_05_2026-20_41_50.png",
       "image_url": "/assets/final/post_7b0767d39005262edc_site_1600x900.jpg",
-      "published_at": "2026-05-25T09:00:00+01:00",
+      "published_at": "2026-05-25T08:00:00+00:00",
       "section": [
         "Portugal",
         "Builders"
@@ -4145,7 +4646,7 @@
       ],
       "image_path": "data\\final_assets\\post_2260e4f136e57042db_7964e24e_ChatGPT-Image-23_05_2026-00_58_36.png",
       "image_url": "/assets/final/post_db04b628e3fc679a83_site_1600x900.jpg",
-      "published_at": "2026-05-23T07:46:00+01:00",
+      "published_at": "2026-05-23T06:46:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -4161,7 +4662,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_9b7c20df827ca6d3ec_06ac74b3_ChatGPT-Image-23_05_2026-05_14_59.png",
       "image_url": "/assets/final/post_15939d630abac80024_site_1600x900.jpg",
-      "published_at": "2026-05-23T07:16:00+01:00",
+      "published_at": "2026-05-23T06:16:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -4177,7 +4678,7 @@
       ],
       "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_18e0f3616de2612049_f4ff4f70_ChatGPT-Image-23_05_2026-05_06_39.png",
       "image_url": "/assets/final/post_435a9acc7aca31a26c_site_1600x900.jpg",
-      "published_at": "2026-05-23T06:46:00+01:00",
+      "published_at": "2026-05-23T05:46:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -4193,7 +4694,7 @@
       ],
       "image_path": "data\\final_assets\\post_bb0c9289364b33b925_50af4c76_ChatGPT-Image-23_05_2026-01_35_49.png",
       "image_url": "/assets/final/post_8e77c8add0a212dd53_site_1600x900.jpg",
-      "published_at": "2026-05-23T06:16:00+01:00",
+      "published_at": "2026-05-23T05:16:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -4209,7 +4710,7 @@
       ],
       "image_path": "data\\final_assets\\post_8419560465fed4da0f_0e34301b_ChatGPT-Image-21_05_2026-11_41_31.png",
       "image_url": "/assets/final/post_56227b5df2f354e22e_site_1600x900.jpg",
-      "published_at": "2026-05-22T21:00:00+01:00",
+      "published_at": "2026-05-22T20:00:00+00:00",
       "section": [
         "Mundo",
         "Previsões Futuras"
@@ -4225,7 +4726,7 @@
       ],
       "image_path": "data\\final_assets\\post_17088cb97181ab3591_5b9aba0f_ChatGPT-Image-21_05_2026-11_11_12.png",
       "image_url": "/assets/final/post_a3e2ffcff25a2fd645_site_1600x900.jpg",
-      "published_at": "2026-05-22T16:00:00+01:00",
+      "published_at": "2026-05-22T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -4241,7 +4742,7 @@
       ],
       "image_path": "data\\final_assets\\post_bea4106a2c98799e0c_af244cab_ChatGPT-Image-21_05_2026-11_06_47.png",
       "image_url": "/assets/final/post_651593cccfc2c69552_site_1600x900.jpg",
-      "published_at": "2026-05-22T13:00:00+01:00",
+      "published_at": "2026-05-22T12:00:00+00:00",
       "section": [
         "Portugal",
         "Previsões Futuras"
@@ -4257,7 +4758,7 @@
       ],
       "image_path": "data\\final_assets\\post_f4c9ca8fe5ffd71760_4cc3056d_ChatGPT-Image-21_05_2026-11_03_20.png",
       "image_url": "/assets/final/post_c45c7a24b04d441a9d_site_1600x900.jpg",
-      "published_at": "2026-05-22T09:00:00+01:00",
+      "published_at": "2026-05-22T08:00:00+00:00",
       "section": [
         "Mundo",
         "Regulação"
@@ -4273,7 +4774,7 @@
       ],
       "image_path": "data\\final_assets\\post_354500e8d839c6bbe2_2cd3147e_ChatGPT-Image-20_05_2026-21_35_32.png",
       "image_url": "/assets/final/post_3c91dc86e7537a3f01_site_1600x900.jpg",
-      "published_at": "2026-05-21T21:00:00+01:00",
+      "published_at": "2026-05-21T20:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -4289,7 +4790,7 @@
       ],
       "image_path": "data\\final_assets\\post_7b74e7a11e031550fc_4a123b12_ChatGPT-Image-19_05_2026-17_35_14.png",
       "image_url": "/assets/final/post_57e63d530441f4a45e_site_1600x900.jpg",
-      "published_at": "2026-05-21T16:00:00+01:00",
+      "published_at": "2026-05-21T15:00:00+00:00",
       "section": [
         "Mundo",
         "Builders"
@@ -4305,7 +4806,7 @@
       ],
       "image_path": "data\\final_assets\\post_fe3f9e776325bc2dac_9994ee0c_ChatGPT-Image-19_05_2026-17_16_45.png",
       "image_url": "/assets/final/post_78483a72d50c99245e_site_1600x900.jpg",
-      "published_at": "2026-05-21T09:00:00+01:00",
+      "published_at": "2026-05-21T08:00:00+00:00",
       "section": [
         "Portugal",
         "Regulação",
@@ -4322,7 +4823,7 @@
       ],
       "image_path": "data\\final_assets\\post_256d7fa0ae652705dc_2cb31e1e_ChatGPT-Image-18_05_2026-22_35_42.png",
       "image_url": "/assets/final/post_401dfe4bb8637632d8_site_1600x900.jpg",
-      "published_at": "2026-05-19T21:00:00+01:00",
+      "published_at": "2026-05-19T20:00:00+00:00",
       "section": [
         "Mundo",
         "Histórias reais"
@@ -4338,7 +4839,7 @@
       ],
       "image_path": "data\\final_assets\\post_669e3e9e7b2a54f0a4_50f272c8_ChatGPT-Image-18_05_2026-22_32_21.png",
       "image_url": "/assets/final/post_b4eff02030bf06b490_site_1600x900.jpg",
-      "published_at": "2026-05-19T16:00:00+01:00",
+      "published_at": "2026-05-19T15:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
@@ -4354,7 +4855,7 @@
       ],
       "image_path": "data\\final_assets\\post_bcfdb577af20f981d6_f50b8398_ChatGPT-Image-18_05_2026-11_50_32.png",
       "image_url": "/assets/final/post_e76c897e478d43aee3_site_1600x900.jpg",
-      "published_at": "2026-05-19T13:00:00+01:00",
+      "published_at": "2026-05-19T12:00:00+00:00",
       "section": [
         "Portugal",
         "Histórias reais"
