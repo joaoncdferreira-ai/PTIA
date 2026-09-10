@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-10T21:09:29+00:00",
+  "updated_at": "2026-09-10T21:14:14+00:00",
   "posts": [
+    {
+      "id": "post_eee29838475625a6d2",
+      "title": "Anthropic abre modelo Mythos à ciberdefesa da UE e deixa Reino Unido de fora",
+      "body": "A Anthropic disponibilizou o modelo avançado Mythos à Agência da União Europeia para a Cibersegurança (ENISA), mantendo o Reino Unido sem acesso à tecnologia, uma exclusão que já gerou apreensão em Londres.\n\nA decisão transfere ferramentas de ponta de análise defensiva diretamente para as entidades reguladoras e operacionais dos Vinte e Sete, com reflexo imediato na cooperação técnica com autoridades nacionais como o Centro Nacional de Cibersegurança (CNCS). Ao contrário das distribuições comerciais abertas, a cedência restrita de modelos de fronteira para ciberdefesa estabelece um novo precedente nas relações entre fornecedores de IA e blocos geopolíticos.\n\nO acesso diferenciado a modelos de auditoria cria uma assimetria técnica imediata: quem tem as ferramentas da Anthropic consegue avaliar código e vulnerabilidades críticas com um nível de profundidade que os restantes parceiros terão de compensar com esforço manual ou soluções proprietárias menos capazes. Para a administração britânica, o isolamento neste domínio traduz-se numa perda de paridade operacional face aos homólogos europeus.\n\nPara Bruxelas e para as equipas de resposta a incidentes nos Estados-membros, o desafio passa agora pela absorção prática deste modelo nas rotinas diárias de proteção de redes críticas, provando que o acesso antecipado a modelos restritos se traduz em capacidade real de mitigação antes que a superfície de ataque aumente.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/10/meses-depois-do-lancamento-anthropic-disponibiliza-mythos-a-uniao-europeia/"
+      ],
+      "image_path": "data\\final_assets\\post_bafd26ff7270b5b221_acbda277_ChatGPT-Image-10_09_2026-22_00_35.png",
+      "image_url": "/assets/final/post_e2087ca7aa3cb99d79_site_1600x900.jpg",
+      "published_at": "2026-09-11T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/anthropic-abre-modelo-mythos-a-ciberdefesa-da-ue-e-deixa-reino-unido-de-fora-eee29838475625a6d2"
+    },
     {
       "id": "post_8582cf70950707575a",
       "title": "A guerra da destilação de modelos de fronteira chegou à diplomacia",
