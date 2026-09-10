@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-10T21:14:14+00:00",
+  "updated_at": "2026-09-10T21:19:54+00:00",
   "posts": [
+    {
+      "id": "post_72e1e06318d7b86064",
+      "title": "Google investe 13 mil milhões de euros na Finlândia para expandir infraestrutura de IA na Europa",
+      "body": "A Google anunciou um investimento de 13 mil milhões de euros entre 2027 e 2028 na Finlândia para expandir a capacidade dos seus centros de dados e redes de suporte a cargas de trabalho de inteligência artificial. O plano, desenhado em parceria com redes de energia limpa e fornecedores regionais, representa o maior compromisso financeiro individual da tecnológica em território europeu.\n\nA operação alarga a capacidade de inferência de baixa latência no continente e responde diretamente aos requisitos de soberania e conformidade de dados da União Europeia para as empresas que operam sob esta jurisdição.\n\nO alcance do anúncio ultrapassa a simples compra de hardware ou capacidade de cálculo. Ao amarrar centros de dados de grande escala a infraestruturas de energia renovável nos países nórdicos, a Google fixa na Europa uma camada de computação que não depende de transferências transfronteiriças de dados para treino ou inferência, reduzindo atritos regulatórios que costumam paralisar projetos empresariais.\n\nPara as empresas europeias, a proximidade física da capacidade de inferência muda o limiar de viabilidade técnica. Processar modelos densos a partir de infraestrutura sediada no espaço comunitário remove obstáculos contratuais com departamentos de risco e garante estabilidade operacional perante o aperto das normas europeias.\n\nA discussão em torno da dependência tecnológica externa ganha aqui um desenho mais prático. O continente continua a apoiar-se em plataformas norte-americanas, mas a localização física do processamento e a vinculação às redes elétricas europeias obrigam as próprias tecnológicas a desenharem a sua expansão em função das regras e dos recursos do território onde se instalam.",
+      "source_urls": [
+        "https://cloud.google.com/press-corner/press-releases/2026-09-09-google-finland-investment"
+      ],
+      "image_path": "data\\final_assets\\post_6092895fad518d7c98_6ed75df6_ChatGPT-Image-10_09_2026-22_02_55.png",
+      "image_url": "/assets/final/post_679960e96883270ce8_site_1600x900.jpg",
+      "published_at": "2026-09-11T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/google-investe-13-mil-milhoes-de-euros-na-finlandia-para-expandir-infraestrutura-de-ia-na-europa-72e1e06318d7b86064"
+    },
     {
       "id": "post_eee29838475625a6d2",
       "title": "Anthropic abre modelo Mythos à ciberdefesa da UE e deixa Reino Unido de fora",
