@@ -1,7 +1,26 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-10T00:10:44+00:00",
+  "updated_at": "2026-09-10T21:09:29+00:00",
   "posts": [
+    {
+      "id": "post_8582cf70950707575a",
+      "title": "A guerra da destilação de modelos de fronteira chegou à diplomacia",
+      "body": "O Ministério do Comércio da China rejeitou formalmente o alerta conjunto emitido pelo FBI, NSA e CISA, que acusava empresas chinesas de extraírem sistematicamente capacidades de modelos como GPT, Claude e Gemini através de técnicas de destilação não autorizada. Pequim alega que Washington procura proteger um monopólio na inteligência artificial e garantiu que responderá com contramedidas se os EUA impuserem novas sanções comerciais.\n\nA disputa expõe um ponto cego na estratégia ocidental de distribuição de IA: proteger os pesos dos modelos e o acesso físico aos chips de treino torna-se insuficiente quando a interface de saída, a própria API, serve para transferir raciocínio complexo para sistemas rivais a uma fração do custo de desenvolvimento.\n\nAté aqui, a pressão norte-americana concentrou-se no estrangulamento de hardware e na retenção de semicondutores avançados. Esta queixa formal sinaliza que o terreno de fricção mudou para as camadas de software e dados sintéticos, onde distinguir o uso legítimo de inferência da extração sistemática de competências exige uma auditoria quase impossível sem quebrar a privacidade dos utilizadores comerciais.\n\nPara quem constrói e integra produtos sobre estas plataformas, a resposta regulatória previsível não será amigável. Se os EUA avançarem com restrições formais à exportação de APIs ou apertarem as exigências de conformidade para utilizadores externos, o custo de verificação vai subir e o acesso a modelos de fronteira arrisca fragmentar-se por jurisdição.\n\nA curto prazo, as equipas de engenharia ganham um incentivo claro para diversificar fornecedores de modelos fundacionais e reforçar a capacidade de operar com sistemas de código aberto e pesos descarregáveis, reduzindo a exposição a cortes unilaterais de acesso por via diplomática.",
+      "source_urls": [
+        "https://apnews.com"
+      ],
+      "image_path": "data\\final_assets\\post_f39b31c303f2f50675_bb8a4674_ChatGPT-Image-10_09_2026-22_00_27.png",
+      "image_url": "/assets/final/post_b78d580008df11771a_site_1600x900.jpg",
+      "published_at": "2026-09-11T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-guerra-da-destilacao-de-modelos-de-fronteira-chegou-a-diplomacia-8582cf70950707575a"
+    },
     {
       "id": "post_d1496cc1f3c94c2473",
       "title": "Meta lança o agente Muse com isolamento em máquina virtual para assumir tarefas do utilizador",
