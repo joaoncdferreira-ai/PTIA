@@ -1,7 +1,23 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-10T00:06:47+00:00",
+  "updated_at": "2026-09-10T00:10:44+00:00",
   "posts": [
+    {
+      "id": "post_d1496cc1f3c94c2473",
+      "title": "Meta lança o agente Muse com isolamento em máquina virtual para assumir tarefas do utilizador",
+      "body": "A Meta disponibilizou nos Estados Unidos o Muse, um agente pessoal de inteligência artificial para maiores de 18 anos desenhado para converter instruções gerais em planos práticos e executá-los diretamente. O sistema gere tarefas como marcação de viagens, envio de mensagens de correio eletrónico, navegação na web e preenchimento de formulários, operando dentro de uma máquina virtual dedicada para separar a atividade do agente do ambiente direto do utilizador.\n\nA arquitetura técnica deste lançamento revela a verdadeira fronteira dos modelos autónomos. Ao isolar a execução numa máquina virtual, a tecnológica reconhece que o principal obstáculo à utilidade prática de um agente não reside na capacidade de raciocínio do modelo, mas no risco operacional de lhe conceder acesso direto a credenciais, dados locais e sessões ativas no navegador.\n\nA transição da assistência conversacional para a delegação de tarefas altera as regras do jogo informático. Enquanto um chatbot se limita a sugerir respostas sob validação contínua, um sistema que aciona botões e emite comunicações requer mecanismos de autorização granulares, capazes de travar ações financeiras ou contactos externos sem bloquear a autonomia prometida ao utilizador.\n\nPara quem desenha e implementa fluxos digitais, a abordagem de contenção em sandbox fixa um precedente técnico indispensável. A eficácia destas ferramentas passará menos pela sofisticação da linguagem e mais pela robustez dos limites de segurança que determinam até onde o software pode atuar sem intervenção humana.",
+      "source_urls": [
+        "https://apnews.com/article/meta-muse-ai-agent-3a4572eb4cf4e95d8a0dfdad6e6ca065"
+      ],
+      "image_path": "data\\final_assets\\post_ea586a2626bb617f50_d4894c8e_ChatGPT-Image-10_09_2026-00_47_31.png",
+      "image_url": "/assets/final/post_4c18015f66e6fe53f8_site_1600x900.jpg",
+      "published_at": "2026-09-10T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders"
+      ],
+      "article_url": "artigos/meta-lanca-o-agente-muse-com-isolamento-em-maquina-virtual-para-assumir-tarefas-do-utilizador-d1496cc1f3c94c2473"
+    },
     {
       "id": "post_54b8216074b035d6c2",
       "title": "Microsoft e sindicatos de professores fecham acordo pioneiro para limitar IA nas escolas",
