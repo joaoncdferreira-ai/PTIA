@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-10T00:01:48+00:00",
+  "updated_at": "2026-09-10T00:06:47+00:00",
   "posts": [
+    {
+      "id": "post_54b8216074b035d6c2",
+      "title": "Microsoft e sindicatos de professores fecham acordo pioneiro para limitar IA nas escolas",
+      "body": "A American Federation of Teachers e a United Federation of Teachers assinaram com o presidente da Microsoft, Brad Smith, um compromisso contratual vinculativo para a utilização de inteligência artificial nas escolas. O documento proíbe explicitamente o uso de dados de alunos para treino de modelos, veda a monitorização de estudantes e exige validação humana prévia em qualquer decisão automatizada.\n\nO alcance deste entendimento vai além de uma simples declaração de princípios éticos. Ao transformar exigências de privacidade em cláusulas contratuais diretas entre uma tecnológica e estruturas sindicais, o setor da educação passa a desenhar as regras de entrada de produto antes da compra pública, e não depois da sua implementação em sala de aula.\n\nPara a Microsoft, a concessão funciona como credencial operacional: abdicar do acesso aos dados de treino dos alunos é o custo pragmático para destravar a distribuição do seu software em milhares de escolas públicas norte-americanas.\n\nEste modelo antecipa as exigências práticas que a aplicação do AI Act europeu irá colocar aos sistemas educativos e aos fornecedores de software nos próximos anos. A conformidade regulatória arrisca-se a ser insuficiente se a tecnologia não conseguir convencer quem tem poder de veto no terreno.\n\nQuando a proteção da privacidade fica blindada por contrato, a discussão deixa de ser a recusa ideológica da tecnologia e passa a focar-se naquilo que as ferramentas realmente entregam aos professores no dia a dia.",
+      "source_urls": [
+        "https://news.microsoft.com"
+      ],
+      "image_path": "data\\final_assets\\post_c003d8e9d110875a2c_bb846168_ChatGPT-Image-10_09_2026-00_48_29.png",
+      "image_url": "/assets/final/post_38fadc159aaf8c2488_site_1600x900.jpg",
+      "published_at": "2026-09-10T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/microsoft-e-sindicatos-de-professores-fecham-acordo-pioneiro-para-limitar-ia-nas-escolas-54b8216074b035d6c2"
+    },
     {
       "id": "post_30603b45b403cb555f",
       "title": "Demissão na Anthropic expõe tensão interna e alerta para riscos de superinteligência",
