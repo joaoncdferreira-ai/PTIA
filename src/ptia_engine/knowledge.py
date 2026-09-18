@@ -10,6 +10,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable
 
+from ptia_engine.knowledge_reviews import build_tool_reviews, parse_review_date, tool_review_note
+
 
 RESOURCE_PATHS = (
     "/recursos/",
@@ -162,6 +164,14 @@ def validate_catalog(catalog: dict, directory: dict) -> None:
     tools_by_id = {str(tool["id"]): tool for tool in tools}
     expected_components = {"capability", "popularity", "task_fit", "access"}
     for category, assessment in category_evidence.items():
+        reviewed_at = str(assessment.get("reviewed_at") or "")
+        if reviewed_at:
+            try:
+                parse_review_date(reviewed_at)
+            except ValueError as exc:
+                raise KnowledgeValidationError(
+                    f"Data de revisão inválida em {category}: {reviewed_at}."
+                ) from exc
         weights = assessment.get("weights") or {}
         components = assessment.get("components") or {}
         if set(weights) != expected_components or set(components) != expected_components:
@@ -783,6 +793,8 @@ def build_knowledge_payload(
             "excluded": len(excluded_companies) + len(excluded_people),
         },
         "tools": tools,
+        "tool_methodology_sources": list(catalog.get("tool_methodology_sources") or []),
+        "tool_category_reviews": build_tool_reviews(catalog["tool_category_evidence"], now=now),
         "prompts": prompts,
         "glossary": rank_glossary(
             list(catalog["glossary"]),
@@ -1076,7 +1088,7 @@ def render_tools_page(payload: dict) -> str:
             position = f"{int(tool['category_ranks'][category]):02d}" if published else "—"
             signal_value = str(score) if published else f"{external_sources}/2"
             signal_label = (
-                "Índice relativo em 100" if published else "Fontes externas · sem posição publicada"
+                "Índice editorial em 100" if published else "Fontes externas · sem posição publicada"
             )
             movement = _change_badge(category_change) if published else ""
             rows.append(
@@ -1139,6 +1151,7 @@ def render_tools_page(payload: dict) -> str:
         <div id="top-{category}" data-tool-panel="{category}"{" hidden" if panel_index else ""}>
           <div class="category-winner"><span>{html.escape(feature_label)}</span><strong>{html.escape(feature_name)}</strong><p>{html.escape(feature_note)}</p></div>
           <p class="filter-summary">{html.escape(summary_text)}</p>
+          <p class="filter-summary">{html.escape(tool_review_note(payload, category))}</p>
           <div class="tool-list">{"".join(rows)}</div>
         </div>
 """
@@ -1146,7 +1159,7 @@ def render_tools_page(payload: dict) -> str:
     body = _hero(
         "Ferramentas · PTIA",
         "A ferramenta certa depende do trabalho.",
-        "Comparações por finalidade com quatro critérios e fontes abertas. Quando faltam duas referências externas, mostramos uma shortlist sem posições.",
+        "Recomendações editoriais por finalidade, com quatro critérios e fontes abertas. Os pontos não são resultados de um teste entre plataformas. Quando faltam duas referências externas, mostramos uma shortlist sem posições.",
         payload,
     )
     body += f"""
@@ -1154,7 +1167,7 @@ def render_tools_page(payload: dict) -> str:
       <div class="wrap">
         <div class="criteria-strip">
           <span><strong>01</strong> capacidade</span>
-          <span><strong>02</strong> adoção observável</span>
+          <span><strong>02</strong> adoção e ecossistema</span>
           <span><strong>03</strong> adequação ao trabalho</span>
           <span><strong>04</strong> acesso e valor</span>
         </div>
@@ -1492,7 +1505,7 @@ def render_resources_page(payload: dict) -> str:
         )
         if published:
             panel_title = f"Top 3 para {label.lower()}"
-            panel_note = "Posições calculadas com capacidade, adoção, adequação à tarefa e acesso."
+            panel_note = "Recomendação editorial: capacidade, adoção, adequação à tarefa e acesso."
             share_button = (
                 f'<button type="button" class="resources-share-button" '
                 f'data-resource-share data-share-title="Top 3 de IA para '
@@ -1509,6 +1522,7 @@ def render_resources_page(payload: dict) -> str:
                 "necessárias para abrir o ranking."
             )
             share_button = ""
+        panel_note = f"{panel_note} {tool_review_note(payload, category)}"
         category_panels.append(
             f"""
         <div class="resources-ranking-panel" role="tabpanel" data-resource-category-panel="{html.escape(category)}"{" hidden" if index else ""}>
@@ -1742,13 +1756,13 @@ def render_resources_page(payload: dict) -> str:
       <div class="wrap">
         <header class="resources-v2-section-head">
           <div><p>Rankings comparáveis</p><h2>Escolhe o trabalho.<br>Nós mostramos o top.</h2></div>
-          <p>Não existe “a melhor IA” em abstrato. Cada lista usa o mesmo quadro de quatro critérios e muda quando a evidência muda.</p>
+          <p>Não existe “a melhor IA” em abstrato. As posições são editoriais, não pontuações de testes entre plataformas. Cada categoria mostra a data da sua revisão.</p>
         </header>
         <div class="resources-category-tabs" role="tablist" aria-label="Escolher finalidade">{category_buttons}</div>
 {"".join(category_panels)}
         <div class="resources-method-strip">
           <p><span>01</span><strong>Capacidade</strong><small>Benchmarks e funções</small></p>
-          <p><span>02</span><strong>Adoção</strong><small>Uso observável</small></p>
+          <p><span>02</span><strong>Adoção</strong><small>Uso e ecossistema</small></p>
           <p><span>03</span><strong>Adequação</strong><small>Fit com a tarefa</small></p>
           <p><span>04</span><strong>Acesso</strong><small>Disponibilidade e valor</small></p>
           <a href="/metodologia-indice/" data-resource-action="methodology_opened">Ver pesos e fontes →</a>
@@ -1845,28 +1859,34 @@ def render_resources_page(payload: dict) -> str:
 
 
 def render_methodology_page(payload: dict) -> str:
+    tool_sources = "".join(
+        f'<p><a href="{html.escape(str(source["url"]))}" rel="noopener">'
+        f'{html.escape(str(source["label"]))}</a> — '
+        f'{html.escape(str(source.get("scope") or ""))}</p>'
+        for source in payload.get("tool_methodology_sources", [])
+        if str(source.get("url") or "").startswith("https://")
+    )
     body = _hero(
         "Metodologia · PTIA",
         "Como o índice é calculado.",
         "As regras são públicas para que o resultado possa ser contestado, corrigido e melhorado.",
         payload,
     )
-    body += """
+    body += f"""
     <section class="knowledge-section">
       <div class="wrap method-columns">
         <article><p>01</p><h2>Estado antes da pontuação</h2><p>O primeiro gate verifica se a entidade está ativa. Aquisição, insolvência, liquidação ou inatividade retiram-na imediatamente do índice ativo e colocam-na num arquivo auditável. Elegibilidade plena exige verificação recente e duas fontes independentes; os restantes registos são assinalados como provisórios.</p></article>
         <article><p>02</p><h2>Empresas</h2><p>A avaliação pondera impacto demonstrável (30%), momentum dos últimos 84 dias (25%), inovação (20%), relevância para Portugal (15%) e contribuição para o ecossistema (10%). Um registo provisório não pode aparecer como “líder verificado”.</p></article>
         <article><p>03</p><h2>Pessoas</h2><p>A avaliação pondera trabalho publicado ou executado (35%), reconhecimento independente (25%), contribuição para o ecossistema (20%), atualidade (10%) e ligação a Portugal (10%). Não mede valor pessoal nem popularidade em redes sociais.</p></article>
-        <article><p>04</p><h2>Ferramentas</h2><p>Cada finalidade tem uma comparação própria: capacidade, adoção observável, adequação à tarefa e acesso/valor. A página mostra confiança e fontes. A posição global é apenas uma média de categorias, não um vencedor universal.</p></article>
+        <article><p>04</p><h2>Ferramentas</h2><p>Cada finalidade tem uma recomendação editorial própria: capacidade, adoção e ecossistema, adequação à tarefa e acesso/valor. Os pontos são calculados a partir da ordem editorial em cada critério, não de um teste controlado entre plataformas. Benchmarks de modelos informam capacidade, mas não medem diretamente Figma, Canva ou plataformas multimodelo. Tráfego histórico não prova adoção atual de modelos recém-lançados. A posição global é apenas uma média de categorias, não um vencedor universal.</p></article>
         <article><p>05</p><h2>Prompts</h2><p>Os prompts são uma seleção editorial ordenada por clareza, reutilização e utilidade do template. Menções em artigos servem apenas de contexto. Enquanto não houver dados de utilização reais, não são apresentados como “trending” nem como ranking de popularidade.</p></article>
-        <article><p>06</p><h2>Movimentos e versões</h2><p>Cada edição é comparada com a semana anterior e fica arquivada em dados estruturados. Repetir a geração na mesma semana mantém a base de comparação. Mudanças de estado têm prioridade sobre movimentos graduais de posição.</p></article>
+        <article><p>06</p><h2>Movimentos e versões</h2><p>Cada edição é comparada com a semana anterior e fica arquivada em dados estruturados. Repetir a geração na mesma semana mantém a base de comparação. A data de geração não substitui a revisão editorial: cada categoria preserva a sua data de revisão e sinaliza avaliações com mais de 45 dias. Mudanças de estado têm prioridade sobre movimentos graduais de posição.</p></article>
         <article><p>07</p><h2>Correções</h2><p>Pedidos de correção devem indicar o registo, a afirmação contestada e uma fonte verificável. Uma edição inválida não substitui a última versão pública. Contacto: info@ptia.pt.</p></article>
       </div>
       <div class="method-sources">
         <h2>Fontes e limites</h2>
         <p>Fontes oficiais confirmam estado e funcionalidades; imprensa reputada e benchmarks independentes sustentam impacto e capacidade. Nenhuma fonte isolada determina a posição. A faixa e a confiança são publicadas para evitar falsa precisão.</p>
-        <a href="https://www.vellum.ai/llm-leaderboard" rel="noopener">Vellum LLM Leaderboard</a>
-        <a href="https://www.swebench.com/" rel="noopener">SWE-bench</a>
+        {tool_sources}
         <a href="/recursos/#arquivo-entidades">Arquivo de entidades</a>
       </div>
     </section>

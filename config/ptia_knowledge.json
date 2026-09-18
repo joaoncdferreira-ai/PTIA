@@ -58,18 +58,20 @@
     "coding": {
       "weights": {
         "capability": 0.45,
-        "popularity": 0.2,
-        "task_fit": 0.25,
-        "access": 0.1
+        "popularity": 0.1,
+        "task_fit": 0.3,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Coding Capability Index",
-          "url": "https://artificialanalysis.ai/leaderboards/models",
+          "label": "Capacidade: avaliação editorial com benchmarks de modelos (18/09/2026)",
+          "url": "https://artificialanalysis.ai/leaderboards/models/",
           "ranking": [
+            "gpt-6-astra",
+            "claude-fable-5-1",
+            "claude-opus-5",
             "gpt-5-6-sol",
             "claude-fable-5",
-            "claude-opus-4-8",
             "codex",
             "antigravity",
             "cursor",
@@ -81,13 +83,15 @@
           ]
         },
         "popularity": {
-          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
           "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "github-copilot",
             "cursor",
             "replit",
-            "claude-opus-4-8",
+            "claude-opus-5",
+            "gpt-6-astra",
+            "claude-fable-5-1",
             "gpt-5-6-sol",
             "claude-fable-5",
             "codex",
@@ -95,23 +99,26 @@
             "gemini-code-assist",
             "antigravity",
             "v0"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
-          "label": "Coding Task Fit Index",
-          "url": "https://artificialanalysis.ai/leaderboards/models",
+          "label": "Cobertura do workflow de engenharia",
+          "url": "https://ptia.pt/metodologia-indice/",
           "ranking": [
-            "gpt-5-6-sol",
-            "claude-fable-5",
+            "gpt-6-astra",
+            "claude-fable-5-1",
+            "claude-opus-5",
             "codex",
-            "claude-opus-4-8",
-            "antigravity",
             "cursor",
+            "antigravity",
             "github-copilot",
             "windsurf",
             "gemini-code-assist",
             "replit",
-            "v0"
+            "v0",
+            "gpt-5-6-sol",
+            "claude-fable-5"
           ]
         },
         "access": {
@@ -122,28 +129,32 @@
             "gemini-code-assist",
             "replit",
             "cursor",
+            "gpt-6-astra",
+            "claude-fable-5-1",
             "gpt-5-6-sol",
             "codex",
-            "claude-opus-4-8",
+            "claude-opus-5",
             "claude-fable-5",
             "windsurf",
             "v0",
             "antigravity"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Modelos e agentes têm funções diferentes; escolher também pelo fluxo, custo e permissões."
     },
     "estudo": {
       "weights": {
-        "capability": 0.5,
-        "popularity": 0.15,
-        "task_fit": 0.25,
-        "access": 0.1
+        "capability": 0.45,
+        "popularity": 0.1,
+        "task_fit": 0.3,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Grounding, síntese e trabalho sobre fontes",
-          "url": "https://notebooklm.google/",
+          "label": "Estudo sobre fontes: avaliação editorial e documentação Gemini Notebook",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/",
           "ranking": [
             "notebooklm",
             "chatgpt",
@@ -158,8 +169,8 @@
           ]
         },
         "popularity": {
-          "label": "Similarweb, utilização global em agosto de 2025",
-          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "chatgpt",
             "gemini",
@@ -171,7 +182,8 @@
             "elicit",
             "consensus",
             "scite"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Leitura, estudo e rastreabilidade das fontes",
@@ -205,19 +217,21 @@
             "scite"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Fontes próprias: Gemini Notebook; tutoria: ChatGPT; literatura científica: Elicit."
     },
     "pesquisa": {
       "weights": {
-        "capability": 0.45,
-        "popularity": 0.2,
-        "task_fit": 0.25,
-        "access": 0.1
+        "capability": 0.4,
+        "popularity": 0.1,
+        "task_fit": 0.35,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Pesquisa com fontes e literatura",
-          "url": "https://ptia.pt/metodologia-indice/",
+          "label": "Pesquisa: avaliação editorial com documentação de Deep Research",
+          "url": "https://www.perplexity.ai/changelog/deep-research-command-panel-forking-inline-actions-and-enterprise-controls",
           "ranking": [
             "perplexity",
             "elicit",
@@ -228,12 +242,12 @@
             "chatgpt",
             "gemini",
             "manus",
-            "claude-opus-4-8"
+            "claude-opus-5"
           ]
         },
         "popularity": {
-          "label": "Similarweb, utilização global em agosto de 2025",
-          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "chatgpt",
             "gemini",
@@ -244,8 +258,9 @@
             "elicit",
             "consensus",
             "scite",
-            "claude-opus-4-8"
-          ]
+            "claude-opus-5"
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Citações, rastreabilidade e workflow",
@@ -260,7 +275,7 @@
             "claude",
             "chatgpt",
             "gemini",
-            "claude-opus-4-8"
+            "claude-opus-5"
           ]
         },
         "access": {
@@ -276,21 +291,23 @@
             "elicit",
             "scite",
             "manus",
-            "claude-opus-4-8"
+            "claude-opus-5"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Web: Perplexity; revisões científicas: Elicit; fontes próprias: Gemini Notebook."
     },
     "produtividade": {
       "weights": {
-        "capability": 0.35,
-        "popularity": 0.3,
-        "task_fit": 0.25,
-        "access": 0.1
+        "capability": 0.4,
+        "popularity": 0.15,
+        "task_fit": 0.3,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "GDPval-AA e execução de trabalho profissional",
+          "label": "Trabalho profissional: avaliação editorial; GDPval-AA para modelos, não aplicações",
           "url": "https://artificialanalysis.ai/evaluations/gdpval-aa",
           "ranking": [
             "claude",
@@ -306,8 +323,8 @@
           ]
         },
         "popularity": {
-          "label": "Similarweb, utilização global em agosto de 2025",
-          "url": "https://www.similarweb.com/blog/marketing/seo/most-used-ai/",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
+          "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "chatgpt",
             "gemini",
@@ -319,7 +336,8 @@
             "zapier",
             "gamma",
             "descript"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Amplitude e conclusão de tarefas",
@@ -353,19 +371,21 @@
             "manus"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "ChatGPT e Claude para trabalho geral; Notion para conhecimento interno e tarefas recorrentes."
     },
     "design": {
       "weights": {
         "capability": 0.35,
-        "popularity": 0.3,
-        "task_fit": 0.25,
-        "access": 0.1
+        "popularity": 0.15,
+        "task_fit": 0.35,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Qualidade visual e controlo profissional",
-          "url": "https://artificialanalysis.ai/text-to-image/arena",
+          "label": "Design: avaliação editorial de funções e workflow; documentação Figma Make",
+          "url": "https://www.figma.com/blog/figma-make-now-on-your-local-code/",
           "ranking": [
             "figma-ai",
             "canva",
@@ -380,7 +400,7 @@
           ]
         },
         "popularity": {
-          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
           "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "canva",
@@ -393,7 +413,8 @@
             "higgsfield",
             "ideogram",
             "pomelli"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Workflow de design e colaboração",
@@ -427,24 +448,25 @@
             "pomelli"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Figma para produto e protótipos; Canva para peças e campanhas editáveis."
     },
     "video": {
       "weights": {
-        "capability": 0.45,
-        "popularity": 0.3,
-        "task_fit": 0.15,
-        "access": 0.1
+        "capability": 0.35,
+        "popularity": 0.1,
+        "task_fit": 0.4,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Artificial Analysis Text-to-Video Arena",
-          "url": "https://artificialanalysis.ai/text-to-video/arena",
+          "label": "Vídeo: avaliação editorial das plataformas e dos modelos disponíveis",
+          "url": "https://docs.dev.runwayml.com/guides/models/",
           "ranking": [
             "higgsfield",
             "veo",
             "runway",
-            "sora",
             "firefly",
             "canva",
             "capcut",
@@ -452,18 +474,18 @@
           ]
         },
         "popularity": {
-          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
           "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "capcut",
             "canva",
             "higgsfield",
             "runway",
-            "sora",
             "veo",
             "firefly",
             "descript"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Modelos disponíveis, controlo e workflow",
@@ -472,7 +494,6 @@
             "higgsfield",
             "runway",
             "veo",
-            "sora",
             "canva",
             "firefly",
             "capcut",
@@ -489,23 +510,24 @@
             "runway",
             "firefly",
             "descript",
-            "sora",
             "veo"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Produção multimodelo: Higgsfield e Runway; geração com áudio: Veo 3.1. Sora retirado."
     },
     "imagem": {
       "weights": {
         "capability": 0.45,
-        "popularity": 0.25,
-        "task_fit": 0.2,
+        "popularity": 0.1,
+        "task_fit": 0.35,
         "access": 0.1
       },
       "components": {
         "capability": {
-          "label": "Artificial Analysis Text-to-Image Arena",
-          "url": "https://artificialanalysis.ai/text-to-image/arena",
+          "label": "Imagem: avaliação editorial informada pelo leaderboard de modelos",
+          "url": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
           "ranking": [
             "chatgpt",
             "gemini",
@@ -520,7 +542,7 @@
           ]
         },
         "popularity": {
-          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
           "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "chatgpt",
@@ -533,7 +555,8 @@
             "leonardo",
             "ideogram",
             "figma-ai"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Qualidade, edição e controlo",
@@ -567,19 +590,21 @@
             "midjourney"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Images 2.5 e Nano Banana atualizados; Midjourney V8.2 para exploração estética."
     },
     "marketing": {
       "weights": {
-        "capability": 0.3,
-        "popularity": 0.35,
-        "task_fit": 0.25,
-        "access": 0.1
+        "capability": 0.35,
+        "popularity": 0.1,
+        "task_fit": 0.4,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Cobertura de criação e operação de campanhas",
-          "url": "https://ptia.pt/metodologia-indice/",
+          "label": "Campanhas: avaliação editorial de funções; documentação Canva AI 2.0",
+          "url": "https://www.canva.com/newsroom/news/canva-create-2026-ai/",
           "ranking": [
             "canva",
             "chatgpt",
@@ -594,7 +619,7 @@
           ]
         },
         "popularity": {
-          "label": "a16z Top 100 Gen AI Apps, 6.ª edição",
+          "label": "Adoção e ecossistema: avaliação editorial; a16z como contexto histórico",
           "url": "https://a16z.com/100-gen-ai-apps-6/",
           "ranking": [
             "chatgpt",
@@ -607,7 +632,8 @@
             "manus",
             "zapier",
             "pomelli"
-          ]
+          ],
+          "data_period": "janeiro de 2026"
         },
         "task_fit": {
           "label": "Branding, conteúdo, canais e automação",
@@ -641,18 +667,20 @@
             "pomelli"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Canva AI 2.0 para produção de marca; Pomelli é experimental. Rever todas as afirmações."
     },
     "automacoes": {
       "weights": {
         "capability": 0.35,
-        "popularity": 0.25,
-        "task_fit": 0.3,
-        "access": 0.1
+        "popularity": 0.1,
+        "task_fit": 0.4,
+        "access": 0.15
       },
       "components": {
         "capability": {
-          "label": "Orquestração, agentes e controlo de workflows",
+          "label": "Orquestração: avaliação editorial da documentação dos produtos",
           "url": "https://ptia.pt/metodologia-indice/",
           "ranking": [
             "n8n",
@@ -663,7 +691,7 @@
           ]
         },
         "popularity": {
-          "label": "Adoção pública e ecossistema de integrações",
+          "label": "Ecossistema: avaliação editorial, sem métricas comparáveis",
           "url": "https://ptia.pt/metodologia-indice/",
           "ranking": [
             "zapier",
@@ -695,24 +723,31 @@
             "manus"
           ]
         }
-      }
+      },
+      "reviewed_at": "2026-09-18",
+      "review_note": "Shortlist sem ordem pública: documentação atualizada, mas sem métricas independentes comparáveis."
     }
   },
   "tool_methodology_sources": [
     {
-      "label": "Vellum LLM Leaderboard",
-      "url": "https://www.vellum.ai/llm-leaderboard",
-      "scope": "Benchmarks agregados de modelos, incluindo coding."
+      "label": "Artificial Analysis — modelos",
+      "url": "https://artificialanalysis.ai/leaderboards/models/",
+      "scope": "Comparação de modelos; não é um ranking direto de aplicações ou plataformas multimodelo."
+    },
+    {
+      "label": "Artificial Analysis — imagem",
+      "url": "https://artificialanalysis.ai/image/leaderboard/text-to-image",
+      "scope": "Preferências entre modelos de imagem; informado pela versão e condições avaliadas."
+    },
+    {
+      "label": "a16z — 6.ª edição, dados de janeiro de 2026",
+      "url": "https://a16z.com/100-gen-ai-apps-6/",
+      "scope": "Contexto histórico de tráfego e utilização de aplicações; não prova adoção atual de novos modelos."
     },
     {
       "label": "SWE-bench",
       "url": "https://www.swebench.com/",
-      "scope": "Benchmark público de resolução de problemas reais de software."
-    },
-    {
-      "label": "SnackPrompt",
-      "url": "https://snackprompt.com/",
-      "scope": "Sinal externo de descoberta e utilização de prompts; os prompts PTIA são originais."
+      "scope": "Benchmark público de resolução de problemas de software; resultados dependem do agente e configuração."
     }
   ],
   "tools": [
@@ -724,24 +759,21 @@
         "coding",
         "pesquisa"
       ],
-      "description": "Modelo de fronteira da Anthropic com desempenho de referência em tarefas de engenharia de software.",
+      "description": "Geração anterior da Anthropic, sucedida pelo Claude Opus 5; já não é a recomendação principal para novos projetos.",
       "best_for": "Problemas complexos de coding, revisão arquitetural e investigação técnica exigente.",
       "watch_out": "O melhor benchmark não garante o melhor resultado em todos os repositórios, custos ou latências.",
-      "baseline_score": 98,
+      "baseline_score": 85,
       "aliases": [
         "claude opus 4.8",
         "opus 4.8"
       ],
       "sources": [
         {
-          "label": "Vellum LLM Leaderboard",
-          "url": "https://www.vellum.ai/llm-leaderboard"
-        },
-        {
-          "label": "SWE-bench",
-          "url": "https://www.swebench.com/"
+          "label": "Anthropic — Opus 5 sucede ao Opus 4.8",
+          "url": "https://www.anthropic.com/news/claude-opus-5"
         }
-      ]
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "antigravity",
@@ -769,14 +801,21 @@
         "marketing",
         "automacoes"
       ],
-      "description": "Agente generalista que executa tarefas com vários passos e entrega artefactos completos.",
+      "description": "Agente generalista para tarefas em vários passos e criação de entregáveis; as capacidades visuais incluem integração de GPT-Image 2.5.",
       "best_for": "Pesquisa operacional, preparação de entregáveis e workflows que combinam várias ferramentas.",
-      "watch_out": "Rever fontes, permissões, custos e ações externas antes de aceitar o resultado.",
+      "watch_out": "Rever entregáveis, fontes, permissões e custos. Execução autónoma não equivale a precisão factual nem a autorização para agir em serviços externos.",
       "baseline_score": 94,
       "aliases": [
         "manus",
         "manus ai"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Manus — produto",
+          "url": "https://manus.im/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "pomelli",
@@ -787,31 +826,45 @@
         "design",
         "produtividade"
       ],
-      "description": "Ferramenta experimental da Google Labs para transformar identidade de marca em campanhas e peças de marketing.",
-      "best_for": "Gerar conceitos, copy e ativos de campanha consistentes com uma marca.",
-      "watch_out": "Produto experimental; confirmar disponibilidade regional e rever consistência de marca.",
+      "description": "Experiência da Google Labs para gerar campanhas e materiais de marca a partir do site e da identidade visual da empresa.",
+      "best_for": "Explorar campanhas e variações visuais alinhadas com uma identidade de marca existente.",
+      "watch_out": "Produto experimental: confirmar disponibilidade em Portugal, idioma e termos na conta antes de planear produção. Rever materiais e afirmações comerciais.",
       "baseline_score": 92,
       "aliases": [
         "pomelli"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Google Labs — Pomelli",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/pomelli/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "figma-ai",
-      "name": "Figma AI",
+      "name": "Figma Design + Make",
       "url": "https://www.figma.com/ai/",
       "categories": [
         "design",
         "imagem",
         "marketing"
       ],
-      "description": "Funcionalidades de IA integradas no fluxo profissional de desenho de produto e colaboração.",
-      "best_for": "Interfaces, sistemas de design, protótipos e colaboração entre design e produto.",
-      "watch_out": "A geração acelera o trabalho, mas não substitui pesquisa de utilizador nem decisões de sistema.",
+      "description": "Desenho de produto com IA no canvas, protótipos com Figma Make e ligação entre sistemas de design e código; a edição de código local foi anunciada em beta.",
+      "best_for": "Interfaces, sistemas de design, prototipagem interativa e colaboração entre design e desenvolvimento.",
+      "watch_out": "Não é um gerador de imagens comparável diretamente a um modelo text-to-image. Confirmar créditos, plano e acesso ao beta de código local antes de o incluir no fluxo.",
       "baseline_score": 95,
       "aliases": [
         "figma ai",
         "figma make"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Figma — Make e código local, beta",
+          "url": "https://www.figma.com/blog/figma-make-now-on-your-local-code/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "higgsfield",
@@ -822,14 +875,25 @@
         "imagem",
         "design"
       ],
-      "description": "Plataforma criativa que reúne geração de vídeo e imagem com forte controlo visual e vários modelos.",
-      "best_for": "Conteúdo visual rápido, movimentos de câmara, publicidade e exploração criativa.",
-      "watch_out": "Comparar qualidade, direitos de utilização e custo por geração no plano escolhido.",
+      "description": "Plataforma multimodelo de imagem e vídeo com Cinema Studio 4.0, Supercomputer, edição Genjutsu e integração de GPT-Image 2.5; oferece também API e ferramentas de produção.",
+      "best_for": "Produção criativa multimodelo, controlo de cenas e continuidade entre ideação, imagem, vídeo e edição.",
+      "watch_out": "É uma plataforma, não um único modelo que tenha uma posição própria numa arena. Qualidade, limites e custo dependem do modelo, da função e do plano escolhidos.",
       "baseline_score": 96,
       "aliases": [
         "higgsfield",
         "higgsfield ai"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Higgsfield — changelog de produto",
+          "url": "https://www.higgsfield.company/creator-hub/changelog"
+        },
+        {
+          "label": "Higgsfield — Cinema Studio, Image 2.5 e API",
+          "url": "https://higgsfield.ai/Blog"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "chatgpt",
@@ -842,13 +906,28 @@
         "imagem",
         "marketing"
       ],
-      "description": "Assistente generalista para escrita, análise, aprendizagem, pesquisa e trabalho multimodal.",
-      "best_for": "Trabalho generalista com texto, ficheiros, dados e imagens.",
-      "watch_out": "Confirmar factos e evitar introduzir informação confidencial sem controlos empresariais.",
+      "description": "Assistente para texto, dados e pesquisa; ChatGPT Work acrescenta trabalho ligado a fontes empresariais, e Images 2.5 permite gerar e editar imagens.",
+      "best_for": "Trabalho geral com documentos e dados, tutoria com verificação e criação ou edição de imagens com referências.",
+      "watch_out": "Modelos e ferramentas variam por plano e conta. GPT-6 Astra está em Work/Codex; não assumir que todos os modos de ChatGPT usam o mesmo modelo. Validar factos e permissões dos dados.",
       "baseline_score": 94,
       "aliases": [
         "chatgpt"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "OpenAI — notas de versão de ChatGPT",
+          "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+        },
+        {
+          "label": "OpenAI — ChatGPT Images 2.5, 08/09/2026",
+          "url": "https://openai.com/index/introducing-chatgpt-images-2-5/"
+        },
+        {
+          "label": "OpenAI — Data agent, 10/09/2026",
+          "url": "https://openai.com/index/put-data-to-work/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "claude",
@@ -861,13 +940,24 @@
         "produtividade",
         "marketing"
       ],
-      "description": "Assistente generalista orientado para análise, escrita, raciocínio e trabalho com documentos.",
-      "best_for": "Análise longa, síntese, escrita e colaboração sobre documentos.",
-      "watch_out": "A qualidade depende do contexto e as respostas continuam a exigir verificação.",
+      "description": "Assistente da Anthropic para análise, escrita e trabalho com documentos, com Claude Code e Cowork para execução de tarefas. A família atual inclui Fable 5.1 e Opus 5.",
+      "best_for": "Documentos longos, escrita rigorosa, análise e tarefas profissionais com revisão do resultado.",
+      "watch_out": "Fable 5.1 e Opus 5 dependem do plano e dos limites de utilização. Mythos 5.1 tem acesso restrito e não deve ser tratado como opção disponível a todos.",
       "baseline_score": 93,
       "aliases": [
         "claude"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Anthropic — Fable 5.1 e Mythos 5.1",
+          "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+        },
+        {
+          "label": "Anthropic — Opus 5",
+          "url": "https://www.anthropic.com/news/claude-opus-5"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "gemini",
@@ -880,13 +970,24 @@
         "imagem",
         "marketing"
       ],
-      "description": "Assistente multimodal da Google integrado no seu ecossistema de produtividade.",
-      "best_for": "Pesquisa, análise multimodal e fluxos ligados ao ecossistema Google.",
-      "watch_out": "Validar disponibilidade e tratamento de dados em cada plano e integração.",
+      "description": "Assistente multimodal da Google ligado a Workspace; a família de modelos inclui Gemini 3.8 Flash e a geração de imagem Nano Banana 2, Lite e Pro.",
+      "best_for": "Trabalho no ecossistema Google, análise multimodal e geração de imagens com iteração.",
+      "watch_out": "Disponibilidade e modelos variam entre app, Workspace e API. Gemini 3.8 Flash Cyber exige acesso autorizado; não é uma funcionalidade generalista para todos.",
       "baseline_score": 91,
       "aliases": [
         "gemini"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Google — Gemini 3.8 Flash, 02/09/2026",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/"
+        },
+        {
+          "label": "Google DeepMind — Gemini Image / Nano Banana",
+          "url": "https://deepmind.google/models/gemini-image/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "perplexity",
@@ -896,31 +997,46 @@
         "pesquisa",
         "estudo"
       ],
-      "description": "Motor de resposta com pesquisa web e referências visíveis.",
-      "best_for": "Exploração rápida de um tema e descoberta inicial de fontes.",
-      "watch_out": "Abrir as fontes citadas; uma citação não garante que a síntese esteja correta.",
+      "description": "Pesquisa web com referências e Deep Research integrado em Computer, onde os resultados podem alimentar relatórios, folhas de cálculo, apresentações e tarefas seguintes.",
+      "best_for": "Pesquisa atual na web, comparação de fontes e transformação de conclusões em entregáveis.",
+      "watch_out": "Abrir e validar as fontes citadas. A qualidade da pesquisa e os limites de Computer dependem do plano; citações não garantem que a conclusão esteja correta.",
       "baseline_score": 90,
       "aliases": [
         "perplexity"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Perplexity — Deep Research em Computer, 18/06/2026",
+          "url": "https://www.perplexity.ai/changelog/deep-research-command-panel-forking-inline-actions-and-enterprise-controls"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "notebooklm",
-      "name": "NotebookLM",
+      "name": "Gemini Notebook (antes NotebookLM)",
       "url": "https://notebooklm.google.com/",
       "categories": [
         "estudo",
         "pesquisa",
         "produtividade"
       ],
-      "description": "Ambiente de estudo e síntese ancorado nas fontes fornecidas pelo utilizador.",
-      "best_for": "Compreender documentos, criar resumos e estudar coleções de fontes.",
-      "watch_out": "A resposta só é tão boa quanto a qualidade e cobertura das fontes carregadas.",
+      "description": "O NotebookLM passou a Gemini Notebook: pesquisa e síntese sobre fontes próprias, com raciocínio, execução de código e criação de relatórios, gráficos e apresentações.",
+      "best_for": "Estudar documentos e cruzar fontes próprias com referências verificáveis; produzir sínteses e materiais de estudo.",
+      "watch_out": "A qualidade depende das fontes carregadas. As funcionalidades avançadas e a sincronização com Gemini dependem do plano e da disponibilização na conta.",
       "baseline_score": 92,
       "aliases": [
         "notebooklm",
-        "notebook lm"
-      ]
+        "notebook lm",
+        "gemini notebook"
+      ],
+      "sources": [
+        {
+          "label": "Google — NotebookLM passa a Gemini Notebook",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "codex",
@@ -1066,8 +1182,8 @@
     },
     {
       "id": "canva",
-      "name": "Canva Magic Studio",
-      "url": "https://www.canva.com/magic/",
+      "name": "Canva AI 2.0",
+      "url": "https://www.canva.com/ai/",
       "categories": [
         "design",
         "imagem",
@@ -1075,14 +1191,23 @@
         "produtividade",
         "marketing"
       ],
-      "description": "Conjunto de ferramentas de IA integrado no Canva para design, imagem e vídeo.",
-      "best_for": "Produção visual rápida por equipas sem fluxo de design especializado.",
-      "watch_out": "Evitar resultados genéricos e confirmar direitos sobre materiais utilizados.",
+      "description": "O Canva AI 2.0 acrescenta criação conversacional e agentic, designs editáveis por camadas, memória de marca, conectores e pesquisa ao fluxo visual do Canva.",
+      "best_for": "Produzir campanhas e peças visuais editáveis, consistentes com a marca, sem um fluxo de design especializado.",
+      "watch_out": "A disponibilização de AI 2.0 é progressiva e pode depender do plano e da conta. Rever texto, identidade de marca e direitos dos materiais; não assumir acesso a todas as funções anunciadas.",
       "baseline_score": 91,
       "aliases": [
         "canva",
-        "magic studio"
-      ]
+        "magic studio",
+        "canva ai",
+        "canva ai 2.0"
+      ],
+      "sources": [
+        {
+          "label": "Canva — apresentação do AI 2.0",
+          "url": "https://www.canva.com/newsroom/news/canva-create-2026-ai/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "firefly",
@@ -1093,30 +1218,48 @@
         "imagem",
         "video"
       ],
-      "description": "Família de ferramentas generativas da Adobe para criação e edição visual.",
-      "best_for": "Fluxos profissionais ligados ao ecossistema Creative Cloud.",
-      "watch_out": "Confirmar condições de utilização comercial do plano e do resultado.",
+      "description": "Estúdio criativo da Adobe com modelos próprios e parceiros, incluindo GPT-Image 2.5; reúne geração, edição, projetos e timelines de vídeo num novo fluxo em beta.",
+      "best_for": "Criação e edição visual integrada com ferramentas Adobe, referências e organização de materiais de produção.",
+      "watch_out": "A nova experiência unificada é beta. Disponibilidade e créditos variam por modelo; não estender as garantias comerciais dos modelos Adobe a todos os modelos parceiros.",
       "baseline_score": 90,
       "aliases": [
         "adobe firefly",
         "firefly"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Adobe — novidades de Firefly, setembro de 2026",
+          "url": "https://helpx.adobe.com/sa_en/firefly/web/whats-new/new-features/whats-new.html"
+        },
+        {
+          "label": "Adobe — geração e edição unificadas, beta",
+          "url": "https://helpx.adobe.com/sg/firefly/web/unified-generation-and-editing-experience/generation-and-editing-experience-overview.html"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "midjourney",
-      "name": "Midjourney",
+      "name": "Midjourney V8.2",
       "url": "https://www.midjourney.com/",
       "categories": [
         "imagem",
         "design"
       ],
-      "description": "Ferramenta de geração de imagem conhecida pelo controlo estético e exploração visual.",
-      "best_for": "Conceitos, direção visual e imagens de forte componente estética.",
-      "watch_out": "Rever consistência de marca, proveniência e direitos de utilização.",
+      "description": "A versão predefinida V8.2 foca qualidade visual, estética e personalização e inclui um novo Edit Model para edição e referências.",
+      "best_for": "Exploração estética, direção artística e séries visuais com personalização e referências de estilo.",
+      "watch_out": "Escolher a versão explicitamente quando o projeto exige repetibilidade. Confirmar compatibilidade das funções, custos e direitos; não usar a estética como prova de precisão factual.",
       "baseline_score": 89,
       "aliases": [
         "midjourney"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Midjourney — versões e V8.2 predefinida",
+          "url": "https://docs.midjourney.com/hc/en-us/articles/32199405667853-Version"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "ideogram",
@@ -1126,13 +1269,20 @@
         "imagem",
         "design"
       ],
-      "description": "Geração de imagens com especial utilidade em composições que incluem texto.",
+      "description": "Plataforma de aplicações e modelos de imagem com geração, edição e recursos para consistência visual; útil em composições com texto.",
       "best_for": "Cartazes, conceitos de marca e peças visuais com tipografia.",
       "watch_out": "Rever manualmente texto, logótipos e detalhes antes de publicar.",
       "baseline_score": 86,
       "aliases": [
         "ideogram"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Ideogram — aplicações e modelos",
+          "url": "https://ideogram.ai/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "leonardo",
@@ -1142,13 +1292,20 @@
         "imagem",
         "design"
       ],
-      "description": "Plataforma de criação visual com geração, edição e controlo de estilos.",
+      "description": "Plataforma de geração e edição de imagens e vídeo com controlo de estilo e referências, integrada no ecossistema criativo do Canva.",
       "best_for": "Produção de variações e ativos visuais para campanhas e produtos.",
       "watch_out": "Controlar coerência visual e licenciamento em produção comercial.",
       "baseline_score": 83,
       "aliases": [
         "leonardo ai"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Leonardo — plataforma criativa",
+          "url": "https://leonardo.ai/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "runway",
@@ -1159,45 +1316,48 @@
         "imagem",
         "design"
       ],
-      "description": "Plataforma de geração e edição de vídeo e imagem assistida por IA.",
-      "best_for": "Prototipagem audiovisual, efeitos e produção de clips.",
-      "watch_out": "Custos, consistência temporal e direitos exigem controlo de produção.",
+      "description": "Geração e edição audiovisual com Gen-4.5 e Aleph 2.0, modelos parceiros e opções profissionais de exportação; a API permite integrar os modelos em fluxos de produção.",
+      "best_for": "Vídeo com edição e controlo de produção, integração por API e entregáveis profissionais.",
+      "watch_out": "Distinguir capacidades dos modelos Runway das dos parceiros. Exportações, duração, resolução e custo variam por modelo e plano.",
       "baseline_score": 91,
       "aliases": [
         "runway",
         "runwayml"
-      ]
-    },
-    {
-      "id": "sora",
-      "name": "Sora",
-      "url": "https://sora.com/",
-      "categories": [
-        "video"
       ],
-      "description": "Ferramenta da OpenAI para criação e transformação de vídeo com IA.",
-      "best_for": "Ideação e produção de sequências audiovisuais geradas.",
-      "watch_out": "Confirmar disponibilidade regional, proveniência e regras de conteúdo.",
-      "baseline_score": 89,
-      "aliases": [
-        "sora"
-      ]
+      "sources": [
+        {
+          "label": "Runway — modelos disponíveis",
+          "url": "https://docs.dev.runwayml.com/guides/models/"
+        },
+        {
+          "label": "Runway — changelog de API",
+          "url": "https://docs.dev.runwayml.com/api-details/api_changelog/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "veo",
-      "name": "Veo",
+      "name": "Veo 3.1",
       "url": "https://deepmind.google/models/veo/",
       "categories": [
         "video"
       ],
-      "description": "Modelo de geração de vídeo da Google DeepMind.",
-      "best_for": "Criação audiovisual e exploração de cenas a partir de instruções.",
-      "watch_out": "Acesso, custos e funcionalidades dependem do produto onde o modelo está disponível.",
+      "description": "Modelo de vídeo da Google DeepMind com áudio nativo e controlos de geração, acessível através de produtos como Flow, Gemini e API conforme o plano.",
+      "best_for": "Criar clips com imagem e áudio coerentes e iterar planos com controlos e referências.",
+      "watch_out": "Confirmar limites e funcionalidades no produto usado; nem todos os controlos de Flow estão disponíveis da mesma forma em Gemini ou na API.",
       "baseline_score": 88,
       "aliases": [
         "veo",
         "google veo"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Google DeepMind — Veo 3.1",
+          "url": "https://deepmind.google/models/veo/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "descript",
@@ -1207,13 +1367,20 @@
         "video",
         "produtividade"
       ],
-      "description": "Editor de áudio e vídeo baseado em transcrição, com automações de IA.",
-      "best_for": "Podcasts, entrevistas, legendagem e edição rápida por texto.",
+      "description": "Editor de áudio e vídeo baseado em texto, com transcrição e Underlord para assistência à edição e à produção.",
+      "best_for": "Editar entrevistas, podcasts e vídeos falados a partir da transcrição.",
       "watch_out": "Rever transcrições, vozes sintéticas e consentimento dos participantes.",
       "baseline_score": 86,
       "aliases": [
         "descript"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Descript — edição e Underlord",
+          "url": "https://www.descript.com/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "capcut",
@@ -1240,14 +1407,21 @@
         "estudo",
         "marketing"
       ],
-      "description": "Assistência de IA integrada em documentação, pesquisa e gestão de conhecimento.",
-      "best_for": "Equipas que já concentram processos e documentação no Notion.",
-      "watch_out": "Definir permissões e qualidade da base de conhecimento antes de automatizar.",
+      "description": "IA no Notion com pesquisa no conhecimento ligado, notas de reuniões, Notion Agent para tarefas em vários passos e Custom Agents para trabalho recorrente.",
+      "best_for": "Pesquisar conhecimento da equipa e executar tarefas sobre páginas, bases de dados e aplicações ligadas.",
+      "watch_out": "Verificar permissões e resultados dos agentes. Planos, créditos e custos de Custom Agents são distintos das funcionalidades de IA incluídas.",
       "baseline_score": 87,
       "aliases": [
         "notion ai",
         "notion"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Notion — Notion Agent e Custom Agents",
+          "url": "https://www.notion.com/product/ai"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "make",
@@ -1256,15 +1430,22 @@
       "categories": [
         "automacoes"
       ],
-      "description": "Plataforma visual para construir e operar automações entre aplicações, APIs e dados.",
-      "best_for": "Workflows visuais com ramificações, transformação de dados e grande catálogo de integrações.",
-      "watch_out": "Cenários extensos exigem convenções, tratamento de erros e controlo do consumo de operações.",
+      "description": "Plataforma visual com Make AI Agents, raciocínio visível e agentes reutilizáveis que combinam decisão por IA com regras e aprovações.",
+      "best_for": "Construir automações visuais entre aplicações, com transições claras entre lógica determinística e agentes.",
+      "watch_out": "Monitorizar consumo, erros e ferramentas autorizadas. Um agente não substitui validação de dados nem aprovação para ações externas sensíveis.",
       "baseline_score": 89,
       "aliases": [
         "make.com",
         "make automation",
         "integromat"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Make — AI Agents",
+          "url": "https://www.make.com/en/ai-agents"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "power-automate",
@@ -1273,14 +1454,21 @@
       "categories": [
         "automacoes"
       ],
-      "description": "Plataforma de automação da Microsoft para cloud, desktop e processos ligados ao ecossistema empresarial.",
-      "best_for": "Organizações Microsoft 365 que precisam de workflows, aprovações e automação de desktop.",
-      "watch_out": "Licenciamento, conectores premium e governação podem aumentar a complexidade operacional.",
+      "description": "Automação empresarial da Microsoft para fluxos cloud e desktop, com recursos de IA e integração no ecossistema Microsoft.",
+      "best_for": "Processos empresariais ligados a Microsoft 365, sistemas internos e tarefas desktop.",
+      "watch_out": "Confirmar licenciamento, conectores premium, políticas de dados e gestão do ambiente; testar separadamente fluxos cloud e desktop.",
       "baseline_score": 88,
       "aliases": [
         "power automate",
         "microsoft power automate"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Microsoft — Power Automate",
+          "url": "https://www.microsoft.com/en-us/power-platform/products/power-automate"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "n8n",
@@ -1291,13 +1479,20 @@
         "coding",
         "automacoes"
       ],
-      "description": "Plataforma de automação de workflows com integrações e componentes de IA.",
-      "best_for": "Automação controlada de processos entre sistemas.",
-      "watch_out": "Tratar credenciais, retries, observabilidade e idempotência como requisitos de produção.",
+      "description": "Orquestra workflows determinísticos e agentes de IA, com self-hosting, aprovação humana, avaliações, logs e integrações MCP.",
+      "best_for": "Automações controladas entre sistemas, sobretudo quando são necessários alojamento próprio e observabilidade.",
+      "watch_out": "Exige operação técnica em self-hosting. Configurar permissões, credenciais, retries, idempotência e aprovação humana para ações sensíveis.",
       "baseline_score": 89,
       "aliases": [
         "n8n"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "n8n — agentes e workflows com controlo",
+          "url": "https://n8n.io/ai/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "zapier",
@@ -1308,13 +1503,20 @@
         "marketing",
         "automacoes"
       ],
-      "description": "Plataforma de automação no-code com funcionalidades e agentes de IA.",
-      "best_for": "Automatizar rapidamente processos entre aplicações SaaS.",
-      "watch_out": "Monitorizar custos por tarefa, erros silenciosos e acesso a dados.",
+      "description": "Automação no-code com IA integrada no editor de Zaps; os antigos Agents estão a migrar para o passo AI by Zapier, combinando ferramentas e raciocínio com workflows explícitos.",
+      "best_for": "Ligar aplicações e introduzir passos de IA em automações de negócio com condições e controlo.",
+      "watch_out": "Rever os fluxos que usavam Agents durante a migração para AI by Zapier. Confirmar permissões, custos e validação antes de ações externas.",
       "baseline_score": 86,
       "aliases": [
         "zapier"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Zapier — migração de Agents para AI by Zapier, setembro de 2026",
+          "url": "https://help.zapier.com/hc/en-us/articles/47402591569805-Migrating-from-Agents-to-AI-by-Zapier"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "elicit",
@@ -1324,13 +1526,24 @@
         "pesquisa",
         "estudo"
       ],
-      "description": "Assistente para pesquisa académica, descoberta de papers e síntese de evidência.",
-      "best_for": "Revisões de literatura e exploração estruturada de investigação.",
-      "watch_out": "Ler os estudos originais e verificar cobertura, método e qualidade da evidência.",
+      "description": "Plataforma de investigação científica com pesquisa, triagem, extração de dados e revisões sistemáticas; Library e Projects apoiam colaboração e prioridades de investigação.",
+      "best_for": "Revisões de literatura com critérios explícitos, extração estruturada e registo auditável de decisões.",
+      "watch_out": "Confirmar cobertura bibliográfica e rever exclusões e extrações. O apoio ao PRISMA não dispensa protocolo, avaliação de qualidade nem revisão humana.",
       "baseline_score": 88,
       "aliases": [
         "elicit"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Elicit — revisão sistemática e PRISMA 2020",
+          "url": "https://elicit.com/blog/systematic-review-for-prisma-2020"
+        },
+        {
+          "label": "Elicit — Library, Projects e colaboração, setembro de 2026",
+          "url": "https://elicit.com/blog"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "consensus",
@@ -1356,13 +1569,20 @@
         "pesquisa",
         "estudo"
       ],
-      "description": "Plataforma que ajuda a avaliar como artigos científicos são citados por outros trabalhos.",
-      "best_for": "Verificar suporte, contraste e contexto de citações académicas.",
-      "watch_out": "Cobertura de indexação e classificação automática não são completas.",
+      "description": "Pesquisa científica com Smart Citations para examinar o contexto em que um artigo é citado, além de ferramentas de assistência à investigação.",
+      "best_for": "Avaliar citações e contexto da evidência, cruzando o artigo original com os trabalhos que o citam.",
+      "watch_out": "Uma citação de apoio ou contraste não determina a qualidade de um estudo. Ler os trabalhos e avaliar método, contexto e cobertura.",
       "baseline_score": 85,
       "aliases": [
         "scite"
-      ]
+      ],
+      "sources": [
+        {
+          "label": "Scite — Smart Citations e pesquisa",
+          "url": "https://scite.ai/"
+        }
+      ],
+      "verified_at": "2026-09-18"
     },
     {
       "id": "gamma",
@@ -1374,12 +1594,75 @@
         "estudo",
         "marketing"
       ],
-      "description": "Criação assistida de apresentações, documentos e páginas visuais.",
-      "best_for": "Estruturar rapidamente uma narrativa visual ou documento de trabalho.",
-      "watch_out": "Rever factos, hierarquia de informação e consistência com a marca.",
+      "description": "Criação de apresentações, documentos e páginas com IA, layouts adaptativos e temas personalizados para transformar ideias em materiais visuais.",
+      "best_for": "Apresentações e sínteses visuais rápidas que podem ser revistas e adaptadas à marca.",
+      "watch_out": "Rever factos, legibilidade e hierarquia visual. Uma apresentação gerada não substitui fontes verificadas nem validação do público-alvo.",
       "baseline_score": 84,
       "aliases": [
         "gamma"
+      ],
+      "sources": [
+        {
+          "label": "Gamma — apresentações e temas",
+          "url": "https://gamma.app/products/presentations"
+        }
+      ],
+      "verified_at": "2026-09-18"
+    },
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "released_at": "2026-09-03",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo de fronteira da OpenAI para raciocínio complexo, computer use, cibersegurança e programação autónoma.",
+      "best_for": "Trabalho técnico ponta a ponta, engenharia de software e tarefas agentic que exigem raciocínio prolongado.",
+      "watch_out": "É um modelo de custo e latência elevados; aplicar salvaguardas adicionais em fluxos de cibersegurança.",
+      "baseline_score": 97,
+      "aliases": [
+        "GPT-6 Astra",
+        "Astra",
+        "gpt 6 astra"
+      ],
+      "sources": [
+        {
+          "label": "OpenAI — GPT-6 Astra",
+          "url": "https://openai.com/index/gpt-6-astra/"
+        },
+        {
+          "label": "Artificial Analysis — Model Leaderboard",
+          "url": "https://artificialanalysis.ai/leaderboards/models/"
+        }
+      ]
+    },
+    {
+      "id": "claude-fable-5-1",
+      "name": "Claude Fable 5.1",
+      "url": "https://www.anthropic.com/claude/fable",
+      "released_at": "2026-09-01",
+      "categories": [
+        "coding"
+      ],
+      "description": "Modelo da Anthropic para coding agentic, trabalho de conhecimento e investigação multidisciplinar de contexto longo.",
+      "best_for": "Codificação autónoma, repositórios extensos e tarefas de pesquisa que exigem consistência ao longo de várias etapas.",
+      "watch_out": "O custo aumenta em raciocínio intensivo; confirmar disponibilidade, limites e fallback antes de automatizar produção.",
+      "baseline_score": 96,
+      "aliases": [
+        "Claude Fable 5.1",
+        "Fable 5.1",
+        "claude fable 5 1"
+      ],
+      "sources": [
+        {
+          "label": "Anthropic — Claude Fable",
+          "url": "https://www.anthropic.com/claude/fable"
+        },
+        {
+          "label": "Artificial Analysis — Model Leaderboard",
+          "url": "https://artificialanalysis.ai/leaderboards/models/"
+        }
       ]
     },
     {
@@ -1390,10 +1673,10 @@
       "categories": [
         "coding"
       ],
-      "description": "Modelo de fronteira da OpenAI para coding agentic, engenharia de software e trabalho técnico de elevada complexidade.",
-      "best_for": "Coding agentic exigente, implementação ponta a ponta, terminal e refactoring de sistemas complexos.",
-      "watch_out": "Lançamento recente e com custo premium; validar qualidade, latência e consumo de tokens no repositório real.",
-      "baseline_score": 99,
+      "description": "Modelo anterior da OpenAI para coding agentic e engenharia de software; foi sucedido pelo GPT-6 Astra.",
+      "best_for": "Repositórios técnicos que ainda dependem da geração GPT-5.6 e fluxos em que a compatibilidade pesa mais do que a capacidade de fronteira.",
+      "watch_out": "Já não é o modelo de topo da OpenAI: comparar com GPT-6 Astra antes de iniciar trabalho novo.",
+      "baseline_score": 88,
       "aliases": [
         "gpt 5.6 sol",
         "gpt-5.6",
@@ -1418,10 +1701,10 @@
       "categories": [
         "coding"
       ],
-      "description": "Modelo de fronteira da Anthropic para projetos longos, agentes autónomos e coding de elevada complexidade.",
-      "best_for": "Migrações extensas, codebases grandes e tarefas multi-etapa que exigem planeamento e validação prolongados.",
-      "watch_out": "Preço elevado e fallback de segurança para Opus 4.8 em algumas tarefas; comparar custo e tempo por resultado.",
-      "baseline_score": 98,
+      "description": "Modelo anterior da Anthropic para projetos longos e coding agentic; foi sucedido pelo Claude Fable 5.1.",
+      "best_for": "Migrações extensas e codebases grandes que ainda exigem compatibilidade com a geração Fable 5.",
+      "watch_out": "Já não é a versão mais recente da Anthropic: comparar com Claude Fable 5.1 em tarefas novas.",
+      "baseline_score": 87,
       "aliases": [
         "claude fable 5",
         "fable 5"
@@ -1436,6 +1719,35 @@
           "url": "https://artificialanalysis.ai/articles/claude-fable-5-mythos-intelligence-index"
         }
       ]
+    },
+    {
+      "id": "claude-opus-5",
+      "name": "Claude Opus 5",
+      "url": "https://www.anthropic.com/claude/opus",
+      "categories": [
+        "coding",
+        "pesquisa"
+      ],
+      "description": "Modelo atual da família Opus da Anthropic, com melhorias em engenharia de software e trabalho de conhecimento face ao Opus 4.8.",
+      "best_for": "Engenharia de software e tarefas profissionais complexas, ponderando custo e limites de utilização.",
+      "watch_out": "Comparar custo e latência com Fable 5.1 e outros modelos; resultados do fornecedor não garantem superioridade em todos os projetos.",
+      "baseline_score": 95,
+      "aliases": [
+        "claude opus 5",
+        "opus 5"
+      ],
+      "sources": [
+        {
+          "label": "Anthropic — lançamento Opus 5",
+          "url": "https://www.anthropic.com/news/claude-opus-5"
+        },
+        {
+          "label": "Artificial Analysis — modelos",
+          "url": "https://artificialanalysis.ai/leaderboards/models/"
+        }
+      ],
+      "released_at": "2026-07-24",
+      "verified_at": "2026-09-18"
     }
   ],
   "prompts": [

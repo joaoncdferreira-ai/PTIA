@@ -26,6 +26,12 @@ future events.
 
 ## Safety Rules
 
+- Category-level `reviewed_at` records a complete editorial review, not a build
+  or an isolated ranking proposal. Rebuilds preserve this date and display a
+  review-due warning after 45 days. Do not advance it for partial tool updates.
+- Tool scores are editorial ordinal indexes, not measured benchmark scores for
+  applications. Model leaderboards inform capability only; historical traffic
+  sources keep their original data period visible.
 - A material non-active entity status bypasses gradual movement and moves the
   record to the public archive with reason, date and sources.
 - Tool rankings may not introduce unknown IDs.

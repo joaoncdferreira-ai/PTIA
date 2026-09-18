@@ -98,9 +98,9 @@ class KnowledgeTests(unittest.TestCase):
         self.assertLess(
             resources.index('id="top-portugal"'), resources.index('id="top-ferramentas"')
         )
-        self.assertIn("6</strong> tops publicados", resources)
-        self.assertIn("3</strong> shortlists em validação", resources)
-        self.assertIn("Shortlist para pesquisa", resources)
+        self.assertIn("8</strong> tops publicados", resources)
+        self.assertIn("1</strong> shortlists em validação", resources)
+        self.assertIn("Shortlist para automações", resources)
         self.assertIn("Sem posições publicadas: 1/2 fontes externas", resources)
         self.assertIn("nunca validam sozinhas um perfil", resources)
         self.assertIn("Correção verificável", resources)
@@ -209,7 +209,7 @@ class KnowledgeTests(unittest.TestCase):
                 eligible,
                 key=lambda item: item["category_ranks"][category],
             )["id"]
-        self.assertEqual(winners["coding"], "gpt-5-6-sol")
+        self.assertEqual(winners["coding"], "gpt-6-astra")
         self.assertEqual(winners["estudo"], "notebooklm")
         self.assertEqual(winners["video"], "higgsfield")
         self.assertEqual(winners["design"], "figma-ai")
@@ -230,10 +230,10 @@ class KnowledgeTests(unittest.TestCase):
             for source in coding_winner["category_sources"]["coding"]
             if source.get("component") == "release"
         }
-        self.assertIn("https://openai.com/index/gpt-5-6/", coding_release_sources)
+        self.assertIn("https://openai.com/index/gpt-6-astra/", coding_release_sources)
         self.assertNotIn("https://www.anthropic.com/claude/fable", coding_release_sources)
-        self.assertEqual(research_winner["category_publication_status"]["pesquisa"], "watchlist")
-        self.assertEqual(automation_winner["category_external_source_count"]["automacoes"], 0)
+        self.assertEqual(research_winner["category_publication_status"]["pesquisa"], "ranked")
+        self.assertEqual(automation_winner["category_external_source_count"]["automacoes"], 1)
 
     def test_future_verification_date_does_not_grant_eligibility(self):
         catalog = json.loads(
