@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "edition": "2026-W38",
-  "updated_at": "2026-09-14T14:38:43+00:00",
+  "updated_at": "2026-09-18T10:10:51+00:00",
   "signal_window_days": 84,
-  "signal_articles": 173,
+  "signal_articles": 169,
   "methodology_url": "https://ptia.pt/metodologia-indice/",
   "disclaimer": "Índice editorial PTIA, não uma medição absoluta de influência. O estado da entidade é verificado antes da avaliação; registos sem duas fontes independentes e recentes ficam na watchlist, sem posição publicada, e entidades inativas passam para o arquivo.",
   "companies": [
@@ -106,7 +106,7 @@
       "score_band": "Destaque",
       "score_breakdown": {
         "impact": 98.0,
-        "momentum": 5.7,
+        "momentum": 5.2,
         "innovation": 96.0,
         "portugal_relevance": 98.0,
         "ecosystem_contribution": 92.0
@@ -164,11 +164,11 @@
         ]
       },
       "baseline_position": 4,
-      "score": 69.7,
+      "score": 69.3,
       "score_band": "Destaque",
       "score_breakdown": {
         "impact": 84.0,
-        "momentum": 16.3,
+        "momentum": 14.9,
         "innovation": 89.0,
         "portugal_relevance": 92.0,
         "ecosystem_contribution": 88.0
@@ -937,11 +937,11 @@
       "status": "active",
       "eligibility": "provisional",
       "baseline_position": 25,
-      "score": 45.7,
+      "score": 45.2,
       "score_band": "A acompanhar",
       "score_breakdown": {
         "impact": 50.0,
-        "momentum": 20.7,
+        "momentum": 18.8,
         "innovation": 50.0,
         "portugal_relevance": 70.0,
         "ecosystem_contribution": 50.0
@@ -1996,8 +1996,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -2005,8 +2005,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           },
           {
@@ -2459,8 +2459,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -2468,8 +2468,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           },
           {
@@ -2925,8 +2925,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -2934,8 +2934,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -3620,8 +3620,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -3629,8 +3629,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -4020,8 +4020,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -4029,8 +4029,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -4607,8 +4607,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -4616,8 +4616,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -5257,8 +5257,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -5266,8 +5266,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -5352,8 +5352,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -5361,8 +5361,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           },
           {
@@ -5894,8 +5894,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -5903,8 +5903,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -6159,8 +6159,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -6168,8 +6168,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ]
@@ -6243,8 +6243,8 @@
         "coding": [
           {
             "component": "capability",
-            "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-            "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex"
+            "label": "Coding Capability Index",
+            "url": "https://artificialanalysis.ai/leaderboards/models"
           },
           {
             "component": "popularity",
@@ -6252,8 +6252,8 @@
             "url": "https://a16z.com/100-gen-ai-apps-6/"
           },
           {
-            "component": "task_fit",
-            "label": "Cobertura do workflow de engenharia",
+            "component": "access",
+            "label": "Disponibilidade, integração e valor",
             "url": "https://ptia.pt/metodologia-indice/"
           }
         ],
@@ -6565,7 +6565,7 @@
       ],
       "baseline_score": 95,
       "score": 95.0,
-      "topical_articles": 121,
+      "topical_articles": 120,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 2,
@@ -6617,7 +6617,7 @@
       ],
       "baseline_score": 93,
       "score": 93.0,
-      "topical_articles": 78,
+      "topical_articles": 77,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 4,
@@ -6643,7 +6643,7 @@
       ],
       "baseline_score": 93,
       "score": 93.0,
-      "topical_articles": 87,
+      "topical_articles": 86,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 5,
@@ -6747,7 +6747,7 @@
       ],
       "baseline_score": 91,
       "score": 91.0,
-      "topical_articles": 98,
+      "topical_articles": 97,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 9,
@@ -6773,7 +6773,7 @@
       ],
       "baseline_score": 91,
       "score": 91.0,
-      "topical_articles": 122,
+      "topical_articles": 121,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 10,
@@ -6878,7 +6878,7 @@
       ],
       "baseline_score": 90,
       "score": 90.0,
-      "topical_articles": 96,
+      "topical_articles": 94,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 14,
@@ -6905,7 +6905,7 @@
       ],
       "baseline_score": 90,
       "score": 90.0,
-      "topical_articles": 101,
+      "topical_articles": 100,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 15,
@@ -7010,7 +7010,7 @@
       ],
       "baseline_score": 89,
       "score": 89.0,
-      "topical_articles": 68,
+      "topical_articles": 67,
       "selection_kind": "curadoria editorial",
       "usage_evidence": "ainda não medido",
       "rank": 19,
@@ -7193,7 +7193,7 @@
         "api"
       ],
       "english_term": "Application Programming Interface",
-      "mentions_12w": 56
+      "mentions_12w": 55
     },
     {
       "id": "agi",
@@ -7226,7 +7226,7 @@
         "retrieval augmented generation"
       ],
       "english_term": "Retrieval-Augmented Generation",
-      "mentions_12w": 30
+      "mentions_12w": 29
     },
     {
       "id": "geo",
@@ -7242,7 +7242,7 @@
         "Generative Engine Optimization"
       ],
       "english_term": "Generative Engine Optimization",
-      "mentions_12w": 14
+      "mentions_12w": 13
     },
     {
       "id": "ia-generativa",

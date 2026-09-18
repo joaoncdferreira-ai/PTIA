@@ -64,8 +64,8 @@
       },
       "components": {
         "capability": {
-          "label": "Artificial Analysis Coding Agent Index, julho de 2026",
-          "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/claude-code-vs-codex",
+          "label": "Coding Capability Index",
+          "url": "https://artificialanalysis.ai/leaderboards/models",
           "ranking": [
             "gpt-5-6-sol",
             "claude-fable-5",
@@ -98,8 +98,8 @@
           ]
         },
         "task_fit": {
-          "label": "Cobertura do workflow de engenharia",
-          "url": "https://ptia.pt/metodologia-indice/",
+          "label": "Coding Task Fit Index",
+          "url": "https://artificialanalysis.ai/leaderboards/models",
           "ranking": [
             "gpt-5-6-sol",
             "claude-fable-5",
