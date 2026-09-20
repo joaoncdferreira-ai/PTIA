@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-20T07:55:49+00:00",
+  "updated_at": "2026-09-20T07:58:17+00:00",
   "posts": [
+    {
+      "id": "post_1182a35885c7b55923",
+      "title": "Exército português desenvolve solução soberana de IA chamada Afonso",
+      "body": "O Exército Português apresentou o Afonso, uma solução soberana de IA para responder sobre documentação interna, processos, logística, finanças e pessoal. O sistema opera em ambiente controlado, identifica as fontes das respostas e mantém o utilizador no processo de decisão.\n\nÉ um caso português de soberania digital aplicada: dados e processamento permanecem no ambiente do Exército, com rastreabilidade e controlo. A abordagem é relevante para organizações públicas e empresas que precisam de agentes especializados sem expor informação a serviços externos.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/17/exercito-portugues-ja-tem-uma-solucao-de-ia-soberana-o-afonso/"
+      ],
+      "image_path": "data\\final_assets\\post_d6d3627935d3d3c62c_45a42442_ChatGPT-Image-20_09_2026-08_39_03.png",
+      "image_url": "/assets/final/post_27c5a795b9e7b8e83a_site_1600x900.jpg",
+      "published_at": "2026-09-20T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/exercito-portugues-desenvolve-solucao-soberana-de-ia-chamada-afonso-1182a35885c7b55923"
+    },
     {
       "id": "post_100479a3f0937a6534",
       "title": "Processo acusa Anthropic, OpenAI, SpaceXAI e Google de acordo ilegal para abrandar a IA",
