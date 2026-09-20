@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-20T07:58:17+00:00",
+  "updated_at": "2026-09-20T08:05:43+00:00",
   "posts": [
+    {
+      "id": "post_47480e282113008961",
+      "title": "Anthropic instala laboratório físico para acelerar investigação nas ciências da vida",
+      "body": "A Anthropic instalou discretamente um laboratório na área de São Francisco para realizar experiências físicas e acelerar investigação em ciências da vida. A empresa esclarece que não está a fazer ensaios clínicos nem a focar o laboratório especificamente em medicamentos, mas quer trabalhar com parceiros e desenvolver tratamentos para doenças negligenciadas.\n\nA IA está a sair do software e a entrar no laboratório físico. Para Portugal, o tema cruza biotecnologia, investigação aplicada e os requisitos de segurança quando modelos avançados passam a interagir com o mundo real.",
+      "source_urls": [
+        "https://observador.pt/2026/09/18/anthropic-instalou-um-laboratorio-em-sao-francisco-para-tentar-acelerar-investigacao-medica/"
+      ],
+      "image_path": "data\\final_assets\\post_9e500c56c1f3b07e5d_909ec4d1_ChatGPT-Image-20_09_2026-08_39_11.png",
+      "image_url": "/assets/final/post_0b7a9025d10837414e_site_1600x900.jpg",
+      "published_at": "2026-09-20T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/anthropic-instala-laboratorio-fisico-para-acelerar-investigacao-nas-ciencias-da-vida-47480e282113008961"
+    },
     {
       "id": "post_1182a35885c7b55923",
       "title": "Exército português desenvolve solução soberana de IA chamada Afonso",
