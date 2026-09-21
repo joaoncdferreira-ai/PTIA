@@ -7,3 +7,4 @@
 {"run_id": "knowledge_run_304fded83ca1", "created_at": "2026-09-07T13:52:28+00:00", "status": "completed", "provider_available": true, "provider_error": "", "proposals": 11, "auto_applied": 0, "pending": 11}
 {"run_id": "knowledge_run_a919fb3eaba8", "created_at": "2026-09-14T14:38:43+00:00", "status": "completed", "provider_available": true, "provider_error": "", "proposals": 8, "auto_applied": 0, "pending": 8}
 {"run_id": "knowledge_run_d373315ed87d", "created_at": "2026-09-18T10:10:51+00:00", "status": "completed", "provider_available": true, "provider_error": "", "proposals": 14, "auto_applied": 2, "pending": 12}
+{"run_id": "knowledge_run_4db6908c7f03", "created_at": "2026-09-21T14:45:33+00:00", "status": "completed", "provider_available": true, "provider_error": "", "proposals": 6, "auto_applied": 0, "pending": 6}

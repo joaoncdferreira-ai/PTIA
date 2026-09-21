@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-18T10:11:06.779319+00:00",
+  "updated_at": "2026-09-21T14:45:47.436466+00:00",
   "method": "GitHub Search API: AI/LLM topics, stars, forks and activity in the last 45 days.",
   "repos": [
     {
@@ -7,10 +7,10 @@
       "name": "microsoft/generative-ai-for-beginners",
       "description": "21 Lessons, Get Started Building with Generative AI ",
       "url": "https://github.com/microsoft/generative-ai-for-beginners",
-      "stars": 119995,
-      "forks": 63171,
+      "stars": 120181,
+      "forks": 63274,
       "language": "Jupyter Notebook",
-      "updated_at": "2026-09-18T10:02:02Z",
+      "updated_at": "2026-09-21T14:41:03Z",
       "topics": [
         "ai",
         "azure",
@@ -21,18 +21,18 @@
         "gpt",
         "language-model"
       ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-08-04",
-      "score": 32540.66
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-08-07",
+      "score": 32568.09
     },
     {
       "rank": 2,
       "name": "NousResearch/hermes-agent",
       "description": "The agent that grows with you",
       "url": "https://github.com/NousResearch/hermes-agent",
-      "stars": 246721,
-      "forks": 51694,
+      "stars": 247679,
+      "forks": 52127,
       "language": "Python",
-      "updated_at": "2026-09-18T10:10:51Z",
+      "updated_at": "2026-09-21T14:45:25Z",
       "topics": [
         "ai",
         "ai-agent",
@@ -43,18 +43,18 @@
         "claude-code",
         "codex"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-08-04",
-      "score": 30904.02
+      "source_query": "topic:llm stars:>500 pushed:>=2026-08-07",
+      "score": 31016.47
     },
     {
       "rank": 3,
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
       "url": "https://github.com/Significant-Gravitas/AutoGPT",
-      "stars": 187426,
-      "forks": 46005,
+      "stars": 187475,
+      "forks": 46008,
       "language": "Python",
-      "updated_at": "2026-09-18T09:25:04Z",
+      "updated_at": "2026-09-21T13:57:55Z",
       "topics": [
         "agentic-ai",
         "agents",
@@ -65,18 +65,18 @@
         "gpt",
         "llama-api"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-04",
-      "score": 29183.32
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-07",
+      "score": 29184.36
     },
     {
       "rank": 4,
       "name": "affaan-m/ECC",
       "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
       "url": "https://github.com/affaan-m/ECC",
-      "stars": 261481,
-      "forks": 39136,
+      "stars": 264432,
+      "forks": 39527,
       "language": "JavaScript",
-      "updated_at": "2026-09-18T10:09:52Z",
+      "updated_at": "2026-09-21T14:42:46Z",
       "topics": [
         "ai-agents",
         "anthropic",
@@ -87,18 +87,18 @@
         "mcp",
         "productivity"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-08-04",
-      "score": 27827.6
+      "source_query": "topic:llm stars:>500 pushed:>=2026-08-07",
+      "score": 27937.54
     },
     {
       "rank": 5,
       "name": "huggingface/transformers",
       "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training. ",
       "url": "https://github.com/huggingface/transformers",
-      "stars": 166284,
-      "forks": 34621,
+      "stars": 166465,
+      "forks": 34648,
       "language": "Python",
-      "updated_at": "2026-09-18T09:26:56Z",
+      "updated_at": "2026-09-21T14:43:31Z",
       "topics": [
         "audio",
         "deep-learning",
@@ -109,18 +109,18 @@
         "llm",
         "machine-learning"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-08-04",
-      "score": 25757.38
+      "source_query": "topic:llm stars:>500 pushed:>=2026-08-07",
+      "score": 25765.31
     },
     {
       "rank": 6,
       "name": "langchain-ai/langchain",
       "description": "The agent engineering platform.",
       "url": "https://github.com/langchain-ai/langchain",
-      "stars": 146584,
-      "forks": 24509,
+      "stars": 146789,
+      "forks": 24548,
       "language": "Python",
-      "updated_at": "2026-09-18T09:56:10Z",
+      "updated_at": "2026-09-21T14:29:36Z",
       "topics": [
         "agents",
         "ai",
@@ -131,36 +131,36 @@
         "enterprise",
         "framework"
       ],
-      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-08-04",
-      "score": 24442.47
+      "source_query": "topic:generative-ai stars:>500 pushed:>=2026-08-07",
+      "score": 24453.73
     },
     {
       "rank": 7,
       "name": "deepseek-ai/deepseek-harness",
       "description": "DeepSeek Harness: Everything is a Plugin.",
       "url": "https://github.com/deepseek-ai/deepseek-harness",
-      "stars": 228645,
-      "forks": 27332,
+      "stars": 232094,
+      "forks": 27833,
       "language": "TypeScript",
-      "updated_at": "2026-09-18T10:09:29Z",
+      "updated_at": "2026-09-21T14:45:38Z",
       "topics": [
         "ai-agents",
         "cordis",
         "dsh",
         "dsh-plugin"
       ],
-      "source_query": "topic:ai-agents stars:>200 pushed:>=2026-08-04",
-      "score": 24280.9
+      "source_query": "topic:ai-agents stars:>200 pushed:>=2026-08-07",
+      "score": 24422.41
     },
     {
       "rank": 8,
       "name": "langgenius/dify",
       "description": "Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.",
       "url": "https://github.com/langgenius/dify",
-      "stars": 156258,
-      "forks": 24675,
+      "stars": 156731,
+      "forks": 24716,
       "language": "TypeScript",
-      "updated_at": "2026-09-18T09:59:10Z",
+      "updated_at": "2026-09-21T14:42:11Z",
       "topics": [
         "agent",
         "agentic-ai",
@@ -171,40 +171,18 @@
         "claude",
         "deepseek"
       ],
-      "source_query": "topic:llm stars:>500 pushed:>=2026-08-04",
-      "score": 23203.36
+      "source_query": "topic:llm stars:>500 pushed:>=2026-08-07",
+      "score": 23216.89
     },
     {
       "rank": 9,
-      "name": "FlowiseAI/Flowise",
-      "description": "Build AI Agents, Visually",
-      "url": "https://github.com/FlowiseAI/Flowise",
-      "stars": 55465,
-      "forks": 25031,
-      "language": "TypeScript",
-      "updated_at": "2026-09-18T07:41:47Z",
-      "topics": [
-        "agentic-ai",
-        "agentic-workflow",
-        "agents",
-        "artificial-intelligence",
-        "chatbot",
-        "chatgpt",
-        "javascript",
-        "langchain"
-      ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-04",
-      "score": 23067.8
-    },
-    {
-      "rank": 10,
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
       "url": "https://github.com/f/prompts.chat",
-      "stars": 170632,
-      "forks": 21933,
+      "stars": 170885,
+      "forks": 21959,
       "language": "HTML",
-      "updated_at": "2026-09-18T10:04:41Z",
+      "updated_at": "2026-09-21T14:35:14Z",
       "topics": [
         "ai",
         "artificial-intelligence",
@@ -215,8 +193,30 @@
         "gemini",
         "gpt"
       ],
-      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-04",
-      "score": 23063.4
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-07",
+      "score": 23071.51
+    },
+    {
+      "rank": 10,
+      "name": "FlowiseAI/Flowise",
+      "description": "Build AI Agents, Visually",
+      "url": "https://github.com/FlowiseAI/Flowise",
+      "stars": 55472,
+      "forks": 25035,
+      "language": "TypeScript",
+      "updated_at": "2026-09-21T13:54:48Z",
+      "topics": [
+        "agentic-ai",
+        "agentic-workflow",
+        "agents",
+        "artificial-intelligence",
+        "chatbot",
+        "chatgpt",
+        "javascript",
+        "langchain"
+      ],
+      "source_query": "topic:artificial-intelligence stars:>1000 pushed:>=2026-08-07",
+      "score": 23068.93
     }
   ],
   "errors": []
