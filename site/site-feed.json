@@ -1,7 +1,162 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-20T08:05:43+00:00",
+  "updated_at": "2026-09-23T00:57:06+00:00",
   "posts": [
+    {
+      "id": "post_bfa703bedd876c69de",
+      "title": "ONU convoca DeepSeek para debater riscos de inteligência artificial no Conselho de Segurança",
+      "body": "A DeepSeek foi convidada a prestar informações ao Conselho de Segurança das Nações Unidas sobre os riscos da inteligência artificial. A sessão coloca a startup chinesa no centro das discussões formais sobre segurança de modelos avançados e reflete o agravamento da concorrência tecnológica entre Washington e Pequim.\n\nA ida de um laboratório privado chinês ao principal órgão decisório da diplomacia internacional altera o enquadramento do setor: a regulação de fronteira deixou de ser tratada como um assunto técnico de conformidade comercial para passar a ser tratada como matéria de não-proliferação e contenção geopolítica.\n\nAté aqui, grande parte das conversas multilaterais sobre segurança de IA acontecia em cimeiras voluntárias, dominadas pela presença de empresas norte-americanas e europeias. Ao chamar a DeepSeek a Nova Iorque, as Nações Unidas reconhecem que qualquer quadro normativo que ignore a pilha tecnológica chinesa nasce sem eficácia prática.\n\nPara o ecossistema europeu, a implicação é de posicionamento. A União Europeia tem investido na autoridade regulatória formal, mas o debate sobre as capacidades críticas e a sua contenção militar ou estratégica está a concentrar-se diretamente entre as potências que constroem a infraestrutura de base.\n\nQuem desenvolve ou integra modelos nesta geografia precisa de assumir que a fragmentação de padrões regulatórios é inevitável. Quando a governação algorítmica entra na agenda do Conselho de Segurança, os critérios de segurança e transparência deixam de ser puramente operacionais e tornam-se instrumentos de soberania de Estado.",
+      "source_urls": [
+        "https://observador.pt/2026/09/22/startup-chinesa-deepseek-vai-prestar-informacoes-ao-conselho-de-seguranca-das-nacoes-unidas-sobre-os-riscos-da-ia/"
+      ],
+      "image_path": "data\\final_assets\\post_c9ccb620d42c5f9cab_efac78e7_ChatGPT-Image-23_09_2026-00_13_28.png",
+      "image_url": "/assets/final/post_102d29c5442c0ad36b_site_1600x900.jpg",
+      "published_at": "2026-09-23T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/onu-convoca-deepseek-para-debater-riscos-de-inteligencia-artificial-no-conselho-de-seguranca-bfa703bedd876c69de"
+    },
+    {
+      "id": "post_e89a181246abcfb2a8",
+      "title": "Meta testa concierge humano para apoiar tarefas da assistente Muse",
+      "body": "A Meta começou a testar um serviço de concierge humano integrado na Muse, a sua nova assistente de inteligência artificial desenhada para executar tarefas de forma autónoma. Na prática, a tecnológica coloca operadores humanos a validar e a concluir pedidos quando o software atinge os seus limites operacionais.\n\nEste teste expõe o fosso real entre a promessa de autonomia total dos agentes e a fricção de executar ações em nome de um utilizador. Quando um sistema tem de marcar reservas, comprar bilhetes ou gerir comunicações, a margem de erro técnica transforma-se de imediato em responsabilidade comercial. A inclusão temporária de pessoas não é um recuo técnico; é o reconhecimento de que a fiabilidade percebida dita a adesão do consumidor.\n\nPara o mercado europeu, onde o Regulamento da Inteligência Artificial impõe regras estritas sobre transparência e supervisão humana, o modelo híbrido da Meta antecipa um requisito regulatório inevitável. Os sistemas que operam no mundo real precisarão de mecanismos explícitos de controlo, distinguindo com clareza quando a resposta vem do modelo ou de um operador.\n\nPara as empresas que desenham serviços digitais, a experiência da Meta oferece uma diretriz prática: antes de prometer automação integral aos clientes, a infraestrutura tem de contemplar o ponto de contacto onde o operador assume o controlo. O sucesso destes assistentes não dependerá apenas da precisão do modelo de linguagem, mas da elegância com que a máquina passa a tarefa a um humano sem quebrar o serviço.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/22/meta-testa-concierge-humano-para-a-nova-assistente-de-ia-muse/"
+      ],
+      "image_path": "data\\final_assets\\post_af21e7888492a5fd7d_efac78e7_ChatGPT-Image-23_09_2026-00_13_28.png",
+      "image_url": "/assets/final/post_a4f9e71b6d8b6b17c8_site_1600x900.jpg",
+      "published_at": "2026-09-23T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/meta-testa-concierge-humano-para-apoiar-tarefas-da-assistente-muse-e89a181246abcfb2a8"
+    },
+    {
+      "id": "post_52d8b1c60fd2df0c91",
+      "title": "Centros de dados em Abrantes: proTEJO quer tectos legais para consumo de água e energia",
+      "body": "A associação ambientalista proTEJO exigiu a fixação de limites legais vinculativos para o consumo de água e eletricidade nos centros de dados planeados para Abrantes. Em causa estão os projetos Hyperion e EDC One, para os quais a organização reclama uma avaliação de impacto ambiental cumulativa, estimando consumos conjuntos entre 3,6 e 22,2 milhões de litros de água por dia e cerca de 4.380 GWh de eletricidade por ano.\n\nA exigência da associação expõe o choque inevitável entre a ambição de fixar infraestrutura crítica de computação e a capacidade de suporte dos recursos locais. O erro frequente neste tipo de licenciamento é avaliar cada instalação em silo, ignorando a pressão combinada sobre a mesma bacia hidrográfica e sobre os nós da rede elétrica nacional.\n\nPara o setor tecnológico e para os promotores industriais, este atrito não deve ser encarado como um travão cego ao investimento, mas como uma definição antecipada de regras de jogo. Projetos desenhados com sistemas de arrefecimento em circuito fechado, reaproveitamento de efluentes tratados e contratos diretos de energia renovável com armazenamento local reduzem a exposição ao escrutínio público e blindam a operação contra futuros cortes operacionais por seca.\n\nA atração de infraestrutura de inteligência artificial em Portugal só se sustenta se a métrica de eficiência for tratada como requisito de engenharia desde o primeiro dia, e não como contrapartida negociada à posteriori.",
+      "source_urls": [
+        "https://observador.pt/2026/09/22/protejo-exige-limites-ao-consumo-de-agua-e-energia-de-centros-de-dados-em-abrantes/"
+      ],
+      "image_path": "data\\final_assets\\post_6a43b226804450afe4_4e33c50d_ChatGPT-Image-22_09_2026-23_59_36-2.png",
+      "image_url": "/assets/final/post_26619a2e7de28c51d3_site_1600x900.jpg",
+      "published_at": "2026-09-23T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/centros-de-dados-em-abrantes-protejo-quer-tectos-legais-para-consumo-de-agua-e-energia-52d8b1c60fd2df0c91"
+    },
+    {
+      "id": "post_cd57f584b6a35ffb16",
+      "title": "Quartz capta 2,75 milhões de libras em ronda pre-seed para plataforma de wealth com IA",
+      "body": "A Quartz captou 2,75 milhões de libras numa ronda pre-seed liderada pela Daphni, com a participação da Outward VC e da K Fund. A fintech, fundada por profissionais portugueses com passagens pela Revolut e N26, está a desenvolver uma plataforma de gestão de património assente no agente Charlie, mantendo a operação técnica repartida entre Portugal e Espanha.\n\nO movimento da Quartz não procura reinventar o aconselhamento financeiro tradicional a partir do zero, mas antes automatizar a triagem e o acompanhamento patrimonial através de agentes dedicados, reduzindo o custo operacional que historicamente afastava os pequenos e médios investidores deste tipo de serviço.\n\nAo ancorar as operações de engenharia e tecnologia na Península Ibérica enquanto disputa capital e clientes em mercados mais maduros, a Quartz valida um modelo recorrente de equipas saídas de neobancos europeus: combinar a experiência de escala regulada e produto rápido com uma base técnica local de custo competitivo.\n\nO desafio central para a empresa não reside na sofisticação da linguagem do agente, mas na capacidade de Charlie lidar com conformidade regulatória estrita e decisões de custódia patrimonial sem margem para alucinações técnicas.",
+      "source_urls": [
+        "https://fintech.global/2026/09/17/quartz-raises-2-75m-pre-seed-for-ai-led-wealth-platform/"
+      ],
+      "image_path": "data\\final_assets\\post_cf89629b464624d2ed_b3178efa_ChatGPT-Image-21_09_2026-22_19_02.png",
+      "image_url": "/assets/final/post_4425d07e6e0ed4e1ba_site_1600x900.jpg",
+      "published_at": "2026-09-22T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/quartz-capta-2-75-milhoes-de-libras-em-ronda-pre-seed-para-plataforma-de-wealth-com-ia-cd57f584b6a35ffb16"
+    },
+    {
+      "id": "post_774255bc7085a2d2a5",
+      "title": "Anacom assume fiscalização e ponto de contacto nacional do AI Act",
+      "body": "O Governo designou a Anacom como autoridade fiscalizadora principal e ponto de contacto nacional para a aplicação do regulamento europeu de inteligência artificial. A decisão foi justificada por Bernardo Correia com o percurso da entidade na regulação do mercado tecnológico, defendendo ainda que o país não deve recear a utilização da tecnologia.\n\nA escolha resolve a primeira incerteza institucional sobre quem teria a palavra final na supervisão do AI Act em Portugal. Ao entregar a pasta ao regulador das comunicações em vez de criar uma estrutura de raiz ou dispersar competências por organismos setoriais, o executivo opta por um organismo com rotinas estabelecidas de auditoria técnica e litígio de mercado.\n\nA fiscalização de modelos e sistemas algorítmicos exige competências muito distintas da gestão de espectro ou da infraestrutura de telecomunicações. Avaliar risco em sistemas de inteligência artificial depende de auditoria a dados, escrutínio de enviesamento e compreensão de fluxos de decisão automatizados, áreas onde a regulação clássica ainda procura parâmetros práticos.\n\nPara as empresas e equipas que desenvolvem ou integram estes sistemas, a centralização na Anacom define um interlocutor único para interpretar conformidade e prazos comunitários. O teste prático da autoridade não estará na emissão de pareceres de enquadramento, mas na capacidade de fixar critérios técnicos claros que permitam a colocação de produtos no mercado sem meses de bloqueio burocrático.",
+      "source_urls": [
+        "https://observador.pt/2025/09/19/anacom-sera-autoridade-fiscalizadora-e-ponto-focal-na-regulamentacao-da-inteligencia-artificial/"
+      ],
+      "image_path": "data\\final_assets\\post_81a5b79f1ba542c694_6beeddec_ChatGPT-Image-21_09_2026-22_16_08.png",
+      "image_url": "/assets/final/post_dc2437c7b42bc1ec97_site_1600x900.jpg",
+      "published_at": "2026-09-22T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/anacom-assume-fiscalizacao-e-ponto-de-contacto-nacional-do-ai-act-774255bc7085a2d2a5"
+    },
+    {
+      "id": "post_d165c117f59125f420",
+      "title": "A gigafábrica de IA em Sines atrai a indústria alemã, mas o calendário aperta",
+      "body": "Portugal tem até 12 de novembro para submeter a candidatura de Sines à rede de gigafábricas de inteligência artificial planeada pela União Europeia. O interesse externo existe: segundo a liderança da Câmara de Comércio e Indústria Luso-Alemã, a escassez severa de capacidade de computação na Europa joga a favor do país, onde o custo da energia é mais competitivo do que no centro do continente. Contudo, os investidores alemães colocam a morosidade administrativa no topo dos riscos.\n\nA Europa enfrenta um défice estrutural de centros de dados de grande escala dedicados a modelos avançados, e a indústria alemã procura capacidade de processamento fora de portas para alimentar operações que a infraestrutura interna não suporta ao custo atual. A combinação de energia renovável mais barata com espaço físico em Sines responde diretamente a esse estrangulamento geográfico e económico.\n\nO obstáculo já não é a atratividade do ativo, mas o calendário. A corrida aos fundos e ao estatuto europeu de gigafactory não perdoa atrasos de licenciamento: para investidores industriais habituados a prazos rígidos de capitalização, a previsibilidade dos processos conta tanto como o preço por megawatt-hora.\n\nSe o consórcio nacional conseguir fixar um processo de decisão sem atritos burocráticos até novembro, Portugal deixa de ser visto apenas como um ponto de amarração de cabos submarinos e passa a integrar a cadeia de abastecimento de computação crítica do maior tecido industrial da Europa.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/19/empresas-alemas-estao-atentas-a-gigafabrica-de-sines-mas-preocupadas-com-a-burocracia/"
+      ],
+      "image_path": "data\\final_assets\\post_30e943033ba43f2580_ef726217_ChatGPT-Image-21_09_2026-22_16_02.png",
+      "image_url": "/assets/final/post_459f9550cde9930f47_site_1600x900.jpg",
+      "published_at": "2026-09-22T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-gigafabrica-de-ia-em-sines-atrai-a-industria-alema-mas-o-calendario-aperta-d165c117f59125f420"
+    },
+    {
+      "id": "post_7f5638f51856c7e13d",
+      "title": "Empresas portuguesas precisam de acesso a computação avançada para tirar partido da IA",
+      "body": "Uma entrevista do ECO defende que não basta ter algoritmos e dados: as empresas portuguesas precisam de acesso a computação avançada para transformar IA em produtividade, inovação e novos serviços.\n\nColoca a infraestrutura de computação no centro da adoção de IA em Portugal e ajuda a explicar porque é que dados e algoritmos, sem capacidade de execução, não chegam para competir.",
+      "source_urls": [
+        "https://eco.sapo.pt/entrevista/nao-basta-ter-algoritmos-e-dados-precisamos-que-as-empresas-tenham-acesso-a-computacao-avancada/"
+      ],
+      "image_path": "data\\final_assets\\post_f5bf9e9c02be3ad8be_bb490b43_ChatGPT-Image-20_09_2026-23_18_04.png",
+      "image_url": "/assets/final/post_daa5e0a20c5ffbf5c5_site_1600x900.jpg",
+      "published_at": "2026-09-21T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/empresas-portuguesas-precisam-de-acesso-a-computacao-avancada-para-tirar-partido-da-ia-7f5638f51856c7e13d"
+    },
+    {
+      "id": "post_2dbfcbfb486629cff9",
+      "title": "Anthropic propõe métricas públicas para medir o ritmo de desenvolvimento da IA de fronteira",
+      "body": "A Anthropic publicou três métricas para tornar mais visível o ritmo de desenvolvimento dentro dos laboratórios de fronteira: quanto da I&D é feito por IA, como os agentes são supervisionados e como é alocado o poder computacional.\n\nPropõe uma linguagem mensurável para comparar automação de I&D, supervisão e investimento em segurança, dando a reguladores e ao público mais visibilidade sobre a evolução dos modelos.",
+      "source_urls": [
+        "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+      ],
+      "image_path": "data\\final_assets\\post_c57fb1920ea98effd1_9945d052_0de1ee75-e598-4850-8d7b-7ad2f9777094.png",
+      "image_url": "/assets/final/post_158fa5d731f7ee39ee_site_1600x900.jpg",
+      "published_at": "2026-09-21T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/anthropic-propoe-metricas-publicas-para-medir-o-ritmo-de-desenvolvimento-da-ia-de-fronteira-2dbfcbfb486629cff9"
+    },
+    {
+      "id": "post_2da48a08d4ee9d39b6",
+      "title": "Amália pode universalizar ferramentas de IA e criar uma agenda de empreendedorismo em Portugal",
+      "body": "O CEO da Opensoft considera que o Amália pode universalizar ferramentas de inteligência artificial, disponibilizando-as ao público e às empresas e criando uma nova agenda de empreendedorismo em Portugal.\n\nMostra como uma infraestrutura pública de IA pode reduzir barreiras de acesso, estimular novos serviços e transformar capacidade tecnológica em inovação empresarial portuguesa.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/20/amalia-tem-o-valor-de-criar-agenda-de-empreendedorismo/"
+      ],
+      "image_path": "data\\final_assets\\post_376ab7ece2d9379850_b04c8696_ChatGPT-Image-20_09_2026-23_18_23.png",
+      "image_url": "/assets/final/post_0a92bbc0f06d72c630_site_1600x900.jpg",
+      "published_at": "2026-09-21T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/amalia-pode-universalizar-ferramentas-de-ia-e-criar-uma-agenda-de-empreendedorismo-em-portugal-2da48a08d4ee9d39b6"
+    },
     {
       "id": "post_47480e282113008961",
       "title": "Anthropic instala laboratório físico para acelerar investigação nas ciências da vida",
