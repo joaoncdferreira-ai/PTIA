@@ -1,7 +1,25 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-27T20:40:24+00:00",
+  "updated_at": "2026-09-27T20:41:23+00:00",
   "posts": [
+    {
+      "id": "post_73df6497bd2bb3fdbe",
+      "title": "AgData junta 18 entidades nacionais antes dos primeiros projetos europeus em 2027",
+      "body": "A Agência Nacional de Inovação (ANI) reuniu no dia 15 de setembro o National Mirror Group da parceria europeia AgData (Agriculture of Data). O grupo nacional junta 18 entidades públicas, científicas e agrícolas para articular a participação portuguesa num consórcio de 61 parceiros em 22 países europeus, cofinanciado pelo Horizonte Europa, com os primeiros projetos operacionais previstos para 2027.\n\nO objetivo formal é aplicar fluxos de dados, sensores, observação da Terra e inteligência artificial à gestão agrícola. A criação deste grupo espelho estabelece o canal de ligação entre os produtores locais e os cadernos de encargos que vão definir o financiamento comunitário do setor nos próximos anos.\n\nExiste aqui uma tensão evidente entre o ritmo institucional e o ciclo tecnológico. Um calendário que aponta os primeiros projetos apenas para 2027 arrisca desenhar especificações para modelos, sensores e arquiteturas de dados que estarão ultrapassados antes de chegarem ao terreno. A governança europeia costuma demorar a alinhar 22 países; os ciclos de software e hardware agrícola avançam em meses.\n\nPara as 18 entidades portuguesas envolvidas, o valor prático desta estrutura não passa por esperar passivamente pelos editais de 2027. O trabalho útil até lá reside em padronizar requisitos de interoperabilidade, testar partilha de dados entre explorações e centros de investigação e evitar que o setor nacional fique dependente de plataformas proprietárias fechadas quando o financiamento comunitário finalmente arrancar.",
+      "source_urls": [
+        "https://ani.pt/ani-acolhe-primeira-reuniao-do-grupo-espelho-nacional-da-parceria-europeia-agdata/"
+      ],
+      "image_path": "data\\final_assets\\post_73d0e29906173e1237_f355bbb4_Imagem-ChatGPT-27_09_2026-21_11_35.png",
+      "image_url": "/assets/final/post_08a2b17304b205e8d9_site_1600x900.jpg",
+      "published_at": "2026-09-28T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/agdata-junta-18-entidades-nacionais-antes-dos-primeiros-projetos-europeus-em-2027-73df6497bd2bb3fdbe"
+    },
     {
       "id": "post_d25c1fad86fb0d7599",
       "title": "Santander e Coursera abrem 50 mil vagas em cursos de inteligência artificial e dados",
