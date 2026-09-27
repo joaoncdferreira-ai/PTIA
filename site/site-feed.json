@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-27T20:34:33+00:00",
+  "updated_at": "2026-09-27T20:40:24+00:00",
   "posts": [
+    {
+      "id": "post_d25c1fad86fb0d7599",
+      "title": "Santander e Coursera abrem 50 mil vagas em cursos de inteligência artificial e dados",
+      "body": "O Santander abriu inscrições para 50 mil vagas gratuitas em mais de 80 cursos online da plataforma Coursera, focados em áreas como inteligência artificial, dados e liderança. O programa destina-se a maiores de 18 anos residentes em Portugal e surge, segundo o banco, num período em que a digitalização e a difusão da IA pressionam o mercado por novas competências técnicas.\n\nDisponibilizar acesso em escala reduz a barreira económica inicial de entrada, sobretudo num momento em que a oferta de conteúdos técnicos de qualidade costuma exigir subscrições pagas. Contudo, o volume de inscrições mede apenas a procura por formação, não a sua absorção produtiva: a taxa de conclusão em cursos abertos deste formato costuma ser historicamente baixa se a aprendizagem não estiver ancorada em projetos práticos ou em exigências diretas de funções de trabalho.\n\nPara profissionais e equipas técnicas, o valor desta iniciativa não reside no diploma genérico no final do percurso, mas na capacidade de usar o catálogo para preencher lacunas operacionais imediatas, da manipulação de dados à automação de processos. A requalificação só se concretiza quando o formando traduz o conteúdo das aulas em entregas mensuráveis dentro das organizações.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/24/inscricoes-abertas-para-50-mil-vagas-gratuitas-em-cursos-de-ia-dados-e-lideranca/"
+      ],
+      "image_path": "data\\final_assets\\post_6023cd90c079e6a92d_b04b5c36_Imagem-ChatGPT-27_09_2026-21_12_53.png",
+      "image_url": "/assets/final/post_795fce080ed5bdc592_site_1600x900.jpg",
+      "published_at": "2026-09-28T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/santander-e-coursera-abrem-50-mil-vagas-em-cursos-de-inteligencia-artificial-e-dados-d25c1fad86fb0d7599"
+    },
     {
       "id": "post_56e977ab95b5a11c52",
       "title": "Gémeos digitais e IA no chão de fábrica: a fronteira entre automação e supervisão humana",
