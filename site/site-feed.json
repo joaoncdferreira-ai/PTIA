@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-28T20:47:16+00:00",
+  "updated_at": "2026-09-28T20:48:34+00:00",
   "posts": [
+    {
+      "id": "post_2f5daeed09c09d671b",
+      "title": "Meta cria divisão empresarial de IA e contrata antigo CEO da MongoDB para liderar a oferta",
+      "body": "A Meta apresentou a Meta Enterprise Platform, uma estrutura desenhada para comercializar a sua tecnologia de inteligência artificial diretamente a empresas. A oferta agrega os agentes Muse e Meta Business Agent, a Muse API e o Muse Code. Para comandar a nova unidade, a tecnológica recrutou CJ Desai, antigo CEO da MongoDB, segundo o anúncio oficial emitido a 28 de setembro.\n\nA contratação de um perfil executivo com tração no software empresarial clarifica o movimento da Meta. A empresa deixa de limitar o seu ecossistema de inteligência artificial à investigação aberta ou ao suporte das suas próprias aplicações de consumo, passando a disputar orçamentos de infraestrutura, desenvolvimento de software e operações corporativas onde a Microsoft, a Google e a AWS já têm posições consolidadas.\n\nPara quem gere tecnologia, a entrada de mais um fornecedor de grande escala no mercado de agentes e APIs amplia as opções de arquitetura, mas transfere a pressão para a integração. O teste desta plataforma não residirá apenas na competência dos modelos Muse, mas na capacidade de CJ Desai construir canais de suporte, garantias de serviço e contratos empresariais num grupo cuja cultura histórica sempre esteve focada no utilizador final.",
+      "source_urls": [
+        "https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/"
+      ],
+      "image_path": "C:\\Users\\joaon\\ptia-content-engine\\data\\final_assets\\post_2f5daeed09c09d671b_173335f4_codex-8e66eadf49724b7183612efed73e911b.png",
+      "image_url": "/assets/final/post_d7a3636c4609df8bdf_site_1600x900.jpg",
+      "published_at": "2026-09-29T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/meta-cria-divisao-empresarial-de-ia-e-contrata-antigo-ceo-da-mongodb-para-liderar-a-oferta-2f5daeed09c09d671b"
+    },
     {
       "id": "post_a50782a8bb75c18669",
       "title": "Sword assina acordo para desenhar IA no sistema público de saúde do Brasil",
