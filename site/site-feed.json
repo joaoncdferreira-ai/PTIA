@@ -1,7 +1,26 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-27T20:41:23+00:00",
+  "updated_at": "2026-09-28T20:47:16+00:00",
   "posts": [
+    {
+      "id": "post_a50782a8bb75c18669",
+      "title": "Sword assina acordo para desenhar IA no sistema público de saúde do Brasil",
+      "body": "A tecnológica Sword, fundada por Virgílio Bento, assinou um acordo de cooperação técnica com o Governo brasileiro para testar e aplicar modelos de inteligência artificial no Sistema Único de Saúde (SUS). O projeto prevê ferramentas de triagem por voz e texto e a gestão de listas de espera num sistema que serve mais de 210 milhões de pessoas, com a implementação no terreno prevista para o início de 2027.\n\nO alcance do anúncio exige distinguir compromisso político de integração operacional. Entre a assinatura de um protocolo e a entrada de modelos automatizados na triagem clínica de um dos maiores serviços públicos do mundo decorrem mais de dois anos de desenho regulatório, validação clínica e integração de dados legados.\n\nA relevância deste movimento não está no rótulo de unicórnio, mas na mudança de escala dos testes de software clínico português. Projetos de automação de fluxo de doentes tendem a ficar limitados a pilotos locais ou redes privadas menores; testar a capacidade técnica contra a densidade real do SUS vai forçar a tecnologia a provar se aguenta a fricção logística e administrativa de infraestruturas públicas massivas antes de 2027.",
+      "source_urls": [
+        "https://eco.sapo.pt/2026/09/28/unicornio-portugues-sword-entra-no-sistema-de-saude-do-brasil/"
+      ],
+      "image_path": "data\\final_assets\\post_6d842f07e5142c69a6_d34b37e5_Imagem-ChatGPT-28_09_2026-20_20_11.png",
+      "image_url": "/assets/final/post_defff2e79fc69c7fb1_site_1600x900.jpg",
+      "published_at": "2026-09-29T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/sword-assina-acordo-para-desenhar-ia-no-sistema-publico-de-saude-do-brasil-a50782a8bb75c18669"
+    },
     {
       "id": "post_73df6497bd2bb3fdbe",
       "title": "AgData junta 18 entidades nacionais antes dos primeiros projetos europeus em 2027",
