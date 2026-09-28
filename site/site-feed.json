@@ -1,7 +1,24 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-28T20:48:34+00:00",
+  "updated_at": "2026-09-28T20:53:09+00:00",
   "posts": [
+    {
+      "id": "post_1b3e39930d42348453",
+      "title": "NVIDIA quer definir a camada de contenção para agentes de IA",
+      "body": "A NVIDIA apresentou a Open Agent Safety Platform, uma arquitetura concebida para definir perímetros de segurança e monitorizar o comportamento de agentes autónomos. O sistema assenta em duas componentes: o OpenShell, software que estabelece limites estritos à execução de tarefas, e o Sentry, um desenho de referência que supervisiona a atividade em tempo real e isola instâncias que violem as regras operacionais. A tecnológica assegura que o enquadramento funciona com plataformas externas e adianta que mais de 100 organizações já utilizam estas ferramentas.\n\nO movimento sinaliza uma viragem técnica evidente: o obstáculo crítico na implementação de agentes em contexto corporativo deixou de ser o raciocínio dos modelos e passou a ser o raio de destruição potencial das suas ações. Ao propor mecanismos de quarentena e controlo de acessos, a NVIDIA tenta antecipar a infraestrutura de governação antes que falhas operacionais graves travem a integração destes sistemas em sistemas críticos.\n\nContudo, os números de adoção e a eficácia prática das ferramentas partem exclusivamente da comunicação da empresa, sem validação independente ou auditorias públicas que comprovem a robustez do Sentry sob pressão adversária.\n\nA disputa que se desenha não é sobre que agentes têm mais iniciativa, mas sobre quem controla as barreiras de contenção. Se este padrão aberto ganhar tração nas equipas de segurança corporativa, a NVIDIA fixa-se não apenas no fornecimento de capacidade computacional, mas na camada obrigatória de conformidade técnica que autoriza os agentes a operar.",
+      "source_urls": [
+        "https://nvidianews.nvidia.com/news/open-agent-safety-platform"
+      ],
+      "image_path": "data\\final_assets\\post_6698847d3be23d5499_76e3581c_Imagem-ChatGPT-28_09_2026-20_22_00.png",
+      "image_url": "/assets/final/post_79597adf16b2f5a91c_site_1600x900.jpg",
+      "published_at": "2026-09-29T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/nvidia-quer-definir-a-camada-de-contencao-para-agentes-de-ia-1b3e39930d42348453"
+    },
     {
       "id": "post_2f5daeed09c09d671b",
       "title": "Meta cria divisão empresarial de IA e contrata antigo CEO da MongoDB para liderar a oferta",
