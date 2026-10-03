@@ -1,7 +1,267 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-09-28T20:53:09+00:00",
+  "updated_at": "2026-10-03T21:35:20+00:00",
   "posts": [
+    {
+      "id": "post_e9aad154829f182823",
+      "title": "Draiven vence prémio global da WITSA com foco na governação de dados para IA",
+      "body": "A Draiven, startup sediada e incubada na Unicorn Factory Lisboa, venceu o prémio mundial 'AI for Data' atribuído pela World Innovation, Technology and Services Alliance (WITSA) em Taiwan. A tecnológica conta já com mais de 50 clientes na sua plataforma de integração e governação de dados empresariais destinados a sistemas de inteligência artificial.\n\nA distinção foca um problema prático da computação corporativa: antes de escolher ou afinar modelos, qualquer grande organização precisa de garantir que os dados internos que alimentam essas ferramentas estão limpos, mapeados e em conformidade regulamentar. O mercado corporativo começa a premiar menos os anúncios de capacidades genéricas e mais as ferramentas de infraestrutura que resolvem o risco legal e operacional de ligar bases de dados a agentes de IA.\n\nPara o ecossistema de Lisboa, o caso ilustra uma via de escala pragmática. Atrair e fixar empresas que vendem diretamente a conformidade e a segurança do pipeline de dados permite construir tração internacional longe da disputa de capital intensivo dos modelos de fundação.\n\nFonte oficial WITSA: https://www.witsa.org/event/winners-of-the-witsa-global-ai-awards-2026-celebrated-in-taipei",
+      "source_urls": [
+        "https://cnnportugal.iol.pt/startup/draiven/startup-brasileira-com-operacoes-em-lisboa-vence-premio-mundial-de-ia/20261002/66fd58ffd34e94b829035251"
+      ],
+      "image_path": "data\\final_assets\\post_b42a95ed7d65992a94_a351671f_Gemini_Generated_Image_bbq1f9bbq1f9bbq1.jpg",
+      "image_url": "/assets/final/post_8c037d21c3f2ba4bde_site_1600x900.jpg",
+      "published_at": "2026-10-04T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/draiven-vence-premio-global-da-witsa-com-foco-na-governacao-de-dados-para-ia-e9aad154829f182823"
+    },
+    {
+      "id": "post_1126e20e765a2b7e2f",
+      "title": "Apenas 22% das seguradoras conseguem levar IA dos pilotos para produção",
+      "body": "Dois terços dos profissionais do setor segurador já utilizam ferramentas de inteligência artificial no trabalho diário, mas apenas 22% das seguradoras dispõem de capacidade técnica e estrutural para colocar essas soluções em produção. Os dados constam do relatório NTT DATA Insurtech Global Outlook 2026, divulgado pelo Jornal Económico, que aponta a prevenção de sinistros e a avaliação automática de risco como os eixos centrais da transformação em curso, combinando sistemas autónomos com equipas especializadas.\n\nA assimetria entre a adesão individual e a maturidade dos sistemas revela que a barreira no setor não está no interesse dos trabalhadores, mas na infraestrutura que suporta o negócio. Usar modelos generativos em tarefas isoladas é acessível a qualquer equipa; integrar agentes de IA na subscrição de apólices, na liquidação de sinistros e nos sistemas centrais de risco exige qualidade de dados, governação estrita e conformidade regulatória contínua.\n\nA transição do modelo reativo de indemnização para uma abordagem preditiva e preventiva altera o próprio equilíbrio económico das seguradoras. As instituições que se limitam a autorizar o uso avulso de ferramentas criam redundâncias e riscos operacionais sem ganhos de eficiência mensuráveis, enquanto as operações que reorganizam fluxos de trabalho e dados para suportar sistemas em produção redefinem a sua capacidade de tarifação e retenção.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/prevencao-ecossistemas-vao-transformar-o-sector-segurador/"
+      ],
+      "image_path": "data\\final_assets\\post_28703ff29c8b77d14e_e4e4661a_Gemini_Generated_Image_efpsdrefpsdrefps.jpg",
+      "image_url": "/assets/final/post_9bd790debd8c6d68d9_site_1600x900.jpg",
+      "published_at": "2026-10-04T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/apenas-22-das-seguradoras-conseguem-levar-ia-dos-pilotos-para-producao-1126e20e765a2b7e2f"
+    },
+    {
+      "id": "post_c770b0b927c7c1a6ba",
+      "title": "A geografia dos cabos submarinos e a corrida europeia aos dados de IA",
+      "body": "O operador de pontos de troca de tráfego DE-CIX organizou o Atlantic Convergence em Lisboa, entre 29 de setembro e 1 de outubro, reunindo mais de 700 responsáveis de tecnologia e infraestrutura digital de mais de 50 países. O encontro juntou operadores de cabos submarinos, data centers, fornecedores de cloud, interligação e cibersegurança em torno das exigências físicas da próxima fase da inteligência artificial.\n\nA discussão sobre inteligência artificial tende a fixar-se em modelos e interfaces, mas a escala dos sistemas depende de nós de amarração de cabos de alta capacidade e latências controladas entre continentes. Sem essa malha física, a soberania digital e o processamento de grandes volumes de dados não saem do papel regulatório.\n\nPara o ecossistema europeu, a fixação destes fluxos no Atlântico desloca o centro de gravidade da conectividade para fora dos eixos tradicionais do norte da Europa. A proximidade aos pontos de entrada de tráfego intercontinental dita quais as regiões capazes de atrair capacidade de computação intensiva antes que as rotas fiquem fechadas.",
+      "source_urls": [
+        "https://www.de-cix.net/en/about-de-cix/media/press-releases/atlantic-convergence-explore-the-infrastructure"
+      ],
+      "image_path": "data\\final_assets\\post_5746e3808cac8008f5_620c92cb_Lisboa-Digital-ao-P-r-do-Sol.png",
+      "image_url": "/assets/final/post_84038eee8e464945c8_site_1600x900.jpg",
+      "published_at": "2026-10-04T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-geografia-dos-cabos-submarinos-e-a-corrida-europeia-aos-dados-de-ia-c770b0b927c7c1a6ba"
+    },
+    {
+      "id": "post_a5dc4f9abfa94d5d07",
+      "title": "AICEP leva inteligência artificial à prospeção e distribuição internacional",
+      "body": "A AICEP tem em curso, entre 22 de setembro e 9 de outubro, o programa Exportar com Inteligência Artificial. A formação decorre online, soma 18 horas divididas por seis módulos e dedica uma das sessões de trabalho à captação de clientes e à distribuição internacional suportadas por ferramentas de IA.\n\nA integração de módulos comerciais e de distribuição afasta a formação do plano dos conceitos teóricos. Em mercados externos, a capacidade de mapear procura, analisar concorrentes locais e adaptar mensagens a cada geografia costuma exigir equipas dedicadas ou intermediários locais, um custo que condiciona as empresas de menor dimensão.\n\nAo colocar o foco na prospeção e nos canais de venda, a agência pública orienta a tecnologia para a redução do ciclo comercial de quem vende fora de Portugal. A eficácia desta aposta mede-se pela rapidez com que as equipas comerciais conseguem converter estes módulos em testes de prospeção direta no terreno.",
+      "source_urls": [
+        "https://portugalglobal.pt/agenda/programa-exportar-com-inteligencia-artificial/"
+      ],
+      "image_path": "data\\final_assets\\post_fbc3cb2929b656ca1d_02c05bc4_Conex-es-Globais_-Portugal-e-IA-na-Log-stica.png",
+      "image_url": "/assets/final/post_c05bce3384b4e4e8e1_site_1600x900.jpg",
+      "published_at": "2026-10-03T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/aicep-leva-inteligencia-artificial-a-prospecao-e-distribuicao-internacional-a5dc4f9abfa94d5d07"
+    },
+    {
+      "id": "post_08a15d2f480a368bd4",
+      "title": "Google restringe Gemini 4 Argon a ciberdefensores antes de abertura gradual",
+      "body": "A Google revelou o Gemini 4 Argon, concebido para tarefas prolongadas de programação, análise de conhecimento e cibersegurança. Numa primeira fase, o acesso decorre através do programa Fairwind e fica reservado a ciberdefensores selecionados, integrando salvaguardas desenhadas para travar pedidos associados a ataques informáticos ou a riscos biológicos, químicos, radiológicos e nucleares (CBRN).\n\nA decisão de entregar primeiro a ferramenta a equipas de defesa aponta para uma dinâmica inevitável na fronteira dos modelos autónomos: capacidades avançadas de análise e código são, por definição, de dupla utilização. Ao selecionar quem opera o sistema numa fase inicial, a Google assume que mitigar o risco técnico já não depende apenas de filtros de texto, mas de quem tem a permissão de o usar em ambiente controlado.\n\nPara as organizações que gerem infraestrutura crítica, a prioridade imediata passa por auditar processos e reforçar capacidades defensivas com este tipo de inteligência antes que modelos equivalentes, sem salvaguardas semelhantes, cheguem a outros atores no mercado aberto.",
+      "source_urls": [
+        "https://blog.google/intl/en-mena/company-news/technology/gemini-4-argon-our-next-era-of-frontier-intelligence/"
+      ],
+      "image_path": "data\\final_assets\\post_a63956f822f6d15af7_40fd93f7_Centro-de-Opera-es-Cibern-ticas-com-Gemini.png",
+      "image_url": "/assets/final/post_a8a8d1a21d2c7af4b2_site_1600x900.jpg",
+      "published_at": "2026-10-03T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/google-restringe-gemini-4-argon-a-ciberdefensores-antes-de-abertura-gradual-08a15d2f480a368bd4"
+    },
+    {
+      "id": "post_9e66329e8d22076600",
+      "title": "Transição para a IA exige resposta coordenada entre regulação e mercado de trabalho",
+      "body": "No debate «IA na Indústria; A transformação nas Empresas», a ministra do Trabalho, Maria do Rosário Palma Ramalho, defendeu a urgência de preparar tanto a administração pública como o mercado laboral para os impactos económicos e produtivos da inteligência artificial.\n\nO alerta coloca o foco onde a discussão institucional costuma atrasar-se: a velocidade de adoção tecnológica nas empresas depende diretamente da clareza das regras e da capacidade de adaptação dos trabalhadores. Quando o enquadramento regulatório ou a requalificação não acompanham o ritmo de implementação técnica, o resultado não é a proteção do emprego, mas a incerteza jurídica e o travão ao investimento.\n\nPara as organizações que integram processos automatizados, a antecipação deste enquadramento define a fronteira entre ganhos reais de eficiência e atritos laborais prolongados.",
+      "source_urls": [
+        "https://www.jornaldenegocios.pt/inteligencia-artificial"
+      ],
+      "image_path": "data\\final_assets\\post_8a6351bb18bdadb579_84c7bde1_Confer-ncia-sobre-IA-e-Trabalho-em-Portugal.png",
+      "image_url": "/assets/final/post_38ccdee61b8ff5405a_site_1600x900.jpg",
+      "published_at": "2026-10-03T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/transicao-para-a-ia-exige-resposta-coordenada-entre-regulacao-e-mercado-de-trabalho-9e66329e8d22076600"
+    },
+    {
+      "id": "post_31ab5c64e86173527a",
+      "title": "Quase um quarto das competências em Portugal arrisca desatualização iminente",
+      "body": "Cerca de 23% das competências profissionais atuais em Portugal enfrentam risco iminente de obsolescência devido ao avanço da inteligência artificial, colocando pressão direta sobre os trabalhadores e as estruturas corporativas de formação.\n\nO número expõe um desfasamento operacional: o ciclo tradicional de formação anual deixou de coincidir com a velocidade de depreciação do trabalho técnico e administrativo. Quando quase um quarto das capacidades de uma equipa perde validade no curto prazo, a formação interna deixa de ser um benefício acessório e passa a critério direto de solvência operacional.\n\nPara as lideranças e departamentos de recursos humanos, a resposta não passa por sessões teóricas alargadas. A perda de valor destas competências exige desenhar percursos curtos de reconversão aplicados aos processos diários das empresas, sob pena de reter talento tecnicamente estagnado perante concorrentes que integram novas ferramentas com maior velocidade.",
+      "source_urls": [
+        "https://jornaleconomico.sapo.pt/noticias/trabalhadores-portugueses-acreditam-na-importancia-de-desenvolver-competencias-face-a-ia/"
+      ],
+      "image_path": "data\\final_assets\\post_d618e6a162f3722f93_6eb9db48_Aprendizagem-colaborativa-com-intelig-ncia-artific.png",
+      "image_url": "/assets/final/post_f3eb091f71860a88ac_site_1600x900.jpg",
+      "published_at": "2026-10-02T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/quase-um-quarto-das-competencias-em-portugal-arrisca-desatualizacao-iminente-31ab5c64e86173527a"
+    },
+    {
+      "id": "post_64168dba2ee4186574",
+      "title": "Centros de dados podem render até 26,2 mil milhões de euros ao PIB até 2030",
+      "body": "Um estudo da consultora Copenhagen Economics estima que o setor dos centros de dados em Portugal possa gerar um contributo acumulado entre 6,1 e 26,2 mil milhões de euros para o PIB nacional entre 2025 e 2030. No mesmo intervalo, a atividade poderá sustentar entre 13 400 e 48 400 postos de trabalho diretos e indiretos por ano.\n\nA amplitude das estimativas reflete a distância habitual entre projeções macroeconómicas e a realidade no terreno. Estes valores assumem um alinhamento favorável de licenciamento, reforço de redes elétricas e conectividade internacional, enquadrados no Plano Nacional de Centros de Dados delineado pelo Governo.\n\nA oportunidade técnica existe, sobretudo pelo papel de Portugal nas amarrações de cabos submarinos e pela disponibilidade de energia renovável. Contudo, a capacidade instalada de computação só se traduz no teto superior das projeções se o país for capaz de fixar valor acima da camada básica de betão e servidores. A atração de capital de hiperescala exige estabilidade regulatória e celeridade nos pontos de injeção e consumo energético, áreas onde a resposta administrativa tem sido historicamente lenta.\n\nConstruir infraestrutura física é apenas o pré-requisito técnico. Sem agilidade administrativa no licenciamento e garantias firmes de capacidade na rede de transporte de energia, a projeção fica retida no limiar mais baixo do modelo económico.",
+      "source_urls": [
+        "https://copenhageneconomics.com/publication/socio-economic-benefits-data-centre-sector-portugal"
+      ],
+      "image_path": "data\\final_assets\\post_0597d62bfa06b90f18_4ae93353_Centro-de-Dados-com-Mapa-Digital-de-Portugal.png",
+      "image_url": "/assets/final/post_7d9efdb36d773972bd_site_1600x900.jpg",
+      "published_at": "2026-10-02T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/centros-de-dados-podem-render-ate-26-2-mil-milhoes-de-euros-ao-pib-ate-2030-64168dba2ee4186574"
+    },
+    {
+      "id": "post_d7cb1e9de22f3502b1",
+      "title": "Governo aprova segunda fase do AMALIA até 2026 para levar modelo público aos serviços do Estado",
+      "body": "A Resolução do Conselho de Ministros n.º 178/2026 aprovou o avanço da segunda fase do projeto AMALIA até ao final de 2026. Financiada pelo PRR, a nova etapa mantém o foco no treino do modelo em português europeu e acrescenta o desenvolvimento de ferramentas de agentificação, além de casos de uso práticos de voz e imagem orientados à administração pública.\n\nA transição formaliza a passagem de uma experiência de investigação para uma infraestrutura de suporte ao Estado. Ao associar a soberania linguística e a salvaguarda de património a requisitos estritos de segurança, o diploma fixa o modelo como peça operacional do setor público em vez de mero demonstrador académico.\n\nO teste desta segunda fase reside no salto da geração de texto para a agentificação em processos administrativos. Integrar modelos em fluxos que despacham, validam ou interagem com cidadãos exige níveis de fiabilidade muito superiores aos de um assistente de conversação comum.\n\nSe o projeto conseguir provar eficácia nestes serviços até 2026, estabelece uma base técnica auditável dentro da administração pública, reduzindo a dependência externa na modernização dos serviços essenciais sem comprometer os dados sob tutela pública.",
+      "source_urls": [
+        "https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/178-2026-1171008705"
+      ],
+      "image_path": "data\\final_assets\\post_cf1053451fd8110794_6e885615_Mulher-Portuguesa-e-Futuro-Digital.png",
+      "image_url": "/assets/final/post_f85e0fbfde6e87fdca_site_1600x900.jpg",
+      "published_at": "2026-10-02T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/governo-aprova-segunda-fase-do-amalia-ate-2026-para-levar-modelo-publico-aos-servicos-do-estado-d7cb1e9de22f3502b1"
+    },
+    {
+      "id": "post_7b433e37c80debf007",
+      "title": "A autorregulação da IA regressa à Casa Branca",
+      "body": "Donald Trump e os líderes das principais empresas de inteligência artificial fecharam na Casa Branca um compromisso voluntário focado na segurança dos sistemas de fronteira. O texto prevê revisões internas e externas aos modelos antes e depois do lançamento comercial.\n\nAo trocar imposições vinculativas por garantias subscritas pelas próprias tecnológicas, Washington volta a colocar a fasquia do escrutínio nas mãos de quem desenvolve a tecnologia. O modelo apoia-se na agilidade técnica destas organizações para auditar código e identificar vulnerabilidades críticas, mas transfere para o domínio privado a definição dos limiares de risco aceitável.\n\nPara as empresas que lideram a corrida, o formato afasta barreiras burocráticas imediatas e dá previsibilidade operacional. Em contrapartida, deixa em aberto a força das auditorias externas: sem métricas públicas obrigatórias ou consequências legais pré-definidas para falhas graves, a eficácia do pacto dependerá da transparência que cada laboratório decidir partilhar.\n\nNum mercado global onde a Europa aposta na fiscalização por via regulamentar, a Casa Branca opta por manter o ritmo de desenvolvimento desimpedido. Resta saber se revisões sem força de lei chegam para sustentar a confiança institucional quando surgirem os primeiros incidentes em modelos de larga escala.",
+      "source_urls": [
+        "https://apnews.com/article/595796511f110fc006cca0d01329733e"
+      ],
+      "image_path": "data\\final_assets\\post_14a4b4547770e1cd1e_57e418a2_Imagem-ChatGPT-30_09_2026-20_13_20.png",
+      "image_url": "/assets/final/post_798b4a8556f61e5710_site_1600x900.jpg",
+      "published_at": "2026-10-01T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/a-autorregulacao-da-ia-regressa-a-casa-branca-7b433e37c80debf007"
+    },
+    {
+      "id": "post_418a25aa7382508112",
+      "title": "CSM prioriza formação em IA e prova digital para juízes",
+      "body": "O Conselho Superior da Magistratura aprovou uma estrutura de capacitação técnica destinada aos magistrados judiciais. O plano define como áreas prioritárias a inteligência artificial, a prova digital, a cibersegurança, a proteção de dados e a literacia tecnológica.\n\nA decisão desloca a literacia digital de uma escolha de autoformação para uma responsabilidade institucional. Nos tribunais, a solidez de uma sentença depende cada vez mais de saber escrutinar a custódia de ficheiros extraídos, contestar relatórios periciais automatizados ou identificar enviesamentos em sistemas algorítmicos.\n\nMais do que preparar a magistratura para adotar ferramentas internas, a prioridade reside no julgamento: sem competência técnica instalada, a avaliação da prova tecnológica arrisca ficar inteiramente delegada nos peritos apresentados pelas partes.",
+      "source_urls": [
+        "https://www.theportugalnews.com/news/2026-09-30/portuguese-judges-receive-priority-training-in-artificial-intelligence-and-cybersecurity/1093978"
+      ],
+      "image_path": "data\\final_assets\\post_2aa9414e00d097ea31_08a5bbfb_Imagem-ChatGPT-30_09_2026-20_08_04.png",
+      "image_url": "/assets/final/post_46c44ded05078ee926_site_1600x900.jpg",
+      "published_at": "2026-10-01T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/csm-prioriza-formacao-em-ia-e-prova-digital-para-juizes-418a25aa7382508112"
+    },
+    {
+      "id": "post_49fa6df87f0ca66882",
+      "title": "OpenAI lança agentes autónomos dots para execução contínua em empresas",
+      "body": "A OpenAI apresentou no DevDay 2026 os dots, agentes de inteligência artificial desenhados para operar de forma contínua em máquinas virtuais dedicadas na nuvem. A nova camada de software funciona 24 horas por dia, integra-se de raiz com Slack, Teams e ChatGPT, e conecta-se a mais de quatro mil aplicações externas através de plugins.\n\nA mudança técnica central está na substituição do ciclo tradicional de pergunta e resposta por um ambiente persistente de execução. Ao atribuir computação própria e acesso a ferramentas a cada agente, a OpenAI procura transformar o modelo de linguagem num operador funcional de sistemas corporativos, disputando diretamente o espaço de trabalho digital com a Meta e a Anthropic.\n\nPara as organizações, a relevância do anúncio reside menos na autonomia declarada e mais na arquitetura de permissões que ela exige. Um agente com sessão contínua numa máquina virtual e ligação direta a canais internos passa a ter os mesmos privilégios operacionais de um colaborador humano, o que desloca o esforço de engenharia da criação de prompts para a auditoria de acessos e a monitorização de tarefas não supervisionadas.\n\nA validação desta abordagem dependerá agora do controlo de erros em processos com múltiplas etapas consecutivas, onde falhas em cascata no software corporativo acarretam custos imediatos.",
+      "source_urls": [
+        "https://openai.com/index/introducing-dots"
+      ],
+      "image_path": "data\\final_assets\\post_4ba62572585040c1d5_519b714a_Imagem-ChatGPT-30_09_2026-20_10_51.png",
+      "image_url": "/assets/final/post_47a9557ef31cecb30e_site_1600x900.jpg",
+      "published_at": "2026-10-01T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-lanca-agentes-autonomos-dots-para-execucao-continua-em-empresas-49fa6df87f0ca66882"
+    },
+    {
+      "id": "post_cf4428ebb0355b0a83",
+      "title": "Humanos capta 3,2 milhões de dólares para criar camada de risco e supervisão de agentes",
+      "body": "A startup portuguesa Humanos fechou uma ronda seed de 3,2 milhões de dólares, cerca de 2,8 milhões de euros, para desenvolver uma infraestrutura de autorização, controlo de risco e supervisão de agentes de inteligência artificial. O investimento foi anunciado pela Critical Ventures, que descreve a solução como um control plane desenhado para integrar checkpoints human-in-the-loop e trilhos de auditoria, permitindo gerar perfis contínuos de risco sobre as ações de cada agente.\n\nO movimento aponta para uma mudança prática no mercado: a autonomia dos agentes deixou de ser apenas um desafio de capacidades do modelo para se tornar um problema de governança operacional. Enquanto a execução técnica avança depressa, a barreira à entrada nas empresas continua a ser a ausência de garantias verificáveis sobre o que um sistema pode ou não desencadear em ambiente de produção.\n\nConstruir um registo auditável e pontos de validação humana não reduz a ambição da automação. Pelo contrário, define as condições técnicas para que os agentes possam interagir com sistemas críticos sem exigir supervisão manual constante a cada passo.\n\nPara as organizações que pretendem delegar tarefas a agentes, o foco operacional transfere-se da demonstração de capacidades para a rastreabilidade: qualquer implementação que não consiga provar limites claros de risco e registo de decisões terá dificuldade em sair dos testes internos.",
+      "source_urls": [
+        "https://critical-ventures.com/news/why-we-invested-humanos"
+      ],
+      "image_path": "data\\final_assets\\post_99e9c5c4130077f9ae_699d66bf_Imagem-ChatGPT-29_09_2026-23_31_58.png",
+      "image_url": "/assets/final/post_0142dda238ea044c8b_site_1600x900.jpg",
+      "published_at": "2026-09-30T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/humanos-capta-3-2-milhoes-de-dolares-para-criar-camada-de-risco-e-supervisao-de-agentes-cf4428ebb0355b0a83"
+    },
+    {
+      "id": "post_023889baec61627b33",
+      "title": "Contratação pública passa a exigir inteligência artificial a partir de outubro",
+      "body": "O Decreto-Lei n.º 177/2026 altera o Código dos Contratos Públicos e determina que as entidades adjudicantes passem a utilizar sistemas digitais, incluindo inteligência artificial, no planeamento, preparação, condução e execução dos contratos do Estado. O diploma fixa requisitos explícitos de transparência, explicabilidade, segurança, proteção de dados e interoperabilidade, entrando em vigor a 1 de outubro de 2026.\n\nA transição deixa de ser um projeto-piloto voluntário e converte-se numa obrigação legal de processo. Ao amarrar a utilização de IA a critérios estritos de explicabilidade e interoperabilidade, a lei transfere a pressão técnica diretamente para os cadernos de encargos: qualquer solução algorítmica adotada terá de ser auditável por quem compra, por quem concorre e por quem fiscaliza.\n\nPara o mercado fornecedor e para a administração pública, isto altera a barreira de entrada dos concursos. O foco deixa de estar na promessa de automação genérica e passa para a capacidade de justificar decisões administrativas suportadas por modelos de dados abertos e verificáveis.",
+      "source_urls": [
+        "https://diariodarepublica.pt/dr/detalhe/decreto-lei/177-2026-1166969779"
+      ],
+      "image_path": "data\\final_assets\\post_399b0a5ab0b09c3b70_1e69d97d_Imagem-ChatGPT-29_09_2026-23_28_24.png",
+      "image_url": "/assets/final/post_15926e65378224a039_site_1600x900.jpg",
+      "published_at": "2026-09-30T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação"
+      ],
+      "article_url": "artigos/contratacao-publica-passa-a-exigir-inteligencia-artificial-a-partir-de-outubro-023889baec61627b33"
+    },
+    {
+      "id": "post_7989b66ebf3bf4655d",
+      "title": "Operadores preveem 4,2 mil milhões em conectividade enquanto indústria aeroespacial ancora software crítico em Coimbra",
+      "body": "Os operadores de telecomunicações em Portugal deverão investir 4,2 mil milhões de euros em redes 5G e comunicações por satélite nos próximos cinco anos, segundo dados avançados pelo Governo. A verba junta-se à expansão de fibra ótica, cabos submarinos e centros de dados, desenhados para sustentar projetos de inteligência artificial no país. Em paralelo, a Airbus e a Critical Software avançaram com a Critical FlyTech, uma joint venture sediada em Coimbra focada no desenvolvimento de software de missão para o setor aeroespacial.\n\nA coincidência entre a aposta em telecomunicações e a instalação de uma estrutura industrial de software ilustra uma mudança nas exigências da computação avançada. Ter centros de dados e largura de banda é a base física, mas essa capacidade só ganha tração económica quando alimenta sistemas de alta tolerância a falhas, como a aviónica e a gestão de tráfego aéreo.\n\nPara o ecossistema tecnológico nacional, a criação da Critical FlyTech valida que o valor gerado não se limita ao consumo de serviços digitais externos. Ao ligar a infraestrutura de dados diretamente à engenharia com certificação rigorosa, o país tenta fixar projetos onde o software não é um acessório de produtividade, mas o próprio componente crítico da operação.",
+      "source_urls": [
+        "https://portugal.gov.pt/gc25/comunicacao/noticias/aposta-nas-autoestradas-digitais-atrai-grandes-projetos-de-ia-para-portugal"
+      ],
+      "image_path": "data\\final_assets\\post_c6e2176fa1ad824545_6c4c6fae_Imagem-ChatGPT-29_09_2026-23_28_11.png",
+      "image_url": "/assets/final/post_271b2fcca13597999d_site_1600x900.jpg",
+      "published_at": "2026-09-30T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/operadores-preveem-4-2-mil-milhoes-em-conectividade-enquanto-industria-aeroespacial-ancora-software-critico-em-coimbra-7989b66ebf3bf4655d"
+    },
     {
       "id": "post_1b3e39930d42348453",
       "title": "NVIDIA quer definir a camada de contenção para agentes de IA",
