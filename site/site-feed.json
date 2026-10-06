@@ -1,7 +1,76 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-10-03T21:35:20+00:00",
+  "updated_at": "2026-10-06T21:39:35+00:00",
   "posts": [
+    {
+      "id": "post_84372669ea02278138",
+      "title": "A europeia Mistral lança Large 4 em antevisão com pesos abertos e multimodalidade",
+      "body": "A francesa Mistral disponibilizou a pré-visualização pública do Mistral Large 4, um modelo multimodal distribuído sob uma abordagem de pesos abertos e orientado para implementações empresariais.\n\nO lançamento posiciona a tecnológica europeia num confronto direto com os laboratórios norte-americanos e chineses, mas através de uma estratégia distinta de soberania técnica. Ao disponibilizar os pesos de uma arquitetura multimodal desta dimensão, a empresa transfere o controlo da infraestrutura para as organizações que procuram operar modelos avançados em servidores locais ou dedicados, sob jurisdição europeia e sem intermediação opaca de APIs de terceiros.\n\nPara decisores e equipas de engenharia, a existência de uma alternativa comunitária e aberta altera a gestão de risco. A possibilidade de auditar parâmetros e internalizar o processamento viabiliza o tratamento de dados confidenciais sem sujeição a alterações unilaterais de preços, termos de serviço ou políticas de retenção comuns nos fornecedores externos de computação em nuvem.\n\nA contrapartida imediata desta autonomia recai sobre a infraestrutura de quem consome. Operar o Large 4 internamente exige computação dedicada e capacidade técnica para afinar a arquitetura com dados proprietários. Quem não dispuser dessa capacidade continuará dependente de plataformas geridas, mas passa a ter, pela primeira vez à escala europeia, a garantia de que o modelo pode ser retirado da nuvem de terceiros a qualquer momento.",
+      "source_urls": [
+        "https://mistral.ai/news/mistral-large-4/"
+      ],
+      "image_path": "data\\final_assets\\post_fd8de02d6b7a225b59_dff22093_Visualiza-o-Multimodal-de-IA-ao-Entardecer.png",
+      "image_url": "/assets/final/post_13d4cc9b7a988ca537_site_1600x900.jpg",
+      "published_at": "2026-10-07T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/a-europeia-mistral-lanca-large-4-em-antevisao-com-pesos-abertos-e-multimodalidade-84372669ea02278138"
+    },
+    {
+      "id": "post_d4c6e8202e08c8a76a",
+      "title": "SPRIND e NADI abrem fundo de €40 milhões para chips de IA com acesso para empresas portuguesas",
+      "body": "A agência alemã de inovação disruptiva SPRIND e a neerlandesa NADI abriram um programa conjunto de 40 milhões de euros para apoiar o desenvolvimento de semicondutores de IA com elevado desempenho e eficiência energética. O concurso admite candidaturas de empresas, startups e consórcios portugueses até 30 de novembro de 2026, com uma dotação faseada que vai até 2,6 milhões de euros na fase inicial e pode atingir 7 milhões de euros na segunda etapa.\n\nO desenho deste financiamento expõe a mudança de prioridade da indústria europeia: o foco deslocou-se do software de modelos para a camada física de processamento e consumo energético, onde a autonomia industrial é hoje mais frágil. Ao estruturar os apoios em duas fases com valores substanciais, o programa não financia exploração académica isolada, mas sim protótipos que consigam provar viabilidade técnica antes de receberem capital de escala.\n\nPara o ecossistema nacional, o acesso direto a fundos bilaterais da Alemanha e Países Baixos permite ultrapassar a dependência habitual dos grandes programas-quadro comunitários. A candidatura de equipas portuguesas mede a capacidade real de converter investigação em microeletrónica em propriedade intelectual comercializável e contratos de integração com consórcios do centro da Europa.",
+      "source_urls": [
+        "https://www.portugalglobal.pt/noticias/2026/outubro/40-milh%C3%B5es-abrem-oportunidade-para-empresas-portuguesas/"
+      ],
+      "image_path": "data\\final_assets\\post_a3b5e2ea9938bbe88d_20e9b2a2_Inova-o-em-Sil-cio-ao-P-r-do-Sol.png",
+      "image_url": "/assets/final/post_cfe701e33e0a214cbb_site_1600x900.jpg",
+      "published_at": "2026-10-06T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/sprind-e-nadi-abrem-fundo-de-40-milhoes-para-chips-de-ia-com-acesso-para-empresas-portuguesas-d4c6e8202e08c8a76a"
+    },
+    {
+      "id": "post_0f009b95370fc136e0",
+      "title": "Mação testa inteligência artificial para cruzar memória histórica e ordenamento do território",
+      "body": "O Instituto Terra e Memória e o Instituto Politécnico de Tomar estão a coordenar o projeto AGORA (Cultural Landscape Community AI Hub), centrado em Mação. A iniciativa combina modelos de inteligência artificial com arquivos históricos, fotografias, tradições orais e registos comunitários, com o objetivo de apoiar decisões de planeamento em territórios vulneráveis. O modelo conta já com projetos-piloto em Portugal e no Brasil.\n\nO desenho de políticas públicas para o interior do país assenta habitualmente em dados estatísticos demográficos ou métricas económicas recentes. Ao estruturar registos históricos de ocupação do solo, práticas agrícolas tradicionais e memória comunitária como dados de treino e consulta, o projeto cria uma base técnica diferente para antecipar riscos de incêndio, abandono territorial e envelhecimento populacional.\n\nA utilidade prática desta abordagem depende agora da capacidade de transformar património imaterial e documentação dispersa em modelos analíticos que autarquias e agentes locais consigam operar no dia a dia, fora do ambiente experimental académico.",
+      "source_urls": [
+        "https://omirante.pt/sociedade/2026-10-04-macao-no-centro-de-projecto-internacional-que-junta-inteligencia-artificial-e-memoria-das-comunidades-b411b3b1"
+      ],
+      "image_path": "data\\final_assets\\post_edc00f661b12000817_2f485409_Mem-ria-Digital-sobre-a-Vila-Hist-rica.png",
+      "image_url": "/assets/final/post_74039a7f8af74e7f5b_site_1600x900.jpg",
+      "published_at": "2026-10-06T12:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders"
+      ],
+      "article_url": "artigos/macao-testa-inteligencia-artificial-para-cruzar-memoria-historica-e-ordenamento-do-territorio-0f009b95370fc136e0"
+    },
+    {
+      "id": "post_b433bc6dc0be23f4c7",
+      "title": "FDUL debate a inteligência artificial entre as salas de aula e os tribunais",
+      "body": "A Faculdade de Direito da Universidade de Lisboa organiza um ciclo de debate interdisciplinar dedicado ao papel e aos limites éticos da inteligência artificial no ensino superior e no exercício da advocacia.\n\nA discussão jurídica em torno destes modelos costuma concentrar-se na regulação futura, mas a pressão imediata acontece na formação de base. Quando faculdades e profissões reguladas começam a rever métodos de avaliação e produção documental, a questão deixa de ser se os estudantes usam ferramentas generativas: passa a ser a definição de quais competências técnicas mantêm valor autónomo quando a pesquisa jurisprudencial e a primeira versão de uma peça processual ficam automatizadas.\n\nO debate ganha peso num momento em que outras entidades públicas testam soluções operacionais semelhantes, como a GNR na atividade policial em Gaia. Em setores onde o rigor probatório e a fundamentação são vinculativos, a validação humana das respostas algorítmicas torna-se o verdadeiro filtro de responsabilidade civil e disciplinar.",
+      "source_urls": [
+        "https://www.ulisboa.pt/evento/jornadas-inteligencia-artificial-na-universidade"
+      ],
+      "image_path": "data\\final_assets\\post_1c29692508395670e9_9267478c_Encontro-entre-academia-e-intelig-ncia-artificial.png",
+      "image_url": "/assets/final/post_aa8fea68a2c722ff1c_site_1600x900.jpg",
+      "published_at": "2026-10-06T09:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/fdul-debate-a-inteligencia-artificial-entre-as-salas-de-aula-e-os-tribunais-b433bc6dc0be23f4c7"
+    },
     {
       "id": "post_e9aad154829f182823",
       "title": "Draiven vence prémio global da WITSA com foco na governação de dados para IA",
