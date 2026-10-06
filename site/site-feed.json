@@ -1,7 +1,40 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-10-06T21:39:35+00:00",
+  "updated_at": "2026-10-06T21:43:24+00:00",
   "posts": [
+    {
+      "id": "post_7c2e82093bd9c2563a",
+      "title": "AICEP mapeia ecossistema de startups com inteligência artificial no centro do crescimento",
+      "body": "A AICEP compilou um novo retrato institucional do ecossistema português de startups, destacando Lisboa, Porto e Braga como os principais eixos tecnológicos e apontando a inteligência artificial como um dos setores com maior dinâmica de crescimento no país.\n\nO mapeamento cruza dados públicos com diretórios de mercado, incluindo plataformas como o Seedtable e a IA Hoje, com o objetivo de catalogar empresas em atividade. No entanto, o próprio levantamento evidencia uma limitação prática deste tipo de agregadores: para determinar com precisão a sede operacional, o volume real de financiamento e o estado efetivo de cada operação, continua a ser necessária uma validação caso a caso.\n\nPara quem investe, recruta ou constrói produto, a distinção entre diretórios comerciais e tração comprovada é determinante. A existência de listas extensas documenta o apetite de criação de empresas e a captação de talento no eixo Lisboa-Porto-Braga, mas a maturidade de um ecossistema mede-se pela densidade de capital alocado e por métricas auditáveis de faturação, e não apenas pelo número bruto de registos catalogados.\n\nA consolidação deste levantamento institucional pela AICEP oferece uma base útil de partida. O passo seguinte para validar a competitividade nacional depende de transformar estes catálogos em dados sistematicamente auditados, permitindo aos decisores distinguir projetos em fase de escala daqueles que ainda não saíram da fase de anúncio.",
+      "source_urls": [
+        "https://portugalglobal.pt/en/trade/startup-ecosystem/"
+      ],
+      "image_path": "data\\final_assets\\post_5e98975dffaa6accdb_1a49dab2_Ecossistema-tecnol-gico-de-Portugal-conectado.png",
+      "image_url": "/assets/final/post_6c4d2ddf0d3e53ed96_site_1600x900.jpg",
+      "published_at": "2026-10-07T16:00:00+00:00",
+      "section": [
+        "Portugal",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/aicep-mapeia-ecossistema-de-startups-com-inteligencia-artificial-no-centro-do-crescimento-7c2e82093bd9c2563a"
+    },
+    {
+      "id": "post_3b4473daa87ff3ed84",
+      "title": "OpenAI testa anúncios visuais no ChatGPT",
+      "body": "A OpenAI começou a testar um novo formato de publicidade visual no ChatGPT durante este mês, inicialmente nos Estados Unidos. A empresa afirma que os anúncios surgem separados das respostas geradas pelo assistente e claramente identificados como publicidade, acompanhados por novas ferramentas de medição, parcerias de atribuição e controlos de adequação de marca para anunciantes.\n\nA transição de uma interface conversacional pura para um modelo suportado por publicidade mexe no ativo mais sensível destes produtos: a perceção de neutralidade. Quando um utilizador faz uma pergunta a um motor de busca clássico, já aprendeu a filtrar resultados patrocinados antes do conteúdo orgânico. No diálogo com um assistente, essa fronteira é ténue por definição. Ao optar por separar visualmente os anúncios em vez de os embutir no texto gerado, a OpenAI tenta rentabilizar a escala sem contaminar a resposta direta.\n\nA eficácia deste equilíbrio depende da disciplina técnica do produto. O valor comercial de um assistente está na confiança que o utilizador deposita na síntese que recebe. Se a presença de marcas criar a menor suspeita de que a resposta foi calibrada para favorecer um patrocinador, o custo de retenção sobe de imediato.\n\nPara quem desenha estratégias de distribuição e marketing digital, abre-se um canal que não compete apenas por palavras-chave, mas pelo contexto imediato da intenção do utilizador. Resta ver se a OpenAI consegue manter a promessa de isolar a lógica do modelo das pressões do inventário publicitário.",
+      "source_urls": [
+        "https://openai.com/index/new-chatgpt-ads-format-and-measurement/"
+      ],
+      "image_path": "data\\final_assets\\post_f5885d6bd39205928f_f0374668_IA-no-quotidiano-conectado.png",
+      "image_url": "/assets/final/post_9f1b271f41c25217cf_site_1600x900.jpg",
+      "published_at": "2026-10-07T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/openai-testa-anuncios-visuais-no-chatgpt-3b4473daa87ff3ed84"
+    },
     {
       "id": "post_84372669ea02278138",
       "title": "A europeia Mistral lança Large 4 em antevisão com pesos abertos e multimodalidade",
