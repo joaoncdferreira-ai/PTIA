@@ -842,14 +842,23 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)} · PTIA.pt</title>
   <meta name="description" content="{html.escape(description)}">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="{html.escape(canonical)}">
+  <link rel="alternate" type="application/rss+xml" title="PTIA.pt" href="https://ptia.pt/rss.xml">
   <meta property="og:title" content="{html.escape(title)} · PTIA.pt">
   <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:url" content="{html.escape(canonical)}">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PTIA.pt">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:image" content="https://ptia.pt/assets/ptia-og-1200x630.png">
+  <meta name="twitter:image" content="https://ptia.pt/assets/ptia-og-1200x630.png">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260608-ptia">
   <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=20260608-2">
   <link rel="stylesheet" href="/assets/knowledge.css?v=20260713-1">
   <link rel="stylesheet" href="/assets/resources.css?v=20260713-3">
@@ -870,7 +879,7 @@ def _page_shell(title: str, description: str, canonical: str, body: str, schema:
         <a href="/prompts/">Prompts</a>
         <a href="/glossario/">Glossário</a>
       </nav>
-      <a class="knowledge-back" href="/">Hoje</a>
+      <a class="header-cta" href="/#subscrever">Subscrever <span aria-hidden="true">-&gt;</span></a>
     </div>
   </header>
 {body}
