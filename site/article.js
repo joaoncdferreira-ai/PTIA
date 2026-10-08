@@ -66,10 +66,30 @@ function formatDate(value) {
 }
 
 function isPublishedNow(value) {
-  if (!value) return true;
+  if (!value) return false;
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return true;
+  if (Number.isNaN(date.getTime())) return false;
   return date.getTime() <= Date.now();
+}
+
+function safeHttpUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    return ["http:", "https:"].includes(url.protocol) && url.hostname && !url.username && !url.password ? url.href : "";
+  } catch (_) {
+    return "";
+  }
+}
+
+function safeArticlePath(value) {
+  const path = String(value || "").replace(/^\/+|\/+$/g, "");
+  return /^artigos\/[a-z0-9][a-z0-9-]+$/i.test(path) ? path : "";
+}
+
+function safeImageUrl(value) {
+  const text = String(value || "");
+  if (text.startsWith("/") && !text.startsWith("//")) return text;
+  return safeHttpUrl(text);
 }
 
 function sourceLabel(url) {
@@ -101,8 +121,9 @@ function absoluteUrl(pathOrUrl) {
 }
 
 function articleCanonicalUrl(post) {
-  if (post.article_url) return absoluteUrl(`/${String(post.article_url).replace(/^\/+/, "")}`);
-  return window.location.href;
+  const path = safeArticlePath(post.article_url);
+  if (path) return absoluteUrl(`/${path}`);
+  return window.location.origin + window.location.pathname;
 }
 
 function articleExcerpt(body, max = 165) {
@@ -126,7 +147,8 @@ function updateArticleMeta(post, section, sourceUrls) {
   const title = `${post.title || "PTIA"} - PTIA.pt`;
   const description = articleExcerpt(post.body);
   const canonical = articleCanonicalUrl(post);
-  const image = post.image_url ? absoluteUrl(post.image_url) : "";
+  const safeImage = safeImageUrl(post.image_url);
+  const image = safeImage ? absoluteUrl(safeImage) : "";
   document.title = title;
   upsertMeta("meta[name='description']", { name: "description", content: description });
   upsertMeta("link[rel='canonical']", { tag: "link", rel: "canonical", href: canonical });
@@ -177,8 +199,9 @@ function cleanedParagraphs(body) {
 }
 
 function articleVisual(post) {
-  if (post.image_url) {
-    return `<figure class="article-hero-image"><img src="${escapeHtml(post.image_url)}" alt="" loading="eager"></figure>`;
+  const image = safeImageUrl(post.image_url);
+  if (image) {
+    return `<figure class="article-hero-image"><img src="${escapeHtml(image)}" alt="" loading="eager"></figure>`;
   }
   const rings = Array.from({ length: 22 }, (_, index) => {
     const r = 18 + index * 18;
@@ -190,20 +213,24 @@ function articleVisual(post) {
 
 async function loadFeed() {
   for (const url of ["/site-feed.json", "/api/site-feed"]) {
-    const response = await fetch(url, { cache: "no-store" });
-    if (response.ok) return response.json();
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (response.ok) return response.json();
+    } catch (_) {
+      // The second feed endpoint may still be available.
+    }
   }
   throw new Error("feed indisponivel");
 }
 
-function renderNotFound() {
+function renderNotFound(message = "Esta entrada já não está no feed público ou o link está incompleto.") {
   const loading = document.getElementById("article-loading");
   if (!loading) return;
   loading.innerHTML = `
     <p class="eyebrow">PTIA</p>
-    <h1>Noticia nao encontrada.</h1>
-    <p class="article-error">Esta entrada ja nao esta no feed publico ou o link esta incompleto.</p>
-    <a class="article-back" href="./">Voltar ao site</a>
+    <h1>Não foi possível abrir esta leitura.</h1>
+    <p class="article-error">${escapeHtml(message)}</p>
+    <a class="article-back" href="/">Voltar à página inicial</a>
   `;
 }
 
@@ -250,12 +277,35 @@ function linkDirectoryEntities(text, qeqData) {
   return html;
 }
 
-function renderArticle(post, qeqData) {
+function relatedArticles(post, posts) {
+  const sections = new Set(sectionLabels(post.section).map((item) => item.toLowerCase()));
+  const seen = new Set([safeArticlePath(post.article_url)]);
+  return posts.filter((candidate) => {
+    const path = safeArticlePath(candidate.article_url);
+    if (!path || seen.has(path) || !isPublishedNow(candidate.published_at) || !candidate.title) return false;
+    seen.add(path);
+    return true;
+  }).sort((a, b) => {
+    const overlap = (item) => sectionLabels(item.section).some((section) => sections.has(section.toLowerCase())) ? 1 : 0;
+    return overlap(b) - overlap(a) || new Date(b.published_at) - new Date(a.published_at);
+  }).slice(0, 3);
+}
+
+function relatedMarkup(post, posts) {
+  const related = relatedArticles(post, posts);
+  if (!related.length) return "";
+  return `<section class="article-related article-source-block" aria-labelledby="related-title">
+    <h2 id="related-title">Continuar a ler</h2>
+    ${related.map((item) => `<a href="/${escapeHtml(safeArticlePath(item.article_url))}">${escapeHtml(item.title)}<span>Leitura PTIA</span></a>`).join("")}
+  </section>`;
+}
+
+function renderArticle(post, qeqData, posts) {
   const detail = document.getElementById("article-detail");
   const loading = document.getElementById("article-loading");
   if (!detail) return;
 
-  const sourceUrls = Array.isArray(post.source_urls) ? post.source_urls.filter(Boolean) : [];
+  const sourceUrls = Array.isArray(post.source_urls) ? post.source_urls.map(safeHttpUrl).filter(Boolean) : [];
   const paragraphs = cleanedParagraphs(post.body);
   const firstSource = sourceUrls[0] || "";
   const sections = sectionLabels(post.section);
@@ -270,7 +320,7 @@ function renderArticle(post, qeqData) {
     <div class="wrap article-shell article-shell--news">
       <div class="article-story">
         <header class="article-hero">
-          <p class="article-kicker">${escapeHtml(section)} · Angulo PTIA</p>
+          <p class="article-kicker">${escapeHtml(section)} · Ângulo PTIA</p>
           <h1>${escapeHtml(post.title || "Entrada PTIA")}</h1>
           <dl class="article-facts" aria-label="Detalhes da publica&#231;&#227;o">
             <div><dt>Leitura</dt><dd>${escapeHtml(readingMinutes(post.body))}</dd></div>
@@ -282,17 +332,20 @@ function renderArticle(post, qeqData) {
         <section class="article-body">
           ${paragraphs.map((paragraph) => `<p>${linkDirectoryEntities(paragraph, qeqData)}</p>`).join("")}
         </section>
+        <div class="article-actions"><button type="button" data-copy-article-link hidden>Copiar ligação do artigo</button><span data-copy-status role="status" aria-live="polite"></span></div>
         <footer class="article-source-block">
           <p>Fonte original</p>
           ${sourceUrls.length ? sourceUrls.map((url) => `
             <a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(sourceLabel(url))}<span>${escapeHtml(url)}</span></a>
           `).join("") : "<span>Sem link publico associado.</span>"}
         </footer>
+        ${relatedMarkup(post, posts)}
       </div>
     </div>
   `;
   loading?.classList.add("hidden");
   detail.classList.remove("hidden");
+  window.PTIAEngagement?.setupShare(detail);
 }
 
 async function initArticle() {
@@ -320,27 +373,10 @@ async function initArticle() {
       renderNotFound();
       return;
     }
-    renderArticle(post, qeqData);
+    renderArticle(post, qeqData, feed.posts || []);
   } catch (_) {
-    renderNotFound();
+    renderNotFound("O feed não respondeu. Tenta novamente dentro de alguns instantes.");
   }
 }
 
-function setupNewsletterForm() {
-  const form = document.getElementById("ptia-newsletter-form");
-  const status = document.getElementById("newsletter-status");
-  if (!form || !status) return;
-  form.addEventListener("submit", () => {
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-    status.textContent = "A enviar. Se o email for válido, vais receber a confirmação de subscrição.";
-    window.setTimeout(() => {
-      status.textContent = "Quase lá: confirma o email para receberes a PTIA Weekly.";
-      form.reset();
-      button.disabled = false;
-    }, 1800);
-  });
-}
-
 initArticle();
-setupNewsletterForm();

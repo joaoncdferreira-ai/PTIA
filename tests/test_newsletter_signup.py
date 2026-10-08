@@ -18,11 +18,15 @@ class NewsletterSignupTests(unittest.TestCase):
         self.assertIn('name="FIRSTNAME"', html)
         self.assertIn('name="email_address_check"', html)
         self.assertIn('name="locale" value="pt"', html)
-        self.assertIn('target="ptia-newsletter-frame"', html)
+        self.assertIn('method="post"', html)
+        self.assertNotIn('target="ptia-newsletter-frame"', html)
+        self.assertNotIn('<iframe class="newsletter-frame"', html)
+        self.assertNotIn("form.reset()", script)
+        self.assertIn("a página da Brevo mostra o resultado do pedido", html)
         self.assertNotIn('"/api/newsletter-subscribe"', script)
         self.assertNotIn("newsletter_subscribe", script)
         self.assertNotIn("BREVO_API_KEY", html + script)
-        self.assertIn("Sexta-feira, 9h00", html)
+        self.assertIn("À sexta-feira, uma seleção", html)
 
 
 if __name__ == "__main__":

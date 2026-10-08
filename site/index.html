@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt" data-theme="light">
+<html lang="pt-PT" data-theme="light">
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260608-ptia">
   <link rel="icon" type="image/png" href="/favicon.png?v=20260608-ptia">
@@ -7,15 +7,25 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20260608-ptia">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PTIA.pt - Inteligência Artificial, lida em Portugal</title>
-  <meta name="description" content="Curadoria portuguesa de Inteligência Artificial. Lemos o ruído para entregar poucos sinais com fonte, contexto e leitura editorial.">
+  <title>PTIA · Notícias de Inteligência Artificial em Portugal</title>
+  <meta name="description" content="Notícias de Inteligência Artificial com leitura portuguesa: o que aconteceu, quem é afetado e o que vale acompanhar, sempre com a fonte original.">
   <meta name="google-site-verification" content="TRXGCxYNwSeupDspOX5MTL8jrQHSs4FCydaDccDKCsg" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://ptia.pt/">
-  <meta property="og:title" content="PTIA.pt - IA com leitura portuguesa">
-  <meta property="og:description" content="Front-page diária de Inteligência Artificial para Portugal. Sem hype, sempre com fonte original.">
+  <link rel="alternate" type="application/rss+xml" title="PTIA.pt" href="https://ptia.pt/rss.xml">
+  <meta property="og:title" content="PTIA · Notícias de Inteligência Artificial em Portugal">
+  <meta property="og:description" content="O que aconteceu na IA, quem é afetado em Portugal e o que vale acompanhar. Sem hype, sempre com a fonte original.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ptia.pt/">
+  <meta property="og:site_name" content="PTIA.pt">
+  <meta property="og:locale" content="pt_PT">
+  <meta property="og:image" content="https://ptia.pt/assets/ptia-og-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PTIA: Inteligência Artificial, lida a partir de Portugal.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@PTIAPTPT">
+  <meta name="twitter:image" content="https://ptia.pt/assets/ptia-og-1200x630.png">
   <meta name="theme-color" content="#F3EEE2">
   <script>
     (function () {
@@ -27,22 +37,43 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260608-4">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261006-2">
+  <link rel="stylesheet" href="landing.css?v=20261006-1">
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsMediaOrganization",
-      "name": "PTIA.pt",
-      "url": "https://ptia.pt/",
-      "logo": "https://ptia.pt/assets/ptia-wordmark-navy-transparent.png",
-      "email": "info@ptia.pt",
-      "description": "Publicação portuguesa independente de curadoria e análise editorial sobre Inteligência Artificial.",
-      "sameAs": [
-        "https://www.instagram.com/ptia.pt/",
-        "https://www.linkedin.com/company/116070074"
-      ]
-    }
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "@id": "https://ptia.pt/#organization",
+        "name": "PTIA.pt",
+        "alternateName": "PTIA",
+        "url": "https://ptia.pt/",
+        "logo": {"@type": "ImageObject", "url": "https://ptia.pt/assets/ptia-wordmark-navy-transparent.png"},
+        "email": "info@ptia.pt",
+        "description": "Publicação portuguesa independente de curadoria e análise editorial sobre Inteligência Artificial.",
+        "publishingPrinciples": "https://ptia.pt/metodologia-editorial/",
+        "verificationFactCheckingPolicy": "https://ptia.pt/fontes-e-criterios/",
+        "areaServed": {"@type": "Country", "name": "Portugal"},
+        "knowsLanguage": "pt-PT",
+        "founder": {"@type": "Person", "name": "João Ferreira", "url": "https://ptia.pt/autor/joao-ferreira/"},
+        "sameAs": [
+          "https://www.instagram.com/ptia.pt/",
+          "https://www.linkedin.com/company/ptia-portugal/",
+          "https://x.com/PTIAPTPT"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://ptia.pt/#website",
+        "name": "PTIA.pt",
+        "alternateName": "PTIA",
+        "url": "https://ptia.pt/",
+        "inLanguage": "pt-PT",
+        "publisher": {"@id": "https://ptia.pt/#organization"}
+      }
+    ]
   </script>
 <!-- ptia-analytics -->
 <script defer data-domain="ptia.pt" src="https://plausible.io/js/script.tagged-events.js"></script>
@@ -54,8 +85,8 @@
   <div class="dateline">
     <div class="wrap">
       <div class="dateline-left">
-        <span id="date-long">segunda-feira, 18 de maio de 2026</span>
-        <span class="issue">Issue di&aacute;rio &middot; julho 2026</span>
+        <span id="date-long"><!--ptia:date-->quinta-feira, 8 de outubro de 2026<!--/ptia:date--></span>
+        <span class="issue">Curadoria independente · Lisboa</span>
       </div>
       <div class="dateline-right">
         <span class="live"><span class="live-dot"></span> Lisboa · <span id="clock">00:00</span></span>
@@ -84,7 +115,7 @@
             <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z"></path>
           </svg>
         </a>
-        <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+        <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/ptia-portugal/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-.02ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
           </svg>
@@ -94,7 +125,7 @@
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
           </svg>
         </a>
-        <a class="header-cta" href="#newsletter">Weekly <span aria-hidden="true">-></span></a>
+        <a class="header-cta" href="#subscrever">Subscrever <span aria-hidden="true">-></span></a>
         <button class="mobile-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
           <span></span><span></span><span></span>
         </button>
@@ -118,10 +149,26 @@
       </nav>
       <div class="mobile-menu-social">
         <a href="https://www.instagram.com/ptia.pt/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.linkedin.com/company/ptia-portugal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://x.com/PTIAPTPT" target="_blank" rel="noopener noreferrer">X</a>
       </div>
     </aside>
+  </div>
+
+  <div class="sticky-bar" id="sticky-bar">
+    <div class="wrap sticky-bar-inner">
+      <a class="sticky-bar-logo" href="#top" aria-label="PTIA, voltar ao início">
+        <img class="brand-logo" src="assets/ptia-wordmark-navy-transparent.png" alt="" width="76" height="22">
+      </a>
+      <nav class="sticky-bar-nav" aria-label="Secções">
+        <a href="#hoje">Hoje</a>
+        <a href="#mundo">Mundo</a>
+        <a href="#portugal">Portugal</a>
+        <a href="#builders">Builders</a>
+        <a href="#regulacao">Regulação</a>
+      </nav>
+      <a class="sticky-bar-cta" href="#subscrever">Subscrever</a>
+    </div>
   </div>
 
   <main id="top">
@@ -130,35 +177,40 @@
       <div class="breaking-track"><div id="breaking-content"></div></div>
     </section>
 
-    <section id="hoje" class="frontpage">
+    <section id="hoje" class="frontpage" aria-labelledby="front-title">
       <div class="wrap">
-        <section class="editorial-identity" aria-label="Identidade editorial PTIA">
-          <h1><span>Inteligência&nbsp;Artificial,</span> <em>lida&nbsp;a&nbsp;partir&nbsp;de&nbsp;Portugal.</em></h1>
-          <ul aria-label="Princípios editoriais">
-            <li>Curadoria editorial</li>
-            <li>Fontes primárias</li>
-            <li>Ângulo Portugal</li>
-          </ul>
-          <div class="crumbs">
-            <p><em>Hoje</em> · <span id="edition-date">edição diária</span> · última atualização <span id="last-updated">agora</span></p>
-            <strong><span id="signals-count">0</span> sinais retidos · 1.840 fontes lidas</strong>
-          </div>
-        </section>
+        <header class="front-masthead">
+          <h1 id="front-title">Inteligência Artificial, lida a partir de Portugal.</h1>
+          <p class="front-edition"><span id="edition-day">Edição diária</span><span class="front-edition-sep" aria-hidden="true">·</span><span id="last-updated">atualizada ao longo do dia</span></p>
+        </header>
         <div class="front-grid">
-          <article class="lead-card" id="lead-card"></article>
-          <aside class="front-rail" aria-label="Mais destaques">
-            <section class="live-card">
-              <div class="live-card-top"><span>Índice PTIA · 24h</span><strong><span class="live-dot"></span> ao vivo</strong></div>
-              <div class="live-readings">
-                <div><strong>1.840</strong><span>Fontes lidas</span></div>
-                <div><strong id="rail-signals">8<sup>/1840</sup></strong><span>Sinais retidos</span></div>
-              </div>
-              <svg id="signal-viz" viewBox="0 0 480 180" preserveAspectRatio="none" aria-hidden="true"></svg>
-              <footer><span>Atualizado <span id="rail-clock">agora</span></span><em>4% retido</em></footer>
-            </section>
-            <div class="rail-divider"><span>Mais destaques de hoje</span></div>
-            <div id="rail-stories"></div>
+          <article class="front-lead" id="lead-card"><!--ptia:lead--><div class="lead-copy"><p class="lead-kicker">Mundo</p><h2 class="lead-title"><a href="/artigos/governo-testa-ia-nos-licenciamentos-municipais-com-a-plataforma-licencia-d201e0fc6463e8cafb">Governo testa IA nos licenciamentos municipais com a plataforma Licencia</a></h2><p class="lead-dek">O Governo apresentou a plataforma Licencia, um projeto-piloto desenhado para integrar inteligência artificial na tramitação de licenciamentos administrativos num conjunto inicial de municípios. A ferramenta destina-se a…</p><p class="lead-byline">Por <span>João Ferreira</span> · <time datetime="2026-10-08T12:00:00+00:00">8 out 2026</time> · 2 min de leitura</p></div><a class="lead-media" href="/artigos/governo-testa-ia-nos-licenciamentos-municipais-com-a-plataforma-licencia-d201e0fc6463e8cafb" tabindex="-1" aria-hidden="true"><figure class="lead-visual"><img src="https://dmmcy0pwk6bqi.cloudfront.net/62d7a9037e977c29d872164daee9c09704685aac" alt="" loading="eager" fetchpriority="high" decoding="async"></figure></a><!--/ptia:lead--></article>
+          <aside class="front-rail" aria-labelledby="rail-title">
+            <h2 class="rail-title" id="rail-title">Mais destaques</h2>
+            <div class="rail-list" id="rail-stories"><!--ptia:rail--><a class="rail-story" href="/artigos/anthropic-testa-claude-na-identificacao-de-sistemas-enzimaticos-eaf056f19a6d65d650"><span class="rail-meta"><span>Mundo</span> <time datetime="2026-10-08T09:00:00+00:00">8 out 2026</time></span><h3>Anthropic testa Claude na identificação de sistemas enzimáticos</h3></a><a class="rail-story" href="/artigos/aicep-mapeia-ecossistema-de-startups-com-inteligencia-artificial-no-centro-do-crescimento-7c2e82093bd9c2563a"><span class="rail-meta"><span>Portugal</span> <time datetime="2026-10-07T16:00:00+00:00">7 out 2026</time></span><h3>AICEP mapeia ecossistema de startups com inteligência artificial no centro do crescimento</h3></a><a class="rail-story" href="/artigos/openai-testa-anuncios-visuais-no-chatgpt-3b4473daa87ff3ed84"><span class="rail-meta"><span>Mundo</span> <time datetime="2026-10-07T12:00:00+00:00">7 out 2026</time></span><h3>OpenAI testa anúncios visuais no ChatGPT</h3></a><!--/ptia:rail--></div>
           </aside>
+          <section class="front-signup" id="subscrever" aria-labelledby="front-signup-title">
+            <div class="front-signup-copy">
+              <p class="front-signup-label">Newsletter PTIA Weekly</p>
+              <h2 class="front-signup-title" id="front-signup-title">Os cinco sinais da semana, no teu email à sexta.</h2>
+              <p class="front-signup-note">Gratuita. Confirmas por email e cancelas em qualquer edição.</p>
+            </div>
+            <form
+              id="ptia-newsletter-front"
+              class="front-signup-form plausible-event-name=Newsletter+Signup plausible-event-position=front"
+              action="https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxoj8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
+              method="post"
+            >
+              <label class="front-signup-field">
+                <span class="sr-only">Email</span>
+                <input id="front-signup-email" type="email" name="EMAIL" placeholder="o-teu-email@exemplo.pt" autocomplete="email" required>
+              </label>
+              <input type="hidden" name="FIRSTNAME" value="">
+              <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
+              <input type="hidden" name="locale" value="pt">
+              <button type="submit">Subscrever</button>
+            </form>
+          </section>
         </div>
       </div>
     </section>
@@ -168,10 +220,10 @@
         <header class="section-head section-head-inline">
           <p class="section-index">+ Mais sinais</p>
           <h2>O resto da semana em <em>IA.</em></h2>
-          <p class="section-meta"><span id="more-count">0</span> entradas · ratio sinal/ruído 4%</p>
+          <p class="section-meta"><span id="more-count"><!--ptia:count-->10<!--/ptia:count--></span> leituras nesta seleção</p>
         </header>
         <div class="filterbar" id="filterbar" role="toolbar" aria-label="Filtrar notícias"></div>
-        <div class="article-list" id="posts"></div>
+        <div class="article-list" id="posts"><!--ptia:list--><article class="article-row lead"><div class="article-num">№05</div><div><h3 class="article-title"><a href="/artigos/a-europeia-mistral-lanca-large-4-em-antevisao-com-pesos-abertos-e-multimodalidade-84372669ea02278138">A europeia Mistral lança Large 4 em antevisão com pesos abertos e multimodalidade</a></h3><p class="pt-angle">A francesa Mistral disponibilizou a pré-visualização pública do Mistral Large 4, um modelo multimodal distribuído sob uma abordagem de pesos abertos e orientado para implementações empresariais.</p></div><figure class="lead-visual"><img src="/assets/final/post_13d4cc9b7a988ca537_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure></article><article class="article-row"><div class="article-num">№06</div><div><h3 class="article-title"><a href="/artigos/sprind-e-nadi-abrem-fundo-de-40-milhoes-para-chips-de-ia-com-acesso-para-empresas-portuguesas-d4c6e8202e08c8a76a">SPRIND e NADI abrem fundo de €40 milhões para chips de IA com acesso para empresas portuguesas</a></h3><p class="pt-angle">A agência alemã de inovação disruptiva SPRIND e a neerlandesa NADI abriram um programa conjunto de 40 milhões de euros para apoiar o desenvolvimento de semicondutores de IA com elevado desempenho e eficiência…</p></div><figure class="article-thumb"><img src="/assets/final/post_cfe701e33e0a214cbb_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders, Regulação, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-06T16:00:00+00:00">6 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№07</div><div><h3 class="article-title"><a href="/artigos/macao-testa-inteligencia-artificial-para-cruzar-memoria-historica-e-ordenamento-do-territorio-0f009b95370fc136e0">Mação testa inteligência artificial para cruzar memória histórica e ordenamento do território</a></h3><p class="pt-angle">O Instituto Terra e Memória e o Instituto Politécnico de Tomar estão a coordenar o projeto AGORA (Cultural Landscape Community AI Hub), centrado em Mação. A iniciativa combina modelos de inteligência artificial com…</p></div><figure class="article-thumb"><img src="/assets/final/post_74039a7f8af74e7f5b_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders</span><strong>Fonte original</strong><span><time datetime="2026-10-06T12:00:00+00:00">6 out 2026</time> · 2 min</span></div></article><aside class="pullquote"><div class="qmark">“</div><blockquote><p>Se uma notícia não muda uma decisão, uma prioridade ou uma conversa, fica fora do radar PTIA.</p><cite>Editor — leitura da semana</cite></blockquote></aside><article class="article-row"><div class="article-num">№08</div><div><h3 class="article-title"><a href="/artigos/fdul-debate-a-inteligencia-artificial-entre-as-salas-de-aula-e-os-tribunais-b433bc6dc0be23f4c7">FDUL debate a inteligência artificial entre as salas de aula e os tribunais</a></h3><p class="pt-angle">A Faculdade de Direito da Universidade de Lisboa organiza um ciclo de debate interdisciplinar dedicado ao papel e aos limites éticos da inteligência artificial no ensino superior e no exercício da advocacia.</p></div><figure class="article-thumb"><img src="/assets/final/post_aa8fea68a2c722ff1c_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders, Regulação, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-06T09:00:00+00:00">6 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№09</div><div><h3 class="article-title"><a href="/artigos/draiven-vence-premio-global-da-witsa-com-foco-na-governacao-de-dados-para-ia-e9aad154829f182823">Draiven vence prémio global da WITSA com foco na governação de dados para IA</a></h3><p class="pt-angle">A Draiven, startup sediada e incubada na Unicorn Factory Lisboa, venceu o prémio mundial &#x27;AI for Data&#x27; atribuído pela World Innovation, Technology and Services Alliance (WITSA) em Taiwan. A tecnológica conta já com mais…</p></div><figure class="article-thumb"><img src="/assets/final/post_8c037d21c3f2ba4bde_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders, Regulação, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-04T16:00:00+00:00">4 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№10</div><div><h3 class="article-title"><a href="/artigos/apenas-22-das-seguradoras-conseguem-levar-ia-dos-pilotos-para-producao-1126e20e765a2b7e2f">Apenas 22% das seguradoras conseguem levar IA dos pilotos para produção</a></h3><p class="pt-angle">Dois terços dos profissionais do setor segurador já utilizam ferramentas de inteligência artificial no trabalho diário, mas apenas 22% das seguradoras dispõem de capacidade técnica e estrutural para colocar essas…</p></div><figure class="article-thumb"><img src="/assets/final/post_9bd790debd8c6d68d9_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders, Regulação, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-04T12:00:00+00:00">4 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№11</div><div><h3 class="article-title"><a href="/artigos/a-geografia-dos-cabos-submarinos-e-a-corrida-europeia-aos-dados-de-ia-c770b0b927c7c1a6ba">A geografia dos cabos submarinos e a corrida europeia aos dados de IA</a></h3><p class="pt-angle">O operador de pontos de troca de tráfego DE-CIX organizou o Atlantic Convergence em Lisboa, entre 29 de setembro e 1 de outubro, reunindo mais de 700 responsáveis de tecnologia e infraestrutura digital de mais de 50…</p></div><figure class="article-thumb"><img src="/assets/final/post_84038eee8e464945c8_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Mundo, Builders, Regulação, Previsões Futuras</span><strong>Fonte original</strong><span><time datetime="2026-10-04T09:00:00+00:00">4 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№12</div><div><h3 class="article-title"><a href="/artigos/aicep-leva-inteligencia-artificial-a-prospecao-e-distribuicao-internacional-a5dc4f9abfa94d5d07">AICEP leva inteligência artificial à prospeção e distribuição internacional</a></h3><p class="pt-angle">A AICEP tem em curso, entre 22 de setembro e 9 de outubro, o programa Exportar com Inteligência Artificial. A formação decorre online, soma 18 horas divididas por seis módulos e dedica uma das sessões de trabalho à…</p></div><figure class="article-thumb"><img src="/assets/final/post_c05bce3384b4e4e8e1_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Builders, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-03T16:00:00+00:00">3 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№13</div><div><h3 class="article-title"><a href="/artigos/google-restringe-gemini-4-argon-a-ciberdefensores-antes-de-abertura-gradual-08a15d2f480a368bd4">Google restringe Gemini 4 Argon a ciberdefensores antes de abertura gradual</a></h3><p class="pt-angle">A Google revelou o Gemini 4 Argon, concebido para tarefas prolongadas de programação, análise de conhecimento e cibersegurança. Numa primeira fase, o acesso decorre através do programa Fairwind e fica reservado a…</p></div><figure class="article-thumb"><img src="/assets/final/post_a8a8d1a21d2c7af4b2_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Mundo, Builders, Regulação</span><strong>Fonte original</strong><span><time datetime="2026-10-03T12:00:00+00:00">3 out 2026</time> · 2 min</span></div></article><article class="article-row"><div class="article-num">№14</div><div><h3 class="article-title"><a href="/artigos/transicao-para-a-ia-exige-resposta-coordenada-entre-regulacao-e-mercado-de-trabalho-9e66329e8d22076600">Transição para a IA exige resposta coordenada entre regulação e mercado de trabalho</a></h3><p class="pt-angle">No debate «IA na Indústria; A transformação nas Empresas», a ministra do Trabalho, Maria do Rosário Palma Ramalho, defendeu a urgência de preparar tanto a administração pública como o mercado laboral para os impactos…</p></div><figure class="article-thumb"><img src="/assets/final/post_38ccdee61b8ff5405a_site_1600x900.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async"></figure><div class="article-meta"><span class="tag">Portugal, Regulação, Histórias reais</span><strong>Fonte original</strong><span><time datetime="2026-10-03T09:00:00+00:00">3 out 2026</time> · 2 min</span></div></article><!--/ptia:list--></div>
       </div>
     </section>
 
@@ -192,7 +244,7 @@
         <header class="section-head">
           <p class="section-index">Guias evergreen</p>
           <h2>Conteúdo que continua a trabalhar depois do post.</h2>
-          <p class="section-meta">SEO · partilha · newsletter</p>
+          <p class="section-meta">Explicações para consultar quando precisares</p>
         </header>
         <div id="guides-grid" class="guides-grid"></div>
       </div>
@@ -209,10 +261,9 @@
         </div>
         <div class="qeq-intro-visual">
           <div class="qeq-preview-cards">
-            <!-- Simulated miniature cards for premium visual effect -->
             <div class="qeq-mini-card">
               <span class="mini-cat">Índice Portugal</span>
-              <h3>Top 10</h3>
+              <h3>Pessoas e empresas</h3>
               <p>Pessoas e empresas com impacto público.</p>
             </div>
             <div class="qeq-mini-card">
@@ -223,7 +274,7 @@
             <div class="qeq-mini-card">
               <span class="mini-cat">Literacia</span>
               <h3>Glossário</h3>
-              <p>45 conceitos explicados sem nevoeiro.</p>
+              <p>Conceitos explicados sem nevoeiro.</p>
             </div>
           </div>
         </div>
@@ -235,12 +286,8 @@
         <div class="newsletter-copy reveal">
           <p class="eyebrow">PTIA Weekly</p>
           <h2>Os cinco sinais que merecem ficar.</h2>
-          <p>Sexta-feira, 9h00. Os posts PTIA com melhor resposta da semana, contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
-          <dl class="weekly-stats">
-            <div><dt data-count="4218">0</dt><dd>Subscritores alvo</dd></div>
-            <div><dt data-count="27">0</dt><dd>Edições planeadas</dd></div>
-            <div><dt data-count="62" data-suffix="%">0</dt><dd>Meta abertura</dd></div>
-          </dl>
+          <p>À sexta-feira, uma seleção das histórias mais úteis da semana: o que aconteceu, por que importa para Portugal e o que vale acompanhar a seguir.</p>
+          <p class="newsletter-example"><strong>Exemplo de leitura:</strong> uma empresa portuguesa aplica IA num serviço real; mostramos o resultado reportado, a fonte e o que ainda precisa de ser demonstrado.</p>
         </div>
         <div class="signup-card reveal delay-1">
           <div class="signup-top">
@@ -250,10 +297,9 @@
           <p class="preview-quote">"O que funcionou, o que importa e o que vale acompanhar."</p>
           <form
             id="ptia-newsletter-form"
-            class="newsletter-form"
+            class="newsletter-form plausible-event-name=Newsletter+Signup plausible-event-position=section"
             action="https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxoj8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
             method="post"
-            target="ptia-newsletter-frame"
           >
             <label>
               <span>Email</span>
@@ -266,10 +312,9 @@
             <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
             <input type="hidden" name="locale" value="pt">
             <button type="submit">Subscrever</button>
-            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+            <p class="newsletter-status">Ao subscreveres, a página da Brevo mostra o resultado do pedido. Confirma depois a mensagem que receberes por email.</p>
           </form>
-          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
-          <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
+          <p class="fineprint">Confirmação por email · Cancelamento em cada edição</p>
         </div>
       </div>
     </section>
@@ -305,7 +350,7 @@
                 <path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7.25A4.75 4.75 0 1 1 12 16.75 4.75 4.75 0 0 1 12 7.25Zm0 2A2.75 2.75 0 1 0 12 14.75 2.75 2.75 0 0 0 12 9.25Z"></path>
               </svg>
             </a>
-            <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/116070074" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
+            <a class="social-icon social-icon-linkedin" href="https://www.linkedin.com/company/ptia-portugal/" target="_blank" rel="noopener noreferrer" aria-label="PTIA no LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28h-.02ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"></path>
               </svg>
@@ -318,9 +363,9 @@
           </div>
           <p class="editor-line">Editor <em>João Ferreira</em></p>
         </div>
-        <nav aria-label="Edição"><h3>Edição</h3><a href="#hoje">Hoje em IA</a><a href="#arquivo">Arquivo</a><a href="#newsletter">Weekly</a><a href="#metodo">Método</a></nav>
+        <nav aria-label="Edição"><h3>Edição</h3><a href="#hoje">Hoje em IA</a><a href="/arquivo/">Arquivo</a><a href="#newsletter">Weekly</a><a href="#metodo">Método</a></nav>
         <nav aria-label="Secções"><h3>Secções</h3><a href="#mundo">Mundo</a><a href="#portugal">Portugal</a><a href="#builders">Builders</a><a href="#regulacao">Regulação</a><a href="#historias-reais">Histórias reais</a><a href="#previsoes-futuras">Previsões futuras</a></nav>
-        <nav aria-label="Casa"><h3>Casa</h3><a href="#metodo">Método editorial</a><a href="mailto:info@ptia.pt">Contactos e informações</a><a href="/recursos/">Recursos</a><a href="/quem-e-quem">Diretório completo</a><a href="https://www.linkedin.com/company/116070074" rel="noopener">LinkedIn</a><a href="#newsletter">Newsletter</a></nav>
+        <nav aria-label="Casa"><h3>Casa</h3><a href="#metodo">Método editorial</a><a href="mailto:info@ptia.pt">Contactos e informações</a><a href="/recursos/">Recursos</a><a href="/quem-e-quem">Diretório completo</a><a href="https://www.linkedin.com/company/ptia-portugal/" rel="noopener">LinkedIn</a><a href="#newsletter">Newsletter</a></nav>
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> PTIA · Curadoria independente · Lisboa</span>
@@ -329,7 +374,7 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20260608-0009"></script>
-  <script src="/analytics.js?v=20260606-1"></script>
+  <script src="app.js?v=20261006-3"></script>
+  <script src="/analytics.js?v=20260925-1"></script>
 </body>
 </html>

@@ -1,0 +1,420 @@
+# PTIA.pt: artigos recentes em texto integral
+
+> Publicação portuguesa independente sobre Inteligência Artificial. Cada artigo indica a fonte original; cite o URL canónico da PTIA.pt.
+
+## AICEP mapeia ecossistema de startups com inteligência artificial no centro do crescimento
+
+URL: https://ptia.pt/artigos/aicep-mapeia-ecossistema-de-startups-com-inteligencia-artificial-no-centro-do-crescimento-7c2e82093bd9c2563a
+Publicado: 2026-10-07T16:00:00+00:00
+Secções: Portugal, Builders, Histórias reais
+Fonte original: https://portugalglobal.pt/en/trade/startup-ecosystem/
+
+A AICEP compilou um novo retrato institucional do ecossistema português de startups, destacando Lisboa, Porto e Braga como os principais eixos tecnológicos e apontando a inteligência artificial como um dos setores com maior dinâmica de crescimento no país.
+
+O mapeamento cruza dados públicos com diretórios de mercado, incluindo plataformas como o Seedtable e a IA Hoje, com o objetivo de catalogar empresas em atividade. No entanto, o próprio levantamento evidencia uma limitação prática deste tipo de agregadores: para determinar com precisão a sede operacional, o volume real de financiamento e o estado efetivo de cada operação, continua a ser necessária uma validação caso a caso.
+
+Para quem investe, recruta ou constrói produto, a distinção entre diretórios comerciais e tração comprovada é determinante. A existência de listas extensas documenta o apetite de criação de empresas e a captação de talento no eixo Lisboa-Porto-Braga, mas a maturidade de um ecossistema mede-se pela densidade de capital alocado e por métricas auditáveis de faturação, e não apenas pelo número bruto de registos catalogados.
+
+A consolidação deste levantamento institucional pela AICEP oferece uma base útil de partida. O passo seguinte para validar a competitividade nacional depende de transformar estes catálogos em dados sistematicamente auditados, permitindo aos decisores distinguir projetos em fase de escala daqueles que ainda não saíram da fase de anúncio.
+
+## OpenAI testa anúncios visuais no ChatGPT
+
+URL: https://ptia.pt/artigos/openai-testa-anuncios-visuais-no-chatgpt-3b4473daa87ff3ed84
+Publicado: 2026-10-07T12:00:00+00:00
+Secções: Mundo, Histórias reais
+Fonte original: https://openai.com/index/new-chatgpt-ads-format-and-measurement/
+
+A OpenAI começou a testar um novo formato de publicidade visual no ChatGPT durante este mês, inicialmente nos Estados Unidos. A empresa afirma que os anúncios surgem separados das respostas geradas pelo assistente e claramente identificados como publicidade, acompanhados por novas ferramentas de medição, parcerias de atribuição e controlos de adequação de marca para anunciantes.
+
+A transição de uma interface conversacional pura para um modelo suportado por publicidade mexe no ativo mais sensível destes produtos: a perceção de neutralidade. Quando um utilizador faz uma pergunta a um motor de busca clássico, já aprendeu a filtrar resultados patrocinados antes do conteúdo orgânico. No diálogo com um assistente, essa fronteira é ténue por definição. Ao optar por separar visualmente os anúncios em vez de os embutir no texto gerado, a OpenAI tenta rentabilizar a escala sem contaminar a resposta direta.
+
+A eficácia deste equilíbrio depende da disciplina técnica do produto. O valor comercial de um assistente está na confiança que o utilizador deposita na síntese que recebe. Se a presença de marcas criar a menor suspeita de que a resposta foi calibrada para favorecer um patrocinador, o custo de retenção sobe de imediato.
+
+Para quem desenha estratégias de distribuição e marketing digital, abre-se um canal que não compete apenas por palavras-chave, mas pelo contexto imediato da intenção do utilizador. Resta ver se a OpenAI consegue manter a promessa de isolar a lógica do modelo das pressões do inventário publicitário.
+
+## A europeia Mistral lança Large 4 em antevisão com pesos abertos e multimodalidade
+
+URL: https://ptia.pt/artigos/a-europeia-mistral-lanca-large-4-em-antevisao-com-pesos-abertos-e-multimodalidade-84372669ea02278138
+Publicado: 2026-10-07T09:00:00+00:00
+Secções: Mundo, Builders, Histórias reais
+Fonte original: https://mistral.ai/news/mistral-large-4/
+
+A francesa Mistral disponibilizou a pré-visualização pública do Mistral Large 4, um modelo multimodal distribuído sob uma abordagem de pesos abertos e orientado para implementações empresariais.
+
+O lançamento posiciona a tecnológica europeia num confronto direto com os laboratórios norte-americanos e chineses, mas através de uma estratégia distinta de soberania técnica. Ao disponibilizar os pesos de uma arquitetura multimodal desta dimensão, a empresa transfere o controlo da infraestrutura para as organizações que procuram operar modelos avançados em servidores locais ou dedicados, sob jurisdição europeia e sem intermediação opaca de APIs de terceiros.
+
+Para decisores e equipas de engenharia, a existência de uma alternativa comunitária e aberta altera a gestão de risco. A possibilidade de auditar parâmetros e internalizar o processamento viabiliza o tratamento de dados confidenciais sem sujeição a alterações unilaterais de preços, termos de serviço ou políticas de retenção comuns nos fornecedores externos de computação em nuvem.
+
+A contrapartida imediata desta autonomia recai sobre a infraestrutura de quem consome. Operar o Large 4 internamente exige computação dedicada e capacidade técnica para afinar a arquitetura com dados proprietários. Quem não dispuser dessa capacidade continuará dependente de plataformas geridas, mas passa a ter, pela primeira vez à escala europeia, a garantia de que o modelo pode ser retirado da nuvem de terceiros a qualquer momento.
+
+## SPRIND e NADI abrem fundo de €40 milhões para chips de IA com acesso para empresas portuguesas
+
+URL: https://ptia.pt/artigos/sprind-e-nadi-abrem-fundo-de-40-milhoes-para-chips-de-ia-com-acesso-para-empresas-portuguesas-d4c6e8202e08c8a76a
+Publicado: 2026-10-06T16:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://www.portugalglobal.pt/noticias/2026/outubro/40-milh%C3%B5es-abrem-oportunidade-para-empresas-portuguesas/
+
+A agência alemã de inovação disruptiva SPRIND e a neerlandesa NADI abriram um programa conjunto de 40 milhões de euros para apoiar o desenvolvimento de semicondutores de IA com elevado desempenho e eficiência energética. O concurso admite candidaturas de empresas, startups e consórcios portugueses até 30 de novembro de 2026, com uma dotação faseada que vai até 2,6 milhões de euros na fase inicial e pode atingir 7 milhões de euros na segunda etapa.
+
+O desenho deste financiamento expõe a mudança de prioridade da indústria europeia: o foco deslocou-se do software de modelos para a camada física de processamento e consumo energético, onde a autonomia industrial é hoje mais frágil. Ao estruturar os apoios em duas fases com valores substanciais, o programa não financia exploração académica isolada, mas sim protótipos que consigam provar viabilidade técnica antes de receberem capital de escala.
+
+Para o ecossistema nacional, o acesso direto a fundos bilaterais da Alemanha e Países Baixos permite ultrapassar a dependência habitual dos grandes programas-quadro comunitários. A candidatura de equipas portuguesas mede a capacidade real de converter investigação em microeletrónica em propriedade intelectual comercializável e contratos de integração com consórcios do centro da Europa.
+
+## Mação testa inteligência artificial para cruzar memória histórica e ordenamento do território
+
+URL: https://ptia.pt/artigos/macao-testa-inteligencia-artificial-para-cruzar-memoria-historica-e-ordenamento-do-territorio-0f009b95370fc136e0
+Publicado: 2026-10-06T12:00:00+00:00
+Secções: Portugal, Builders
+Fonte original: https://omirante.pt/sociedade/2026-10-04-macao-no-centro-de-projecto-internacional-que-junta-inteligencia-artificial-e-memoria-das-comunidades-b411b3b1
+
+O Instituto Terra e Memória e o Instituto Politécnico de Tomar estão a coordenar o projeto AGORA (Cultural Landscape Community AI Hub), centrado em Mação. A iniciativa combina modelos de inteligência artificial com arquivos históricos, fotografias, tradições orais e registos comunitários, com o objetivo de apoiar decisões de planeamento em territórios vulneráveis. O modelo conta já com projetos-piloto em Portugal e no Brasil.
+
+O desenho de políticas públicas para o interior do país assenta habitualmente em dados estatísticos demográficos ou métricas económicas recentes. Ao estruturar registos históricos de ocupação do solo, práticas agrícolas tradicionais e memória comunitária como dados de treino e consulta, o projeto cria uma base técnica diferente para antecipar riscos de incêndio, abandono territorial e envelhecimento populacional.
+
+A utilidade prática desta abordagem depende agora da capacidade de transformar património imaterial e documentação dispersa em modelos analíticos que autarquias e agentes locais consigam operar no dia a dia, fora do ambiente experimental académico.
+
+## FDUL debate a inteligência artificial entre as salas de aula e os tribunais
+
+URL: https://ptia.pt/artigos/fdul-debate-a-inteligencia-artificial-entre-as-salas-de-aula-e-os-tribunais-b433bc6dc0be23f4c7
+Publicado: 2026-10-06T09:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://www.ulisboa.pt/evento/jornadas-inteligencia-artificial-na-universidade
+
+A Faculdade de Direito da Universidade de Lisboa organiza um ciclo de debate interdisciplinar dedicado ao papel e aos limites éticos da inteligência artificial no ensino superior e no exercício da advocacia.
+
+A discussão jurídica em torno destes modelos costuma concentrar-se na regulação futura, mas a pressão imediata acontece na formação de base. Quando faculdades e profissões reguladas começam a rever métodos de avaliação e produção documental, a questão deixa de ser se os estudantes usam ferramentas generativas: passa a ser a definição de quais competências técnicas mantêm valor autónomo quando a pesquisa jurisprudencial e a primeira versão de uma peça processual ficam automatizadas.
+
+O debate ganha peso num momento em que outras entidades públicas testam soluções operacionais semelhantes, como a GNR na atividade policial em Gaia. Em setores onde o rigor probatório e a fundamentação são vinculativos, a validação humana das respostas algorítmicas torna-se o verdadeiro filtro de responsabilidade civil e disciplinar.
+
+## Draiven vence prémio global da WITSA com foco na governação de dados para IA
+
+URL: https://ptia.pt/artigos/draiven-vence-premio-global-da-witsa-com-foco-na-governacao-de-dados-para-ia-e9aad154829f182823
+Publicado: 2026-10-04T16:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://cnnportugal.iol.pt/startup/draiven/startup-brasileira-com-operacoes-em-lisboa-vence-premio-mundial-de-ia/20261002/66fd58ffd34e94b829035251
+
+A Draiven, startup sediada e incubada na Unicorn Factory Lisboa, venceu o prémio mundial 'AI for Data' atribuído pela World Innovation, Technology and Services Alliance (WITSA) em Taiwan. A tecnológica conta já com mais de 50 clientes na sua plataforma de integração e governação de dados empresariais destinados a sistemas de inteligência artificial.
+
+A distinção foca um problema prático da computação corporativa: antes de escolher ou afinar modelos, qualquer grande organização precisa de garantir que os dados internos que alimentam essas ferramentas estão limpos, mapeados e em conformidade regulamentar. O mercado corporativo começa a premiar menos os anúncios de capacidades genéricas e mais as ferramentas de infraestrutura que resolvem o risco legal e operacional de ligar bases de dados a agentes de IA.
+
+Para o ecossistema de Lisboa, o caso ilustra uma via de escala pragmática. Atrair e fixar empresas que vendem diretamente a conformidade e a segurança do pipeline de dados permite construir tração internacional longe da disputa de capital intensivo dos modelos de fundação.
+
+Fonte oficial WITSA: https://www.witsa.org/event/winners-of-the-witsa-global-ai-awards-2026-celebrated-in-taipei
+
+## Apenas 22% das seguradoras conseguem levar IA dos pilotos para produção
+
+URL: https://ptia.pt/artigos/apenas-22-das-seguradoras-conseguem-levar-ia-dos-pilotos-para-producao-1126e20e765a2b7e2f
+Publicado: 2026-10-04T12:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://jornaleconomico.sapo.pt/noticias/prevencao-ecossistemas-vao-transformar-o-sector-segurador/
+
+Dois terços dos profissionais do setor segurador já utilizam ferramentas de inteligência artificial no trabalho diário, mas apenas 22% das seguradoras dispõem de capacidade técnica e estrutural para colocar essas soluções em produção. Os dados constam do relatório NTT DATA Insurtech Global Outlook 2026, divulgado pelo Jornal Económico, que aponta a prevenção de sinistros e a avaliação automática de risco como os eixos centrais da transformação em curso, combinando sistemas autónomos com equipas especializadas.
+
+A assimetria entre a adesão individual e a maturidade dos sistemas revela que a barreira no setor não está no interesse dos trabalhadores, mas na infraestrutura que suporta o negócio. Usar modelos generativos em tarefas isoladas é acessível a qualquer equipa; integrar agentes de IA na subscrição de apólices, na liquidação de sinistros e nos sistemas centrais de risco exige qualidade de dados, governação estrita e conformidade regulatória contínua.
+
+A transição do modelo reativo de indemnização para uma abordagem preditiva e preventiva altera o próprio equilíbrio económico das seguradoras. As instituições que se limitam a autorizar o uso avulso de ferramentas criam redundâncias e riscos operacionais sem ganhos de eficiência mensuráveis, enquanto as operações que reorganizam fluxos de trabalho e dados para suportar sistemas em produção redefinem a sua capacidade de tarifação e retenção.
+
+## A geografia dos cabos submarinos e a corrida europeia aos dados de IA
+
+URL: https://ptia.pt/artigos/a-geografia-dos-cabos-submarinos-e-a-corrida-europeia-aos-dados-de-ia-c770b0b927c7c1a6ba
+Publicado: 2026-10-04T09:00:00+00:00
+Secções: Mundo, Builders, Regulação, Previsões Futuras
+Fonte original: https://www.de-cix.net/en/about-de-cix/media/press-releases/atlantic-convergence-explore-the-infrastructure
+
+O operador de pontos de troca de tráfego DE-CIX organizou o Atlantic Convergence em Lisboa, entre 29 de setembro e 1 de outubro, reunindo mais de 700 responsáveis de tecnologia e infraestrutura digital de mais de 50 países. O encontro juntou operadores de cabos submarinos, data centers, fornecedores de cloud, interligação e cibersegurança em torno das exigências físicas da próxima fase da inteligência artificial.
+
+A discussão sobre inteligência artificial tende a fixar-se em modelos e interfaces, mas a escala dos sistemas depende de nós de amarração de cabos de alta capacidade e latências controladas entre continentes. Sem essa malha física, a soberania digital e o processamento de grandes volumes de dados não saem do papel regulatório.
+
+Para o ecossistema europeu, a fixação destes fluxos no Atlântico desloca o centro de gravidade da conectividade para fora dos eixos tradicionais do norte da Europa. A proximidade aos pontos de entrada de tráfego intercontinental dita quais as regiões capazes de atrair capacidade de computação intensiva antes que as rotas fiquem fechadas.
+
+## AICEP leva inteligência artificial à prospeção e distribuição internacional
+
+URL: https://ptia.pt/artigos/aicep-leva-inteligencia-artificial-a-prospecao-e-distribuicao-internacional-a5dc4f9abfa94d5d07
+Publicado: 2026-10-03T16:00:00+00:00
+Secções: Portugal, Builders, Histórias reais
+Fonte original: https://portugalglobal.pt/agenda/programa-exportar-com-inteligencia-artificial/
+
+A AICEP tem em curso, entre 22 de setembro e 9 de outubro, o programa Exportar com Inteligência Artificial. A formação decorre online, soma 18 horas divididas por seis módulos e dedica uma das sessões de trabalho à captação de clientes e à distribuição internacional suportadas por ferramentas de IA.
+
+A integração de módulos comerciais e de distribuição afasta a formação do plano dos conceitos teóricos. Em mercados externos, a capacidade de mapear procura, analisar concorrentes locais e adaptar mensagens a cada geografia costuma exigir equipas dedicadas ou intermediários locais, um custo que condiciona as empresas de menor dimensão.
+
+Ao colocar o foco na prospeção e nos canais de venda, a agência pública orienta a tecnologia para a redução do ciclo comercial de quem vende fora de Portugal. A eficácia desta aposta mede-se pela rapidez com que as equipas comerciais conseguem converter estes módulos em testes de prospeção direta no terreno.
+
+## Google restringe Gemini 4 Argon a ciberdefensores antes de abertura gradual
+
+URL: https://ptia.pt/artigos/google-restringe-gemini-4-argon-a-ciberdefensores-antes-de-abertura-gradual-08a15d2f480a368bd4
+Publicado: 2026-10-03T12:00:00+00:00
+Secções: Mundo, Builders, Regulação
+Fonte original: https://blog.google/intl/en-mena/company-news/technology/gemini-4-argon-our-next-era-of-frontier-intelligence/
+
+A Google revelou o Gemini 4 Argon, concebido para tarefas prolongadas de programação, análise de conhecimento e cibersegurança. Numa primeira fase, o acesso decorre através do programa Fairwind e fica reservado a ciberdefensores selecionados, integrando salvaguardas desenhadas para travar pedidos associados a ataques informáticos ou a riscos biológicos, químicos, radiológicos e nucleares (CBRN).
+
+A decisão de entregar primeiro a ferramenta a equipas de defesa aponta para uma dinâmica inevitável na fronteira dos modelos autónomos: capacidades avançadas de análise e código são, por definição, de dupla utilização. Ao selecionar quem opera o sistema numa fase inicial, a Google assume que mitigar o risco técnico já não depende apenas de filtros de texto, mas de quem tem a permissão de o usar em ambiente controlado.
+
+Para as organizações que gerem infraestrutura crítica, a prioridade imediata passa por auditar processos e reforçar capacidades defensivas com este tipo de inteligência antes que modelos equivalentes, sem salvaguardas semelhantes, cheguem a outros atores no mercado aberto.
+
+## Transição para a IA exige resposta coordenada entre regulação e mercado de trabalho
+
+URL: https://ptia.pt/artigos/transicao-para-a-ia-exige-resposta-coordenada-entre-regulacao-e-mercado-de-trabalho-9e66329e8d22076600
+Publicado: 2026-10-03T09:00:00+00:00
+Secções: Portugal, Regulação, Histórias reais
+Fonte original: https://www.jornaldenegocios.pt/inteligencia-artificial
+
+No debate «IA na Indústria; A transformação nas Empresas», a ministra do Trabalho, Maria do Rosário Palma Ramalho, defendeu a urgência de preparar tanto a administração pública como o mercado laboral para os impactos económicos e produtivos da inteligência artificial.
+
+O alerta coloca o foco onde a discussão institucional costuma atrasar-se: a velocidade de adoção tecnológica nas empresas depende diretamente da clareza das regras e da capacidade de adaptação dos trabalhadores. Quando o enquadramento regulatório ou a requalificação não acompanham o ritmo de implementação técnica, o resultado não é a proteção do emprego, mas a incerteza jurídica e o travão ao investimento.
+
+Para as organizações que integram processos automatizados, a antecipação deste enquadramento define a fronteira entre ganhos reais de eficiência e atritos laborais prolongados.
+
+## Quase um quarto das competências em Portugal arrisca desatualização iminente
+
+URL: https://ptia.pt/artigos/quase-um-quarto-das-competencias-em-portugal-arrisca-desatualizacao-iminente-31ab5c64e86173527a
+Publicado: 2026-10-02T16:00:00+00:00
+Secções: Portugal, Regulação, Histórias reais
+Fonte original: https://jornaleconomico.sapo.pt/noticias/trabalhadores-portugueses-acreditam-na-importancia-de-desenvolver-competencias-face-a-ia/
+
+Cerca de 23% das competências profissionais atuais em Portugal enfrentam risco iminente de obsolescência devido ao avanço da inteligência artificial, colocando pressão direta sobre os trabalhadores e as estruturas corporativas de formação.
+
+O número expõe um desfasamento operacional: o ciclo tradicional de formação anual deixou de coincidir com a velocidade de depreciação do trabalho técnico e administrativo. Quando quase um quarto das capacidades de uma equipa perde validade no curto prazo, a formação interna deixa de ser um benefício acessório e passa a critério direto de solvência operacional.
+
+Para as lideranças e departamentos de recursos humanos, a resposta não passa por sessões teóricas alargadas. A perda de valor destas competências exige desenhar percursos curtos de reconversão aplicados aos processos diários das empresas, sob pena de reter talento tecnicamente estagnado perante concorrentes que integram novas ferramentas com maior velocidade.
+
+## Centros de dados podem render até 26,2 mil milhões de euros ao PIB até 2030
+
+URL: https://ptia.pt/artigos/centros-de-dados-podem-render-ate-26-2-mil-milhoes-de-euros-ao-pib-ate-2030-64168dba2ee4186574
+Publicado: 2026-10-02T12:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais, Previsões Futuras
+Fonte original: https://copenhageneconomics.com/publication/socio-economic-benefits-data-centre-sector-portugal
+
+Um estudo da consultora Copenhagen Economics estima que o setor dos centros de dados em Portugal possa gerar um contributo acumulado entre 6,1 e 26,2 mil milhões de euros para o PIB nacional entre 2025 e 2030. No mesmo intervalo, a atividade poderá sustentar entre 13 400 e 48 400 postos de trabalho diretos e indiretos por ano.
+
+A amplitude das estimativas reflete a distância habitual entre projeções macroeconómicas e a realidade no terreno. Estes valores assumem um alinhamento favorável de licenciamento, reforço de redes elétricas e conectividade internacional, enquadrados no Plano Nacional de Centros de Dados delineado pelo Governo.
+
+A oportunidade técnica existe, sobretudo pelo papel de Portugal nas amarrações de cabos submarinos e pela disponibilidade de energia renovável. Contudo, a capacidade instalada de computação só se traduz no teto superior das projeções se o país for capaz de fixar valor acima da camada básica de betão e servidores. A atração de capital de hiperescala exige estabilidade regulatória e celeridade nos pontos de injeção e consumo energético, áreas onde a resposta administrativa tem sido historicamente lenta.
+
+Construir infraestrutura física é apenas o pré-requisito técnico. Sem agilidade administrativa no licenciamento e garantias firmes de capacidade na rede de transporte de energia, a projeção fica retida no limiar mais baixo do modelo económico.
+
+## Governo aprova segunda fase do AMALIA até 2026 para levar modelo público aos serviços do Estado
+
+URL: https://ptia.pt/artigos/governo-aprova-segunda-fase-do-amalia-ate-2026-para-levar-modelo-publico-aos-servicos-do-estado-d7cb1e9de22f3502b1
+Publicado: 2026-10-02T09:00:00+00:00
+Secções: Portugal, Builders, Regulação
+Fonte original: https://diariodarepublica.pt/dr/detalhe/resolucao-conselho-ministros/178-2026-1171008705
+
+A Resolução do Conselho de Ministros n.º 178/2026 aprovou o avanço da segunda fase do projeto AMALIA até ao final de 2026. Financiada pelo PRR, a nova etapa mantém o foco no treino do modelo em português europeu e acrescenta o desenvolvimento de ferramentas de agentificação, além de casos de uso práticos de voz e imagem orientados à administração pública.
+
+A transição formaliza a passagem de uma experiência de investigação para uma infraestrutura de suporte ao Estado. Ao associar a soberania linguística e a salvaguarda de património a requisitos estritos de segurança, o diploma fixa o modelo como peça operacional do setor público em vez de mero demonstrador académico.
+
+O teste desta segunda fase reside no salto da geração de texto para a agentificação em processos administrativos. Integrar modelos em fluxos que despacham, validam ou interagem com cidadãos exige níveis de fiabilidade muito superiores aos de um assistente de conversação comum.
+
+Se o projeto conseguir provar eficácia nestes serviços até 2026, estabelece uma base técnica auditável dentro da administração pública, reduzindo a dependência externa na modernização dos serviços essenciais sem comprometer os dados sob tutela pública.
+
+## A autorregulação da IA regressa à Casa Branca
+
+URL: https://ptia.pt/artigos/a-autorregulacao-da-ia-regressa-a-casa-branca-7b433e37c80debf007
+Publicado: 2026-10-01T16:00:00+00:00
+Secções: Mundo, Builders, Regulação, Histórias reais, Previsões Futuras
+Fonte original: https://apnews.com/article/595796511f110fc006cca0d01329733e
+
+Donald Trump e os líderes das principais empresas de inteligência artificial fecharam na Casa Branca um compromisso voluntário focado na segurança dos sistemas de fronteira. O texto prevê revisões internas e externas aos modelos antes e depois do lançamento comercial.
+
+Ao trocar imposições vinculativas por garantias subscritas pelas próprias tecnológicas, Washington volta a colocar a fasquia do escrutínio nas mãos de quem desenvolve a tecnologia. O modelo apoia-se na agilidade técnica destas organizações para auditar código e identificar vulnerabilidades críticas, mas transfere para o domínio privado a definição dos limiares de risco aceitável.
+
+Para as empresas que lideram a corrida, o formato afasta barreiras burocráticas imediatas e dá previsibilidade operacional. Em contrapartida, deixa em aberto a força das auditorias externas: sem métricas públicas obrigatórias ou consequências legais pré-definidas para falhas graves, a eficácia do pacto dependerá da transparência que cada laboratório decidir partilhar.
+
+Num mercado global onde a Europa aposta na fiscalização por via regulamentar, a Casa Branca opta por manter o ritmo de desenvolvimento desimpedido. Resta saber se revisões sem força de lei chegam para sustentar a confiança institucional quando surgirem os primeiros incidentes em modelos de larga escala.
+
+## CSM prioriza formação em IA e prova digital para juízes
+
+URL: https://ptia.pt/artigos/csm-prioriza-formacao-em-ia-e-prova-digital-para-juizes-418a25aa7382508112
+Publicado: 2026-10-01T12:00:00+00:00
+Secções: Portugal, Previsões Futuras
+Fonte original: https://www.theportugalnews.com/news/2026-09-30/portuguese-judges-receive-priority-training-in-artificial-intelligence-and-cybersecurity/1093978
+
+O Conselho Superior da Magistratura aprovou uma estrutura de capacitação técnica destinada aos magistrados judiciais. O plano define como áreas prioritárias a inteligência artificial, a prova digital, a cibersegurança, a proteção de dados e a literacia tecnológica.
+
+A decisão desloca a literacia digital de uma escolha de autoformação para uma responsabilidade institucional. Nos tribunais, a solidez de uma sentença depende cada vez mais de saber escrutinar a custódia de ficheiros extraídos, contestar relatórios periciais automatizados ou identificar enviesamentos em sistemas algorítmicos.
+
+Mais do que preparar a magistratura para adotar ferramentas internas, a prioridade reside no julgamento: sem competência técnica instalada, a avaliação da prova tecnológica arrisca ficar inteiramente delegada nos peritos apresentados pelas partes.
+
+## OpenAI lança agentes autónomos dots para execução contínua em empresas
+
+URL: https://ptia.pt/artigos/openai-lanca-agentes-autonomos-dots-para-execucao-continua-em-empresas-49fa6df87f0ca66882
+Publicado: 2026-10-01T09:00:00+00:00
+Secções: Mundo, Regulação, Histórias reais
+Fonte original: https://openai.com/index/introducing-dots
+
+A OpenAI apresentou no DevDay 2026 os dots, agentes de inteligência artificial desenhados para operar de forma contínua em máquinas virtuais dedicadas na nuvem. A nova camada de software funciona 24 horas por dia, integra-se de raiz com Slack, Teams e ChatGPT, e conecta-se a mais de quatro mil aplicações externas através de plugins.
+
+A mudança técnica central está na substituição do ciclo tradicional de pergunta e resposta por um ambiente persistente de execução. Ao atribuir computação própria e acesso a ferramentas a cada agente, a OpenAI procura transformar o modelo de linguagem num operador funcional de sistemas corporativos, disputando diretamente o espaço de trabalho digital com a Meta e a Anthropic.
+
+Para as organizações, a relevância do anúncio reside menos na autonomia declarada e mais na arquitetura de permissões que ela exige. Um agente com sessão contínua numa máquina virtual e ligação direta a canais internos passa a ter os mesmos privilégios operacionais de um colaborador humano, o que desloca o esforço de engenharia da criação de prompts para a auditoria de acessos e a monitorização de tarefas não supervisionadas.
+
+A validação desta abordagem dependerá agora do controlo de erros em processos com múltiplas etapas consecutivas, onde falhas em cascata no software corporativo acarretam custos imediatos.
+
+## Humanos capta 3,2 milhões de dólares para criar camada de risco e supervisão de agentes
+
+URL: https://ptia.pt/artigos/humanos-capta-3-2-milhoes-de-dolares-para-criar-camada-de-risco-e-supervisao-de-agentes-cf4428ebb0355b0a83
+Publicado: 2026-09-30T16:00:00+00:00
+Secções: Mundo, Histórias reais, Previsões Futuras
+Fonte original: https://critical-ventures.com/news/why-we-invested-humanos
+
+A startup portuguesa Humanos fechou uma ronda seed de 3,2 milhões de dólares, cerca de 2,8 milhões de euros, para desenvolver uma infraestrutura de autorização, controlo de risco e supervisão de agentes de inteligência artificial. O investimento foi anunciado pela Critical Ventures, que descreve a solução como um control plane desenhado para integrar checkpoints human-in-the-loop e trilhos de auditoria, permitindo gerar perfis contínuos de risco sobre as ações de cada agente.
+
+O movimento aponta para uma mudança prática no mercado: a autonomia dos agentes deixou de ser apenas um desafio de capacidades do modelo para se tornar um problema de governança operacional. Enquanto a execução técnica avança depressa, a barreira à entrada nas empresas continua a ser a ausência de garantias verificáveis sobre o que um sistema pode ou não desencadear em ambiente de produção.
+
+Construir um registo auditável e pontos de validação humana não reduz a ambição da automação. Pelo contrário, define as condições técnicas para que os agentes possam interagir com sistemas críticos sem exigir supervisão manual constante a cada passo.
+
+Para as organizações que pretendem delegar tarefas a agentes, o foco operacional transfere-se da demonstração de capacidades para a rastreabilidade: qualquer implementação que não consiga provar limites claros de risco e registo de decisões terá dificuldade em sair dos testes internos.
+
+## Contratação pública passa a exigir inteligência artificial a partir de outubro
+
+URL: https://ptia.pt/artigos/contratacao-publica-passa-a-exigir-inteligencia-artificial-a-partir-de-outubro-023889baec61627b33
+Publicado: 2026-09-30T12:00:00+00:00
+Secções: Portugal, Builders, Regulação
+Fonte original: https://diariodarepublica.pt/dr/detalhe/decreto-lei/177-2026-1166969779
+
+O Decreto-Lei n.º 177/2026 altera o Código dos Contratos Públicos e determina que as entidades adjudicantes passem a utilizar sistemas digitais, incluindo inteligência artificial, no planeamento, preparação, condução e execução dos contratos do Estado. O diploma fixa requisitos explícitos de transparência, explicabilidade, segurança, proteção de dados e interoperabilidade, entrando em vigor a 1 de outubro de 2026.
+
+A transição deixa de ser um projeto-piloto voluntário e converte-se numa obrigação legal de processo. Ao amarrar a utilização de IA a critérios estritos de explicabilidade e interoperabilidade, a lei transfere a pressão técnica diretamente para os cadernos de encargos: qualquer solução algorítmica adotada terá de ser auditável por quem compra, por quem concorre e por quem fiscaliza.
+
+Para o mercado fornecedor e para a administração pública, isto altera a barreira de entrada dos concursos. O foco deixa de estar na promessa de automação genérica e passa para a capacidade de justificar decisões administrativas suportadas por modelos de dados abertos e verificáveis.
+
+## Operadores preveem 4,2 mil milhões em conectividade enquanto indústria aeroespacial ancora software crítico em Coimbra
+
+URL: https://ptia.pt/artigos/operadores-preveem-4-2-mil-milhoes-em-conectividade-enquanto-industria-aeroespacial-ancora-software-critico-em-coimbra-7989b66ebf3bf4655d
+Publicado: 2026-09-30T09:00:00+00:00
+Secções: Portugal, Previsões Futuras
+Fonte original: https://portugal.gov.pt/gc25/comunicacao/noticias/aposta-nas-autoestradas-digitais-atrai-grandes-projetos-de-ia-para-portugal
+
+Os operadores de telecomunicações em Portugal deverão investir 4,2 mil milhões de euros em redes 5G e comunicações por satélite nos próximos cinco anos, segundo dados avançados pelo Governo. A verba junta-se à expansão de fibra ótica, cabos submarinos e centros de dados, desenhados para sustentar projetos de inteligência artificial no país. Em paralelo, a Airbus e a Critical Software avançaram com a Critical FlyTech, uma joint venture sediada em Coimbra focada no desenvolvimento de software de missão para o setor aeroespacial.
+
+A coincidência entre a aposta em telecomunicações e a instalação de uma estrutura industrial de software ilustra uma mudança nas exigências da computação avançada. Ter centros de dados e largura de banda é a base física, mas essa capacidade só ganha tração económica quando alimenta sistemas de alta tolerância a falhas, como a aviónica e a gestão de tráfego aéreo.
+
+Para o ecossistema tecnológico nacional, a criação da Critical FlyTech valida que o valor gerado não se limita ao consumo de serviços digitais externos. Ao ligar a infraestrutura de dados diretamente à engenharia com certificação rigorosa, o país tenta fixar projetos onde o software não é um acessório de produtividade, mas o próprio componente crítico da operação.
+
+## NVIDIA quer definir a camada de contenção para agentes de IA
+
+URL: https://ptia.pt/artigos/nvidia-quer-definir-a-camada-de-contencao-para-agentes-de-ia-1b3e39930d42348453
+Publicado: 2026-09-29T16:00:00+00:00
+Secções: Mundo, Builders, Histórias reais
+Fonte original: https://nvidianews.nvidia.com/news/open-agent-safety-platform
+
+A NVIDIA apresentou a Open Agent Safety Platform, uma arquitetura concebida para definir perímetros de segurança e monitorizar o comportamento de agentes autónomos. O sistema assenta em duas componentes: o OpenShell, software que estabelece limites estritos à execução de tarefas, e o Sentry, um desenho de referência que supervisiona a atividade em tempo real e isola instâncias que violem as regras operacionais. A tecnológica assegura que o enquadramento funciona com plataformas externas e adianta que mais de 100 organizações já utilizam estas ferramentas.
+
+O movimento sinaliza uma viragem técnica evidente: o obstáculo crítico na implementação de agentes em contexto corporativo deixou de ser o raciocínio dos modelos e passou a ser o raio de destruição potencial das suas ações. Ao propor mecanismos de quarentena e controlo de acessos, a NVIDIA tenta antecipar a infraestrutura de governação antes que falhas operacionais graves travem a integração destes sistemas em sistemas críticos.
+
+Contudo, os números de adoção e a eficácia prática das ferramentas partem exclusivamente da comunicação da empresa, sem validação independente ou auditorias públicas que comprovem a robustez do Sentry sob pressão adversária.
+
+A disputa que se desenha não é sobre que agentes têm mais iniciativa, mas sobre quem controla as barreiras de contenção. Se este padrão aberto ganhar tração nas equipas de segurança corporativa, a NVIDIA fixa-se não apenas no fornecimento de capacidade computacional, mas na camada obrigatória de conformidade técnica que autoriza os agentes a operar.
+
+## Meta cria divisão empresarial de IA e contrata antigo CEO da MongoDB para liderar a oferta
+
+URL: https://ptia.pt/artigos/meta-cria-divisao-empresarial-de-ia-e-contrata-antigo-ceo-da-mongodb-para-liderar-a-oferta-2f5daeed09c09d671b
+Publicado: 2026-09-29T12:00:00+00:00
+Secções: Mundo, Builders, Histórias reais
+Fonte original: https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/
+
+A Meta apresentou a Meta Enterprise Platform, uma estrutura desenhada para comercializar a sua tecnologia de inteligência artificial diretamente a empresas. A oferta agrega os agentes Muse e Meta Business Agent, a Muse API e o Muse Code. Para comandar a nova unidade, a tecnológica recrutou CJ Desai, antigo CEO da MongoDB, segundo o anúncio oficial emitido a 28 de setembro.
+
+A contratação de um perfil executivo com tração no software empresarial clarifica o movimento da Meta. A empresa deixa de limitar o seu ecossistema de inteligência artificial à investigação aberta ou ao suporte das suas próprias aplicações de consumo, passando a disputar orçamentos de infraestrutura, desenvolvimento de software e operações corporativas onde a Microsoft, a Google e a AWS já têm posições consolidadas.
+
+Para quem gere tecnologia, a entrada de mais um fornecedor de grande escala no mercado de agentes e APIs amplia as opções de arquitetura, mas transfere a pressão para a integração. O teste desta plataforma não residirá apenas na competência dos modelos Muse, mas na capacidade de CJ Desai construir canais de suporte, garantias de serviço e contratos empresariais num grupo cuja cultura histórica sempre esteve focada no utilizador final.
+
+## Sword assina acordo para desenhar IA no sistema público de saúde do Brasil
+
+URL: https://ptia.pt/artigos/sword-assina-acordo-para-desenhar-ia-no-sistema-publico-de-saude-do-brasil-a50782a8bb75c18669
+Publicado: 2026-09-29T09:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais, Previsões Futuras
+Fonte original: https://eco.sapo.pt/2026/09/28/unicornio-portugues-sword-entra-no-sistema-de-saude-do-brasil/
+
+A tecnológica Sword, fundada por Virgílio Bento, assinou um acordo de cooperação técnica com o Governo brasileiro para testar e aplicar modelos de inteligência artificial no Sistema Único de Saúde (SUS). O projeto prevê ferramentas de triagem por voz e texto e a gestão de listas de espera num sistema que serve mais de 210 milhões de pessoas, com a implementação no terreno prevista para o início de 2027.
+
+O alcance do anúncio exige distinguir compromisso político de integração operacional. Entre a assinatura de um protocolo e a entrada de modelos automatizados na triagem clínica de um dos maiores serviços públicos do mundo decorrem mais de dois anos de desenho regulatório, validação clínica e integração de dados legados.
+
+A relevância deste movimento não está no rótulo de unicórnio, mas na mudança de escala dos testes de software clínico português. Projetos de automação de fluxo de doentes tendem a ficar limitados a pilotos locais ou redes privadas menores; testar a capacidade técnica contra a densidade real do SUS vai forçar a tecnologia a provar se aguenta a fricção logística e administrativa de infraestruturas públicas massivas antes de 2027.
+
+## AgData junta 18 entidades nacionais antes dos primeiros projetos europeus em 2027
+
+URL: https://ptia.pt/artigos/agdata-junta-18-entidades-nacionais-antes-dos-primeiros-projetos-europeus-em-2027-73df6497bd2bb3fdbe
+Publicado: 2026-09-28T16:00:00+00:00
+Secções: Portugal, Builders, Histórias reais, Previsões Futuras
+Fonte original: https://ani.pt/ani-acolhe-primeira-reuniao-do-grupo-espelho-nacional-da-parceria-europeia-agdata/
+
+A Agência Nacional de Inovação (ANI) reuniu no dia 15 de setembro o National Mirror Group da parceria europeia AgData (Agriculture of Data). O grupo nacional junta 18 entidades públicas, científicas e agrícolas para articular a participação portuguesa num consórcio de 61 parceiros em 22 países europeus, cofinanciado pelo Horizonte Europa, com os primeiros projetos operacionais previstos para 2027.
+
+O objetivo formal é aplicar fluxos de dados, sensores, observação da Terra e inteligência artificial à gestão agrícola. A criação deste grupo espelho estabelece o canal de ligação entre os produtores locais e os cadernos de encargos que vão definir o financiamento comunitário do setor nos próximos anos.
+
+Existe aqui uma tensão evidente entre o ritmo institucional e o ciclo tecnológico. Um calendário que aponta os primeiros projetos apenas para 2027 arrisca desenhar especificações para modelos, sensores e arquiteturas de dados que estarão ultrapassados antes de chegarem ao terreno. A governança europeia costuma demorar a alinhar 22 países; os ciclos de software e hardware agrícola avançam em meses.
+
+Para as 18 entidades portuguesas envolvidas, o valor prático desta estrutura não passa por esperar passivamente pelos editais de 2027. O trabalho útil até lá reside em padronizar requisitos de interoperabilidade, testar partilha de dados entre explorações e centros de investigação e evitar que o setor nacional fique dependente de plataformas proprietárias fechadas quando o financiamento comunitário finalmente arrancar.
+
+## Santander e Coursera abrem 50 mil vagas em cursos de inteligência artificial e dados
+
+URL: https://ptia.pt/artigos/santander-e-coursera-abrem-50-mil-vagas-em-cursos-de-inteligencia-artificial-e-dados-d25c1fad86fb0d7599
+Publicado: 2026-09-28T12:00:00+00:00
+Secções: Portugal, Regulação, Histórias reais
+Fonte original: https://eco.sapo.pt/2026/09/24/inscricoes-abertas-para-50-mil-vagas-gratuitas-em-cursos-de-ia-dados-e-lideranca/
+
+O Santander abriu inscrições para 50 mil vagas gratuitas em mais de 80 cursos online da plataforma Coursera, focados em áreas como inteligência artificial, dados e liderança. O programa destina-se a maiores de 18 anos residentes em Portugal e surge, segundo o banco, num período em que a digitalização e a difusão da IA pressionam o mercado por novas competências técnicas.
+
+Disponibilizar acesso em escala reduz a barreira económica inicial de entrada, sobretudo num momento em que a oferta de conteúdos técnicos de qualidade costuma exigir subscrições pagas. Contudo, o volume de inscrições mede apenas a procura por formação, não a sua absorção produtiva: a taxa de conclusão em cursos abertos deste formato costuma ser historicamente baixa se a aprendizagem não estiver ancorada em projetos práticos ou em exigências diretas de funções de trabalho.
+
+Para profissionais e equipas técnicas, o valor desta iniciativa não reside no diploma genérico no final do percurso, mas na capacidade de usar o catálogo para preencher lacunas operacionais imediatas, da manipulação de dados à automação de processos. A requalificação só se concretiza quando o formando traduz o conteúdo das aulas em entregas mensuráveis dentro das organizações.
+
+## Gémeos digitais e IA no chão de fábrica: a fronteira entre automação e supervisão humana
+
+URL: https://ptia.pt/artigos/gemeos-digitais-e-ia-no-chao-de-fabrica-a-fronteira-entre-automacao-e-supervisao-humana-56e977ab95b5a11c52
+Publicado: 2026-09-28T09:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://www.itinsight.pt/news/eventos/da-fabrica-a-decisao-siemens-tech-day-acelera-adocao-da-nova-era-da-ia
+
+A terceira edição do Siemens Tech Day, realizada na NOVA SBE em Carcavelos, reuniu casos práticos de inteligência artificial aplicada ao contexto industrial, centrando atenções na integração de modelos preditivos e gémeos digitais. Entre as demonstrações esteve a linha de produção da Pringles, onde dados operacionais em tempo real alimentam modelos analíticos desenhados para ajustar parâmetros de fabrico. Os ganhos divulgados em capacidade, contenção de desperdício e eficiência energética refletem métricas operacionais reportadas pelas próprias marcas, sem validação independente externa.
+
+O caso expõe a transição necessária da IA exploratória para o controlo direto de processos físicos. Em ambientes industriais contínuos, a viabilidade económica destes modelos não se afere apenas pela capacidade preditiva em simulação, mas pela sua tolerância à variabilidade da matéria-prima e do desgaste de equipamento. A exigência de manter supervisão humana em decisões críticas e irreversíveis estabelece uma fronteira clara: o software antecipa desvios e propõe regimes de operação, cabendo ao operador validar ações que possam comprometer a integridade da linha ou a segurança do produto final.
+
+Para a indústria de processo, a questão imediata deixa de ser o potencial teórico dos gémeos digitais e passa pela arquitetura de controlo. Quando uma recomendação algorítmica falha ou diverge da experiência do operador de turno, o critério de paragem tem de estar formalmente desenhado antes de a linha arrancar.
+
+## Portugal não está entre os 19 países que desenharam o primeiro IPCEI europeu de IA
+
+URL: https://ptia.pt/artigos/portugal-nao-esta-entre-os-19-paises-que-desenharam-o-primeiro-ipcei-europeu-de-ia-17cb886351f51c83aa
+Publicado: 2026-09-27T16:00:00+00:00
+Secções: Portugal, Builders, Regulação, Histórias reais
+Fonte original: https://digital-strategy.ec.europa.eu/en/news/commission-welcomes-design-first-important-project-common-european-interest-ai
+
+A Comissão Europeia anunciou que 19 Estados-membros estruturaram o primeiro Projeto Importante de Interesse Europeu Comum (IPCEI) dedicado à inteligência artificial. O plano visa financiar e construir infraestruturas e serviços de IA descentralizados, abrangendo toda a cadeia de valor tecnológica, desde a capacidade computacional aos modelos aplicados. A lista de promotores reúne Áustria, Bélgica, Croácia, Eslováquia, Eslovénia, Espanha, Estónia, Finlândia, França, Hungria, Irlanda, Itália, Letónia, Luxemburgo, Países Baixos, Polónia, Roménia e Suécia. Portugal não faz parte deste grupo inicial e Bruxelas não detalhou os motivos da ausência nem indicou qualquer exclusão formal.
+
+Ficar fora da mesa de desenho de um IPCEI não impede necessariamente uma adesão posterior, mas retira capacidade de influência na arquitetura das regras e nos critérios de financiamento. Estes mecanismos comunitários servem precisamente para contornar os limites normais de auxílios estatais, permitindo que os governos participantes injetem capital público em consórcios industriais de grande escala sem violar a concorrência europeia.
+
+Para o ecossistema nacional, o risco imediato é de posicionamento. Quando as grandes parcerias transfronteiriças de infraestrutura e computação começarem a distribuir trabalho e recursos, os centros de investigação e empresas sediados nos 19 países fundadores têm primazia natural na partilha de propriedade intelectual e capacidade instalada. Portugal terá de clarificar rapidamente se tenciona associar-se ao projeto na fase de notificação ou se pretende ancorar a sua estratégia de capacidade computacional fora deste mecanismo conjunto.
+
+## INESC TEC abre modelos do CitiLink para estruturar atas municipais com IA
+
+URL: https://ptia.pt/artigos/inesc-tec-abre-modelos-do-citilink-para-estruturar-atas-municipais-com-ia-8ab15bd5d3c335f7be
+Publicado: 2026-09-27T12:00:00+00:00
+Secções: Portugal, Builders, Histórias reais
+Fonte original: https://www.inesctec.pt/pt/noticias/o-inesc-tec-aproximou-os-cidadaos-da-politica-local-com-ia-agora-a-tecnologia-esta-disponivel-para-todos
+
+O INESC TEC disponibilizou em regime aberto os modelos de processamento de linguagem natural desenvolvidos no projeto CitiLink, criado em parceria com a Universidade da Beira Interior e a Universidade do Porto. O sistema foi desenhado especificamente para português europeu e processa atas municipais já redigidas, identificando participantes, temas em debate e resultados de votações para gerar resumos e tornar o arquivo pesquisável. O protótipo trabalhou com documentos fornecidos por seis municípios.
+
+A libertação deste código expõe a fronteira técnica real da automação autárquica. O CitiLink não faz transcrição direta de reuniões nem elimina o registo administrativo; atua sobre documentação formal existente para transformar texto corrido e denso em dados relacionais e consultáveis.
+
+Para quem desenvolve software de gestão pública ou ferramentas de transparência cívica, o valor da iniciativa está no ponto de partida: em vez de adaptar soluções pensadas para inglês ou treinar modelos genéricos do zero, passa a existir uma base aberta ajustada à linguagem administrativa nacional. O desafio imediato transfere-se para a integração. Transformar atas em dados estruturados só tem utilidade prática se os executivos e as plataformas cívicas usarem estes modelos para alimentar interfaces simples, mantendo a validação humana nos pontos críticos de deliberação.
+
+## Adoção de IA generativa chega a 77% dos utilizadores de redes sociais em Portugal
+
+URL: https://ptia.pt/artigos/adocao-de-ia-generativa-chega-a-77-dos-utilizadores-de-redes-sociais-em-portugal-c21ad27bdabf2fa11b
+Publicado: 2026-09-27T09:00:00+00:00
+Secções: Portugal, Regulação
+Fonte original: https://marketeer.sapo.pt/77-dos-portugueses-nas-redes-sociais-ja-usam-ia-mas-ha-uma-regra-que-quase-todos-exigem/
+
+Mais de três quartos dos utilizadores portugueses de redes sociais já experimentaram ferramentas de inteligência artificial generativa. De acordo com a edição de 2026 do estudo Os Portugueses e as Redes Sociais, conduzido pela Marktest, 77% dos inquiridos afirmam ter usado estas soluções. A frequência reparte-se quase em partes iguais: 39% utilizam-nas com regularidade e 38% de forma ocasional, sendo que 22,5% recorrem à tecnologia especificamente para produzir conteúdos destinados às plataformas sociais.
+
+O levantamento baseou-se em 802 entrevistas online a utilizadores residentes em Portugal Continental, com idades entre os 15 e os 64 anos, recolhidas entre 6 e 21 de julho de 2026.
+
+A transição da novidade experimental para o consumo rotineiro coloca a pressão do lado de quem gere marcas e canais digitais. Quando quase um quarto dos utilizadores já publica materiais gerados ou assistidos por algoritmos, a linha entre autenticidade individual e automação de escala desfaz-se no feed.
+
+Esta dispersão rápida de conteúdos sintéticos força uma mudança prática nas políticas editoriais e de moderação. A exigência de transparência deixa de ser uma discussão ética teórica e passa a critério operacional: plataformas e anunciantes terão de clarificar o que foi gerado por máquina se quiserem reter a confiança e a atenção de uma audiência que já domina os mesmos instrumentos.
+
+Estudo oficial: https://www.marktest.com/wap/a/grp/p~96.aspx
+Fonte: https://marketeer.sapo.pt/77-dos-portugueses-nas-redes-sociais-ja-usam-ia-mas-ha-uma-regra-que-quase-todos-exigem/

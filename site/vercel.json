@@ -1,12 +1,38 @@
 {
-  "rewrites": [
+  "headers": [
     {
-      "source": "/artigos/:slug",
-      "destination": "/article.html"
+      "source": "/",
+      "headers": [
+        {"key": "Cache-Control", "value": "public, max-age=0, must-revalidate"}
+      ]
     },
     {
-      "source": "/quem-e-quem",
-      "destination": "/quem-e-quem.html"
+      "source": "/index.html",
+      "headers": [
+        {"key": "Cache-Control", "value": "public, max-age=0, must-revalidate"}
+      ]
+    },
+    {
+      "source": "/app.js",
+      "headers": [
+        {"key": "Cache-Control", "value": "public, max-age=0, must-revalidate"}
+      ]
+    },
+    {
+      "source": "/site-feed.json",
+      "headers": [
+        {"key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate"}
+      ]
+    },
+    {
+      "source": "/api/site-feed",
+      "headers": [
+        {"key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate"}
+      ]
     }
+  ],
+  "rewrites": [
+    {"source": "/artigos/:slug", "destination": "/article.html"},
+    {"source": "/quem-e-quem", "destination": "/quem-e-quem.html"}
   ]
 }

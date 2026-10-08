@@ -72,8 +72,8 @@
   max-width: 13ch;
   margin: 0;
   color: var(--ink);
-  font: 400 clamp(52px, 7vw, 94px)/.94 var(--serif);
-  letter-spacing: 0;
+  font: 400 clamp(42px, 5.2vw, 70px)/1.04 var(--serif);
+  letter-spacing: -0.015em;
 }
 
 .knowledge-lead {
@@ -138,10 +138,10 @@
   margin: 0;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: clamp(46px, 5.2vw, 68px);
+  font-size: clamp(38px, 4vw, 54px);
   font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: 0;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
 }
 
 .resources-hero-intro > p {
@@ -198,7 +198,7 @@
   min-width: 0;
   overflow: hidden;
   color: var(--ink);
-  font: 400 24px/1.08 var(--serif);
+  font: 400 22px/1.15 var(--serif);
   text-overflow: ellipsis;
 }
 
@@ -246,7 +246,8 @@
 
 .knowledge-section-head h2 {
   margin: 0;
-  font: 400 clamp(36px, 5vw, 60px)/1 var(--serif);
+  font: 400 clamp(30px, 3.6vw, 44px)/1.1 var(--serif);
+  letter-spacing: -0.012em;
 }
 
 .knowledge-section-head > p {
@@ -277,7 +278,7 @@
 .rank-copy h3,
 .tool-row h2 {
   margin: 0 0 8px;
-  font: 400 30px/1.05 var(--serif);
+  font: 500 25px/1.15 var(--serif);
 }
 
 .rank-copy > p:not(.rank-meta):not(.rank-subtitle),
@@ -304,7 +305,8 @@
 
 .rank-signal strong {
   color: var(--knowledge-primary);
-  font: 400 34px/1 var(--serif);
+  font: 400 29px/1.05 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .rank-signal span,
@@ -355,7 +357,7 @@
 }
 
 .knowledge-note strong {
-  font: 400 25px/1.1 var(--serif);
+  font: 400 22px/1.2 var(--serif);
 }
 
 .knowledge-note p {
@@ -436,7 +438,7 @@
   display: block;
   margin-bottom: 4px;
   color: var(--knowledge-primary);
-  font: 400 24px/1 var(--serif);
+  font: 400 21px/1.1 var(--serif);
 }
 
 .category-winner {
@@ -457,7 +459,7 @@
 }
 
 .category-winner strong {
-  font: 400 34px/1 var(--serif);
+  font: 500 28px/1.1 var(--serif);
 }
 
 .category-winner p {
@@ -597,7 +599,7 @@
 .glossary-entry h2,
 .method-columns h2 {
   margin: 0;
-  font: 400 28px/1.05 var(--serif);
+  font: 500 24px/1.15 var(--serif);
 }
 
 .prompt-card > p,
@@ -649,7 +651,7 @@
 
 .prompt-suggester h2 {
   margin: 0;
-  font: 400 42px/1 var(--serif);
+  font: 400 34px/1.1 var(--serif);
 }
 
 .prompt-suggester > div > p:last-child {
@@ -699,7 +701,7 @@
 
 .prompt-suggestion-result h3 {
   margin: 0;
-  font: 400 28px/1.1 var(--serif);
+  font: 500 24px/1.2 var(--serif);
 }
 
 .prompt-suggestion-result pre {
@@ -770,7 +772,7 @@
 .lobby-panel h2 {
   max-width: 22ch;
   margin: 8px 0 0;
-  font: 400 30px/1.05 var(--serif);
+  font: 400 25px/1.15 var(--serif);
 }
 
 .lobby-panel header a {
@@ -941,7 +943,7 @@
 
 .method-sources h2 {
   margin: 0;
-  font: 400 30px/1.1 var(--serif);
+  font: 400 25px/1.15 var(--serif);
 }
 
 .method-sources p {
@@ -1019,7 +1021,8 @@
 
 .rank-signal strong {
   max-width: 150px;
-  font: 400 23px/1.08 var(--serif);
+  font: 400 21px/1.1 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .weekly-leader-score {
@@ -1061,7 +1064,7 @@
 }
 
 .archive-list li strong {
-  font: 400 22px/1.1 var(--serif);
+  font: 500 20px/1.2 var(--serif);
 }
 
 .archive-list li p {
@@ -1149,7 +1152,7 @@
   .knowledge-hero-grid,
   .knowledge-section-head,
   .knowledge-note .wrap { grid-template-columns: 1fr; gap: 30px; }
-  .knowledge-hero h1 { font-size: 44px; }
+  .knowledge-hero h1 { font-size: 36px; }
   .resources-hero { padding-top: 24px; }
   .resources-hero-meta {
     display: grid;
@@ -1163,7 +1166,7 @@
     padding: 28px 0 30px;
   }
   .resources-hero-intro h1 {
-    font-size: 40px;
+    font-size: 34px;
     line-height: 1.02;
   }
   .resources-hero-intro > p { font-size: 16px; }
@@ -1189,7 +1192,7 @@
   .weekly-leader > strong {
     display: -webkit-box;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 19px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }

@@ -25,8 +25,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260720-article-1">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20261006-1">
 </head>
 <body class="article-page">
   <a class="skip-link" href="#article">Saltar para o artigo</a>
@@ -46,17 +46,17 @@
 
   <header class="site-header news">
     <div class="wrap header-grid">
-      <a class="brand-logo-link" href="/" aria-label="PTIA.pt - pagina inicial">
+      <a class="brand-logo-link" href="/" aria-label="PTIA.pt - página inicial">
         <img class="brand-logo" src="/assets/ptia-wordmark-navy-transparent.png" alt="PTIA">
       </a>
-      <nav class="site-nav" aria-label="Navegacao principal">
-        <a href="./#hoje">Hoje</a>
-        <a href="./#mundo">Mundo</a>
-        <a href="./#portugal">Portugal</a>
-        <a href="./#builders">Builders</a>
-        <a href="./#newsletter">Weekly</a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <a href="/#hoje">Hoje</a>
+        <a href="/#mundo">Mundo</a>
+        <a href="/#portugal">Portugal</a>
+        <a href="/#builders">Builders</a>
+        <a href="/#regulacao">Regulação</a>
       </nav>
-      <a class="header-cta" href="./#hoje">Voltar <span aria-hidden="true">-></span></a>
+      <a class="header-cta" href="#newsletter">Subscrever <span aria-hidden="true">-></span></a>
     </div>
   </header>
 
@@ -64,6 +64,7 @@
     <section class="article-loading wrap" id="article-loading">
       <p class="eyebrow">PTIA</p>
       <h1>A carregar leitura...</h1>
+      <noscript><p>Esta página precisa de JavaScript para encontrar a notícia no feed. Podes ler as notícias na <a href="/">página inicial</a> ou explorar os <a href="/recursos/">recursos PTIA</a>.</p></noscript>
     </section>
     <article class="article-detail news-article hidden" id="article-detail"></article>
 
@@ -72,7 +73,8 @@
         <div class="newsletter-copy">
           <p class="eyebrow">PTIA Weekly</p>
           <h2>Leste até ao fim. A próxima chega por email.</h2>
-          <p>Sexta-feira, 9h00. Os sinais de IA que importam para quem decide, constrói e trabalha em Portugal, com contexto editorial e uma leitura curta sobre o que fazer a seguir.</p>
+          <p>À sexta-feira, uma seleção das histórias mais úteis da semana: o que aconteceu, por que importa para Portugal e o que vale acompanhar a seguir.</p>
+          <p class="newsletter-example"><strong>Exemplo de leitura:</strong> uma empresa portuguesa aplica IA num serviço real; mostramos o resultado reportado, a fonte e o que ainda precisa de ser demonstrado.</p>
         </div>
         <div class="signup-card">
           <div class="signup-top">
@@ -85,7 +87,6 @@
             class="newsletter-form"
             action="https://eb955785.sibforms.com/serve/MUIFAALfG5tJmSMRLeDV5jdhumDvidI2WfFwFqziDye9yNRsNnVyrA2O066PLmxblGJxYnnBPtgkrNsPxAAB0OStRnrB8KtQ-GafqmmsGLubfmScZuooepLsXq1yEkrmeH68Yb92rdK3fvClfjsMEhMBKQxoj8oOfyolyYOIYNdLAEj8tP0b19z40y_UJYOpSGhMbN0PwmCVVpQ7Tg=="
             method="post"
-            target="ptia-newsletter-frame"
           >
             <label>
               <span>Email</span>
@@ -98,10 +99,9 @@
             <input type="text" name="email_address_check" tabindex="-1" autocomplete="off" hidden>
             <input type="hidden" name="locale" value="pt">
             <button type="submit">Subscrever</button>
-            <p id="newsletter-status" class="newsletter-status" role="status" aria-live="polite"></p>
+            <p class="newsletter-status">Ao subscreveres, a página da Brevo mostra o resultado do pedido. Confirma depois a mensagem que receberes por email.</p>
           </form>
-          <iframe class="newsletter-frame" name="ptia-newsletter-frame" title="Subscrição PTIA Weekly"></iframe>
-          <p class="fineprint">Double opt-in · Cancela em 1 clique · RGPD-compliant</p>
+          <p class="fineprint">Confirmação por email · Cancelamento em cada edição</p>
         </div>
       </div>
     </section>
@@ -116,7 +116,8 @@
     </div>
   </footer>
 
-  <script src="/article.js?v=20260720-1"></script>
-  <script src="/analytics.js?v=20260606-1"></script>
+  <script src="/engagement.js?v=20260925-1" defer></script>
+  <script src="/article.js?v=20260925-1" defer></script>
+  <script src="/analytics.js?v=20260925-1"></script>
 </body>
 </html>

@@ -1,87 +1,5 @@
 const PTIA_DATA = {
-  today: [
-    {
-      n: "01",
-      title: "Governo quer usar IA no combate aos incêndios ainda este ano.",
-      pt: "É o tipo de aplicação pública onde a IA deixa de ser promessa abstrata e passa para decisão operacional: previsão, recursos e risco no terreno.",
-      source: "Observador",
-      tag: "Portugal",
-      time: "há 12h",
-      readtime: "4 min",
-      lead: true,
-      url: "https://observador.pt/"
-    },
-    {
-      n: "02",
-      title: "Estado aposta em IA na Saúde com promessa de poupança relevante.",
-      pt: "O ponto crítico não é a poupança anunciada. É perceber que processos clínicos e administrativos vão ser redesenhados, auditados e medidos.",
-      source: "Jornal Económico",
-      tag: "Empresas",
-      time: "há 14h",
-      readtime: "6 min",
-      url: "https://jornaleconomico.sapo.pt/"
-    },
-    {
-      n: "03",
-      title: "Empresas portuguesas começam a tratar IA como infraestrutura, não como ferramenta.",
-      pt: "A mudança importa para PME: menos experiências soltas, mais integração em vendas, suporte, reporting e operações.",
-      source: "PTIA Radar",
-      tag: "Empresas",
-      time: "ontem",
-      readtime: "5 min",
-      url: "#"
-    },
-    {
-      n: "04",
-      title: "Agentes de IA entram no ciclo de produto, mas ainda precisam de avaliação séria.",
-      pt: "Para builders, a pergunta já não é se o agente responde. É se falha de forma previsível, auditável e barata.",
-      source: "Research Radar",
-      tag: "Builders",
-      time: "ontem",
-      readtime: "7 min",
-      url: "#"
-    },
-    {
-      n: "05",
-      title: "O AI Act começa a sair do papel e a entrar em checklists de decisão.",
-      pt: "Empresas portuguesas devem mapear casos de uso antes de comprar ou lançar sistemas com risco regulatório.",
-      source: "European Commission",
-      tag: "Regulação",
-      time: "2 dias",
-      readtime: "8 min",
-      url: "#"
-    },
-    {
-      n: "06",
-      title: "Modelos de vídeo tornam-se produto de consumo, mas a utilidade empresarial ainda é desigual.",
-      pt: "Marketing e formação ganham velocidade. Prova, direitos de imagem e consistência continuam a separar demo de workflow.",
-      source: "AI Video Radar",
-      tag: "Ferramentas",
-      time: "2 dias",
-      readtime: "5 min",
-      url: "#"
-    },
-    {
-      n: "07",
-      title: "Investigação em modelos pequenos volta a ganhar relevância para equipas com orçamento real.",
-      pt: "Nem todas as empresas precisam de frontier models. Para tarefas internas, modelos pequenos bem avaliados podem chegar.",
-      source: "arXiv",
-      tag: "Investigação",
-      time: "3 dias",
-      readtime: "6 min",
-      url: "#"
-    },
-    {
-      n: "08",
-      title: "Ferramentas de coding assistido passam de autocomplete para trabalho assíncrono.",
-      pt: "O impacto em Portugal vai depender menos da ferramenta e mais da disciplina: specs, testes, revisão e ownership.",
-      source: "Builder Radar",
-      tag: "Builders",
-      time: "3 dias",
-      readtime: "6 min",
-      url: "#"
-    }
-  ],
+  today: [],
   sections: [
     { id: "mundo", name: "Mundo", blurb: "Movimentos globais de OpenAI, Google, Anthropic, Meta, Mistral e restantes laboratórios que mudam o terreno." },
     { id: "portugal", name: "Portugal", blurb: "Adoção, talento, investimento, política pública e empresas portuguesas a passar da conversa para execução." },
@@ -132,6 +50,13 @@ PTIA_DATA.guides = [
 
 const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 let activeFilter = "Todos";
+let lastFeedSignature = "";
+let currentFeedUpdatedAt = "";
+let currentFeedFromCache = false;
+const FEED_CACHE_KEY = "ptia-site-feed-v1";
+// A stale editorial feed should never look current for several days. Keep the
+// offline fallback short and let the page show its sync state when it expires.
+const MAX_CACHED_FEED_AGE_MS = 6 * 60 * 60 * 1000;
 
 function escapeHtml(value) {
   return String(value || "").replace(/[&<>"']/g, (char) => ({
@@ -174,8 +99,12 @@ function isUrlOnly(value) {
 
 function firstContentParagraph(value) {
   const lines = cleanPublicText(value).split(/\n+/).map((line) => line.trim());
-  return lines.find((line) => line.length > 40 && !/^fonte(?:\s+original)?\s*:/i.test(line) && !isUrlOnly(line))
-    || "Leitura PTIA com fonte original e contexto para Portugal.";
+  const first = lines.find((line) => line.length > 40 && !/^fonte(?:\s+original)?\s*:/i.test(line) && !isUrlOnly(line));
+  if (!first) return "Lê a análise, o contexto e as fontes no artigo.";
+  const limit = 220;
+  if (first.length <= limit) return first;
+  const trimmed = first.slice(0, limit).replace(/\s+\S*$/, "").replace(/[\s.,;:]+$/, "");
+  return `${trimmed}…`;
 }
 
 function readMinutes(value) {
@@ -201,15 +130,32 @@ function relativeTime(value) {
 function issueLabel(date) {
   const start = new Date(date.getFullYear(), 0, 1);
   const day = Math.floor((date - start) / 86400000) + 1;
-  const issue = String(Math.ceil(day / 7)).padStart(3, "0");
-  const month = new Intl.DateTimeFormat("pt-PT", { month: "long" }).format(date);
-  return `Issue ${issue} \u00b7 ${month} ${date.getFullYear()}`;
+  return String(Math.ceil(day / 7)).padStart(3, "0");
+}
+
+function parseFeedDate(value) {
+  if (!value || typeof value !== "string") return null;
+  const raw = value.trim();
+  const isoDate = new Date(raw);
+  if (!Number.isNaN(isoDate.getTime())) return isoDate;
+  const localMatch = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2})(?::(\d{2}))?)?$/);
+  if (!localMatch) return null;
+  const [, day, month, year, hour = "00", minute = "00", second = "00"] = localMatch;
+  const localDate = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    Number(hour),
+    Number(minute),
+    Number(second)
+  );
+  return Number.isNaN(localDate.getTime()) ? null : localDate;
 }
 
 function isPublishedNow(value) {
   if (!value) return true;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return true;
+  const date = parseFeedDate(value);
+  if (!date) return false;
   return date.getTime() <= Date.now();
 }
 
@@ -220,7 +166,11 @@ function visibleFeedPosts(feed) {
   if (newAppleVisible) {
     visible = visible.filter((post) => post.id !== "post_ca28e48d21d880a356");
   }
-  return visible.sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0));
+  return visible.sort((a, b) => {
+    const aDate = parseFeedDate(a.published_at)?.getTime() ?? Number.NEGATIVE_INFINITY;
+    const bDate = parseFeedDate(b.published_at)?.getTime() ?? Number.NEGATIVE_INFINITY;
+    return bDate - aDate;
+  });
 }
 
 function formatLongDate(date) {
@@ -284,7 +234,8 @@ function primaryStory() {
 function renderBreakingTicker() {
   const target = document.getElementById("breaking-content");
   if (!target) return;
-  const items = PTIA_DATA.today.slice(0, 8).map((item, index) => `
+  const frontStories = frontPageStories();
+  const items = PTIA_DATA.today.filter((item) => !frontStories.includes(item)).slice(0, 8).map((item, index) => `
     <a href="${escapeHtml(articleUrl(item))}" ${linkAttrs(articleUrl(item))}>
       <span>${escapeHtml(item.time || `#${index + 1}`)}</span>
       ${escapeHtml(item.title)}
@@ -293,63 +244,58 @@ function renderBreakingTicker() {
   target.innerHTML = `<div class="ticker-line">${items}${items}</div>`;
 }
 
-function renderFrontPage() {
+const FRONT_RAIL_COUNT = 3;
+const MORE_LIST_LIMIT = 10;
+
+function primaryTag(item) {
+  const tags = Array.isArray(item?.tag) ? item.tag : [item?.tag];
+  return tags.find(Boolean) || "IA";
+}
+
+function frontPageStories() {
   const lead = primaryStory();
+  if (!lead) return [];
+  return [lead, ...PTIA_DATA.today.filter((item) => item !== lead).slice(0, FRONT_RAIL_COUNT)];
+}
+
+function renderFrontPage() {
+  const [lead, ...railItems] = frontPageStories();
   const leadCard = document.getElementById("lead-card");
   const rail = document.getElementById("rail-stories");
-  const signalsCount = document.getElementById("signals-count");
-  const railSignals = document.getElementById("rail-signals");
   const moreCount = document.getElementById("more-count");
-  const editionDate = document.getElementById("edition-date");
+  const editionDay = document.getElementById("edition-day");
   const lastUpdated = document.getElementById("last-updated");
-  const railClock = document.getElementById("rail-clock");
 
-  if (signalsCount) signalsCount.textContent = String(PTIA_DATA.today.length);
-  if (railSignals) railSignals.innerHTML = `${PTIA_DATA.today.length}<sup>/1840</sup>`;
-  if (moreCount) moreCount.textContent = String(Math.max(Math.min(10, PTIA_DATA.today.length) - 1, 0));
-  if (editionDate) editionDate.textContent = formatLongDate(new Date());
-  const nowLabel = new Intl.DateTimeFormat("pt-PT", { hour: "2-digit", minute: "2-digit" }).format(new Date());
-  if (lastUpdated) lastUpdated.textContent = nowLabel;
-  if (railClock) railClock.textContent = nowLabel;
+  if (moreCount) moreCount.textContent = String(Math.min(MORE_LIST_LIMIT, Math.max(PTIA_DATA.today.length - railItems.length - 1, 0)));
+  if (editionDay) editionDay.textContent = `Edição de ${new Intl.DateTimeFormat("pt-PT", { weekday: "long" }).format(new Date())}`;
+  const feedDate = new Date(currentFeedUpdatedAt || Date.now());
+  const displayDate = Number.isNaN(feedDate.getTime()) ? new Date() : feedDate;
+  const updatedLabel = new Intl.DateTimeFormat("pt-PT", { hour: "2-digit", minute: "2-digit" }).format(displayDate);
+  if (lastUpdated) lastUpdated.textContent = `atualizada às ${updatedLabel}${currentFeedFromCache ? " · edição guardada" : ""}`;
 
   if (leadCard && lead) {
-    const href = articleUrl(lead);
+    const href = escapeHtml(articleUrl(lead));
+    const attrs = linkAttrs(articleUrl(lead));
     leadCard.innerHTML = `
-      <a class="cover" href="${escapeHtml(href)}" ${linkAttrs(href)}>
-        ${storyVisual(lead, true)}
-        <span class="cover-badge"><span class="live-dot"></span> Story principal</span>
-        <span class="numstamp">№${escapeHtml(lead.n || "01")}<small>Lead story</small></span>
-        <span class="cover-stamp">${escapeHtml(lead.tag || "IA")} · ${escapeHtml(lead.source || "PTIA")}</span>
-      </a>
-      <div class="lead-meta">
-        <span>${escapeHtml(lead.tag || "IA")}</span>
-        <strong>${escapeHtml(lead.source || "PTIA")}</strong>
-        <span>${escapeHtml(lead.readtime || "4 min")}</span>
-        <span>${escapeHtml(lead.time || "hoje")}</span>
-        <em>Leitura PTIA</em>
+      <div class="lead-copy">
+        <p class="lead-kicker">${escapeHtml(primaryTag(lead))}</p>
+        <h2 class="lead-title"><a href="${href}" ${attrs}>${escapeHtml(lead.title)}</a></h2>
+        <p class="lead-dek">${escapeHtml(lead.pt)}</p>
+        <p class="lead-byline">Por <span>João Ferreira</span> · ${escapeHtml(lead.time || "hoje")} · ${escapeHtml(lead.readtime || "4 min")} de leitura</p>
       </div>
-      <h2><a href="${escapeHtml(href)}" ${linkAttrs(href)}>${escapeHtml(lead.title)}</a></h2>
-      <p class="lead-dek">${escapeHtml(lead.pt)}</p>
-      <footer class="lead-foot">
-        <span class="byline-avatar">J</span>
-        <span>Por <em>João Ferreira</em> · Editor</span>
-        <a href="${escapeHtml(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>Ler ângulo completo -></a>
-      </footer>
+      <a class="lead-media" href="${href}" ${attrs} tabindex="-1" aria-hidden="true">${storyVisual(lead, true, true)}</a>
     `;
-    leadCard.querySelector(".lead-foot a")?.removeAttribute("target");
-    leadCard.querySelector(".lead-foot a")?.removeAttribute("rel");
+    fadeInImages(leadCard);
   }
 
   if (rail) {
-    rail.innerHTML = PTIA_DATA.today.filter((item) => item !== lead).slice(0, 3).map((item) => `
+    rail.innerHTML = railItems.map((item) => `
       <a class="rail-story" href="${escapeHtml(articleUrl(item))}" ${linkAttrs(articleUrl(item))}>
-        <span class="rail-meta">№${escapeHtml(item.n)} · ${escapeHtml(item.tag)} · ${escapeHtml(item.source)} · ${escapeHtml(item.time)}</span>
+        <span class="rail-meta"><span>${escapeHtml(primaryTag(item))}</span> ${escapeHtml(item.time || "")}</span>
         <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.pt)}</p>
       </a>
     `).join("");
   }
-
 }
 
 function categories() {
@@ -375,24 +321,55 @@ function categories() {
 function renderFilters() {
   const filterbar = document.getElementById("filterbar");
   if (!filterbar) return;
-  filterbar.innerHTML = categories().map(([label, count]) => `
+  const previousIndicator = filterbar.querySelector(".filter-indicator");
+  const previousLeft = previousIndicator?.style.left;
+  const previousWidth = previousIndicator?.style.width;
+  const previousScroll = filterbar.scrollLeft;
+  filterbar.innerHTML = `<span class="filter-indicator" aria-hidden="true"></span>` + categories().map(([label, count]) => `
     <button type="button" data-filter="${escapeHtml(label)}" aria-pressed="${label === activeFilter}">
-      ${escapeHtml(label)} ${count}
+      <span>${escapeHtml(label)}</span><span class="filter-count">${count}</span>
     </button>
   `).join("");
+  filterbar.scrollLeft = previousScroll;
+  const indicator = filterbar.querySelector(".filter-indicator");
+  if (previousLeft && previousWidth) {
+    indicator.style.left = previousLeft;
+    indicator.style.width = previousWidth;
+  }
+  const positionIndicator = () => {
+    const selected = filterbar.querySelector('[aria-pressed="true"]');
+    if (!selected) return;
+    indicator.style.left = `${selected.offsetLeft}px`;
+    indicator.style.width = `${selected.offsetWidth}px`;
+  };
+  // Two frames preserve the previous indicator position across the filter render.
+  requestAnimationFrame(() => requestAnimationFrame(positionIndicator));
+  filterbar._resizeObserver?.disconnect();
+  if ("ResizeObserver" in window) {
+    filterbar._resizeObserver = new ResizeObserver(positionIndicator);
+    filterbar._resizeObserver.observe(filterbar);
+    filterbar.querySelectorAll("button").forEach((button) => filterbar._resizeObserver.observe(button));
+  }
   filterbar.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.filter || "Todos";
-      renderFilters();
+      filterbar.querySelectorAll("button").forEach((item) => {
+        item.setAttribute("aria-pressed", String(item.dataset.filter === activeFilter));
+      });
+      positionIndicator();
       renderArticles();
     });
   });
 }
 
-function storyVisual(item, isLead) {
+// Only the front-page lead image is fetched eagerly with high priority (it is the LCP element).
+function storyVisual(item, isLead, isPriority = false) {
   if (item.imageUrl) {
+    const size = String(item.imageUrl).match(/(\d{3,4})x(\d{3,4})\.(?:jpe?g|png|webp|avif)$/i);
+    const dims = size ? ` width="${size[1]}" height="${size[2]}"` : "";
+    const priority = isPriority ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
     return `<figure class="${isLead ? "lead-visual" : "article-thumb"}">
-      <img src="${escapeHtml(item.imageUrl)}" alt="" loading="${isLead ? "eager" : "lazy"}">
+      <img src="${escapeHtml(item.imageUrl)}" alt=""${dims} ${priority} decoding="async">
     </figure>`;
   }
   const circles = Array.from({ length: 19 }, (_, index) => {
@@ -423,8 +400,9 @@ function articleRow(item, isLead) {
 function renderArticles() {
   const container = document.getElementById("posts");
   if (!container) return;
+  const frontStories = frontPageStories();
   const items = activeFilter === "Todos"
-    ? PTIA_DATA.today.slice(0, 10)
+    ? PTIA_DATA.today.filter((item) => !frontStories.includes(item)).slice(0, MORE_LIST_LIMIT)
     : PTIA_DATA.today.filter((item) => {
         const tags = Array.isArray(item.tag) ? item.tag : (item.tag ? [item.tag] : []);
         return tags.includes(activeFilter);
@@ -448,6 +426,12 @@ function renderArticles() {
     }
   });
   container.innerHTML = rows.join("");
+  fadeInImages(container);
+  if (!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches && container.animate) {
+    container.animate([{ opacity: 0.45, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }], {
+      duration: 260, easing: "cubic-bezier(.22,1,.36,1)"
+    });
+  }
 }
 
 function renderMap() {
@@ -542,7 +526,7 @@ function renderGuides() {
 }
 
 function setupReveal() {
-  const items = document.querySelectorAll(".reveal");
+  const items = document.querySelectorAll(".reveal, .section-head, .qeq-intro-text, .guides-grid");
   if (reducedMotion || !("IntersectionObserver" in window)) {
     items.forEach((item) => item.classList.add("in"));
     return;
@@ -551,6 +535,11 @@ function setupReveal() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("in");
+        if (!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches && entry.target.animate) {
+          entry.target.animate([{ opacity: 0, transform: "translateY(18px)" }, { opacity: 1, transform: "translateY(0)" }], {
+            duration: 600, easing: "cubic-bezier(.22,1,.36,1)"
+          });
+        }
         observer.unobserve(entry.target);
       }
     });
@@ -558,125 +547,100 @@ function setupReveal() {
   items.forEach((item) => observer.observe(item));
 }
 
-function setupCountUp() {
-  const nodes = document.querySelectorAll("[data-count]");
-  const setFinal = (node) => {
-    node.textContent = Number(node.dataset.count || 0).toLocaleString("pt-PT") + (node.dataset.suffix || "");
-  };
-  if (reducedMotion || !("IntersectionObserver" in window)) {
-    nodes.forEach(setFinal);
-    return;
-  }
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const node = entry.target;
-      const target = Number(node.dataset.count || 0);
-      const suffix = node.dataset.suffix || "";
-      const start = performance.now();
-      const duration = 1100;
-      const tick = (now) => {
-        const progress = Math.min(1, (now - start) / duration);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        node.textContent = Math.round(target * eased).toLocaleString("pt-PT") + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      observer.unobserve(node);
-    });
-  }, { threshold: 0.2 });
-  nodes.forEach((node) => observer.observe(node));
+function renderEditorialViews() {
+  renderBreakingTicker();
+  renderFrontPage();
+  renderFilters();
+  renderArticles();
+  renderMap();
+  renderIssueList();
 }
 
-function setupNewsletterForm() {
-  const form = document.getElementById("ptia-newsletter-form");
-  const status = document.getElementById("newsletter-status");
-  if (!form || !status) return;
-  form.addEventListener("submit", () => {
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true;
-    status.textContent = "A enviar. Se o email for válido, vais receber a confirmação de subscrição.";
-    window.setTimeout(() => {
-      status.textContent = "Quase lá: confirma o email para receberes a PTIA Weekly.";
-      form.reset();
-      button.disabled = false;
-    }, 1800);
-  });
+function renderFeedStatus(message) {
+  const safeMessage = escapeHtml(message);
+  const breaking = document.getElementById("breaking-content");
+  const leadCard = document.getElementById("lead-card");
+  const rail = document.getElementById("rail-stories");
+  const filters = document.getElementById("filterbar");
+  const posts = document.getElementById("posts");
+  const map = document.getElementById("map-grid");
+  const moreCount = document.getElementById("more-count");
+  const lastUpdated = document.getElementById("last-updated");
+
+  if (breaking) breaking.innerHTML = `<div class="ticker-line"><span role="status">${safeMessage}</span></div>`;
+  if (leadCard) leadCard.innerHTML = `<div class="lead-copy"><p class="lead-kicker">Edição diária</p><h2 class="lead-title" role="status">${safeMessage}</h2></div>`;
+  if (rail) rail.innerHTML = "";
+  if (filters) filters.innerHTML = "";
+  if (posts) posts.innerHTML = `<article class="article-row"><div></div><div><h3 class="article-title">${safeMessage}</h3><p class="pt-angle">A página volta a tentar automaticamente.</p></div></article>`;
+  if (map) map.innerHTML = "";
+  if (moreCount) moreCount.textContent = "0";
+  if (lastUpdated) lastUpdated.textContent = "a sincronizar";
 }
 
-function setupSignalViz() {
-  const svg = document.getElementById("signal-viz");
-  if (!svg) return;
-  const W = 480;
-  const H = 180;
-  const toPath = (points) => points.map((point, index) => `${index ? "L" : "M"}${point[0].toFixed(1)},${point[1].toFixed(1)}`).join(" ");
-  const draw = (t) => {
-    const noise = [1.3, 2.7, 4.1, 5.5, 6.8, 8.2, 9.6, 11].map((seed, index) => {
-      const points = [];
-      for (let x = 0; x <= W; x += 12) {
-        const y = H / 2
-          + Math.sin(x * 0.013 + seed + t * 0.6) * 22
-          + Math.sin(x * 0.029 + seed * 1.7 + t * 0.9) * 14
-          + Math.cos(x * 0.05 + seed * 2.3 + t * 1.3) * 8;
-        points.push([x, y]);
-      }
-      return `<path d="${toPath(points)}" stroke="currentColor" stroke-opacity="${0.18 + (index % 3) * 0.06}" stroke-width="0.8" fill="none"/>`;
-    }).join("");
-    const signal = [];
-    for (let x = 0; x <= W; x += 4) {
-      signal.push([x, H / 2 + Math.sin(x * 0.011 - t * 0.7) * 38]);
-    }
-    const markers = [];
-    for (let i = 2; i < signal.length - 2; i += 1) {
-      const y = signal[i][1];
-      if (y < signal[i - 2][1] && y < signal[i + 2][1] && y < H / 2 - 28) {
-        markers.push(signal[i]);
-        i += 20;
-      }
-    }
-    svg.innerHTML = `<defs>
-      <linearGradient id="sigGrad" x1="0" x2="1">
-        <stop offset="0%" stop-color="var(--signal)" stop-opacity="0"/>
-        <stop offset="20%" stop-color="var(--signal)" stop-opacity="1"/>
-        <stop offset="80%" stop-color="var(--signal)" stop-opacity="1"/>
-        <stop offset="100%" stop-color="var(--signal)" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <line x1="0" y1="${H / 2}" x2="${W}" y2="${H / 2}" stroke="currentColor" stroke-opacity="0.06" stroke-dasharray="2 4"/>
-    ${noise}
-    <path d="${toPath(signal)}" stroke="url(#sigGrad)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-    ${markers.slice(0, 3).map((marker) => `<g><circle cx="${marker[0]}" cy="${marker[1]}" r="3.5" fill="var(--signal)"/><circle cx="${marker[0]}" cy="${marker[1]}" r="7" fill="none" stroke="var(--signal)" stroke-opacity="0.3"/></g>`).join("")}`;
-  };
-  if (reducedMotion) {
-    draw(0);
-    return;
+function loadCachedFeed() {
+  try {
+    const feed = JSON.parse(localStorage.getItem(FEED_CACHE_KEY) || "null");
+    const updatedAt = new Date(feed?.updated_at || "");
+    if (!feed || Number.isNaN(updatedAt.getTime())) return null;
+    if (Date.now() - updatedAt.getTime() > MAX_CACHED_FEED_AGE_MS) return null;
+    return feed;
+  } catch (_) {
+    return null;
   }
-  let raf;
-  let last = performance.now();
-  let t = 0;
-  const loop = (now) => {
-    t += (now - last) * 0.0008;
-    last = now;
-    draw(t);
-    raf = requestAnimationFrame(loop);
-  };
-  raf = requestAnimationFrame(loop);
-  window.addEventListener("beforeunload", () => cancelAnimationFrame(raf), { once: true });
+}
+
+function cacheFeed(feed) {
+  try {
+    localStorage.setItem(FEED_CACHE_KEY, JSON.stringify(feed));
+  } catch (_) {}
+}
+
+async function fetchLatestFeed() {
+  for (const path of ["/site-feed.json", "/api/site-feed"]) {
+    try {
+      const url = new URL(path, window.location.href);
+      url.searchParams.set("v", String(Date.now()));
+      const response = await fetch(url, {
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" }
+      });
+      if (!response.ok) continue;
+      const feed = await response.json();
+      if (Array.isArray(feed?.posts)) return feed;
+    } catch (error) {
+      console.warn(`Falha ao carregar ${path}`, error);
+    }
+  }
+  return null;
 }
 
 async function hydrateFromFeedIfAvailable() {
   try {
-    let feed = null;
-    for (const url of ["site-feed.json", "/api/site-feed"]) {
-      const response = await fetch(url, { cache: "no-store" });
-      if (response.ok) {
-        feed = await response.json();
-        break;
-      }
+    let feed = await fetchLatestFeed();
+    let fromCache = false;
+    if (feed) {
+      cacheFeed(feed);
+    } else {
+      feed = loadCachedFeed();
+      fromCache = Boolean(feed);
     }
-    if (!feed) return;
+    if (!feed) return false;
+
     const visiblePosts = visibleFeedPosts(feed);
-    if (!visiblePosts.length) return;
+    if (!visiblePosts.length) return false;
+
+    const signature = JSON.stringify({
+      updatedAt: feed.updated_at || "",
+      fromCache,
+      visibleIds: visiblePosts.map((post) => post.id || post.published_at || post.title || "")
+    });
+    if (signature === lastFeedSignature) return true;
+
+    const updateTimes = [feed.updated_at, visiblePosts[0]?.published_at]
+      .map((value) => new Date(value || "").getTime())
+      .filter((value) => !Number.isNaN(value));
+    currentFeedUpdatedAt = updateTimes.length ? new Date(Math.max(...updateTimes)).toISOString() : "";
+    currentFeedFromCache = fromCache;
     PTIA_DATA.today = visiblePosts.map((post, index) => {
       const cleanBody = cleanPublicText(post.body || "");
       return {
@@ -697,30 +661,77 @@ async function hydrateFromFeedIfAvailable() {
         imageUrl: post.image_url || ""
       };
     });
-    renderBreakingTicker();
-    renderFrontPage();
-    renderFilters();
-    renderArticles();
-    renderMap();
-    setupSignalViz();
-  } catch (_) {}
+    lastFeedSignature = signature;
+    renderEditorialViews();
+    return true;
+  } catch (error) {
+    console.warn("Falha ao atualizar a edição PTIA", error);
+    return false;
+  }
 }
 
-setupDateline();
-setupTheme();
-renderBreakingTicker();
-renderFrontPage();
-renderFilters();
-renderArticles();
-renderMap();
-renderGitHubRepos();
-renderGuides();
-setupReveal();
-setupCountUp();
-setupNewsletterForm();
-setupSignalViz();
-hydrateFromFeedIfAvailable();
-setInterval(hydrateFromFeedIfAvailable, 60000);
+// Images arrive with a short fade instead of popping in over the placeholder.
+function fadeInImages(root) {
+  root?.querySelectorAll("img").forEach((img) => {
+    if (img.complete) return;
+    img.classList.add("is-loading");
+    const done = () => img.classList.remove("is-loading");
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", done, { once: true });
+  });
+}
+
+// Once the masthead scrolls away, a compact bar keeps sections and Subscrever at hand.
+function setupStickyBar() {
+  const bar = document.getElementById("sticky-bar");
+  const header = document.querySelector(".site-header");
+  if (!bar || !header || !("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver(([entry]) => {
+    bar.classList.toggle("is-visible", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+  }, { rootMargin: "-40px 0px 0px 0px" });
+  observer.observe(header);
+}
+
+// The header CTA lands the reader in the front-page form, ready to type.
+function focusSignupForm() {
+  const section = document.getElementById("subscrever");
+  const input = document.getElementById("front-signup-email");
+  if (!section || !input) return false;
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  section.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+  input.focus({ preventScroll: true });
+  return true;
+}
+
+// The site generator writes a static front page into index.html for crawlers that skip
+// JavaScript; it stays on screen until the live feed replaces it.
+function hasFrontSnapshot() {
+  return Boolean(document.querySelector("#lead-card .lead-title"));
+}
+
+async function initializeSite() {
+  setupDateline();
+  setupTheme();
+  setupStickyBar();
+  const snapshot = hasFrontSnapshot();
+  if (!snapshot) renderFeedStatus("A atualizar a edição…");
+  renderGitHubRepos();
+  renderGuides();
+
+  const hydrated = await hydrateFromFeedIfAvailable();
+  if (!hydrated && !snapshot) renderFeedStatus("Não foi possível atualizar a edição.");
+  setupReveal();
+  // Inner pages link to /#subscrever; land on the form once the lead has rendered.
+  if (window.location.hash === "#subscrever") focusSignupForm();
+}
+
+initializeSite();
+setInterval(async () => {
+  const hydrated = await hydrateFromFeedIfAvailable();
+  if (!hydrated && !PTIA_DATA.today.length && !hasFrontSnapshot()) {
+    renderFeedStatus("Não foi possível atualizar a edição.");
+  }
+}, 60000);
 
 // Navegação Dinâmica de Categorias (SPA Routing)
 window.selectCategory = function(name) {
@@ -796,6 +807,12 @@ document.addEventListener("click", function(e) {
     return;
   }
   
+  if (hash === "subscrever" && focusSignupForm()) {
+    e.preventDefault();
+    history.pushState(null, null, "#subscrever");
+    return;
+  }
+
   if (hash === "hoje") {
     e.preventDefault();
     activeFilter = "Todos";

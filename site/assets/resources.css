@@ -81,8 +81,8 @@
   max-width: 10ch;
   margin: 0;
   color: #fff;
-  font: 400 clamp(58px, 7vw, 92px)/.93 var(--serif);
-  letter-spacing: -.035em;
+  font: 400 clamp(44px, 5.4vw, 72px)/1.04 var(--serif);
+  letter-spacing: -0.015em;
 }
 
 .resources-v2-hero-copy > p:not(.resources-v2-eyebrow) {
@@ -177,8 +177,8 @@
   max-width: 10ch;
   margin: 0;
   color: #fff;
-  font: 400 clamp(38px, 4vw, 56px)/.94 var(--serif);
-  letter-spacing: -.025em;
+  font: 400 clamp(30px, 3vw, 42px)/1.06 var(--serif);
+  letter-spacing: -0.01em;
 }
 
 .resources-week-card > p:not(.resources-week-rank) {
@@ -200,7 +200,8 @@
 
 .resources-week-score strong {
   color: #fff;
-  font: 400 46px/.8 var(--serif);
+  font: 400 40px/.9 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .resources-week-score span {
@@ -240,7 +241,8 @@
   display: block;
   margin-bottom: 5px;
   color: #fff;
-  font: 400 25px/1 var(--serif);
+  font: 400 22px/1.1 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .resources-jump-nav {
@@ -304,8 +306,8 @@
   max-width: 15ch;
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 clamp(42px, 5vw, 66px)/.96 var(--serif);
-  letter-spacing: -.028em;
+  font: 400 clamp(32px, 3.8vw, 50px)/1.06 var(--serif);
+  letter-spacing: -0.015em;
 }
 
 .resources-v2-section-head > p {
@@ -468,8 +470,8 @@
   max-width: 12ch;
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 clamp(31px, 3vw, 43px)/.96 var(--serif);
-  letter-spacing: -.022em;
+  font: 500 clamp(25px, 2.4vw, 33px)/1.1 var(--serif);
+  letter-spacing: -0.01em;
 }
 
 .resources-rank-1 h3 {
@@ -498,7 +500,8 @@
 
 .resources-rank-score strong {
   color: var(--rv2-navy);
-  font: 400 40px/.82 var(--serif);
+  font: 400 34px/.9 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .resources-rank-score span {
@@ -738,7 +741,7 @@
 .resources-leader-board > header h3 {
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 31px/1 var(--serif);
+  font: 400 26px/1.1 var(--serif);
 }
 
 .resources-leader-board > header > span {
@@ -833,8 +836,8 @@
 .resources-leader-identity h3 {
   margin: 0;
   color: #fff;
-  font: 400 clamp(28px, 3vw, 38px)/.95 var(--serif);
-  letter-spacing: -.025em;
+  font: 500 clamp(24px, 2.4vw, 30px)/1.08 var(--serif);
+  letter-spacing: -0.01em;
 }
 
 .resources-leader-identity small {
@@ -869,7 +872,8 @@
 
 .resources-leader-stats strong {
   color: #fff;
-  font: 400 27px/1 var(--serif);
+  font: 400 24px/1.05 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .resources-leader-stats small {
@@ -1029,7 +1033,8 @@
 
 .resources-leader-row-score strong {
   color: var(--rv2-navy);
-  font: 400 21px/1 var(--serif);
+  font: 400 19px/1.05 var(--serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .resources-leader-row-score small {
@@ -1121,8 +1126,8 @@
   max-width: 13ch;
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 clamp(36px, 4vw, 52px)/.97 var(--serif);
-  letter-spacing: -.02em;
+  font: 400 clamp(28px, 3vw, 40px)/1.08 var(--serif);
+  letter-spacing: -0.01em;
 }
 
 .resources-editorial-card header > a,
@@ -1235,7 +1240,7 @@
 .resources-glossary-strip h2 {
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 28px/1 var(--serif);
+  font: 400 24px/1.1 var(--serif);
 }
 
 .resources-glossary-links {
@@ -1323,7 +1328,7 @@
 .resources-v2-closing > .wrap > p {
   margin: 0;
   color: var(--rv2-navy);
-  font: 400 30px/1.05 var(--serif);
+  font: 400 25px/1.2 var(--serif);
 }
 
 .resources-v2-closing .wrap > div {
@@ -1373,7 +1378,7 @@
 
 .index-gate-note strong {
   color: var(--knowledge-primary);
-  font: 400 24px/1 var(--serif);
+  font: 400 21px/1.15 var(--serif);
 }
 
 .index-gate-note span {
@@ -1393,7 +1398,7 @@
   }
 
   .resources-v2-hero-copy h1 {
-    font-size: 64px;
+    font-size: 56px;
   }
 
   .resources-podium {
@@ -1450,7 +1455,7 @@
 
   .resources-v2-hero-copy h1 {
     max-width: 11ch;
-    font-size: clamp(48px, 13vw, 66px);
+    font-size: clamp(38px, 10vw, 52px);
   }
 
   .resources-week-card {
@@ -1495,7 +1500,7 @@
   }
 
   .resources-v2-section-head h2 {
-    font-size: 44px;
+    font-size: 36px;
   }
 
   .resources-ranking-toolbar {
@@ -1604,7 +1609,7 @@
   }
 
   .resources-v2-section-head h2 {
-    font-size: 39px;
+    font-size: 31px;
   }
 
   .resources-ranking-toolbar > div {
@@ -1689,7 +1694,7 @@
   }
 
   .resources-leader-identity h3 {
-    font-size: 29px;
+    font-size: 25px;
   }
 
   .resources-leader-stats > span {

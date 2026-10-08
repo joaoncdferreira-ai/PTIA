@@ -1,7 +1,60 @@
 {
   "brand": "PTIA.pt",
-  "updated_at": "2026-10-06T21:43:24+00:00",
+  "updated_at": "2026-10-07T21:16:37+00:00",
   "posts": [
+    {
+      "id": "post_3bc01d8d16d9b8f9dd",
+      "title": "OpenAI partilha resultados de IA para acelerar a investigação matemática",
+      "body": "A OpenAI publicou resultados de investigação matemática produzidos por um modelo interno de inteligência artificial, com formalizações em Lean, revisão de provas e dados sobre os problemas tentados e a computação utilizada pelas equipas de investigação.\n\nA publicação dá a investigadores, universidades e empresas portuguesas um caso concreto para avaliar como a IA pode acelerar trabalho científico, aumentar a verificabilidade e alterar processos de decisão e produção de conhecimento.",
+      "source_urls": [
+        "https://openai.com/index/sharing-ai-progress-in-mathematics/"
+      ],
+      "image_path": "data\\final_assets\\post_8bd2afb3b5f030b827_991e6d87_Investiga-o-Matem-tica-com-IA-em-Luz-Dourada.png",
+      "image_url": "https://dmmcy0pwk6bqi.cloudfront.net/3284584ce2a10fffa6cc010637826965b79b4477",
+      "published_at": "2026-10-08T16:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Regulação",
+        "Histórias reais",
+        "Previsões Futuras"
+      ],
+      "article_url": "artigos/openai-partilha-resultados-de-ia-para-acelerar-a-investigacao-matematica-3bc01d8d16d9b8f9dd"
+    },
+    {
+      "id": "post_d201e0fc6463e8cafb",
+      "title": "Governo testa IA nos licenciamentos municipais com a plataforma Licencia",
+      "body": "O Governo apresentou a plataforma Licencia, um projeto-piloto desenhado para integrar inteligência artificial na tramitação de licenciamentos administrativos num conjunto inicial de municípios. A ferramenta destina-se a apoiar a triagem documental e a análise técnica, com o propósito de reduzir prazos e cortar etapas burocráticas no contacto entre a administração pública, cidadãos e promotores.\n\nA aplicação de modelos de automação a este domínio ataca um dos principais estrangulamentos económicos do país: a incerteza temporal nas decisões do Estado. Quando o licenciamento depende de verificações manuais de conformidade que demoram meses, o custo financeiro dos projetos acumula-se antes da primeira obra. Automatizar a validação inicial de requisitos normativos retira fricção processual onde ela é puramente mecânica, libertando os técnicos municipais para a avaliação de mérito e exceção.\n\nO teste desta solução em ambiente autárquico traz também um critério de responsabilização prática. A eficácia da plataforma não será medida pela sofisticação dos algoritmos, mas pela capacidade de normalizar critérios entre diferentes municípios sem criar zonas cinzentas de conformidade legal. Se a triagem algorítmica conseguir reduzir o tempo de resposta sem empurrar a resolução de dúvidas para impugnações jurídicas posteriores, o modelo valida-se para lá dos municípios-piloto.\n\nPara as empresas e gabinetes de projeto, a transição exigirá dossiers de submissão mais rigorosos e legíveis por máquina, transformando a preparação de processos num requisito de rapidez operacional.",
+      "source_urls": [
+        "https://www.youtube.com/watch?v=Bh0bxlc1q7g&t=308"
+      ],
+      "image_path": "data\\final_assets\\post_d45319754645fc7643_858e882a_Planeamento-Urbano-com-Realidade-Aumentada.png",
+      "image_url": "https://dmmcy0pwk6bqi.cloudfront.net/62d7a9037e977c29d872164daee9c09704685aac",
+      "published_at": "2026-10-08T12:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Regulação",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/governo-testa-ia-nos-licenciamentos-municipais-com-a-plataforma-licencia-d201e0fc6463e8cafb"
+    },
+    {
+      "id": "post_eaf056f19a6d65d650",
+      "title": "Anthropic testa Claude na identificação de sistemas enzimáticos",
+      "body": "O laboratório de biologia da Anthropic utilizou o Claude para identificar um sistema enzimático associado a repetições de ADN. O resultado é preliminar e a sua relevância biológica permanece dependente de validação experimental em bancada.\n\nA movimentação indica uma mudança no papel dos modelos de linguagem na investigação científica. Em vez de operarem apenas como assistentes de síntese bibliográfica ou geração de código, os modelos começam a ser direcionados para formular hipóteses estruturadas sobre dados genómicos complexos.\n\nAinda assim, a computação apenas propõe; a biologia molecular continua a exigir prova física. O gargalo da inovação biomédica não reside na capacidade de gerar pistas teóricas em escala, mas no tempo e custo necessários para testar cada uma delas em laboratório.\n\nPara centros de investigação e empresas de biotecnologia, o valor destas ferramentas vai medir-se pela precisão com que reduzem o universo de candidatos a sintetizar, evitando desperdício de recursos em pistas falsas antes da fase experimental.",
+      "source_urls": [
+        "https://www.theatlantic.com/science/2026/10/anthropic-artificial-intelligence-science/688878/"
+      ],
+      "image_path": "data\\final_assets\\post_7e5e69ca946320e686_c44cdb22_Investiga-o-Molecular-com-IA.png",
+      "image_url": "https://dmmcy0pwk6bqi.cloudfront.net/ed4dbbe893c37a2ace40a78cbc06c97edcd92e31",
+      "published_at": "2026-10-08T09:00:00+00:00",
+      "section": [
+        "Mundo",
+        "Builders",
+        "Histórias reais"
+      ],
+      "article_url": "artigos/anthropic-testa-claude-na-identificacao-de-sistemas-enzimaticos-eaf056f19a6d65d650"
+    },
     {
       "id": "post_7c2e82093bd9c2563a",
       "title": "AICEP mapeia ecossistema de startups com inteligência artificial no centro do crescimento",
