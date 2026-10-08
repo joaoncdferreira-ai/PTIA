@@ -29,6 +29,30 @@
       "headers": [
         {"key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate"}
       ]
+    },
+    {
+      "source": "/newsletter",
+      "headers": [
+        {"key": "Cache-Control", "value": "no-store, max-age=0"}
+      ]
+    },
+    {
+      "source": "/newsletter/",
+      "headers": [
+        {"key": "Cache-Control", "value": "no-store, max-age=0"}
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/newsletter",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio#newsletter",
+      "permanent": false
+    },
+    {
+      "source": "/newsletter/",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio#newsletter",
+      "permanent": false
     }
   ],
   "rewrites": [
