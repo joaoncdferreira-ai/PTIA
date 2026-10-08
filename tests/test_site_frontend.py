@@ -45,7 +45,7 @@ class SiteFrontendTests(unittest.TestCase):
         self.assertIn("no-store", headers["/api/site-feed"]["Cache-Control"])
 
         html = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("app.js?v=20261006-3", html)
+        self.assertIn("app.js?v=20261008-1", html)
 
 
 if __name__ == "__main__":

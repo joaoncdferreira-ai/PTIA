@@ -723,6 +723,11 @@ async function initializeSite() {
   setupReveal();
   // Inner pages link to /#subscrever; land on the form once the lead has rendered.
   if (window.location.hash === "#subscrever") focusSignupForm();
+  // ptia.pt/newsletter (Instagram bio) lands on #newsletter; sections rendered above it move the
+  // browser's initial anchor jump, so anchor again once the page is complete.
+  if (window.location.hash === "#newsletter") {
+    document.getElementById("newsletter")?.scrollIntoView({ behavior: "instant", block: "start" });
+  }
 }
 
 initializeSite();
